@@ -23,10 +23,6 @@ body {
     color: #2D2D2D;
 }
 
-/* =========================
-   LAYOUT
-========================= */
-
 .app {
     min-height: 100vh;
     display: flex;
@@ -309,6 +305,10 @@ body {
     margin-top: 18px;
 }
 
+.primary-btn:hover {
+    opacity: 0.9;
+}
+
 .secondary-btn {
     border: 1px solid #D9D1CA;
     background: #FFFFFF;
@@ -319,6 +319,10 @@ body {
     font-size: 12px;
 }
 
+.secondary-btn:hover {
+    background: #FBF8F3;
+}
+
 .danger-btn {
     border: 1px solid #D9C5C5;
     background: #FFFFFF;
@@ -327,6 +331,10 @@ body {
     border-radius: 7px;
     cursor: pointer;
     font-size: 11px;
+}
+
+.danger-btn:hover {
+    background: #F8EEEE;
 }
 
 .form-message {
@@ -395,7 +403,7 @@ td {
 }
 
 /* =========================
-   EDUCATION
+   LESSONS
 ========================= */
 
 .lesson-list {
@@ -441,6 +449,7 @@ td {
     font-size: 12px;
     margin-top: 10px;
     white-space: pre-wrap;
+    line-height: 1.6;
 }
 
 .lesson-actions {
@@ -484,12 +493,14 @@ td {
 .message-email {
     color: #817972;
     font-size: 10px;
+    margin-top: 2px;
 }
 
 .message-text {
     color: #514C49;
     font-size: 13px;
     white-space: pre-wrap;
+    line-height: 1.6;
 }
 
 /* =========================
@@ -498,6 +509,17 @@ td {
 
 .empty {
     padding: 35px;
+    text-align: center;
+    color: #817972;
+    font-size: 13px;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.loading {
+    padding: 25px;
     text-align: center;
     color: #817972;
     font-size: 13px;
@@ -580,18 +602,79 @@ td {
         flex-direction: column;
     }
 
+    .lesson-top {
+        flex-direction: column;
+    }
+
+}
+
+/* =========================
+   MEMBER DETAIL
+========================= */
+
+.member-detail {
+    display: none;
+}
+
+.member-detail.active {
+    display: block;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.detail-box {
+    background: #FBF8F3;
+    border: 1px solid #E5DED7;
+    border-radius: 9px;
+    padding: 15px;
+}
+
+.detail-label {
+    color: #817972;
+    font-size: 10px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.detail-value {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.progress-list {
+    display: grid;
+    gap: 10px;
+}
+
+.progress-item {
+    border: 1px solid #E5DED7;
+    border-radius: 9px;
+    padding: 14px;
+}
+
+.progress-date {
+    color: #817972;
+    font-size: 10px;
+    margin-bottom: 5px;
+}
+
+.progress-data {
+    font-size: 12px;
+    line-height: 1.7;
 }
 
 </style>
 
 </head>
 
-
 <body>
 
-
 <div class="app">
-
 
 <!-- =========================
      SIDEBAR
@@ -611,11 +694,9 @@ td {
 
     </div>
 
-
     <div class="admin-label">
         Manage
     </div>
-
 
     <button
         class="nav-btn active"
@@ -623,13 +704,11 @@ td {
         Overview
     </button>
 
-
     <button
         class="nav-btn"
         data-section="members">
         Members
     </button>
-
 
     <button
         class="nav-btn"
@@ -637,13 +716,11 @@ td {
         Weekly Education
     </button>
 
-
     <button
         class="nav-btn"
         data-section="community">
         Community
     </button>
-
 
     <div class="sidebar-bottom">
 
@@ -663,13 +740,11 @@ td {
 
 </aside>
 
-
 <!-- =========================
      MAIN
 ========================= -->
 
 <main class="main">
-
 
 <div class="topbar">
 
@@ -680,10 +755,10 @@ td {
     <div
         class="admin-email"
         id="adminEmail">
+        Checking access...
     </div>
 
 </div>
-
 
 <!-- =========================
      OVERVIEW
@@ -704,11 +779,10 @@ td {
         </h2>
 
         <p>
-            Manage your members and club content from one place.
+            Manage your members, education and community from one place.
         </p>
 
     </div>
-
 
     <div class="stats">
 
@@ -726,7 +800,6 @@ td {
 
         </div>
 
-
         <div class="stat">
 
             <div class="stat-label">
@@ -741,7 +814,6 @@ td {
 
         </div>
 
-
         <div class="stat">
 
             <div class="stat-label">
@@ -755,7 +827,6 @@ td {
             </div>
 
         </div>
-
 
         <div class="stat">
 
@@ -773,29 +844,30 @@ td {
 
     </div>
 
-
     <div class="card">
 
         <h3>
-            How your Admin panel works
+            Your Admin Panel
         </h3>
 
         <p class="card-description">
-            Your member information, education lessons and community
-            messages are stored separately in Firebase. Updating a
-            lesson will not overwrite member profiles or progress.
+            This panel allows you to manage members, weekly education
+            and community messages.
         </p>
 
         <p class="card-description">
-            Use Members to add or update members. Use Weekly Education
-            to publish or edit lessons. Use Community to moderate
-            member messages.
+            Education lessons are stored separately from member profiles
+            and progress. Updating a weekly lesson will not delete or
+            replace member data.
+        </p>
+
+        <p class="card-description">
+            Only the administrator account can access this page.
         </p>
 
     </div>
 
 </section>
-
 
 <!-- =========================
      MEMBERS
@@ -816,32 +888,26 @@ td {
         </h2>
 
         <p>
-            Add and manage all Freedom Women's Health Club members.
+            Add, edit and review your club members.
         </p>
 
     </div>
 
-
     <div class="card">
 
         <h3>
-            Add New Member
+            Add / Edit Member
         </h3>
 
         <p class="card-description">
-            Enter the member's information once. It will be saved
-            under her own member record.
+            Member information is stored in the members collection.
         </p>
-
 
         <div class="form-grid">
 
-
             <div class="field">
 
-                <label>
-                    Name
-                </label>
+                <label>Name</label>
 
                 <input
                     type="text"
@@ -850,12 +916,9 @@ td {
 
             </div>
 
-
             <div class="field">
 
-                <label>
-                    Email
-                </label>
+                <label>Email</label>
 
                 <input
                     type="email"
@@ -864,12 +927,9 @@ td {
 
             </div>
 
-
             <div class="field">
 
-                <label>
-                    Age
-                </label>
+                <label>Age</label>
 
                 <input
                     type="number"
@@ -878,12 +938,9 @@ td {
 
             </div>
 
-
             <div class="field">
 
-                <label>
-                    Height (cm)
-                </label>
+                <label>Height (cm)</label>
 
                 <input
                     type="number"
@@ -893,12 +950,9 @@ td {
 
             </div>
 
-
             <div class="field">
 
-                <label>
-                    Starting Weight (kg)
-                </label>
+                <label>Starting Weight (kg)</label>
 
                 <input
                     type="number"
@@ -908,12 +962,9 @@ td {
 
             </div>
 
-
             <div class="field">
 
-                <label>
-                    Current Weight (kg)
-                </label>
+                <label>Current Weight (kg)</label>
 
                 <input
                     type="number"
@@ -923,12 +974,9 @@ td {
 
             </div>
 
-
             <div class="field">
 
-                <label>
-                    Starting Waist (cm)
-                </label>
+                <label>Starting Waist (cm)</label>
 
                 <input
                     type="number"
@@ -938,27 +986,9 @@ td {
 
             </div>
 
-
             <div class="field">
 
-                <label>
-                    Starting Hip (cm)
-                </label>
-
-                <input
-                    type="number"
-                    step="0.1"
-                    id="memberStartingHipInput"
-                    placeholder="Optional">
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    Current Waist (cm)
-                </label>
+                <label>Current Waist (cm)</label>
 
                 <input
                     type="number"
@@ -968,12 +998,21 @@ td {
 
             </div>
 
+            <div class="field">
+
+                <label>Starting Hip (cm)</label>
+
+                <input
+                    type="number"
+                    step="0.1"
+                    id="memberStartingHipInput"
+                    placeholder="Optional">
+
+            </div>
 
             <div class="field">
 
-                <label>
-                    Current Hip (cm)
-                </label>
+                <label>Current Hip (cm)</label>
 
                 <input
                     type="number"
@@ -983,12 +1022,9 @@ td {
 
             </div>
 
-
             <div class="field">
 
-                <label>
-                    Membership Status
-                </label>
+                <label>Membership Status</label>
 
                 <select id="memberStatusInput">
 
@@ -1006,11 +1042,16 @@ td {
 
         </div>
 
-
         <button
             class="primary-btn"
             id="saveMemberBtn">
             Add / Save Member
+        </button>
+
+        <button
+            class="secondary-btn"
+            id="clearMemberBtn">
+            Clear
         </button>
 
         <span
@@ -1020,6 +1061,164 @@ td {
 
     </div>
 
+    <!-- MEMBER DETAIL -->
+
+    <div
+        class="member-detail"
+        id="memberDetail">
+
+        <div class="card">
+
+            <h3 id="detailMemberName">
+                Member
+            </h3>
+
+            <p
+                class="card-description"
+                id="detailMemberEmail">
+            </p>
+
+            <div class="detail-grid">
+
+                <div class="detail-box">
+                    <div class="detail-label">
+                        Age
+                    </div>
+                    <div
+                        class="detail-value"
+                        id="detailAge">
+                        —
+                    </div>
+                </div>
+
+                <div class="detail-box">
+                    <div class="detail-label">
+                        Height
+                    </div>
+                    <div
+                        class="detail-value"
+                        id="detailHeight">
+                        —
+                    </div>
+                </div>
+
+                <div class="detail-box">
+                    <div class="detail-label">
+                        Starting Weight
+                    </div>
+                    <div
+                        class="detail-value"
+                        id="detailStartingWeight">
+                        —
+                    </div>
+                </div>
+
+                <div class="detail-box">
+                    <div class="detail-label">
+                        Current Weight
+                    </div>
+                    <div
+                        class="detail-value"
+                        id="detailCurrentWeight">
+                        —
+                    </div>
+                </div>
+
+                <div class="detail-box">
+                    <div class="detail-label">
+                        Weight Change
+                    </div>
+                    <div
+                        class="detail-value"
+                        id="detailWeightChange">
+                        —
+                    </div>
+                </div>
+
+                <div class="detail-box">
+                    <div class="detail-label">
+                        Membership
+                    </div>
+                    <div
+                        class="detail-value"
+                        id="detailStatus">
+                        —
+                    </div>
+                </div>
+
+                <div class="detail-box">
+                    <div class="detail-label">
+                        Starting Waist
+                    </div>
+                    <div
+                        class="detail-value"
+                        id="detailStartingWaist">
+                        —
+                    </div>
+                </div>
+
+                <div class="detail-box">
+                    <div class="detail-label">
+                        Current Waist
+                    </div>
+                    <div
+                        class="detail-value"
+                        id="detailCurrentWaist">
+                        —
+                    </div>
+                </div>
+
+                <div class="detail-box">
+                    <div class="detail-label">
+                        Starting Hip
+                    </div>
+                    <div
+                        class="detail-value"
+                        id="detailStartingHip">
+                        —
+                    </div>
+                </div>
+
+                <div class="detail-box">
+                    <div class="detail-label">
+                        Current Hip
+                    </div>
+                    <div
+                        class="detail-value"
+                        id="detailCurrentHip">
+                        —
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                Progress History
+            </h3>
+
+            <p class="card-description">
+                Progress records connected to this member.
+            </p>
+
+            <div
+                class="progress-list"
+                id="memberProgressList">
+
+                <div class="empty">
+                    No progress records found.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ALL MEMBERS -->
 
     <div class="card">
 
@@ -1028,9 +1227,8 @@ td {
         </h3>
 
         <p class="card-description">
-            Select Edit to load a member's information into the form.
+            Click View to see the member's information and progress.
         </p>
-
 
         <div class="table-wrapper">
 
@@ -1057,7 +1255,7 @@ td {
                         </th>
 
                         <th>
-                            Actions
+                            Action
                         </th>
 
                     </tr>
@@ -1075,7 +1273,6 @@ td {
     </div>
 
 </section>
-
 
 <!-- =========================
      EDUCATION
@@ -1096,11 +1293,10 @@ td {
         </h2>
 
         <p>
-            Add or update lessons without changing member information.
+            Add or update your weekly lessons.
         </p>
 
     </div>
-
 
     <div class="card">
 
@@ -1109,12 +1305,10 @@ td {
         </h3>
 
         <p class="card-description">
-            Each lesson is stored separately in the education collection.
+            Lessons are stored separately from members and progress.
         </p>
 
-
         <div class="form-grid">
-
 
             <div class="field">
 
@@ -1129,7 +1323,6 @@ td {
 
             </div>
 
-
             <div class="field">
 
                 <label>
@@ -1142,7 +1335,6 @@ td {
                     placeholder="Nutrition, Habits, Exercise...">
 
             </div>
-
 
             <div class="field full">
 
@@ -1157,7 +1349,6 @@ td {
 
             </div>
 
-
             <div class="field full">
 
                 <label>
@@ -1169,7 +1360,6 @@ td {
                     placeholder="Write or paste your lesson here..."></textarea>
 
             </div>
-
 
             <div class="field">
 
@@ -1193,7 +1383,6 @@ td {
 
         </div>
 
-
         <button
             class="primary-btn"
             id="saveLessonBtn">
@@ -1213,7 +1402,6 @@ td {
 
     </div>
 
-
     <div class="card">
 
         <h3>
@@ -1221,10 +1409,8 @@ td {
         </h3>
 
         <p class="card-description">
-            Editing a lesson changes only that education document.
-            Member profiles remain untouched.
+            Editing a lesson only changes that education document.
         </p>
-
 
         <div
             class="lesson-list"
@@ -1239,7 +1425,6 @@ td {
     </div>
 
 </section>
-
 
 <!-- =========================
      COMMUNITY
@@ -1260,11 +1445,10 @@ td {
         </h2>
 
         <p>
-            View and moderate messages from Freedom members.
+            View and moderate messages from your members.
         </p>
 
     </div>
-
 
     <div class="card">
 
@@ -1273,9 +1457,8 @@ td {
         </h3>
 
         <p class="card-description">
-            You can see messages posted by members here.
+            You can view and delete community messages from here.
         </p>
-
 
         <div
             class="community-list"
@@ -1291,14 +1474,11 @@ td {
 
 </section>
 
-
 </main>
 
 </div>
 
-
 <script type="module">
-
 
 /* =========================
    FIREBASE
@@ -1306,17 +1486,13 @@ td {
 
 import {
     initializeApp
-}
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 import {
     getAuth,
     onAuthStateChanged,
     signOut
-}
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 import {
     getFirestore,
@@ -1328,8 +1504,7 @@ import {
     deleteDoc,
     query,
     orderBy
-}
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
 const firebaseConfig = {
@@ -1366,88 +1541,17 @@ const db =
 
 
 /* =========================
-   ADMIN EMAIL
+   ADMIN
 ========================= */
 
 const ADMIN_EMAIL =
     "mahnoordietitian3@gmail.com";
-
 
 let currentAdmin = null;
 
 let editingMemberEmail = null;
 
 let editingLessonId = null;
-
-
-/* =========================
-   SIDEBAR
-========================= */
-
-const navButtons =
-    document.querySelectorAll(".nav-btn");
-
-
-navButtons.forEach(button => {
-
-    button.addEventListener(
-        "click",
-        () => {
-
-            const section =
-                button.dataset.section;
-
-
-            navButtons.forEach(btn => {
-
-                btn.classList.remove("active");
-
-            });
-
-
-            button.classList.add("active");
-
-
-            document
-                .querySelectorAll(".section")
-                .forEach(sectionElement => {
-
-                    sectionElement.classList.remove("active");
-
-                });
-
-
-            document
-                .getElementById(
-                    "section-" + section
-                )
-                .classList.add("active");
-
-
-            if (section === "members") {
-
-                loadMembers();
-
-            }
-
-
-            if (section === "education") {
-
-                loadLessons();
-
-            }
-
-
-            if (section === "community") {
-
-                loadCommunity();
-
-            }
-
-        }
-    );
-
-});
 
 
 /* =========================
@@ -1467,40 +1571,110 @@ onAuthStateChanged(
 
         }
 
-
         const email =
             (user.email || "")
             .toLowerCase();
 
-
         if (email !== ADMIN_EMAIL) {
 
             alert(
-                "Admin access is only available to the administrator."
+                "You do not have administrator access."
             );
 
+            await signOut(auth);
 
             window.location.href =
-                "dashboard.html";
+                "login.html";
 
             return;
 
         }
 
-
         currentAdmin = user;
-
 
         document.getElementById(
             "adminEmail"
         ).textContent =
             user.email;
 
-
         await loadOverview();
 
     }
 );
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+const navButtons =
+    document.querySelectorAll(".nav-btn");
+
+
+navButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        async () => {
+
+            const section =
+                button.dataset.section;
+
+            navButtons.forEach(btn => {
+
+                btn.classList.remove("active");
+
+            });
+
+            button.classList.add("active");
+
+            document
+                .querySelectorAll(".section")
+                .forEach(sectionElement => {
+
+                    sectionElement.classList.remove("active");
+
+                });
+
+            const target =
+                document.getElementById(
+                    "section-" + section
+                );
+
+            if (target) {
+
+                target.classList.add("active");
+
+            }
+
+            if (section === "overview") {
+
+                await loadOverview();
+
+            }
+
+            if (section === "members") {
+
+                await loadMembers();
+
+            }
+
+            if (section === "education") {
+
+                await loadLessons();
+
+            }
+
+            if (section === "community") {
+
+                await loadCommunity();
+
+            }
+
+        }
+    );
+
+});
 
 
 /* =========================
@@ -1516,34 +1690,31 @@ async function loadOverview() {
                 collection(db, "members")
             );
 
-
         let activeCount = 0;
 
+        membersSnapshot.forEach(
+            memberDoc => {
 
-        membersSnapshot.forEach(docSnap => {
+                const data =
+                    memberDoc.data();
 
-            const data =
-                docSnap.data();
+                if (
+                    data.status === "active" ||
+                    data.active === true ||
+                    data.status === undefined
+                ) {
 
+                    activeCount++;
 
-            if (
-                data.status === "active" ||
-                data.active === true ||
-                data.status === undefined
-            ) {
-
-                activeCount++;
+                }
 
             }
-
-        });
-
+        );
 
         document.getElementById(
             "totalMembers"
         ).textContent =
             membersSnapshot.size;
-
 
         document.getElementById(
             "activeMembers"
@@ -1556,7 +1727,6 @@ async function loadOverview() {
                 collection(db, "education")
             );
 
-
         document.getElementById(
             "totalLessons"
         ).textContent =
@@ -1568,12 +1738,10 @@ async function loadOverview() {
                 collection(db, "community")
             );
 
-
         document.getElementById(
             "totalMessages"
         ).textContent =
             communitySnapshot.size;
-
 
     } catch (error) {
 
@@ -1598,9 +1766,15 @@ async function loadMembers() {
             "membersTable"
         );
 
-
-    table.innerHTML = "";
-
+    table.innerHTML = `
+        <tr>
+            <td colspan="5">
+                <div class="loading">
+                    Loading members...
+                </div>
+            </td>
+        </tr>
+    `;
 
     try {
 
@@ -1608,7 +1782,6 @@ async function loadMembers() {
             await getDocs(
                 collection(db, "members")
             );
-
 
         if (snapshot.empty) {
 
@@ -1626,118 +1799,132 @@ async function loadMembers() {
 
         }
 
+        table.innerHTML = "";
 
-        snapshot.forEach(docSnap => {
+        snapshot.forEach(
+            memberDoc => {
 
-            const data =
-                docSnap.data();
+                const data =
+                    memberDoc.data();
 
+                const email =
+                    memberDoc.id;
 
-            const email =
-                docSnap.id;
+                const name =
+                    data.name ||
+                    "Member";
 
+                const status =
+                    data.status ||
+                    (
+                        data.active === false
+                            ? "inactive"
+                            : "active"
+                    );
 
-            const name =
-                data.name ||
-                "Member";
+                const startingWeight =
+                    data.startingWeight !== undefined &&
+                    data.startingWeight !== null
+                        ? data.startingWeight + " kg"
+                        : "—";
 
+                const currentWeight =
+                    data.currentWeight !== undefined &&
+                    data.currentWeight !== null
+                        ? data.currentWeight + " kg"
+                        : "—";
 
-            const status =
-                data.status ||
-                (
-                    data.active === false
-                        ? "inactive"
-                        : "active"
-                );
+                const row =
+                    document.createElement("tr");
 
+                row.innerHTML = `
 
-            const startingWeight =
-                data.startingWeight !== undefined &&
-                data.startingWeight !== null
-                    ? data.startingWeight + " kg"
-                    : "—";
+                    <td>
 
+                        <div class="member-name">
+                            ${escapeHtml(name)}
+                        </div>
 
-            const currentWeight =
-                data.currentWeight !== undefined &&
-                data.currentWeight !== null
-                    ? data.currentWeight + " kg"
-                    : "—";
+                        <div class="member-email">
+                            ${escapeHtml(email)}
+                        </div>
 
+                    </td>
 
-            const row =
-                document.createElement("tr");
+                    <td>
 
+                        <span class="status ${
+                            status === "active"
+                                ? "active"
+                                : "inactive"
+                        }">
 
-            row.innerHTML = `
+                            ${
+                                status === "active"
+                                    ? "Active"
+                                    : "Inactive"
+                            }
 
-                <td>
+                        </span>
 
-                    <div class="member-name">
-                        ${escapeHtml(name)}
-                    </div>
+                    </td>
 
-                    <div class="member-email">
-                        ${escapeHtml(email)}
-                    </div>
+                    <td>
+                        ${startingWeight}
+                    </td>
 
-                </td>
+                    <td>
+                        ${currentWeight}
+                    </td>
 
+                    <td>
 
-                <td>
+                        <button
+                            class="secondary-btn view-member">
+                            View
+                        </button>
 
-                    <span class="status ${status === "active" ? "active" : "inactive"}">
+                        <button
+                            class="secondary-btn edit-member">
+                            Edit
+                        </button>
 
-                        ${status === "active"
-                            ? "Active"
-                            : "Inactive"}
+                    </td>
 
-                    </span>
+                `;
 
-                </td>
+                row
+                    .querySelector(".view-member")
+                    .addEventListener(
+                        "click",
+                        () => {
 
+                            viewMember(
+                                email,
+                                data
+                            );
 
-                <td>
-                    ${startingWeight}
-                </td>
+                        }
+                    );
 
+                row
+                    .querySelector(".edit-member")
+                    .addEventListener(
+                        "click",
+                        () => {
 
-                <td>
-                    ${currentWeight}
-                </td>
+                            editMember(
+                                email,
+                                data
+                            );
 
+                        }
+                    );
 
-                <td>
+                table.appendChild(row);
 
-                    <button
-                        class="secondary-btn edit-member">
-                        Edit
-                    </button>
-
-                </td>
-
-            `;
-
-
-            row
-                .querySelector(".edit-member")
-                .addEventListener(
-                    "click",
-                    () => {
-
-                        editMember(
-                            email,
-                            data
-                        );
-
-                    }
-                );
-
-
-            table.appendChild(row);
-
-        });
-
+            }
+        );
 
     } catch (error) {
 
@@ -1746,13 +1933,239 @@ async function loadMembers() {
             error
         );
 
-
         table.innerHTML = `
             <tr>
                 <td colspan="5">
-                    Unable to load members.
+                    <div class="empty">
+                        Unable to load members.
+                    </div>
                 </td>
             </tr>
+        `;
+
+    }
+
+}
+
+
+/* =========================
+   VIEW MEMBER
+========================= */
+
+async function viewMember(
+    email,
+    data
+) {
+
+    const detail =
+        document.getElementById(
+            "memberDetail"
+        );
+
+    detail.classList.add("active");
+
+    document.getElementById(
+        "detailMemberName"
+    ).textContent =
+        data.name || "Member";
+
+    document.getElementById(
+        "detailMemberEmail"
+    ).textContent =
+        email;
+
+    document.getElementById(
+        "detailAge"
+    ).textContent =
+        valueWithUnit(
+            data.age,
+            ""
+        );
+
+    document.getElementById(
+        "detailHeight"
+    ).textContent =
+        valueWithUnit(
+            data.height,
+            " cm"
+        );
+
+    document.getElementById(
+        "detailStartingWeight"
+    ).textContent =
+        valueWithUnit(
+            data.startingWeight,
+            " kg"
+        );
+
+    document.getElementById(
+        "detailCurrentWeight"
+    ).textContent =
+        valueWithUnit(
+            data.currentWeight,
+            " kg"
+        );
+
+    let weightChange = "—";
+
+    if (
+        isNumber(data.startingWeight) &&
+        isNumber(data.currentWeight)
+    ) {
+
+        const difference =
+            Number(data.startingWeight) -
+            Number(data.currentWeight);
+
+        weightChange =
+            difference.toFixed(1) +
+            " kg";
+
+    }
+
+    document.getElementById(
+        "detailWeightChange"
+    ).textContent =
+        weightChange;
+
+    document.getElementById(
+        "detailStatus"
+    ).textContent =
+        data.status ||
+        (
+            data.active === false
+                ? "Inactive"
+                : "Active"
+        );
+
+    document.getElementById(
+        "detailStartingWaist"
+    ).textContent =
+        valueWithUnit(
+            data.startingWaist,
+            " cm"
+        );
+
+    document.getElementById(
+        "detailCurrentWaist"
+    ).textContent =
+        valueWithUnit(
+            data.currentWaist,
+            " cm"
+        );
+
+    document.getElementById(
+        "detailStartingHip"
+    ).textContent =
+        valueWithUnit(
+            data.startingHip,
+            " cm"
+        );
+
+    document.getElementById(
+        "detailCurrentHip"
+    ).textContent =
+        valueWithUnit(
+            data.currentHip,
+            " cm"
+        );
+
+
+    await loadMemberProgress(email);
+
+    detail.scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =========================
+   MEMBER PROGRESS
+========================= */
+
+async function loadMemberProgress(
+    email
+) {
+
+    const container =
+        document.getElementById(
+            "memberProgressList"
+        );
+
+    container.innerHTML = `
+        <div class="loading">
+            Loading progress...
+        </div>
+    `;
+
+    try {
+
+        /*
+         The current progress structure uses
+         the member email as the document ID.
+        */
+
+        const progressRef =
+            doc(
+                db,
+                "progress",
+                email
+            );
+
+        const progressSnapshot =
+            await getDoc(
+                progressRef
+            );
+
+        if (!progressSnapshot.exists()) {
+
+            container.innerHTML = `
+                <div class="empty">
+                    No progress record found for this member.
+                </div>
+            `;
+
+            return;
+
+        }
+
+        const data =
+            progressSnapshot.data();
+
+        container.innerHTML = "";
+
+        const item =
+            document.createElement("div");
+
+        item.className =
+            "progress-item";
+
+        item.innerHTML = `
+
+            <div class="progress-date">
+                Member Progress Record
+            </div>
+
+            <div class="progress-data">
+                ${formatObject(data)}
+            </div>
+
+        `;
+
+        container.appendChild(item);
+
+    } catch (error) {
+
+        console.error(
+            "Progress loading error:",
+            error
+        );
+
+        container.innerHTML = `
+            <div class="empty">
+                Unable to load progress.
+            </div>
         `;
 
     }
@@ -1772,66 +2185,55 @@ function editMember(
     editingMemberEmail =
         email;
 
-
     document.getElementById(
         "memberNameInput"
     ).value =
         data.name || "";
-
 
     document.getElementById(
         "memberEmailInput"
     ).value =
         email;
 
-
     document.getElementById(
         "memberAgeInput"
     ).value =
         data.age ?? "";
-
 
     document.getElementById(
         "memberHeightInput"
     ).value =
         data.height ?? "";
 
-
     document.getElementById(
         "memberStartingWeightInput"
     ).value =
         data.startingWeight ?? "";
-
 
     document.getElementById(
         "memberCurrentWeightInput"
     ).value =
         data.currentWeight ?? "";
 
-
     document.getElementById(
         "memberStartingWaistInput"
     ).value =
         data.startingWaist ?? "";
-
 
     document.getElementById(
         "memberCurrentWaistInput"
     ).value =
         data.currentWaist ?? "";
 
-
     document.getElementById(
         "memberStartingHipInput"
     ).value =
         data.startingHip ?? "";
 
-
     document.getElementById(
         "memberCurrentHipInput"
     ).value =
         data.currentHip ?? "";
-
 
     document.getElementById(
         "memberStatusInput"
@@ -1843,12 +2245,10 @@ function editMember(
                 : "active"
         );
 
-
     document.getElementById(
         "memberMessage"
     ).textContent =
         "Editing " + email;
-
 
     window.scrollTo({
         top: 0,
@@ -1874,18 +2274,15 @@ document.getElementById(
 
         }
 
-
         const name =
             document.getElementById(
                 "memberNameInput"
             ).value.trim();
 
-
         const email =
             document.getElementById(
                 "memberEmailInput"
             ).value.trim().toLowerCase();
-
 
         if (!name || !email) {
 
@@ -1898,6 +2295,41 @@ document.getElementById(
 
         }
 
+        /*
+         When editing an existing member,
+         do not accidentally create a second
+         member if the email was changed.
+        */
+
+        if (
+            editingMemberEmail &&
+            editingMemberEmail !== email
+        ) {
+
+            const oldMemberRef =
+                doc(
+                    db,
+                    "members",
+                    editingMemberEmail
+                );
+
+            const oldMemberSnapshot =
+                await getDoc(
+                    oldMemberRef
+                );
+
+            if (oldMemberSnapshot.exists()) {
+
+                document.getElementById(
+                    "memberMessage"
+                ).textContent =
+                    "For an existing member, keep the original email.";
+
+                return;
+
+            }
+
+        }
 
         const data = {
 
@@ -1960,14 +2392,7 @@ document.getElementById(
 
         };
 
-
         try {
-
-            /*
-             IMPORTANT:
-             merge:true means existing fields
-             are not unnecessarily destroyed.
-            */
 
             await setDoc(
 
@@ -1985,24 +2410,16 @@ document.getElementById(
 
             );
 
-
-            editingMemberEmail =
-                null;
-
-
             clearMemberForm();
-
 
             document.getElementById(
                 "memberMessage"
             ).textContent =
                 "Member saved successfully.";
 
-
             await loadMembers();
 
             await loadOverview();
-
 
         } catch (error) {
 
@@ -2011,16 +2428,89 @@ document.getElementById(
                 error
             );
 
-
             document.getElementById(
                 "memberMessage"
             ).textContent =
-                "Unable to save member.";
+                "Unable to save member: " +
+                error.message;
 
         }
 
     }
 );
+
+
+/* =========================
+   CLEAR MEMBER
+========================= */
+
+document.getElementById(
+    "clearMemberBtn"
+).addEventListener(
+    "click",
+    () => {
+
+        clearMemberForm();
+
+        document.getElementById(
+            "memberMessage"
+        ).textContent = "";
+
+    }
+);
+
+
+function clearMemberForm() {
+
+    editingMemberEmail =
+        null;
+
+    document.getElementById(
+        "memberNameInput"
+    ).value = "";
+
+    document.getElementById(
+        "memberEmailInput"
+    ).value = "";
+
+    document.getElementById(
+        "memberAgeInput"
+    ).value = "";
+
+    document.getElementById(
+        "memberHeightInput"
+    ).value = "";
+
+    document.getElementById(
+        "memberStartingWeightInput"
+    ).value = "";
+
+    document.getElementById(
+        "memberCurrentWeightInput"
+    ).value = "";
+
+    document.getElementById(
+        "memberStartingWaistInput"
+    ).value = "";
+
+    document.getElementById(
+        "memberCurrentWaistInput"
+    ).value = "";
+
+    document.getElementById(
+        "memberStartingHipInput"
+    ).value = "";
+
+    document.getElementById(
+        "memberCurrentHipInput"
+    ).value = "";
+
+    document.getElementById(
+        "memberStatusInput"
+    ).value =
+        "active";
+
+}
 
 
 /* =========================
@@ -2034,9 +2524,11 @@ async function loadLessons() {
             "lessonList"
         );
 
-
-    container.innerHTML = "";
-
+    container.innerHTML = `
+        <div class="loading">
+            Loading lessons...
+        </div>
+    `;
 
     try {
 
@@ -2044,7 +2536,6 @@ async function loadLessons() {
             await getDocs(
                 collection(db, "education")
             );
-
 
         if (snapshot.empty) {
 
@@ -2058,24 +2549,23 @@ async function loadLessons() {
 
         }
 
-
         const lessons = [];
 
+        snapshot.forEach(
+            lessonDoc => {
 
-        snapshot.forEach(docSnap => {
+                lessons.push({
 
-            lessons.push({
+                    id:
+                        lessonDoc.id,
 
-                id:
-                    docSnap.id,
+                    data:
+                        lessonDoc.data()
 
-                data:
-                    docSnap.data()
+                });
 
-            });
-
-        });
-
+            }
+        );
 
         lessons.sort(
             (a, b) =>
@@ -2083,6 +2573,7 @@ async function loadLessons() {
                 Number(b.data.week || 0)
         );
 
+        container.innerHTML = "";
 
         lessons.forEach(
             lesson => {
@@ -2090,16 +2581,13 @@ async function loadLessons() {
                 const data =
                     lesson.data;
 
-
                 const item =
                     document.createElement(
                         "div"
                     );
 
-
                 item.className =
                     "lesson-item";
-
 
                 item.innerHTML = `
 
@@ -2115,22 +2603,28 @@ async function loadLessons() {
 
                             <div class="lesson-title">
                                 ${escapeHtml(
-                                    data.title || "Untitled lesson"
+                                    data.title ||
+                                    "Untitled lesson"
                                 )}
                             </div>
 
                             <div class="lesson-category">
+
                                 ${escapeHtml(
-                                    data.category || ""
+                                    data.category ||
+                                    "General"
                                 )}
+
                                 ·
+
                                 ${escapeHtml(
-                                    data.status || "draft"
+                                    data.status ||
+                                    "draft"
                                 )}
+
                             </div>
 
                         </div>
-
 
                         <div class="lesson-actions">
 
@@ -2138,7 +2632,6 @@ async function loadLessons() {
                                 class="secondary-btn edit-lesson">
                                 Edit
                             </button>
-
 
                             <button
                                 class="danger-btn delete-lesson">
@@ -2149,15 +2642,15 @@ async function loadLessons() {
 
                     </div>
 
-
                     <div class="lesson-preview">
+
                         ${escapeHtml(
                             data.content || ""
                         )}
+
                     </div>
 
                 `;
-
 
                 item
                     .querySelector(
@@ -2175,7 +2668,6 @@ async function loadLessons() {
                         }
                     );
 
-
                 item
                     .querySelector(
                         ".delete-lesson"
@@ -2189,38 +2681,49 @@ async function loadLessons() {
                                     "Delete this lesson?"
                                 );
 
-
                             if (!confirmed) {
 
                                 return;
 
                             }
 
+                            try {
 
-                            await deleteDoc(
+                                await deleteDoc(
 
-                                doc(
-                                    db,
-                                    "education",
-                                    lesson.id
-                                )
+                                    doc(
+                                        db,
+                                        "education",
+                                        lesson.id
+                                    )
 
-                            );
+                                );
 
+                                await loadLessons();
 
-                            await loadLessons();
+                                await loadOverview();
 
-                            await loadOverview();
+                            } catch (error) {
+
+                                console.error(
+                                    "Delete lesson error:",
+                                    error
+                                );
+
+                                alert(
+                                    "Unable to delete lesson: " +
+                                    error.message
+                                );
+
+                            }
 
                         }
                     );
-
 
                 container.appendChild(item);
 
             }
         );
-
 
     } catch (error) {
 
@@ -2228,7 +2731,6 @@ async function loadLessons() {
             "Lesson loading error:",
             error
         );
-
 
         container.innerHTML = `
             <div class="empty">
@@ -2253,42 +2755,36 @@ function editLesson(
     editingLessonId =
         id;
 
-
     document.getElementById(
         "lessonWeek"
     ).value =
         data.week ?? "";
-
 
     document.getElementById(
         "lessonCategory"
     ).value =
         data.category || "";
 
-
     document.getElementById(
         "lessonTitle"
     ).value =
         data.title || "";
-
 
     document.getElementById(
         "lessonContent"
     ).value =
         data.content || "";
 
-
     document.getElementById(
         "lessonStatus"
     ).value =
         data.status || "draft";
 
-
     document.getElementById(
         "lessonMessage"
     ).textContent =
-        "Editing lesson.";
-
+        "Editing Week " +
+        (data.week || "");
 
     window.scrollTo({
         top: 0,
@@ -2308,35 +2804,36 @@ document.getElementById(
     "click",
     async () => {
 
+        if (!currentAdmin) {
+
+            return;
+
+        }
+
         const week =
             document.getElementById(
                 "lessonWeek"
             ).value.trim();
-
 
         const category =
             document.getElementById(
                 "lessonCategory"
             ).value.trim();
 
-
         const title =
             document.getElementById(
                 "lessonTitle"
             ).value.trim();
-
 
         const content =
             document.getElementById(
                 "lessonContent"
             ).value.trim();
 
-
         const status =
             document.getElementById(
                 "lessonStatus"
             ).value;
-
 
         if (!week || !title || !content) {
 
@@ -2349,11 +2846,17 @@ document.getElementById(
 
         }
 
+        /*
+         If editing an existing lesson,
+         use its existing ID.
+
+         If creating a new lesson,
+         use week-1, week-2, etc.
+        */
 
         const lessonId =
             editingLessonId ||
             "week-" + week;
-
 
         const data = {
 
@@ -2377,13 +2880,17 @@ document.getElementById(
 
         };
 
-
         try {
 
             /*
-             Education is saved in its own
-             collection. It does NOT modify
-             members or progress.
+             IMPORTANT:
+             This writes ONLY to:
+             education/{lessonId}
+
+             It does not modify:
+             members
+             progress
+             community
             */
 
             await setDoc(
@@ -2402,24 +2909,19 @@ document.getElementById(
 
             );
 
-
             editingLessonId =
                 null;
 
-
             clearLessonForm();
-
 
             document.getElementById(
                 "lessonMessage"
             ).textContent =
                 "Lesson saved successfully.";
 
-
             await loadLessons();
 
             await loadOverview();
-
 
         } catch (error) {
 
@@ -2428,11 +2930,11 @@ document.getElementById(
                 error
             );
 
-
             document.getElementById(
                 "lessonMessage"
             ).textContent =
-                "Unable to save lesson.";
+                "Unable to save lesson: " +
+                error.message;
 
         }
 
@@ -2465,26 +2967,21 @@ function clearLessonForm() {
     editingLessonId =
         null;
 
-
     document.getElementById(
         "lessonWeek"
     ).value = "";
-
 
     document.getElementById(
         "lessonCategory"
     ).value = "";
 
-
     document.getElementById(
         "lessonTitle"
     ).value = "";
 
-
     document.getElementById(
         "lessonContent"
     ).value = "";
-
 
     document.getElementById(
         "lessonStatus"
@@ -2505,14 +3002,15 @@ async function loadCommunity() {
             "communityList"
         );
 
-
-    container.innerHTML = "";
-
+    container.innerHTML = `
+        <div class="loading">
+            Loading community messages...
+        </div>
+    `;
 
     try {
 
         let snapshot;
-
 
         try {
 
@@ -2528,19 +3026,12 @@ async function loadCommunity() {
                     )
                 );
 
-
             snapshot =
                 await getDocs(
                     orderedQuery
                 );
 
-
-        } catch (orderError) {
-
-            /*
-             If old community messages do not
-             have createdAt, load them normally.
-            */
+        } catch {
 
             snapshot =
                 await getDocs(
@@ -2551,7 +3042,6 @@ async function loadCommunity() {
                 );
 
         }
-
 
         if (snapshot.empty) {
 
@@ -2565,6 +3055,7 @@ async function loadCommunity() {
 
         }
 
+        container.innerHTML = "";
 
         snapshot.forEach(
             messageDoc => {
@@ -2572,22 +3063,13 @@ async function loadCommunity() {
                 const data =
                     messageDoc.data();
 
-
                 const card =
                     document.createElement(
                         "div"
                     );
 
-
                 card.className =
                     "message-card";
-
-
-                const date =
-                    formatDate(
-                        data.createdAt
-                    );
-
 
                 card.innerHTML = `
 
@@ -2604,18 +3086,20 @@ async function loadCommunity() {
 
                             <div class="message-email">
                                 ${escapeHtml(
-                                    data.email || ""
+                                    data.email ||
+                                    ""
                                 )}
                             </div>
 
                         </div>
 
                         <div class="message-date">
-                            ${date}
+                            ${formatDate(
+                                data.createdAt
+                            )}
                         </div>
 
                     </div>
-
 
                     <div class="message-text">
                         ${escapeHtml(
@@ -2625,9 +3109,7 @@ async function loadCommunity() {
                         )}
                     </div>
 
-
                     <br>
-
 
                     <button
                         class="danger-btn delete-community">
@@ -2635,7 +3117,6 @@ async function loadCommunity() {
                     </button>
 
                 `;
-
 
                 card
                     .querySelector(
@@ -2650,38 +3131,49 @@ async function loadCommunity() {
                                     "Delete this community message?"
                                 );
 
-
                             if (!confirmed) {
 
                                 return;
 
                             }
 
+                            try {
 
-                            await deleteDoc(
+                                await deleteDoc(
 
-                                doc(
-                                    db,
-                                    "community",
-                                    messageDoc.id
-                                )
+                                    doc(
+                                        db,
+                                        "community",
+                                        messageDoc.id
+                                    )
 
-                            );
+                                );
 
+                                await loadCommunity();
 
-                            await loadCommunity();
+                                await loadOverview();
 
-                            await loadOverview();
+                            } catch (error) {
+
+                                console.error(
+                                    "Delete community message error:",
+                                    error
+                                );
+
+                                alert(
+                                    "Unable to delete message: " +
+                                    error.message
+                                );
+
+                            }
 
                         }
                     );
-
 
                 container.appendChild(card);
 
             }
         );
-
 
     } catch (error) {
 
@@ -2690,7 +3182,6 @@ async function loadCommunity() {
             error
         );
 
-
         container.innerHTML = `
             <div class="empty">
                 Unable to load community messages.
@@ -2698,74 +3189,6 @@ async function loadCommunity() {
         `;
 
     }
-
-}
-
-
-/* =========================
-   CLEAR MEMBER
-========================= */
-
-function clearMemberForm() {
-
-    editingMemberEmail =
-        null;
-
-
-    document.getElementById(
-        "memberNameInput"
-    ).value = "";
-
-
-    document.getElementById(
-        "memberEmailInput"
-    ).value = "";
-
-
-    document.getElementById(
-        "memberAgeInput"
-    ).value = "";
-
-
-    document.getElementById(
-        "memberHeightInput"
-    ).value = "";
-
-
-    document.getElementById(
-        "memberStartingWeightInput"
-    ).value = "";
-
-
-    document.getElementById(
-        "memberCurrentWeightInput"
-    ).value = "";
-
-
-    document.getElementById(
-        "memberStartingWaistInput"
-    ).value = "";
-
-
-    document.getElementById(
-        "memberCurrentWaistInput"
-    ).value = "";
-
-
-    document.getElementById(
-        "memberStartingHipInput"
-    ).value = "";
-
-
-    document.getElementById(
-        "memberCurrentHipInput"
-    ).value = "";
-
-
-    document.getElementById(
-        "memberStatusInput"
-    ).value =
-        "active";
 
 }
 
@@ -2780,10 +3203,16 @@ document.getElementById(
     "click",
     async () => {
 
-        await signOut(auth);
+        try {
 
-        window.location.href =
-            "login.html";
+            await signOut(auth);
+
+        } finally {
+
+            window.location.href =
+                "login.html";
+
+        }
 
     }
 );
@@ -2800,17 +3229,14 @@ function numberOrNull(id) {
             id
         ).value.trim();
 
-
     if (value === "") {
 
         return null;
 
     }
 
-
     const number =
         parseFloat(value);
-
 
     return Number.isFinite(number)
         ? number
@@ -2819,14 +3245,63 @@ function numberOrNull(id) {
 }
 
 
+function isNumber(value) {
+
+    return (
+        value !== null &&
+        value !== undefined &&
+        value !== "" &&
+        Number.isFinite(
+            Number(value)
+        )
+    );
+
+}
+
+
+function valueWithUnit(
+    value,
+    unit
+) {
+
+    if (
+        value === null ||
+        value === undefined ||
+        value === ""
+    ) {
+
+        return "—";
+
+    }
+
+    return String(value) + unit;
+
+}
+
+
 function escapeHtml(value) {
 
     return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
 
 }
 
@@ -2838,7 +3313,6 @@ function formatDate(value) {
         return "";
 
     }
-
 
     try {
 
@@ -2853,7 +3327,6 @@ function formatDate(value) {
 
         }
 
-
         return new Date(value)
             .toLocaleString();
 
@@ -2865,8 +3338,84 @@ function formatDate(value) {
 
 }
 
+
+function formatObject(
+    object
+) {
+
+    if (!object) {
+
+        return "No data.";
+
+    }
+
+    const entries =
+        Object.entries(object);
+
+    if (!entries.length) {
+
+        return "No data.";
+
+    }
+
+    return entries
+        .map(
+            ([key, value]) => {
+
+                let displayValue =
+                    value;
+
+                if (
+                    value &&
+                    typeof value.toDate ===
+                    "function"
+                ) {
+
+                    displayValue =
+                        value
+                            .toDate()
+                            .toLocaleString();
+
+                } else if (
+                    typeof value ===
+                    "object"
+                ) {
+
+                    try {
+
+                        displayValue =
+                            JSON.stringify(
+                                value
+                            );
+
+                    } catch {
+
+                        displayValue =
+                            String(value);
+
+                    }
+
+                }
+
+                return `
+                    <strong>
+                        ${escapeHtml(key)}
+                    </strong>:
+                    ${escapeHtml(
+                        String(displayValue)
+                    )}
+                    <br>
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
 </script>
 
 </body>
+
 </html>
 ```
