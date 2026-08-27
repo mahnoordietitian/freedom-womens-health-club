@@ -2,1130 +2,1038 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Admin | Freedom Women's Health Club</title>
+<title>Admin Panel | Freedom Women's Health Club</title>
 
 <style>
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #FBF8F3;
-    color: #2D2D2D;
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#FBF8F3;
+    color:#2D2D2D;
 }
 
-button,
+/* ==============================
+   LOGIN
+================================ */
+
+.admin-login{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:25px;
+}
+
+.login-box{
+    width:min(430px,100%);
+    background:white;
+    border:1px solid #E5DED7;
+    border-radius:18px;
+    padding:40px;
+    box-shadow:0 10px 35px rgba(45,45,45,.06);
+}
+
+.logo{
+    color:#6E4A7E;
+    font-size:20px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.login-box h1{
+    font-size:30px;
+    font-weight:500;
+    margin-bottom:10px;
+}
+
+.login-description{
+    color:#625D59;
+    font-size:14px;
+    line-height:1.6;
+    margin-bottom:25px;
+}
+
+/* ==============================
+   GENERAL
+================================ */
+
 input,
 textarea,
-select {
-    font-family: inherit;
+select{
+    width:100%;
+    padding:12px 13px;
+    border:1px solid #DCD4CE;
+    border-radius:8px;
+    background:#fff;
+    font-size:14px;
+    outline:none;
 }
 
-.app {
-    min-height: 100vh;
-    display: flex;
+textarea{
+    min-height:120px;
+    resize:vertical;
 }
 
-/* =========================
-   SIDEBAR
-========================= */
-
-.sidebar {
-    width: 250px;
-    background: #302A31;
-    color: white;
-    min-height: 100vh;
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    padding: 28px 18px;
-    z-index: 100;
+input:focus,
+textarea:focus,
+select:focus{
+    border-color:#6E4A7E;
 }
 
-.brand {
-    padding: 0 12px 28px;
-    border-bottom: 1px solid rgba(255,255,255,0.12);
+label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:7px;
 }
 
-.brand-title {
-    color: #FFFFFF;
-    font-size: 17px;
-    font-weight: 600;
-    line-height: 1.4;
+.form-group{
+    margin-bottom:18px;
 }
 
-.brand-subtitle {
-    color: #CFC7D0;
-    font-size: 11px;
-    margin-top: 5px;
+button{
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:14px;
 }
 
-.admin-label {
-    color: #DCCBB3;
-    font-size: 10px;
-    letter-spacing: 1.4px;
-    text-transform: uppercase;
-    margin-top: 22px;
-    margin-bottom: 10px;
-    padding-left: 12px;
+.primary-btn{
+    background:#6E4A7E;
+    color:white;
+    padding:12px 18px;
 }
 
-.nav-btn {
-    width: 100%;
-    border: none;
-    background: transparent;
-    color: #D8D2D8;
-    text-align: left;
-    padding: 13px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 13px;
-    margin-bottom: 4px;
+.secondary-btn{
+    background:#F1EAF4;
+    color:#6E4A7E;
+    padding:11px 16px;
 }
 
-.nav-btn:hover {
-    background: rgba(255,255,255,0.08);
-    color: #FFFFFF;
+.danger-btn{
+    background:#F7E7E7;
+    color:#9A4D4D;
+    padding:10px 14px;
 }
 
-.nav-btn.active {
-    background: #6E4A7E;
-    color: #FFFFFF;
+.small-btn{
+    padding:8px 11px;
+    font-size:12px;
 }
 
-.sidebar-bottom {
-    position: absolute;
-    left: 18px;
-    right: 18px;
-    bottom: 25px;
+.message{
+    margin-top:15px;
+    font-size:13px;
+    line-height:1.5;
 }
 
-.view-dashboard {
-    display: block;
-    text-decoration: none;
-    color: #D8D2D8;
-    font-size: 12px;
-    padding: 11px 12px;
-    margin-bottom: 8px;
+.error{
+    color:#9A4D4D;
 }
 
-.logout-btn {
-    width: 100%;
-    border: 1px solid rgba(255,255,255,0.15);
-    background: transparent;
-    color: #D8D2D8;
-    padding: 11px;
-    border-radius: 7px;
-    cursor: pointer;
+.success{
+    color:#5C765D;
 }
 
-/* =========================
+/* ==============================
+   ADMIN LAYOUT
+================================ */
+
+.admin-app{
+    display:none;
+    min-height:100vh;
+}
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:245px;
+    background:#302A31;
+    color:white;
+    padding:28px 18px;
+    overflow-y:auto;
+}
+
+.sidebar-logo{
+    color:#DCCBB3;
+    font-size:18px;
+    font-weight:700;
+    line-height:1.4;
+    padding:0 10px;
+    margin-bottom:35px;
+}
+
+.sidebar-button{
+    width:100%;
+    background:transparent;
+    color:#DDD6DE;
+    text-align:left;
+    padding:12px 13px;
+    margin-bottom:5px;
+    border-radius:8px;
+}
+
+.sidebar-button:hover,
+.sidebar-button.active{
+    background:#6E4A7E;
+    color:white;
+}
+
+.logout-btn{
+    margin-top:30px;
+    width:100%;
+    background:#493F4A;
+    color:#E8E1E8;
+    padding:12px;
+}
+
+/* ==============================
    MAIN
-========================= */
+================================ */
 
-.main {
-    margin-left: 250px;
-    width: calc(100% - 250px);
-    padding: 35px;
+.main{
+    margin-left:245px;
+    min-height:100vh;
+    padding:35px;
 }
 
-.topbar {
-    background: #FFFFFF;
-    border: 1px solid #E5DED7;
-    border-radius: 12px;
-    padding: 18px 22px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 28px;
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
 }
 
-.topbar h1 {
-    font-size: 22px;
-    font-weight: 500;
+.topbar h1{
+    font-size:28px;
+    font-weight:500;
 }
 
-.admin-email {
-    color: #706A66;
-    font-size: 12px;
+.admin-email{
+    font-size:13px;
+    color:#6E4A7E;
 }
 
-/* =========================
-   SECTIONS
-========================= */
-
-.section {
-    display: none;
-}
-
-.section.active {
-    display: block;
-}
-
-.section-title {
-    margin-bottom: 22px;
-}
-
-.small-title {
-    color: #6E4A7E;
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    font-weight: 600;
-    text-transform: uppercase;
-    margin-bottom: 7px;
-}
-
-.section-title h2 {
-    font-size: 29px;
-    font-weight: 500;
-}
-
-.section-title p {
-    color: #625D59;
-    font-size: 13px;
-    margin-top: 5px;
-}
-
-/* =========================
+/* ==============================
    CARDS
-========================= */
+================================ */
 
-.card {
-    background: #FFFFFF;
-    border: 1px solid #E5DED7;
-    border-radius: 13px;
-    padding: 25px;
-    margin-bottom: 22px;
+.card{
+    background:white;
+    border:1px solid #E5DED7;
+    border-radius:14px;
+    padding:24px;
+    margin-bottom:22px;
 }
 
-.card h3 {
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 6px;
+.card h2{
+    font-size:20px;
+    font-weight:500;
+    margin-bottom:8px;
 }
 
-.card-description {
-    color: #706A66;
-    font-size: 12px;
-    margin-bottom: 20px;
-    line-height: 1.6;
+.card-description{
+    color:#6A6460;
+    font-size:13px;
+    line-height:1.5;
+    margin-bottom:20px;
 }
 
-/* =========================
-   STATS
-========================= */
+/* ==============================
+   DASHBOARD
+================================ */
 
-.stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-    margin-bottom: 22px;
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
 }
 
-.stat {
-    background: #FFFFFF;
-    border: 1px solid #E5DED7;
-    border-radius: 12px;
-    padding: 20px;
+.stat-card{
+    background:white;
+    border:1px solid #E5DED7;
+    border-radius:14px;
+    padding:22px;
 }
 
-.stat-label {
-    color: #706A66;
-    font-size: 12px;
-    margin-bottom: 7px;
+.stat-number{
+    font-size:30px;
+    color:#6E4A7E;
+    margin-bottom:5px;
 }
 
-.stat-value {
-    color: #6E4A7E;
-    font-size: 25px;
-    font-weight: 600;
+.stat-label{
+    color:#6A6460;
+    font-size:13px;
 }
 
-/* =========================
-   FORMS
-========================= */
+/* ==============================
+   WEEK LIST
+================================ */
 
-.form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+.week-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
 }
 
-.field {
-    display: flex;
-    flex-direction: column;
+.week-card{
+    border:1px solid #E5DED7;
+    background:#fff;
+    border-radius:13px;
+    padding:20px;
 }
 
-.field.full {
-    grid-column: 1 / -1;
+.week-card h3{
+    font-size:18px;
+    font-weight:600;
+    color:#6E4A7E;
+    margin-bottom:5px;
 }
 
-.field label {
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 6px;
-    color: #625D59;
+.week-title{
+    font-size:15px;
+    margin-bottom:10px;
 }
 
-.field input,
-.field textarea,
-.field select {
-    width: 100%;
-    border: 1px solid #D9D1CA;
-    border-radius: 7px;
-    padding: 11px 12px;
-    font-size: 13px;
-    outline: none;
-    background: #FFFFFF;
+.week-goal{
+    color:#625D59;
+    font-size:13px;
+    line-height:1.5;
+    min-height:40px;
 }
 
-.field textarea {
-    min-height: 130px;
-    resize: vertical;
-    line-height: 1.6;
+.status{
+    display:inline-block;
+    margin:12px 0;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:11px;
 }
 
-.field input:focus,
-.field textarea:focus,
-.field select:focus {
-    border-color: #6E4A7E;
+.status.published{
+    background:#E8F2E9;
+    color:#557258;
 }
 
-.primary-btn {
-    border: none;
-    background: #6E4A7E;
-    color: #FFFFFF;
-    padding: 12px 20px;
-    border-radius: 7px;
-    cursor: pointer;
-    font-size: 13px;
-    margin-top: 18px;
+.status.draft{
+    background:#F3ECE7;
+    color:#786B62;
 }
 
-.primary-btn:hover {
-    opacity: 0.9;
+.week-actions{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
 }
 
-.secondary-btn {
-    border: 1px solid #D9D1CA;
-    background: #FFFFFF;
-    color: #2D2D2D;
-    padding: 10px 16px;
-    border-radius: 7px;
-    cursor: pointer;
-    font-size: 12px;
+/* ==============================
+   EDITOR
+================================ */
+
+.editor-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
 }
 
-.secondary-btn:hover {
-    border-color: #6E4A7E;
+.editor-header h2{
+    margin:0;
 }
 
-.danger-btn {
-    border: 1px solid #D9C5C5;
-    background: #FFFFFF;
-    color: #9A4D4D;
-    padding: 9px 13px;
-    border-radius: 7px;
-    cursor: pointer;
-    font-size: 11px;
+.day-card{
+    border:1px solid #E5DED7;
+    border-radius:13px;
+    padding:20px;
+    margin-bottom:18px;
+    background:#FFFDFC;
 }
 
-.form-message {
-    display: inline-block;
-    margin-left: 10px;
-    font-size: 12px;
-    color: #6E4A7E;
+.day-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
 }
 
-/* =========================
-   TABLE
-========================= */
-
-.table-wrapper {
-    overflow-x: auto;
+.day-header h3{
+    color:#6E4A7E;
+    font-size:18px;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
+.habit-card{
+    border:1px solid #E5DED7;
+    border-radius:10px;
+    padding:16px;
+    margin-top:12px;
+    background:white;
 }
 
-th {
-    text-align: left;
-    background: #FBF8F3;
-    color: #625D59;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 12px;
-    border-bottom: 1px solid #E5DED7;
+.habit-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:14px;
 }
 
-td {
-    padding: 14px 12px;
-    border-bottom: 1px solid #EEE8E2;
-    font-size: 12px;
-    vertical-align: middle;
+.habit-header strong{
+    color:#2D2D2D;
 }
 
-.member-name {
-    font-weight: 600;
+.habit-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
 }
 
-.member-email {
-    color: #817972;
-    font-size: 11px;
-    margin-top: 2px;
+.day-buttons{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:15px;
 }
 
-.status {
-    display: inline-block;
-    padding: 5px 9px;
-    border-radius: 20px;
-    font-size: 10px;
-    font-weight: 600;
+/* ==============================
+   REFLECTION
+================================ */
+
+.reflection-box{
+    background:#F1EAF4;
+    border-radius:12px;
+    padding:20px;
+    margin-top:20px;
 }
 
-.status.active {
-    background: #E9F2EA;
-    color: #48704D;
+.reflection-question{
+    border:1px solid #DDD2E0;
+    background:white;
+    border-radius:9px;
+    padding:14px;
+    margin-bottom:10px;
 }
 
-.status.inactive {
-    background: #F2E8E8;
-    color: #8A5555;
+.reflection-question-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
 }
 
-/* =========================
-   WEEK / LESSON LISTS
-========================= */
-
-.content-list {
-    display: grid;
-    gap: 12px;
+.reflection-question span{
+    font-size:14px;
 }
 
-.content-item {
-    border: 1px solid #E5DED7;
-    border-radius: 10px;
-    padding: 18px;
-    background: #FFFFFF;
+/* ==============================
+   LESSONS
+================================ */
+
+.lesson-card{
+    border:1px solid #E5DED7;
+    border-radius:12px;
+    background:white;
+    padding:18px;
+    margin-bottom:12px;
 }
 
-.content-top {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    align-items: flex-start;
+.lesson-card h3{
+    font-size:16px;
+    margin-bottom:6px;
 }
 
-.content-label {
-    color: #6E4A7E;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.lesson-meta{
+    color:#716A66;
+    font-size:12px;
+    margin-bottom:12px;
 }
 
-.content-title {
-    font-size: 17px;
-    font-weight: 600;
-    margin-top: 5px;
+/* ==============================
+   MODAL
+================================ */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(45,45,45,.55);
+    z-index:1000;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
 }
 
-.content-meta {
-    color: #817972;
-    font-size: 11px;
-    margin-top: 4px;
+.modal-box{
+    width:min(600px,100%);
+    max-height:90vh;
+    overflow-y:auto;
+    background:white;
+    border-radius:15px;
+    padding:28px;
 }
 
-.content-preview {
-    color: #625D59;
-    font-size: 12px;
-    margin-top: 12px;
-    line-height: 1.6;
-    white-space: pre-wrap;
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
 }
 
-.content-actions {
-    display: flex;
-    gap: 7px;
-    flex-shrink: 0;
+.close-btn{
+    background:#F3EFEC;
+    padding:7px 10px;
 }
 
-/* =========================
-   COMMUNITY
-========================= */
-
-.community-list {
-    display: grid;
-    gap: 10px;
-}
-
-.message-card {
-    border: 1px solid #E5DED7;
-    border-radius: 10px;
-    padding: 16px;
-    background: #FFFFFF;
-}
-
-.message-header {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    margin-bottom: 7px;
-}
-
-.message-author {
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.message-date {
-    color: #817972;
-    font-size: 10px;
-}
-
-.message-email {
-    color: #817972;
-    font-size: 10px;
-}
-
-.message-text {
-    color: #514C49;
-    font-size: 13px;
-    white-space: pre-wrap;
-    line-height: 1.6;
-}
-
-/* =========================
+/* ==============================
    EMPTY
-========================= */
+================================ */
 
-.empty {
-    padding: 35px;
-    text-align: center;
-    color: #817972;
-    font-size: 13px;
+.empty{
+    text-align:center;
+    padding:40px;
+    color:#746D68;
+    font-size:14px;
 }
 
-/* =========================
+/* ==============================
    MOBILE
-========================= */
+================================ */
 
-@media (max-width: 900px) {
+.mobile-menu{
+    display:none;
+}
 
-    .sidebar {
-        width: 205px;
+@media(max-width:900px){
+
+    .sidebar{
+        transform:translateX(-100%);
+        transition:.25s;
+        z-index:900;
     }
 
-    .main {
-        margin-left: 205px;
-        width: calc(100% - 205px);
-        padding: 22px;
+    .sidebar.open{
+        transform:translateX(0);
     }
 
-    .stats {
-        grid-template-columns: repeat(2, 1fr);
+    .main{
+        margin-left:0;
+        padding:20px;
+    }
+
+    .mobile-menu{
+        display:block;
+        background:#6E4A7E;
+        color:white;
+        padding:10px 13px;
+        margin-bottom:20px;
+    }
+
+    .stats-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .week-grid{
+        grid-template-columns:1fr 1fr;
     }
 
 }
 
-@media (max-width: 650px) {
+@media(max-width:600px){
 
-    .app {
-        display: block;
+    .stats-grid,
+    .week-grid,
+    .habit-grid{
+        grid-template-columns:1fr;
     }
 
-    .sidebar {
-        position: static;
-        width: 100%;
-        min-height: auto;
-        padding: 15px;
+    .main{
+        padding:15px;
     }
 
-    .brand {
-        padding-bottom: 15px;
+    .card{
+        padding:18px;
     }
 
-    .admin-label {
-        margin-top: 14px;
-    }
-
-    .nav-btn {
-        width: auto;
-        display: inline-block;
-        margin-right: 4px;
-    }
-
-    .sidebar-bottom {
-        position: static;
-        margin-top: 10px;
-    }
-
-    .main {
-        margin-left: 0;
-        width: 100%;
-        padding: 15px;
-    }
-
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .field.full {
-        grid-column: auto;
-    }
-
-    .stats {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .topbar {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .content-top {
-        flex-direction: column;
-    }
-
-    .content-actions {
-        width: 100%;
+    .login-box{
+        padding:28px 22px;
     }
 
 }
 
 </style>
-</head>
 
+</head>
 
 <body>
 
-<div class="app">
 
-<!-- ==================================================
-     SIDEBAR
-================================================== -->
+<!-- =========================================================
+     ADMIN LOGIN
+========================================================= -->
 
-<aside class="sidebar">
+<div id="loginScreen" class="admin-login">
 
-    <div class="brand">
+    <div class="login-box">
 
-        <div class="brand-title">
+        <div class="logo">
             Freedom Women's Health Club
         </div>
 
-        <div class="brand-subtitle">
-            Admin Control Center
-        </div>
+        <h1>Admin Panel</h1>
 
-    </div>
+        <p class="login-description">
+            Sign in to manage members, the 90-day journey,
+            weekly content, daily habits, reflections and lessons.
+        </p>
 
-    <div class="admin-label">
-        Manage
-    </div>
+        <form id="adminLoginForm">
 
-    <button class="nav-btn active" data-section="overview">
-        Overview
-    </button>
+            <div class="form-group">
 
-    <button class="nav-btn" data-section="members">
-        Members
-    </button>
+                <label>Email Address</label>
 
-    <button class="nav-btn" data-section="journey">
-        90-Day Journey
-    </button>
+                <input
+                    type="email"
+                    id="adminEmail"
+                    placeholder="Admin email"
+                    required
+                >
 
-    <button class="nav-btn" data-section="lessons">
-        Lessons
-    </button>
+            </div>
 
-    <button class="nav-btn" data-section="community">
-        Community
-    </button>
+            <div class="form-group">
 
-    <div class="sidebar-bottom">
+                <label>Password</label>
 
-        <a href="dashboard.html" class="view-dashboard">
-            ← Member Dashboard
-        </a>
+                <input
+                    type="password"
+                    id="adminPassword"
+                    placeholder="Password"
+                    required
+                >
 
-        <button class="logout-btn" id="logoutBtn">
-            Log out
-        </button>
+            </div>
 
-    </div>
+            <button
+                type="submit"
+                class="primary-btn"
+                style="width:100%;">
 
-</aside>
+                Log In
 
+            </button>
 
-<!-- ==================================================
-     MAIN
-================================================== -->
+        </form>
 
-<main class="main">
+        <div id="loginMessage" class="message"></div>
 
-<div class="topbar">
-
-    <h1>
-        Admin Control Center
-    </h1>
-
-    <div class="admin-email" id="adminEmail">
     </div>
 
 </div>
 
 
-<!-- ==================================================
-     OVERVIEW
-================================================== -->
+<!-- =========================================================
+     ADMIN APP
+========================================================= -->
 
-<section class="section active" id="section-overview">
+<div id="adminApp" class="admin-app">
 
-    <div class="section-title">
 
-        <div class="small-title">
-            Dashboard
-        </div>
+<!-- SIDEBAR -->
 
-        <h2>
-            Club Overview
-        </h2>
+<aside class="sidebar" id="sidebar">
 
-        <p>
-            Control your members, 90-day journey, lessons and community.
-        </p>
+    <div class="sidebar-logo">
+
+        Freedom Women's<br>
+        Health Club
 
     </div>
 
 
-    <div class="stats">
+    <button
+        class="sidebar-button active"
+        data-section="dashboard">
 
-        <div class="stat">
+        Dashboard
 
-            <div class="stat-label">
-                Total Members
-            </div>
+    </button>
 
-            <div class="stat-value" id="totalMembers">
-                0
-            </div>
+
+    <button
+        class="sidebar-button"
+        data-section="weeks">
+
+        90-Day Journey
+
+    </button>
+
+
+    <button
+        class="sidebar-button"
+        data-section="lessons">
+
+        Lessons
+
+    </button>
+
+
+    <button
+        class="sidebar-button"
+        data-section="members">
+
+        Members
+
+    </button>
+
+
+    <button
+        class="sidebar-button"
+        data-section="settings">
+
+        Settings
+
+    </button>
+
+
+    <button
+        id="logoutButton"
+        class="logout-btn">
+
+        Log Out
+
+    </button>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+    <button
+        class="mobile-menu"
+        id="mobileMenuButton">
+
+        ☰ Menu
+
+    </button>
+
+
+    <div class="topbar">
+
+        <div>
+
+            <h1 id="pageTitle">
+                Dashboard
+            </h1>
 
         </div>
 
-
-        <div class="stat">
-
-            <div class="stat-label">
-                Active Members
-            </div>
-
-            <div class="stat-value" id="activeMembers">
-                0
-            </div>
-
-        </div>
-
-
-        <div class="stat">
-
-            <div class="stat-label">
-                Journey Weeks
-            </div>
-
-            <div class="stat-value" id="totalWeeks">
-                0
-            </div>
-
-        </div>
-
-
-        <div class="stat">
-
-            <div class="stat-label">
-                Lessons
-            </div>
-
-            <div class="stat-value" id="totalLessons">
-                0
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <h3>
-            Your Admin System
-        </h3>
-
-        <p class="card-description">
-            This Admin portal is designed so you can change your
-            program content whenever you want without changing
-            member progress.
-        </p>
-
-        <p class="card-description">
-            Members = member information<br>
-            Progress = member progress<br>
-            90-Day Journey = weekly habits and tasks<br>
-            Lessons = educational lessons<br>
-            Community = member messages
-        </p>
-
-        <p class="card-description">
-            These are stored separately in Firebase.
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- ==================================================
-     MEMBERS
-================================================== -->
-
-<section class="section" id="section-members">
-
-    <div class="section-title">
-
-        <div class="small-title">
-            Members
-        </div>
-
-        <h2>
-            Member Management
-        </h2>
-
-        <p>
-            Add or update member information.
-        </p>
-
-    </div>
-
-
-    <div class="card">
-
-        <h3>
-            Add / Edit Member
-        </h3>
-
-        <p class="card-description">
-            Editing a member updates only her member profile.
-        </p>
-
-
-        <div class="form-grid">
-
-            <div class="field">
-
-                <label>
-                    Name
-                </label>
-
-                <input
-                    type="text"
-                    id="memberNameInput"
-                    placeholder="Member name">
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    Email
-                </label>
-
-                <input
-                    type="email"
-                    id="memberEmailInput"
-                    placeholder="member@gmail.com">
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    Age
-                </label>
-
-                <input
-                    type="number"
-                    id="memberAgeInput"
-                    placeholder="Age">
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    Height (cm)
-                </label>
-
-                <input
-                    type="number"
-                    step="0.1"
-                    id="memberHeightInput"
-                    placeholder="Height">
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    Starting Weight (kg)
-                </label>
-
-                <input
-                    type="number"
-                    step="0.1"
-                    id="memberStartingWeightInput"
-                    placeholder="Starting weight">
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    Current Weight (kg)
-                </label>
-
-                <input
-                    type="number"
-                    step="0.1"
-                    id="memberCurrentWeightInput"
-                    placeholder="Current weight">
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    Starting Waist (cm)
-                </label>
-
-                <input
-                    type="number"
-                    step="0.1"
-                    id="memberStartingWaistInput"
-                    placeholder="Optional">
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    Current Waist (cm)
-                </label>
-
-                <input
-                    type="number"
-                    step="0.1"
-                    id="memberCurrentWaistInput"
-                    placeholder="Optional">
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    Starting Hip (cm)
-                </label>
-
-                <input
-                    type="number"
-                    step="0.1"
-                    id="memberStartingHipInput"
-                    placeholder="Optional">
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    Current Hip (cm)
-                </label>
-
-                <input
-                    type="number"
-                    step="0.1"
-                    id="memberCurrentHipInput"
-                    placeholder="Optional">
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    Membership Status
-                </label>
-
-                <select id="memberStatusInput">
-
-                    <option value="active">
-                        Active
-                    </option>
-
-                    <option value="inactive">
-                        Inactive
-                    </option>
-
-                </select>
-
-            </div>
-
-        </div>
-
-
-        <button class="primary-btn" id="saveMemberBtn">
-            Save Member
-        </button>
-
-        <button class="secondary-btn" id="clearMemberBtn">
-            Clear
-        </button>
-
-        <span class="form-message" id="memberMessage">
-        </span>
-
-    </div>
-
-
-    <div class="card">
-
-        <h3>
-            All Members
-        </h3>
-
-        <p class="card-description">
-            Edit a member whenever you need to update her profile.
-        </p>
-
-        <div class="table-wrapper">
-
-            <table>
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            Member
-                        </th>
-
-                        <th>
-                            Status
-                        </th>
-
-                        <th>
-                            Starting Weight
-                        </th>
-
-                        <th>
-                            Current Weight
-                        </th>
-
-                        <th>
-                            Action
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody id="membersTable">
-                </tbody>
-
-            </table>
-
+        <div
+            id="adminEmailDisplay"
+            class="admin-email">
         </div>
 
     </div>
 
-</section>
 
+    <!-- =====================================================
+         DASHBOARD
+    ====================================================== -->
 
-<!-- ==================================================
-     90-DAY JOURNEY
-================================================== -->
+    <section
+        id="dashboardSection"
+        class="section">
 
-<section class="section" id="section-journey">
+        <div class="stats-grid">
 
-    <div class="section-title">
+            <div class="stat-card">
 
-        <div class="small-title">
-            Program Content
-        </div>
+                <div
+                    id="memberCount"
+                    class="stat-number">
+                    0
+                </div>
 
-        <h2>
-            90-Day Journey
-        </h2>
-
-        <p>
-            Add or edit exactly what members need to do each week.
-        </p>
-
-    </div>
-
-
-    <div class="card">
-
-        <h3>
-            Add / Edit Week
-        </h3>
-
-        <p class="card-description">
-            You can change a week at any time. This content is stored
-            separately from member profiles and progress.
-        </p>
-
-
-        <div class="form-grid">
-
-
-            <div class="field">
-
-                <label>
-                    Week Number
-                </label>
-
-                <input
-                    type="number"
-                    id="weekNumber"
-                    min="1"
-                    max="90"
-                    placeholder="Example: 1">
+                <div class="stat-label">
+                    Members
+                </div>
 
             </div>
 
 
-            <div class="field">
+            <div class="stat-card">
+
+                <div
+                    id="weekCount"
+                    class="stat-number">
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Weeks
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div
+                    id="dayCount"
+                    class="stat-number">
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Daily Sections
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div
+                    id="lessonCount"
+                    class="stat-number">
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Lessons
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card" style="margin-top:22px;">
+
+            <h2>
+                Your 90-Day Journey
+            </h2>
+
+            <p class="card-description">
+
+                Manage the complete member journey from here.
+                Each week can contain its own goal, days,
+                habits, daily instructions, tracking fields
+                and weekly reflection.
+
+            </p>
+
+            <button
+                class="primary-btn"
+                onclick="showSection('weeks')">
+
+                Manage Weekly Content
+
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>
+                How Your Content Works
+            </h2>
+
+            <p class="card-description">
+
+                <strong>Week</strong> → overall weekly goal and content<br><br>
+
+                <strong>Day</strong> → daily tasks and habits<br><br>
+
+                <strong>Habit</strong> → what the member needs to complete<br><br>
+
+                <strong>Tracking</strong> → member records completion/progress<br><br>
+
+                <strong>Reflection</strong> → weekly review and measurements<br><br>
+
+                <strong>Lessons</strong> → separate educational content
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         WEEKS
+    ====================================================== -->
+
+    <section
+        id="weeksSection"
+        class="section"
+        style="display:none;">
+
+        <div class="card">
+
+            <div class="editor-header">
+
+                <div>
+
+                    <h2>
+                        90-Day Journey
+                    </h2>
+
+                    <p class="card-description"
+                       style="margin-bottom:0;">
+
+                        Add or edit any week of your program.
+                        You can later add more weeks without
+                        changing this code.
+
+                    </p>
+
+                </div>
+
+                <button
+                    class="primary-btn"
+                    id="addWeekButton">
+
+                    + Add Week
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="weekList"
+            class="week-grid">
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         WEEK EDITOR
+    ====================================================== -->
+
+    <section
+        id="weekEditorSection"
+        class="section"
+        style="display:none;">
+
+        <div class="card">
+
+            <div class="editor-header">
+
+                <div>
+
+                    <h2 id="weekEditorTitle">
+                        Edit Week
+                    </h2>
+
+                    <p class="card-description"
+                       style="margin-bottom:0;">
+
+                        Everything you add here becomes part
+                        of this week's member journey.
+
+                    </p>
+
+                </div>
+
+                <button
+                    class="secondary-btn"
+                    onclick="showSection('weeks')">
+
+                    ← Back to Weeks
+
+                </button>
+
+            </div>
+
+
+            <!-- WEEK INFORMATION -->
+
+            <div class="habit-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Week Number
+                    </label>
+
+                    <input
+                        type="number"
+                        id="weekNumber"
+                        min="1"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Week Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="weekTitle"
+                        placeholder="Example: Build Awareness"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
 
                 <label>
-                    Status
+                    Week Goal
+                </label>
+
+                <textarea
+                    id="weekGoal"
+                    placeholder="What is the main goal of this week?">
+                </textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Weekly Overview / Instructions
+                </label>
+
+                <textarea
+                    id="weekOverview"
+                    placeholder="Add anything members should know before starting this week.">
+                </textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Week Status
                 </label>
 
                 <select id="weekStatus">
@@ -1143,375 +1051,533 @@ td {
             </div>
 
 
-            <div class="field full">
+            <button
+                class="primary-btn"
+                id="saveWeekButton">
 
-                <label>
-                    Week Title
-                </label>
+                Save Week Information
 
-                <input
-                    type="text"
-                    id="weekTitle"
-                    placeholder="Example: Reset & Build Your Foundation">
-
-            </div>
-
-
-            <div class="field full">
-
-                <label>
-                    Weekly Goal
-                </label>
-
-                <textarea
-                    id="weekGoal"
-                    placeholder="What is the main goal for this week?"></textarea>
-
-            </div>
-
-
-            <div class="field full">
-
-                <label>
-                    Habits This Week
-                </label>
-
-                <textarea
-                    id="weekHabits"
-                    placeholder="Write all habits members need to follow..."></textarea>
-
-            </div>
-
-
-            <div class="field full">
-
-                <label>
-                    What Members Need To Do
-                </label>
-
-                <textarea
-                    id="weekTasks"
-                    placeholder="Write the exact tasks members need to complete..."></textarea>
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    Exercise / Walking
-                </label>
-
-                <textarea
-                    id="weekExercise"
-                    placeholder="Walking, strength training, stretching..."></textarea>
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    Water / Sleep
-                </label>
-
-                <textarea
-                    id="weekLifestyle"
-                    placeholder="Water, sleep, screen time, sunlight..."></textarea>
-
-            </div>
-
-
-            <div class="field full">
-
-                <label>
-                    Nutrition / Food Instructions
-                </label>
-
-                <textarea
-                    id="weekNutrition"
-                    placeholder="Meal guidance, portions, protein, desi food instructions..."></textarea>
-
-            </div>
-
-
-            <div class="field full">
-
-                <label>
-                    Extra Notes / Anything Else
-                </label>
-
-                <textarea
-                    id="weekNotes"
-                    placeholder="Add anything else you want members to see this week..."></textarea>
-
-            </div>
+            </button>
 
         </div>
 
 
-        <button class="primary-btn" id="saveWeekBtn">
-            Save Week
-        </button>
+        <!-- DAYS -->
 
-        <button class="secondary-btn" id="clearWeekBtn">
-            Clear
-        </button>
+        <div class="card">
 
-        <span class="form-message" id="weekMessage">
-        </span>
+            <div class="editor-header">
 
-    </div>
+                <div>
 
+                    <h2>
+                        Days
+                    </h2>
 
-    <div class="card">
+                    <p class="card-description"
+                       style="margin-bottom:0;">
 
-        <h3>
-            All 90-Day Weeks
-        </h3>
+                        Add daily sections only where you need them.
+                        Week 1 and Week 2 can have Day 1–7,
+                        while later weeks can be completely
+                        week-based.
 
-        <p class="card-description">
-            Edit any week later. You do not need to change the code.
-        </p>
+                    </p>
 
+                </div>
 
-        <div class="content-list" id="weekList">
+                <button
+                    class="secondary-btn"
+                    id="addDayButton">
 
-            <div class="empty">
-                No weeks added yet.
+                    + Add Day
+
+                </button>
+
             </div>
+
+
+            <div id="daysContainer"></div>
 
         </div>
 
-    </div>
 
-</section>
+        <!-- WEEKLY REFLECTION -->
 
+        <div class="card">
 
-<!-- ==================================================
-     LESSONS
-================================================== -->
+            <h2>
+                Weekly Reflection
+            </h2>
 
-<section class="section" id="section-lessons">
+            <p class="card-description">
 
-    <div class="section-title">
+                Add the questions members answer at the end
+                of the week. You can change these whenever
+                you want.
 
-        <div class="small-title">
-            Education
-        </div>
-
-        <h2>
-            Lessons
-        </h2>
-
-        <p>
-            Add and edit your educational lessons separately from the
-            weekly journey.
-        </p>
-
-    </div>
+            </p>
 
 
-    <div class="card">
+            <div class="reflection-box">
 
-        <h3>
-            Add / Edit Lesson
-        </h3>
-
-        <p class="card-description">
-            Lessons are separate from weekly habits and tasks.
-        </p>
+                <div
+                    id="reflectionQuestions">
+                </div>
 
 
-        <div class="form-grid">
+                <button
+                    class="secondary-btn"
+                    id="addReflectionButton">
 
+                    + Add Reflection Question
 
-            <div class="field">
-
-                <label>
-                    Week
-                </label>
-
-                <input
-                    type="number"
-                    id="lessonWeek"
-                    placeholder="Example: 1">
+                </button>
 
             </div>
 
 
-            <div class="field">
+            <br>
+
+
+            <div class="form-group">
 
                 <label>
-                    Category
+                    Enable Measurements / Progress Tracking
                 </label>
 
-                <input
-                    type="text"
-                    id="lessonCategory"
-                    placeholder="Nutrition, Exercise, Habits...">
+                <select id="reflectionMeasurements">
 
-            </div>
-
-
-            <div class="field full">
-
-                <label>
-                    Lesson Title
-                </label>
-
-                <input
-                    type="text"
-                    id="lessonTitle"
-                    placeholder="Lesson title">
-
-            </div>
-
-
-            <div class="field full">
-
-                <label>
-                    Lesson Content
-                </label>
-
-                <textarea
-                    id="lessonContent"
-                    placeholder="Write or paste your complete lesson here..."></textarea>
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    Status
-                </label>
-
-                <select id="lessonStatus">
-
-                    <option value="published">
-                        Published
+                    <option value="yes">
+                        Yes
                     </option>
 
-                    <option value="draft">
-                        Draft
+                    <option value="no">
+                        No
                     </option>
 
                 </select>
 
             </div>
 
+
+            <button
+                class="primary-btn"
+                id="saveReflectionButton">
+
+                Save Weekly Reflection
+
+            </button>
+
         </div>
 
 
-        <button class="primary-btn" id="saveLessonBtn">
-            Save Lesson
-        </button>
+        <!-- DELETE WEEK -->
 
-        <button class="secondary-btn" id="clearLessonBtn">
-            Clear
-        </button>
+        <div class="card">
 
-        <span class="form-message" id="lessonMessage">
-        </span>
+            <h2>
+                Danger Zone
+            </h2>
 
-    </div>
+            <p class="card-description">
+
+                Deleting a week removes its content from
+                the journey. Member completion records are
+                kept separately and are not automatically
+                deleted.
+
+            </p>
+
+            <button
+                class="danger-btn"
+                id="deleteWeekButton">
+
+                Delete This Week
+
+            </button>
+
+        </div>
+
+    </section>
 
 
-    <div class="card">
+    <!-- =====================================================
+         LESSONS
+    ====================================================== -->
 
-        <h3>
-            All Lessons
-        </h3>
+    <section
+        id="lessonsSection"
+        class="section"
+        style="display:none;">
 
-        <div class="content-list" id="lessonList">
+        <div class="card">
 
-            <div class="empty">
-                No lessons added yet.
+            <div class="editor-header">
+
+                <div>
+
+                    <h2>
+                        Lessons
+                    </h2>
+
+                    <p class="card-description"
+                       style="margin-bottom:0;">
+
+                        Lessons remain separate from weekly
+                        habits. Add, edit or delete educational
+                        lessons whenever you want.
+
+                    </p>
+
+                </div>
+
+                <button
+                    class="primary-btn"
+                    id="addLessonButton">
+
+                    + Add Lesson
+
+                </button>
+
             </div>
 
         </div>
 
-    </div>
 
-</section>
+        <div id="lessonList"></div>
 
-
-<!-- ==================================================
-     COMMUNITY
-================================================== -->
-
-<section class="section" id="section-community">
-
-    <div class="section-title">
-
-        <div class="small-title">
-            Community
-        </div>
-
-        <h2>
-            Community Messages
-        </h2>
-
-        <p>
-            View and moderate messages posted by members.
-        </p>
-
-    </div>
+    </section>
 
 
-    <div class="card">
+    <!-- =====================================================
+         MEMBERS
+    ====================================================== -->
 
-        <div class="community-list" id="communityList">
+    <section
+        id="membersSection"
+        class="section"
+        style="display:none;">
 
-            <div class="empty">
-                No community messages yet.
+        <div class="card">
+
+            <div class="editor-header">
+
+                <div>
+
+                    <h2>
+                        Members
+                    </h2>
+
+                    <p class="card-description"
+                       style="margin-bottom:0;">
+
+                        View the member profiles stored in
+                        your Freedom Women's Health Club system.
+
+                    </p>
+
+                </div>
+
+                <button
+                    class="secondary-btn"
+                    id="refreshMembersButton">
+
+                    Refresh
+
+                </button>
+
             </div>
 
+            <div id="memberList"></div>
+
         </div>
 
-    </div>
+    </section>
 
-</section>
 
+    <!-- =====================================================
+         SETTINGS
+    ====================================================== -->
+
+    <section
+        id="settingsSection"
+        class="section"
+        style="display:none;">
+
+        <div class="card">
+
+            <h2>
+                Admin Settings
+            </h2>
+
+            <p class="card-description">
+
+                Your Firebase account controls access to this
+                admin portal. Content is stored in Firestore.
+
+            </p>
+
+            <p style="font-size:14px;">
+
+                Logged in as:
+
+                <strong id="settingsEmail"></strong>
+
+            </p>
+
+        </div>
+
+    </section>
 
 </main>
 
 </div>
 
 
+<!-- =========================================================
+     WEEK MODAL
+========================================================= -->
+
+<div
+    id="weekModal"
+    class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>
+                Add Week
+            </h2>
+
+            <button
+                class="close-btn"
+                onclick="closeModal('weekModal')">
+
+                ✕
+
+            </button>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Week Number
+            </label>
+
+            <input
+                type="number"
+                id="newWeekNumber"
+                min="1"
+                placeholder="Example: 1"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Week Title
+            </label>
+
+            <input
+                type="text"
+                id="newWeekTitle"
+                placeholder="Example: Build Awareness"
+            >
+
+        </div>
+
+
+        <button
+            class="primary-btn"
+            id="createWeekButton">
+
+            Create Week
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     LESSON MODAL
+========================================================= -->
+
+<div
+    id="lessonModal"
+    class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>
+                Add / Edit Lesson
+            </h2>
+
+            <button
+                class="close-btn"
+                onclick="closeModal('lessonModal')">
+
+                ✕
+
+            </button>
+
+        </div>
+
+
+        <input
+            type="hidden"
+            id="lessonId"
+        >
+
+
+        <div class="form-group">
+
+            <label>
+                Lesson Title
+            </label>
+
+            <input
+                type="text"
+                id="lessonTitle"
+                placeholder="Lesson title"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Lesson Category
+            </label>
+
+            <input
+                type="text"
+                id="lessonCategory"
+                placeholder="Example: Nutrition"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Lesson Content
+            </label>
+
+            <textarea
+                id="lessonContent"
+                style="min-height:220px;"
+                placeholder="Write the complete lesson here.">
+            </textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Video URL (optional)
+            </label>
+
+            <input
+                type="url"
+                id="lessonVideo"
+                placeholder="https://..."
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Status
+            </label>
+
+            <select id="lessonStatus">
+
+                <option value="published">
+                    Published
+                </option>
+
+                <option value="draft">
+                    Draft
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            class="primary-btn"
+            id="saveLessonButton">
+
+            Save Lesson
+
+        </button>
+
+    </div>
+
+</div>
+
+
 <script type="module">
 
-/* ==================================================
+/* =========================================================
    FIREBASE
-================================================== */
+========================================================= */
 
 import {
     initializeApp
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
 
 import {
     getAuth,
+    signInWithEmailAndPassword,
     onAuthStateChanged,
     signOut
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
 
 import {
     getFirestore,
     collection,
     doc,
+    getDoc,
     getDocs,
     setDoc,
+    addDoc,
+    updateDoc,
     deleteDoc,
     query,
     orderBy
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
+
+/* =========================================================
+   FIREBASE CONFIG
+========================================================= */
 
 const firebaseConfig = {
 
     apiKey:
-        "AIzaB1ISMm_aVwsbSHByUI0F67tn-8GJo1pO0",
+        "AIzaSyB1ISMm_aVwsbSHByUI0F67tn-8GJo1pO0",
 
     authDomain:
         "freedom-women-s-health-club.firebaseapp.com",
@@ -1531,185 +1597,348 @@ const firebaseConfig = {
 };
 
 
-/*
-IMPORTANT:
-If the apiKey above was accidentally changed while
-copying, use the exact Firebase config from your
-working login.html.
-*/
-
 const app =
     initializeApp(firebaseConfig);
 
+
 const auth =
     getAuth(app);
+
 
 const db =
     getFirestore(app);
 
 
-/* ==================================================
-   ADMIN
-================================================== */
+/* =========================================================
+   GLOBAL STATE
+========================================================= */
 
-const ADMIN_EMAIL =
-    "mahnoordietitian3@gmail.com";
+let currentUser = null;
 
-let currentAdmin = null;
+let currentWeekId = null;
 
-let editingMemberEmail = null;
-
-let editingWeekId = null;
-
-let editingLessonId = null;
+let currentWeekData = null;
 
 
-/* ==================================================
-   SIDEBAR
-================================================== */
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
-document
-    .querySelectorAll(".nav-btn")
-    .forEach(button => {
+const loginScreen =
+    document.getElementById("loginScreen");
 
-        button.addEventListener(
-            "click",
-            async () => {
+const adminApp =
+    document.getElementById("adminApp");
 
-                const section =
-                    button.dataset.section;
+const loginForm =
+    document.getElementById("adminLoginForm");
 
-
-                document
-                    .querySelectorAll(".nav-btn")
-                    .forEach(btn =>
-                        btn.classList.remove("active")
-                    );
+const loginMessage =
+    document.getElementById("loginMessage");
 
 
-                button.classList.add("active");
-
-
-                document
-                    .querySelectorAll(".section")
-                    .forEach(sectionElement =>
-                        sectionElement.classList.remove("active")
-                    );
-
-
-                document
-                    .getElementById(
-                        "section-" + section
-                    )
-                    .classList.add("active");
-
-
-                if (section === "members") {
-                    await loadMembers();
-                }
-
-                if (section === "journey") {
-                    await loadWeeks();
-                }
-
-                if (section === "lessons") {
-                    await loadLessons();
-                }
-
-                if (section === "community") {
-                    await loadCommunity();
-                }
-
-            }
-        );
-
-    });
-
-
-/* ==================================================
+/* =========================================================
    AUTH
-================================================== */
+========================================================= */
 
 onAuthStateChanged(
     auth,
-    async user => {
+    async function(user){
 
-        if (!user) {
+        if(user){
 
-            window.location.href =
-                "login.html";
+            currentUser = user;
 
-            return;
+            loginScreen.style.display = "none";
+
+            adminApp.style.display = "block";
+
+            document.getElementById(
+                "adminEmailDisplay"
+            ).textContent = user.email;
+
+            document.getElementById(
+                "settingsEmail"
+            ).textContent = user.email;
+
+            await loadDashboard();
+
+            await loadWeeks();
+
+            await loadLessons();
+
+            await loadMembers();
+
+        }else{
+
+            currentUser = null;
+
+            loginScreen.style.display = "flex";
+
+            adminApp.style.display = "none";
 
         }
-
-
-        const email =
-            (user.email || "")
-            .trim()
-            .toLowerCase();
-
-
-        if (email !== ADMIN_EMAIL) {
-
-            alert(
-                "Admin access is only available to the administrator."
-            );
-
-            window.location.href =
-                "dashboard.html";
-
-            return;
-
-        }
-
-
-        currentAdmin = user;
-
-
-        document.getElementById(
-            "adminEmail"
-        ).textContent =
-            user.email;
-
-
-        await loadOverview();
 
     }
 );
 
 
-/* ==================================================
-   OVERVIEW
-================================================== */
+/* =========================================================
+   LOGIN
+========================================================= */
 
-async function loadOverview() {
+loginForm.addEventListener(
+    "submit",
+    async function(e){
 
-    try {
+        e.preventDefault();
 
-        const membersSnapshot =
+        const email =
+            document
+            .getElementById("adminEmail")
+            .value
+            .trim()
+            .toLowerCase();
+
+        const password =
+            document
+            .getElementById("adminPassword")
+            .value;
+
+        loginMessage.textContent =
+            "Logging in...";
+
+        loginMessage.className =
+            "message";
+
+
+        try{
+
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            loginMessage.textContent =
+                "Login successful.";
+
+            loginMessage.className =
+                "message success";
+
+        }catch(error){
+
+            console.error(error);
+
+            loginMessage.textContent =
+                "Unable to log in. Please check your admin email and password.";
+
+            loginMessage.className =
+                "message error";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+document
+.getElementById("logoutButton")
+.addEventListener(
+    "click",
+    async function(){
+
+        await signOut(auth);
+
+    }
+);
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+const sectionNames = [
+    "dashboard",
+    "weeks",
+    "weekEditor",
+    "lessons",
+    "members",
+    "settings"
+];
+
+
+window.showSection = function(section){
+
+    sectionNames.forEach(
+        function(name){
+
+            const element =
+                document.getElementById(
+                    name + "Section"
+                );
+
+            if(element){
+                element.style.display =
+                    "none";
+            }
+
+        }
+    );
+
+
+    const selected =
+        document.getElementById(
+            section + "Section"
+        );
+
+    if(selected){
+        selected.style.display =
+            "block";
+    }
+
+
+    document
+    .querySelectorAll(".sidebar-button")
+    .forEach(
+        function(button){
+
+            button.classList.remove(
+                "active"
+            );
+
+            if(
+                button.dataset.section ===
+                section
+            ){
+
+                button.classList.add(
+                    "active"
+                );
+
+            }
+
+        }
+    );
+
+
+    const titles = {
+
+        dashboard:
+            "Dashboard",
+
+        weeks:
+            "90-Day Journey",
+
+        weekEditor:
+            "Edit Week",
+
+        lessons:
+            "Lessons",
+
+        members:
+            "Members",
+
+        settings:
+            "Settings"
+
+    };
+
+
+    document.getElementById(
+        "pageTitle"
+    ).textContent =
+        titles[section] || "Admin Panel";
+
+};
+
+
+document
+.querySelectorAll(".sidebar-button")
+.forEach(
+    function(button){
+
+        button.addEventListener(
+            "click",
+            function(){
+
+                showSection(
+                    button.dataset.section
+                );
+
+                document
+                .getElementById("sidebar")
+                .classList.remove("open");
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+document
+.getElementById("mobileMenuButton")
+.addEventListener(
+    "click",
+    function(){
+
+        document
+        .getElementById("sidebar")
+        .classList.toggle("open");
+
+    }
+);
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+async function loadDashboard(){
+
+    try{
+
+        const members =
             await getDocs(
-                collection(db, "members")
+                collection(db,"members")
+            );
+
+        const weeks =
+            await getDocs(
+                collection(db,"weeks")
+            );
+
+        const lessons =
+            await getDocs(
+                collection(db,"lessons")
             );
 
 
-        let activeCount = 0;
+        let days = 0;
 
 
-        membersSnapshot.forEach(
-            memberDoc => {
+        weeks.forEach(
+            function(item){
 
                 const data =
-                    memberDoc.data();
+                    item.data();
 
+                if(
+                    data.days &&
+                    Array.isArray(data.days)
+                ){
 
-                if (
-                    data.status === "active" ||
-                    data.active === true ||
-                    data.status === undefined
-                ) {
-
-                    activeCount++;
+                    days +=
+                        data.days.length;
 
                 }
 
@@ -1718,45 +1947,32 @@ async function loadOverview() {
 
 
         document.getElementById(
-            "totalMembers"
+            "memberCount"
         ).textContent =
-            membersSnapshot.size;
+            members.size;
 
 
         document.getElementById(
-            "activeMembers"
+            "weekCount"
         ).textContent =
-            activeCount;
-
-
-        const weeksSnapshot =
-            await getDocs(
-                collection(db, "weeklyJourney")
-            );
+            weeks.size;
 
 
         document.getElementById(
-            "totalWeeks"
+            "dayCount"
         ).textContent =
-            weeksSnapshot.size;
-
-
-        const lessonsSnapshot =
-            await getDocs(
-                collection(db, "education")
-            );
+            days;
 
 
         document.getElementById(
-            "totalLessons"
+            "lessonCount"
         ).textContent =
-            lessonsSnapshot.size;
+            lessons.size;
 
-
-    } catch (error) {
+    }catch(error){
 
         console.error(
-            "Overview error:",
+            "Dashboard error:",
             error
         );
 
@@ -1765,40 +1981,46 @@ async function loadOverview() {
 }
 
 
-/* ==================================================
-   MEMBERS
-================================================== */
+/* =========================================================
+   WEEKS
+========================================================= */
 
-async function loadMembers() {
+async function loadWeeks(){
 
-    const table =
+    const weekList =
         document.getElementById(
-            "membersTable"
+            "weekList"
         );
 
+    weekList.innerHTML =
+        "<div class='empty'>Loading weeks...</div>";
 
-    table.innerHTML = "";
 
+    try{
 
-    try {
-
-        const snapshot =
-            await getDocs(
-                collection(db, "members")
+        const weekQuery =
+            query(
+                collection(db,"weeks"),
+                orderBy(
+                    "weekNumber",
+                    "asc"
+                )
             );
 
 
-        if (snapshot.empty) {
+        const snapshot =
+            await getDocs(
+                weekQuery
+            );
 
-            table.innerHTML = `
-                <tr>
-                    <td colspan="5">
-                        <div class="empty">
-                            No members yet.
-                        </div>
-                    </td>
-                </tr>
-            `;
+
+        weekList.innerHTML = "";
+
+
+        if(snapshot.empty){
+
+            weekList.innerHTML =
+                "<div class='empty'>No weeks added yet. Click + Add Week to create your first week.</div>";
 
             return;
 
@@ -1806,831 +2028,1580 @@ async function loadMembers() {
 
 
         snapshot.forEach(
-            memberDoc => {
+            function(item){
 
-                const data =
-                    memberDoc.data();
+                const week =
+                    item.data();
 
-                const email =
-                    memberDoc.id;
+
+                const days =
+                    Array.isArray(week.days)
+                    ? week.days.length
+                    : 0;
+
 
                 const status =
-                    data.status ||
-                    (
-                        data.active === false
-                            ? "inactive"
-                            : "active"
+                    week.status ||
+                    "draft";
+
+
+                const card =
+                    document.createElement(
+                        "div"
                     );
 
+                card.className =
+                    "week-card";
 
-                const row =
-                    document.createElement("tr");
 
+                card.innerHTML = `
 
-                row.innerHTML = `
+                    <h3>
+                        WEEK ${escapeHTML(week.weekNumber)}
+                    </h3>
 
-                    <td>
+                    <div class="week-title">
+                        ${escapeHTML(week.title || "Untitled Week")}
+                    </div>
 
-                        <div class="member-name">
-                            ${escapeHtml(data.name || "Member")}
-                        </div>
+                    <div class="week-goal">
+                        ${escapeHTML(week.goal || "No weekly goal added yet.")}
+                    </div>
 
-                        <div class="member-email">
-                            ${escapeHtml(email)}
-                        </div>
+                    <span class="status ${status}">
+                        ${status === "published" ? "Published" : "Draft"}
+                    </span>
 
-                    </td>
+                    <div style="font-size:12px;color:#746D68;margin-bottom:12px;">
+                        ${days} day${days === 1 ? "" : "s"}
+                    </div>
 
-                    <td>
+                    <div class="week-actions">
 
-                        <span class="status ${
-                            status === "active"
-                                ? "active"
-                                : "inactive"
-                        }">
+                        <button
+                            class="primary-btn small-btn"
+                            data-edit="${item.id}">
 
-                            ${
-                                status === "active"
-                                    ? "Active"
-                                    : "Inactive"
-                            }
-
-                        </span>
-
-                    </td>
-
-                    <td>
-                        ${
-                            data.startingWeight != null
-                                ? escapeHtml(data.startingWeight) + " kg"
-                                : "—"
-                        }
-                    </td>
-
-                    <td>
-                        ${
-                            data.currentWeight != null
-                                ? escapeHtml(data.currentWeight) + " kg"
-                                : "—"
-                        }
-                    </td>
-
-                    <td>
-
-                        <button class="secondary-btn edit-member">
                             Edit
+
                         </button>
 
-                    </td>
+                        <button
+                            class="secondary-btn small-btn"
+                            data-duplicate="${item.id}">
+
+                            Duplicate
+
+                        </button>
+
+                    </div>
 
                 `;
 
 
-                row
-                    .querySelector(".edit-member")
-                    .addEventListener(
-                        "click",
-                        () => editMember(email, data)
-                    );
+                card
+                .querySelector(
+                    "[data-edit]"
+                )
+                .addEventListener(
+                    "click",
+                    function(){
+
+                        openWeekEditor(
+                            item.id
+                        );
+
+                    }
+                );
 
 
-                table.appendChild(row);
+                card
+                .querySelector(
+                    "[data-duplicate]"
+                )
+                .addEventListener(
+                    "click",
+                    function(){
+
+                        duplicateWeek(
+                            item.id
+                        );
+
+                    }
+                );
+
+
+                weekList.appendChild(card);
 
             }
         );
 
-
-    } catch (error) {
+    }catch(error){
 
         console.error(error);
 
-        table.innerHTML = `
-            <tr>
-                <td colspan="5">
-                    Unable to load members.
-                </td>
-            </tr>
-        `;
+        weekList.innerHTML =
+            "<div class='empty'>Unable to load weeks.</div>";
 
     }
 
 }
 
 
-/* ==================================================
-   EDIT MEMBER
-================================================== */
-
-function editMember(email, data) {
-
-    editingMemberEmail =
-        email;
-
-
-    document.getElementById(
-        "memberNameInput"
-    ).value =
-        data.name || "";
-
-
-    document.getElementById(
-        "memberEmailInput"
-    ).value =
-        email;
-
-
-    document.getElementById(
-        "memberEmailInput"
-    ).disabled =
-        true;
-
-
-    document.getElementById(
-        "memberAgeInput"
-    ).value =
-        data.age ?? "";
-
-
-    document.getElementById(
-        "memberHeightInput"
-    ).value =
-        data.height ?? "";
-
-
-    document.getElementById(
-        "memberStartingWeightInput"
-    ).value =
-        data.startingWeight ?? "";
-
-
-    document.getElementById(
-        "memberCurrentWeightInput"
-    ).value =
-        data.currentWeight ?? "";
-
-
-    document.getElementById(
-        "memberStartingWaistInput"
-    ).value =
-        data.startingWaist ?? "";
-
-
-    document.getElementById(
-        "memberCurrentWaistInput"
-    ).value =
-        data.currentWaist ?? "";
-
-
-    document.getElementById(
-        "memberStartingHipInput"
-    ).value =
-        data.startingHip ?? "";
-
-
-    document.getElementById(
-        "memberCurrentHipInput"
-    ).value =
-        data.currentHip ?? "";
-
-
-    document.getElementById(
-        "memberStatusInput"
-    ).value =
-        data.status ||
-        (
-            data.active === false
-                ? "inactive"
-                : "active"
-        );
-
-
-    document.getElementById(
-        "memberMessage"
-    ).textContent =
-        "Editing " + email;
-
-}
-
-
-/* ==================================================
-   SAVE MEMBER
-================================================== */
+/* =========================================================
+   ADD WEEK
+========================================================= */
 
 document
-    .getElementById("saveMemberBtn")
-    .addEventListener(
-        "click",
-        async () => {
+.getElementById("addWeekButton")
+.addEventListener(
+    "click",
+    function(){
 
-            if (!currentAdmin) {
-                return;
-            }
+        document.getElementById(
+            "newWeekNumber"
+        ).value = "";
 
+        document.getElementById(
+            "newWeekTitle"
+        ).value = "";
 
-            const name =
-                document
-                    .getElementById("memberNameInput")
-                    .value
-                    .trim();
+        openModal("weekModal");
 
-
-            const typedEmail =
-                document
-                    .getElementById("memberEmailInput")
-                    .value
-                    .trim()
-                    .toLowerCase();
+    }
+);
 
 
-            const email =
-                editingMemberEmail ||
-                typedEmail;
+document
+.getElementById("createWeekButton")
+.addEventListener(
+    "click",
+    async function(){
 
-
-            if (!name || !email) {
-
+        const weekNumber =
+            Number(
                 document.getElementById(
-                    "memberMessage"
-                ).textContent =
-                    "Name and email are required.";
+                    "newWeekNumber"
+                ).value
+            );
 
-                return;
-
-            }
-
-
-            const data = {
-
-                name,
-
-                email,
-
-                age:
-                    numberOrNull("memberAgeInput"),
-
-                height:
-                    numberOrNull("memberHeightInput"),
-
-                startingWeight:
-                    numberOrNull("memberStartingWeightInput"),
-
-                currentWeight:
-                    numberOrNull("memberCurrentWeightInput"),
-
-                startingWaist:
-                    numberOrNull("memberStartingWaistInput"),
-
-                currentWaist:
-                    numberOrNull("memberCurrentWaistInput"),
-
-                startingHip:
-                    numberOrNull("memberStartingHipInput"),
-
-                currentHip:
-                    numberOrNull("memberCurrentHipInput"),
-
-                status:
-                    document.getElementById(
-                        "memberStatusInput"
-                    ).value,
-
-                active:
-                    document.getElementById(
-                        "memberStatusInput"
-                    ).value === "active",
-
-                updatedAt:
-                    new Date().toISOString()
-
-            };
+        const title =
+            document.getElementById(
+                "newWeekTitle"
+            ).value.trim();
 
 
-            try {
+        if(!weekNumber || !title){
 
-                await setDoc(
+            alert(
+                "Please enter the week number and title."
+            );
 
-                    doc(
-                        db,
-                        "members",
-                        email
-                    ),
+            return;
 
-                    data,
+        }
 
-                    {
-                        merge: true
-                    }
 
+        try{
+
+            const weekRef =
+                doc(
+                    collection(db,"weeks")
                 );
 
 
-                clearMemberForm();
+            await setDoc(
+                weekRef,
+                {
+
+                    weekNumber:
+                        weekNumber,
+
+                    title:
+                        title,
+
+                    goal:
+                        "",
+
+                    overview:
+                        "",
+
+                    status:
+                        "draft",
+
+                    days:
+                        [],
+
+                    reflection:
+                        {
+
+                            questions:
+                                [],
+
+                            measurements:
+                                true
+
+                        },
+
+                    createdAt:
+                        new Date().toISOString(),
+
+                    updatedAt:
+                        new Date().toISOString()
+
+                }
+            );
 
 
-                document.getElementById(
-                    "memberMessage"
-                ).textContent =
-                    "Member saved successfully.";
+            closeModal(
+                "weekModal"
+            );
 
 
-                await loadMembers();
+            await loadWeeks();
 
-                await loadOverview();
+            await loadDashboard();
 
+            openWeekEditor(
+                weekRef.id
+            );
 
-            } catch (error) {
+        }catch(error){
 
-                console.error(error);
+            console.error(error);
 
-                document.getElementById(
-                    "memberMessage"
-                ).textContent =
-                    "Unable to save member.";
-
-            }
+            alert(
+                "Unable to create week."
+            );
 
         }
-    );
+
+    }
+);
 
 
-/* ==================================================
-   CLEAR MEMBER
-================================================== */
+/* =========================================================
+   OPEN WEEK EDITOR
+========================================================= */
 
-document
-    .getElementById("clearMemberBtn")
-    .addEventListener(
-        "click",
-        clearMemberForm
-    );
+async function openWeekEditor(
+    weekId
+){
 
+    try{
 
-function clearMemberForm() {
-
-    editingMemberEmail = null;
-
-
-    document.getElementById(
-        "memberNameInput"
-    ).value = "";
+        const weekSnapshot =
+            await getDoc(
+                doc(
+                    db,
+                    "weeks",
+                    weekId
+                )
+            );
 
 
-    document.getElementById(
-        "memberEmailInput"
-    ).value = "";
+        if(
+            !weekSnapshot.exists()
+        ){
+
+            alert(
+                "Week not found."
+            );
+
+            return;
+
+        }
 
 
-    document.getElementById(
-        "memberEmailInput"
-    ).disabled = false;
+        currentWeekId =
+            weekId;
+
+        currentWeekData =
+            weekSnapshot.data();
 
 
-    document.getElementById(
-        "memberAgeInput"
-    ).value = "";
+        document.getElementById(
+            "weekNumber"
+        ).value =
+            currentWeekData.weekNumber || "";
 
 
-    document.getElementById(
-        "memberHeightInput"
-    ).value = "";
+        document.getElementById(
+            "weekTitle"
+        ).value =
+            currentWeekData.title || "";
 
 
-    document.getElementById(
-        "memberStartingWeightInput"
-    ).value = "";
+        document.getElementById(
+            "weekGoal"
+        ).value =
+            currentWeekData.goal || "";
 
 
-    document.getElementById(
-        "memberCurrentWeightInput"
-    ).value = "";
+        document.getElementById(
+            "weekOverview"
+        ).value =
+            currentWeekData.overview || "";
 
 
-    document.getElementById(
-        "memberStartingWaistInput"
-    ).value = "";
+        document.getElementById(
+            "weekStatus"
+        ).value =
+            currentWeekData.status ||
+            "draft";
 
 
-    document.getElementById(
-        "memberCurrentWaistInput"
-    ).value = "";
+        document.getElementById(
+            "weekEditorTitle"
+        ).textContent =
+            "Week " +
+            (currentWeekData.weekNumber || "");
 
 
-    document.getElementById(
-        "memberStartingHipInput"
-    ).value = "";
+        renderDays();
 
 
-    document.getElementById(
-        "memberCurrentHipInput"
-    ).value = "";
+        renderReflection();
 
 
-    document.getElementById(
-        "memberStatusInput"
-    ).value = "active";
+        showSection(
+            "weekEditor"
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Unable to open this week."
+        );
+
+    }
 
 }
 
 
-/* ==================================================
-   90-DAY JOURNEY
-================================================== */
+/* =========================================================
+   SAVE WEEK INFORMATION
+========================================================= */
 
-async function loadWeeks() {
+document
+.getElementById("saveWeekButton")
+.addEventListener(
+    "click",
+    async function(){
+
+        if(!currentWeekId){
+            return;
+        }
+
+
+        const weekNumber =
+            Number(
+                document.getElementById(
+                    "weekNumber"
+                ).value
+            );
+
+
+        const title =
+            document.getElementById(
+                "weekTitle"
+            ).value.trim();
+
+
+        const goal =
+            document.getElementById(
+                "weekGoal"
+            ).value.trim();
+
+
+        const overview =
+            document.getElementById(
+                "weekOverview"
+            ).value.trim();
+
+
+        const status =
+            document.getElementById(
+                "weekStatus"
+            ).value;
+
+
+        try{
+
+            await updateDoc(
+                doc(
+                    db,
+                    "weeks",
+                    currentWeekId
+                ),
+                {
+
+                    weekNumber:
+                        weekNumber,
+
+                    title:
+                        title,
+
+                    goal:
+                        goal,
+
+                    overview:
+                        overview,
+
+                    status:
+                        status,
+
+                    updatedAt:
+                        new Date().toISOString()
+
+                }
+            );
+
+
+            currentWeekData.weekNumber =
+                weekNumber;
+
+            currentWeekData.title =
+                title;
+
+            currentWeekData.goal =
+                goal;
+
+            currentWeekData.overview =
+                overview;
+
+            currentWeekData.status =
+                status;
+
+
+            document.getElementById(
+                "weekEditorTitle"
+            ).textContent =
+                "Week " + weekNumber;
+
+
+            alert(
+                "Week information saved."
+            );
+
+
+            await loadWeeks();
+
+            await loadDashboard();
+
+        }catch(error){
+
+            console.error(error);
+
+            alert(
+                "Unable to save week."
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   DAYS
+========================================================= */
+
+function renderDays(){
 
     const container =
         document.getElementById(
-            "weekList"
+            "daysContainer"
         );
 
 
     container.innerHTML = "";
 
 
-    try {
+    const days =
+        Array.isArray(
+            currentWeekData.days
+        )
+        ? currentWeekData.days
+        : [];
 
-        const snapshot =
-            await getDocs(
-                collection(db, "weeklyJourney")
+
+    if(!days.length){
+
+        container.innerHTML =
+            "<div class='empty'>No days added yet. Click + Add Day.</div>";
+
+        return;
+
+    }
+
+
+    days.forEach(
+        function(day,index){
+
+            renderDay(
+                day,
+                index
+            );
+
+        }
+    );
+
+}
+
+
+function renderDay(
+    day,
+    index
+){
+
+    const container =
+        document.getElementById(
+            "daysContainer"
+        );
+
+
+    const dayCard =
+        document.createElement(
+            "div"
+        );
+
+    dayCard.className =
+        "day-card";
+
+
+    dayCard.innerHTML = `
+
+        <div class="day-header">
+
+            <h3>
+                ${escapeHTML(day.title || "Day " + (index + 1))}
+            </h3>
+
+            <button
+                class="danger-btn small-btn"
+                data-delete-day="${index}">
+
+                Delete Day
+
+            </button>
+
+        </div>
+
+
+        <div class="habit-grid">
+
+            <div class="form-group">
+
+                <label>
+                    Day Number
+                </label>
+
+                <input
+                    type="number"
+                    class="day-number"
+                    value="${escapeAttribute(day.dayNumber ?? index + 1)}"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Day Title
+                </label>
+
+                <input
+                    type="text"
+                    class="day-title"
+                    value="${escapeAttribute(day.title || "Day " + (index + 1))}"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Daily Overview / Instructions
+            </label>
+
+            <textarea
+                class="day-overview"
+                placeholder="Explain what members need to do today.">${escapeHTML(day.overview || "")}</textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Daily Completion Message
+            </label>
+
+            <input
+                type="text"
+                class="day-completion-message"
+                value="${escapeAttribute(day.completionMessage || "Day completed! Keep going.")}"
+                placeholder="Message shown after completing the day"
+            >
+
+        </div>
+
+
+        <h4 style="margin-top:20px;margin-bottom:8px;">
+            Habits / Tasks
+        </h4>
+
+
+        <div class="habits-container"></div>
+
+
+        <div class="day-buttons">
+
+            <button
+                class="secondary-btn small-btn"
+                data-add-habit>
+
+                + Add Habit
+
+            </button>
+
+            <button
+                class="primary-btn small-btn"
+                data-save-day>
+
+                Save Day
+
+            </button>
+
+        </div>
+
+    `;
+
+
+    const habitsContainer =
+        dayCard.querySelector(
+            ".habits-container"
+        );
+
+
+    const habits =
+        Array.isArray(day.habits)
+        ? day.habits
+        : [];
+
+
+    habits.forEach(
+        function(habit,habitIndex){
+
+            addHabitElement(
+                habitsContainer,
+                habit,
+                habitIndex
+            );
+
+        }
+    );
+
+
+    dayCard
+    .querySelector(
+        "[data-add-habit]"
+    )
+    .addEventListener(
+        "click",
+        function(){
+
+            addHabitElement(
+                habitsContainer,
+                {
+                    name:"",
+                    target:"",
+                    instructions:"",
+                    trackingType:"checkbox",
+                    trackingUnit:"",
+                    details:""
+                },
+                habitsContainer
+                .children
+                .length
+            );
+
+        }
+    );
+
+
+    dayCard
+    .querySelector(
+        "[data-save-day]"
+    )
+    .addEventListener(
+        "click",
+        function(){
+
+            saveDayFromElement(
+                dayCard,
+                index
+            );
+
+        }
+    );
+
+
+    dayCard
+    .querySelector(
+        "[data-delete-day]"
+    )
+    .addEventListener(
+        "click",
+        function(){
+
+            if(
+                !confirm(
+                    "Delete this day?"
+                )
+            ){
+                return;
+            }
+
+
+            currentWeekData.days.splice(
+                index,
+                1
             );
 
 
-        if (snapshot.empty) {
+            saveDaysToFirebase();
 
-            container.innerHTML = `
-                <div class="empty">
-                    No weeks added yet.
-                </div>
-            `;
+        }
+    );
 
+
+    container.appendChild(
+        dayCard
+    );
+
+}
+
+
+/* =========================================================
+   ADD DAY
+========================================================= */
+
+document
+.getElementById("addDayButton")
+.addEventListener(
+    "click",
+    function(){
+
+        if(
+            !currentWeekData
+        ){
             return;
+        }
+
+
+        if(
+            !Array.isArray(
+                currentWeekData.days
+            )
+        ){
+
+            currentWeekData.days = [];
 
         }
 
 
-        const weeks = [];
+        currentWeekData.days.push({
+
+            dayNumber:
+                currentWeekData.days.length + 1,
+
+            title:
+                "Day " +
+                (currentWeekData.days.length + 1),
+
+            overview:
+                "",
+
+            completionMessage:
+                "Day completed! Keep going.",
+
+            habits:
+                []
+
+        });
 
 
-        snapshot.forEach(
-            weekDoc => {
+        renderDays();
 
-                weeks.push({
+    }
+);
 
-                    id:
-                        weekDoc.id,
 
-                    data:
-                        weekDoc.data()
+/* =========================================================
+   ADD HABIT ELEMENT
+========================================================= */
 
-                });
+function addHabitElement(
+    container,
+    habit,
+    index
+){
+
+    const habitCard =
+        document.createElement(
+            "div"
+        );
+
+    habitCard.className =
+        "habit-card";
+
+
+    habitCard.innerHTML = `
+
+        <div class="habit-header">
+
+            <strong>
+                Habit / Task ${index + 1}
+            </strong>
+
+            <button
+                class="danger-btn small-btn"
+                type="button"
+                data-remove-habit>
+
+                Remove
+
+            </button>
+
+        </div>
+
+
+        <div class="habit-grid">
+
+            <div class="form-group">
+
+                <label>
+                    Habit Name
+                </label>
+
+                <input
+                    type="text"
+                    class="habit-name"
+                    value="${escapeAttribute(habit.name || "")}"
+                    placeholder="Example: Steps / Movement"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Daily Target
+                </label>
+
+                <input
+                    type="text"
+                    class="habit-target"
+                    value="${escapeAttribute(habit.target || "")}"
+                    placeholder="Example: 5,000 steps"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                What Members Need To Do
+            </label>
+
+            <textarea
+                class="habit-instructions"
+                placeholder="Add the complete instructions here.">${escapeHTML(habit.instructions || "")}</textarea>
+
+        </div>
+
+
+        <div class="habit-grid">
+
+            <div class="form-group">
+
+                <label>
+                    Tracking Type
+                </label>
+
+                <select class="habit-tracking-type">
+
+                    <option value="checkbox"
+                        ${habit.trackingType === "checkbox" ? "selected" : ""}>
+                        Complete / Not Complete
+                    </option>
+
+                    <option value="number"
+                        ${habit.trackingType === "number" ? "selected" : ""}>
+                        Number
+                    </option>
+
+                    <option value="minutes"
+                        ${habit.trackingType === "minutes" ? "selected" : ""}>
+                        Minutes
+                    </option>
+
+                    <option value="glasses"
+                        ${habit.trackingType === "glasses" ? "selected" : ""}>
+                        Glasses
+                    </option>
+
+                    <option value="hours"
+                        ${habit.trackingType === "hours" ? "selected" : ""}>
+                        Hours
+                    </option>
+
+                    <option value="text"
+                        ${habit.trackingType === "text" ? "selected" : ""}>
+                        Text Answer
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Tracking Unit
+                </label>
+
+                <input
+                    type="text"
+                    class="habit-unit"
+                    value="${escapeAttribute(habit.trackingUnit || "")}"
+                    placeholder="steps, litres, hours..."
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Additional Details / Notes
+            </label>
+
+            <textarea
+                class="habit-details"
+                placeholder="Add extra information you want members to see.">${escapeHTML(habit.details || "")}</textarea>
+
+        </div>
+
+    `;
+
+
+    habitCard
+    .querySelector(
+        "[data-remove-habit]"
+    )
+    .addEventListener(
+        "click",
+        function(){
+
+            habitCard.remove();
+
+        }
+    );
+
+
+    container.appendChild(
+        habitCard
+    );
+
+}
+
+
+/* =========================================================
+   SAVE DAY
+========================================================= */
+
+function saveDayFromElement(
+    dayCard,
+    dayIndex
+){
+
+    const dayNumber =
+        Number(
+            dayCard
+            .querySelector(".day-number")
+            .value
+        );
+
+
+    const title =
+        dayCard
+        .querySelector(".day-title")
+        .value
+        .trim();
+
+
+    const overview =
+        dayCard
+        .querySelector(".day-overview")
+        .value
+        .trim();
+
+
+    const completionMessage =
+        dayCard
+        .querySelector(
+            ".day-completion-message"
+        )
+        .value
+        .trim();
+
+
+    const habitElements =
+        dayCard
+        .querySelectorAll(
+            ".habit-card"
+        );
+
+
+    const habits = [];
+
+
+    habitElements.forEach(
+        function(card){
+
+            habits.push({
+
+                name:
+                    card
+                    .querySelector(
+                        ".habit-name"
+                    )
+                    .value
+                    .trim(),
+
+                target:
+                    card
+                    .querySelector(
+                        ".habit-target"
+                    )
+                    .value
+                    .trim(),
+
+                instructions:
+                    card
+                    .querySelector(
+                        ".habit-instructions"
+                    )
+                    .value
+                    .trim(),
+
+                trackingType:
+                    card
+                    .querySelector(
+                        ".habit-tracking-type"
+                    )
+                    .value,
+
+                trackingUnit:
+                    card
+                    .querySelector(
+                        ".habit-unit"
+                    )
+                    .value
+                    .trim(),
+
+                details:
+                    card
+                    .querySelector(
+                        ".habit-details"
+                    )
+                    .value
+                    .trim()
+
+            });
+
+        }
+    );
+
+
+    currentWeekData.days[
+        dayIndex
+    ] = {
+
+        dayNumber:
+            dayNumber,
+
+        title:
+            title,
+
+        overview:
+            overview,
+
+        completionMessage:
+            completionMessage,
+
+        habits:
+            habits
+
+    };
+
+
+    saveDaysToFirebase();
+
+}
+
+
+/* =========================================================
+   SAVE DAYS
+========================================================= */
+
+async function saveDaysToFirebase(){
+
+    if(!currentWeekId){
+        return;
+    }
+
+
+    try{
+
+        await updateDoc(
+            doc(
+                db,
+                "weeks",
+                currentWeekId
+            ),
+            {
+
+                days:
+                    currentWeekData.days,
+
+                updatedAt:
+                    new Date().toISOString()
 
             }
         );
 
 
-        weeks.sort(
-            (a, b) =>
-                Number(a.data.week || 0) -
-                Number(b.data.week || 0)
+        alert(
+            "Days and habits saved."
         );
 
 
-        weeks.forEach(
-            week => {
+        renderDays();
 
-                const data =
-                    week.data;
+        await loadDashboard();
 
-
-                const item =
-                    document.createElement("div");
-
-
-                item.className =
-                    "content-item";
-
-
-                item.innerHTML = `
-
-                    <div class="content-top">
-
-                        <div>
-
-                            <div class="content-label">
-                                Week ${escapeHtml(
-                                    String(data.week || "")
-                                )}
-                            </div>
-
-                            <div class="content-title">
-                                ${escapeHtml(
-                                    data.title || "Untitled week"
-                                )}
-                            </div>
-
-                            <div class="content-meta">
-                                ${
-                                    data.status || "draft"
-                                }
-                            </div>
-
-                        </div>
-
-                        <div class="content-actions">
-
-                            <button class="secondary-btn edit-week">
-                                Edit
-                            </button>
-
-                            <button class="danger-btn delete-week">
-                                Delete
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    ${
-                        data.goal
-                            ? `
-                                <div class="content-preview">
-                                    <strong>Goal:</strong>
-                                    ${escapeHtml(data.goal)}
-                                </div>
-                              `
-                            : ""
-                    }
-
-
-                    ${
-                        data.habits
-                            ? `
-                                <div class="content-preview">
-                                    <strong>Habits:</strong>
-                                    ${escapeHtml(data.habits)}
-                                </div>
-                              `
-                            : ""
-                    }
-
-
-                    ${
-                        data.tasks
-                            ? `
-                                <div class="content-preview">
-                                    <strong>Tasks:</strong>
-                                    ${escapeHtml(data.tasks)}
-                                </div>
-                              `
-                            : ""
-                    }
-
-                `;
-
-
-                item
-                    .querySelector(".edit-week")
-                    .addEventListener(
-                        "click",
-                        () => editWeek(
-                            week.id,
-                            data
-                        )
-                    );
-
-
-                item
-                    .querySelector(".delete-week")
-                    .addEventListener(
-                        "click",
-                        async () => {
-
-                            const confirmed =
-                                confirm(
-                                    "Delete this week? This only deletes the weekly content, not member progress."
-                                );
-
-
-                            if (!confirmed) {
-                                return;
-                            }
-
-
-                            await deleteDoc(
-                                doc(
-                                    db,
-                                    "weeklyJourney",
-                                    week.id
-                                )
-                            );
-
-
-                            await loadWeeks();
-
-                            await loadOverview();
-
-                        }
-                    );
-
-
-                container.appendChild(item);
-
-            }
-        );
-
-
-    } catch (error) {
+    }catch(error){
 
         console.error(error);
 
-        container.innerHTML = `
-            <div class="empty">
-                Unable to load weekly content.
-            </div>
-        `;
+        alert(
+            "Unable to save days."
+        );
 
     }
 
 }
 
 
-/* ==================================================
-   EDIT WEEK
-================================================== */
+/* =========================================================
+   REFLECTION
+========================================================= */
 
-function editWeek(id, data) {
+function renderReflection(){
 
-    editingWeekId =
-        id;
+    const container =
+        document.getElementById(
+            "reflectionQuestions"
+        );
+
+
+    container.innerHTML = "";
+
+
+    const reflection =
+        currentWeekData.reflection ||
+        {};
+
+
+    const questions =
+        Array.isArray(
+            reflection.questions
+        )
+        ? reflection.questions
+        : [];
 
 
     document.getElementById(
-        "weekNumber"
+        "reflectionMeasurements"
     ).value =
-        data.week ?? "";
+        reflection.measurements === false
+        ? "no"
+        : "yes";
 
 
-    document.getElementById(
-        "weekTitle"
-    ).value =
-        data.title || "";
+    if(!questions.length){
+
+        container.innerHTML =
+            "<div class='empty' style='padding:20px;'>No reflection questions added yet.</div>";
+
+        return;
+
+    }
 
 
-    document.getElementById(
-        "weekGoal"
-    ).value =
-        data.goal || "";
+    questions.forEach(
+        function(question,index){
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+            row.className =
+                "reflection-question";
 
 
-    document.getElementById(
-        "weekHabits"
-    ).value =
-        data.habits || "";
+            row.innerHTML = `
+
+                <div class="reflection-question-row">
+
+                    <input
+                        type="text"
+                        class="reflection-input"
+                        data-index="${index}"
+                        value="${escapeAttribute(question)}"
+                        placeholder="Example: Which habit was easiest to follow?"
+                    >
+
+                    <button
+                        class="danger-btn small-btn"
+                        data-remove-reflection="${index}">
+
+                        Remove
+
+                    </button>
+
+                </div>
+
+            `;
 
 
-    document.getElementById(
-        "weekTasks"
-    ).value =
-        data.tasks || "";
+            row
+            .querySelector(
+                "[data-remove-reflection]"
+            )
+            .addEventListener(
+                "click",
+                function(){
+
+                    currentWeekData
+                    .reflection
+                    .questions
+                    .splice(
+                        index,
+                        1
+                    );
+
+                    renderReflection();
+
+                }
+            );
 
 
-    document.getElementById(
-        "weekExercise"
-    ).value =
-        data.exercise || "";
+            container.appendChild(
+                row
+            );
 
-
-    document.getElementById(
-        "weekLifestyle"
-    ).value =
-        data.lifestyle || "";
-
-
-    document.getElementById(
-        "weekNutrition"
-    ).value =
-        data.nutrition || "";
-
-
-    document.getElementById(
-        "weekNotes"
-    ).value =
-        data.notes || "";
-
-
-    document.getElementById(
-        "weekStatus"
-    ).value =
-        data.status || "draft";
-
-
-    document.getElementById(
-        "weekMessage"
-    ).textContent =
-        "Editing Week " + data.week;
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+        }
+    );
 
 }
 
 
-/* ==================================================
-   SAVE WEEK
-================================================== */
+/* =========================================================
+   ADD REFLECTION QUESTION
+========================================================= */
 
 document
-    .getElementById("saveWeekBtn")
-    .addEventListener(
-        "click",
-        async () => {
+.getElementById("addReflectionButton")
+.addEventListener(
+    "click",
+    function(){
 
-            const week =
-                document
-                    .getElementById("weekNumber")
-                    .value
-                    .trim();
+        if(
+            !currentWeekData.reflection
+        ){
+
+            currentWeekData.reflection = {
+
+                questions:[],
+
+                measurements:true
+
+            };
+
+        }
 
 
-            const title =
-                document
-                    .getElementById("weekTitle")
-                    .value
-                    .trim();
+        if(
+            !Array.isArray(
+                currentWeekData
+                .reflection
+                .questions
+            )
+        ){
+
+            currentWeekData
+            .reflection
+            .questions = [];
+
+        }
 
 
-            if (!week || !title) {
+        currentWeekData
+        .reflection
+        .questions
+        .push(
+            ""
+        );
 
-                document.getElementById(
-                    "weekMessage"
-                ).textContent =
-                    "Week number and title are required.";
 
-                return;
+        renderReflection();
+
+    }
+);
+
+
+/* =========================================================
+   SAVE REFLECTION
+========================================================= */
+
+document
+.getElementById("saveReflectionButton")
+.addEventListener(
+    "click",
+    async function(){
+
+        if(!currentWeekId){
+            return;
+        }
+
+
+        const inputs =
+            document.querySelectorAll(
+                ".reflection-input"
+            );
+
+
+        const questions = [];
+
+
+        inputs.forEach(
+            function(input){
+
+                const value =
+                    input.value.trim();
+
+
+                if(value){
+                    questions.push(value);
+                }
 
             }
+        );
 
 
-            /*
-             If editing, keep the same document.
-             If creating, use week-1, week-2, etc.
-            */
-
-            const weekId =
-                editingWeekId ||
-                "week-" + week;
+        const measurements =
+            document.getElementById(
+                "reflectionMeasurements"
+            ).value === "yes";
 
 
-            const data = {
+        currentWeekData.reflection = {
 
-                week:
-                    Number(week),
+            questions:
+                questions,
 
-                title,
+            measurements:
+                measurements
 
-                goal:
-                    document.getElementById(
-                        "weekGoal"
-                    ).value.trim(),
+        };
 
-                habits:
-                    document.getElementById(
-                        "weekHabits"
-                    ).value.trim(),
 
-                tasks:
-                    document.getElementById(
-                        "weekTasks"
-                    ).value.trim(),
+        try{
 
-                exercise:
-                    document.getElementById(
-                        "weekExercise"
-                    ).value.trim(),
+            await updateDoc(
+                doc(
+                    db,
+                    "weeks",
+                    currentWeekId
+                ),
+                {
 
-                lifestyle:
-                    document.getElementById(
-                        "weekLifestyle"
-                    ).value.trim(),
+                    reflection:
+                        currentWeekData.reflection,
 
-                nutrition:
-                    document.getElementById(
-                        "weekNutrition"
-                    ).value.trim(),
+                    updatedAt:
+                        new Date().toISOString()
 
-                notes:
-                    document.getElementById(
-                        "weekNotes"
-                    ).value.trim(),
+                }
+            );
+
+
+            alert(
+                "Weekly reflection saved."
+            );
+
+        }catch(error){
+
+            console.error(error);
+
+            alert(
+                "Unable to save reflection."
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   DELETE WEEK
+========================================================= */
+
+document
+.getElementById("deleteWeekButton")
+.addEventListener(
+    "click",
+    async function(){
+
+        if(!currentWeekId){
+            return;
+        }
+
+
+        const confirmed =
+            confirm(
+                "Are you sure you want to delete this week? The week content will be removed."
+            );
+
+
+        if(!confirmed){
+            return;
+        }
+
+
+        try{
+
+            await deleteDoc(
+                doc(
+                    db,
+                    "weeks",
+                    currentWeekId
+                )
+            );
+
+
+            currentWeekId = null;
+
+            currentWeekData = null;
+
+
+            alert(
+                "Week deleted."
+            );
+
+
+            await loadWeeks();
+
+            await loadDashboard();
+
+            showSection(
+                "weeks"
+            );
+
+        }catch(error){
+
+            console.error(error);
+
+            alert(
+                "Unable to delete week."
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   DUPLICATE WEEK
+========================================================= */
+
+async function duplicateWeek(
+    weekId
+){
+
+    try{
+
+        const snapshot =
+            await getDoc(
+                doc(
+                    db,
+                    "weeks",
+                    weekId
+                )
+            );
+
+
+        if(
+            !snapshot.exists()
+        ){
+            return;
+        }
+
+
+        const original =
+            snapshot.data();
+
+
+        const newWeek =
+            {
+
+                ...original,
+
+                weekNumber:
+                    Number(
+                        original.weekNumber || 1
+                    ) + 1,
+
+                title:
+                    (original.title || "") +
+                    " Copy",
 
                 status:
-                    document.getElementById(
-                        "weekStatus"
-                    ).value,
+                    "draft",
+
+                createdAt:
+                    new Date().toISOString(),
 
                 updatedAt:
                     new Date().toISOString()
@@ -2638,128 +3609,39 @@ document
             };
 
 
-            try {
-
-                await setDoc(
-
-                    doc(
-                        db,
-                        "weeklyJourney",
-                        weekId
-                    ),
-
-                    data,
-
-                    {
-                        merge: true
-                    }
-
-                );
+        await addDoc(
+            collection(db,"weeks"),
+            newWeek
+        );
 
 
-                clearWeekForm();
+        alert(
+            "Week duplicated as a draft."
+        );
 
 
-                document.getElementById(
-                    "weekMessage"
-                ).textContent =
-                    "Week saved successfully.";
+        await loadWeeks();
 
+        await loadDashboard();
 
-                await loadWeeks();
+    }catch(error){
 
-                await loadOverview();
+        console.error(error);
 
+        alert(
+            "Unable to duplicate week."
+        );
 
-            } catch (error) {
-
-                console.error(error);
-
-                document.getElementById(
-                    "weekMessage"
-                ).textContent =
-                    "Unable to save week.";
-
-            }
-
-        }
-    );
-
-
-/* ==================================================
-   CLEAR WEEK
-================================================== */
-
-document
-    .getElementById("clearWeekBtn")
-    .addEventListener(
-        "click",
-        clearWeekForm
-    );
-
-
-function clearWeekForm() {
-
-    editingWeekId = null;
-
-
-    document.getElementById(
-        "weekNumber"
-    ).value = "";
-
-
-    document.getElementById(
-        "weekTitle"
-    ).value = "";
-
-
-    document.getElementById(
-        "weekGoal"
-    ).value = "";
-
-
-    document.getElementById(
-        "weekHabits"
-    ).value = "";
-
-
-    document.getElementById(
-        "weekTasks"
-    ).value = "";
-
-
-    document.getElementById(
-        "weekExercise"
-    ).value = "";
-
-
-    document.getElementById(
-        "weekLifestyle"
-    ).value = "";
-
-
-    document.getElementById(
-        "weekNutrition"
-    ).value = "";
-
-
-    document.getElementById(
-        "weekNotes"
-    ).value = "";
-
-
-    document.getElementById(
-        "weekStatus"
-    ).value = "published";
+    }
 
 }
 
 
-/* ==================================================
+/* =========================================================
    LESSONS
-================================================== */
+========================================================= */
 
-async function loadLessons() {
+async function loadLessons(){
 
     const container =
         document.getElementById(
@@ -2767,319 +3649,322 @@ async function loadLessons() {
         );
 
 
-    container.innerHTML = "";
+    container.innerHTML =
+        "<div class='empty'>Loading lessons...</div>";
 
 
-    try {
+    try{
 
         const snapshot =
             await getDocs(
-                collection(db, "education")
+                collection(
+                    db,
+                    "lessons"
+                )
             );
 
 
-        if (snapshot.empty) {
+        container.innerHTML = "";
 
-            container.innerHTML = `
-                <div class="empty">
-                    No lessons added yet.
-                </div>
-            `;
+
+        if(snapshot.empty){
+
+            container.innerHTML =
+                "<div class='empty'>No lessons added yet.</div>";
 
             return;
 
         }
 
 
-        const lessons = [];
-
-
         snapshot.forEach(
-            lessonDoc => {
+            function(item){
 
-                lessons.push({
-
-                    id:
-                        lessonDoc.id,
-
-                    data:
-                        lessonDoc.data()
-
-                });
-
-            }
-        );
+                const lesson =
+                    item.data();
 
 
-        lessons.sort(
-            (a, b) =>
-                Number(a.data.week || 0) -
-                Number(b.data.week || 0)
-        );
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+                card.className =
+                    "lesson-card";
 
 
-        lessons.forEach(
-            lesson => {
+                card.innerHTML = `
 
-                const data =
-                    lesson.data;
+                    <h3>
+                        ${escapeHTML(lesson.title || "Untitled Lesson")}
+                    </h3>
 
+                    <div class="lesson-meta">
 
-                const item =
-                    document.createElement("div");
-
-
-                item.className =
-                    "content-item";
-
-
-                item.innerHTML = `
-
-                    <div class="content-top">
-
-                        <div>
-
-                            <div class="content-label">
-                                Week ${escapeHtml(
-                                    String(data.week || "")
-                                )}
-                            </div>
-
-                            <div class="content-title">
-                                ${escapeHtml(
-                                    data.title || "Untitled lesson"
-                                )}
-                            </div>
-
-                            <div class="content-meta">
-                                ${escapeHtml(
-                                    data.category || ""
-                                )}
-                                ·
-                                ${escapeHtml(
-                                    data.status || "draft"
-                                )}
-                            </div>
-
-                        </div>
-
-                        <div class="content-actions">
-
-                            <button class="secondary-btn edit-lesson">
-                                Edit
-                            </button>
-
-                            <button class="danger-btn delete-lesson">
-                                Delete
-                            </button>
-
-                        </div>
+                        ${escapeHTML(lesson.category || "General")}
+                        ·
+                        ${lesson.status === "published" ? "Published" : "Draft"}
 
                     </div>
 
+                    <p style="font-size:13px;line-height:1.6;color:#625D59;margin-bottom:14px;">
 
-                    <div class="content-preview">
-                        ${escapeHtml(
-                            data.content || ""
+                        ${escapeHTML(
+                            (lesson.content || "")
+                            .substring(0,250)
                         )}
+
+                        ${(lesson.content || "").length > 250 ? "..." : ""}
+
+                    </p>
+
+
+                    <div style="display:flex;gap:8px;">
+
+                        <button
+                            class="primary-btn small-btn"
+                            data-edit-lesson="${item.id}">
+
+                            Edit
+
+                        </button>
+
+
+                        <button
+                            class="danger-btn small-btn"
+                            data-delete-lesson="${item.id}">
+
+                            Delete
+
+                        </button>
+
                     </div>
 
                 `;
 
 
-                item
-                    .querySelector(".edit-lesson")
-                    .addEventListener(
-                        "click",
-                        () =>
-                            editLesson(
-                                lesson.id,
-                                data
-                            )
-                    );
+                card
+                .querySelector(
+                    "[data-edit-lesson]"
+                )
+                .addEventListener(
+                    "click",
+                    function(){
+
+                        openLessonEditor(
+                            item.id,
+                            lesson
+                        );
+
+                    }
+                );
 
 
-                item
-                    .querySelector(".delete-lesson")
-                    .addEventListener(
-                        "click",
-                        async () => {
+                card
+                .querySelector(
+                    "[data-delete-lesson]"
+                )
+                .addEventListener(
+                    "click",
+                    function(){
 
-                            const confirmed =
-                                confirm(
-                                    "Delete this lesson?"
-                                );
+                        deleteLesson(
+                            item.id
+                        );
 
-
-                            if (!confirmed) {
-                                return;
-                            }
-
-
-                            await deleteDoc(
-                                doc(
-                                    db,
-                                    "education",
-                                    lesson.id
-                                )
-                            );
+                    }
+                );
 
 
-                            await loadLessons();
-
-                            await loadOverview();
-
-                        }
-                    );
-
-
-                container.appendChild(item);
+                container.appendChild(
+                    card
+                );
 
             }
         );
 
-
-    } catch (error) {
+    }catch(error){
 
         console.error(error);
 
-        container.innerHTML = `
-            <div class="empty">
-                Unable to load lessons.
-            </div>
-        `;
+        container.innerHTML =
+            "<div class='empty'>Unable to load lessons.</div>";
 
     }
 
 }
 
 
-/* ==================================================
-   EDIT LESSON
-================================================== */
+/* =========================================================
+   ADD LESSON
+========================================================= */
 
-function editLesson(id, data) {
+document
+.getElementById("addLessonButton")
+.addEventListener(
+    "click",
+    function(){
 
-    editingLessonId =
+        document.getElementById(
+            "lessonId"
+        ).value = "";
+
+        document.getElementById(
+            "lessonTitle"
+        ).value = "";
+
+        document.getElementById(
+            "lessonCategory"
+        ).value = "";
+
+        document.getElementById(
+            "lessonContent"
+        ).value = "";
+
+        document.getElementById(
+            "lessonVideo"
+        ).value = "";
+
+        document.getElementById(
+            "lessonStatus"
+        ).value = "draft";
+
+
+        openModal(
+            "lessonModal"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   OPEN LESSON EDITOR
+========================================================= */
+
+function openLessonEditor(
+    id,
+    lesson
+){
+
+    document.getElementById(
+        "lessonId"
+    ).value =
         id;
-
-
-    document.getElementById(
-        "lessonWeek"
-    ).value =
-        data.week ?? "";
-
-
-    document.getElementById(
-        "lessonCategory"
-    ).value =
-        data.category || "";
 
 
     document.getElementById(
         "lessonTitle"
     ).value =
-        data.title || "";
+        lesson.title || "";
+
+
+    document.getElementById(
+        "lessonCategory"
+    ).value =
+        lesson.category || "";
 
 
     document.getElementById(
         "lessonContent"
     ).value =
-        data.content || "";
+        lesson.content || "";
+
+
+    document.getElementById(
+        "lessonVideo"
+    ).value =
+        lesson.video || "";
 
 
     document.getElementById(
         "lessonStatus"
     ).value =
-        data.status || "draft";
+        lesson.status || "draft";
 
 
-    document.getElementById(
-        "lessonMessage"
-    ).textContent =
-        "Editing lesson.";
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    openModal(
+        "lessonModal"
+    );
 
 }
 
 
-/* ==================================================
+/* =========================================================
    SAVE LESSON
-================================================== */
+========================================================= */
 
 document
-    .getElementById("saveLessonBtn")
-    .addEventListener(
-        "click",
-        async () => {
+.getElementById("saveLessonButton")
+.addEventListener(
+    "click",
+    async function(){
 
-            const week =
-                document
-                    .getElementById("lessonWeek")
-                    .value
-                    .trim();
-
-
-            const title =
-                document
-                    .getElementById("lessonTitle")
-                    .value
-                    .trim();
+        const id =
+            document.getElementById(
+                "lessonId"
+            ).value;
 
 
-            const content =
-                document
-                    .getElementById("lessonContent")
-                    .value
-                    .trim();
+        const title =
+            document.getElementById(
+                "lessonTitle"
+            ).value.trim();
 
 
-            if (!week || !title || !content) {
-
-                document.getElementById(
-                    "lessonMessage"
-                ).textContent =
-                    "Week, title and content are required.";
-
-                return;
-
-            }
+        const category =
+            document.getElementById(
+                "lessonCategory"
+            ).value.trim();
 
 
-            const lessonId =
-                editingLessonId ||
-                "lesson-" +
-                Date.now();
+        const content =
+            document.getElementById(
+                "lessonContent"
+            ).value.trim();
 
 
-            const data = {
+        const video =
+            document.getElementById(
+                "lessonVideo"
+            ).value.trim();
 
-                week:
-                    Number(week),
+
+        const status =
+            document.getElementById(
+                "lessonStatus"
+            ).value;
+
+
+        if(!title || !content){
+
+            alert(
+                "Please add a lesson title and content."
+            );
+
+            return;
+
+        }
+
+
+        try{
+
+            const lessonData = {
+
+                title:
+                    title,
 
                 category:
-                    document
-                        .getElementById(
-                            "lessonCategory"
-                        )
-                        .value
-                        .trim(),
+                    category,
 
-                title,
+                content:
+                    content,
 
-                content,
+                video:
+                    video,
 
                 status:
-                    document
-                        .getElementById(
-                            "lessonStatus"
-                        )
-                        .value,
+                    status,
 
                 updatedAt:
                     new Date().toISOString()
@@ -3087,157 +3972,149 @@ document
             };
 
 
-            try {
+            if(id){
 
-                await setDoc(
-
+                await updateDoc(
                     doc(
                         db,
-                        "education",
-                        lessonId
+                        "lessons",
+                        id
                     ),
-
-                    data,
-
-                    {
-                        merge: true
-                    }
-
+                    lessonData
                 );
 
+            }else{
 
-                clearLessonForm();
+                await addDoc(
+                    collection(
+                        db,
+                        "lessons"
+                    ),
+                    {
 
+                        ...lessonData,
 
-                document.getElementById(
-                    "lessonMessage"
-                ).textContent =
-                    "Lesson saved successfully.";
+                        createdAt:
+                            new Date().toISOString()
 
-
-                await loadLessons();
-
-                await loadOverview();
-
-
-            } catch (error) {
-
-                console.error(error);
-
-                document.getElementById(
-                    "lessonMessage"
-                ).textContent =
-                    "Unable to save lesson.";
+                    }
+                );
 
             }
 
+
+            closeModal(
+                "lessonModal"
+            );
+
+
+            await loadLessons();
+
+            await loadDashboard();
+
+
+            alert(
+                "Lesson saved."
+            );
+
+        }catch(error){
+
+            console.error(error);
+
+            alert(
+                "Unable to save lesson."
+            );
+
         }
-    );
+
+    }
+);
 
 
-/* ==================================================
-   CLEAR LESSON
-================================================== */
+/* =========================================================
+   DELETE LESSON
+========================================================= */
 
-document
-    .getElementById("clearLessonBtn")
-    .addEventListener(
-        "click",
-        clearLessonForm
-    );
+async function deleteLesson(
+    id
+){
 
-
-function clearLessonForm() {
-
-    editingLessonId = null;
-
-
-    document.getElementById(
-        "lessonWeek"
-    ).value = "";
+    if(
+        !confirm(
+            "Delete this lesson?"
+        )
+    ){
+        return;
+    }
 
 
-    document.getElementById(
-        "lessonCategory"
-    ).value = "";
+    try{
+
+        await deleteDoc(
+            doc(
+                db,
+                "lessons",
+                id
+            )
+        );
 
 
-    document.getElementById(
-        "lessonTitle"
-    ).value = "";
+        await loadLessons();
+
+        await loadDashboard();
 
 
-    document.getElementById(
-        "lessonContent"
-    ).value = "";
+        alert(
+            "Lesson deleted."
+        );
 
+    }catch(error){
 
-    document.getElementById(
-        "lessonStatus"
-    ).value = "published";
+        console.error(error);
+
+        alert(
+            "Unable to delete lesson."
+        );
+
+    }
 
 }
 
 
-/* ==================================================
-   COMMUNITY
-================================================== */
+/* =========================================================
+   MEMBERS
+========================================================= */
 
-async function loadCommunity() {
+async function loadMembers(){
 
     const container =
         document.getElementById(
-            "communityList"
+            "memberList"
         );
 
 
-    container.innerHTML = "";
+    container.innerHTML =
+        "<div class='empty'>Loading members...</div>";
 
 
-    try {
+    try{
 
-        let snapshot;
-
-
-        try {
-
-            const ordered =
-                query(
-                    collection(
-                        db,
-                        "community"
-                    ),
-                    orderBy(
-                        "createdAt",
-                        "desc"
-                    )
-                );
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "members"
+                )
+            );
 
 
-            snapshot =
-                await getDocs(ordered);
+        container.innerHTML = "";
 
 
-        } catch {
+        if(snapshot.empty){
 
-            snapshot =
-                await getDocs(
-                    collection(
-                        db,
-                        "community"
-                    )
-                );
-
-        }
-
-
-        if (snapshot.empty) {
-
-            container.innerHTML = `
-                <div class="empty">
-                    No community messages yet.
-                </div>
-            `;
+            container.innerHTML =
+                "<div class='empty'>No members found.</div>";
 
             return;
 
@@ -3245,217 +4122,158 @@ async function loadCommunity() {
 
 
         snapshot.forEach(
-            messageDoc => {
+            function(item){
 
-                const data =
-                    messageDoc.data();
+                const member =
+                    item.data();
 
 
                 const card =
-                    document.createElement("div");
+                    document.createElement(
+                        "div"
+                    );
 
 
                 card.className =
-                    "message-card";
+                    "lesson-card";
 
 
                 card.innerHTML = `
 
-                    <div class="message-header">
+                    <h3>
+                        ${escapeHTML(member.name || "Member")}
+                    </h3>
 
-                        <div>
+                    <div class="lesson-meta">
 
-                            <div class="message-author">
-                                ${escapeHtml(
-                                    data.name ||
-                                    "Member"
-                                )}
-                            </div>
-
-                            <div class="message-email">
-                                ${escapeHtml(
-                                    data.email || ""
-                                )}
-                            </div>
-
-                        </div>
-
-                        <div class="message-date">
-                            ${formatDate(
-                                data.createdAt
-                            )}
-                        </div>
+                        ${escapeHTML(member.email || item.id)}
 
                     </div>
 
+                    <p style="font-size:13px;color:#625D59;">
 
-                    <div class="message-text">
-                        ${escapeHtml(
-                            data.message ||
-                            data.text ||
-                            ""
-                        )}
-                    </div>
+                        Status:
+                        ${escapeHTML(member.status || "Active")}
 
-
-                    <br>
-
-
-                    <button class="danger-btn delete-message">
-                        Delete Message
-                    </button>
+                    </p>
 
                 `;
 
 
-                card
-                    .querySelector(".delete-message")
-                    .addEventListener(
-                        "click",
-                        async () => {
-
-                            const confirmed =
-                                confirm(
-                                    "Delete this community message?"
-                                );
-
-
-                            if (!confirmed) {
-                                return;
-                            }
-
-
-                            await deleteDoc(
-                                doc(
-                                    db,
-                                    "community",
-                                    messageDoc.id
-                                )
-                            );
-
-
-                            await loadCommunity();
-
-                            await loadOverview();
-
-                        }
-                    );
-
-
-                container.appendChild(card);
+                container.appendChild(
+                    card
+                );
 
             }
         );
 
-
-    } catch (error) {
+    }catch(error){
 
         console.error(error);
 
-        container.innerHTML = `
-            <div class="empty">
-                Unable to load community messages.
-            </div>
-        `;
+        container.innerHTML =
+            "<div class='empty'>Unable to load members.</div>";
 
     }
 
 }
 
-
-/* ==================================================
-   LOGOUT
-================================================== */
 
 document
-    .getElementById("logoutBtn")
-    .addEventListener(
-        "click",
-        async () => {
-
-            await signOut(auth);
-
-            window.location.href =
-                "login.html";
-
-        }
-    );
+.getElementById("refreshMembersButton")
+.addEventListener(
+    "click",
+    loadMembers
+);
 
 
-/* ==================================================
+/* =========================================================
+   MODALS
+========================================================= */
+
+window.openModal = function(
+    id
+){
+
+    document.getElementById(
+        id
+    ).style.display =
+        "flex";
+
+};
+
+
+window.closeModal = function(
+    id
+){
+
+    document.getElementById(
+        id
+    ).style.display =
+        "none";
+
+};
+
+
+/* =========================================================
    HELPERS
-================================================== */
+========================================================= */
 
-function numberOrNull(id) {
+function escapeHTML(
+    value
+){
 
-    const value =
-        document
-            .getElementById(id)
-            .value
-            .trim();
-
-
-    if (value === "") {
-        return null;
+    if(value === null || value === undefined){
+        return "";
     }
 
-
-    const number =
-        parseFloat(value);
-
-
-    return Number.isFinite(number)
-        ? number
-        : null;
-
-}
-
-
-function escapeHtml(value) {
 
     return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
 
-function formatDate(value) {
+function escapeAttribute(
+    value
+){
 
-    if (!value) {
-        return "";
-    }
-
-
-    try {
-
-        if (
-            typeof value.toDate ===
-            "function"
-        ) {
-
-            return value
-                .toDate()
-                .toLocaleString();
-
-        }
-
-
-        return new Date(value)
-            .toLocaleString();
-
-    } catch {
-
-        return "";
-
-    }
+    return escapeHTML(
+        value
+    );
 
 }
+
+
+/* =========================================================
+   INITIAL
+========================================================= */
+
+showSection(
+    "dashboard"
+);
 
 </script>
 
 </body>
+
 </html>
