@@ -3,6 +3,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -30,6 +31,7 @@ body {
     margin: auto;
 }
 
+
 /* HEADER */
 
 header {
@@ -56,6 +58,11 @@ header {
     font-size: 14px;
 }
 
+.home-link:hover {
+    text-decoration: underline;
+}
+
+
 /* MAIN */
 
 main {
@@ -76,6 +83,9 @@ main {
     box-shadow: 0 8px 30px rgba(45,45,45,0.04);
 }
 
+
+/* TEXT */
+
 .small-title {
     color: #6E4A7E;
     font-size: 12px;
@@ -95,7 +105,9 @@ h1 {
     color: #625D59;
     font-size: 14px;
     margin-bottom: 30px;
+    line-height: 1.6;
 }
+
 
 /* FORM */
 
@@ -138,12 +150,19 @@ input:focus {
     opacity: 0.9;
 }
 
+.login-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
 /* MESSAGE */
 
 .message {
     margin-top: 18px;
     font-size: 13px;
     min-height: 20px;
+    line-height: 1.5;
 }
 
 .error {
@@ -153,6 +172,7 @@ input:focus {
 .success {
     color: #6E4A7E;
 }
+
 
 /* INFO */
 
@@ -167,7 +187,9 @@ input:focus {
 .info p {
     color: #514956;
     font-size: 13px;
+    line-height: 1.5;
 }
+
 
 /* FOOTER */
 
@@ -182,6 +204,7 @@ footer p {
     color: #D4CED5;
     margin-bottom: 4px;
 }
+
 
 /* MOBILE */
 
@@ -204,6 +227,9 @@ footer p {
 
 <body>
 
+
+<!-- HEADER -->
+
 <header>
 
     <div class="container header-inner">
@@ -212,7 +238,9 @@ footer p {
             Freedom Women's Health Club
         </div>
 
-        <a href="index.html" class="home-link">
+        <a
+            href="index.html"
+            class="home-link">
             Home
         </a>
 
@@ -220,6 +248,9 @@ footer p {
 
 </header>
 
+
+
+<!-- MAIN -->
 
 <main>
 
@@ -255,12 +286,14 @@ footer p {
                     required
                 >
 
+
                 <button
                     type="submit"
                     class="login-button"
-                    id="loginButton"
-                >
+                    id="loginButton">
+
                     Continue
+
                 </button>
 
             </form>
@@ -268,14 +301,14 @@ footer p {
 
             <div
                 id="message"
-                class="message"
-            ></div>
+                class="message">
+            </div>
 
 
             <div class="info">
 
                 <p>
-                    Your access is available only to approved
+                    Access is available only to approved
                     Freedom Women's Health Club members.
                 </p>
 
@@ -287,6 +320,9 @@ footer p {
 
 </main>
 
+
+
+<!-- FOOTER -->
 
 <footer>
 
@@ -305,30 +341,24 @@ footer p {
 </footer>
 
 
-<!-- FIREBASE -->
 
 <script type="module">
-
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-
-import {
-    getFirestore,
-    doc,
-    getDoc
-}
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
 /*
 ==================================================
-FIREBASE CONFIGURATION
+FIREBASE
 ==================================================
 */
 
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
 const firebaseConfig = {
 
-    apiKey: "AIzaSyB1ISMm_aVwsbSHByUI0F67tn-8GJo1pO0",
+    apiKey:
+        "AIzaSyB1ISMm_aVwsbSHByUI0F67tn-8GJo1pO0",
 
     authDomain:
         "freedom-women-s-health-club.firebaseapp.com",
@@ -348,15 +378,30 @@ const firebaseConfig = {
 };
 
 
+const app =
+    initializeApp(firebaseConfig);
+
+
+
 /*
 ==================================================
-START FIREBASE
+APPROVED MEMBER EMAILS
+==================================================
+
+For now, your test email is here.
+
+Later, we will move member approval
+into Firebase/Admin Panel so you don't
+have to edit this code.
 ==================================================
 */
 
-const app = initializeApp(firebaseConfig);
+const approvedEmails = [
 
-const db = getFirestore(app);
+    "mahnoornazar2@gmail.com"
+
+];
+
 
 
 /*
@@ -378,98 +423,97 @@ const loginButton =
     document.getElementById("loginButton");
 
 
-loginForm.addEventListener("submit", async function(event) {
 
-    event.preventDefault();
+loginForm.addEventListener(
+    "submit",
+    function(event) {
 
-
-    const email =
-        emailInput.value.trim().toLowerCase();
-
-
-    message.className = "message";
-
-    message.innerText = "";
-
-    loginButton.disabled = true;
-
-    loginButton.innerText = "Checking...";
+        event.preventDefault();
 
 
-    try {
+        const email =
+            emailInput.value
+            .trim()
+            .toLowerCase();
+
 
         /*
-        Look for this email inside:
-        members / email
+        Clear previous message
         */
 
-        const memberRef =
-            doc(db, "members", email);
+        message.innerText = "";
 
-        const memberSnap =
-            await getDoc(memberRef);
-
-
-        if (memberSnap.exists()) {
-
-            /*
-            Remember the approved member email
-            for the dashboard.
-            */
-
-            localStorage.setItem(
-                "freedomMemberEmail",
-                email
-            );
+        message.className =
+            "message";
 
 
-            message.className =
-                "message success";
+        /*
+        Check approved email
+        */
 
-            message.innerText =
-                "Access approved. Opening your member dashboard...";
-
-
-            setTimeout(function() {
-
-                window.location.href =
-                    "dashboard.html";
-
-            }, 800);
+        const isApproved =
+            approvedEmails.includes(email);
 
 
-        } else {
+        if (!isApproved) {
 
             message.className =
                 "message error";
 
             message.innerText =
-                "This email is not registered as a club member. Please contact me on WhatsApp.";
+                "This email is not registered as a club member. Please contact Mahnoor.";
 
-            loginButton.disabled = false;
-
-            loginButton.innerText = "Continue";
+            return;
 
         }
 
 
-    } catch (error) {
+        /*
+        Save the member email
+        so the dashboard knows
+        which member is logged in.
+        */
 
-        console.error(error);
+        localStorage.setItem(
+            "freedomMemberEmail",
+            email
+        );
+
+
+        /*
+        Show success message
+        */
 
         message.className =
-            "message error";
+            "message success";
 
         message.innerText =
-            "Unable to verify your membership right now. Please try again.";
+            "Access approved. Opening your member dashboard...";
 
-        loginButton.disabled = false;
 
-        loginButton.innerText = "Continue";
+        /*
+        Prevent multiple clicks
+        */
+
+        loginButton.disabled = true;
+
+
+        /*
+        Open dashboard
+        */
+
+        setTimeout(
+            function() {
+
+                window.location.href =
+                    "dashboard.html";
+
+            },
+            800
+        );
 
     }
-
-});
+);
 
 </script>
 
