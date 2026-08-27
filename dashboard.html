@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,11 +56,6 @@ header {
     color: #706A66;
 }
 
-button,
-a {
-    font-family: inherit;
-}
-
 .logout-btn {
     border: none;
     background: none;
@@ -94,6 +90,8 @@ h1 {
     font-size: 15px;
 }
 
+/* CARDS */
+
 .card {
     background: #fff;
     border: 1px solid #E5DED7;
@@ -118,7 +116,7 @@ h1 {
 .welcome-card p {
     color: #625D59;
     font-size: 14px;
-    max-width: 750px;
+    max-width: 760px;
 }
 
 .welcome-btn {
@@ -137,7 +135,7 @@ h1 {
 .profile-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     gap: 15px;
     margin-bottom: 20px;
 }
@@ -150,6 +148,16 @@ h1 {
 .edit-note {
     color: #706A66;
     font-size: 12px;
+    text-align: right;
+}
+
+.profile-intro {
+    background: #FBF8F3;
+    padding: 14px;
+    border-radius: 9px;
+    margin-bottom: 20px;
+    color: #625D59;
+    font-size: 13px;
 }
 
 .profile-grid {
@@ -183,6 +191,12 @@ h1 {
     border-color: #6E4A7E;
 }
 
+.optional {
+    font-size: 11px;
+    color: #8B827D;
+    margin-top: 4px;
+}
+
 .save-btn {
     margin-top: 20px;
     background: #6E4A7E;
@@ -192,6 +206,10 @@ h1 {
     padding: 12px 24px;
     cursor: pointer;
     font-size: 14px;
+}
+
+.save-btn:hover {
+    opacity: .9;
 }
 
 .save-message {
@@ -250,7 +268,7 @@ h1 {
 }
 
 .stat-value {
-    font-size: 23px;
+    font-size: 21px;
     color: #6E4A7E;
     font-weight: 600;
 }
@@ -352,6 +370,15 @@ h1 {
     opacity: .6;
 }
 
+.locked .week-button {
+    cursor: default;
+}
+
+.coming-soon {
+    color: #8B827D;
+    font-size: 12px;
+}
+
 /* INFO */
 
 .info-title {
@@ -362,6 +389,10 @@ h1 {
 
 .info-item {
     margin-bottom: 18px;
+}
+
+.info-item:last-child {
+    margin-bottom: 0;
 }
 
 .info-item h3 {
@@ -411,12 +442,33 @@ footer p {
         grid-template-columns: 1fr;
     }
 
+    .profile-header {
+        flex-direction: column;
+    }
+
+    .edit-note {
+        text-align: left;
+    }
+
     .hero {
         padding-top: 40px;
     }
 
     .card {
         padding: 22px;
+    }
+
+    .week-button {
+        padding: 18px;
+    }
+
+    .week-left {
+        gap: 12px;
+    }
+
+    .week-number {
+        width: 40px;
+        height: 40px;
     }
 }
 </style>
@@ -479,9 +531,9 @@ footer p {
     </h2>
 
     <p>
-        Before starting your weekly journey, take a few minutes to
-        understand how the program works, what to focus on each week,
-        how to track your progress and how to use your dashboard.
+        Start by opening your Welcome Guide. It explains how your
+        90-day journey works, what to focus on each week, how to use
+        your dashboard and how to track your progress.
     </p>
 
     <a href="welcome.html" class="welcome-btn">
@@ -491,74 +543,169 @@ footer p {
 </div>
 
 
-<!-- PROFILE -->
+<!-- ONE PROFILE SECTION -->
 
 <div class="card">
 
     <div class="profile-header">
 
         <div>
-            <div class="small-title">Your Profile</div>
-            <h2>Your Details</h2>
+            <div class="small-title">
+                Your Profile
+            </div>
+
+            <h2>
+                Your Details
+            </h2>
         </div>
 
         <div class="edit-note">
-            You can update these anytime.
+            Enter your details once.<br>
+            You can edit them anytime.
         </div>
 
     </div>
+
+
+    <div class="profile-intro">
+        Your starting measurements are your original baseline.
+        Current measurements are optional and can be added later
+        as you continue your journey.
+    </div>
+
 
     <div class="profile-grid">
 
         <div class="field">
-            <label>Name</label>
-            <input type="text" id="name" placeholder="Your name">
+            <label for="name">Name</label>
+            <input
+                type="text"
+                id="name"
+                placeholder="Your name">
         </div>
 
-        <div class="field">
-            <label>Age</label>
-            <input type="number" id="age" placeholder="Optional">
-        </div>
 
         <div class="field">
-            <label>Height (cm)</label>
-            <input type="number" id="height" placeholder="Optional">
+            <label for="age">Age</label>
+            <input
+                type="number"
+                id="age"
+                placeholder="Your age">
         </div>
 
-        <div class="field">
-            <label>Starting Weight (kg)</label>
-            <input type="number" id="startingWeight" step="0.1" placeholder="Optional">
-        </div>
 
         <div class="field">
-            <label>Current Weight (kg)</label>
-            <input type="number" id="currentWeight" step="0.1" placeholder="Add later">
+            <label for="height">Height (cm)</label>
+            <input
+                type="number"
+                id="height"
+                step="0.1"
+                placeholder="Example: 160">
         </div>
 
-        <div class="field">
-            <label>Starting Waist (cm)</label>
-            <input type="number" id="startingWaist" step="0.1" placeholder="Optional">
-        </div>
 
         <div class="field">
-            <label>Current Waist (cm)</label>
-            <input type="number" id="currentWaist" step="0.1" placeholder="Add later">
+            <label for="startingWeight">
+                Starting Weight (kg)
+            </label>
+
+            <input
+                type="number"
+                id="startingWeight"
+                step="0.1"
+                placeholder="Your starting weight">
         </div>
 
-        <div class="field">
-            <label>Starting Hip (cm)</label>
-            <input type="number" id="startingHip" step="0.1" placeholder="Optional">
-        </div>
 
         <div class="field">
-            <label>Current Hip (cm)</label>
-            <input type="number" id="currentHip" step="0.1" placeholder="Add later">
+            <label for="startingWaist">
+                Starting Waist (cm)
+            </label>
+
+            <input
+                type="number"
+                id="startingWaist"
+                step="0.1"
+                placeholder="Optional">
+
+            <span class="optional">
+                Optional — you can add it later.
+            </span>
+        </div>
+
+
+        <div class="field">
+            <label for="startingHip">
+                Starting Hip (cm)
+            </label>
+
+            <input
+                type="number"
+                id="startingHip"
+                step="0.1"
+                placeholder="Optional">
+
+            <span class="optional">
+                Optional — you can add it later.
+            </span>
+        </div>
+
+
+        <div class="field">
+            <label for="currentWeight">
+                Current Weight (kg)
+            </label>
+
+            <input
+                type="number"
+                id="currentWeight"
+                step="0.1"
+                placeholder="Add later">
+
+            <span class="optional">
+                Optional — update when you re-weigh.
+            </span>
+        </div>
+
+
+        <div class="field">
+            <label for="currentWaist">
+                Current Waist (cm)
+            </label>
+
+            <input
+                type="number"
+                id="currentWaist"
+                step="0.1"
+                placeholder="Add later">
+
+            <span class="optional">
+                Optional — update when you measure again.
+            </span>
+        </div>
+
+
+        <div class="field">
+            <label for="currentHip">
+                Current Hip (cm)
+            </label>
+
+            <input
+                type="number"
+                id="currentHip"
+                step="0.1"
+                placeholder="Add later">
+
+            <span class="optional">
+                Optional — update when you measure again.
+            </span>
         </div>
 
     </div>
 
+
     <button class="save-btn" id="saveProfile">
-        Save Profile
+        Save My Profile
     </button>
 
     <span class="save-message" id="saveMessage"></span>
@@ -566,78 +713,171 @@ footer p {
 </div>
 
 
-<!-- PROGRESS -->
+<!-- AUTOMATIC PROGRESS -->
 
 <div class="card">
 
     <div class="progress-heading">
-        <span>Your 90-Day Progress</span>
-        <span class="progress-number">0 / 90 Days</span>
+
+        <span>
+            Your 90-Day Progress
+        </span>
+
+        <span
+            class="progress-number"
+            id="progressNumber">
+            0 / 90 Days
+        </span>
+
     </div>
 
+
     <div class="progress-bar">
-        <div class="progress-fill"></div>
+        <div
+            class="progress-fill"
+            id="progressFill">
+        </div>
     </div>
 
 </div>
 
 
-<!-- AUTOMATIC CALCULATIONS -->
+<!-- AUTOMATIC RESULTS -->
 
 <div class="card">
 
     <div class="small-title">
-        Your Progress
+        Automatic Results
     </div>
 
     <h2 class="info-title">
-        Your Numbers
+        Your Progress Numbers
     </h2>
+
 
     <div class="stats-grid">
 
-        <div class="stat">
-            <div class="stat-label">Weight Lost</div>
-            <div class="stat-value" id="weightLost">—</div>
-            <div class="stat-help">Starting weight minus current weight.</div>
-        </div>
 
         <div class="stat">
-            <div class="stat-label">Waist Change</div>
-            <div class="stat-value" id="waistChange">—</div>
-            <div class="stat-help">Starting waist minus current waist.</div>
+
+            <div class="stat-label">
+                Weight Lost
+            </div>
+
+            <div
+                class="stat-value"
+                id="weightLost">
+                —
+            </div>
+
+            <div class="stat-help">
+                Starting weight minus current weight.
+            </div>
+
         </div>
 
-        <div class="stat">
-            <div class="stat-label">BMI</div>
-            <div class="stat-value" id="bmi">—</div>
-            <div class="stat-help">Uses current weight when available.</div>
-        </div>
 
         <div class="stat">
-            <div class="stat-label">IBW Range</div>
-            <div class="stat-value" id="ibw">—</div>
-            <div class="stat-help">Estimated healthy-weight range based on height.</div>
+
+            <div class="stat-label">
+                Waist Change
+            </div>
+
+            <div
+                class="stat-value"
+                id="waistChange">
+                —
+            </div>
+
+            <div class="stat-help">
+                Starting waist minus current waist.
+            </div>
+
         </div>
 
-        <div class="stat">
-            <div class="stat-label">Starting WHR</div>
-            <div class="stat-value" id="startingWhr">—</div>
-            <div class="stat-help">Starting waist ÷ starting hip.</div>
-        </div>
 
         <div class="stat">
-            <div class="stat-label">Current WHR</div>
-            <div class="stat-value" id="currentWhr">—</div>
-            <div class="stat-help">Current waist ÷ current hip.</div>
+
+            <div class="stat-label">
+                BMI
+            </div>
+
+            <div
+                class="stat-value"
+                id="bmi">
+                —
+            </div>
+
+            <div class="stat-help">
+                Uses current weight when available.
+            </div>
+
         </div>
+
+
+        <div class="stat">
+
+            <div class="stat-label">
+                IBW Range
+            </div>
+
+            <div
+                class="stat-value"
+                id="ibw">
+                —
+            </div>
+
+            <div class="stat-help">
+                Reference weight range based on height.
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Starting WHR
+            </div>
+
+            <div
+                class="stat-value"
+                id="startingWhr">
+                —
+            </div>
+
+            <div class="stat-help">
+                Starting waist ÷ starting hip.
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Current WHR
+            </div>
+
+            <div
+                class="stat-value"
+                id="currentWhr">
+                —
+            </div>
+
+            <div class="stat-help">
+                Current waist ÷ current hip.
+            </div>
+
+        </div>
+
 
     </div>
 
 </div>
 
 
-<!-- WHAT NUMBERS MEAN -->
+<!-- EXPLANATION -->
 
 <div class="card">
 
@@ -649,43 +889,68 @@ footer p {
         What do these measurements mean?
     </h2>
 
-    <div class="info-item">
-        <h3>BMI</h3>
-        <p>
-            BMI is a screening measure based on weight and height.
-            It can help give a general picture of weight status, but
-            it does not tell the complete story about your health,
-            muscle mass or body composition.
-        </p>
-    </div>
 
     <div class="info-item">
-        <h3>IBW Range</h3>
+
+        <h3>
+            BMI
+        </h3>
+
+        <p>
+            BMI is a screening measure calculated from your weight
+            and height. It can provide a general picture of weight
+            status, but it does not measure body fat directly or
+            describe your complete health.
+        </p>
+
+    </div>
+
+
+    <div class="info-item">
+
+        <h3>
+            IBW Range
+        </h3>
+
         <p>
             IBW means Ideal Body Weight. The range shown here is an
-            estimated reference range based on your height. It is not
-            a personal target that you must reach. Your appropriate
-            weight can depend on many factors.
+            estimated reference range calculated from height using
+            BMI values of 18.5–24.9. It is not a personal target
+            that you must reach.
         </p>
+
     </div>
 
+
     <div class="info-item">
-        <h3>Waist-to-Hip Ratio</h3>
+
+        <h3>
+            Waist-to-Hip Ratio
+        </h3>
+
         <p>
             Waist-to-hip ratio compares your waist measurement with
-            your hip measurement. It is one way to look at body-fat
-            distribution. Changes over time can be useful alongside
-            weight and other health measures.
+            your hip measurement. It gives information about how
+            body measurements are distributed. Changes over time can
+            be useful when looked at together with other progress
+            measures.
         </p>
+
     </div>
 
+
     <div class="info-item">
-        <h3>Original vs Current Measurements</h3>
+
+        <h3>
+            Starting vs Current
+        </h3>
+
         <p>
-            Your starting measurements are kept as your original
-            reference point. When you add current measurements later,
-            the dashboard automatically calculates the change.
+            Your starting measurements are your original reference
+            point. Current measurements can be added later. The
+            dashboard then automatically shows the difference.
         </p>
+
     </div>
 
 </div>
@@ -701,7 +966,9 @@ footer p {
         Phase 1 · Days 1–30
     </div>
 
-    <h2>Reset & Foundation</h2>
+    <h2>
+        Reset & Foundation
+    </h2>
 
     <p>
         Build the foundation for sustainable weight loss and healthier
@@ -716,7 +983,9 @@ footer p {
 
     <div class="week-left">
 
-        <div class="week-number">01</div>
+        <div class="week-number">
+            01
+        </div>
 
         <div class="week-title">
             <h3>Week 1</h3>
@@ -725,7 +994,9 @@ footer p {
 
     </div>
 
-    <div class="arrow">→</div>
+    <div class="arrow">
+        →
+    </div>
 
 </a>
 </div>
@@ -736,7 +1007,9 @@ footer p {
 
     <div class="week-left">
 
-        <div class="week-number">02</div>
+        <div class="week-number">
+            02
+        </div>
 
         <div class="week-title">
             <h3>Week 2</h3>
@@ -745,49 +1018,63 @@ footer p {
 
     </div>
 
-    <div class="arrow">→</div>
+    <div class="arrow">
+        →
+    </div>
 
 </a>
 </div>
 
 
 <div class="week locked">
-<div class="week-button">
 
-    <div class="week-left">
+    <div class="week-button">
 
-        <div class="week-number">03</div>
+        <div class="week-left">
 
-        <div class="week-title">
-            <h3>Week 3</h3>
-            <p>Days 15–21</p>
+            <div class="week-number">
+                03
+            </div>
+
+            <div class="week-title">
+                <h3>Week 3</h3>
+                <p>Days 15–21</p>
+            </div>
+
         </div>
+
+        <span class="coming-soon">
+            Coming Soon
+        </span>
 
     </div>
 
-    <span>Coming Soon</span>
-
-</div>
 </div>
 
 
 <div class="week locked">
-<div class="week-button">
 
-    <div class="week-left">
+    <div class="week-button">
 
-        <div class="week-number">04</div>
+        <div class="week-left">
 
-        <div class="week-title">
-            <h3>Week 4</h3>
-            <p>Days 22–30</p>
+            <div class="week-number">
+                04
+            </div>
+
+            <div class="week-title">
+                <h3>Week 4</h3>
+                <p>Days 22–30</p>
+            </div>
+
         </div>
+
+        <span class="coming-soon">
+            Coming Soon
+        </span>
 
     </div>
 
-    <span>Coming Soon</span>
-
-</div>
 </div>
 
 </div>
@@ -803,37 +1090,104 @@ footer p {
         Phase 2 · Days 31–60
     </div>
 
-    <h2>Build & Progress</h2>
+    <h2>
+        Build & Progress
+    </h2>
 
     <p>
-        Continue building stronger habits and supporting your progress.
+        Continue building stronger habits and supporting your
+        weight-loss progress.
     </p>
 
 </div>
 
-<div class="week locked"><div class="week-button">
-<div class="week-left"><div class="week-number">05</div>
-<div class="week-title"><h3>Week 5</h3><p>Days 31–37</p></div></div>
-<span>Coming Soon</span>
-</div></div>
 
-<div class="week locked"><div class="week-button">
-<div class="week-left"><div class="week-number">06</div>
-<div class="week-title"><h3>Week 6</h3><p>Days 38–44</p></div></div>
-<span>Coming Soon</span>
-</div></div>
+<div class="week locked">
+<div class="week-button">
 
-<div class="week locked"><div class="week-button">
-<div class="week-left"><div class="week-number">07</div>
-<div class="week-title"><h3>Week 7</h3><p>Days 45–51</p></div></div>
-<span>Coming Soon</span>
-</div></div>
+    <div class="week-left">
 
-<div class="week locked"><div class="week-button">
-<div class="week-left"><div class="week-number">08</div>
-<div class="week-title"><h3>Week 8</h3><p>Days 52–60</p></div></div>
-<span>Coming Soon</span>
-</div></div>
+        <div class="week-number">05</div>
+
+        <div class="week-title">
+            <h3>Week 5</h3>
+            <p>Days 31–37</p>
+        </div>
+
+    </div>
+
+    <span class="coming-soon">
+        Coming Soon
+    </span>
+
+</div>
+</div>
+
+
+<div class="week locked">
+<div class="week-button">
+
+    <div class="week-left">
+
+        <div class="week-number">06</div>
+
+        <div class="week-title">
+            <h3>Week 6</h3>
+            <p>Days 38–44</p>
+        </div>
+
+    </div>
+
+    <span class="coming-soon">
+        Coming Soon
+    </span>
+
+</div>
+</div>
+
+
+<div class="week locked">
+<div class="week-button">
+
+    <div class="week-left">
+
+        <div class="week-number">07</div>
+
+        <div class="week-title">
+            <h3>Week 7</h3>
+            <p>Days 45–51</p>
+        </div>
+
+    </div>
+
+    <span class="coming-soon">
+        Coming Soon
+    </span>
+
+</div>
+</div>
+
+
+<div class="week locked">
+<div class="week-button">
+
+    <div class="week-left">
+
+        <div class="week-number">08</div>
+
+        <div class="week-title">
+            <h3>Week 8</h3>
+            <p>Days 52–60</p>
+        </div>
+
+    </div>
+
+    <span class="coming-soon">
+        Coming Soon
+    </span>
+
+</div>
+</div>
 
 </div>
 
@@ -848,158 +1202,304 @@ footer p {
         Phase 3 · Days 61–90
     </div>
 
-    <h2>Maintain & Thrive</h2>
+    <h2>
+        Maintain & Thrive
+    </h2>
 
     <p>
-        Strengthen your confidence and prepare to maintain your progress.
+        Strengthen your confidence and prepare to maintain your
+        progress beyond the 90 days.
     </p>
 
 </div>
 
-<div class="week locked"><div class="week-button">
-<div class="week-left"><div class="week-number">09</div>
-<div class="week-title"><h3>Week 9</h3><p>Days 61–67</p></div></div>
-<span>Coming Soon</span>
-</div></div>
 
-<div class="week locked"><div class="week-button">
-<div class="week-left"><div class="week-number">10</div>
-<div class="week-title"><h3>Week 10</h3><p>Days 68–74</p></div></div>
-<span>Coming Soon</span>
-</div></div>
+<div class="week locked">
+<div class="week-button">
 
-<div class="week locked"><div class="week-button">
-<div class="week-left"><div class="week-number">11</div>
-<div class="week-title"><h3>Week 11</h3><p>Days 75–81</p></div></div>
-<span>Coming Soon</span>
-</div></div>
+    <div class="week-left">
 
-<div class="week locked"><div class="week-button">
-<div class="week-left"><div class="week-number">12</div>
-<div class="week-title"><h3>Week 12</h3><p>Days 82–90</p></div></div>
-<span>Coming Soon</span>
-</div></div>
+        <div class="week-number">09</div>
+
+        <div class="week-title">
+            <h3>Week 9</h3>
+            <p>Days 61–67</p>
+        </div>
+
+    </div>
+
+    <span class="coming-soon">
+        Coming Soon
+    </span>
 
 </div>
+</div>
+
+
+<div class="week locked">
+<div class="week-button">
+
+    <div class="week-left">
+
+        <div class="week-number">10</div>
+
+        <div class="week-title">
+            <h3>Week 10</h3>
+            <p>Days 68–74</p>
+        </div>
+
+    </div>
+
+    <span class="coming-soon">
+        Coming Soon
+    </span>
+
+</div>
+</div>
+
+
+<div class="week locked">
+<div class="week-button">
+
+    <div class="week-left">
+
+        <div class="week-number">11</div>
+
+        <div class="week-title">
+            <h3>Week 11</h3>
+            <p>Days 75–81</p>
+        </div>
+
+    </div>
+
+    <span class="coming-soon">
+        Coming Soon
+    </span>
+
+</div>
+</div>
+
+
+<div class="week locked">
+<div class="week-button">
+
+    <div class="week-left">
+
+        <div class="week-number">12</div>
+
+        <div class="week-title">
+            <h3>Week 12</h3>
+            <p>Days 82–90</p>
+        </div>
+
+    </div>
+
+    <span class="coming-soon">
+        Coming Soon
+    </span>
+
+</div>
+</div>
+
+</div>
+
 
 </div>
 </main>
 
 
 <footer>
+
 <div class="container">
-    <p>Freedom Women's Health Club</p>
-    <p>Small steps. Consistent habits. Long-term results.</p>
+
+    <p>
+        Freedom Women's Health Club
+    </p>
+
+    <p>
+        Small steps. Consistent habits. Long-term results.
+    </p>
+
 </div>
+
 </footer>
 
 
 <script type="module">
 
-import { initializeApp } from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 import {
     getAuth,
     onAuthStateChanged,
     signOut
-} from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 import {
     getFirestore,
     doc,
     getDoc,
     setDoc
-} from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
+
+/* FIREBASE */
 
 const firebaseConfig = {
+
     apiKey: "AIzaSyB1ISMm_aVwsbSHByUI0F67tn-8GJo1pO0",
-    authDomain: "freedom-women-s-health-club.firebaseapp.com",
-    projectId: "freedom-women-s-health-club",
-    storageBucket: "freedom-women-s-health-club.firebasestorage.app",
-    messagingSenderId: "445440093665",
-    appId: "1:445440093665:web:9c3a77f1f64776f63cb6a0"
+
+    authDomain:
+        "freedom-women-s-health-club.firebaseapp.com",
+
+    projectId:
+        "freedom-women-s-health-club",
+
+    storageBucket:
+        "freedom-women-s-health-club.firebasestorage.app",
+
+    messagingSenderId:
+        "445440093665",
+
+    appId:
+        "1:445440093665:web:9c3a77f1f64776f63cb6a0"
+
 };
 
 
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
+
 const db = getFirestore(app);
 
 
 let currentUser = null;
 
 
+/* PROFILE FIELDS */
+
 const fields = [
+
     "name",
     "age",
     "height",
     "startingWeight",
-    "currentWeight",
     "startingWaist",
-    "currentWaist",
     "startingHip",
+    "currentWeight",
+    "currentWaist",
     "currentHip"
+
 ];
 
 
-function value(id) {
-    const input = document.getElementById(id);
-    return input.value.trim();
+/* GET TEXT */
+
+function getValue(id) {
+
+    return document
+        .getElementById(id)
+        .value
+        .trim();
+
 }
 
 
-function numberValue(id) {
-    const v = parseFloat(value(id));
-    return isNaN(v) ? null : v;
+/* GET NUMBER */
+
+function getNumber(id) {
+
+    const number =
+        parseFloat(getValue(id));
+
+    return Number.isFinite(number)
+        ? number
+        : null;
+
 }
 
 
-function calculate() {
+/* AUTOMATIC CALCULATIONS */
 
-    const height = numberValue("height");
-    const startingWeight = numberValue("startingWeight");
-    const currentWeight = numberValue("currentWeight");
+function calculateProgress() {
 
-    const startingWaist = numberValue("startingWaist");
-    const currentWaist = numberValue("currentWaist");
 
-    const startingHip = numberValue("startingHip");
-    const currentHip = numberValue("currentHip");
+    const height =
+        getNumber("height");
+
+
+    const startingWeight =
+        getNumber("startingWeight");
+
+
+    const currentWeight =
+        getNumber("currentWeight");
+
+
+    const startingWaist =
+        getNumber("startingWaist");
+
+
+    const currentWaist =
+        getNumber("currentWaist");
+
+
+    const startingHip =
+        getNumber("startingHip");
+
+
+    const currentHip =
+        getNumber("currentHip");
 
 
     /* WEIGHT LOST */
 
-    if (startingWeight !== null && currentWeight !== null) {
+    if (
+        startingWeight !== null &&
+        currentWeight !== null
+    ) {
 
-        const lost = startingWeight - currentWeight;
+        const lost =
+            startingWeight - currentWeight;
 
-        document.getElementById("weightLost").textContent =
+        document
+            .getElementById("weightLost")
+            .textContent =
             lost.toFixed(1) + " kg";
 
     } else {
 
-        document.getElementById("weightLost").textContent = "—";
+        document
+            .getElementById("weightLost")
+            .textContent = "—";
 
     }
 
 
     /* WAIST CHANGE */
 
-    if (startingWaist !== null && currentWaist !== null) {
+    if (
+        startingWaist !== null &&
+        currentWaist !== null
+    ) {
 
-        const change = startingWaist - currentWaist;
+        const change =
+            startingWaist - currentWaist;
 
-        document.getElementById("waistChange").textContent =
+        document
+            .getElementById("waistChange")
+            .textContent =
             change.toFixed(1) + " cm";
 
     } else {
 
-        document.getElementById("waistChange").textContent = "—";
+        document
+            .getElementById("waistChange")
+            .textContent = "—";
 
     }
 
@@ -1008,160 +1508,247 @@ function calculate() {
 
     const weightForBMI =
         currentWeight !== null
-        ? currentWeight
-        : startingWeight;
+            ? currentWeight
+            : startingWeight;
 
 
-    if (height !== null && weightForBMI !== null && height > 0) {
+    if (
+        height !== null &&
+        weightForBMI !== null &&
+        height > 0
+    ) {
 
-        const heightM = height / 100;
+        const heightM =
+            height / 100;
 
-        const bmiValue =
-            weightForBMI / (heightM * heightM);
+        const bmi =
+            weightForBMI /
+            (heightM * heightM);
 
-        document.getElementById("bmi").textContent =
-            bmiValue.toFixed(1);
+        document
+            .getElementById("bmi")
+            .textContent =
+            bmi.toFixed(1);
 
     } else {
 
-        document.getElementById("bmi").textContent = "—";
+        document
+            .getElementById("bmi")
+            .textContent = "—";
 
     }
 
 
     /* IBW RANGE */
 
-    if (height !== null && height > 0) {
+    if (
+        height !== null &&
+        height > 0
+    ) {
 
-        const heightM = height / 100;
+        const heightM =
+            height / 100;
 
-        const lower = 18.5 * heightM * heightM;
-        const upper = 24.9 * heightM * heightM;
+        const lower =
+            18.5 *
+            heightM *
+            heightM;
 
-        document.getElementById("ibw").textContent =
-            lower.toFixed(1) + "–" + upper.toFixed(1) + " kg";
+        const upper =
+            24.9 *
+            heightM *
+            heightM;
+
+        document
+            .getElementById("ibw")
+            .textContent =
+            lower.toFixed(1) +
+            "–" +
+            upper.toFixed(1) +
+            " kg";
 
     } else {
 
-        document.getElementById("ibw").textContent = "—";
+        document
+            .getElementById("ibw")
+            .textContent = "—";
 
     }
 
 
     /* STARTING WHR */
 
-    if (startingWaist !== null &&
+    if (
+        startingWaist !== null &&
         startingHip !== null &&
-        startingHip > 0) {
+        startingHip > 0
+    ) {
 
-        document.getElementById("startingWhr").textContent =
-            (startingWaist / startingHip).toFixed(2);
+        const whr =
+            startingWaist /
+            startingHip;
+
+        document
+            .getElementById("startingWhr")
+            .textContent =
+            whr.toFixed(2);
 
     } else {
 
-        document.getElementById("startingWhr").textContent = "—";
+        document
+            .getElementById("startingWhr")
+            .textContent = "—";
 
     }
 
 
     /* CURRENT WHR */
 
-    if (currentWaist !== null &&
+    if (
+        currentWaist !== null &&
         currentHip !== null &&
-        currentHip > 0) {
+        currentHip > 0
+    ) {
 
-        document.getElementById("currentWhr").textContent =
-            (currentWaist / currentHip).toFixed(2);
+        const whr =
+            currentWaist /
+            currentHip;
+
+        document
+            .getElementById("currentWhr")
+            .textContent =
+            whr.toFixed(2);
 
     } else {
 
-        document.getElementById("currentWhr").textContent = "—";
+        document
+            .getElementById("currentWhr")
+            .textContent = "—";
 
     }
+
 }
 
 
+/* LOAD PROFILE FROM FIRESTORE */
+
 async function loadProfile(user) {
 
-    const profileRef =
-        doc(db, "members", user.email);
-
     try {
+
+        const profileRef =
+            doc(
+                db,
+                "members",
+                user.email
+            );
+
 
         const snapshot =
             await getDoc(profileRef);
 
+
         if (snapshot.exists()) {
 
-            const data = snapshot.data();
+            const data =
+                snapshot.data();
+
 
             fields.forEach(field => {
 
-                if (data[field] !== undefined &&
-                    data[field] !== null) {
+                const input =
+                    document.getElementById(field);
 
-                    document.getElementById(field).value =
+
+                if (
+                    input &&
+                    data[field] !== undefined &&
+                    data[field] !== null
+                ) {
+
+                    input.value =
                         data[field];
 
                 }
 
             });
 
+
             if (data.name) {
 
-                document.getElementById("memberName")
-                    .textContent = data.name;
+                document
+                    .getElementById("memberName")
+                    .textContent =
+                    data.name;
 
             }
 
         }
 
-        calculate();
+
+        calculateProgress();
+
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "Error loading profile:",
+            error
+        );
 
-        calculate();
+        calculateProgress();
 
     }
+
 }
 
 
+/* SAVE PROFILE */
+
 async function saveProfile() {
 
-    if (!currentUser) return;
+    if (!currentUser) {
+
+        return;
+
+    }
+
+
+    const name =
+        getValue("name");
 
 
     const data = {
 
-        name: value("name"),
+        name: name,
 
-        age: numberValue("age"),
+        age: getNumber("age"),
 
-        height: numberValue("height"),
+        height: getNumber("height"),
 
         startingWeight:
-            numberValue("startingWeight"),
-
-        currentWeight:
-            numberValue("currentWeight"),
+            getNumber("startingWeight"),
 
         startingWaist:
-            numberValue("startingWaist"),
-
-        currentWaist:
-            numberValue("currentWaist"),
+            getNumber("startingWaist"),
 
         startingHip:
-            numberValue("startingHip"),
+            getNumber("startingHip"),
+
+        currentWeight:
+            getNumber("currentWeight"),
+
+        currentWaist:
+            getNumber("currentWaist"),
 
         currentHip:
-            numberValue("currentHip"),
+            getNumber("currentHip"),
 
-        email: currentUser.email,
+        email:
+            currentUser.email,
 
-        updatedAt: new Date().toISOString()
+        updatedAt:
+            new Date().toISOString()
 
     };
 
@@ -1169,93 +1756,152 @@ async function saveProfile() {
     try {
 
         await setDoc(
-            doc(db, "members", currentUser.email),
+
+            doc(
+                db,
+                "members",
+                currentUser.email
+            ),
+
             data,
-            { merge: true }
+
+            {
+                merge: true
+            }
+
         );
 
 
-        if (data.name) {
+        if (name) {
 
-            document.getElementById("memberName")
-                .textContent = data.name;
+            document
+                .getElementById("memberName")
+                .textContent =
+                name;
 
         }
 
 
-        calculate();
+        calculateProgress();
 
 
-        document.getElementById("saveMessage")
-            .textContent = "Saved successfully.";
+        const message =
+            document.getElementById(
+                "saveMessage"
+            );
+
+
+        message.textContent =
+            "Profile saved successfully.";
 
 
         setTimeout(() => {
 
-            document.getElementById("saveMessage")
-                .textContent = "";
+            message.textContent = "";
 
         }, 3000);
 
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "Error saving profile:",
+            error
+        );
 
-        document.getElementById("saveMessage")
+
+        document
+            .getElementById("saveMessage")
             .textContent =
-            "Unable to save. Check Firebase rules.";
+            "Unable to save. Check your Firebase Firestore rules.";
 
     }
 
 }
 
 
-onAuthStateChanged(auth, async (user) => {
+/* AUTHENTICATION */
 
-    if (!user) {
+onAuthStateChanged(
+    auth,
+    async user => {
 
-        window.location.href = "login.html";
+        if (!user) {
 
-        return;
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        currentUser =
+            user;
+
+
+        document
+            .getElementById("memberEmail")
+            .textContent =
+            user.email;
+
+
+        await loadProfile(user);
 
     }
+);
 
 
-    currentUser = user;
+/* SAVE BUTTON */
+
+document
+    .getElementById("saveProfile")
+    .addEventListener(
+        "click",
+        saveProfile
+    );
 
 
-    document.getElementById("memberEmail")
-        .textContent = user.email;
-
-
-    await loadProfile(user);
-
-});
-
-
-document.getElementById("saveProfile")
-    .addEventListener("click", saveProfile);
-
+/* LIVE CALCULATIONS */
 
 fields.forEach(field => {
 
-    document.getElementById(field)
-        .addEventListener("input", calculate);
+    document
+        .getElementById(field)
+        .addEventListener(
+            "input",
+            calculateProgress
+        );
 
 });
 
 
-document.getElementById("logoutBtn")
-    .addEventListener("click", async () => {
+/* LOGOUT */
 
-        await signOut(auth);
+document
+    .getElementById("logoutBtn")
+    .addEventListener(
+        "click",
+        async () => {
 
-        window.location.href = "login.html";
+            try {
 
-    });
+                await signOut(auth);
+
+                window.location.href =
+                    "login.html";
+
+            } catch (error) {
+
+                console.error(error);
+
+            }
+
+        }
+    );
 
 </script>
 
 </body>
 </html>
+```
