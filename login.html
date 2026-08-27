@@ -1,16 +1,20 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Member Access | Freedom Women's Health Club</title>
+<title>Member Login | Freedom Women's Health Club</title>
 
 <style>
+
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -19,145 +23,455 @@ body {
     color: #2D2D2D;
     min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
 }
 
-.login-box {
-    width: min(430px, 92%);
-    background: white;
-    padding: 40px;
-    border-radius: 14px;
-    border: 1px solid #E5DED7;
-    text-align: center;
+
+/* HEADER */
+
+header {
+    background: #FFFFFF;
+    border-bottom: 1px solid #E5DED7;
+}
+
+.header-inner {
+    width: min(1050px, 92%);
+    margin: auto;
+    min-height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .logo {
     color: #6E4A7E;
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 30px;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.home-link {
+    color: #6E4A7E;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.home-link:hover {
+    text-decoration: underline;
+}
+
+
+/* MAIN */
+
+main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 60px 20px;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 480px;
+}
+
+
+/* LOGIN CARD */
+
+.login-card {
+    background: #FFFFFF;
+    border: 1px solid #E5DED7;
+    border-radius: 16px;
+
+    padding: 45px 40px;
+
+    box-shadow: 0 8px 30px rgba(45,45,45,0.04);
+}
+
+.small-title {
+    color: #6E4A7E;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    margin-bottom: 12px;
 }
 
 h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.2;
+
+    margin-bottom: 12px;
 }
 
 .intro {
     color: #625D59;
     font-size: 14px;
-    margin-bottom: 28px;
+
+    margin-bottom: 30px;
 }
+
+
+/* FORM */
 
 label {
     display: block;
-    text-align: left;
-    font-size: 13px;
+
+    font-size: 14px;
     font-weight: 600;
-    margin-bottom: 7px;
+
+    margin-bottom: 8px;
 }
 
 input {
     width: 100%;
-    padding: 13px;
-    border: 1px solid #D8D0C9;
-    border-radius: 6px;
-    margin-bottom: 18px;
-    font-size: 14px;
+
+    padding: 15px;
+
+    border: 1px solid #D9D1CA;
+    border-radius: 7px;
+
+    background: #FFFFFF;
+    color: #2D2D2D;
+
+    font-size: 15px;
+
+    outline: none;
 }
 
-button {
-    width: 100%;
-    padding: 13px;
-    background: #6E4A7E;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 15px;
+input:focus {
+    border-color: #6E4A7E;
 }
+
+
+.login-button {
+    width: 100%;
+
+    border: none;
+    border-radius: 7px;
+
+    background: #6E4A7E;
+    color: #FFFFFF;
+
+    padding: 15px;
+
+    margin-top: 18px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.login-button:hover {
+    opacity: 0.9;
+}
+
+
+/* MESSAGE */
 
 .message {
+    display: none;
+
     margin-top: 18px;
+
+    padding: 13px 15px;
+
+    border-radius: 7px;
+
     font-size: 13px;
-    color: #6E4A7E;
+    line-height: 1.5;
 }
 
-.back {
+.message.error {
     display: block;
-    margin-top: 25px;
-    color: #6E4A7E;
-    text-decoration: none;
-    font-size: 13px;
+
+    background: #F8EEEE;
+    color: #7A3E3E;
+
+    border: 1px solid #E8D0D0;
 }
+
+.message.success {
+    display: block;
+
+    background: #F1EAF4;
+    color: #6E4A7E;
+
+    border: 1px solid #E1D4E5;
+}
+
+
+/* NOTE */
+
+.note {
+    margin-top: 25px;
+
+    padding: 17px;
+
+    background: #FBF8F3;
+
+    border: 1px solid #E5DED7;
+    border-radius: 8px;
+
+    color: #625D59;
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* FOOTER */
+
+footer {
+    background: #302A31;
+
+    color: #FFFFFF;
+
+    padding: 28px 0;
+
+    text-align: center;
+}
+
+footer p {
+    font-size: 13px;
+    color: #D4CED5;
+
+    margin-bottom: 4px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .header-inner {
+        min-height: 65px;
+    }
+
+    .logo {
+        font-size: 16px;
+    }
+
+    .login-card {
+        padding: 35px 22px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
-<div class="login-box">
 
-    <div class="logo">
-        Freedom Women's Health Club
+<!-- HEADER -->
+
+<header>
+
+    <div class="header-inner">
+
+        <div class="logo">
+            Freedom Women's Health Club
+        </div>
+
+        <a href="index.html" class="home-link">
+            Home
+        </a>
+
     </div>
 
-    <h1>
-        Member Access
-    </h1>
+</header>
 
-    <p class="intro">
-        Enter your member details to access your 90-day journey.
+
+
+<!-- MAIN -->
+
+<main>
+
+    <div class="login-container">
+
+        <div class="login-card">
+
+            <div class="small-title">
+                Member Access
+            </div>
+
+            <h1>
+                Welcome back
+            </h1>
+
+            <p class="intro">
+                Enter the email address you registered with
+                Freedom Women's Health Club.
+            </p>
+
+
+            <form onsubmit="checkMember(event)">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+                    Continue
+                </button>
+
+            </form>
+
+
+            <div
+                id="message"
+                class="message"
+            ></div>
+
+
+            <div class="note">
+
+                Your email must be approved as an active
+                Freedom Women's Health Club membership.
+                If you have recently joined, please contact
+                Mahnoor on WhatsApp after completing your payment.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        Freedom Women's Health Club
     </p>
 
-    <form onsubmit="login(event)">
+    <p>
+        Small steps. Consistent habits. Long-term results.
+    </p>
 
-        <label for="email">
-            Email
-        </label>
+</footer>
 
-        <input
-            type="email"
-            id="email"
-            placeholder="Enter your email"
-            required
-        >
 
-        <label for="password">
-            Password
-        </label>
-
-        <input
-            type="password"
-            id="password"
-            placeholder="Enter your password"
-            required
-        >
-
-        <button type="submit">
-            Log In
-        </button>
-
-    </form>
-
-    <p id="message" class="message"></p>
-
-    <a href="index.html" class="back">
-        Back to Freedom Women's Health Club
-    </a>
-
-</div>
 
 <script>
 
-function login(event) {
+
+/*
+==================================================
+APPROVED MEMBERS
+
+ADD YOUR PAID MEMBERS' EMAILS HERE.
+
+Example:
+
+"mahnoornazar2@gmail.com",
+"member2@gmail.com"
+
+Keep the email inside quotation marks.
+==================================================
+*/
+
+
+const approvedEmails = [
+
+    // Add member emails here
+
+    // "member1@gmail.com",
+    // "member2@gmail.com"
+
+];
+
+
+
+/*
+==================================================
+CHECK MEMBER
+==================================================
+*/
+
+function checkMember(event) {
 
     event.preventDefault();
 
-    window.location.href = "dashboard.html";
+
+    const emailInput =
+        document.getElementById("email");
+
+    const message =
+        document.getElementById("message");
+
+
+    const email =
+        emailInput.value.trim().toLowerCase();
+
+
+    const isApproved =
+        approvedEmails
+        .map(function(memberEmail) {
+            return memberEmail.toLowerCase();
+        })
+        .includes(email);
+
+
+    if (isApproved) {
+
+        message.className =
+            "message success";
+
+        message.innerText =
+            "Email verified. Taking you to your member dashboard...";
+
+
+        setTimeout(function() {
+
+            window.location.href =
+                "dashboard.html";
+
+        }, 800);
+
+
+    } else {
+
+        message.className =
+            "message error";
+
+        message.innerText =
+            "This email does not have active membership access. Please contact Mahnoor on WhatsApp if you have already completed your payment.";
+
+    }
+
 }
 
 </script>
 
+
 </body>
+
 </html>
+```
