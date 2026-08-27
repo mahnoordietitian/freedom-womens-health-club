@@ -30,8 +30,6 @@ body {
     margin: auto;
 }
 
-/* HEADER */
-
 header {
     background: #FFFFFF;
     border-bottom: 1px solid #E5DED7;
@@ -56,8 +54,6 @@ header {
     font-size: 14px;
 }
 
-/* MAIN */
-
 main {
     flex: 1;
     display: flex;
@@ -75,8 +71,6 @@ main {
     text-align: center;
     box-shadow: 0 8px 30px rgba(45,45,45,0.04);
 }
-
-/* TEXT */
 
 .small-title {
     color: #6E4A7E;
@@ -99,8 +93,6 @@ h1 {
     margin-bottom: 30px;
     line-height: 1.6;
 }
-
-/* FORM */
 
 .form-group {
     margin-bottom: 18px;
@@ -128,8 +120,6 @@ input:focus {
     border-color: #6E4A7E;
 }
 
-/* PASSWORD */
-
 .password-wrapper {
     position: relative;
 }
@@ -150,8 +140,6 @@ input:focus {
     font-size: 12px;
 }
 
-/* FORGOT PASSWORD */
-
 .forgot-password {
     display: block;
     text-align: right;
@@ -165,8 +153,6 @@ input:focus {
 .forgot-password:hover {
     text-decoration: underline;
 }
-
-/* BUTTON */
 
 .login-button {
     width: 100%;
@@ -190,8 +176,6 @@ input:focus {
     cursor: not-allowed;
 }
 
-/* MESSAGE */
-
 .message {
     margin-top: 18px;
     font-size: 13px;
@@ -207,8 +191,6 @@ input:focus {
     color: #6E4A7E;
 }
 
-/* INFO */
-
 .info {
     background: #F1EAF4;
     border-radius: 9px;
@@ -223,8 +205,6 @@ input:focus {
     line-height: 1.5;
 }
 
-/* FOOTER */
-
 footer {
     background: #302A31;
     color: #FFFFFF;
@@ -236,8 +216,6 @@ footer p {
     color: #D4CED5;
     margin-bottom: 4px;
 }
-
-/* MOBILE */
 
 @media (max-width: 600px) {
 
@@ -256,7 +234,6 @@ footer p {
 </head>
 
 <body>
-
 
 <header>
 
@@ -297,8 +274,6 @@ footer p {
 
             <form id="loginForm">
 
-                <!-- EMAIL -->
-
                 <div class="form-group">
 
                     <label for="email">
@@ -315,8 +290,6 @@ footer p {
 
                 </div>
 
-
-                <!-- PASSWORD -->
 
                 <div class="form-group">
 
@@ -412,11 +385,9 @@ footer p {
 <script type="module">
 
 
-/*
-==================================================
-FIREBASE
-==================================================
-*/
+/* ==================================================
+   FIREBASE
+================================================== */
 
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
@@ -425,7 +396,8 @@ from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 import {
     getAuth,
     signInWithEmailAndPassword,
-    sendPasswordResetEmail
+    sendPasswordResetEmail,
+    signOut
 }
 from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
@@ -473,11 +445,17 @@ const db =
     getFirestore(app);
 
 
-/*
-==================================================
-ELEMENTS
-==================================================
-*/
+/* ==================================================
+   ADMIN
+================================================== */
+
+const ADMIN_EMAIL =
+    "mahnoordietitian3@gmail.com";
+
+
+/* ==================================================
+   ELEMENTS
+================================================== */
 
 const loginForm =
     document.getElementById("loginForm");
@@ -501,11 +479,9 @@ const forgotPassword =
     document.getElementById("forgotPassword");
 
 
-/*
-==================================================
-MESSAGE
-==================================================
-*/
+/* ==================================================
+   MESSAGE
+================================================== */
 
 function showMessage(text, type) {
 
@@ -517,11 +493,9 @@ function showMessage(text, type) {
 }
 
 
-/*
-==================================================
-SHOW / HIDE PASSWORD
-==================================================
-*/
+/* ==================================================
+   SHOW / HIDE PASSWORD
+================================================== */
 
 showPassword.addEventListener(
     "click",
@@ -547,11 +521,9 @@ showPassword.addEventListener(
 );
 
 
-/*
-==================================================
-LOGIN
-==================================================
-*/
+/* ==================================================
+   LOGIN
+================================================== */
 
 loginForm.addEventListener(
     "submit",
@@ -594,8 +566,10 @@ loginForm.addEventListener(
         try {
 
             /*
-            Firebase checks the email
-            and password.
+            ==========================================
+            STEP 1
+            Firebase verifies the login.
+            ==========================================
             */
 
             const userCredential =
@@ -610,38 +584,54 @@ loginForm.addEventListener(
                 userCredential.user;
 
 
+            const loggedInEmail =
+                (user.email || "")
+                .trim()
+                .toLowerCase();
+
+
             /*
-            Check that the member also
-            exists in Firestore.
+            ==========================================
+            STEP 2
+            ADMIN CHECK
+            ==========================================
+
+            IMPORTANT:
+
+            Admin does NOT need a member profile.
+
+            If the logged-in email matches the
+            administrator email, go directly to
+            admin.html.
+            ==========================================
             */
 
-            const memberRef =
-                doc(
-                    db,
-                    "members",
-                    user.email
-                );
-
-
-            const memberSnapshot =
-                await getDoc(memberRef);
-
-
             if (
-                !memberSnapshot.exists()
+                loggedInEmail === ADMIN_EMAIL
             ) {
 
-                await auth.signOut();
-
-                showMessage(
-                    "Your login is valid, but your Freedom membership profile has not been activated yet. Please contact Mahnoor.",
-                    "error"
+                localStorage.setItem(
+                    "freedomAdminEmail",
+                    loggedInEmail
                 );
 
-                loginButton.disabled = false;
 
-                loginButton.textContent =
-                    "Log In";
+                showMessage(
+                    "Admin login successful. Opening Admin Control Center...",
+                    "success"
+                );
+
+
+                setTimeout(
+                    function() {
+
+                        window.location.href =
+                            "admin.html";
+
+                    },
+                    500
+                );
+
 
                 return;
 
@@ -649,14 +639,64 @@ loginForm.addEventListener(
 
 
             /*
-            Save the email locally only
-            for compatibility with the
-            existing dashboard.
+            ==========================================
+            STEP 3
+            NORMAL MEMBER CHECK
+            ==========================================
+            */
+
+            const memberRef =
+                doc(
+                    db,
+                    "members",
+                    loggedInEmail
+                );
+
+
+            const memberSnapshot =
+                await getDoc(memberRef);
+
+
+            /*
+            ==========================================
+            MEMBER DOES NOT EXIST
+            ==========================================
+            */
+
+            if (
+                !memberSnapshot.exists()
+            ) {
+
+                await signOut(auth);
+
+
+                showMessage(
+                    "Your login is valid, but your Freedom membership profile has not been activated yet. Please contact Mahnoor.",
+                    "error"
+                );
+
+
+                loginButton.disabled = false;
+
+                loginButton.textContent =
+                    "Log In";
+
+
+                return;
+
+            }
+
+
+            /*
+            ==========================================
+            STEP 4
+            MEMBER LOGIN SUCCESS
+            ==========================================
             */
 
             localStorage.setItem(
                 "freedomMemberEmail",
-                user.email
+                loggedInEmail
             );
 
 
@@ -679,7 +719,10 @@ loginForm.addEventListener(
 
         } catch (error) {
 
-            console.error(error);
+            console.error(
+                "Login error:",
+                error
+            );
 
 
             let errorMessage =
@@ -758,11 +801,9 @@ loginForm.addEventListener(
 );
 
 
-/*
-==================================================
-FORGOT PASSWORD
-==================================================
-*/
+/* ==================================================
+   FORGOT PASSWORD
+================================================== */
 
 forgotPassword.addEventListener(
     "click",
@@ -780,7 +821,7 @@ forgotPassword.addEventListener(
         if (!email) {
 
             showMessage(
-                "Enter your registered email address first, then click Forgot password.",
+                "Enter your email address first, then click Forgot password.",
                 "error"
             );
 
@@ -800,14 +841,17 @@ forgotPassword.addEventListener(
 
 
             showMessage(
-                "Password reset email sent. Check your email inbox and follow the link to create a new password.",
+                "Password reset email sent. Check your inbox and follow the link to create a new password.",
                 "success"
             );
 
 
         } catch (error) {
 
-            console.error(error);
+            console.error(
+                "Password reset error:",
+                error
+            );
 
 
             let errorMessage =
