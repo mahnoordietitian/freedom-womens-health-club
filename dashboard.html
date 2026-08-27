@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -646,7 +645,7 @@ h1 {
 }
 
 /* =========================
-   LIFETIME HABITS
+   LIFETIME
 ========================= */
 
 .lifetime-intro {
@@ -759,7 +758,7 @@ h1 {
 }
 
 /* =========================
-   EMPTY / LOADING
+   STATUS BOXES
 ========================= */
 
 .loading-box,
@@ -778,6 +777,16 @@ h1 {
     border-radius: 12px;
     padding: 20px;
     color: #8A5146;
+}
+
+.error-code {
+    margin-top: 10px;
+    padding: 10px;
+    background: #FFFFFF;
+    border-radius: 7px;
+    font-size: 12px;
+    word-break: break-word;
+    color: #514B48;
 }
 
 /* =========================
@@ -1081,8 +1090,6 @@ h1 {
     </div>
 
 
-    <!-- 90 DAY PROGRESS -->
-
     <div class="card">
 
         <div class="progress-heading">
@@ -1118,8 +1125,6 @@ h1 {
 
     </div>
 
-
-    <!-- NUMBERS -->
 
     <div class="card">
 
@@ -1348,8 +1353,6 @@ h1 {
     </div>
 
 
-    <!-- WEEK DETAIL -->
-
     <div
         id="weekDetailView"
         style="display:none;">
@@ -1374,8 +1377,7 @@ h1 {
                     Loading...
                 </h1>
 
-                <p id="detailWeekDescription">
-                </p>
+                <p id="detailWeekDescription"></p>
 
             </div>
 
@@ -1437,7 +1439,7 @@ h1 {
 
 
 <!-- =========================
-     LIFETIME HABITS
+     LIFETIME
 ========================= -->
 
 <section
@@ -1661,9 +1663,9 @@ import {
 from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
-/* =========================
+/* =====================================================
    FIREBASE CONFIG
-========================= */
+===================================================== */
 
 const firebaseConfig = {
 
@@ -1695,6 +1697,10 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
+
 let currentUser = null;
 
 let weeklyContent = [];
@@ -1706,9 +1712,9 @@ let memberProgress = {};
 let selectedWeek = null;
 
 
-/* =========================
+/* =====================================================
    PROFILE FIELDS
-========================= */
+===================================================== */
 
 const profileFields = [
 
@@ -1725,9 +1731,9 @@ const profileFields = [
 ];
 
 
-/* =========================
-   HELPERS
-========================= */
+/* =====================================================
+   BASIC HELPERS
+===================================================== */
 
 function getValue(id) {
 
@@ -1736,7 +1742,7 @@ function getValue(id) {
 
     if (!element) return "";
 
-    return element.value.trim();
+    return String(element.value || "").trim();
 
 }
 
@@ -1759,10 +1765,13 @@ function escapeHTML(value) {
         value === undefined ||
         value === null
     ) {
+
         return "";
+
     }
 
     return String(value)
+
         .replaceAll("&", "&amp;")
         .replaceAll("<", "&lt;")
         .replaceAll(">", "&gt;")
@@ -1772,9 +1781,9 @@ function escapeHTML(value) {
 }
 
 
-/* =========================
+/* =====================================================
    PROFILE CALCULATIONS
-========================= */
+===================================================== */
 
 function calculateProgress() {
 
@@ -1807,8 +1816,10 @@ function calculateProgress() {
 
         document.getElementById("weightLost")
             .textContent =
-            (startingWeight - currentWeight).toFixed(1)
-            + " kg";
+            (
+                startingWeight -
+                currentWeight
+            ).toFixed(1) + " kg";
 
     } else {
 
@@ -1825,8 +1836,10 @@ function calculateProgress() {
 
         document.getElementById("waistChange")
             .textContent =
-            (startingWaist - currentWaist).toFixed(1)
-            + " cm";
+            (
+                startingWaist -
+                currentWaist
+            ).toFixed(1) + " cm";
 
     } else {
 
@@ -1944,9 +1957,9 @@ function calculateProgress() {
 }
 
 
-/* =========================
+/* =====================================================
    LOAD PROFILE
-========================= */
+===================================================== */
 
 async function loadProfile(user) {
 
@@ -1969,33 +1982,38 @@ async function loadProfile(user) {
                 snapshot.data();
 
 
-            profileFields.forEach(field => {
+            profileFields.forEach(
+                field => {
 
-                const element =
-                    document.getElementById(field);
+                    const element =
+                        document.getElementById(field);
 
-                if (
-                    element &&
-                    data[field] !== undefined &&
-                    data[field] !== null
-                ) {
 
-                    element.value =
-                        data[field];
+                    if (
+                        element &&
+                        data[field] !== undefined &&
+                        data[field] !== null
+                    ) {
+
+                        element.value =
+                            data[field];
+
+                    }
 
                 }
-
-            });
+            );
 
 
             if (data.name) {
 
-                document.getElementById("memberName")
-                    .textContent =
+                document.getElementById(
+                    "memberName"
+                ).textContent =
                     data.name;
 
-                document.getElementById("welcomeName")
-                    .textContent =
+                document.getElementById(
+                    "welcomeName"
+                ).textContent =
                     data.name;
 
             }
@@ -2005,10 +2023,11 @@ async function loadProfile(user) {
 
         calculateProgress();
 
+
     } catch (error) {
 
         console.error(
-            "Profile loading error:",
+            "PROFILE ERROR:",
             error
         );
 
@@ -2019,9 +2038,9 @@ async function loadProfile(user) {
 }
 
 
-/* =========================
+/* =====================================================
    SAVE PROFILE
-========================= */
+===================================================== */
 
 async function saveProfile() {
 
@@ -2087,12 +2106,14 @@ async function saveProfile() {
 
         if (data.name) {
 
-            document.getElementById("memberName")
-                .textContent =
+            document.getElementById(
+                "memberName"
+            ).textContent =
                 data.name;
 
-            document.getElementById("welcomeName")
-                .textContent =
+            document.getElementById(
+                "welcomeName"
+            ).textContent =
                 data.name;
 
         }
@@ -2101,24 +2122,32 @@ async function saveProfile() {
         calculateProgress();
 
 
-        document.getElementById("saveMessage")
-            .textContent =
+        document.getElementById(
+            "saveMessage"
+        ).textContent =
             "Saved successfully.";
+
 
         setTimeout(() => {
 
-            document.getElementById("saveMessage")
-                .textContent = "";
+            document.getElementById(
+                "saveMessage"
+            ).textContent = "";
 
         }, 3000);
 
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "SAVE PROFILE ERROR:",
+            error
+        );
 
-        document.getElementById("saveMessage")
-            .textContent =
+
+        document.getElementById(
+            "saveMessage"
+        ).textContent =
             "Unable to save. Check Firebase rules.";
 
     }
@@ -2126,9 +2155,9 @@ async function saveProfile() {
 }
 
 
-/* =========================
+/* =====================================================
    MEMBER PROGRESS
-========================= */
+===================================================== */
 
 async function loadMemberProgress() {
 
@@ -2164,7 +2193,7 @@ async function loadMemberProgress() {
     } catch (error) {
 
         console.error(
-            "Progress loading error:",
+            "PROGRESS LOAD ERROR:",
             error
         );
 
@@ -2174,6 +2203,10 @@ async function loadMemberProgress() {
 
 }
 
+
+/* =====================================================
+   SAVE MEMBER PROGRESS
+===================================================== */
 
 async function saveMemberProgress() {
 
@@ -2201,7 +2234,7 @@ async function saveMemberProgress() {
     } catch (error) {
 
         console.error(
-            "Progress saving error:",
+            "PROGRESS SAVE ERROR:",
             error
         );
 
@@ -2210,9 +2243,9 @@ async function saveMemberProgress() {
 }
 
 
-/* =========================
+/* =====================================================
    LOAD WEEKLY CONTENT
-========================= */
+===================================================== */
 
 async function loadWeeklyContent() {
 
@@ -2223,45 +2256,111 @@ async function loadWeeklyContent() {
 
 
     container.innerHTML = `
+
         <div class="loading-box">
+
             Loading your 90-day journey...
+
         </div>
+
     `;
 
 
     try {
 
+        console.log(
+            "Loading Firestore collection: weeklyContent"
+        );
+
+
+        const weeklyRef =
+            collection(
+                db,
+                "weeklyContent"
+            );
+
+
         const snapshot =
             await getDocs(
-                collection(
-                    db,
-                    "weeklyContent"
-                )
+                weeklyRef
             );
+
+
+        console.log(
+            "weeklyContent documents:",
+            snapshot.size
+        );
 
 
         weeklyContent = [];
 
 
-        snapshot.forEach(item => {
+        snapshot.forEach(
+            documentSnapshot => {
 
-            weeklyContent.push({
+                const data =
+                    documentSnapshot.data();
 
-                id:
-                    item.id,
 
-                ...item.data()
+                console.log(
+                    "WEEK DOCUMENT:",
+                    documentSnapshot.id,
+                    data
+                );
 
-            });
 
-        });
+                weeklyContent.push({
+
+                    id:
+                        documentSnapshot.id,
+
+                    ...data
+
+                });
+
+            }
+        );
 
 
         weeklyContent.sort(
-            (a, b) =>
+            (
+                a,
+                b
+            ) =>
                 getWeekNumber(a) -
                 getWeekNumber(b)
         );
+
+
+        if (!weeklyContent.length) {
+
+            container.innerHTML = `
+
+                <div class="empty-box">
+
+                    <strong>
+                        Your 90-Day Journey is empty.
+                    </strong>
+
+                    <br><br>
+
+                    Firebase connection is working,
+                    but there are currently no documents
+                    inside the <strong>weeklyContent</strong>
+                    collection.
+
+                    <br><br>
+
+                    Go to your Admin Portal and make sure
+                    your weeks are being saved there.
+
+                </div>
+
+            `;
+
+            return;
+
+        }
 
 
         renderWeeks();
@@ -2270,7 +2369,7 @@ async function loadWeeklyContent() {
     } catch (error) {
 
         console.error(
-            "Weekly content error:",
+            "WEEKLY CONTENT ERROR:",
             error
         );
 
@@ -2285,9 +2384,25 @@ async function loadWeeklyContent() {
 
                 <br><br>
 
-                Please check that the Admin Portal is saving
-                content inside the <strong>weeklyContent</strong>
-                Firestore collection.
+                Firebase could not read the
+                <strong>weeklyContent</strong>
+                collection.
+
+                <div class="error-code">
+
+                    <strong>Error:</strong>
+                    ${escapeHTML(
+                        error.message ||
+                        String(error)
+                    )}
+
+                </div>
+
+                <br>
+
+                Check your Firestore rules and make sure
+                the Admin Portal is saving the weeks inside
+                the <strong>weeklyContent</strong> collection.
 
             </div>
 
@@ -2298,9 +2413,9 @@ async function loadWeeklyContent() {
 }
 
 
-/* =========================
+/* =====================================================
    LOAD LIFETIME HABITS
-========================= */
+===================================================== */
 
 async function loadLifetimeHabits() {
 
@@ -2324,22 +2439,27 @@ async function loadLifetimeHabits() {
         lifetimeHabits = [];
 
 
-        snapshot.forEach(item => {
+        snapshot.forEach(
+            documentSnapshot => {
 
-            lifetimeHabits.push({
+                lifetimeHabits.push({
 
-                id:
-                    item.id,
+                    id:
+                        documentSnapshot.id,
 
-                ...item.data()
+                    ...documentSnapshot.data()
 
-            });
+                });
 
-        });
+            }
+        );
 
 
         lifetimeHabits.sort(
-            (a, b) =>
+            (
+                a,
+                b
+            ) =>
                 getLifetimeOrder(a) -
                 getLifetimeOrder(b)
         );
@@ -2351,7 +2471,7 @@ async function loadLifetimeHabits() {
     } catch (error) {
 
         console.error(
-            "Lifetime habits error:",
+            "LIFETIME ERROR:",
             error
         );
 
@@ -2366,8 +2486,10 @@ async function loadLifetimeHabits() {
 
                 <br><br>
 
-                Make sure the Admin Portal has a
-                <strong>lifetimeHabits</strong> collection.
+                ${escapeHTML(
+                    error.message ||
+                    String(error)
+                )}
 
             </div>
 
@@ -2378,34 +2500,51 @@ async function loadLifetimeHabits() {
 }
 
 
-/* =========================
+/* =====================================================
    WEEK NUMBER
-========================= */
+===================================================== */
 
 function getWeekNumber(week) {
 
-    if (
-        week.weekNumber !== undefined
-    ) {
-        return Number(
-            week.weekNumber
-        );
-    }
+    const possibleValues = [
+
+        week.weekNumber,
+
+        week.week,
+
+        week.number,
+
+        week.order
+
+    ];
 
 
-    if (
-        week.number !== undefined
+    for (
+        const value of possibleValues
     ) {
-        return Number(
-            week.number
-        );
+
+        const number =
+            Number(value);
+
+
+        if (
+            Number.isFinite(number) &&
+            number > 0
+        ) {
+
+            return number;
+
+        }
+
     }
 
 
     const match =
         String(
             week.id || ""
-        ).match(/(\d+)/);
+        ).match(
+            /(\d+)/
+        );
 
 
     return match
@@ -2415,32 +2554,50 @@ function getWeekNumber(week) {
 }
 
 
-/* =========================
+/* =====================================================
    LIFETIME ORDER
-========================= */
+===================================================== */
 
 function getLifetimeOrder(item) {
 
-    if (
-        item.order !== undefined
+    const values = [
+
+        item.order,
+
+        item.number,
+
+        item.weekNumber
+
+    ];
+
+
+    for (
+        const value of values
     ) {
-        return Number(item.order);
+
+        const number =
+            Number(value);
+
+
+        if (
+            Number.isFinite(number)
+        ) {
+
+            return number;
+
+        }
+
     }
 
-    if (
-        item.number !== undefined
-    ) {
-        return Number(item.number);
-    }
 
     return 999;
 
 }
 
 
-/* =========================
+/* =====================================================
    GET DAYS
-========================= */
+===================================================== */
 
 function getDays(week) {
 
@@ -2449,7 +2606,9 @@ function getDays(week) {
             week.days
         )
     ) {
+
         return week.days;
+
     }
 
 
@@ -2458,7 +2617,20 @@ function getDays(week) {
             week.dayContent
         )
     ) {
+
         return week.dayContent;
+
+    }
+
+
+    if (
+        Array.isArray(
+            week.dailyContent
+        )
+    ) {
+
+        return week.dailyContent;
+
     }
 
 
@@ -2467,9 +2639,9 @@ function getDays(week) {
 }
 
 
-/* =========================
+/* =====================================================
    GET WEEKLY HABITS
-========================= */
+===================================================== */
 
 function getWeeklyHabits(week) {
 
@@ -2478,7 +2650,9 @@ function getWeeklyHabits(week) {
             week.habits
         )
     ) {
+
         return week.habits;
+
     }
 
 
@@ -2487,7 +2661,9 @@ function getWeeklyHabits(week) {
             week.weeklyHabits
         )
     ) {
+
         return week.weeklyHabits;
+
     }
 
 
@@ -2496,9 +2672,53 @@ function getWeeklyHabits(week) {
 }
 
 
-/* =========================
-   GET GLOBAL DAY NUMBER
-========================= */
+/* =====================================================
+   GET DAY HABITS
+===================================================== */
+
+function getDayHabits(day) {
+
+    if (
+        Array.isArray(
+            day.habits
+        )
+    ) {
+
+        return day.habits;
+
+    }
+
+
+    if (
+        Array.isArray(
+            day.tasks
+        )
+    ) {
+
+        return day.tasks;
+
+    }
+
+
+    if (
+        Array.isArray(
+            day.dailyHabits
+        )
+    ) {
+
+        return day.dailyHabits;
+
+    }
+
+
+    return [];
+
+}
+
+
+/* =====================================================
+   GLOBAL DAY NUMBER
+===================================================== */
 
 function getGlobalDayNumber(
     weekNumber,
@@ -2506,40 +2726,52 @@ function getGlobalDayNumber(
     day
 ) {
 
-    if (
-        day &&
-        day.dayNumber !== undefined
+    const values = [
+
+        day?.dayNumber,
+
+        day?.globalDay,
+
+        day?.day
+
+    ];
+
+
+    for (
+        const value of values
     ) {
 
-        return Number(
-            day.dayNumber
-        );
-
-    }
+        const number =
+            Number(value);
 
 
-    if (
-        day &&
-        day.globalDay !== undefined
-    ) {
+        if (
+            Number.isFinite(number) &&
+            number > 0
+        ) {
 
-        return Number(
-            day.globalDay
-        );
+            return number;
+
+        }
 
     }
 
 
     return (
-        (weekNumber - 1) * 7
-    ) + dayIndex + 1;
+        (
+            weekNumber -
+            1
+        ) * 7
+    ) +
+    dayIndex +
+    1;
 
 }
 
 
-/* =========================
+/* =====================================================
    RENDER WEEKS
-========================= */
+===================================================== */
 
 function renderWeeks() {
 
@@ -2577,6 +2809,9 @@ function renderWeeks() {
             title:
                 "Phase 1 · Reset & Foundation",
 
+            heading:
+                "Reset & Foundation",
+
             description:
                 "Build simple habits and create a strong foundation."
 
@@ -2586,6 +2821,9 @@ function renderWeeks() {
 
             title:
                 "Phase 2 · Build & Progress",
+
+            heading:
+                "Build & Progress",
 
             description:
                 "Build on your foundation and strengthen your routine."
@@ -2597,18 +2835,11 @@ function renderWeeks() {
             title:
                 "Phase 3 · Thrive & Maintain",
 
+            heading:
+                "Thrive & Maintain",
+
             description:
                 "Strengthen your confidence and create sustainable habits."
-
-        },
-
-        4: {
-
-            title:
-                "Final Stretch · Days 85–90",
-
-            description:
-                "Finish your 90 days and prepare for long-term maintenance."
 
         }
 
@@ -2617,10 +2848,6 @@ function renderWeeks() {
 
     let html = "";
 
-
-    /*
-       PHASES 1–3
-    */
 
     [1, 2, 3].forEach(
         phaseNumber => {
@@ -2675,25 +2902,27 @@ function renderWeeks() {
                     <div class="phase">
 
                         <div class="phase-label">
+
                             ${escapeHTML(
                                 phase.title
                             )}
+
                         </div>
 
                         <h3>
-                            ${
-                                phaseNumber === 1
-                                    ? "Reset & Foundation"
-                                    : phaseNumber === 2
-                                        ? "Build & Progress"
-                                        : "Thrive & Maintain"
-                            }
+
+                            ${escapeHTML(
+                                phase.heading
+                            )}
+
                         </h3>
 
                         <p class="phase-description">
+
                             ${escapeHTML(
                                 phase.description
                             )}
+
                         </p>
 
             `;
@@ -2723,10 +2952,6 @@ function renderWeeks() {
     );
 
 
-    /*
-       FINAL 6 DAYS
-    */
-
     const finalWeeks =
         weeklyContent.filter(
             week =>
@@ -2743,7 +2968,9 @@ function renderWeeks() {
                 <div class="phase">
 
                     <div class="phase-label">
-                        ${phases[4].title}
+
+                        Final Stretch · Days 85–90
+
                     </div>
 
                     <h3>
@@ -2751,7 +2978,10 @@ function renderWeeks() {
                     </h3>
 
                     <p class="phase-description">
-                        ${phases[4].description}
+
+                        Finish your 90 days and prepare
+                        for long-term maintenance.
+
                     </p>
 
         `;
@@ -2786,13 +3016,11 @@ function renderWeeks() {
 }
 
 
-/* =========================
+/* =====================================================
    RENDER WEEK BUTTON
-========================= */
+===================================================== */
 
-function renderWeekButton(
-    week
-) {
+function renderWeekButton(week) {
 
     const number =
         getWeekNumber(
@@ -2802,6 +3030,7 @@ function renderWeekButton(
 
     const title =
         week.title ||
+        week.name ||
         `Week ${number}`;
 
 
@@ -2823,12 +3052,21 @@ function renderWeekButton(
         );
 
 
-    const dayText =
-        days.length
-            ? `${days.length} days`
-            : habits.length
-                ? "Weekly habits"
-                : "Content";
+    let dayText =
+        "Content";
+
+
+    if (days.length) {
+
+        dayText =
+            `${days.length} days`;
+
+    } else if (habits.length) {
+
+        dayText =
+            "Weekly habits";
+
+    }
 
 
     return `
@@ -2857,13 +3095,19 @@ function renderWeekButton(
                     <div class="week-title">
 
                         <h4>
+
                             ${escapeHTML(
                                 title
                             )}
+
                         </h4>
 
                         <p>
-                            ${dayText}
+
+                            ${escapeHTML(
+                                dayText
+                            )}
+
                         </p>
 
                     </div>
@@ -2873,11 +3117,15 @@ function renderWeekButton(
                 <div class="week-right">
 
                     <span class="week-percent">
+
                         ${percent}% complete
+
                     </span>
 
                     <span class="arrow">
+
                         →
+
                     </span>
 
                 </div>
@@ -2891,9 +3139,9 @@ function renderWeekButton(
 }
 
 
-/* =========================
+/* =====================================================
    OPEN WEEK
-========================= */
+===================================================== */
 
 window.openWeek =
 function(weekId) {
@@ -2905,7 +3153,16 @@ function(weekId) {
         );
 
 
-    if (!selectedWeek) return;
+    if (!selectedWeek) {
+
+        console.error(
+            "Week not found:",
+            weekId
+        );
+
+        return;
+
+    }
 
 
     document.getElementById(
@@ -2931,9 +3188,9 @@ function(weekId) {
 };
 
 
-/* =========================
+/* =====================================================
    RENDER SELECTED WEEK
-========================= */
+===================================================== */
 
 function renderSelectedWeek() {
 
@@ -2956,6 +3213,7 @@ function renderSelectedWeek() {
         "detailWeekTitle"
     ).textContent =
         selectedWeek.title ||
+        selectedWeek.name ||
         `Week ${number}`;
 
 
@@ -2963,6 +3221,7 @@ function renderSelectedWeek() {
         "detailWeekDescription"
     ).textContent =
         selectedWeek.description ||
+        selectedWeek.details ||
         "";
 
 
@@ -2989,21 +3248,18 @@ function renderSelectedWeek() {
     let html = "";
 
 
-    /*
-       DAY-WISE CONTENT
-    */
-
     if (days.length) {
 
         days.forEach(
-            (day, dayIndex) => {
+            (
+                day,
+                dayIndex
+            ) => {
 
                 const habits =
-                    Array.isArray(
-                        day.habits
-                    )
-                        ? day.habits
-                        : [];
+                    getDayHabits(
+                        day
+                    );
 
 
                 const dayNumber =
@@ -3016,6 +3272,7 @@ function renderSelectedWeek() {
 
                 const dayTitle =
                     day.title ||
+                    day.name ||
                     `Day ${dayNumber}`;
 
 
@@ -3137,10 +3394,6 @@ function renderSelectedWeek() {
     }
 
 
-    /*
-       WEEKLY HABITS
-    */
-
     else if (
         weeklyHabits.length
     ) {
@@ -3149,8 +3402,15 @@ function renderSelectedWeek() {
 
             <div class="card">
 
-                <div class="weekly-habits-title">
+                <div
+                    style="
+                    font-size:20px;
+                    font-weight:500;
+                    margin-bottom:15px;
+                    ">
+
                     This Week's Habits
+
                 </div>
 
         `;
@@ -3209,9 +3469,9 @@ function renderSelectedWeek() {
 }
 
 
-/* =========================
+/* =====================================================
    RENDER HABIT
-========================= */
+===================================================== */
 
 function renderHabit(
     weekId,
@@ -3219,6 +3479,21 @@ function renderHabit(
     habitIndex,
     habit
 ) {
+
+    if (
+        typeof habit === "string"
+    ) {
+
+        habit = {
+            name: habit
+        };
+
+    }
+
+
+    habit =
+        habit || {};
+
 
     const name =
         habit.name ||
@@ -3319,9 +3594,9 @@ function renderHabit(
 }
 
 
-/* =========================
+/* =====================================================
    TOGGLE HABIT
-========================= */
+===================================================== */
 
 window.toggleHabit =
 async function(
@@ -3331,8 +3606,11 @@ async function(
     checked
 ) {
 
-    if (!memberProgress.weeks)
+    if (!memberProgress.weeks) {
+
         memberProgress.weeks = {};
+
+    }
 
 
     if (
@@ -3383,9 +3661,9 @@ async function(
 };
 
 
-/* =========================
+/* =====================================================
    CHECK HABIT
-========================= */
+===================================================== */
 
 function isHabitComplete(
     weekId,
@@ -3421,9 +3699,9 @@ function isHabitComplete(
 }
 
 
-/* =========================
-   COMPLETED HABITS FOR DAY
-========================= */
+/* =====================================================
+   COMPLETED HABITS
+===================================================== */
 
 function getCompletedHabitsForDay(
     weekId,
@@ -3435,7 +3713,10 @@ function getCompletedHabitsForDay(
 
 
     habits.forEach(
-        (_, index) => {
+        (
+            _,
+            index
+        ) => {
 
             if (
                 isHabitComplete(
@@ -3458,9 +3739,9 @@ function getCompletedHabitsForDay(
 }
 
 
-/* =========================
-   IS DAY COMPLETE
-========================= */
+/* =====================================================
+   DAY COMPLETE
+===================================================== */
 
 function isDayComplete(
     week,
@@ -3469,19 +3750,23 @@ function isDayComplete(
 ) {
 
     const habits =
-        Array.isArray(
-            day.habits
-        )
-            ? day.habits
-            : [];
+        getDayHabits(
+            day
+        );
 
 
-    if (!habits.length)
+    if (!habits.length) {
+
         return false;
+
+    }
 
 
     return habits.every(
-        (_, habitIndex) =>
+        (
+            _,
+            habitIndex
+        ) =>
             isHabitComplete(
                 week.id,
                 dayIndex,
@@ -3492,9 +3777,9 @@ function isDayComplete(
 }
 
 
-/* =========================
+/* =====================================================
    WEEK COMPLETION
-========================= */
+===================================================== */
 
 function getWeekCompletion(
     week
@@ -3526,11 +3811,9 @@ function getWeekCompletion(
             ) => {
 
                 const habits =
-                    Array.isArray(
-                        day.habits
-                    )
-                        ? day.habits
-                        : [];
+                    getDayHabits(
+                        day
+                    );
 
 
                 habits.forEach(
@@ -3560,7 +3843,10 @@ function getWeekCompletion(
             }
         );
 
-    } else {
+    }
+
+
+    else {
 
         weeklyHabits.forEach(
             (
@@ -3589,8 +3875,11 @@ function getWeekCompletion(
     }
 
 
-    if (!total)
+    if (!total) {
+
         return 0;
+
+    }
 
 
     return Math.round(
@@ -3603,9 +3892,9 @@ function getWeekCompletion(
 }
 
 
-/* =========================
-   COUNT COMPLETED DAYS
-========================= */
+/* =====================================================
+   COMPLETED DAYS
+===================================================== */
 
 function getCompletedDays() {
 
@@ -3654,9 +3943,9 @@ function getCompletedDays() {
 }
 
 
-/* =========================
-   OVERALL 90-DAY PROGRESS
-========================= */
+/* =====================================================
+   OVERALL PROGRESS
+===================================================== */
 
 function updateOverallProgress() {
 
@@ -3691,7 +3980,9 @@ function updateOverallProgress() {
         );
 
 
-    if (completedDays >= 90) {
+    if (
+        completedDays >= 90
+    ) {
 
         note.textContent =
             "You completed your 90-day journey. Your Lifetime Freedom Habits are now your foundation.";
@@ -3702,6 +3993,7 @@ function updateOverallProgress() {
             90 -
             completedDays;
 
+
         note.textContent =
             `${remaining} day${remaining === 1 ? "" : "s"} remaining. Keep building consistency.`;
 
@@ -3710,14 +4002,17 @@ function updateOverallProgress() {
 }
 
 
-/* =========================
+/* =====================================================
    REFLECTION QUESTIONS
-========================= */
+===================================================== */
 
 function getReflectionQuestions() {
 
-    if (!selectedWeek)
+    if (!selectedWeek) {
+
         return [];
+
+    }
 
 
     if (
@@ -3755,9 +4050,9 @@ function getReflectionQuestions() {
 }
 
 
-/* =========================
+/* =====================================================
    RENDER REFLECTION
-========================= */
+===================================================== */
 
 function renderReflection() {
 
@@ -3829,9 +4124,9 @@ function renderReflection() {
 }
 
 
-/* =========================
-   GET SAVED REFLECTION
-========================= */
+/* =====================================================
+   SAVED REFLECTION
+===================================================== */
 
 function getSavedReflection(
     index
@@ -3858,8 +4153,11 @@ function getSavedReflection(
             .reflection;
 
 
-    if (!reflection)
+    if (!reflection) {
+
         return "";
+
+    }
 
 
     return reflection[
@@ -3869,14 +4167,17 @@ function getSavedReflection(
 }
 
 
-/* =========================
+/* =====================================================
    SAVE REFLECTION
-========================= */
+===================================================== */
 
 async function saveReflection() {
 
-    if (!selectedWeek)
+    if (!selectedWeek) {
+
         return;
+
+    }
 
 
     const questions =
@@ -3909,8 +4210,11 @@ async function saveReflection() {
     );
 
 
-    if (!memberProgress.weeks)
+    if (!memberProgress.weeks) {
+
         memberProgress.weeks = {};
+
+    }
 
 
     if (
@@ -3960,9 +4264,9 @@ async function saveReflection() {
 }
 
 
-/* =========================
-   RENDER LIFETIME HABITS
-========================= */
+/* =====================================================
+   LIFETIME HABITS
+===================================================== */
 
 function renderLifetimeHabits() {
 
@@ -4026,19 +4330,25 @@ function renderLifetimeHabits() {
                 <div class="lifetime-card">
 
                     <h3>
+
                         ${escapeHTML(
                             title
                         )}
+
                     </h3>
 
                     ${
                         description
                             ? `
+
                                 <p>
+
                                     ${escapeHTML(
                                         description
                                     )}
+
                                 </p>
+
                               `
                             : ""
                     }
@@ -4077,18 +4387,23 @@ function renderLifetimeHabits() {
                         <div class="lifetime-habit">
 
                             <strong>
+
                                 ${escapeHTML(
                                     habitName
                                 )}
+
                             </strong>
 
                             ${
                                 target
                                     ? `
+
                                         <br>
+
                                         ${escapeHTML(
                                             target
                                         )}
+
                                       `
                                     : ""
                             }
@@ -4121,9 +4436,9 @@ function renderLifetimeHabits() {
 }
 
 
-/* =========================
-   BACK TO WEEKS
-========================= */
+/* =====================================================
+   BACK BUTTON
+===================================================== */
 
 document.getElementById(
     "backToWeeks"
@@ -4155,9 +4470,9 @@ document.getElementById(
 );
 
 
-/* =========================
+/* =====================================================
    NAVIGATION
-========================= */
+===================================================== */
 
 const navButtons =
     document.querySelectorAll(
@@ -4261,9 +4576,9 @@ navButtons.forEach(
 );
 
 
-/* =========================
+/* =====================================================
    AUTH
-========================= */
+===================================================== */
 
 onAuthStateChanged(
     auth,
@@ -4289,6 +4604,12 @@ onAuthStateChanged(
             user.email;
 
 
+        console.log(
+            "Logged in user:",
+            user.email
+        );
+
+
         await loadProfile(
             user
         );
@@ -4309,9 +4630,9 @@ onAuthStateChanged(
 );
 
 
-/* =========================
+/* =====================================================
    PROFILE SAVE
-========================= */
+===================================================== */
 
 document.getElementById(
     "saveProfile"
@@ -4321,9 +4642,9 @@ document.getElementById(
 );
 
 
-/* =========================
+/* =====================================================
    LIVE CALCULATIONS
-========================= */
+===================================================== */
 
 profileFields.forEach(
     field => {
@@ -4347,9 +4668,9 @@ profileFields.forEach(
 );
 
 
-/* =========================
+/* =====================================================
    REFLECTION SAVE
-========================= */
+===================================================== */
 
 document.getElementById(
     "saveReflection"
@@ -4359,9 +4680,9 @@ document.getElementById(
 );
 
 
-/* =========================
+/* =====================================================
    LOGOUT
-========================= */
+===================================================== */
 
 document.getElementById(
     "logoutBtn"
@@ -4369,20 +4690,31 @@ document.getElementById(
     "click",
     async () => {
 
-        await signOut(
-            auth
-        );
+        try {
 
-        window.location.href =
-            "login.html";
+            await signOut(
+                auth
+            );
+
+            window.location.href =
+                "login.html";
+
+        } catch (error) {
+
+            console.error(
+                "LOGOUT ERROR:",
+                error
+            );
+
+        }
 
     }
 );
 
 
-/* =========================
+/* =====================================================
    MOBILE MENU
-========================= */
+===================================================== */
 
 document.getElementById(
     "mobileMenuBtn"
@@ -4404,4 +4736,3 @@ document.getElementById(
 </body>
 
 </html>
-```
