@@ -11,10 +11,6 @@
 
 <style>
 
-/* ==================================================
-   BASIC
-================================================== */
-
 * {
     margin: 0;
     padding: 0;
@@ -25,33 +21,33 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background: #FBF8F3;
     color: #2D2D2D;
-    min-height: 100vh;
+    line-height: 1.6;
 }
 
-
-/* ==================================================
+/* =========================
    LAYOUT
-================================================== */
+========================= */
 
 .app {
-    display: flex;
     min-height: 100vh;
+    display: flex;
 }
 
-
-/* ==================================================
+/* =========================
    SIDEBAR
-================================================== */
+========================= */
 
 .sidebar {
     width: 250px;
     background: #FFFFFF;
     border-right: 1px solid #E5DED7;
-    padding: 28px 18px;
     position: fixed;
     left: 0;
     top: 0;
     bottom: 0;
+    padding: 28px 18px;
+    display: flex;
+    flex-direction: column;
     z-index: 100;
 }
 
@@ -59,45 +55,25 @@ body {
     color: #6E4A7E;
     font-size: 18px;
     font-weight: 600;
-    line-height: 1.4;
     padding: 0 12px;
     margin-bottom: 35px;
+    line-height: 1.4;
 }
 
-.member-small {
-    padding: 12px;
-    background: #F1EAF4;
-    border-radius: 10px;
-    margin-bottom: 25px;
-}
-
-.member-small-label {
+.sidebar-label {
+    color: #9A918B;
     font-size: 10px;
+    letter-spacing: 1.3px;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #6E4A7E;
-    margin-bottom: 5px;
-}
-
-.member-small-name {
-    font-size: 14px;
     font-weight: 600;
+    padding: 0 12px;
+    margin-bottom: 10px;
 }
 
-.member-small-email {
-    font-size: 11px;
-    color: #706A66;
-    margin-top: 3px;
-    word-break: break-word;
-}
-
-
-/* NAV */
-
-.sidebar-nav {
+.nav {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
 }
 
 .nav-btn {
@@ -105,18 +81,20 @@ body {
     border: none;
     background: transparent;
     color: #514B48;
-    padding: 13px 12px;
-    border-radius: 9px;
-    cursor: pointer;
     text-align: left;
+    padding: 12px 12px;
+    border-radius: 8px;
+    cursor: pointer;
     font-size: 14px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 11px;
+    transition: 0.2s;
 }
 
 .nav-btn:hover {
     background: #FBF8F3;
+    color: #6E4A7E;
 }
 
 .nav-btn.active {
@@ -131,28 +109,30 @@ body {
     font-size: 17px;
 }
 
+.sidebar-bottom {
+    margin-top: auto;
+}
+
 .logout-btn {
-    position: absolute;
-    bottom: 25px;
-    left: 18px;
-    width: calc(100% - 36px);
-    border: 1px solid #E5DED7;
-    background: #FFFFFF;
-    color: #6E4A7E;
-    padding: 11px;
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: #706A66;
+    text-align: left;
+    padding: 12px;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .logout-btn:hover {
     background: #FBF8F3;
+    color: #6E4A7E;
 }
 
-
-/* ==================================================
+/* =========================
    MAIN
-================================================== */
+========================= */
 
 .main {
     margin-left: 250px;
@@ -160,38 +140,31 @@ body {
     min-height: 100vh;
 }
 
-
-/* ==================================================
+/* =========================
    TOP BAR
-================================================== */
+========================= */
 
 .topbar {
-    height: 70px;
+    height: 72px;
     background: #FFFFFF;
     border-bottom: 1px solid #E5DED7;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 40px;
+    justify-content: flex-end;
+    padding: 0 35px;
     position: sticky;
     top: 0;
     z-index: 50;
 }
 
-.page-title {
-    font-size: 18px;
-    font-weight: 500;
-}
-
-.top-email {
-    font-size: 12px;
+.member-email {
+    font-size: 13px;
     color: #706A66;
 }
 
-
-/* ==================================================
+/* =========================
    CONTENT
-================================================== */
+========================= */
 
 .content {
     width: min(1050px, 92%);
@@ -199,18 +172,21 @@ body {
     padding: 45px 0 70px;
 }
 
-.section {
+.page-section {
     display: none;
 }
 
-.section.active {
+.page-section.active {
     display: block;
 }
 
+/* =========================
+   PAGE HEADER
+========================= */
 
-/* ==================================================
-   HEADINGS
-================================================== */
+.page-header {
+    margin-bottom: 30px;
+}
 
 .small-title {
     color: #6E4A7E;
@@ -222,85 +198,78 @@ body {
 }
 
 h1 {
-    font-size: 38px;
+    font-size: 34px;
     font-weight: 500;
-    line-height: 1.2;
+    line-height: 1.25;
     margin-bottom: 10px;
 }
 
-h2 {
-    font-size: 27px;
-    font-weight: 500;
-    margin-bottom: 8px;
-}
-
-h3 {
-    font-size: 20px;
-    font-weight: 500;
-}
-
-.description {
+.page-header p {
     color: #625D59;
     font-size: 14px;
-    line-height: 1.7;
-    max-width: 760px;
+    max-width: 720px;
 }
 
-
-/* ==================================================
+/* =========================
    CARDS
-================================================== */
+========================= */
 
 .card {
     background: #FFFFFF;
     border: 1px solid #E5DED7;
     border-radius: 14px;
     padding: 28px;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
-.purple-card {
+.card h2 {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.card-description {
+    color: #625D59;
+    font-size: 14px;
+}
+
+/* =========================
+   WELCOME
+========================= */
+
+.welcome-card {
     background: #F1EAF4;
     border-color: #DED1E4;
 }
 
-
-/* ==================================================
-   WELCOME
-================================================== */
-
-.welcome-message {
-    padding: 35px;
-    margin-top: 25px;
+.welcome-card h2 {
+    font-size: 27px;
+    font-weight: 500;
+    margin-bottom: 10px;
 }
 
-.welcome-message h2 {
-    font-size: 29px;
-}
-
-.welcome-message p {
+.welcome-card p {
     color: #625D59;
-    max-width: 720px;
     font-size: 14px;
-    line-height: 1.7;
+    max-width: 760px;
 }
 
 .primary-btn {
     display: inline-block;
     margin-top: 18px;
+    padding: 11px 20px;
     background: #6E4A7E;
     color: #FFFFFF;
-    border: none;
+    text-decoration: none;
     border-radius: 7px;
-    padding: 12px 20px;
-    cursor: pointer;
     font-size: 14px;
+    border: none;
+    cursor: pointer;
 }
 
-
-/* ==================================================
+/* =========================
    PROFILE
-================================================== */
+========================= */
 
 .profile-header {
     margin-bottom: 25px;
@@ -309,7 +278,7 @@ h3 {
 .profile-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 17px;
+    gap: 16px;
 }
 
 .field {
@@ -320,14 +289,14 @@ h3 {
 .field label {
     color: #625D59;
     font-size: 13px;
-    margin-bottom: 7px;
+    margin-bottom: 6px;
 }
 
 .field input {
     width: 100%;
     border: 1px solid #D9D1CA;
     border-radius: 7px;
-    padding: 12px;
+    padding: 11px 12px;
     font-size: 14px;
     outline: none;
     background: #FFFFFF;
@@ -337,26 +306,14 @@ h3 {
     border-color: #6E4A7E;
 }
 
-.email-field {
-    background: #F7F3EF !important;
-    color: #706A66;
-}
-
-.note {
-    color: #817972;
+.optional-note {
+    margin-top: 15px;
     font-size: 12px;
-    margin-top: 18px;
-    line-height: 1.5;
-}
-
-.save-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 22px;
+    color: #817972;
 }
 
 .save-btn {
+    margin-top: 20px;
     background: #6E4A7E;
     color: #FFFFFF;
     border: none;
@@ -367,14 +324,45 @@ h3 {
 }
 
 .save-message {
+    margin-left: 12px;
     font-size: 13px;
     color: #6E4A7E;
 }
 
+/* =========================
+   PROGRESS
+========================= */
 
-/* ==================================================
-   NUMBERS
-================================================== */
+.progress-heading {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.progress-number {
+    color: #6E4A7E;
+    font-weight: 600;
+}
+
+.progress-bar {
+    height: 9px;
+    width: 100%;
+    background: #EAE4DE;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: #6E4A7E;
+    transition: width 0.4s ease;
+}
+
+/* =========================
+   STATS
+========================= */
 
 .stats-grid {
     display: grid;
@@ -391,7 +379,7 @@ h3 {
 .stat-label {
     font-size: 12px;
     color: #706A66;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 }
 
 .stat-value {
@@ -406,59 +394,33 @@ h3 {
     margin-top: 5px;
 }
 
-
-/* ==================================================
-   PROGRESS
-================================================== */
-
-.progress-heading {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-
-.progress-number {
-    color: #6E4A7E;
-    font-weight: 600;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 9px;
-    background: #EAE4DE;
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.progress-fill {
-    width: 0%;
-    height: 100%;
-    background: #6E4A7E;
-    transition: width 0.4s ease;
-}
-
-
-/* ==================================================
+/* =========================
    JOURNEY
-================================================== */
+========================= */
 
 .phase {
-    margin-top: 30px;
+    margin-bottom: 32px;
 }
 
 .phase-label {
     color: #6E4A7E;
     font-size: 11px;
-    letter-spacing: 1.3px;
-    text-transform: uppercase;
+    letter-spacing: 1.4px;
     font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.phase h3 {
+    font-size: 21px;
+    font-weight: 500;
+    margin-bottom: 4px;
 }
 
 .phase-description {
     color: #625D59;
     font-size: 13px;
-    margin: 5px 0 15px;
+    margin-bottom: 14px;
 }
 
 .week {
@@ -473,9 +435,9 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 17px 20px;
-    color: #2D2D2D;
+    padding: 17px 19px;
     text-decoration: none;
+    color: #2D2D2D;
 }
 
 .week-link:hover {
@@ -491,9 +453,9 @@ h3 {
 .week-number {
     width: 42px;
     height: 42px;
+    border-radius: 50%;
     background: #F1EAF4;
     color: #6E4A7E;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -516,23 +478,36 @@ h3 {
     font-size: 19px;
 }
 
+.coming-soon {
+    color: #817972;
+    font-size: 12px;
+}
 
-/* ==================================================
+/* =========================
    EDUCATION
-================================================== */
+========================= */
 
 .education-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin-top: 25px;
+    gap: 14px;
 }
 
 .education-card {
-    background: #FFFFFF;
     border: 1px solid #E5DED7;
     border-radius: 11px;
-    padding: 21px;
+    padding: 20px;
+    background: #FFFFFF;
+}
+
+.education-card h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.education-card p {
+    font-size: 13px;
+    color: #625D59;
 }
 
 .education-label {
@@ -543,77 +518,49 @@ h3 {
     margin-bottom: 8px;
 }
 
-.education-card h3 {
-    font-size: 16px;
-    margin-bottom: 7px;
-}
-
-.education-card p {
-    color: #625D59;
-    font-size: 13px;
-    line-height: 1.6;
-}
-
-
-/* ==================================================
+/* =========================
    COMMUNITY
-================================================== */
+========================= */
 
 .community-box {
-    margin-top: 25px;
-    padding: 30px;
-    background: #F1EAF4;
-    border-radius: 12px;
+    background: #FBF8F3;
+    border-radius: 10px;
+    padding: 24px;
+}
+
+.community-box h3 {
+    font-size: 19px;
+    margin-bottom: 6px;
 }
 
 .community-box p {
     color: #625D59;
-    font-size: 14px;
-    line-height: 1.7;
-    max-width: 700px;
+    font-size: 13px;
 }
 
-
-/* ==================================================
-   FOOTER
-================================================== */
-
-footer {
-    background: #302A31;
-    color: #FFFFFF;
-    padding: 25px 40px;
-}
-
-footer p {
-    color: #D4CED5;
-    font-size: 12px;
-    margin-bottom: 3px;
-}
-
-
-/* ==================================================
+/* =========================
    MOBILE MENU
-================================================== */
+========================= */
 
-.mobile-menu {
+.mobile-menu-btn {
     display: none;
     border: none;
     background: transparent;
-    font-size: 24px;
-    color: #6E4A7E;
+    font-size: 22px;
     cursor: pointer;
+    color: #6E4A7E;
 }
 
-
-/* ==================================================
+/* =========================
    MOBILE
-================================================== */
+========================= */
 
 @media (max-width: 850px) {
 
     .sidebar {
         transform: translateX(-100%);
-        transition: 0.25s ease;
+        transition: 0.25s;
+        box-shadow: 5px 0 20px rgba(45,45,45,0.08);
     }
 
     .sidebar.open {
@@ -625,16 +572,17 @@ footer p {
         width: 100%;
     }
 
-    .mobile-menu {
-        display: block;
-    }
-
     .topbar {
+        justify-content: space-between;
         padding: 0 20px;
     }
 
-    .top-email {
-        display: none;
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .profile-grid {
+        grid-template-columns: 1fr;
     }
 
     .education-grid {
@@ -647,7 +595,6 @@ footer p {
 
 }
 
-
 @media (max-width: 600px) {
 
     .content {
@@ -655,28 +602,24 @@ footer p {
         padding-top: 30px;
     }
 
+    .topbar {
+        height: 65px;
+    }
+
+    .member-email {
+        font-size: 11px;
+    }
+
     h1 {
-        font-size: 31px;
+        font-size: 29px;
     }
 
     .card {
-        padding: 21px;
-    }
-
-    .profile-grid {
-        grid-template-columns: 1fr;
+        padding: 22px;
     }
 
     .stats-grid {
         grid-template-columns: 1fr;
-    }
-
-    .welcome-message {
-        padding: 25px;
-    }
-
-    footer {
-        padding: 25px 20px;
     }
 
 }
@@ -692,9 +635,9 @@ footer p {
 <div class="app">
 
 
-<!-- ==================================================
+<!-- =========================
      SIDEBAR
-================================================== -->
+========================= -->
 
 <aside class="sidebar" id="sidebar">
 
@@ -704,44 +647,17 @@ footer p {
     </div>
 
 
-    <div class="member-small">
-
-        <div class="member-small-label">
-            Member
-        </div>
-
-        <div
-            class="member-small-name"
-            id="sideMemberName">
-            Member
-        </div>
-
-        <div
-            class="member-small-email"
-            id="sideMemberEmail">
-            Loading...
-        </div>
-
+    <div class="sidebar-label">
+        Member Area
     </div>
 
 
-    <nav class="sidebar-nav">
+    <nav class="nav">
 
 
         <button
             class="nav-btn active"
-            data-section="welcome">
-
-            <span class="nav-icon">🌿</span>
-
-            <span>Welcome</span>
-
-        </button>
-
-
-        <button
-            class="nav-btn"
-            data-section="profile">
+            data-section="profileSection">
 
             <span class="nav-icon">👤</span>
 
@@ -752,7 +668,18 @@ footer p {
 
         <button
             class="nav-btn"
-            data-section="journey">
+            data-section="welcomeSection">
+
+            <span class="nav-icon">🌿</span>
+
+            <span>Welcome</span>
+
+        </button>
+
+
+        <button
+            class="nav-btn"
+            data-section="journeySection">
 
             <span class="nav-icon">📅</span>
 
@@ -763,7 +690,7 @@ footer p {
 
         <button
             class="nav-btn"
-            data-section="education">
+            data-section="educationSection">
 
             <span class="nav-icon">📚</span>
 
@@ -774,7 +701,7 @@ footer p {
 
         <button
             class="nav-btn"
-            data-section="community">
+            data-section="communitySection">
 
             <span class="nav-icon">💬</span>
 
@@ -786,21 +713,24 @@ footer p {
     </nav>
 
 
-    <button
-        class="logout-btn"
-        id="logoutBtn">
+    <div class="sidebar-bottom">
 
-        Log out
+        <button
+            class="logout-btn"
+            id="logoutBtn">
 
-    </button>
+            🚪 &nbsp; Log out
+
+        </button>
+
+    </div>
 
 </aside>
 
 
-
-<!-- ==================================================
+<!-- =========================
      MAIN
-================================================== -->
+========================= -->
 
 <div class="main">
 
@@ -810,1048 +740,1069 @@ footer p {
     <div class="topbar">
 
         <button
-            class="mobile-menu"
-            id="mobileMenu">
+            class="mobile-menu-btn"
+            id="mobileMenuBtn">
+
             ☰
+
         </button>
 
-        <div
-            class="page-title"
-            id="pageTitle">
-            Welcome
+
+        <span
+            class="member-email"
+            id="memberEmail">
+
+            Loading...
+
+        </span>
+
+    </div>
+
+
+    <div class="content">
+
+
+<!-- =========================
+     PROFILE SECTION
+========================= -->
+
+<section
+    class="page-section active"
+    id="profileSection">
+
+
+    <div class="page-header">
+
+        <div class="small-title">
+            My Profile
         </div>
 
-        <div
-            class="top-email"
-            id="topEmail">
-            Loading...
+        <h1>
+            Welcome, <span id="memberName">Member</span>
+        </h1>
+
+        <p>
+            Your personal information and progress are saved here.
+            You only need to enter your details once.
+        </p>
+
+    </div>
+
+
+    <!-- PROFILE CARD -->
+
+    <div class="card">
+
+        <div class="profile-header">
+
+            <div>
+
+                <div class="small-title">
+                    Your Details
+                </div>
+
+                <h2>
+                    Profile Information
+                </h2>
+
+                <p class="card-description">
+                    Update your information whenever you need to.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-grid">
+
+
+            <div class="field">
+
+                <label>Name</label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>Age</label>
+
+                <input
+                    type="number"
+                    id="age"
+                    placeholder="Enter your age">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>Height (cm)</label>
+
+                <input
+                    type="number"
+                    id="height"
+                    step="0.1"
+                    placeholder="Enter your height">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>Starting Weight (kg)</label>
+
+                <input
+                    type="number"
+                    id="startingWeight"
+                    step="0.1"
+                    placeholder="Enter starting weight">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>Current Weight (kg)</label>
+
+                <input
+                    type="number"
+                    id="currentWeight"
+                    step="0.1"
+                    placeholder="Add later">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>Starting Waist (cm)</label>
+
+                <input
+                    type="number"
+                    id="startingWaist"
+                    step="0.1"
+                    placeholder="Optional">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>Current Waist (cm)</label>
+
+                <input
+                    type="number"
+                    id="currentWaist"
+                    step="0.1"
+                    placeholder="Add later">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>Starting Hip (cm)</label>
+
+                <input
+                    type="number"
+                    id="startingHip"
+                    step="0.1"
+                    placeholder="Optional">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>Current Hip (cm)</label>
+
+                <input
+                    type="number"
+                    id="currentHip"
+                    step="0.1"
+                    placeholder="Add later">
+
+            </div>
+
+
+        </div>
+
+
+        <div class="optional-note">
+
+            Starting information can be entered when you begin.
+            Current measurements can be added later as you progress.
+
+        </div>
+
+
+        <button
+            class="save-btn"
+            id="saveProfile">
+
+            Save My Profile
+
+        </button>
+
+
+        <span
+            class="save-message"
+            id="saveMessage">
+        </span>
+
+
+    </div>
+
+
+    <!-- PROGRESS -->
+
+    <div class="card">
+
+        <div class="progress-heading">
+
+            <span>
+                Your 90-Day Progress
+            </span>
+
+            <span class="progress-number">
+
+                <span id="progressDays">
+                    0
+                </span>
+
+                / 90 Days
+
+            </span>
+
+        </div>
+
+
+        <div class="progress-bar">
+
+            <div
+                class="progress-fill"
+                id="progressFill">
+            </div>
+
         </div>
 
     </div>
 
 
+    <!-- NUMBERS -->
 
-    <!-- CONTENT -->
+    <div class="card">
 
-    <div class="content">
+        <div class="small-title">
+            Your Progress
+        </div>
 
+        <h2>
+            Your Numbers
+        </h2>
 
-        <!-- ==================================================
-             WELCOME
-        ================================================== -->
-
-        <section
-            class="section active"
-            id="section-welcome">
-
-            <div class="small-title">
-                Freedom Women's Health Club
-            </div>
-
-            <h1>
-                Welcome, <span id="welcomeName">Member</span>
-            </h1>
-
-            <p class="description">
-                This is your personal Freedom space. Follow your
-                90-day journey, learn new habits, track your progress
-                and connect with other women in the community.
-            </p>
+        <p class="card-description">
+            These calculations update automatically when you add
+            your measurements.
+        </p>
 
 
-            <div class="card purple-card welcome-message">
+        <br>
 
-                <div class="small-title">
-                    Start Here
+
+        <div class="stats-grid">
+
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    Weight Lost
                 </div>
 
-                <h2>
-                    Your Freedom Journey
-                </h2>
+                <div
+                    class="stat-value"
+                    id="weightLost">
+
+                    —
+
+                </div>
+
+                <div class="stat-help">
+                    Starting weight minus current weight.
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    Waist Change
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="waistChange">
+
+                    —
+
+                </div>
+
+                <div class="stat-help">
+                    Starting waist minus current waist.
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    BMI
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="bmi">
+
+                    —
+
+                </div>
+
+                <div class="stat-help">
+                    Uses current weight when available.
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    IBW Range
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="ibw">
+
+                    —
+
+                </div>
+
+                <div class="stat-help">
+                    Reference range based on height.
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    Starting WHR
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="startingWhr">
+
+                    —
+
+                </div>
+
+                <div class="stat-help">
+                    Starting waist ÷ starting hip.
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    Current WHR
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="currentWhr">
+
+                    —
+
+                </div>
+
+                <div class="stat-help">
+                    Current waist ÷ current hip.
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- =========================
+     WELCOME SECTION
+========================= -->
+
+<section
+    class="page-section"
+    id="welcomeSection">
+
+
+    <div class="page-header">
+
+        <div class="small-title">
+            Start Here
+        </div>
+
+        <h1>
+            Welcome to Freedom
+        </h1>
+
+        <p>
+            Everything you need for your 90-day journey is organized
+            here in simple steps.
+        </p>
+
+    </div>
+
+
+    <div class="card welcome-card">
+
+        <div class="small-title">
+            Welcome
+        </div>
+
+        <h2>
+            Welcome, <span id="welcomeName">Member</span>
+        </h2>
+
+        <p>
+            You are now inside your Freedom Women's Health Club
+            member area. Take things one step at a time. Follow
+            your weekly journey, learn from the education section,
+            track your progress and use the community whenever
+            you need support.
+        </p>
+
+
+        <button
+            class="primary-btn"
+            onclick="openSection('journeySection')">
+
+            Start My 90-Day Journey →
+
+        </button>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="small-title">
+            How It Works
+        </div>
+
+        <h2>
+            Your Freedom Journey
+        </h2>
+
+        <p class="card-description">
+            You don't need to change everything at once. Each week
+            gives you simple actions to work on consistently.
+        </p>
+
+
+        <br>
+
+
+        <div class="education-grid">
+
+
+            <div class="education-card">
+
+                <div class="education-label">
+                    Step 01
+                </div>
+
+                <h3>
+                    Follow Your Week
+                </h3>
 
                 <p>
-                    Everything you need is organized inside your
-                    dashboard. Start with your profile, then follow
-                    your 90-day journey week by week.
-                </p>
-
-                <button
-                    class="primary-btn"
-                    onclick="openSection('profile')">
-
-                    Complete My Profile →
-
-                </button>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="small-title">
-                    Your Dashboard
-                </div>
-
-                <h2>
-                    What you will find here
-                </h2>
-
-                <p class="description">
-                    Your profile, 90-day program, weekly education
-                    and community are all available from the menu
-                    on the left.
-                </p>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ==================================================
-             PROFILE
-        ================================================== -->
-
-        <section
-            class="section"
-            id="section-profile">
-
-            <div class="profile-header">
-
-                <div class="small-title">
-                    Your Profile
-                </div>
-
-                <h1>
-                    My Profile
-                </h1>
-
-                <p class="description">
-                    Enter your information here once. Your saved
-                    information belongs to your account and will
-                    appear automatically wherever your name is needed.
+                    Open your current week's plan and complete
+                    the habits and activities.
                 </p>
 
             </div>
 
 
-            <div class="card">
+            <div class="education-card">
 
-                <div class="profile-grid">
-
-
-                    <div class="field">
-
-                        <label>
-                            Name
-                        </label>
-
-                        <input
-                            type="text"
-                            id="name"
-                            placeholder="Enter your name">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Age
-                        </label>
-
-                        <input
-                            type="number"
-                            id="age"
-                            placeholder="Enter your age">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Height (cm)
-                        </label>
-
-                        <input
-                            type="number"
-                            id="height"
-                            step="0.1"
-                            placeholder="Enter your height">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Starting Weight (kg)
-                        </label>
-
-                        <input
-                            type="number"
-                            id="startingWeight"
-                            step="0.1"
-                            placeholder="Enter starting weight">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Current Weight (kg)
-                        </label>
-
-                        <input
-                            type="number"
-                            id="currentWeight"
-                            step="0.1"
-                            placeholder="Add later">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Starting Waist (cm)
-                        </label>
-
-                        <input
-                            type="number"
-                            id="startingWaist"
-                            step="0.1"
-                            placeholder="Optional">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Current Waist (cm)
-                        </label>
-
-                        <input
-                            type="number"
-                            id="currentWaist"
-                            step="0.1"
-                            placeholder="Add later">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Starting Hip (cm)
-                        </label>
-
-                        <input
-                            type="number"
-                            id="startingHip"
-                            step="0.1"
-                            placeholder="Optional">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Current Hip (cm)
-                        </label>
-
-                        <input
-                            type="number"
-                            id="currentHip"
-                            step="0.1"
-                            placeholder="Add later">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Registered Email
-                        </label>
-
-                        <input
-                            type="email"
-                            id="profileEmail"
-                            class="email-field"
-                            readonly>
-
-                    </div>
-
-
+                <div class="education-label">
+                    Step 02
                 </div>
 
-
-                <div class="note">
-                    Your registered email is connected to your account
-                    and cannot be changed here. You can update your
-                    other profile information whenever needed.
-                </div>
-
-
-                <div class="save-row">
-
-                    <button
-                        class="save-btn"
-                        id="saveProfile">
-
-                        Save My Profile
-
-                    </button>
-
-                    <span
-                        class="save-message"
-                        id="saveMessage">
-                    </span>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- PROGRESS -->
-
-            <div class="card">
-
-                <div class="progress-heading">
-
-                    <span>
-                        90-Day Progress
-                    </span>
-
-                    <span class="progress-number">
-
-                        <span id="progressDays">
-                            0
-                        </span>
-
-                        / 90 Days
-
-                    </span>
-
-                </div>
-
-
-                <div class="progress-bar">
-
-                    <div
-                        class="progress-fill"
-                        id="progressFill">
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- NUMBERS -->
-
-            <div class="card">
-
-                <div class="small-title">
-                    Your Progress
-                </div>
-
-                <h2>
-                    Your Numbers
-                </h2>
-
-                <p class="description">
-                    These calculations update automatically from
-                    the information in your profile.
-                </p>
-
-
-                <div class="stats-grid">
-
-
-                    <div class="stat">
-
-                        <div class="stat-label">
-                            Weight Lost
-                        </div>
-
-                        <div
-                            class="stat-value"
-                            id="weightLost">
-                            —
-                        </div>
-
-                        <div class="stat-help">
-                            Starting weight minus current weight.
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat">
-
-                        <div class="stat-label">
-                            Waist Change
-                        </div>
-
-                        <div
-                            class="stat-value"
-                            id="waistChange">
-                            —
-                        </div>
-
-                        <div class="stat-help">
-                            Starting waist minus current waist.
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat">
-
-                        <div class="stat-label">
-                            BMI
-                        </div>
-
-                        <div
-                            class="stat-value"
-                            id="bmi">
-                            —
-                        </div>
-
-                        <div class="stat-help">
-                            Uses current weight when available.
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat">
-
-                        <div class="stat-label">
-                            IBW Range
-                        </div>
-
-                        <div
-                            class="stat-value"
-                            id="ibw">
-                            —
-                        </div>
-
-                        <div class="stat-help">
-                            Reference range based on height.
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat">
-
-                        <div class="stat-label">
-                            Starting WHR
-                        </div>
-
-                        <div
-                            class="stat-value"
-                            id="startingWhr">
-                            —
-                        </div>
-
-                        <div class="stat-help">
-                            Starting waist ÷ starting hip.
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat">
-
-                        <div class="stat-label">
-                            Current WHR
-                        </div>
-
-                        <div
-                            class="stat-value"
-                            id="currentWhr">
-                            —
-                        </div>
-
-                        <div class="stat-help">
-                            Current waist ÷ current hip.
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ==================================================
-             90 DAY JOURNEY
-        ================================================== -->
-
-        <section
-            class="section"
-            id="section-journey">
-
-            <div class="small-title">
-                Your Program
-            </div>
-
-            <h1>
-                90-Day Journey
-            </h1>
-
-            <p class="description">
-                Follow your program one week at a time. Complete
-                each stage at your own pace and build habits that
-                can continue beyond the 90 days.
-            </p>
-
-
-
-            <!-- PHASE 1 -->
-
-            <div class="phase">
-
-                <div class="phase-label">
-                    Phase 1 · Days 1–30
-                </div>
-
-                <h2>
-                    Reset & Foundation
-                </h2>
-
-                <p class="phase-description">
-                    Build the simple habits that create the foundation
-                    for sustainable progress.
-                </p>
-
-
-                <div class="week">
-
-                    <a
-                        href="week1.html"
-                        class="week-link">
-
-                        <div class="week-left">
-
-                            <div class="week-number">
-                                01
-                            </div>
-
-                            <div class="week-title">
-
-                                <h4>
-                                    Week 1
-                                </h4>
-
-                                <p>
-                                    Days 1–7 · Start Here
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                        <div class="arrow">
-                            →
-                        </div>
-
-                    </a>
-
-                </div>
-
-
-                <div class="week">
-
-                    <a
-                        href="week2.html"
-                        class="week-link">
-
-                        <div class="week-left">
-
-                            <div class="week-number">
-                                02
-                            </div>
-
-                            <div class="week-title">
-
-                                <h4>
-                                    Week 2
-                                </h4>
-
-                                <p>
-                                    Days 8–14
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                        <div class="arrow">
-                            →
-                        </div>
-
-                    </a>
-
-                </div>
-
-
-                <div class="week">
-
-                    <div class="week-link">
-
-                        <div class="week-left">
-
-                            <div class="week-number">
-                                03
-                            </div>
-
-                            <div class="week-title">
-
-                                <h4>
-                                    Week 3
-                                </h4>
-
-                                <p>
-                                    Days 15–21
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                        <span class="note">
-                            Coming Soon
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="week">
-
-                    <div class="week-link">
-
-                        <div class="week-left">
-
-                            <div class="week-number">
-                                04
-                            </div>
-
-                            <div class="week-title">
-
-                                <h4>
-                                    Week 4
-                                </h4>
-
-                                <p>
-                                    Days 22–30
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                        <span class="note">
-                            Coming Soon
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- PHASE 2 -->
-
-            <div class="phase">
-
-                <div class="phase-label">
-                    Phase 2 · Days 31–60
-                </div>
-
-                <h2>
-                    Build & Progress
-                </h2>
-
-                <p class="phase-description">
-                    Build on your foundation and strengthen your
-                    daily habits.
-                </p>
-
-
-                <div class="week">
-                    <div class="week-link">
-
-                        <div class="week-left">
-
-                            <div class="week-number">05</div>
-
-                            <div class="week-title">
-                                <h4>Week 5</h4>
-                                <p>Days 31–37</p>
-                            </div>
-
-                        </div>
-
-                        <span class="note">Coming Soon</span>
-
-                    </div>
-                </div>
-
-
-                <div class="week">
-                    <div class="week-link">
-
-                        <div class="week-left">
-
-                            <div class="week-number">06</div>
-
-                            <div class="week-title">
-                                <h4>Week 6</h4>
-                                <p>Days 38–44</p>
-                            </div>
-
-                        </div>
-
-                        <span class="note">Coming Soon</span>
-
-                    </div>
-                </div>
-
-
-                <div class="week">
-                    <div class="week-link">
-
-                        <div class="week-left">
-
-                            <div class="week-number">07</div>
-
-                            <div class="week-title">
-                                <h4>Week 7</h4>
-                                <p>Days 45–51</p>
-                            </div>
-
-                        </div>
-
-                        <span class="note">Coming Soon</span>
-
-                    </div>
-                </div>
-
-
-                <div class="week">
-                    <div class="week-link">
-
-                        <div class="week-left">
-
-                            <div class="week-number">08</div>
-
-                            <div class="week-title">
-                                <h4>Week 8</h4>
-                                <p>Days 52–60</p>
-                            </div>
-
-                        </div>
-
-                        <span class="note">Coming Soon</span>
-
-                    </div>
-                </div>
-
-            </div>
-
-
-
-            <!-- PHASE 3 -->
-
-            <div class="phase">
-
-                <div class="phase-label">
-                    Phase 3 · Days 61–90
-                </div>
-
-                <h2>
-                    Maintain & Thrive
-                </h2>
-
-                <p class="phase-description">
-                    Strengthen your confidence and learn how to
-                    maintain your progress long term.
-                </p>
-
-
-                <div class="week">
-                    <div class="week-link">
-
-                        <div class="week-left">
-
-                            <div class="week-number">09</div>
-
-                            <div class="week-title">
-                                <h4>Week 9</h4>
-                                <p>Days 61–67</p>
-                            </div>
-
-                        </div>
-
-                        <span class="note">Coming Soon</span>
-
-                    </div>
-                </div>
-
-
-                <div class="week">
-                    <div class="week-link">
-
-                        <div class="week-left">
-
-                            <div class="week-number">10</div>
-
-                            <div class="week-title">
-                                <h4>Week 10</h4>
-                                <p>Days 68–74</p>
-                            </div>
-
-                        </div>
-
-                        <span class="note">Coming Soon</span>
-
-                    </div>
-                </div>
-
-
-                <div class="week">
-                    <div class="week-link">
-
-                        <div class="week-left">
-
-                            <div class="week-number">11</div>
-
-                            <div class="week-title">
-                                <h4>Week 11</h4>
-                                <p>Days 75–81</p>
-                            </div>
-
-                        </div>
-
-                        <span class="note">Coming Soon</span>
-
-                    </div>
-                </div>
-
-
-                <div class="week">
-                    <div class="week-link">
-
-                        <div class="week-left">
-
-                            <div class="week-number">12</div>
-
-                            <div class="week-title">
-                                <h4>Week 12</h4>
-                                <p>Days 82–90</p>
-                            </div>
-
-                        </div>
-
-                        <span class="note">Coming Soon</span>
-
-                    </div>
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ==================================================
-             EDUCATION
-        ================================================== -->
-
-        <section
-            class="section"
-            id="section-education">
-
-            <div class="small-title">
-                Learn
-            </div>
-
-            <h1>
-                Weekly Education
-            </h1>
-
-            <p class="description">
-                Simple lessons to help you understand food, habits
-                and sustainable weight loss.
-            </p>
-
-
-            <div class="education-grid">
-
-
-                <div class="education-card">
-
-                    <div class="education-label">
-                        Nutrition
-                    </div>
-
-                    <h3>
-                        Building a Balanced Plate
-                    </h3>
-
-                    <p>
-                        Learn how to build balanced meals without
-                        giving up the foods you enjoy.
-                    </p>
-
-                </div>
-
-
-                <div class="education-card">
-
-                    <div class="education-label">
-                        Protein
-                    </div>
-
-                    <h3>
-                        Why Protein Matters
-                    </h3>
-
-                    <p>
-                        Understand how protein can support fullness
-                        and your weight-loss journey.
-                    </p>
-
-                </div>
-
-
-                <div class="education-card">
-
-                    <div class="education-label">
-                        Habits
-                    </div>
-
-                    <h3>
-                        Consistency Over Perfection
-                    </h3>
-
-                    <p>
-                        Learn how small habits can create lasting
-                        progress.
-                    </p>
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ==================================================
-             COMMUNITY
-        ================================================== -->
-
-        <section
-            class="section"
-            id="section-community">
-
-            <div class="small-title">
-                Connect
-            </div>
-
-            <h1>
-                Freedom Community
-            </h1>
-
-            <p class="description">
-                A space where Freedom members can connect, ask
-                questions, share wins and support one another.
-            </p>
-
-
-            <div class="community-box">
-
-                <h2>
-                    You're not doing this alone.
-                </h2>
+                <h3>
+                    Learn
+                </h3>
 
                 <p>
-                    Join the community to ask questions, share your
-                    progress, celebrate your wins and learn from
-                    other women on the same journey.
+                    Use the weekly education section to understand
+                    food, habits and weight loss.
                 </p>
+
+            </div>
+
+
+            <div class="education-card">
+
+                <div class="education-label">
+                    Step 03
+                </div>
+
+                <h3>
+                    Connect
+                </h3>
+
+                <p>
+                    Ask questions, share wins and connect with
+                    other Freedom members.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- =========================
+     JOURNEY SECTION
+========================= -->
+
+<section
+    class="page-section"
+    id="journeySection">
+
+
+    <div class="page-header">
+
+        <div class="small-title">
+            Your Program
+        </div>
+
+        <h1>
+            90-Day Journey
+        </h1>
+
+        <p>
+            Follow one week at a time. Complete your current week
+            before moving forward.
+        </p>
+
+    </div>
+
+
+    <!-- PHASE 1 -->
+
+    <div class="card">
+
+        <div class="phase">
+
+            <div class="phase-label">
+                Phase 1 · Days 1–30
+            </div>
+
+            <h3>
+                Reset & Foundation
+            </h3>
+
+            <p class="phase-description">
+                Build simple habits that create the foundation
+                for sustainable weight loss.
+            </p>
+
+
+            <div class="week">
 
                 <a
-                    href="community.html"
-                    class="primary-btn">
+                    href="week1.html"
+                    class="week-link">
 
-                    Open Community →
+                    <div class="week-left">
+
+                        <div class="week-number">
+                            01
+                        </div>
+
+                        <div class="week-title">
+
+                            <h4>
+                                Week 1
+                            </h4>
+
+                            <p>
+                                Days 1–7 · Start Here
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="arrow">
+                        →
+                    </div>
 
                 </a>
 
             </div>
 
-        </section>
 
+            <div class="week">
+
+                <a
+                    href="week2.html"
+                    class="week-link">
+
+                    <div class="week-left">
+
+                        <div class="week-number">
+                            02
+                        </div>
+
+                        <div class="week-title">
+
+                            <h4>
+                                Week 2
+                            </h4>
+
+                            <p>
+                                Days 8–14
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="arrow">
+                        →
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <div class="week">
+
+                <div class="week-link">
+
+                    <div class="week-left">
+
+                        <div class="week-number">
+                            03
+                        </div>
+
+                        <div class="week-title">
+
+                            <h4>
+                                Week 3
+                            </h4>
+
+                            <p>
+                                Days 15–21
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <span class="coming-soon">
+                        Coming Soon
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="week">
+
+                <div class="week-link">
+
+                    <div class="week-left">
+
+                        <div class="week-number">
+                            04
+                        </div>
+
+                        <div class="week-title">
+
+                            <h4>
+                                Week 4
+                            </h4>
+
+                            <p>
+                                Days 22–30
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <span class="coming-soon">
+                        Coming Soon
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PHASE 2 -->
+
+        <div class="phase">
+
+            <div class="phase-label">
+                Phase 2 · Days 31–60
+            </div>
+
+            <h3>
+                Build & Progress
+            </h3>
+
+            <p class="phase-description">
+                Build on your foundation and strengthen your habits.
+            </p>
+
+
+            <div class="week">
+                <div class="week-link">
+                    <div class="week-left">
+                        <div class="week-number">05</div>
+                        <div class="week-title">
+                            <h4>Week 5</h4>
+                            <p>Days 31–37</p>
+                        </div>
+                    </div>
+                    <span class="coming-soon">Coming Soon</span>
+                </div>
+            </div>
+
+
+            <div class="week">
+                <div class="week-link">
+                    <div class="week-left">
+                        <div class="week-number">06</div>
+                        <div class="week-title">
+                            <h4>Week 6</h4>
+                            <p>Days 38–44</p>
+                        </div>
+                    </div>
+                    <span class="coming-soon">Coming Soon</span>
+                </div>
+            </div>
+
+
+            <div class="week">
+                <div class="week-link">
+                    <div class="week-left">
+                        <div class="week-number">07</div>
+                        <div class="week-title">
+                            <h4>Week 7</h4>
+                            <p>Days 45–51</p>
+                        </div>
+                    </div>
+                    <span class="coming-soon">Coming Soon</span>
+                </div>
+            </div>
+
+
+            <div class="week">
+                <div class="week-link">
+                    <div class="week-left">
+                        <div class="week-number">08</div>
+                        <div class="week-title">
+                            <h4>Week 8</h4>
+                            <p>Days 52–60</p>
+                        </div>
+                    </div>
+                    <span class="coming-soon">Coming Soon</span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- PHASE 3 -->
+
+        <div class="phase">
+
+            <div class="phase-label">
+                Phase 3 · Days 61–90
+            </div>
+
+            <h3>
+                Maintain & Thrive
+            </h3>
+
+            <p class="phase-description">
+                Strengthen confidence and learn how to maintain
+                your progress long term.
+            </p>
+
+
+            <div class="week">
+                <div class="week-link">
+                    <div class="week-left">
+                        <div class="week-number">09</div>
+                        <div class="week-title">
+                            <h4>Week 9</h4>
+                            <p>Days 61–67</p>
+                        </div>
+                    </div>
+                    <span class="coming-soon">Coming Soon</span>
+                </div>
+            </div>
+
+
+            <div class="week">
+                <div class="week-link">
+                    <div class="week-left">
+                        <div class="week-number">10</div>
+                        <div class="week-title">
+                            <h4>Week 10</h4>
+                            <p>Days 68–74</p>
+                        </div>
+                    </div>
+                    <span class="coming-soon">Coming Soon</span>
+                </div>
+            </div>
+
+
+            <div class="week">
+                <div class="week-link">
+                    <div class="week-left">
+                        <div class="week-number">11</div>
+                        <div class="week-title">
+                            <h4>Week 11</h4>
+                            <p>Days 75–81</p>
+                        </div>
+                    </div>
+                    <span class="coming-soon">Coming Soon</span>
+                </div>
+            </div>
+
+
+            <div class="week">
+                <div class="week-link">
+                    <div class="week-left">
+                        <div class="week-number">12</div>
+                        <div class="week-title">
+                            <h4>Week 12</h4>
+                            <p>Days 82–90</p>
+                        </div>
+                    </div>
+                    <span class="coming-soon">Coming Soon</span>
+                </div>
+            </div>
+
+        </div>
 
     </div>
 
 
+</section>
 
-    <!-- FOOTER -->
 
-    <footer>
+<!-- =========================
+     EDUCATION SECTION
+========================= -->
+
+<section
+    class="page-section"
+    id="educationSection">
+
+
+    <div class="page-header">
+
+        <div class="small-title">
+            Learn
+        </div>
+
+        <h1>
+            Weekly Education
+        </h1>
 
         <p>
-            Freedom Women's Health Club
+            Simple lessons to help you understand food, habits
+            and sustainable weight loss.
         </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="education-grid">
+
+
+            <div class="education-card">
+
+                <div class="education-label">
+                    Nutrition
+                </div>
+
+                <h3>
+                    Building a Balanced Plate
+                </h3>
+
+                <p>
+                    Learn how to build balanced meals without
+                    giving up the foods you enjoy.
+                </p>
+
+            </div>
+
+
+            <div class="education-card">
+
+                <div class="education-label">
+                    Protein
+                </div>
+
+                <h3>
+                    Why Protein Matters
+                </h3>
+
+                <p>
+                    Understand how protein can support fullness
+                    and your weight-loss journey.
+                </p>
+
+            </div>
+
+
+            <div class="education-card">
+
+                <div class="education-label">
+                    Habits
+                </div>
+
+                <h3>
+                    Consistency Over Perfection
+                </h3>
+
+                <p>
+                    Learn how small habits can create lasting progress.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- =========================
+     COMMUNITY SECTION
+========================= -->
+
+<section
+    class="page-section"
+    id="communitySection">
+
+
+    <div class="page-header">
+
+        <div class="small-title">
+            Connect
+        </div>
+
+        <h1>
+            Freedom Community
+        </h1>
 
         <p>
-            Small steps. Consistent habits. Long-term results.
+            Connect with other Freedom members, ask questions,
+            share wins and support one another.
         </p>
 
-    </footer>
+    </div>
 
+
+    <div class="card">
+
+        <div class="community-box">
+
+            <h3>
+                You're not doing this alone.
+            </h3>
+
+            <p>
+                This community will be a shared space for all
+                Freedom members. Members will be able to ask
+                questions, share their progress, celebrate wins
+                and communicate with each other.
+            </p>
+
+
+            <a
+                href="community.html"
+                class="primary-btn">
+
+                Open Community →
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+    </div>
 
 </div>
 
 </div>
 
 
+<!-- =========================
+     FIREBASE
+========================= -->
 
 <script type="module">
 
-
-/* ==================================================
-   FIREBASE
-================================================== */
-
-import {
-    initializeApp
-}
+import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-
 
 import {
     getAuth,
@@ -1859,7 +1810,6 @@ import {
     signOut
 }
 from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-
 
 import {
     getFirestore,
@@ -1869,6 +1819,10 @@ import {
 }
 from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
 
 const firebaseConfig = {
 
@@ -1906,9 +1860,9 @@ const db =
 let currentUser = null;
 
 
-/* ==================================================
+/* =========================
    PROFILE FIELDS
-================================================== */
+========================= */
 
 const fields = [
 
@@ -1925,18 +1879,14 @@ const fields = [
 ];
 
 
-/* ==================================================
-   GET VALUES
-================================================== */
+/* =========================
+   HELPERS
+========================= */
 
 function getValue(id) {
 
     const element =
         document.getElementById(id);
-
-    if (!element) {
-        return "";
-    }
 
     return element.value.trim();
 
@@ -1955,12 +1905,11 @@ function getNumber(id) {
 }
 
 
-/* ==================================================
+/* =========================
    CALCULATIONS
-================================================== */
+========================= */
 
 function calculateProgress() {
-
 
     const height =
         getNumber("height");
@@ -1984,7 +1933,7 @@ function calculateProgress() {
         getNumber("currentHip");
 
 
-    /* WEIGHT */
+    /* WEIGHT LOST */
 
     if (
         startingWeight !== null &&
@@ -2006,7 +1955,7 @@ function calculateProgress() {
     }
 
 
-    /* WAIST */
+    /* WAIST CHANGE */
 
     if (
         startingWaist !== null &&
@@ -2144,12 +2093,11 @@ function calculateProgress() {
 }
 
 
-/* ==================================================
-   LOAD MEMBER PROFILE
-================================================== */
+/* =========================
+   LOAD PROFILE
+========================= */
 
 async function loadProfile(user) {
-
 
     const profileRef =
         doc(
@@ -2173,17 +2121,13 @@ async function loadProfile(user) {
 
             fields.forEach(field => {
 
-                const element =
-                    document.getElementById(field);
-
-
                 if (
-                    element &&
                     data[field] !== undefined &&
                     data[field] !== null
                 ) {
 
-                    element.value =
+                    document.getElementById(field)
+                        .value =
                         data[field];
 
                 }
@@ -2193,22 +2137,20 @@ async function loadProfile(user) {
 
             if (data.name) {
 
-                updateMemberName(
-                    data.name
-                );
+                document.getElementById("memberName")
+                    .textContent =
+                    data.name;
+
+                document.getElementById("welcomeName")
+                    .textContent =
+                    data.name;
 
             }
 
         }
 
 
-        document.getElementById("profileEmail")
-            .value =
-            user.email;
-
-
         calculateProgress();
-
 
     } catch (error) {
 
@@ -2217,50 +2159,34 @@ async function loadProfile(user) {
             error
         );
 
+        calculateProgress();
+
     }
 
 }
 
 
-/* ==================================================
-   UPDATE MEMBER NAME EVERYWHERE
-================================================== */
-
-function updateMemberName(name) {
-
-
-    const cleanName =
-        name || "Member";
-
-
-    document.getElementById("welcomeName")
-        .textContent =
-        cleanName;
-
-
-    document.getElementById("sideMemberName")
-        .textContent =
-        cleanName;
-
-}
-
-
-/* ==================================================
+/* =========================
    SAVE PROFILE
-================================================== */
+========================= */
 
 async function saveProfile() {
 
-
     if (!currentUser) {
+
         return;
+
     }
+
+
+    const name =
+        getValue("name");
 
 
     const data = {
 
         name:
-            getValue("name"),
+            name,
 
         age:
             getNumber("age"),
@@ -2297,7 +2223,6 @@ async function saveProfile() {
 
     try {
 
-
         await setDoc(
 
             doc(
@@ -2315,9 +2240,17 @@ async function saveProfile() {
         );
 
 
-        updateMemberName(
-            data.name
-        );
+        if (name) {
+
+            document.getElementById("memberName")
+                .textContent =
+                name;
+
+            document.getElementById("welcomeName")
+                .textContent =
+                name;
+
+        }
 
 
         calculateProgress();
@@ -2328,15 +2261,12 @@ async function saveProfile() {
             "Saved successfully.";
 
 
-        setTimeout(
-            () => {
+        setTimeout(() => {
 
-                document.getElementById("saveMessage")
-                    .textContent = "";
+            document.getElementById("saveMessage")
+                .textContent = "";
 
-            },
-            3000
-        );
+        }, 3000);
 
 
     } catch (error) {
@@ -2346,146 +2276,22 @@ async function saveProfile() {
             error
         );
 
-
         document.getElementById("saveMessage")
             .textContent =
-            "Unable to save. Check your Firebase rules.";
+            "Unable to save. Please check your Firebase rules.";
 
     }
 
 }
 
 
-/* ==================================================
-   SECTION SWITCHING
-================================================== */
-
-window.openSection =
-function(sectionName) {
-
-
-    document
-        .querySelectorAll(".section")
-        .forEach(section => {
-
-            section.classList.remove("active");
-
-        });
-
-
-    document
-        .querySelectorAll(".nav-btn")
-        .forEach(button => {
-
-            button.classList.remove("active");
-
-        });
-
-
-    const selectedSection =
-        document.getElementById(
-            "section-" + sectionName
-        );
-
-
-    if (selectedSection) {
-
-        selectedSection.classList.add(
-            "active"
-        );
-
-    }
-
-
-    const selectedButton =
-        document.querySelector(
-            '[data-section="' +
-            sectionName +
-            '"]'
-        );
-
-
-    if (selectedButton) {
-
-        selectedButton.classList.add(
-            "active"
-        );
-
-    }
-
-
-    const titles = {
-
-        welcome:
-            "Welcome",
-
-        profile:
-            "My Profile",
-
-        journey:
-            "90-Day Journey",
-
-        education:
-            "Weekly Education",
-
-        community:
-            "Community"
-
-    };
-
-
-    document.getElementById("pageTitle")
-        .textContent =
-        titles[sectionName] || "Dashboard";
-
-
-    /* Close mobile sidebar */
-
-    document.getElementById("sidebar")
-        .classList.remove("open");
-
-
-    window.scrollTo(
-        {
-            top: 0,
-            behavior: "smooth"
-        }
-    );
-
-};
-
-
-/* ==================================================
-   NAVIGATION BUTTONS
-================================================== */
-
-document
-    .querySelectorAll(".nav-btn")
-    .forEach(button => {
-
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                openSection(
-                    button.dataset.section
-                );
-
-            }
-        );
-
-    });
-
-
-/* ==================================================
+/* =========================
    AUTH
-================================================== */
+========================= */
 
 onAuthStateChanged(
     auth,
     async (user) => {
-
 
         if (!user) {
 
@@ -2501,18 +2307,8 @@ onAuthStateChanged(
             user;
 
 
-        document.getElementById("topEmail")
+        document.getElementById("memberEmail")
             .textContent =
-            user.email;
-
-
-        document.getElementById("sideMemberEmail")
-            .textContent =
-            user.email;
-
-
-        document.getElementById("profileEmail")
-            .value =
             user.email;
 
 
@@ -2522,91 +2318,149 @@ onAuthStateChanged(
 );
 
 
-/* ==================================================
-   SAVE BUTTON
-================================================== */
+/* =========================
+   SIDEBAR NAVIGATION
+========================= */
 
-document
-    .getElementById("saveProfile")
+const navButtons =
+    document.querySelectorAll(".nav-btn");
+
+const sections =
+    document.querySelectorAll(".page-section");
+
+
+function openSection(sectionId) {
+
+    sections.forEach(section => {
+
+        section.classList.remove("active");
+
+    });
+
+
+    const selectedSection =
+        document.getElementById(sectionId);
+
+
+    if (selectedSection) {
+
+        selectedSection.classList.add("active");
+
+    }
+
+
+    navButtons.forEach(button => {
+
+        button.classList.remove("active");
+
+        if (
+            button.dataset.section === sectionId
+        ) {
+
+            button.classList.add("active");
+
+        }
+
+    });
+
+
+    /* Close mobile sidebar */
+
+    document.getElementById("sidebar")
+        .classList.remove("open");
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* Make function available to buttons */
+
+window.openSection =
+    openSection;
+
+
+navButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            openSection(
+                button.dataset.section
+            );
+
+        }
+    );
+
+});
+
+
+/* =========================
+   SAVE BUTTON
+========================= */
+
+document.getElementById("saveProfile")
     .addEventListener(
         "click",
         saveProfile
     );
 
 
-/* ==================================================
+/* =========================
    LIVE CALCULATIONS
-================================================== */
+========================= */
 
 fields.forEach(field => {
 
-
-    const element =
-        document.getElementById(field);
-
-
-    if (element) {
-
-        element.addEventListener(
+    document.getElementById(field)
+        .addEventListener(
             "input",
             calculateProgress
         );
 
-    }
-
 });
 
 
-/* ==================================================
+/* =========================
    LOGOUT
-================================================== */
+========================= */
 
-document
-    .getElementById("logoutBtn")
+document.getElementById("logoutBtn")
     .addEventListener(
         "click",
         async () => {
 
+            await signOut(auth);
 
-            try {
-
-                await signOut(auth);
-
-                window.location.href =
-                    "login.html";
-
-            } catch (error) {
-
-                console.error(
-                    "Logout error:",
-                    error
-                );
-
-            }
+            window.location.href =
+                "login.html";
 
         }
     );
 
 
-/* ==================================================
+/* =========================
    MOBILE MENU
-================================================== */
+========================= */
 
-document
-    .getElementById("mobileMenu")
+document.getElementById("mobileMenuBtn")
     .addEventListener(
         "click",
         () => {
 
-            document
-                .getElementById("sidebar")
+            document.getElementById("sidebar")
                 .classList.toggle("open");
 
         }
     );
 
-
 </script>
+
 
 </body>
 
