@@ -78,7 +78,8 @@ textarea {
     gap: 5px;
 }
 
-.nav-btn {
+.nav-btn,
+.logout-btn {
     width: 100%;
     border: none;
     background: transparent;
@@ -93,7 +94,8 @@ textarea {
     gap: 11px;
 }
 
-.nav-btn:hover {
+.nav-btn:hover,
+.logout-btn:hover {
     background: #FBF8F3;
     color: #6E4A7E;
 }
@@ -112,23 +114,6 @@ textarea {
 
 .sidebar-bottom {
     margin-top: auto;
-}
-
-.logout-btn {
-    width: 100%;
-    border: none;
-    background: transparent;
-    color: #706A66;
-    text-align: left;
-    padding: 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.logout-btn:hover {
-    background: #FBF8F3;
-    color: #6E4A7E;
 }
 
 /* =========================
@@ -296,7 +281,8 @@ h1 {
     font-size: 14px;
 }
 
-.save-message {
+.save-message,
+.reflection-message {
     margin-left: 12px;
     font-size: 13px;
     color: #6E4A7E;
@@ -331,6 +317,12 @@ h1 {
     height: 100%;
     background: #6E4A7E;
     transition: width 0.4s ease;
+}
+
+.progress-note {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #817972;
 }
 
 /* =========================
@@ -368,11 +360,11 @@ h1 {
 }
 
 /* =========================
-   WEEK LIST
+   PHASES / WEEKS
 ========================= */
 
 .phase {
-    margin-bottom: 32px;
+    margin-bottom: 5px;
 }
 
 .phase-label {
@@ -466,6 +458,11 @@ h1 {
     font-size: 19px;
 }
 
+.final-stretch {
+    border: 1px solid #DED1E4;
+    background: #F8F3FA;
+}
+
 /* =========================
    WEEK DETAIL
 ========================= */
@@ -485,6 +482,7 @@ h1 {
     cursor: pointer;
     font-size: 13px;
     padding: 5px 0;
+    margin-bottom: 12px;
 }
 
 .goal-box {
@@ -593,20 +591,6 @@ h1 {
 }
 
 /* =========================
-   WEEKLY HABITS
-========================= */
-
-.weekly-habits {
-    margin-bottom: 22px;
-}
-
-.weekly-habits-title {
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 12px;
-}
-
-/* =========================
    REFLECTION
 ========================= */
 
@@ -661,32 +645,62 @@ h1 {
     cursor: pointer;
 }
 
-.reflection-message {
-    color: #6E4A7E;
-    font-size: 13px;
-    margin-left: 10px;
-}
-
 /* =========================
-   EMPTY / LOADING
+   LIFETIME HABITS
 ========================= */
 
-.loading-box,
-.empty-box {
+.lifetime-intro {
+    background: #F1EAF4;
+    border: 1px solid #DED1E4;
+    border-radius: 13px;
+    padding: 24px;
+    margin-bottom: 22px;
+}
+
+.lifetime-intro h2 {
+    font-size: 23px;
+    font-weight: 500;
+    margin-bottom: 7px;
+}
+
+.lifetime-intro p {
+    font-size: 14px;
+    color: #625D59;
+}
+
+.lifetime-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.lifetime-card {
     background: #FFFFFF;
     border: 1px solid #E5DED7;
     border-radius: 12px;
-    padding: 30px;
-    text-align: center;
-    color: #706A66;
+    padding: 20px;
 }
 
-.error-box {
-    background: #FFF7F5;
-    border: 1px solid #E8D1CA;
-    border-radius: 12px;
-    padding: 20px;
-    color: #8A5146;
+.lifetime-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.lifetime-card p {
+    color: #706A66;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.lifetime-habit {
+    border-top: 1px solid #EEE8E2;
+    padding: 10px 0;
+    font-size: 13px;
+}
+
+.lifetime-habit strong {
+    color: #6E4A7E;
 }
 
 /* =========================
@@ -745,6 +759,28 @@ h1 {
 }
 
 /* =========================
+   EMPTY / LOADING
+========================= */
+
+.loading-box,
+.empty-box {
+    background: #FFFFFF;
+    border: 1px solid #E5DED7;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    color: #706A66;
+}
+
+.error-box {
+    background: #FFF7F5;
+    border: 1px solid #E8D1CA;
+    border-radius: 12px;
+    padding: 20px;
+    color: #8A5146;
+}
+
+/* =========================
    MOBILE
 ========================= */
 
@@ -783,7 +819,8 @@ h1 {
         display: block;
     }
 
-    .profile-grid {
+    .profile-grid,
+    .lifetime-grid {
         grid-template-columns: 1fr;
     }
 
@@ -835,6 +872,11 @@ h1 {
         display: none;
     }
 
+    .day-header {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
 }
 
 </style>
@@ -875,6 +917,11 @@ h1 {
         <button class="nav-btn" data-section="journeySection">
             <span class="nav-icon">📅</span>
             <span>90-Day Journey</span>
+        </button>
+
+        <button class="nav-btn" data-section="lifetimeSection">
+            <span class="nav-icon">🌱</span>
+            <span>Lifetime Habits</span>
         </button>
 
         <button class="nav-btn" data-section="educationSection">
@@ -1025,21 +1072,16 @@ h1 {
             Current measurements can be updated as you progress.
         </div>
 
-        <button
-            class="save-btn"
-            id="saveProfile">
-
+        <button class="save-btn" id="saveProfile">
             Save My Profile
-
         </button>
 
-        <span
-            class="save-message"
-            id="saveMessage">
-        </span>
+        <span class="save-message" id="saveMessage"></span>
 
     </div>
 
+
+    <!-- 90 DAY PROGRESS -->
 
     <div class="card">
 
@@ -1070,8 +1112,14 @@ h1 {
 
         </div>
 
+        <div class="progress-note" id="progressNote">
+            Complete your daily habits to move through your 90-day journey.
+        </div>
+
     </div>
 
+
+    <!-- NUMBERS -->
 
     <div class="card">
 
@@ -1159,7 +1207,7 @@ h1 {
     </div>
 
 
-    <div class="card welcome-card">
+    <div class="card">
 
         <div class="small-title">
             Welcome
@@ -1170,9 +1218,9 @@ h1 {
         </h2>
 
         <p>
-            Take your journey one step at a time. Open your current week,
-            complete your habits, reflect on your progress and continue
-            building consistency.
+            Take your journey one day at a time. Follow your weekly content,
+            complete your habits, reflect on your progress and build habits
+            you can continue after your 90 days.
         </p>
 
         <button
@@ -1189,16 +1237,16 @@ h1 {
     <div class="card">
 
         <div class="small-title">
-            How It Works
+            Your Journey
         </div>
 
         <h2>
-            Your Freedom Journey
+            How It Works
         </h2>
 
         <p class="card-description">
-            Your program is organized into weeks. Some weeks may contain
-            individual days, while others may have weekly habits.
+            Your program is divided into phases, weeks and individual days.
+            Your coach can update the content from the Admin Portal.
         </p>
 
         <br>
@@ -1212,11 +1260,12 @@ h1 {
                 </div>
 
                 <h3>
-                    Open Your Week
+                    Follow Your Day
                 </h3>
 
                 <p>
-                    Follow the content added by your coach for that week.
+                    Open your current week and follow the habits assigned
+                    for each day.
                 </p>
 
             </div>
@@ -1228,11 +1277,12 @@ h1 {
                 </div>
 
                 <h3>
-                    Complete Habits
+                    Complete Your Habits
                 </h3>
 
                 <p>
-                    Tick off the habits you complete each day.
+                    Tick each habit as you complete it. Your progress is
+                    saved automatically.
                 </p>
 
             </div>
@@ -1244,11 +1294,11 @@ h1 {
                 </div>
 
                 <h3>
-                    Reflect
+                    Build for Life
                 </h3>
 
                 <p>
-                    Complete your weekly reflection and note your progress.
+                    After Day 90, continue with your Lifetime Freedom Habits.
                 </p>
 
             </div>
@@ -1281,8 +1331,8 @@ h1 {
             </h1>
 
             <p>
-                Your weekly content is automatically updated from your
-                member program.
+                Complete your habits one day at a time. Your progress is
+                saved automatically.
             </p>
 
         </div>
@@ -1298,9 +1348,7 @@ h1 {
     </div>
 
 
-    <!-- =========================
-         WEEK DETAIL
-    ========================= -->
+    <!-- WEEK DETAIL -->
 
     <div
         id="weekDetailView"
@@ -1351,10 +1399,7 @@ h1 {
         </div>
 
 
-        <div
-            id="weekContentContainer">
-
-        </div>
+        <div id="weekContentContainer"></div>
 
 
         <div
@@ -1369,8 +1414,7 @@ h1 {
                 Take a few minutes to reflect on your week.
             </p>
 
-            <div id="reflectionFields">
-            </div>
+            <div id="reflectionFields"></div>
 
             <button
                 class="save-reflection-btn"
@@ -1385,6 +1429,58 @@ h1 {
                 id="reflectionMessage">
             </span>
 
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     LIFETIME HABITS
+========================= -->
+
+<section
+    class="page-section"
+    id="lifetimeSection">
+
+    <div class="page-header">
+
+        <div class="small-title">
+            After Day 90
+        </div>
+
+        <h1>
+            Lifetime Freedom Habits
+        </h1>
+
+        <p>
+            Your 90 days are the beginning. These habits help you maintain
+            the progress you worked for.
+        </p>
+
+    </div>
+
+
+    <div class="lifetime-intro">
+
+        <h2>
+            You don't need another extreme diet.
+        </h2>
+
+        <p>
+            The goal after 90 days is to continue making confident,
+            balanced choices without needing to follow a strict program.
+            Use these habits as your long-term foundation.
+        </p>
+
+    </div>
+
+
+    <div id="lifetimeHabitsContainer">
+
+        <div class="loading-box">
+            Loading your Lifetime Freedom Habits...
         </div>
 
     </div>
@@ -1603,6 +1699,8 @@ let currentUser = null;
 
 let weeklyContent = [];
 
+let lifetimeHabits = [];
+
 let memberProgress = {};
 
 let selectedWeek = null;
@@ -1657,15 +1755,14 @@ function getNumber(id) {
 
 function escapeHTML(value) {
 
-    if (value === undefined ||
-        value === null) {
-
+    if (
+        value === undefined ||
+        value === null
+    ) {
         return "";
-
     }
 
     return String(value)
-
         .replaceAll("&", "&amp;")
         .replaceAll("<", "&lt;")
         .replaceAll(">", "&gt;")
@@ -1681,7 +1778,8 @@ function escapeHTML(value) {
 
 function calculateProgress() {
 
-    const height = getNumber("height");
+    const height =
+        getNumber("height");
 
     const startingWeight =
         getNumber("startingWeight");
@@ -1987,19 +2085,15 @@ async function saveProfile() {
         );
 
 
-        const name =
-            data.name;
-
-
-        if (name) {
+        if (data.name) {
 
             document.getElementById("memberName")
                 .textContent =
-                name;
+                data.name;
 
             document.getElementById("welcomeName")
                 .textContent =
-                name;
+                data.name;
 
         }
 
@@ -2033,7 +2127,7 @@ async function saveProfile() {
 
 
 /* =========================
-   LOAD MEMBER PROGRESS
+   MEMBER PROGRESS
 ========================= */
 
 async function loadMemberProgress() {
@@ -2080,10 +2174,6 @@ async function loadMemberProgress() {
 
 }
 
-
-/* =========================
-   SAVE MEMBER PROGRESS
-========================= */
 
 async function saveMemberProgress() {
 
@@ -2141,15 +2231,13 @@ async function loadWeeklyContent() {
 
     try {
 
-        const contentRef =
-            collection(
-                db,
-                "weeklyContent"
-            );
-
-
         const snapshot =
-            await getDocs(contentRef);
+            await getDocs(
+                collection(
+                    db,
+                    "weeklyContent"
+                )
+            );
 
 
         weeklyContent = [];
@@ -2211,20 +2299,114 @@ async function loadWeeklyContent() {
 
 
 /* =========================
+   LOAD LIFETIME HABITS
+========================= */
+
+async function loadLifetimeHabits() {
+
+    const container =
+        document.getElementById(
+            "lifetimeHabitsContainer"
+        );
+
+
+    try {
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "lifetimeHabits"
+                )
+            );
+
+
+        lifetimeHabits = [];
+
+
+        snapshot.forEach(item => {
+
+            lifetimeHabits.push({
+
+                id:
+                    item.id,
+
+                ...item.data()
+
+            });
+
+        });
+
+
+        lifetimeHabits.sort(
+            (a, b) =>
+                getLifetimeOrder(a) -
+                getLifetimeOrder(b)
+        );
+
+
+        renderLifetimeHabits();
+
+
+    } catch (error) {
+
+        console.error(
+            "Lifetime habits error:",
+            error
+        );
+
+
+        container.innerHTML = `
+
+            <div class="error-box">
+
+                <strong>
+                    Lifetime habits could not be loaded.
+                </strong>
+
+                <br><br>
+
+                Make sure the Admin Portal has a
+                <strong>lifetimeHabits</strong> collection.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================
    WEEK NUMBER
 ========================= */
 
 function getWeekNumber(week) {
 
-    if (week.weekNumber !== undefined)
-        return Number(week.weekNumber);
+    if (
+        week.weekNumber !== undefined
+    ) {
+        return Number(
+            week.weekNumber
+        );
+    }
 
-    if (week.number !== undefined)
-        return Number(week.number);
+
+    if (
+        week.number !== undefined
+    ) {
+        return Number(
+            week.number
+        );
+    }
+
 
     const match =
-        String(week.id || "")
-            .match(/(\d+)/);
+        String(
+            week.id || ""
+        ).match(/(\d+)/);
+
 
     return match
         ? Number(match[1])
@@ -2234,16 +2416,51 @@ function getWeekNumber(week) {
 
 
 /* =========================
-   GET WEEK DAYS
+   LIFETIME ORDER
+========================= */
+
+function getLifetimeOrder(item) {
+
+    if (
+        item.order !== undefined
+    ) {
+        return Number(item.order);
+    }
+
+    if (
+        item.number !== undefined
+    ) {
+        return Number(item.number);
+    }
+
+    return 999;
+
+}
+
+
+/* =========================
+   GET DAYS
 ========================= */
 
 function getDays(week) {
 
-    if (Array.isArray(week.days))
+    if (
+        Array.isArray(
+            week.days
+        )
+    ) {
         return week.days;
+    }
 
-    if (Array.isArray(week.dayContent))
+
+    if (
+        Array.isArray(
+            week.dayContent
+        )
+    ) {
         return week.dayContent;
+    }
+
 
     return [];
 
@@ -2251,18 +2468,71 @@ function getDays(week) {
 
 
 /* =========================
-   GET WEEK HABITS
+   GET WEEKLY HABITS
 ========================= */
 
 function getWeeklyHabits(week) {
 
-    if (Array.isArray(week.habits))
+    if (
+        Array.isArray(
+            week.habits
+        )
+    ) {
         return week.habits;
+    }
 
-    if (Array.isArray(week.weeklyHabits))
+
+    if (
+        Array.isArray(
+            week.weeklyHabits
+        )
+    ) {
         return week.weeklyHabits;
+    }
+
 
     return [];
+
+}
+
+
+/* =========================
+   GET GLOBAL DAY NUMBER
+========================= */
+
+function getGlobalDayNumber(
+    weekNumber,
+    dayIndex,
+    day
+) {
+
+    if (
+        day &&
+        day.dayNumber !== undefined
+    ) {
+
+        return Number(
+            day.dayNumber
+        );
+
+    }
+
+
+    if (
+        day &&
+        day.globalDay !== undefined
+    ) {
+
+        return Number(
+            day.globalDay
+        );
+
+    }
+
+
+    return (
+        (weekNumber - 1) * 7
+    ) + dayIndex + 1;
 
 }
 
@@ -2303,24 +2573,43 @@ function renderWeeks() {
     const phases = {
 
         1: {
+
             title:
                 "Phase 1 · Reset & Foundation",
+
             description:
                 "Build simple habits and create a strong foundation."
+
         },
 
         2: {
+
             title:
                 "Phase 2 · Build & Progress",
+
             description:
                 "Build on your foundation and strengthen your routine."
+
         },
 
         3: {
+
             title:
-                "Phase 3 · Maintain & Thrive",
+                "Phase 3 · Thrive & Maintain",
+
             description:
                 "Strengthen your confidence and create sustainable habits."
+
+        },
+
+        4: {
+
+            title:
+                "Final Stretch · Days 85–90",
+
+            description:
+                "Finish your 90 days and prepare for long-term maintenance."
+
         }
 
     };
@@ -2329,139 +2618,155 @@ function renderWeeks() {
     let html = "";
 
 
-    [1, 2, 3].forEach(phaseNumber => {
+    /*
+       PHASES 1–3
+    */
 
-        const start =
-            phaseNumber === 1 ? 1 :
-            phaseNumber === 2 ? 5 :
-            9;
+    [1, 2, 3].forEach(
+        phaseNumber => {
 
-        const end =
-            phaseNumber === 1 ? 4 :
-            phaseNumber === 2 ? 8 :
-            12;
+            const start =
+                phaseNumber === 1
+                    ? 1
+                    : phaseNumber === 2
+                        ? 5
+                        : 9;
 
 
-        const weeks =
-            weeklyContent.filter(week => {
+            const end =
+                phaseNumber === 1
+                    ? 4
+                    : phaseNumber === 2
+                        ? 8
+                        : 12;
 
-                const number =
-                    getWeekNumber(week);
 
-                return (
-                    number >= start &&
-                    number <= end
+            const weeks =
+                weeklyContent.filter(
+                    week => {
+
+                        const number =
+                            getWeekNumber(
+                                week
+                            );
+
+                        return (
+                            number >= start &&
+                            number <= end
+                        );
+
+                    }
                 );
 
-            });
+
+            if (!weeks.length) return;
 
 
-        if (!weeks.length) return;
-
-
-        const phase =
-            phases[phaseNumber];
-
-
-        html += `
-
-            <div class="card">
-
-                <div class="phase">
-
-                    <div class="phase-label">
-                        ${escapeHTML(phase.title)}
-                    </div>
-
-                    <h3>
-                        ${escapeHTML(
-                            phaseNumber === 1
-                                ? "Reset & Foundation"
-                                : phaseNumber === 2
-                                    ? "Build & Progress"
-                                    : "Maintain & Thrive"
-                        )}
-                    </h3>
-
-                    <p class="phase-description">
-                        ${escapeHTML(phase.description)}
-                    </p>
-
-        `;
-
-
-        weeks.forEach(week => {
-
-            const number =
-                getWeekNumber(week);
-
-            const title =
-                week.title ||
-                `Week ${number}`;
-
-            const days =
-                getDays(week);
-
-            const habits =
-                getWeeklyHabits(week);
-
-            const percent =
-                getWeekCompletion(week);
+            const phase =
+                phases[
+                    phaseNumber
+                ];
 
 
             html += `
 
-                <div class="week">
+                <div class="card">
 
-                    <button
-                        class="week-button"
-                        onclick="openWeek('${escapeHTML(week.id)}')">
+                    <div class="phase">
 
-                        <div class="week-left">
-
-                            <div class="week-number">
-                                ${String(number).padStart(2, "0")}
-                            </div>
-
-                            <div class="week-title">
-
-                                <h4>
-                                    ${escapeHTML(title)}
-                                </h4>
-
-                                <p>
-                                    ${
-                                        days.length
-                                            ? `${days.length} days`
-                                            : habits.length
-                                                ? "Weekly habits"
-                                                : "Content"
-                                    }
-                                </p>
-
-                            </div>
-
+                        <div class="phase-label">
+                            ${escapeHTML(
+                                phase.title
+                            )}
                         </div>
 
-                        <div class="week-right">
+                        <h3>
+                            ${
+                                phaseNumber === 1
+                                    ? "Reset & Foundation"
+                                    : phaseNumber === 2
+                                        ? "Build & Progress"
+                                        : "Thrive & Maintain"
+                            }
+                        </h3>
 
-                            <span class="week-percent">
-                                ${percent}% complete
-                            </span>
+                        <p class="phase-description">
+                            ${escapeHTML(
+                                phase.description
+                            )}
+                        </p>
 
-                            <span class="arrow">
-                                →
-                            </span>
+            `;
 
-                        </div>
 
-                    </button>
+            weeks.forEach(
+                week => {
+
+                    html +=
+                        renderWeekButton(
+                            week
+                        );
+
+                }
+            );
+
+
+            html += `
+
+                    </div>
 
                 </div>
 
             `;
 
-        });
+        }
+    );
+
+
+    /*
+       FINAL 6 DAYS
+    */
+
+    const finalWeeks =
+        weeklyContent.filter(
+            week =>
+                getWeekNumber(week) >= 13
+        );
+
+
+    if (finalWeeks.length) {
+
+        html += `
+
+            <div class="card final-stretch">
+
+                <div class="phase">
+
+                    <div class="phase-label">
+                        ${phases[4].title}
+                    </div>
+
+                    <h3>
+                        Complete Your 90 Days
+                    </h3>
+
+                    <p class="phase-description">
+                        ${phases[4].description}
+                    </p>
+
+        `;
+
+
+        finalWeeks.forEach(
+            week => {
+
+                html +=
+                    renderWeekButton(
+                        week
+                    );
+
+            }
+        );
 
 
         html += `
@@ -2472,7 +2777,7 @@ function renderWeeks() {
 
         `;
 
-    });
+    }
 
 
     container.innerHTML =
@@ -2482,15 +2787,121 @@ function renderWeeks() {
 
 
 /* =========================
+   RENDER WEEK BUTTON
+========================= */
+
+function renderWeekButton(
+    week
+) {
+
+    const number =
+        getWeekNumber(
+            week
+        );
+
+
+    const title =
+        week.title ||
+        `Week ${number}`;
+
+
+    const days =
+        getDays(
+            week
+        );
+
+
+    const habits =
+        getWeeklyHabits(
+            week
+        );
+
+
+    const percent =
+        getWeekCompletion(
+            week
+        );
+
+
+    const dayText =
+        days.length
+            ? `${days.length} days`
+            : habits.length
+                ? "Weekly habits"
+                : "Content";
+
+
+    return `
+
+        <div class="week">
+
+            <button
+                class="week-button"
+                onclick="openWeek('${escapeHTML(
+                    week.id
+                )}')">
+
+                <div class="week-left">
+
+                    <div class="week-number">
+
+                        ${String(
+                            number
+                        ).padStart(
+                            2,
+                            "0"
+                        )}
+
+                    </div>
+
+                    <div class="week-title">
+
+                        <h4>
+                            ${escapeHTML(
+                                title
+                            )}
+                        </h4>
+
+                        <p>
+                            ${dayText}
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="week-right">
+
+                    <span class="week-percent">
+                        ${percent}% complete
+                    </span>
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+                </div>
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================
    OPEN WEEK
 ========================= */
 
 window.openWeek =
-async function(weekId) {
+function(weekId) {
 
     selectedWeek =
         weeklyContent.find(
-            week => week.id === weekId
+            week =>
+                week.id === weekId
         );
 
 
@@ -2511,6 +2922,7 @@ async function(weekId) {
 
     renderSelectedWeek();
 
+
     window.scrollTo({
         top: 0,
         behavior: "smooth"
@@ -2529,7 +2941,9 @@ function renderSelectedWeek() {
 
 
     const number =
-        getWeekNumber(selectedWeek);
+        getWeekNumber(
+            selectedWeek
+        );
 
 
     document.getElementById(
@@ -2561,10 +2975,15 @@ function renderSelectedWeek() {
 
 
     const days =
-        getDays(selectedWeek);
+        getDays(
+            selectedWeek
+        );
+
 
     const weeklyHabits =
-        getWeeklyHabits(selectedWeek);
+        getWeeklyHabits(
+            selectedWeek
+        );
 
 
     let html = "";
@@ -2580,15 +2999,19 @@ function renderSelectedWeek() {
             (day, dayIndex) => {
 
                 const habits =
-                    Array.isArray(day.habits)
+                    Array.isArray(
+                        day.habits
+                    )
                         ? day.habits
                         : [];
 
 
                 const dayNumber =
-                    day.dayNumber ||
-                    day.number ||
-                    dayIndex + 1;
+                    getGlobalDayNumber(
+                        number,
+                        dayIndex,
+                        day
+                    );
 
 
                 const dayTitle =
@@ -2611,7 +3034,10 @@ function renderSelectedWeek() {
                 const percent =
                     total
                         ? Math.round(
-                            (completed / total) * 100
+                            (
+                                completed /
+                                total
+                            ) * 100
                         )
                         : 0;
 
@@ -2625,21 +3051,35 @@ function renderSelectedWeek() {
                             <div>
 
                                 <div class="day-title">
-                                    ${escapeHTML(dayTitle)}
+
+                                    ${escapeHTML(
+                                        dayTitle
+                                    )}
+
                                 </div>
 
                                 <div class="day-subtitle">
+
                                     ${
                                         day.description
-                                            ? escapeHTML(day.description)
+                                            ? escapeHTML(
+                                                day.description
+                                            )
                                             : ""
                                     }
+
                                 </div>
 
                             </div>
 
                             <div class="day-progress">
-                                ${percent}% complete
+
+                                ${
+                                    total
+                                        ? `${percent}% complete`
+                                        : "No habits"
+                                }
+
                             </div>
 
                         </div>
@@ -2664,14 +3104,18 @@ function renderSelectedWeek() {
                 } else {
 
                     habits.forEach(
-                        (habit, habitIndex) => {
+                        (
+                            habit,
+                            habitIndex
+                        ) => {
 
-                            html += renderHabit(
-                                selectedWeek.id,
-                                dayIndex,
-                                habitIndex,
-                                habit
-                            );
+                            html +=
+                                renderHabit(
+                                    selectedWeek.id,
+                                    dayIndex,
+                                    habitIndex,
+                                    habit
+                                );
 
                         }
                     );
@@ -2694,14 +3138,16 @@ function renderSelectedWeek() {
 
 
     /*
-       WEEKLY CONTENT
+       WEEKLY HABITS
     */
 
-    else if (weeklyHabits.length) {
+    else if (
+        weeklyHabits.length
+    ) {
 
         html += `
 
-            <div class="card weekly-habits">
+            <div class="card">
 
                 <div class="weekly-habits-title">
                     This Week's Habits
@@ -2711,14 +3157,18 @@ function renderSelectedWeek() {
 
 
         weeklyHabits.forEach(
-            (habit, habitIndex) => {
+            (
+                habit,
+                habitIndex
+            ) => {
 
-                html += renderHabit(
-                    selectedWeek.id,
-                    "weekly",
-                    habitIndex,
-                    habit
-                );
+                html +=
+                    renderHabit(
+                        selectedWeek.id,
+                        "weekly",
+                        habitIndex,
+                        habit
+                    );
 
             }
         );
@@ -2808,8 +3258,12 @@ function renderHabit(
                 class="habit-check"
                 ${checked ? "checked" : ""}
                 onchange="toggleHabit(
-                    '${escapeHTML(weekId)}',
-                    '${escapeHTML(dayKey)}',
+                    '${escapeHTML(
+                        weekId
+                    )}',
+                    '${escapeHTML(
+                        dayKey
+                    )}',
                     ${habitIndex},
                     this.checked
                 )">
@@ -2817,15 +3271,25 @@ function renderHabit(
             <div class="habit-content">
 
                 <div class="habit-name">
-                    ${escapeHTML(name)}
+
+                    ${escapeHTML(
+                        name
+                    )}
+
                 </div>
 
                 ${
                     target
                         ? `
+
                             <div class="habit-target">
-                                ${escapeHTML(target)}
+
+                                ${escapeHTML(
+                                    target
+                                )}
+
                             </div>
+
                           `
                         : ""
                 }
@@ -2833,9 +3297,15 @@ function renderHabit(
                 ${
                     details
                         ? `
+
                             <div class="habit-details">
-                                ${escapeHTML(details)}
+
+                                ${escapeHTML(
+                                    details
+                                )}
+
                             </div>
+
                           `
                         : ""
                 }
@@ -2865,19 +3335,39 @@ async function(
         memberProgress.weeks = {};
 
 
-    if (!memberProgress.weeks[weekId])
-        memberProgress.weeks[weekId] = {};
+    if (
+        !memberProgress.weeks[
+            weekId
+        ]
+    ) {
+
+        memberProgress.weeks[
+            weekId
+        ] = {};
+
+    }
 
 
-    if (!memberProgress.weeks[weekId].habits)
-        memberProgress.weeks[weekId].habits = {};
+    if (
+        !memberProgress.weeks[
+            weekId
+        ].habits
+    ) {
+
+        memberProgress.weeks[
+            weekId
+        ].habits = {};
+
+    }
 
 
     const key =
         `${dayKey}_${habitIndex}`;
 
 
-    memberProgress.weeks[weekId].habits[key] =
+    memberProgress.weeks[
+        weekId
+    ].habits[key] =
         checked;
 
 
@@ -2905,8 +3395,12 @@ function isHabitComplete(
 
     if (
         !memberProgress.weeks ||
-        !memberProgress.weeks[weekId] ||
-        !memberProgress.weeks[weekId].habits
+        !memberProgress.weeks[
+            weekId
+        ] ||
+        !memberProgress.weeks[
+            weekId
+        ].habits
     ) {
 
         return false;
@@ -2928,7 +3422,7 @@ function isHabitComplete(
 
 
 /* =========================
-   DAY COMPLETION
+   COMPLETED HABITS FOR DAY
 ========================= */
 
 function getCompletedHabitsForDay(
@@ -2965,16 +3459,57 @@ function getCompletedHabitsForDay(
 
 
 /* =========================
+   IS DAY COMPLETE
+========================= */
+
+function isDayComplete(
+    week,
+    day,
+    dayIndex
+) {
+
+    const habits =
+        Array.isArray(
+            day.habits
+        )
+            ? day.habits
+            : [];
+
+
+    if (!habits.length)
+        return false;
+
+
+    return habits.every(
+        (_, habitIndex) =>
+            isHabitComplete(
+                week.id,
+                dayIndex,
+                habitIndex
+            )
+    );
+
+}
+
+
+/* =========================
    WEEK COMPLETION
 ========================= */
 
-function getWeekCompletion(week) {
+function getWeekCompletion(
+    week
+) {
 
     const days =
-        getDays(week);
+        getDays(
+            week
+        );
+
 
     const weeklyHabits =
-        getWeeklyHabits(week);
+        getWeeklyHabits(
+            week
+        );
 
 
     let total = 0;
@@ -2985,16 +3520,24 @@ function getWeekCompletion(week) {
     if (days.length) {
 
         days.forEach(
-            (day, dayIndex) => {
+            (
+                day,
+                dayIndex
+            ) => {
 
                 const habits =
-                    Array.isArray(day.habits)
+                    Array.isArray(
+                        day.habits
+                    )
                         ? day.habits
                         : [];
 
 
                 habits.forEach(
-                    (_, habitIndex) => {
+                    (
+                        _,
+                        habitIndex
+                    ) => {
 
                         total++;
 
@@ -3020,7 +3563,10 @@ function getWeekCompletion(week) {
     } else {
 
         weeklyHabits.forEach(
-            (_, habitIndex) => {
+            (
+                _,
+                habitIndex
+            ) => {
 
                 total++;
 
@@ -3043,23 +3589,135 @@ function getWeekCompletion(week) {
     }
 
 
-    if (!total) return 0;
+    if (!total)
+        return 0;
 
 
     return Math.round(
-        (completed / total) * 100
+        (
+            completed /
+            total
+        ) * 100
     );
 
 }
 
 
 /* =========================
-   REFLECTION
+   COUNT COMPLETED DAYS
+========================= */
+
+function getCompletedDays() {
+
+    let completedDays = 0;
+
+
+    weeklyContent.forEach(
+        week => {
+
+            const days =
+                getDays(
+                    week
+                );
+
+
+            days.forEach(
+                (
+                    day,
+                    dayIndex
+                ) => {
+
+                    if (
+                        isDayComplete(
+                            week,
+                            day,
+                            dayIndex
+                        )
+                    ) {
+
+                        completedDays++;
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    return Math.min(
+        90,
+        completedDays
+    );
+
+}
+
+
+/* =========================
+   OVERALL 90-DAY PROGRESS
+========================= */
+
+function updateOverallProgress() {
+
+    const completedDays =
+        getCompletedDays();
+
+
+    const percentage =
+        Math.round(
+            (
+                completedDays /
+                90
+            ) * 100
+        );
+
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+        percentage + "%";
+
+
+    document.getElementById(
+        "progressDays"
+    ).textContent =
+        completedDays;
+
+
+    const note =
+        document.getElementById(
+            "progressNote"
+        );
+
+
+    if (completedDays >= 90) {
+
+        note.textContent =
+            "You completed your 90-day journey. Your Lifetime Freedom Habits are now your foundation.";
+
+    } else {
+
+        const remaining =
+            90 -
+            completedDays;
+
+        note.textContent =
+            `${remaining} day${remaining === 1 ? "" : "s"} remaining. Keep building consistency.`;
+
+    }
+
+}
+
+
+/* =========================
+   REFLECTION QUESTIONS
 ========================= */
 
 function getReflectionQuestions() {
 
-    if (!selectedWeek) return [];
+    if (!selectedWeek)
+        return [];
 
 
     if (
@@ -3117,18 +3775,25 @@ function renderReflection() {
 
 
     questions.forEach(
-        (question, index) => {
+        (
+            question,
+            index
+        ) => {
 
             const text =
                 typeof question === "string"
+
                     ? question
+
                     : question.question ||
                       question.title ||
                       `Reflection ${index + 1}`;
 
 
             const saved =
-                getSavedReflection(index);
+                getSavedReflection(
+                    index
+                );
 
 
             html += `
@@ -3136,13 +3801,19 @@ function renderReflection() {
                 <div class="reflection-field">
 
                     <label>
-                        ${escapeHTML(text)}
+
+                        ${escapeHTML(
+                            text
+                        )}
+
                     </label>
 
                     <textarea
                         id="reflection_${index}"
                         placeholder="Write your reflection here..."
-                    >${escapeHTML(saved)}</textarea>
+                    >${escapeHTML(
+                        saved
+                    )}</textarea>
 
                 </div>
 
@@ -3162,12 +3833,16 @@ function renderReflection() {
    GET SAVED REFLECTION
 ========================= */
 
-function getSavedReflection(index) {
+function getSavedReflection(
+    index
+) {
 
     if (
         !memberProgress.weeks ||
         !selectedWeek ||
-        !memberProgress.weeks[selectedWeek.id]
+        !memberProgress.weeks[
+            selectedWeek.id
+        ]
     ) {
 
         return "";
@@ -3177,14 +3852,19 @@ function getSavedReflection(index) {
 
     const reflection =
         memberProgress
-            .weeks[selectedWeek.id]
+            .weeks[
+                selectedWeek.id
+            ]
             .reflection;
 
 
-    if (!reflection) return "";
+    if (!reflection)
+        return "";
 
 
-    return reflection[index] || "";
+    return reflection[
+        index
+    ] || "";
 
 }
 
@@ -3195,7 +3875,8 @@ function getSavedReflection(index) {
 
 async function saveReflection() {
 
-    if (!selectedWeek) return;
+    if (!selectedWeek)
+        return;
 
 
     const questions =
@@ -3206,7 +3887,10 @@ async function saveReflection() {
 
 
     questions.forEach(
-        (_, index) => {
+        (
+            _,
+            index
+        ) => {
 
             const field =
                 document.getElementById(
@@ -3229,17 +3913,28 @@ async function saveReflection() {
         memberProgress.weeks = {};
 
 
-    if (!memberProgress.weeks[selectedWeek.id])
-        memberProgress.weeks[selectedWeek.id] = {};
+    if (
+        !memberProgress.weeks[
+            selectedWeek.id
+        ]
+    ) {
+
+        memberProgress.weeks[
+            selectedWeek.id
+        ] = {};
+
+    }
 
 
-    memberProgress.weeks[selectedWeek.id]
-        .reflection =
+    memberProgress.weeks[
+        selectedWeek.id
+    ].reflection =
         answers;
 
 
-    memberProgress.weeks[selectedWeek.id]
-        .reflectionUpdatedAt =
+    memberProgress.weeks[
+        selectedWeek.id
+    ].reflectionUpdatedAt =
         new Date().toISOString();
 
 
@@ -3266,119 +3961,162 @@ async function saveReflection() {
 
 
 /* =========================
-   OVERALL 90 DAY PROGRESS
+   RENDER LIFETIME HABITS
 ========================= */
 
-function updateOverallProgress() {
+function renderLifetimeHabits() {
 
-    let totalHabits = 0;
-
-    let completedHabits = 0;
-
-
-    weeklyContent.forEach(
-        week => {
-
-            const days =
-                getDays(week);
-
-            const weeklyHabits =
-                getWeeklyHabits(week);
+    const container =
+        document.getElementById(
+            "lifetimeHabitsContainer"
+        );
 
 
-            if (days.length) {
+    if (!lifetimeHabits.length) {
 
-                days.forEach(
-                    (day, dayIndex) => {
+        container.innerHTML = `
 
-                        const habits =
-                            Array.isArray(day.habits)
-                                ? day.habits
-                                : [];
+            <div class="empty-box">
+
+                Your Lifetime Freedom Habits will appear here.
+
+                <br><br>
+
+                Your coach will add them from the Admin Portal.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
 
 
-                        habits.forEach(
-                            (_, habitIndex) => {
-
-                                totalHabits++;
+    let html =
+        `<div class="lifetime-grid">`;
 
 
-                                if (
-                                    isHabitComplete(
-                                        week.id,
-                                        dayIndex,
-                                        habitIndex
-                                    )
-                                ) {
+    lifetimeHabits.forEach(
+        item => {
 
-                                    completedHabits++;
+            const title =
+                item.title ||
+                item.name ||
+                item.category ||
+                "Lifetime Habit";
 
-                                }
 
+            const description =
+                item.description ||
+                item.details ||
+                "";
+
+
+            const habits =
+                Array.isArray(
+                    item.habits
+                )
+                    ? item.habits
+                    : [];
+
+
+            html += `
+
+                <div class="lifetime-card">
+
+                    <h3>
+                        ${escapeHTML(
+                            title
+                        )}
+                    </h3>
+
+                    ${
+                        description
+                            ? `
+                                <p>
+                                    ${escapeHTML(
+                                        description
+                                    )}
+                                </p>
+                              `
+                            : ""
+                    }
+
+            `;
+
+
+            habits.forEach(
+                habit => {
+
+                    const habitName =
+                        typeof habit === "string"
+
+                            ? habit
+
+                            : habit.name ||
+                              habit.habit ||
+                              habit.title ||
+                              "Habit";
+
+
+                    const target =
+                        typeof habit === "object"
+
+                            ? (
+                                habit.target ||
+                                habit.goal ||
+                                ""
+                              )
+
+                            : "";
+
+
+                    html += `
+
+                        <div class="lifetime-habit">
+
+                            <strong>
+                                ${escapeHTML(
+                                    habitName
+                                )}
+                            </strong>
+
+                            ${
+                                target
+                                    ? `
+                                        <br>
+                                        ${escapeHTML(
+                                            target
+                                        )}
+                                      `
+                                    : ""
                             }
-                        );
 
-                    }
-                );
+                        </div>
 
-            } else {
+                    `;
 
-                weeklyHabits.forEach(
-                    (_, habitIndex) => {
-
-                        totalHabits++;
+                }
+            );
 
 
-                        if (
-                            isHabitComplete(
-                                week.id,
-                                "weekly",
-                                habitIndex
-                            )
-                        ) {
+            html += `
 
-                            completedHabits++;
+                </div>
 
-                        }
-
-                    }
-                );
-
-            }
+            `;
 
         }
     );
 
 
-    const percentage =
-        totalHabits
-            ? Math.round(
-                (
-                    completedHabits /
-                    totalHabits
-                ) * 100
-            )
-            : 0;
+    html +=
+        `</div>`;
 
 
-    document.getElementById(
-        "progressFill"
-    ).style.width =
-        percentage + "%";
-
-
-    /*
-       Approximate day progress based on
-       completed habit groups.
-    */
-
-    document.getElementById(
-        "progressDays"
-    ).textContent =
-        Math.min(
-            90,
-            completedHabits
-        );
+    container.innerHTML =
+        html;
 
 }
 
@@ -3433,7 +4171,9 @@ const sections =
     );
 
 
-function openSection(sectionId) {
+function openSection(
+    sectionId
+) {
 
     sections.forEach(
         section => {
@@ -3549,11 +4289,19 @@ onAuthStateChanged(
             user.email;
 
 
-        await loadProfile(user);
+        await loadProfile(
+            user
+        );
+
 
         await loadMemberProgress();
 
+
         await loadWeeklyContent();
+
+
+        await loadLifetimeHabits();
+
 
         updateOverallProgress();
 
@@ -3621,7 +4369,9 @@ document.getElementById(
     "click",
     async () => {
 
-        await signOut(auth);
+        await signOut(
+            auth
+        );
 
         window.location.href =
             "login.html";
@@ -3655,69 +4405,3 @@ document.getElementById(
 
 </html>
 ```
-
-### How this now works
-
-**Admin Portal**
-
-You add/edit:
-
-`Week → Days → Habits → Reflection`
-
-↓
-
-**Firestore**
-
-`weeklyContent`
-
-↓
-
-**Member Dashboard**
-
-The member sees the updated content automatically.
-
-For example:
-
-**Week 1**
-
-* Day 1
-
-  * Steps
-  * Sleep
-  * Hydration
-  * Protein
-* Day 2
-
-  * Steps
-  * Sleep
-  * Hydration
-  * Protein
-* ...
-* Day 7
-* Reflection
-
-**Week 2**
-
-* Day 8
-* Day 9
-* ...
-* Day 14
-* Reflection
-
-Then:
-
-**Week 3**
-
-* Weekly habits
-* Weekly goal
-* Reflection
-
-And the same structure can continue through **Week 12**.
-
-Member habit completion is saved separately under:
-
-`memberProgress → member email → weeks → week`
-
-So when **you edit a habit or its instructions in Admin Portal later, you don't have to edit dashboard.html again.**
-
-One important thing before you paste this: **the `weeklyContent` collection/field structure must match the Admin Portal code we created.** If your current Admin Portal uses a different collection name or field structure, the dashboard won't receive the data correctly.
