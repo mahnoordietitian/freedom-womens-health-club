@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Member Login | Freedom Women's Health Club</title>
+<title>Member Access | Freedom Women's Health Club</title>
 
 <style>
 
@@ -26,6 +26,10 @@ body {
     flex-direction: column;
 }
 
+.container {
+    width: min(1050px, 92%);
+    margin: auto;
+}
 
 /* HEADER */
 
@@ -35,10 +39,7 @@ header {
 }
 
 .header-inner {
-    width: min(1050px, 92%);
-    margin: auto;
     min-height: 75px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -60,33 +61,23 @@ header {
     text-decoration: underline;
 }
 
-
 /* MAIN */
 
 main {
     flex: 1;
     display: flex;
     align-items: center;
-    justify-content: center;
-
-    padding: 60px 20px;
+    padding: 70px 0;
 }
-
-.login-container {
-    width: 100%;
-    max-width: 480px;
-}
-
-
-/* LOGIN CARD */
 
 .login-card {
+    width: min(480px, 100%);
+    margin: auto;
     background: #FFFFFF;
     border: 1px solid #E5DED7;
     border-radius: 16px;
-
-    padding: 45px 40px;
-
+    padding: 42px;
+    text-align: center;
     box-shadow: 0 8px 30px rgba(45,45,45,0.04);
 }
 
@@ -96,169 +87,113 @@ main {
     letter-spacing: 1.5px;
     font-weight: 600;
     text-transform: uppercase;
-
     margin-bottom: 12px;
 }
 
 h1 {
     font-size: 32px;
     font-weight: 500;
-    line-height: 1.2;
-
     margin-bottom: 12px;
 }
 
-.intro {
+.description {
     color: #625D59;
     font-size: 14px;
-
     margin-bottom: 30px;
 }
-
 
 /* FORM */
 
 label {
     display: block;
-
-    font-size: 14px;
+    text-align: left;
+    font-size: 13px;
     font-weight: 600;
-
     margin-bottom: 8px;
 }
 
 input {
     width: 100%;
-
-    padding: 15px;
-
-    border: 1px solid #D9D1CA;
+    padding: 14px 15px;
+    border: 1px solid #DCD4CE;
     border-radius: 7px;
-
-    background: #FFFFFF;
-    color: #2D2D2D;
-
     font-size: 15px;
-
     outline: none;
+    background: #FFFFFF;
 }
 
 input:focus {
     border-color: #6E4A7E;
 }
 
-
 .login-button {
     width: 100%;
-
     border: none;
-    border-radius: 7px;
-
     background: #6E4A7E;
     color: #FFFFFF;
-
     padding: 15px;
-
-    margin-top: 18px;
-
+    border-radius: 7px;
     font-size: 15px;
     font-weight: 600;
-
     cursor: pointer;
+    margin-top: 20px;
 }
 
 .login-button:hover {
     opacity: 0.9;
 }
 
-
 /* MESSAGE */
 
 .message {
-    display: none;
-
     margin-top: 18px;
-
-    padding: 13px 15px;
-
-    border-radius: 7px;
-
     font-size: 13px;
-    line-height: 1.5;
+    min-height: 20px;
 }
 
-.message.error {
-    display: block;
-
-    background: #F8EEEE;
-    color: #7A3E3E;
-
-    border: 1px solid #E8D0D0;
+.error {
+    color: #9A4D4D;
 }
 
-.message.success {
-    display: block;
-
-    background: #F1EAF4;
+.success {
     color: #6E4A7E;
-
-    border: 1px solid #E1D4E5;
 }
 
+/* INFO */
 
-/* NOTE */
-
-.note {
+.info {
+    background: #F1EAF4;
+    border-radius: 9px;
+    padding: 18px;
     margin-top: 25px;
-
-    padding: 17px;
-
-    background: #FBF8F3;
-
-    border: 1px solid #E5DED7;
-    border-radius: 8px;
-
-    color: #625D59;
-
-    font-size: 12px;
-    line-height: 1.6;
+    text-align: left;
 }
 
+.info p {
+    color: #514956;
+    font-size: 13px;
+}
 
 /* FOOTER */
 
 footer {
     background: #302A31;
-
     color: #FFFFFF;
-
     padding: 28px 0;
-
-    text-align: center;
 }
 
 footer p {
     font-size: 13px;
     color: #D4CED5;
-
     margin-bottom: 4px;
 }
-
 
 /* MOBILE */
 
 @media (max-width: 600px) {
 
-    .header-inner {
-        min-height: 65px;
-    }
-
-    .logo {
-        font-size: 16px;
-    }
-
     .login-card {
-        padding: 35px 22px;
+        padding: 30px 22px;
     }
 
     h1 {
@@ -279,7 +214,7 @@ footer p {
 
 <header>
 
-    <div class="header-inner">
+    <div class="container header-inner">
 
         <div class="logo">
             Freedom Women's Health Club
@@ -294,30 +229,29 @@ footer p {
 </header>
 
 
-
 <!-- MAIN -->
 
 <main>
 
-    <div class="login-container">
+    <div class="container">
 
         <div class="login-card">
 
             <div class="small-title">
-                Member Access
+                Members Only
             </div>
 
             <h1>
-                Welcome back
+                Member Access
             </h1>
 
-            <p class="intro">
+            <p class="description">
                 Enter the email address you registered with
-                Freedom Women's Health Club.
+                to continue to your Freedom journey.
             </p>
 
 
-            <form onsubmit="checkMember(event)">
+            <form onsubmit="login(event)">
 
                 <label for="email">
                     Email Address
@@ -346,12 +280,12 @@ footer p {
             ></div>
 
 
-            <div class="note">
+            <div class="info">
 
-                Your email must be approved as an active
-                Freedom Women's Health Club membership.
-                If you have recently joined, please contact
-                Mahnoor on WhatsApp after completing your payment.
+                <p>
+                    Your access is available only to approved
+                    Freedom Women's Health Club members.
+                </p>
 
             </div>
 
@@ -362,63 +296,53 @@ footer p {
 </main>
 
 
-
 <!-- FOOTER -->
 
 <footer>
 
-    <p>
-        Freedom Women's Health Club
-    </p>
+    <div class="container">
 
-    <p>
-        Small steps. Consistent habits. Long-term results.
-    </p>
+        <p>
+            Freedom Women's Health Club
+        </p>
+
+        <p>
+            Small steps. Consistent habits. Long-term results.
+        </p>
+
+    </div>
 
 </footer>
 
 
-
 <script>
-
 
 /*
 ==================================================
-APPROVED MEMBERS
+APPROVED MEMBER EMAILS
+==================================================
 
-ADD YOUR PAID MEMBERS' EMAILS HERE.
+Add the email addresses of your paid members here.
 
 Example:
 
-"mahnoornazar2@gmail.com",
+"member1@gmail.com",
 "member2@gmail.com"
 
-Keep the email inside quotation marks.
+For now, your test email is included below.
 ==================================================
 */
 
-
 const approvedEmails = [
 
-    // Add member emails here
-
-    // "member1@gmail.com",
-    // "member2@gmail.com"
+    "mahnoornazar2@gmail.com"
 
 ];
 
 
-
-/*
-==================================================
-CHECK MEMBER
-==================================================
-*/
-
-function checkMember(event) {
+function login(event) {
 
     event.preventDefault();
-
 
     const emailInput =
         document.getElementById("email");
@@ -426,16 +350,18 @@ function checkMember(event) {
     const message =
         document.getElementById("message");
 
-
     const email =
         emailInput.value.trim().toLowerCase();
 
 
+    /*
+    Check whether the entered email
+    is on the approved member list.
+    */
+
     const isApproved =
         approvedEmails
-        .map(function(memberEmail) {
-            return memberEmail.toLowerCase();
-        })
+        .map(email => email.toLowerCase())
         .includes(email);
 
 
@@ -445,8 +371,13 @@ function checkMember(event) {
             "message success";
 
         message.innerText =
-            "Email verified. Taking you to your member dashboard...";
+            "Access approved. Opening your member dashboard...";
 
+
+        /*
+        Approved member goes
+        directly to the dashboard.
+        */
 
         setTimeout(function() {
 
@@ -462,7 +393,7 @@ function checkMember(event) {
             "message error";
 
         message.innerText =
-            "This email does not have active membership access. Please contact Mahnoor on WhatsApp if you have already completed your payment.";
+            "This email is not registered as a club member. Please contact me on WhatsApp.";
 
     }
 
