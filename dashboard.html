@@ -1059,7 +1059,8 @@ button {
 
             <button
                 class="mobile-menu"
-                id="mobileMenuBtn">
+                id="mobileMenuBtn"
+                type="button">
                 ☰
             </button>
 
@@ -1124,9 +1125,57 @@ button {
 
         <button
             class="primary-btn"
+            type="button"
             onclick="openSection('journeySection')">
 
-          <!-- =========================
+            Start Your Journey
+
+        </button>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="progress-box">
+
+            <div class="progress-top">
+
+                <span>
+                    Overall Progress
+                </span>
+
+                <span id="homeProgressPercent">
+                    0%
+                </span>
+
+            </div>
+
+            <div class="progress-track">
+
+                <div
+                    class="progress-fill"
+                    id="homeProgressFill">
+                </div>
+
+            </div>
+
+            <div
+                class="progress-note"
+                id="homeProgressNote">
+
+                Your journey is ready to begin.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
      JOURNEY
 ========================= -->
 
@@ -1164,1761 +1213,8 @@ button {
 
             </div>
 
-            <div class="start-date-box">
 
-                Current:
-                <strong id="currentProgramDay">
-                    Day 1
-                </strong>
-
-            </div>
-
-        </div>
-
-        <div id="weeksContainer">
-
-            <div class="loading-box">
-                Loading your 90-day journey...
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         WEEK DETAIL
-    ========================= -->
-
-    <div
-        class="week-detail"
-        id="weekDetailView">
-
-        <button
-            class="back-btn"
-            id="backToWeeks">
-
-            ← Back to 90-Day Journey
-
-        </button>
-
-
-        <div class="week-detail-header">
-
-            <div
-                class="small-title"
-                id="detailWeekLabel">
-
-                Week 1
-
-            </div>
-
-            <h1 id="detailWeekTitle">
-                Loading...
-            </h1>
-
-            <p id="detailWeekDescription">
-            </p>
-
-        </div>
-
-
-        <div class="goal-box">
-
-            <div class="goal-label">
-                Week Goal
-            </div>
-
-            <div
-                class="goal-text"
-                id="detailWeekGoal">
-            </div>
-
-        </div>
-
-
-        <div id="weekContentContainer">
-        </div>
-
-
-        <div
-            class="card"
-            id="reflectionCard">
-
-            <h3>
-                Weekly Reflection
-            </h3>
-
-            <p>
-                Take a few minutes to reflect on your week.
-            </p>
-
-            <div id="reflectionFields">
-            </div>
-
-            <button
-                class="save-reflection-btn"
-                id="saveReflection">
-
-                Save Reflection
-
-            </button>
-
-            <span
-                class="reflection-message"
-                id="reflectionMessage">
-            </span>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<script>
-
-/* =========================
-   90-DAY JOURNEY
-========================= */
-
-let selectedWeek = null;
-let memberStartDate = null;
-
-
-/* =========================
-   GET PROGRAM DAY
-========================= */
-
-function getProgramDay() {
-
-    if (!memberStartDate) {
-        return 1;
-    }
-
-    const now = new Date();
-
-    const start = new Date(memberStartDate);
-
-    start.setHours(0, 0, 0, 0);
-    now.setHours(0, 0, 0, 0);
-
-    const difference = now - start;
-
-    const day =
-        Math.floor(
-            difference / 86400000
-        ) + 1;
-
-    return Math.max(
-        1,
-        Math.min(
-            90,
-            day
-        )
-    );
-
-}
-
-
-/* =========================
-   UNLOCKED WEEK
-========================= */
-
-function getUnlockedWeek() {
-
-    const day = getProgramDay();
-
-    return Math.min(
-        13,
-        Math.ceil(day / 7)
-    );
-
-}
-
-
-/* =========================
-   DATE FORMAT
-========================= */
-
-function formatDate(date) {
-
-    if (!date) {
-        return "Not set";
-    }
-
-    return new Intl.DateTimeFormat(
-        "en-PK",
-        {
-            day: "numeric",
-            month: "short",
-            year: "numeric"
-        }
-    ).format(date);
-
-}
-
-
-/* =========================
-   SET MEMBER START DATE
-========================= */
-
-function setMemberStartDate(data) {
-
-    const possibleDates = [
-
-        data?.startDate,
-
-        data?.joiningDate,
-
-        data?.joinDate,
-
-        data?.programStartDate,
-
-        data?.membershipStartDate
-
-    ];
-
-
-    for (
-        const value of possibleDates
-    ) {
-
-        if (!value) {
-            continue;
-        }
-
-
-        /* Firebase Timestamp */
-
-        if (
-            typeof value.toDate === "function"
-        ) {
-
-            const date = value.toDate();
-
-            if (!isNaN(date)) {
-
-                memberStartDate = date;
-
-                return;
-
-            }
-
-        }
-
-
-        /* Normal date */
-
-        const date = new Date(value);
-
-        if (!isNaN(date)) {
-
-            memberStartDate = date;
-
-            return;
-
-        }
-
-    }
-
-
-    /*
-       IMPORTANT:
-       If no start date exists,
-       use today instead of breaking
-       the entire journey.
-    */
-
-    memberStartDate = new Date();
-
-}
-
-
-/* =========================
-   UPDATE JOURNEY HEADER
-========================= */
-
-function updateJourneyHeader() {
-
-    const day =
-        getProgramDay();
-
-    const startDateElement =
-        document.getElementById(
-            "journeyStartDate"
-        );
-
-    const currentDayElement =
-        document.getElementById(
-            "currentProgramDay"
-        );
-
-
-    if (startDateElement) {
-
-        startDateElement.textContent =
-            formatDate(
-                memberStartDate
-            );
-
-    }
-
-
-    if (currentDayElement) {
-
-        currentDayElement.textContent =
-            "Day " + day;
-
-    }
-
-}
-
-
-/* =========================
-   CREATE WEEK CARDS
-========================= */
-
-function renderWeeks() {
-
-    const container =
-        document.getElementById(
-            "weeksContainer"
-        );
-
-    if (!container) {
-        return;
-    }
-
-
-    const currentDay =
-        getProgramDay();
-
-    const unlockedWeek =
-        getUnlockedWeek();
-
-
-    let html = "";
-
-
-    for (
-        let week = 1;
-        week <= 13;
-        week++
-    ) {
-
-        const firstDay =
-            ((week - 1) * 7) + 1;
-
-        const lastDay =
-            Math.min(
-                week * 7,
-                90
-            );
-
-
-        const isUnlocked =
-            week <= unlockedWeek;
-
-
-        const isCurrent =
-            currentDay >= firstDay &&
-            currentDay <= lastDay;
-
-
-        const statusText =
-            isCurrent
-                ? "Current Week"
-                : isUnlocked
-                    ? "Unlocked"
-                    : "Locked";
-
-
-        const lockedClass =
-            isUnlocked
-                ? ""
-                : " locked";
-
-
-        html += `
-
-            <div
-                class="week-card${lockedClass}"
-                data-week="${week}">
-
-                <div class="week-card-top">
-
-                    <div>
-
-                        <div class="small-title">
-                            Week ${week}
-                        </div>
-
-                        <h3>
-                            Days ${firstDay}–${lastDay}
-                        </h3>
-
-                    </div>
-
-                    <span class="week-status">
-                        ${statusText}
-                    </span>
-
-                </div>
-
-                <p>
-                    ${getWeekDescription(week)}
-                </p>
-
-                ${
-                    isUnlocked
-                        ? `
-                            <button
-                                class="primary-btn week-open-btn"
-                                data-week="${week}">
-
-                                Open Week →
-
-                            </button>
-                        `
-                        : `
-                            <div class="locked-message">
-                                🔒 This week will unlock as you progress.
-                            </div>
-                        `
-                }
-
-            </div>
-
-        `;
-
-    }
-
-
-    container.innerHTML = html;
-
-
-    /*
-       Add click events
-    */
-
-    document
-        .querySelectorAll(
-            ".week-open-btn"
-        )
-        .forEach(
-            button => {
-
-                button.addEventListener(
-                    "click",
-                    function () {
-
-                        const week =
-                            Number(
-                                this.dataset.week
-                            );
-
-                        openWeek(week);
-
-                    }
-                );
-
-            }
-        );
-
-}
-
-
-/* =========================
-   WEEK DESCRIPTIONS
-========================= */
-
-function getWeekDescription(week) {
-
-    const descriptions = {
-
-        1:
-            "Reset your routine and build your foundation.",
-
-        2:
-            "Build simple nutrition and hydration habits.",
-
-        3:
-            "Improve your meals and daily movement.",
-
-        4:
-            "Strengthen your consistency and routines.",
-
-        5:
-            "Focus on protein, balanced meals and fat loss.",
-
-        6:
-            "Build strength and improve your daily activity.",
-
-        7:
-            "Learn how to manage hunger and cravings.",
-
-        8:
-            "Strengthen your habits and stay consistent.",
-
-        9:
-            "Learn flexible eating for real life.",
-
-        10:
-            "Improve your relationship with food.",
-
-        11:
-            "Handle social eating and difficult situations.",
-
-        12:
-            "Prepare for long-term weight maintenance.",
-
-        13:
-            "Complete your journey and build your lifetime habits."
-
-    };
-
-
-    return (
-        descriptions[week] ||
-        "Continue building healthy habits."
-    );
-
-}
-
-
-/* =========================
-   OPEN WEEK
-========================= */
-
-function openWeek(week) {
-
-    const unlockedWeek =
-        getUnlockedWeek();
-
-
-    if (week > unlockedWeek) {
-
-        return;
-
-    }
-
-
-    selectedWeek = week;
-
-
-    document.getElementById(
-        "journeyListView"
-    ).style.display = "none";
-
-
-    document.getElementById(
-        "weekDetailView"
-    ).style.display = "block";
-
-
-    document.getElementById(
-        "detailWeekLabel"
-    ).textContent =
-        "Week " + week;
-
-
-    document.getElementById(
-        "detailWeekTitle"
-    ).textContent =
-        getWeekTitle(week);
-
-
-    document.getElementById(
-        "detailWeekDescription"
-    ).textContent =
-        getWeekDescription(week);
-
-
-    document.getElementById(
-        "detailWeekGoal"
-    ).textContent =
-        getWeekGoal(week);
-
-
-    renderWeekContent(week);
-
-}
-
-
-/* =========================
-   WEEK TITLES
-========================= */
-
-function getWeekTitle(week) {
-
-    const titles = {
-
-        1: "Reset & Foundation",
-
-        2: "Build Better Meals",
-
-        3: "Movement & Routine",
-
-        4: "Consistency",
-
-        5: "Fuel for Fat Loss",
-
-        6: "Strength & Metabolism",
-
-        7: "Hunger & Cravings",
-
-        8: "Build Your Routine",
-
-        9: "Flexible Eating",
-
-        10: "Food Freedom",
-
-        11: "Real-Life Situations",
-
-        12: "Maintain Your Progress",
-
-        13: "Your Freedom Lifestyle"
-
-    };
-
-
-    return (
-        titles[week] ||
-        "Your Weekly Journey"
-    );
-
-}
-
-
-/* =========================
-   WEEK GOALS
-========================= */
-
-function getWeekGoal(week) {
-
-    const goals = {
-
-        1:
-            "Create a simple foundation you can follow every day.",
-
-        2:
-            "Build balanced meals and improve hydration.",
-
-        3:
-            "Make movement part of your daily routine.",
-
-        4:
-            "Focus on consistency instead of perfection.",
-
-        5:
-            "Prioritize protein and balanced meals.",
-
-        6:
-            "Add strength and improve your activity.",
-
-        7:
-            "Understand your hunger and manage cravings.",
-
-        8:
-            "Strengthen the habits that are already working.",
-
-        9:
-            "Learn to eat flexibly without losing progress.",
-
-        10:
-            "Build a healthier and calmer relationship with food.",
-
-        11:
-            "Learn how to handle eating outside your normal routine.",
-
-        12:
-            "Prepare your habits for life after the program.",
-
-        13:
-            "Turn your 90-day habits into your lifestyle."
-
-    };
-
-
-    return (
-        goals[week] ||
-        "Keep moving forward one day at a time."
-    );
-
-}
-
-
-/* =========================
-   WEEK CONTENT
-========================= */
-
-function renderWeekContent(week) {
-
-    const container =
-        document.getElementById(
-            "weekContentContainer"
-        );
-
-    if (!container) {
-        return;
-    }
-
-
-    const firstDay =
-        ((week - 1) * 7) + 1;
-
-    const lastDay =
-        Math.min(
-            week * 7,
-            90
-        );
-
-
-    let html = `
-
-        <div class="card">
-
-            <div class="small-title">
-                Your Daily Focus
-            </div>
-
-            <h2>
-                Days ${firstDay}–${lastDay}
-            </h2>
-
-            <p>
-                Complete the habits and lessons assigned
-                to your current week.
-            </p>
-
-        </div>
-
-    `;
-
-
-    for (
-        let day = firstDay;
-        day <= lastDay;
-        day++
-    ) {
-
-        const completed =
-            memberProgress?.days?.[day] === true;
-
-
-        html += `
-
-            <div class="education-card">
-
-                <div class="education-label">
-                    Day ${day}
-                </div>
-
-                <h3>
-                    Your Daily Habit
-                </h3>
-
-                <p>
-                    Follow today's nutrition,
-                    movement, hydration, sleep
-                    and lifestyle focus.
-                </p>
-
-                <label>
-
-                    <input
-                        type="checkbox"
-                        class="day-complete"
-                        data-day="${day}"
-                        ${completed ? "checked" : ""}>
-
-                    Mark Day ${day} Complete
-
-                </label>
-
-            </div>
-
-        `;
-
-    }
-
-
-    container.innerHTML = html;
-
-
-    /*
-       Save completion locally.
-       This prevents the journey from
-       breaking because of Firestore
-       permission problems.
-    */
-
-    container
-        .querySelectorAll(
-            ".day-complete"
-        )
-        .forEach(
-            checkbox => {
-
-                checkbox.addEventListener(
-                    "change",
-                    function () {
-
-                        const day =
-                            Number(
-                                this.dataset.day
-                            );
-
-
-                        if (!memberProgress.days) {
-
-                            memberProgress.days = {};
-
-                        }
-
-
-                        memberProgress.days[day] =
-                            this.checked;
-
-
-                        saveJourneyProgress();
-
-
-                        updateOverallProgress();
-
-                    }
-                );
-
-            }
-        );
-
-}
-
-
-/* =========================
-   SAVE JOURNEY PROGRESS
-========================= */
-
-function saveJourneyProgress() {
-
-    try {
-
-        localStorage.setItem(
-            "freedom90DayProgress",
-            JSON.stringify(
-                memberProgress
-            )
-        );
-
-    } catch (error) {
-
-        console.log(
-            "Progress could not be saved locally.",
-            error
-        );
-
-    }
-
-}
-
-
-/* =========================
-   LOAD JOURNEY PROGRESS
-========================= */
-
-function loadJourneyProgress() {
-
-    try {
-
-        const saved =
-            localStorage.getItem(
-                "freedom90DayProgress"
-            );
-
-
-        if (saved) {
-
-            memberProgress =
-                JSON.parse(saved);
-
-        }
-
-    } catch (error) {
-
-        memberProgress = {};
-
-    }
-
-
-    if (!memberProgress.days) {
-
-        memberProgress.days = {};
-
-    }
-
-}
-
-
-/* =========================
-   OVERALL PROGRESS
-========================= */
-
-function updateOverallProgress() {
-
-    const progressDays =
-        document.getElementById(
-            "progressDays"
-        );
-
-    const progressFill =
-        document.getElementById(
-            "progressFill"
-        );
-
-    const progressNote =
-        document.getElementById(
-            "progressNote"
-        );
-
-
-    if (!progressDays) {
-        return;
-    }
-
-
-    const completedDays =
-        Object.values(
-            memberProgress.days || {}
-        )
-        .filter(
-            value => value === true
-        )
-        .length;
-
-
-    progressDays.textContent =
-        completedDays;
-
-
-    const percentage =
-        Math.min(
-            100,
-            (completedDays / 90) * 100
-        );
-
-
-    if (progressFill) {
-
-        progressFill.style.width =
-            percentage + "%";
-
-    }
-
-
-    if (progressNote) {
-
-        if (completedDays === 0) {
-
-            progressNote.textContent =
-                "Your journey is ready to begin.";
-
-        } else if (completedDays < 90) {
-
-            progressNote.textContent =
-                `${completedDays} day${completedDays === 1 ? "" : "s"} completed. Keep going!`;
-
-        } else {
-
-            progressNote.textContent =
-                "Congratulations! You completed your 90-day journey.";
-
-        }
-
-    }
-
-}
-
-
-/* =========================
-   BACK TO WEEKS
-========================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-        const backButton =
-            document.getElementById(
-                "backToWeeks"
-            );
-
-
-        if (backButton) {
-
-            backButton.addEventListener(
-                "click",
-                function () {
-
-                    document.getElementById(
-                        "weekDetailView"
-                    ).style.display = "none";
-
-
-                    document.getElementById(
-                        "journeyListView"
-                    ).style.display = "block";
-
-                }
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================
-   START JOURNEY
-========================= */
-
-function start90DayJourney(profileData = {}) {
-
-    loadJourneyProgress();
-
-    setMemberStartDate(
-        profileData
-    );
-
-    updateJourneyHeader();
-
-    renderWeeks();
-
-    updateOverallProgress();
-
-}
-
-
-/*
-   If Firebase already gives you the
-   member profile, call:
-
-   start90DayJourney(profileData);
-
-   Example:
-
-   start90DayJourney({
-       startDate: "2026-08-28"
-   });
-*/
-
-</script>
-
-
-
-/* =========================
-   LOAD PROFILE
-========================= */
-
-async function loadProfile(user) {
-
-    try {
-
-        const ref =
-            doc(
-                db,
-                "members",
-                user.email
-            );
-
-
-        const snapshot =
-            await getDoc(ref);
-
-
-        if (snapshot.exists()) {
-
-            const data =
-                snapshot.data();
-
-
-            profileFields.forEach(
-                field => {
-
-                    const element =
-                        document.getElementById(
-                            field
-                        );
-
-
-                    if (
-                        element &&
-                        data[field] !== undefined &&
-                        data[field] !== null
-                    ) {
-
-                        element.value =
-                            data[field];
-
-                    }
-
-                }
-            );
-
-
-            memberStartDate =
-                getStartDate(data);
-
-
-            if (data.name) {
-
-                document.getElementById(
-                    "welcomeName"
-                ).textContent =
-                    data.name;
-
-            }
-
-        } else {
-
-            memberStartDate =
-                new Date();
-
-        }
-
-
-        document.getElementById(
-            "journeyStartDate"
-        ).textContent =
-            formatDate(
-                memberStartDate
-            );
-
-
-        updateProgramDayDisplay();
-
-        calculateProgress();
-
-    } catch(error) {
-
-        console.error(
-            "PROFILE ERROR",
-            error
-        );
-
-        memberStartDate =
-            new Date();
-
-        updateProgramDayDisplay();
-
-        calculateProgress();
-
-    }
-
-}
-
-
-/* =========================
-   SAVE PROFILE
-========================= */
-
-async function saveProfile() {
-
-    if (!currentUser) return;
-
-
-    const data = {
-
-        name:
-            getValue("name"),
-
-        age:
-            getNumber("age"),
-
-        height:
-            getNumber("height"),
-
-        startingWeight:
-            getNumber("startingWeight"),
-
-        currentWeight:
-            getNumber("currentWeight"),
-
-        startingWaist:
-            getNumber("startingWaist"),
-
-        currentWaist:
-            getNumber("currentWaist"),
-
-        startingHip:
-            getNumber("startingHip"),
-
-        currentHip:
-            getNumber("currentHip"),
-
-        email:
-            currentUser.email,
-
-        updatedAt:
-            new Date().toISOString()
-
-    };
-
-
-    try {
-
-        await setDoc(
-
-            doc(
-                db,
-                "members",
-                currentUser.email
-            ),
-
-            data,
-
-            {
-                merge: true
-            }
-
-        );
-
-
-        if (data.name) {
-
-            document.getElementById(
-                "welcomeName"
-            ).textContent =
-                data.name;
-
-        }
-
-
-        calculateProgress();
-
-
-        document.getElementById(
-            "saveMessage"
-        ).textContent =
-            "Saved successfully.";
-
-
-        setTimeout(() => {
-
-            document.getElementById(
-                "saveMessage"
-            ).textContent = "";
-
-        },3000);
-
-
-    } catch(error) {
-
-        console.error(
-            "SAVE ERROR",
-            error
-        );
-
-
-        document.getElementById(
-            "saveMessage"
-        ).textContent =
-            "Unable to save. Check Firebase rules.";
-
-    }
-
-}
-
-
-/* =========================
-   LOAD MEMBER PROGRESS
-========================= */
-
-async function loadMemberProgress() {
-
-    if (!currentUser) return;
-
-
-    try {
-
-        const ref =
-            doc(
-                db,
-                "memberProgress",
-                currentUser.email
-            );
-
-
-        const snapshot =
-            await getDoc(ref);
-
-
-        memberProgress =
-            snapshot.exists()
-                ? snapshot.data()
-                : {};
-
-    } catch(error) {
-
-        console.error(
-            "PROGRESS LOAD ERROR",
-            error
-        );
-
-        memberProgress = {};
-
-    }
-
-}
-
-
-/* =========================
-   SAVE PROGRESS
-========================= */
-
-async function saveMemberProgress() {
-
-    if (!currentUser) return;
-
-
-    try {
-
-        await setDoc(
-
-            doc(
-                db,
-                "memberProgress",
-                currentUser.email
-            ),
-
-            memberProgress,
-
-            {
-                merge: true
-            }
-
-        );
-
-    } catch(error) {
-
-        console.error(
-            "PROGRESS SAVE ERROR",
-            error
-        );
-
-    }
-
-}
-
-
-/* =========================
-   WEEK NUMBER
-========================= */
-
-function getWeekNumber(week) {
-
-    const values = [
-
-        week.weekNumber,
-        week.week,
-        week.number,
-        week.order
-
-    ];
-
-
-    for (
-        const value of values
-    ) {
-
-        const number =
-            Number(value);
-
-
-        if (
-            Number.isFinite(number) &&
-            number > 0
-        ) {
-
-            return number;
-
-        }
-
-    }
-
-
-    const match =
-        String(
-            week.id || ""
-        ).match(
-            /(\d+)/
-        );
-
-
-    return match
-        ? Number(match[1])
-        : 999;
-
-}
-
-
-/* =========================
-   DAYS
-========================= */
-
-function getDays(week) {
-
-    if (
-        Array.isArray(
-            week.days
-        )
-    ) {
-
-        return week.days;
-
-    }
-
-
-    if (
-        Array.isArray(
-            week.dayContent
-        )
-    ) {
-
-        return week.dayContent;
-
-    }
-
-
-    if (
-        Array.isArray(
-            week.dailyContent
-        )
-    ) {
-
-        return week.dailyContent;
-
-    }
-
-
-    return [];
-
-}
-
-
-/* =========================
-   WEEKLY HABITS
-========================= */
-
-function getWeeklyHabits(week) {
-
-    if (
-        Array.isArray(
-            week.habits
-        )
-    ) {
-
-        return week.habits;
-
-    }
-
-
-    if (
-        Array.isArray(
-            week.weeklyHabits
-        )
-    ) {
-
-        return week.weeklyHabits;
-
-    }
-
-
-    return [];
-
-}
-
-
-/* =========================
-   DAY HABITS
-========================= */
-
-function getDayHabits(day) {
-
-    if (
-        Array.isArray(
-            day.habits
-        )
-    ) {
-
-        return day.habits;
-
-    }
-
-
-    if (
-        Array.isArray(
-            day.tasks
-        )
-    ) {
-
-        return day.tasks;
-
-    }
-
-
-    if (
-        Array.isArray(
-            day.dailyHabits
-        )
-    ) {
-
-        return day.dailyHabits;
-
-    }
-
-
-    return [];
-
-}
-
-
-/* =========================
-   LOAD WEEKLY CONTENT
-========================= */
-
-async function loadWeeklyContent() {
-
-    const container =
-        document.getElementById(
-            "weeksContainer"
-        );
-
-
-    try {
-
-        const snapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "weeklyContent"
-                )
-            );
-
-
-        weeklyContent = [];
-
-
-        snapshot.forEach(
-            docSnap => {
-
-                weeklyContent.push({
-
-                    id:
-                        docSnap.id,
-
-                    ...docSnap.data()
-
-                });
-
-            }
-        );
-
-
-        weeklyContent.sort(
-            (
-                a,
-                b
-            ) =>
-                getWeekNumber(a) -
-                getWeekNumber(b)
-        );
-
-
-        renderWeeks();
-
-
-    } catch(error) {
-
-        console.error(
-            "WEEK CONTENT ERROR",
-            error
-        );
-
-
-        container.innerHTML = `
-
-            <div class="error-box">
-
-                Your journey could not be loaded.
-
-                <br><br>
-
-                ${escapeHTML(
-                    error.message
-                )}
-
-            </div>
-
-        `;
-
-    }
-
-}
-
-
-/* =========================
-   PHASES
-========================= */
-
-const phases = {
-
-    1: {
-
-        title:
-            "Phase 1 · Reset & Foundation",
-
-        heading:
-            "Reset & Foundation",
-
-        description:
-            "Build simple habits and create a strong foundation."
-
-    },
-
-    2: {
-
-        title:
-            "Phase 2 · Build & Progress",
-
-        heading:
-            "Build & Progress",
-
-        description:
-            "Build on your foundation and strengthen your routine."
-
-    },
-
-    3: {
-
-        title:
-            "Phase 3 · Thrive & Maintain",
-
-        heading:
-            "Thrive & Maintain",
-
-        description:
-            "Build confidence and create habits you can maintain."
-
-    },
-
-    4: {
-
-        title:
-            "Final Stretch · Days 85–90",
-
-        heading:
-            "Complete Your 90 Days",
-
-        description:
-            "Finish strong and prepare for long-term maintenance."
-
-    }
-
-};
-
-
-/* =========================
-   RENDER WEEKS
-========================= */
-
-function renderWeeks() {
-
-    const container =
-        document.getElementById(
-            "weeksContainer"
-        );
-
-
-    if (!weeklyContent.length) {
-
-        container.innerHTML = `
-
-            <div class="empty-box">
-
-                No weekly content has been added yet.
-
-                <br><br>
-
-                Your coach can add the weeks from
-                the Admin Portal.
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    const unlockedWeek =
-        getUnlockedWeek();
-
-
-    let html = "";
-
-
-    [1,2,3,4].forEach(
-        phaseNumber => {
-
-            let start;
-            let end;
-
-
-            if (phaseNumber === 1) {
-
-                start = 1;
-                end = 4;
-
-            }
-
-            else if (phaseNumber === 2) {
-
-                start = 5;
-                end = 8;
-
-            }
-
-            else if (phaseNumber === 3) {
-
-                start = 9;
-                end = 12;
-
-            }
-
-            else {
-
-                start = 13;
-                end = 13;
-
-            }
-
-
-            const weeks =
-                weeklyContent.filter(
-                    week => {
-
-                        const number =
-                            getWeekNumber(
-                                week
-                            );
-
-
-                        return (
-                            number >= start &&
-                            number <= end
-                        );
+           
 
                     }
                 );
@@ -4822,4 +3118,1885 @@ function renderLifetimeFallback() {
 }
 
 
+
+               }
+            );
+
+
+        if (!weeks.length) return;
+
+
+        const phase =
+            phases[
+                phaseNumber
+            ];
+
+
+        html += `
+
+            <div class="phase-card">
+
+                <div class="phase-header">
+
+                    <div class="phase-label">
+
+                        ${escapeHTML(
+                            phase.title
+                        )}
+
+                    </div>
+
+                    <h2>
+
+                        ${escapeHTML(
+                            phase.heading
+                        )}
+
+                    </h2>
+
+                    <p>
+
+                        ${escapeHTML(
+                            phase.description
+                        )}
+
+                    </p>
+
+                </div>
+
+                <div class="week-list">
+
+        `;
+
+
+        weeks.forEach(
+            week => {
+
+                html +=
+                    renderWeekCard(
+                        week,
+                        unlockedWeek
+                    );
+
+            }
+        );
+
+
+        html += `
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+);
+
+
+container.innerHTML =
+    html;
+
+}
+/* =========================
+WEEK CARD
+========================= */
+function renderWeekCard(
+week,
+unlockedWeek
+) {
+const number =
+    getWeekNumber(
+        week
+    );
+
+
+const locked =
+    number >
+    unlockedWeek;
+
+
+const title =
+    week.title ||
+    week.name ||
+    `Week ${number}`;
+
+
+const days =
+    getDays(
+        week
+    );
+
+
+const percent =
+    getWeekCompletion(
+        week
+    );
+
+
+const startDay =
+    (
+        (number - 1) *
+        7
+    ) + 1;
+
+
+const endDay =
+    Math.min(
+        90,
+        number * 7
+    );
+
+
+return `
+
+    <div class="week-card ${locked ? "locked" : ""}">
+
+        <button
+            class="week-button"
+            ${locked ? "disabled" : ""}
+            onclick="${
+                locked
+                    ? ""
+                    : `openWeek('${escapeHTML(
+                        week.id
+                    )}')`
+            }">
+
+            <div class="week-left">
+
+                <div class="week-number">
+
+                    ${String(
+                        number
+                    ).padStart(
+                        2,
+                        "0"
+                    )}
+
+                </div>
+
+                <div class="week-title">
+
+                    <h3>
+
+                        ${escapeHTML(
+                            title
+                        )}
+
+                    </h3>
+
+                    <p>
+
+                        Days ${startDay}–${endDay}
+
+                        ${
+                            days.length
+                                ? ` · ${days.length} days`
+                                : ""
+                        }
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="week-right">
+
+                ${
+                    locked
+                        ? `
+                            <span class="lock-icon">
+                                🔒
+                            </span>
+                          `
+                        : `
+                            <span class="week-percent">
+                                ${percent}% complete
+                            </span>
+
+                            <span>
+                                →
+                            </span>
+                          `
+                }
+
+            </div>
+
+        </button>
+
+    </div>
+
+`;
+
+}
+/* =========================
+OPEN WEEK
+========================= */
+window.openWeek =
+function(weekId) {
+const week =
+    weeklyContent.find(
+        item =>
+            item.id === weekId
+    );
+
+
+if (!week) return;
+
+
+if (
+    getWeekNumber(week) >
+    getUnlockedWeek()
+) {
+
+    return;
+
+}
+
+
+selectedWeek =
+    week;
+
+
+document.getElementById(
+    "journeyListView"
+).style.display =
+    "none";
+
+
+document.getElementById(
+    "weekDetailView"
+).style.display =
+    "block";
+
+
+renderSelectedWeek();
+
+
+window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+});
+
+};
+/* =========================
+RENDER SELECTED WEEK
+========================= */
+function renderSelectedWeek() {
+if (!selectedWeek) return;
+
+
+const number =
+    getWeekNumber(
+        selectedWeek
+    );
+
+
+document.getElementById(
+    "detailWeekLabel"
+).textContent =
+    `Week ${number}`;
+
+
+document.getElementById(
+    "detailWeekTitle"
+).textContent =
+    selectedWeek.title ||
+    selectedWeek.name ||
+    `Week ${number}`;
+
+
+document.getElementById(
+    "detailWeekDescription"
+).textContent =
+    selectedWeek.description ||
+    selectedWeek.details ||
+    "";
+
+
+document.getElementById(
+    "detailWeekGoal"
+).textContent =
+    selectedWeek.goal ||
+    selectedWeek.weekGoal ||
+    "Complete your habits consistently this week.";
+
+
+const days =
+    getDays(
+        selectedWeek
+    );
+
+
+const weeklyHabits =
+    getWeeklyHabits(
+        selectedWeek
+    );
+
+
+let html = "";
+
+
+if (days.length) {
+
+    days.forEach(
+        (
+            day,
+            index
+        ) => {
+
+            html +=
+                renderDayCard(
+                    selectedWeek,
+                    day,
+                    index
+                );
+
+        }
+    );
+
+}
+
+
+else if (
+    weeklyHabits.length
+) {
+
+    html += `
+
+        <div class="day-card">
+
+            <div class="day-card-header">
+
+                <div>
+
+                    <div class="day-number">
+                        Weekly Focus
+                    </div>
+
+                    <div class="day-title">
+                        This Week
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="day-body">
+
+                <div class="habit-list">
+
+                    ${weeklyHabits.map(
+                        (
+                            habit,
+                            index
+                        ) =>
+                            renderHabit(
+                                selectedWeek.id,
+                                "weekly",
+                                index,
+                                habit
+                            )
+                    ).join("")}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+else {
+
+    html = `
+
+        <div class="empty-box">
+
+            No daily content has been added to this week yet.
+
+        </div>
+
+    `;
+
+}
+
+
+document.getElementById(
+    "weekContentContainer"
+).innerHTML =
+    html;
+
+
+renderReflection();
+
+}
+/* =========================
+RENDER DAY
+========================= */
+function renderDayCard(
+week,
+day,
+index
+) {
+const weekNumber =
+    getWeekNumber(
+        week
+    );
+
+
+const globalDay =
+    day.dayNumber ||
+    day.globalDay ||
+    (
+        (
+            weekNumber -
+            1
+        ) * 7
+    ) +
+    index +
+    1;
+
+
+const title =
+    day.title ||
+    day.name ||
+    `Day ${globalDay}`;
+
+
+const description =
+    day.description ||
+    day.details ||
+    "";
+
+
+const habits =
+    getDayHabits(
+        day
+    );
+
+
+const completed =
+    habits.filter(
+        (
+            _,
+            habitIndex
+        ) =>
+            isHabitComplete(
+                week.id,
+                index,
+                habitIndex
+            )
+    ).length;
+
+
+const percent =
+    habits.length
+        ? Math.round(
+            (
+                completed /
+                habits.length
+            ) * 100
+        )
+        : 0;
+
+
+const image =
+    day.image ||
+    day.imageUrl ||
+    getDayImage(
+        globalDay
+    );
+
+
+let html = `
+
+    <div class="day-card">
+
+        <div class="day-card-header">
+
+            <div>
+
+                <div class="day-number">
+
+                    Day ${globalDay}
+
+                </div>
+
+                <div class="day-title">
+
+                    ${escapeHTML(
+                        title
+                    )}
+
+                </div>
+
+                ${
+                    description
+                        ? `
+                            <div class="day-description">
+
+                                ${escapeHTML(
+                                    description
+                                )}
+
+                            </div>
+                          `
+                        : ""
+                }
+
+            </div>
+
+            <div class="day-badge">
+
+                ${
+                    habits.length
+                        ? `${percent}% complete`
+                        : "Daily Focus"
+                }
+
+            </div>
+
+        </div>
+
+
+        <div class="day-body">
+
+`;
+
+
+if (image) {
+
+    html += `
+
+        <img
+            class="day-image"
+            src="${escapeHTML(image)}"
+            alt="Day ${globalDay}"
+            loading="lazy">
+
+    `;
+
+}
+
+
+html +=
+    renderDailyContent(
+        day
+    );
+
+
+if (habits.length) {
+
+    html += `
+
+        <div class="daily-section">
+
+            <div class="daily-section-title">
+                Today's Habits
+            </div>
+
+            <div class="habit-list">
+
+                ${habits.map(
+                    (
+                        habit,
+                        habitIndex
+                    ) =>
+                        renderHabit(
+                            week.id,
+                            index,
+                            habitIndex,
+                            habit
+                        )
+                ).join("")}
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+html += `
+
+        </div>
+
+    </div>
+
+`;
+
+
+return html;
+
+}
+/* =========================
+DAILY CONTENT
+========================= */
+function renderDailyContent(day) {
+const fields = [
+
+    [
+        "Movement",
+        day.movement ||
+        day.exercise ||
+        day.activity
+    ],
+
+    [
+        "Nutrition",
+        day.nutrition ||
+        day.food ||
+        day.meal
+    ],
+
+    [
+        "Hydration",
+        day.hydration ||
+        day.water
+    ],
+
+    [
+        "Sleep",
+        day.sleep
+    ],
+
+    [
+        "Mind & Stress",
+        day.mind ||
+        day.stress ||
+        day.mindset
+    ],
+
+    [
+        "Education",
+        day.education ||
+        day.lesson
+    ]
+
+];
+
+
+return fields
+    .filter(
+        item =>
+            item[1]
+    )
+    .map(
+        item => `
+
+            <div class="daily-section">
+
+                <div class="daily-section-title">
+
+                    ${escapeHTML(
+                        item[0]
+                    )}
+
+                </div>
+
+                <div class="daily-text">
+
+                    ${escapeHTML(
+                        item[1]
+                    )}
+
+                </div>
+
+            </div>
+
+        `
+    )
+    .join("");
+
+}
+/* =========================
+DAY IMAGES
+========================= */
+function getDayImage(day) {
+const images = [
+
+    "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1000&q=80",
+
+    "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=80",
+
+    "https://images.unsplash.com/photo-1546484959-fb8a3e2f5f6d?auto=format&fit=crop&w=1000&q=80",
+
+    "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1000&q=80",
+
+    "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1000&q=80",
+
+    "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1000&q=80",
+
+    "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80"
+
+];
+
+
+return images[
+    (
+        day - 1
+    ) %
+    images.length
+];
+
+}
+/* =========================
+HABIT
+========================= */
+function renderHabit(
+weekId,
+dayKey,
+habitIndex,
+habit
+) {
+if (
+    typeof habit === "string"
+) {
+
+    habit = {
+        name: habit
+    };
+
+}
+
+
+habit =
+    habit || {};
+
+
+const name =
+    habit.name ||
+    habit.habit ||
+    habit.title ||
+    "Habit";
+
+
+const target =
+    habit.target ||
+    habit.value ||
+    habit.goal ||
+    "";
+
+
+const details =
+    habit.details ||
+    habit.instructions ||
+    habit.description ||
+    "";
+
+
+const checked =
+    isHabitComplete(
+        weekId,
+        dayKey,
+        habitIndex
+    );
+
+
+return `
+
+    <label class="habit-item">
+
+        <input
+            type="checkbox"
+            ${checked ? "checked" : ""}
+            onchange="toggleHabit(
+                '${escapeHTML(weekId)}',
+                '${escapeHTML(dayKey)}',
+                ${habitIndex},
+                this.checked
+            )">
+
+        <div>
+
+            <div class="habit-name">
+
+                ${escapeHTML(
+                    name
+                )}
+
+            </div>
+
+            ${
+                target
+                    ? `
+                        <div class="habit-target">
+
+                            ${escapeHTML(
+                                target
+                            )}
+
+                        </div>
+                      `
+                    : ""
+            }
+
+            ${
+                details
+                    ? `
+                        <div class="habit-details">
+
+                            ${escapeHTML(
+                                details
+                            )}
+
+                        </div>
+                      `
+                    : ""
+            }
+
+        </div>
+
+    </label>
+
+`;
+
+}
+/* =========================
+HABIT CHECK
+========================= */
+function isHabitComplete(
+weekId,
+dayKey,
+habitIndex
+) {
+return !!(
+    memberProgress.weeks &&
+    memberProgress.weeks[weekId] &&
+    memberProgress.weeks[weekId].habits &&
+    memberProgress.weeks[weekId].habits[
+        `${dayKey}_${habitIndex}`
+    ]
+);
+
+}
+/* =========================
+TOGGLE HABIT
+========================= */
+window.toggleHabit =
+async function(
+weekId,
+dayKey,
+habitIndex,
+checked
+) {
+if (!memberProgress.weeks) {
+
+    memberProgress.weeks = {};
+
+}
+
+
+if (
+    !memberProgress.weeks[
+        weekId
+    ]
+) {
+
+    memberProgress.weeks[
+        weekId
+    ] = {};
+
+}
+
+
+if (
+    !memberProgress.weeks[
+        weekId
+    ].habits
+) {
+
+    memberProgress.weeks[
+        weekId
+    ].habits = {};
+
+}
+
+
+memberProgress.weeks[
+    weekId
+].habits[
+    `${dayKey}_${habitIndex}`
+] =
+    checked;
+
+
+await saveMemberProgress();
+
+
+renderSelectedWeek();
+
+renderWeeks();
+
+updateOverallProgress();
+
+};
+/* =========================
+WEEK COMPLETION
+========================= */
+function getWeekCompletion(week) {
+const days =
+    getDays(
+        week
+    );
+
+
+const weeklyHabits =
+    getWeeklyHabits(
+        week
+    );
+
+
+let total = 0;
+
+let completed = 0;
+
+
+if (days.length) {
+
+    days.forEach(
+        (
+            day,
+            dayIndex
+        ) => {
+
+            const habits =
+                getDayHabits(
+                    day
+                );
+
+
+            habits.forEach(
+                (
+                    _,
+                    habitIndex
+                ) => {
+
+                    total++;
+
+
+                    if (
+                        isHabitComplete(
+                            week.id,
+                            dayIndex,
+                            habitIndex
+                        )
+                    ) {
+
+                        completed++;
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+else {
+
+    weeklyHabits.forEach(
+        (
+            _,
+            index
+        ) => {
+
+            total++;
+
+
+            if (
+                isHabitComplete(
+                    week.id,
+                    "weekly",
+                    index
+                )
+            ) {
+
+                completed++;
+
+            }
+
+        }
+    );
+
+}
+
+
+return total
+    ? Math.round(
+        (
+            completed /
+            total
+        ) * 100
+    )
+    : 0;
+
+}
+/* =========================
+COMPLETED DAYS
+========================= */
+function getCompletedDays() {
+let completed = 0;
+
+
+weeklyContent.forEach(
+    week => {
+
+        const days =
+            getDays(
+                week
+            );
+
+
+        days.forEach(
+            (
+                day,
+                index
+            ) => {
+
+                const habits =
+                    getDayHabits(
+                        day
+                    );
+
+
+                if (
+                    habits.length &&
+                    habits.every(
+                        (
+                            _,
+                            habitIndex
+                        ) =>
+                            isHabitComplete(
+                                week.id,
+                                index,
+                                habitIndex
+                            )
+                    )
+                ) {
+
+                    completed++;
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+return Math.min(
+    90,
+    completed
+);
+
+}
+/* =========================
+OVERALL PROGRESS
+========================= */
+function updateOverallProgress() {
+const completed =
+    getCompletedDays();
+
+
+const percentage =
+    Math.round(
+        (
+            completed /
+            90
+        ) * 100
+    );
+
+
+const progressFill =
+    document.getElementById(
+        "progressFill"
+    );
+
+
+const progressDays =
+    document.getElementById(
+        "progressDays"
+    );
+
+
+const progressNote =
+    document.getElementById(
+        "progressNote"
+    );
+
+
+if (progressFill) {
+
+    progressFill.style.width =
+        percentage + "%";
+
+}
+
+
+if (progressDays) {
+
+    progressDays.textContent =
+        completed;
+
+}
+
+
+if (progressNote) {
+
+    const remaining =
+        90 -
+        completed;
+
+
+    progressNote.textContent =
+        completed >= 90
+            ? "You completed your 90-day journey. Your Lifetime Freedom Habits are now your foundation."
+            : `${remaining} day${remaining === 1 ? "" : "s"} remaining. Keep building consistency.`;
+
+}
+
+}
+/* =========================
+PROGRAM DAY DISPLAY
+========================= */
+function updateProgramDayDisplay() {
+const day =
+    getProgramDay();
+
+
+const week =
+    getUnlockedWeek();
+
+
+const element =
+    document.getElementById(
+        "currentProgramDay"
+    );
+
+
+if (element) {
+
+    element.textContent =
+        `Day ${day} · Week ${week}`;
+
+}
+
+}
+/* =========================
+REFLECTION
+========================= */
+function getReflectionQuestions() {
+if (!selectedWeek) return [];
+
+
+if (
+    Array.isArray(
+        selectedWeek.reflection
+    )
+) {
+
+    return selectedWeek.reflection;
+
+}
+
+
+if (
+    Array.isArray(
+        selectedWeek.reflectionQuestions
+    )
+) {
+
+    return selectedWeek.reflectionQuestions;
+
+}
+
+
+return [
+
+    "What was your biggest win this week?",
+
+    "What was your biggest challenge?",
+
+    "What habit do you want to improve next week?"
+
+];
+
+}
+function getSavedReflection(index) {
+if (
+    !selectedWeek ||
+    !memberProgress.weeks ||
+    !memberProgress.weeks[
+        selectedWeek.id
+    ]
+) {
+
+    return "";
+
+}
+
+
+return (
+    memberProgress
+        .weeks[
+            selectedWeek.id
+        ]
+        .reflection?.[index]
+    || ""
+);
+
+}
+function renderReflection() {
+const questions =
+    getReflectionQuestions();
+
+
+const container =
+    document.getElementById(
+        "reflectionFields"
+    );
+
+
+if (!container) return;
+
+
+container.innerHTML =
+    questions.map(
+        (
+            question,
+            index
+        ) => {
+
+            const text =
+                typeof question === "string"
+                    ? question
+                    : question.question ||
+                      question.title ||
+                      `Reflection ${index + 1}`;
+
+
+            return `
+
+                <div class="reflection-field">
+
+                    <label>
+
+                        ${escapeHTML(
+                            text
+                        )}
+
+                    </label>
+
+                    <textarea
+                        id="reflection_${index}"
+                        placeholder="Write your reflection here..."
+                    >${escapeHTML(
+                        getSavedReflection(
+                            index
+                        )
+                    )}</textarea>
+
+                </div>
+
+            `;
+
+        }
+    ).join("");
+
+}
+async function saveReflection() {
+if (!selectedWeek) return;
+
+
+const questions =
+    getReflectionQuestions();
+
+
+if (!memberProgress.weeks) {
+
+    memberProgress.weeks = {};
+
+}
+
+
+if (
+    !memberProgress.weeks[
+        selectedWeek.id
+    ]
+) {
+
+    memberProgress.weeks[
+        selectedWeek.id
+    ] = {};
+
+}
+
+
+const answers = {};
+
+
+questions.forEach(
+    (
+        _,
+        index
+    ) => {
+
+        const field =
+            document.getElementById(
+                `reflection_${index}`
+            );
+
+
+        answers[index] =
+            field
+                ? field.value.trim()
+                : "";
+
+    }
+);
+
+
+memberProgress.weeks[
+    selectedWeek.id
+].reflection =
+    answers;
+
+
+memberProgress.weeks[
+    selectedWeek.id
+].reflectionUpdatedAt =
+    new Date().toISOString();
+
+
+await saveMemberProgress();
+
+
+const message =
+    document.getElementById(
+        "reflectionMessage"
+    );
+
+
+if (message) {
+
+    message.textContent =
+        "Reflection saved.";
+
+
+    setTimeout(() => {
+
+        message.textContent = "";
+
+    }, 3000);
+
+}
+
+}
+/* =========================
+LIFETIME HABITS
+UNLOCK AFTER DAY 90
+========================= */
+async function loadLifetimeHabits() {
+const container =
+    document.getElementById(
+        "lifetimeHabitsContainer"
+    );
+
+
+if (!container) return;
+
+
+const programDay =
+    getProgramDay();
+
+
+if (programDay < 90) {
+
+    container.innerHTML = `
+
+        <div class="lifetime-locked">
+
+            <div class="lifetime-lock-icon">
+                🔒
+            </div>
+
+            <h3>
+                Lifetime Freedom Habits
+            </h3>
+
+            <p>
+                Complete your 90-Day Journey first.
+                Your Lifetime Freedom Habits will unlock
+                after Day 90.
+            </p>
+
+            <div class="lifetime-unlock-progress">
+
+                <strong>
+                    Day ${programDay} of 90
+                </strong>
+
+                <div class="progress-track">
+
+                    <div
+                        class="progress-fill"
+                        style="width:${(
+                            programDay / 90
+                        ) * 100}%">
+                    </div>
+
+                </div>
+
+                <span>
+                    Keep going — you're building habits
+                    for life.
+                </span>
+
+            </div>
+
+        </div>
+
+    `;
+
+    return;
+
+}
+
+
+try {
+
+    const snapshot =
+        await getDocs(
+            collection(
+                db,
+                "lifetimeHabits"
+            )
+        );
+
+
+    lifetimeHabits = [];
+
+
+    snapshot.forEach(
+        docSnap => {
+
+            lifetimeHabits.push({
+
+                id:
+                    docSnap.id,
+
+                ...docSnap.data()
+
+            });
+
+        }
+    );
+
+
+    lifetimeHabits.sort(
+        (
+            a,
+            b
+        ) =>
+            Number(
+                a.order ||
+                a.number ||
+                999
+            ) -
+            Number(
+                b.order ||
+                b.number ||
+                999
+            )
+    );
+
+
+    renderLifetimeHabits();
+
+
+} catch(error) {
+
+    console.error(
+        "LIFETIME ERROR",
+        error
+    );
+
+
+    renderLifetimeFallback();
+
+}
+
+}
+/* =========================
+LIFETIME RENDER
+========================= */
+function renderLifetimeHabits() {
+const container =
+    document.getElementById(
+        "lifetimeHabitsContainer"
+    );
+
+
+if (!container) return;
+
+
+if (!lifetimeHabits.length) {
+
+    renderLifetimeFallback();
+
+    return;
+
+}
+
+
+container.innerHTML = `
+
+    <div class="lifetime-unlocked-message">
+
+        <div class="small-title">
+            Day 90 Complete
+        </div>
+
+        <h2>
+            Your Lifetime Freedom Starts Now
+        </h2>
+
+        <p>
+            You've completed your 90-Day Journey.
+            Now continue with the habits that helped
+            you create lasting change.
+        </p>
+
+    </div>
+
+    <div class="lifetime-grid">
+
+        ${lifetimeHabits.map(
+            (
+                item,
+                index
+            ) => {
+
+                const title =
+                    item.title ||
+                    item.name ||
+                    item.category ||
+                    "Freedom Habit";
+
+
+                const description =
+                    item.description ||
+                    item.details ||
+                    "";
+
+
+                const habits =
+                    Array.isArray(
+                        item.habits
+                    )
+                        ? item.habits
+                        : [];
+
+
+                const image =
+                    item.image ||
+                    item.imageUrl ||
+                    getLifetimeImage(
+                        index
+                    );
+
+
+                return `
+
+                    <div class="lifetime-card">
+
+                        <img
+                            class="lifetime-image"
+                            src="${escapeHTML(
+                                image
+                            )}"
+                            alt="${escapeHTML(
+                                title
+                            )}"
+                            loading="lazy">
+
+                        <div class="lifetime-content">
+
+                            <h3>
+                                ${escapeHTML(
+                                    title
+                                )}
+                            </h3>
+
+                            ${
+                                description
+                                    ? `
+                                        <p>
+                                            ${escapeHTML(
+                                                description
+                                            )}
+                                        </p>
+                                      `
+                                    : ""
+                            }
+
+                            ${
+                                habits.length
+                                    ? habits.map(
+                                        habit => {
+
+                                            const name =
+                                                typeof habit === "string"
+                                                    ? habit
+                                                    : habit.name ||
+                                                      habit.habit ||
+                                                      habit.title ||
+                                                      "Habit";
+
+
+                                            const target =
+                                                typeof habit === "object"
+                                                    ? habit.target ||
+                                                      habit.goal ||
+                                                      ""
+                                                    : "";
+
+
+                                            return `
+
+                                                <div class="lifetime-habit">
+
+                                                    <strong>
+                                                        ${escapeHTML(
+                                                            name
+                                                        )}
+                                                    </strong>
+
+                                                    ${
+                                                        target
+                                                            ? `<br>${escapeHTML(target)}`
+                                                            : ""
+                                                    }
+
+                                                </div>
+
+                                            `;
+
+                                        }
+                                    ).join("")
+                                    : ""
+                            }
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        ).join("")}
+
+    </div>
+
+`;
+
+}
+/* =========================
+FALLBACK LIFETIME
+========================= */
+function renderLifetimeFallback() {
+const container =
+    document.getElementById(
+        "lifetimeHabitsContainer"
+    );
+
+
+if (!container) return;
+
+
+const items = [
+
+    {
+        title:
+            "Move Your Body",
+
+        description:
+            "Keep movement as part of your normal routine.",
+
+        habits:
+            [
+                "Walk regularly",
+                "Strength train consistently",
+                "Choose movement you enjoy"
+            ]
+    },
+
+    {
+        title:
+            "Build Balanced Meals",
+
+        description:
+            "Continue using the balanced eating habits you learned during your 90 days.",
+
+        habits:
+            [
+                "Include protein",
+                "Add vegetables or fruit",
+                "Enjoy your favourite foods mindfully"
+            ]
+    },
+
+    {
+        title:
+            "Protect Your Sleep",
+
+        description:
+            "Good sleep supports your energy, appetite and daily routine.",
+
+        habits:
+            [
+                "Keep a consistent sleep routine",
+                "Reduce screens before bed",
+                "Prioritize rest"
+            ]
+    },
+
+    {
+        title:
+            "Stay Hydrated",
+
+        description:
+            "Make water your everyday default drink.",
+
+        habits:
+            [
+                "Keep water nearby",
+                "Drink regularly throughout the day"
+            ]
+    },
+
+    {
+        title:
+            "Manage Stress",
+
+        description:
+            "Create small moments of calm instead of waiting until you feel overwhelmed.",
+
+        habits:
+            [
+                "Take mindful breaks",
+                "Practice deep breathing",
+                "Make time for yourself"
+            ]
+    },
+
+    {
+        title:
+            "Keep Checking In",
+
+        description:
+            "Progress is easier to maintain when you continue paying attention to your habits.",
+
+        habits:
+            [
+                "Notice your eating patterns",
+                "Track meaningful progress",
+                "Adjust early instead of giving up"
+            ]
+    }
+
+];
+
+
+container.innerHTML = `
+
+    <div class="lifetime-unlocked-message">
+
+        <div class="small-title">
+            Day 90 Complete
+        </div>
+
+        <h2>
+            Your Lifetime Freedom Starts Now
+        </h2>
+
+        <p>
+            You've completed your 90-Day Journey.
+            Keep these habits as your long-term foundation.
+        </p>
+
+    </div>
+
+    <div class="lifetime-grid">
+
+        ${items.map(
+            (
+                item,
+                index
+            ) => `
+
+                <div class="lifetime-card">
+
+                    <img
+                        class="lifetime-image"
+                        src="${getLifetimeImage(index)}"
+                        alt="${escapeHTML(
+                            item.title
+                        )}"
+                        loading="lazy">
+
+                    <div class="lifetime-content">
+
+                        <h3>
+                            ${escapeHTML(
+                                item.title
+                            )}
+                        </h3>
+
+                        <p>
+                            ${escapeHTML(
+                                item.description
+                            )}
+                        </p>
+
+                        ${item.habits.map(
+                            habit => `
+
+                                <div class="lifetime-habit">
+
+                                    ${escapeHTML(
+                                        habit
+                                    )}
+
+                                </div>
+
+                            `
+                        ).join("")}
+
+                    </div>
+
+                </div>
+
+            `
+        ).join("")}
+
+    </div>
+
+`;
+
+}
 
