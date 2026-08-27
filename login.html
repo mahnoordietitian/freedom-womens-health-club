@@ -3,7 +3,6 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -31,6 +30,8 @@ body {
     margin: auto;
 }
 
+/* HEADER */
+
 header {
     background: #FFFFFF;
     border-bottom: 1px solid #E5DED7;
@@ -54,6 +55,8 @@ header {
     text-decoration: none;
     font-size: 14px;
 }
+
+/* MAIN */
 
 main {
     flex: 1;
@@ -94,6 +97,8 @@ h1 {
     margin-bottom: 30px;
 }
 
+/* FORM */
+
 label {
     display: block;
     text-align: left;
@@ -133,10 +138,7 @@ input:focus {
     opacity: 0.9;
 }
 
-.login-button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
+/* MESSAGE */
 
 .message {
     margin-top: 18px;
@@ -152,6 +154,8 @@ input:focus {
     color: #6E4A7E;
 }
 
+/* INFO */
+
 .info {
     background: #F1EAF4;
     border-radius: 9px;
@@ -165,6 +169,8 @@ input:focus {
     font-size: 13px;
 }
 
+/* FOOTER */
+
 footer {
     background: #302A31;
     color: #FFFFFF;
@@ -176,6 +182,8 @@ footer p {
     color: #D4CED5;
     margin-bottom: 4px;
 }
+
+/* MOBILE */
 
 @media (max-width: 600px) {
 
@@ -195,7 +203,6 @@ footer p {
 
 
 <body>
-
 
 <header>
 
@@ -244,6 +251,7 @@ footer p {
                     type="email"
                     id="email"
                     placeholder="Enter your email"
+                    autocomplete="email"
                     required
                 >
 
@@ -258,13 +266,16 @@ footer p {
             </form>
 
 
-            <div id="message" class="message"></div>
+            <div
+                id="message"
+                class="message"
+            ></div>
 
 
             <div class="info">
 
                 <p>
-                    Access is available only to approved
+                    Your access is available only to approved
                     Freedom Women's Health Club members.
                 </p>
 
@@ -294,13 +305,9 @@ footer p {
 </footer>
 
 
-<script type="module">
+<!-- FIREBASE -->
 
-/*
-==================================================
-FIREBASE
-==================================================
-*/
+<script type="module">
 
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
@@ -315,7 +322,7 @@ from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 /*
 ==================================================
-YOUR FIREBASE CONFIG
+FIREBASE CONFIGURATION
 ==================================================
 */
 
@@ -343,7 +350,7 @@ const firebaseConfig = {
 
 /*
 ==================================================
-INITIALIZE FIREBASE
+START FIREBASE
 ==================================================
 */
 
@@ -382,17 +389,18 @@ loginForm.addEventListener("submit", async function(event) {
 
     message.className = "message";
 
-    message.innerText =
-        "Checking your membership...";
+    message.innerText = "";
 
     loginButton.disabled = true;
+
+    loginButton.innerText = "Checking...";
 
 
     try {
 
         /*
-        Find the member document using
-        their email address.
+        Look for this email inside:
+        members / email
         */
 
         const memberRef =
@@ -402,86 +410,47 @@ loginForm.addEventListener("submit", async function(event) {
             await getDoc(memberRef);
 
 
-        /*
-        Member does not exist
-        */
+        if (memberSnap.exists()) {
 
-        if (!memberSnap.exists()) {
+            /*
+            Remember the approved member email
+            for the dashboard.
+            */
+
+            localStorage.setItem(
+                "freedomMemberEmail",
+                email
+            );
+
+
+            message.className =
+                "message success";
+
+            message.innerText =
+                "Access approved. Opening your member dashboard...";
+
+
+            setTimeout(function() {
+
+                window.location.href =
+                    "dashboard.html";
+
+            }, 800);
+
+
+        } else {
 
             message.className =
                 "message error";
 
             message.innerText =
-                "This email is not registered as a club member.";
+                "This email is not registered as a club member. Please contact me on WhatsApp.";
 
             loginButton.disabled = false;
 
-            return;
+            loginButton.innerText = "Continue";
 
         }
-
-
-        /*
-        Get member information
-        */
-
-        const memberData =
-            memberSnap.data();
-
-
-        /*
-        Check whether membership
-        is active.
-        */
-
-        if (memberData.active !== true) {
-
-            message.className =
-                "message error";
-
-            message.innerText =
-                "Your membership is currently inactive. Please contact me on WhatsApp.";
-
-            loginButton.disabled = false;
-
-            return;
-
-        }
-
-
-        /*
-        MEMBER APPROVED
-        */
-
-        message.className =
-            "message success";
-
-        message.innerText =
-            "Access approved. Opening your member dashboard...";
-
-
-        /*
-        Save the member email temporarily
-        so the dashboard knows which member
-        is viewing it.
-        */
-
-        sessionStorage.setItem(
-            "memberEmail",
-            email
-        );
-
-
-        /*
-        Open dashboard
-        */
-
-        setTimeout(function() {
-
-            window.location.href =
-                "dashboard.html";
-
-        }, 800);
 
 
     } catch (error) {
@@ -495,6 +464,8 @@ loginForm.addEventListener("submit", async function(event) {
             "Unable to verify your membership right now. Please try again.";
 
         loginButton.disabled = false;
+
+        loginButton.innerText = "Continue";
 
     }
 
