@@ -37,6 +37,10 @@ button {
     min-height: 100vh;
 }
 
+/* =========================
+   SIDEBAR
+========================= */
+
 .sidebar {
     position: fixed;
     left: 0;
@@ -88,25 +92,12 @@ button {
     border-radius: 10px;
     text-align: left;
     transition: .2s;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
 }
 
 .nav-btn:hover,
 .nav-btn.active {
     background: rgba(255,255,255,.14);
     color: white;
-}
-
-.nav-btn:disabled {
-    opacity: .55;
-    cursor: not-allowed;
-}
-
-.nav-lock {
-    font-size: 12px;
 }
 
 .logout-btn {
@@ -118,6 +109,10 @@ button {
     padding: 11px;
     border-radius: 9px;
 }
+
+/* =========================
+   MAIN
+========================= */
 
 .main {
     margin-left: 250px;
@@ -162,6 +157,10 @@ button {
     padding: 40px;
 }
 
+/* =========================
+   SECTIONS
+========================= */
+
 .page-section {
     display: none;
 }
@@ -194,6 +193,10 @@ button {
     color: #777;
     line-height: 1.7;
 }
+
+/* =========================
+   CARDS
+========================= */
 
 .card {
     background: white;
@@ -234,6 +237,10 @@ button {
     padding: 11px 17px;
     border-radius: 9px;
 }
+
+/* =========================
+   HOME
+========================= */
 
 .welcome-card {
     background:
@@ -286,6 +293,10 @@ button {
     color: #777;
     font-size: 13px;
 }
+
+/* =========================
+   PROFILE
+========================= */
 
 .profile-grid {
     display: grid;
@@ -363,6 +374,10 @@ button {
     line-height: 1.4;
 }
 
+/* =========================
+   JOURNEY
+========================= */
+
 .journey-intro {
     display: flex;
     justify-content: space-between;
@@ -381,6 +396,8 @@ button {
 .start-date-box strong {
     color: #6E4A7E;
 }
+
+/* PHASE */
 
 .phase-card {
     background: white;
@@ -414,6 +431,8 @@ button {
     line-height: 1.6;
 }
 
+/* WEEK */
+
 .week-list {
     padding: 12px;
 }
@@ -424,11 +443,6 @@ button {
     margin: 10px 0;
     overflow: hidden;
     background: white;
-}
-
-.week-card.current {
-    border-color: #6E4A7E;
-    box-shadow: 0 0 0 2px rgba(110,74,126,.15);
 }
 
 .week-button {
@@ -485,19 +499,6 @@ button {
     font-size: 12px;
 }
 
-.current-tag {
-    display: inline-block;
-    margin-left: 8px;
-    background: #6E4A7E;
-    color: white;
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: .6px;
-    vertical-align: middle;
-}
-
 .week-right {
     display: flex;
     gap: 12px;
@@ -513,6 +514,10 @@ button {
     font-size: 17px;
     color: #999;
 }
+
+/* =========================
+   WEEK DETAIL
+========================= */
 
 .week-detail {
     display: none;
@@ -561,17 +566,16 @@ button {
     line-height: 1.6;
 }
 
+/* =========================
+   DAY CARDS
+========================= */
+
 .day-card {
     background: white;
     border: 1px solid #E7DED4;
     border-radius: 17px;
     margin-bottom: 18px;
     overflow: hidden;
-}
-
-.day-card.current-day {
-    border-color: #6E4A7E;
-    box-shadow: 0 0 0 2px rgba(110,74,126,.15);
 }
 
 .day-card-header {
@@ -686,20 +690,9 @@ button {
     margin-bottom: 20px;
 }
 
-.mark-complete-btn {
-    border: 0;
-    background: #6E4A7E;
-    color: white;
-    padding: 12px 18px;
-    border-radius: 9px;
-    width: 100%;
-    margin-top: 6px;
-    font-weight: 600;
-}
-
-.mark-complete-btn.done {
-    background: #4E7A5A;
-}
+/* =========================
+   REFLECTION
+========================= */
 
 .reflection-field {
     margin-bottom: 18px;
@@ -734,6 +727,10 @@ button {
     margin-left: 10px;
 }
 
+/* =========================
+   EDUCATION
+========================= */
+
 .education-grid {
     display: grid;
     grid-template-columns: repeat(3,1fr);
@@ -764,6 +761,10 @@ button {
     font-size: 13px;
     line-height: 1.6;
 }
+
+/* =========================
+   COMMUNITY
+========================= */
 
 .community-hero {
     background:
@@ -797,6 +798,10 @@ button {
     color: #777;
     font-size: 12px;
 }
+
+/* =========================
+   LIFETIME
+========================= */
 
 .lifetime-hero {
     position: relative;
@@ -874,48 +879,6 @@ button {
     color: #444;
 }
 
-.lifetime-locked-box {
-    background: white;
-    border: 1px solid #E7DED4;
-    border-radius: 18px;
-    padding: 55px 30px;
-    text-align: center;
-}
-
-.lifetime-locked-icon {
-    font-size: 42px;
-    margin-bottom: 16px;
-}
-
-.lifetime-locked-box h2 {
-    margin: 0 0 10px;
-    color: #6E4A7E;
-    font-size: 24px;
-}
-
-.lifetime-locked-box p {
-    color: #777;
-    max-width: 520px;
-    margin: 0 auto;
-    line-height: 1.7;
-}
-
-.lifetime-locked-progress {
-    max-width: 420px;
-    margin: 26px auto 0;
-}
-
-.lifetime-locked-days {
-    display: inline-block;
-    margin-top: 18px;
-    background: #F0E8F2;
-    color: #6E4A7E;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
-}
-
 .loading-box,
 .empty-box,
 .error-box {
@@ -930,6 +893,10 @@ button {
 .error-box {
     color: #8A4545;
 }
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width: 1000px) {
 
@@ -1009,6 +976,10 @@ button {
 
 <div class="app">
 
+<!-- =========================
+     SIDEBAR
+========================= -->
+
 <aside class="sidebar" id="sidebar">
 
     <div class="brand">
@@ -1061,10 +1032,8 @@ button {
 
         <button
             class="nav-btn"
-            data-section="lifetimeSection"
-            id="lifetimeNavBtn">
-            <span>Lifetime Habits</span>
-            <span class="nav-lock" id="lifetimeNavLock"></span>
+            data-section="lifetimeSection">
+            Lifetime Habits
         </button>
 
     </nav>
@@ -1077,6 +1046,10 @@ button {
 
 </aside>
 
+
+<!-- =========================
+     MAIN
+========================= -->
 
 <main class="main">
 
@@ -1107,6 +1080,10 @@ button {
 
     <div class="content">
 
+
+<!-- =========================
+     HOME
+========================= -->
 
 <section
     class="page-section active"
@@ -1250,8 +1227,7 @@ button {
 
                 <p>
                     Your progress is saved automatically as you
-                    complete your habits. After Day 90, your Lifetime
-                    Freedom Habits unlock automatically.
+                    complete your habits.
                 </p>
 
             </div>
@@ -1262,6 +1238,10 @@ button {
 
 </section>
 
+
+<!-- =========================
+     PROFILE
+========================= -->
 
 <section
     class="page-section"
@@ -1489,6 +1469,10 @@ button {
 </section>
 
 
+<!-- =========================
+     JOURNEY
+========================= -->
+
 <section
     class="page-section"
     id="journeySection">
@@ -1546,6 +1530,8 @@ button {
 
     </div>
 
+
+    <!-- WEEK DETAIL -->
 
     <div
         class="week-detail"
@@ -1628,6 +1614,10 @@ button {
 
 </section>
 
+
+<!-- =========================
+     EDUCATION
+========================= -->
 
 <section
     class="page-section"
@@ -1714,6 +1704,10 @@ button {
 </section>
 
 
+<!-- =========================
+     COMMUNITY
+========================= -->
+
 <section
     class="page-section"
     id="communitySection">
@@ -1749,7 +1743,7 @@ button {
 
         <div class="community-actions">
 
-            
+            <a
                 href="community.html"
                 class="primary-btn">
 
@@ -1834,6 +1828,10 @@ button {
 </section>
 
 
+<!-- =========================
+     LIFETIME HABITS
+========================= -->
+
 <section
     class="page-section"
     id="lifetimeSection">
@@ -1856,10 +1854,29 @@ button {
     </div>
 
 
+    <div class="lifetime-hero">
+
+        <div>
+
+            <h2>
+                Freedom is a lifestyle.
+            </h2>
+
+            <p>
+                You don't need another extreme diet after Day 90.
+                You need habits you can continue with your real life,
+                your family meals and your routine.
+            </p>
+
+        </div>
+
+    </div>
+
+
     <div id="lifetimeHabitsContainer">
 
         <div class="loading-box">
-            Checking your progress...
+            Loading your Lifetime Freedom Habits...
         </div>
 
     </div>
@@ -1873,6 +1890,10 @@ button {
 
 </div>
 
+
+<!-- =========================
+     FIREBASE
+========================= -->
 
 <script type="module">
 
@@ -1894,10 +1915,16 @@ import {
     getFirestore,
     doc,
     getDoc,
-    setDoc
+    setDoc,
+    collection,
+    getDocs
 }
 from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
 
 const firebaseConfig = {
 
@@ -1932,7 +1959,15 @@ const db =
     getFirestore(app);
 
 
+/* =========================
+   GLOBAL VARIABLES
+========================= */
+
 let currentUser = null;
+
+let weeklyContent = [];
+
+let lifetimeHabits = [];
 
 let memberProgress = {};
 
@@ -1940,6 +1975,10 @@ let selectedWeek = null;
 
 let memberStartDate = null;
 
+
+/* =========================
+   PROFILE FIELDS
+========================= */
 
 const profileFields = [
 
@@ -1955,6 +1994,10 @@ const profileFields = [
 
 ];
 
+
+/* =========================
+   HELPERS
+========================= */
 
 function getValue(id) {
 
@@ -2002,6 +2045,10 @@ function escapeHTML(value) {
 
 }
 
+
+/* =========================
+   START DATE
+========================= */
 
 function getStartDate(data) {
 
@@ -2056,7 +2103,11 @@ function getStartDate(data) {
 }
 
 
-function getRealProgramDay() {
+/* =========================
+   PROGRAM DAY
+========================= */
+
+function getProgramDay() {
 
     if (!memberStartDate) {
 
@@ -2097,21 +2148,18 @@ function getRealProgramDay() {
 
     return Math.max(
         1,
-        day
+        Math.min(
+            90,
+            day
+        )
     );
 
 }
 
 
-function getProgramDay() {
-
-    return Math.min(
-        90,
-        getRealProgramDay()
-    );
-
-}
-
+/* =========================
+   UNLOCKED WEEK
+========================= */
 
 function getUnlockedWeek() {
 
@@ -2129,24 +2177,9 @@ function getUnlockedWeek() {
 }
 
 
-function isLifetimeUnlocked() {
-
-    return getRealProgramDay() >= 91;
-
-}
-
-
-function daysUntilLifetime() {
-
-    const remaining =
-        91 - getRealProgramDay();
-
-    return remaining > 0
-        ? remaining
-        : 0;
-
-}
-
+/* =========================
+   DATE FORMAT
+========================= */
 
 function formatDate(date) {
 
@@ -2164,6 +2197,10 @@ function formatDate(date) {
 
 }
 
+
+/* =========================
+   PROFILE CALCULATIONS
+========================= */
 
 function calculateProgress() {
 
@@ -2310,6 +2347,10 @@ function calculateProgress() {
 }
 
 
+/* =========================
+   LOAD PROFILE
+========================= */
+
 async function loadProfile(user) {
 
     try {
@@ -2407,6 +2448,10 @@ async function loadProfile(user) {
 
 }
 
+
+/* =========================
+   SAVE PROFILE
+========================= */
 
 async function saveProfile() {
 
@@ -2516,6 +2561,10 @@ async function saveProfile() {
 }
 
 
+/* =========================
+   LOAD MEMBER PROGRESS
+========================= */
+
 async function loadMemberProgress() {
 
     if (!currentUser) return;
@@ -2554,6 +2603,10 @@ async function loadMemberProgress() {
 }
 
 
+/* =========================
+   SAVE PROGRESS
+========================= */
+
 async function saveMemberProgress() {
 
     if (!currentUser) return;
@@ -2589,278 +2642,326 @@ async function saveMemberProgress() {
 }
 
 
-const phases = {
+/* =========================
+   WEEK NUMBER
+========================= */
 
-    1: {
-        title: "Phase 1 · Reset & Foundation",
-        heading: "Reset & Foundation",
-        description: "Build simple habits and create a strong foundation.",
-        weeks: [1,2,3,4]
-    },
+function getWeekNumber(week) {
 
-    2: {
-        title: "Phase 2 · Build & Progress",
-        heading: "Build & Progress",
-        description: "Build on your foundation and strengthen your routine.",
-        weeks: [5,6,7,8]
-    },
+    const values = [
 
-    3: {
-        title: "Phase 3 · Thrive & Maintain",
-        heading: "Thrive & Maintain",
-        description: "Build confidence and create habits you can maintain.",
-        weeks: [9,10,11,12]
-    },
+        week.weekNumber,
+        week.week,
+        week.number,
+        week.order
 
-    4: {
-        title: "Final Stretch · Days 85–90",
-        heading: "Complete Your 90 Days",
-        description: "Finish strong and prepare for long-term maintenance.",
-        weeks: [13]
-    }
-
-};
-
-
-function placeholderDay(globalDay) {
-
-    return {
-
-        title: `Day ${globalDay}`,
-
-        description: "",
-
-        movement: "Add your movement guidance for this day.",
-
-        nutrition: "Add your nutrition guidance for this day.",
-
-        hydration: "Add your hydration target for this day.",
-
-        sleep: "Add your sleep target for this day.",
-
-        mind: "Add your mind & stress guidance for this day.",
-
-        habits: [
-
-            { name: "Movement", target: "" },
-            { name: "Hydration", target: "" },
-            { name: "Sleep", target: "" },
-            { name: "Nutrition", target: "" },
-            { name: "Mind & Stress", target: "" }
-
-        ]
-
-    };
-
-}
-
-
-function buildWeek(weekNumber, startDay, endDay) {
-
-    const days = [];
+    ];
 
 
     for (
-        let day = startDay;
-        day <= endDay;
-        day++
+        const value of values
     ) {
 
-        days.push(
-            placeholderDay(day)
-        );
+        const number =
+            Number(value);
+
+
+        if (
+            Number.isFinite(number) &&
+            number > 0
+        ) {
+
+            return number;
+
+        }
 
     }
 
 
-    return {
+    const match =
+        String(
+            week.id || ""
+        ).match(
+            /(\d+)/
+        );
 
-        id: `week${weekNumber}`,
 
-        weekNumber,
-
-        title: `Week ${weekNumber}`,
-
-        description: "",
-
-        goal: "Complete your habits consistently this week.",
-
-        days,
-
-        reflection: [
-
-            "What was your biggest win this week?",
-            "What was your biggest challenge?",
-            "What habit do you want to improve next week?"
-
-        ]
-
-    };
+    return match
+        ? Number(match[1])
+        : 999;
 
 }
 
 
-const week1 = buildWeek(1, 1, 7);
+/* =========================
+   DAYS
+========================= */
 
-week1.title = "Week 1 · Foundation";
+function getDays(week) {
 
-week1.days[0] = {
+    if (
+        Array.isArray(
+            week.days
+        )
+    ) {
 
-    title: "Day 1",
+        return week.days;
 
-    description: "Foundation",
+    }
 
-    movement: "2,500 steps",
 
-    nutrition: "Don't skip meals",
+    if (
+        Array.isArray(
+            week.dayContent
+        )
+    ) {
 
-    hydration: "1.5 L",
+        return week.dayContent;
 
-    sleep: "5 hours",
+    }
 
-    mind: "5 min breathing",
 
-    habits: [
+    if (
+        Array.isArray(
+            week.dailyContent
+        )
+    ) {
 
-        { name: "Movement", target: "2,500 steps" },
-        { name: "Sleep", target: "5 hours" },
-        { name: "Hydration", target: "1.5 L" },
-        { name: "Protein", target: "15–20 g / meal" },
-        { name: "Nutrition", target: "Don't skip meals" },
-        { name: "Mind & Stress", target: "5 min breathing" },
-        { name: "Sunlight", target: "10 min" },
-        { name: "Recovery", target: "" }
+        return week.dailyContent;
 
-    ]
+    }
+
+
+    return [];
+
+}
+
+
+/* =========================
+   WEEKLY HABITS
+========================= */
+
+function getWeeklyHabits(week) {
+
+    if (
+        Array.isArray(
+            week.habits
+        )
+    ) {
+
+        return week.habits;
+
+    }
+
+
+    if (
+        Array.isArray(
+            week.weeklyHabits
+        )
+    ) {
+
+        return week.weeklyHabits;
+
+    }
+
+
+    return [];
+
+}
+
+
+/* =========================
+   DAY HABITS
+========================= */
+
+function getDayHabits(day) {
+
+    if (
+        Array.isArray(
+            day.habits
+        )
+    ) {
+
+        return day.habits;
+
+    }
+
+
+    if (
+        Array.isArray(
+            day.tasks
+        )
+    ) {
+
+        return day.tasks;
+
+    }
+
+
+    if (
+        Array.isArray(
+            day.dailyHabits
+        )
+    ) {
+
+        return day.dailyHabits;
+
+    }
+
+
+    return [];
+
+}
+
+
+/* =========================
+   LOAD WEEKLY CONTENT
+========================= */
+
+async function loadWeeklyContent() {
+
+    const container =
+        document.getElementById(
+            "weeksContainer"
+        );
+
+
+    try {
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "weeklyContent"
+                )
+            );
+
+
+        weeklyContent = [];
+
+
+        snapshot.forEach(
+            docSnap => {
+
+                weeklyContent.push({
+
+                    id:
+                        docSnap.id,
+
+                    ...docSnap.data()
+
+                });
+
+            }
+        );
+
+
+        weeklyContent.sort(
+            (
+                a,
+                b
+            ) =>
+                getWeekNumber(a) -
+                getWeekNumber(b)
+        );
+
+
+        renderWeeks();
+
+
+    } catch(error) {
+
+        console.error(
+            "WEEK CONTENT ERROR",
+            error
+        );
+
+
+        container.innerHTML = `
+
+            <div class="error-box">
+
+                Your journey could not be loaded.
+
+                <br><br>
+
+                ${escapeHTML(
+                    error.message
+                )}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================
+   PHASES
+========================= */
+
+const phases = {
+
+    1: {
+
+        title:
+            "Phase 1 · Reset & Foundation",
+
+        heading:
+            "Reset & Foundation",
+
+        description:
+            "Build simple habits and create a strong foundation."
+
+    },
+
+    2: {
+
+        title:
+            "Phase 2 · Build & Progress",
+
+        heading:
+            "Build & Progress",
+
+        description:
+            "Build on your foundation and strengthen your routine."
+
+    },
+
+    3: {
+
+        title:
+            "Phase 3 · Thrive & Maintain",
+
+        heading:
+            "Thrive & Maintain",
+
+        description:
+            "Build confidence and create habits you can maintain."
+
+    },
+
+    4: {
+
+        title:
+            "Final Stretch · Days 85–90",
+
+        heading:
+            "Complete Your 90 Days",
+
+        description:
+            "Finish strong and prepare for long-term maintenance."
+
+    }
 
 };
 
 
-const weeklyContent = [
-
-    week1,
-    buildWeek(2, 8, 14),
-    buildWeek(3, 15, 21),
-    buildWeek(4, 22, 28),
-    buildWeek(5, 29, 35),
-    buildWeek(6, 36, 42),
-    buildWeek(7, 43, 49),
-    buildWeek(8, 50, 56),
-    buildWeek(9, 57, 63),
-    buildWeek(10, 64, 70),
-    buildWeek(11, 71, 77),
-    buildWeek(12, 78, 84),
-    buildWeek(13, 85, 90)
-
-];
-
-
-const lifetimeHabits = [
-
-    {
-        title: "Move Your Body",
-        description: "Keep movement as part of your normal routine.",
-        habits: [
-            "Walk regularly",
-            "Strength train consistently",
-            "Choose movement you enjoy"
-        ]
-    },
-
-    {
-        title: "Build Balanced Meals",
-        description: "Continue using the balanced eating habits you learned during your 90 days.",
-        habits: [
-            "Include protein",
-            "Add vegetables or fruit",
-            "Enjoy your favourite foods mindfully"
-        ]
-    },
-
-    {
-        title: "Protect Your Sleep",
-        description: "Good sleep supports your energy, appetite and daily routine.",
-        habits: [
-            "Keep a consistent sleep routine",
-            "Reduce screens before bed",
-            "Prioritize rest"
-        ]
-    },
-
-    {
-        title: "Stay Hydrated",
-        description: "Make water your everyday default drink.",
-        habits: [
-            "Keep water nearby",
-            "Drink regularly throughout the day"
-        ]
-    },
-
-    {
-        title: "Manage Stress",
-        description: "Create small moments of calm instead of waiting until you feel overwhelmed.",
-        habits: [
-            "Take mindful breaks",
-            "Practice deep breathing",
-            "Make time for yourself"
-        ]
-    },
-
-    {
-        title: "Keep Checking In",
-        description: "Progress is easier to maintain when you continue paying attention to your habits.",
-        habits: [
-            "Notice your eating patterns",
-            "Track meaningful progress",
-            "Adjust early instead of giving up"
-        ]
-    }
-
-];
-
-
-function getDayImage(day) {
-
-    const images = [
-
-        "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1000&q=80",
-        "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=80",
-        "https://images.unsplash.com/photo-1546484959-fb8a3e2f5f6d?auto=format&fit=crop&w=1000&q=80",
-        "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1000&q=80",
-        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1000&q=80",
-        "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1000&q=80",
-        "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80"
-
-    ];
-
-
-    return images[
-        (day - 1) % images.length
-    ];
-
-}
-
-
-function getLifetimeImage(index) {
-
-    const images = [
-
-        "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=1000&q=80",
-        "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=80",
-        "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=1000&q=80",
-        "https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=1000&q=80",
-        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1000&q=80",
-        "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80"
-
-    ];
-
-
-    return images[
-        index % images.length
-    ];
-
-}
-
+/* =========================
+   RENDER WEEKS
+========================= */
 
 function renderWeeks() {
 
@@ -2868,6 +2969,28 @@ function renderWeeks() {
         document.getElementById(
             "weeksContainer"
         );
+
+
+    if (!weeklyContent.length) {
+
+        container.innerHTML = `
+
+            <div class="empty-box">
+
+                No weekly content has been added yet.
+
+                <br><br>
+
+                Your coach can add the weeks from
+                the Admin Portal.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
 
 
     const unlockedWeek =
@@ -2880,20 +3003,65 @@ function renderWeeks() {
     [1,2,3,4].forEach(
         phaseNumber => {
 
-            const phase =
-                phases[phaseNumber];
+            let start;
+            let end;
+
+
+            if (phaseNumber === 1) {
+
+                start = 1;
+                end = 4;
+
+            }
+
+            else if (phaseNumber === 2) {
+
+                start = 5;
+                end = 8;
+
+            }
+
+            else if (phaseNumber === 3) {
+
+                start = 9;
+                end = 12;
+
+            }
+
+            else {
+
+                start = 13;
+                end = 13;
+
+            }
 
 
             const weeks =
                 weeklyContent.filter(
-                    week =>
-                        phase.weeks.includes(
-                            week.weekNumber
-                        )
+                    week => {
+
+                        const number =
+                            getWeekNumber(
+                                week
+                            );
+
+
+                        return (
+                            number >= start &&
+                            number <= end
+                        );
+
+                    }
                 );
 
 
             if (!weeks.length) return;
+
+
+            const phase =
+                phases[
+                    phaseNumber
+                ];
 
 
             html += `
@@ -2903,15 +3071,27 @@ function renderWeeks() {
                     <div class="phase-header">
 
                         <div class="phase-label">
-                            ${escapeHTML(phase.title)}
+
+                            ${escapeHTML(
+                                phase.title
+                            )}
+
                         </div>
 
                         <h2>
-                            ${escapeHTML(phase.heading)}
+
+                            ${escapeHTML(
+                                phase.heading
+                            )}
+
                         </h2>
 
                         <p>
-                            ${escapeHTML(phase.description)}
+
+                            ${escapeHTML(
+                                phase.description
+                            )}
+
                         </p>
 
                     </div>
@@ -2924,10 +3104,11 @@ function renderWeeks() {
             weeks.forEach(
                 week => {
 
-                    html += renderWeekCard(
-                        week,
-                        unlockedWeek
-                    );
+                    html +=
+                        renderWeekCard(
+                            week,
+                            unlockedWeek
+                        );
 
                 }
             );
@@ -2945,44 +3126,67 @@ function renderWeeks() {
     );
 
 
-    container.innerHTML = html;
+    container.innerHTML =
+        html;
 
 }
 
 
-function renderWeekCard(week, unlockedWeek) {
+/* =========================
+   WEEK CARD
+========================= */
+
+function renderWeekCard(
+    week,
+    unlockedWeek
+) {
 
     const number =
-        week.weekNumber;
+        getWeekNumber(
+            week
+        );
 
 
     const locked =
-        number > unlockedWeek;
+        number >
+        unlockedWeek;
 
 
-    const isCurrent =
-        number === unlockedWeek;
+    const title =
+        week.title ||
+        week.name ||
+        `Week ${number}`;
 
 
     const days =
-        week.days;
+        getDays(
+            week
+        );
 
 
     const percent =
-        getWeekCompletion(week);
+        getWeekCompletion(
+            week
+        );
 
 
     const startDay =
-        ((number - 1) * 7) + 1;
+        (
+            (number - 1) *
+            7
+        ) + 1;
 
 
     const endDay =
-        Math.min(90, number * 7);
+        Math.min(
+            90,
+            number * 7
+        );
 
 
     return `
 
-        <div class="week-card ${locked ? "locked" : ""} ${isCurrent ? "current" : ""}">
+        <div class="week-card ${locked ? "locked" : ""}">
 
             <button
                 class="week-button"
@@ -2990,24 +3194,44 @@ function renderWeekCard(week, unlockedWeek) {
                 onclick="${
                     locked
                         ? ""
-                        : `openWeek('${escapeHTML(week.id)}')`
+                        : `openWeek('${escapeHTML(
+                            week.id
+                        )}')`
                 }">
 
                 <div class="week-left">
 
                     <div class="week-number">
-                        ${String(number).padStart(2,"0")}
+
+                        ${String(
+                            number
+                        ).padStart(
+                            2,
+                            "0"
+                        )}
+
                     </div>
 
                     <div class="week-title">
 
                         <h3>
-                            ${escapeHTML(week.title)}
-                            ${isCurrent ? `<span class="current-tag">Current</span>` : ""}
+
+                            ${escapeHTML(
+                                title
+                            )}
+
                         </h3>
 
                         <p>
-                            Days ${startDay}–${endDay} · ${days.length} days
+
+                            Days ${startDay}–${endDay}
+
+                            ${
+                                days.length
+                                    ? ` · ${days.length} days`
+                                    : ""
+                            }
+
                         </p>
 
                     </div>
@@ -3019,12 +3243,19 @@ function renderWeekCard(week, unlockedWeek) {
 
                     ${
                         locked
-                            ? `<span class="lock-icon">🔒</span>`
+                            ? `
+                                <span class="lock-icon">
+                                    🔒
+                                </span>
+                              `
                             : `
                                 <span class="week-percent">
                                     ${percent}% complete
                                 </span>
-                                <span>→</span>
+
+                                <span>
+                                    →
+                                </span>
                               `
                     }
 
@@ -3039,35 +3270,47 @@ function renderWeekCard(week, unlockedWeek) {
 }
 
 
-window.openWeek = function(weekId) {
+/* =========================
+   OPEN WEEK
+========================= */
+
+window.openWeek =
+function(weekId) {
 
     const week =
         weeklyContent.find(
-            item => item.id === weekId
+            item =>
+                item.id === weekId
         );
 
 
     if (!week) return;
 
 
-    if (week.weekNumber > getUnlockedWeek()) {
+    if (
+        getWeekNumber(week) >
+        getUnlockedWeek()
+    ) {
 
         return;
 
     }
 
 
-    selectedWeek = week;
+    selectedWeek =
+        week;
 
 
     document.getElementById(
         "journeyListView"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
 
     document.getElementById(
         "weekDetailView"
-    ).style.display = "block";
+    ).style.display =
+        "block";
 
 
     renderSelectedWeek();
@@ -3081,17 +3324,19 @@ window.openWeek = function(weekId) {
 };
 
 
+/* =========================
+   RENDER SELECTED WEEK
+========================= */
+
 function renderSelectedWeek() {
 
     if (!selectedWeek) return;
 
 
     const number =
-        selectedWeek.weekNumber;
-
-
-    const todayGlobal =
-        getProgramDay();
+        getWeekNumber(
+            selectedWeek
+        );
 
 
     document.getElementById(
@@ -3103,41 +3348,134 @@ function renderSelectedWeek() {
     document.getElementById(
         "detailWeekTitle"
     ).textContent =
-        selectedWeek.title;
+        selectedWeek.title ||
+        selectedWeek.name ||
+        `Week ${number}`;
 
 
     document.getElementById(
         "detailWeekDescription"
     ).textContent =
-        selectedWeek.description || "";
+        selectedWeek.description ||
+        selectedWeek.details ||
+        "";
 
 
     document.getElementById(
         "detailWeekGoal"
     ).textContent =
-        selectedWeek.goal;
+        selectedWeek.goal ||
+        selectedWeek.weekGoal ||
+        "Complete your habits consistently this week.";
+
+
+    const days =
+        getDays(
+            selectedWeek
+        );
+
+
+    const weeklyHabits =
+        getWeeklyHabits(
+            selectedWeek
+        );
 
 
     let html = "";
 
 
-    selectedWeek.days.forEach(
-        (day, index) => {
+    if (days.length) {
 
-            html += renderDayCard(
-                selectedWeek,
+        days.forEach(
+            (
                 day,
-                index,
-                todayGlobal
-            );
+                index
+            ) => {
 
-        }
-    );
+                html +=
+                    renderDayCard(
+                        selectedWeek,
+                        day,
+                        index
+                    );
+
+            }
+        );
+
+    }
+
+
+    else if (
+        weeklyHabits.length
+    ) {
+
+        html += `
+
+            <div class="day-card">
+
+                <div class="day-card-header">
+
+                    <div>
+
+                        <div class="day-number">
+                            Weekly Focus
+                        </div>
+
+                        <div class="day-title">
+                            This Week
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="day-body">
+
+                    <div class="habit-list">
+
+                        ${weeklyHabits.map(
+                            (
+                                habit,
+                                index
+                            ) =>
+                                renderHabit(
+                                    selectedWeek.id,
+                                    "weekly",
+                                    index,
+                                    habit
+                                )
+                        ).join("")}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    else {
+
+        html = `
+
+            <div class="empty-box">
+
+                No daily content has been added to this week yet.
+
+            </div>
+
+        `;
+
+    }
 
 
     document.getElementById(
         "weekContentContainer"
-    ).innerHTML = html;
+    ).innerHTML =
+        html;
 
 
     renderReflection();
@@ -3145,67 +3483,132 @@ function renderSelectedWeek() {
 }
 
 
-function renderDayCard(week, day, index, todayGlobal) {
+/* =========================
+   RENDER DAY
+========================= */
 
-    const globalDay =
-        ((week.weekNumber - 1) * 7) + index + 1;
+function renderDayCard(
+    week,
+    day,
+    index
+) {
 
-
-    const title =
-        day.title || `Day ${globalDay}`;
-
-
-    const description =
-        day.description || "";
-
-
-    const habits =
-        day.habits || [];
-
-
-    const complete =
-        isDayComplete(
-            week.id,
-            index
+    const weekNumber =
+        getWeekNumber(
+            week
         );
 
 
-    const isCurrentDay =
-        globalDay === todayGlobal;
+    const globalDay =
+        day.dayNumber ||
+        day.globalDay ||
+        (
+            (
+                weekNumber -
+                1
+            ) * 7
+        ) +
+        index +
+        1;
+
+
+    const title =
+        day.title ||
+        day.name ||
+        `Day ${globalDay}`;
+
+
+    const description =
+        day.description ||
+        day.details ||
+        "";
+
+
+    const habits =
+        getDayHabits(
+            day
+        );
+
+
+    const completed =
+        habits.filter(
+            (
+                _,
+                habitIndex
+            ) =>
+                isHabitComplete(
+                    week.id,
+                    index,
+                    habitIndex
+                )
+        ).length;
+
+
+    const percent =
+        habits.length
+            ? Math.round(
+                (
+                    completed /
+                    habits.length
+                ) * 100
+            )
+            : 0;
 
 
     const image =
         day.image ||
-        getDayImage(globalDay);
+        day.imageUrl ||
+        getDayImage(
+            globalDay
+        );
 
 
     let html = `
 
-        <div class="day-card ${isCurrentDay ? "current-day" : ""}">
+        <div class="day-card">
 
             <div class="day-card-header">
 
                 <div>
 
                     <div class="day-number">
+
                         Day ${globalDay}
-                        ${isCurrentDay ? " · Today" : ""}
+
                     </div>
 
                     <div class="day-title">
-                        ${escapeHTML(title)}
+
+                        ${escapeHTML(
+                            title
+                        )}
+
                     </div>
 
                     ${
                         description
-                            ? `<div class="day-description">${escapeHTML(description)}</div>`
+                            ? `
+                                <div class="day-description">
+
+                                    ${escapeHTML(
+                                        description
+                                    )}
+
+                                </div>
+                              `
                             : ""
                     }
 
                 </div>
 
                 <div class="day-badge">
-                    ${complete ? "✓ Complete" : "Not complete"}
+
+                    ${
+                        habits.length
+                            ? `${percent}% complete`
+                            : "Daily Focus"
+                    }
+
                 </div>
 
             </div>
@@ -3219,17 +3622,21 @@ function renderDayCard(week, day, index, todayGlobal) {
     if (image) {
 
         html += `
+
             <img
                 class="day-image"
                 src="${escapeHTML(image)}"
                 alt="Day ${globalDay}"
                 loading="lazy">
+
         `;
 
     }
 
 
-    html += renderDailyContent(day);
+    html += renderDailyContent(
+        day
+    );
 
 
     if (habits.length) {
@@ -3239,33 +3646,22 @@ function renderDayCard(week, day, index, todayGlobal) {
             <div class="daily-section">
 
                 <div class="daily-section-title">
-                    🌿 Today's Focus
+                    Today's Habits
                 </div>
 
                 <div class="habit-list">
 
                     ${habits.map(
-                        habit => `
-
-                            <div class="habit-item" style="align-items:center;">
-
-                                <div style="flex:1;">
-
-                                    <div class="habit-name">
-                                        ${escapeHTML(habit.name)}
-                                    </div>
-
-                                    ${
-                                        habit.target
-                                            ? `<div class="habit-target">${escapeHTML(habit.target)}</div>`
-                                            : `<div class="habit-target">—</div>`
-                                    }
-
-                                </div>
-
-                            </div>
-
-                        `
+                        (
+                            habit,
+                            habitIndex
+                        ) =>
+                            renderHabit(
+                                week.id,
+                                index,
+                                habitIndex,
+                                habit
+                            )
                     ).join("")}
 
                 </div>
@@ -3279,14 +3675,6 @@ function renderDayCard(week, day, index, todayGlobal) {
 
     html += `
 
-                <button
-                    class="mark-complete-btn ${complete ? "done" : ""}"
-                    onclick="toggleDayComplete('${escapeHTML(week.id)}', ${index}, this)">
-
-                    ${complete ? "✓ Day Complete" : "Mark Day Complete"}
-
-                </button>
-
             </div>
 
         </div>
@@ -3299,32 +3687,79 @@ function renderDayCard(week, day, index, todayGlobal) {
 }
 
 
+/* =========================
+   DAILY CONTENT
+========================= */
+
 function renderDailyContent(day) {
 
     const fields = [
 
-        ["Movement", day.movement],
-        ["Nutrition", day.nutrition],
-        ["Hydration", day.hydration],
-        ["Sleep", day.sleep],
-        ["Mind & Stress", day.mind]
+        [
+            "Movement",
+            day.movement ||
+            day.exercise ||
+            day.activity
+        ],
+
+        [
+            "Nutrition",
+            day.nutrition ||
+            day.food ||
+            day.meal
+        ],
+
+        [
+            "Hydration",
+            day.hydration ||
+            day.water
+        ],
+
+        [
+            "Sleep",
+            day.sleep
+        ],
+
+        [
+            "Mind & Stress",
+            day.mind ||
+            day.stress ||
+            day.mindset
+        ],
+
+        [
+            "Education",
+            day.education ||
+            day.lesson
+        ]
 
     ];
 
 
     return fields
-        .filter(item => item[1])
+        .filter(
+            item =>
+                item[1]
+        )
         .map(
             item => `
 
                 <div class="daily-section">
 
                     <div class="daily-section-title">
-                        ${escapeHTML(item[0])}
+
+                        ${escapeHTML(
+                            item[0]
+                        )}
+
                     </div>
 
                     <div class="daily-text">
-                        ${escapeHTML(item[1])}
+
+                        ${escapeHTML(
+                            item[1]
+                        )}
+
                     </div>
 
                 </div>
@@ -3336,38 +3771,230 @@ function renderDailyContent(day) {
 }
 
 
-function isDayComplete(weekId, dayIndex) {
+/* =========================
+   DAY IMAGES
+========================= */
+
+function getDayImage(day) {
+
+    const images = [
+
+        "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1000&q=80",
+
+        "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=80",
+
+        "https://images.unsplash.com/photo-1546484959-fb8a3e2f5f6d?auto=format&fit=crop&w=1000&q=80",
+
+        "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1000&q=80",
+
+        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1000&q=80",
+
+        "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1000&q=80",
+
+        "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80"
+
+    ];
+
+
+    return images[
+        (
+            day - 1
+        ) %
+        images.length
+    ];
+
+}
+
+
+/* =========================
+   HABIT
+========================= */
+
+function renderHabit(
+    weekId,
+    dayKey,
+    habitIndex,
+    habit
+) {
+
+    if (
+        typeof habit === "string"
+    ) {
+
+        habit = {
+            name: habit
+        };
+
+    }
+
+
+    habit =
+        habit || {};
+
+
+    const name =
+        habit.name ||
+        habit.habit ||
+        habit.title ||
+        "Habit";
+
+
+    const target =
+        habit.target ||
+        habit.value ||
+        habit.goal ||
+        "";
+
+
+    const details =
+        habit.details ||
+        habit.instructions ||
+        habit.description ||
+        "";
+
+
+    const checked =
+        isHabitComplete(
+            weekId,
+            dayKey,
+            habitIndex
+        );
+
+
+    return `
+
+        <label class="habit-item">
+
+            <input
+                type="checkbox"
+                ${checked ? "checked" : ""}
+                onchange="toggleHabit(
+                    '${escapeHTML(weekId)}',
+                    '${escapeHTML(dayKey)}',
+                    ${habitIndex},
+                    this.checked
+                )">
+
+            <div>
+
+                <div class="habit-name">
+
+                    ${escapeHTML(
+                        name
+                    )}
+
+                </div>
+
+                ${
+                    target
+                        ? `
+                            <div class="habit-target">
+
+                                ${escapeHTML(
+                                    target
+                                )}
+
+                            </div>
+                          `
+                        : ""
+                }
+
+                ${
+                    details
+                        ? `
+                            <div class="habit-details">
+
+                                ${escapeHTML(
+                                    details
+                                )}
+
+                            </div>
+                          `
+                        : ""
+                }
+
+            </div>
+
+        </label>
+
+    `;
+
+}
+
+
+/* =========================
+   HABIT CHECK
+========================= */
+
+function isHabitComplete(
+    weekId,
+    dayKey,
+    habitIndex
+) {
 
     return !!(
         memberProgress.weeks &&
         memberProgress.weeks[weekId] &&
-        memberProgress.weeks[weekId].daysComplete &&
-        memberProgress.weeks[weekId].daysComplete[dayIndex]
+        memberProgress.weeks[weekId].habits &&
+        memberProgress.weeks[weekId].habits[
+            `${dayKey}_${habitIndex}`
+        ]
     );
 
 }
 
 
-window.toggleDayComplete = async function(weekId, dayIndex, btnEl) {
+/* =========================
+   TOGGLE HABIT
+========================= */
+
+window.toggleHabit =
+async function(
+    weekId,
+    dayKey,
+    habitIndex,
+    checked
+) {
 
     if (!memberProgress.weeks) {
+
         memberProgress.weeks = {};
-    }
 
-    if (!memberProgress.weeks[weekId]) {
-        memberProgress.weeks[weekId] = {};
-    }
-
-    if (!memberProgress.weeks[weekId].daysComplete) {
-        memberProgress.weeks[weekId].daysComplete = {};
     }
 
 
-    const current =
-        !!memberProgress.weeks[weekId].daysComplete[dayIndex];
+    if (
+        !memberProgress.weeks[
+            weekId
+        ]
+    ) {
+
+        memberProgress.weeks[
+            weekId
+        ] = {};
+
+    }
 
 
-    memberProgress.weeks[weekId].daysComplete[dayIndex] = !current;
+    if (
+        !memberProgress.weeks[
+            weekId
+        ].habits
+    ) {
+
+        memberProgress.weeks[
+            weekId
+        ].habits = {};
+
+    }
+
+
+    memberProgress.weeks[
+        weekId
+    ].habits[
+        `${dayKey}_${habitIndex}`
+    ] =
+        checked;
 
 
     await saveMemberProgress();
@@ -3379,50 +4006,120 @@ window.toggleDayComplete = async function(weekId, dayIndex, btnEl) {
 
     updateOverallProgress();
 
-
-    if (
-        document.getElementById("lifetimeSection")
-            .classList.contains("active")
-    ) {
-
-        renderLifetimeSection();
-
-    }
-
-
-    updateLifetimeNavState();
-
 };
 
 
+/* =========================
+   WEEK COMPLETION
+========================= */
+
 function getWeekCompletion(week) {
 
-    const total =
-        week.days.length;
+    const days =
+        getDays(
+            week
+        );
 
+
+    const weeklyHabits =
+        getWeeklyHabits(
+            week
+        );
+
+
+    let total = 0;
 
     let completed = 0;
 
 
-    week.days.forEach(
-        (_, index) => {
+    if (days.length) {
 
-            if (isDayComplete(week.id, index)) {
+        days.forEach(
+            (
+                day,
+                dayIndex
+            ) => {
 
-                completed++;
+                const habits =
+                    getDayHabits(
+                        day
+                    );
+
+
+                habits.forEach(
+                    (
+                        _,
+                        habitIndex
+                    ) => {
+
+                        total++;
+
+
+                        if (
+                            isHabitComplete(
+                                week.id,
+                                dayIndex,
+                                habitIndex
+                            )
+                        ) {
+
+                            completed++;
+
+                        }
+
+                    }
+                );
 
             }
+        );
 
-        }
-    );
+    }
+
+
+    else {
+
+        weeklyHabits.forEach(
+            (
+                _,
+                index
+            ) => {
+
+                total++;
+
+
+                if (
+                    isHabitComplete(
+                        week.id,
+                        "weekly",
+                        index
+                    )
+                ) {
+
+                    completed++;
+
+                }
+
+            }
+        );
+
+    }
 
 
     return total
-        ? Math.round((completed / total) * 100)
+        ? Math.round(
+            (
+                completed /
+                total
+            ) * 100
+        )
         : 0;
 
 }
 
+
+/* =========================
+   COMPLETED DAYS
+========================= */
 
 function getCompletedDays() {
 
@@ -3432,10 +4129,38 @@ function getCompletedDays() {
     weeklyContent.forEach(
         week => {
 
-            week.days.forEach(
-                (_, index) => {
+            const days =
+                getDays(
+                    week
+                );
 
-                    if (isDayComplete(week.id, index)) {
+
+            days.forEach(
+                (
+                    day,
+                    index
+                ) => {
+
+                    const habits =
+                        getDayHabits(
+                            day
+                        );
+
+
+                    if (
+                        habits.length &&
+                        habits.every(
+                            (
+                                _,
+                                habitIndex
+                            ) =>
+                                isHabitComplete(
+                                    week.id,
+                                    index,
+                                    habitIndex
+                                )
+                        )
+                    ) {
 
                         completed++;
 
@@ -3448,10 +4173,17 @@ function getCompletedDays() {
     );
 
 
-    return Math.min(90, completed);
+    return Math.min(
+        90,
+        completed
+    );
 
 }
 
+
+/* =========================
+   OVERALL PROGRESS
+========================= */
 
 function updateOverallProgress() {
 
@@ -3460,21 +4192,29 @@ function updateOverallProgress() {
 
 
     const percentage =
-        Math.round((completed / 90) * 100);
+        Math.round(
+            (
+                completed /
+                90
+            ) * 100
+        );
 
 
     document.getElementById(
         "progressFill"
-    ).style.width = percentage + "%";
+    ).style.width =
+        percentage + "%";
 
 
     document.getElementById(
         "progressDays"
-    ).textContent = completed;
+    ).textContent =
+        completed;
 
 
     const remaining =
-        90 - completed;
+        90 -
+        completed;
 
 
     document.getElementById(
@@ -3486,6 +4226,10 @@ function updateOverallProgress() {
 
 }
 
+
+/* =========================
+   PROGRAM DAY DISPLAY
+========================= */
 
 function updateProgramDayDisplay() {
 
@@ -3502,50 +4246,49 @@ function updateProgramDayDisplay() {
     ).textContent =
         `Day ${day} · Week ${week}`;
 
-
-    updateLifetimeNavState();
-
 }
 
 
-function updateLifetimeNavState() {
-
-    const navBtn =
-        document.getElementById(
-            "lifetimeNavBtn"
-        );
-
-    const lockEl =
-        document.getElementById(
-            "lifetimeNavLock"
-        );
-
-
-    if (!navBtn || !lockEl) return;
-
-
-    if (isLifetimeUnlocked()) {
-
-        navBtn.disabled = false;
-
-        lockEl.textContent = "";
-
-    } else {
-
-        navBtn.disabled = false;
-
-        lockEl.textContent = "🔒";
-
-    }
-
-}
-
+/* =========================
+   REFLECTION
+========================= */
 
 function getReflectionQuestions() {
 
     if (!selectedWeek) return [];
 
-    return selectedWeek.reflection || [];
+
+    if (
+        Array.isArray(
+            selectedWeek.reflection
+        )
+    ) {
+
+        return selectedWeek.reflection;
+
+    }
+
+
+    if (
+        Array.isArray(
+            selectedWeek.reflectionQuestions
+        )
+    ) {
+
+        return selectedWeek.reflectionQuestions;
+
+    }
+
+
+    return [
+
+        "What was your biggest win this week?",
+
+        "What was your biggest challenge?",
+
+        "What habit do you want to improve next week?"
+
+    ];
 
 }
 
@@ -3555,7 +4298,9 @@ function getSavedReflection(index) {
     if (
         !selectedWeek ||
         !memberProgress.weeks ||
-        !memberProgress.weeks[selectedWeek.id]
+        !memberProgress.weeks[
+            selectedWeek.id
+        ]
     ) {
 
         return "";
@@ -3565,7 +4310,9 @@ function getSavedReflection(index) {
 
     return (
         memberProgress
-            .weeks[selectedWeek.id]
+            .weeks[
+                selectedWeek.id
+            ]
             .reflection?.[index]
         || ""
     );
@@ -3587,22 +4334,45 @@ function renderReflection() {
 
     container.innerHTML =
         questions.map(
-            (question, index) => `
+            (
+                question,
+                index
+            ) => {
 
-                <div class="reflection-field">
+                const text =
+                    typeof question === "string"
+                        ? question
+                        : question.question ||
+                          question.title ||
+                          `Reflection ${index + 1}`;
 
-                    <label>
-                        ${escapeHTML(question)}
-                    </label>
 
-                    <textarea
-                        id="reflection_${index}"
-                        placeholder="Write your reflection here..."
-                    >${escapeHTML(getSavedReflection(index))}</textarea>
+                return `
 
-                </div>
+                    <div class="reflection-field">
 
-            `
+                        <label>
+
+                            ${escapeHTML(
+                                text
+                            )}
+
+                        </label>
+
+                        <textarea
+                            id="reflection_${index}"
+                            placeholder="Write your reflection here..."
+                        >${escapeHTML(
+                            getSavedReflection(
+                                index
+                            )
+                        )}</textarea>
+
+                    </div>
+
+                `;
+
+            }
         ).join("");
 
 }
@@ -3618,11 +4388,22 @@ async function saveReflection() {
 
 
     if (!memberProgress.weeks) {
+
         memberProgress.weeks = {};
+
     }
 
-    if (!memberProgress.weeks[selectedWeek.id]) {
-        memberProgress.weeks[selectedWeek.id] = {};
+
+    if (
+        !memberProgress.weeks[
+            selectedWeek.id
+        ]
+    ) {
+
+        memberProgress.weeks[
+            selectedWeek.id
+        ] = {};
+
     }
 
 
@@ -3630,7 +4411,10 @@ async function saveReflection() {
 
 
     questions.forEach(
-        (_, index) => {
+        (
+            _,
+            index
+        ) => {
 
             const field =
                 document.getElementById(
@@ -3639,15 +4423,23 @@ async function saveReflection() {
 
 
             answers[index] =
-                field ? field.value.trim() : "";
+                field
+                    ? field.value.trim()
+                    : "";
 
         }
     );
 
 
-    memberProgress.weeks[selectedWeek.id].reflection = answers;
+    memberProgress.weeks[
+        selectedWeek.id
+    ].reflection =
+        answers;
 
-    memberProgress.weeks[selectedWeek.id].reflectionUpdatedAt =
+
+    memberProgress.weeks[
+        selectedWeek.id
+    ].reflectionUpdatedAt =
         new Date().toISOString();
 
 
@@ -3656,7 +4448,8 @@ async function saveReflection() {
 
     document.getElementById(
         "reflectionMessage"
-    ).textContent = "Reflection saved.";
+    ).textContent =
+        "Reflection saved.";
 
 
     setTimeout(() => {
@@ -3670,22 +4463,11 @@ async function saveReflection() {
 }
 
 
-function renderLifetimeSection() {
+/* =========================
+   LIFETIME HABITS
+========================= */
 
-    if (isLifetimeUnlocked()) {
-
-        renderLifetimeHabits();
-
-    } else {
-
-        renderLifetimeLocked();
-
-    }
-
-}
-
-
-function renderLifetimeLocked() {
+async function loadLifetimeHabits() {
 
     const container =
         document.getElementById(
@@ -3693,70 +4475,75 @@ function renderLifetimeLocked() {
         );
 
 
-    const completed =
-        getCompletedDays();
+    try {
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "lifetimeHabits"
+                )
+            );
 
 
-    const remaining =
-        daysUntilLifetime();
+        lifetimeHabits = [];
 
 
-    const percentage =
-        Math.round((completed / 90) * 100);
+        snapshot.forEach(
+            docSnap => {
+
+                lifetimeHabits.push({
+
+                    id:
+                        docSnap.id,
+
+                    ...docSnap.data()
+
+                });
+
+            }
+        );
 
 
-    container.innerHTML = `
+        lifetimeHabits.sort(
+            (
+                a,
+                b
+            ) =>
+                Number(
+                    a.order ||
+                    a.number ||
+                    999
+                ) -
+                Number(
+                    b.order ||
+                    b.number ||
+                    999
+                )
+        );
 
-        <div class="lifetime-locked-box">
 
-            <div class="lifetime-locked-icon">
-                🔒
-            </div>
+        renderLifetimeHabits();
 
-            <h2>
-                Lifetime Habits Unlock on Day 91
-            </h2>
 
-            <p>
-                You're currently on Day ${completed >= 90 ? 90 : getProgramDay()}
-                of your 90-Day Journey. Finish your program to unlock
-                your Lifetime Freedom Habits — the long-term foundation
-                you'll carry forward after Day 90.
-            </p>
+    } catch(error) {
 
-            <div class="lifetime-locked-progress">
+        console.error(
+            "LIFETIME ERROR",
+            error
+        );
 
-                <div class="progress-track">
 
-                    <div
-                        class="progress-fill"
-                        style="width:${percentage}%">
-                    </div>
+        renderLifetimeFallback();
 
-                </div>
-
-                <div class="progress-note">
-                    ${completed} / 90 days complete
-                </div>
-
-            </div>
-
-            <div class="lifetime-locked-days">
-
-                ${
-                    remaining > 0
-                        ? `${remaining} day${remaining === 1 ? "" : "s"} remaining until Day 91`
-                        : "Unlocking soon"
-                }
-
-            </div>
-
-        </div>
-
-    `;
+    }
 
 }
 
+
+/* =========================
+   LIFETIME RENDER
+========================= */
 
 function renderLifetimeHabits() {
 
@@ -3766,49 +4553,308 @@ function renderLifetimeHabits() {
         );
 
 
+    if (!lifetimeHabits.length) {
+
+        renderLifetimeFallback();
+
+        return;
+
+    }
+
+
     container.innerHTML = `
-
-        <div class="lifetime-hero">
-
-            <div>
-
-                <h2>Freedom is a lifestyle.</h2>
-
-                <p>
-                    You don't need another extreme diet after Day 90.
-                    You need habits you can continue with your real life,
-                    your family meals and your routine.
-                </p>
-
-            </div>
-
-        </div>
-
 
         <div class="lifetime-grid">
 
             ${lifetimeHabits.map(
-                (item, index) => `
+                (
+                    item,
+                    index
+                ) => {
+
+                    const title =
+                        item.title ||
+                        item.name ||
+                        item.category ||
+                        "Freedom Habit";
+
+
+                    const description =
+                        item.description ||
+                        item.details ||
+                        "";
+
+
+                    const habits =
+                        Array.isArray(
+                            item.habits
+                        )
+                            ? item.habits
+                            : [];
+
+
+                    const image =
+                        item.image ||
+                        item.imageUrl ||
+                        getLifetimeImage(
+                            index
+                        );
+
+
+                    return `
+
+                        <div class="lifetime-card">
+
+                            <img
+                                class="lifetime-image"
+                                src="${escapeHTML(
+                                    image
+                                )}"
+                                alt="${escapeHTML(
+                                    title
+                                )}"
+                                loading="lazy">
+
+                            <div class="lifetime-content">
+
+                                <h3>
+
+                                    ${escapeHTML(
+                                        title
+                                    )}
+
+                                </h3>
+
+                                ${
+                                    description
+                                        ? `
+                                            <p>
+
+                                                ${escapeHTML(
+                                                    description
+                                                )}
+
+                                            </p>
+                                          `
+                                        : ""
+                                }
+
+                                ${
+                                    habits.length
+                                        ? habits.map(
+                                            habit => {
+
+                                                const name =
+                                                    typeof habit === "string"
+                                                        ? habit
+                                                        : habit.name ||
+                                                          habit.habit ||
+                                                          habit.title ||
+                                                          "Habit";
+
+
+                                                const target =
+                                                    typeof habit === "object"
+                                                        ? habit.target ||
+                                                          habit.goal ||
+                                                          ""
+                                                        : "";
+
+
+                                                return `
+
+                                                    <div class="lifetime-habit">
+
+                                                        <strong>
+
+                                                            ${escapeHTML(
+                                                                name
+                                                            )}
+
+                                                        </strong>
+
+                                                        ${
+                                                            target
+                                                                ? `<br>${escapeHTML(target)}`
+                                                                : ""
+                                                        }
+
+                                                    </div>
+
+                                                `;
+
+                                            }
+                                        ).join("")
+                                        : ""
+                                }
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            ).join("")}
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================
+   FALLBACK LIFETIME
+========================= */
+
+function renderLifetimeFallback() {
+
+    const container =
+        document.getElementById(
+            "lifetimeHabitsContainer"
+        );
+
+
+    const items = [
+
+        {
+            title:
+                "Move Your Body",
+
+            description:
+                "Keep movement as part of your normal routine.",
+
+            habits:
+                [
+                    "Walk regularly",
+                    "Strength train consistently",
+                    "Choose movement you enjoy"
+                ]
+        },
+
+        {
+            title:
+                "Build Balanced Meals",
+
+            description:
+                "Continue using the balanced eating habits you learned during your 90 days.",
+
+            habits:
+                [
+                    "Include protein",
+                    "Add vegetables or fruit",
+                    "Enjoy your favourite foods mindfully"
+                ]
+        },
+
+        {
+            title:
+                "Protect Your Sleep",
+
+            description:
+                "Good sleep supports your energy, appetite and daily routine.",
+
+            habits:
+                [
+                    "Keep a consistent sleep routine",
+                    "Reduce screens before bed",
+                    "Prioritize rest"
+                ]
+        },
+
+        {
+            title:
+                "Stay Hydrated",
+
+            description:
+                "Make water your everyday default drink.",
+
+            habits:
+                [
+                    "Keep water nearby",
+                    "Drink regularly throughout the day"
+                ]
+        },
+
+        {
+            title:
+                "Manage Stress",
+
+            description:
+                "Create small moments of calm instead of waiting until you feel overwhelmed.",
+
+            habits:
+                [
+                    "Take mindful breaks",
+                    "Practice deep breathing",
+                    "Make time for yourself"
+                ]
+        },
+
+        {
+            title:
+                "Keep Checking In",
+
+            description:
+                "Progress is easier to maintain when you continue paying attention to your habits.",
+
+            habits:
+                [
+                    "Notice your eating patterns",
+                    "Track meaningful progress",
+                    "Adjust early instead of giving up"
+                ]
+        }
+
+    ];
+
+
+    container.innerHTML = `
+
+        <div class="lifetime-grid">
+
+            ${items.map(
+                (
+                    item,
+                    index
+                ) => `
 
                     <div class="lifetime-card">
 
                         <img
                             class="lifetime-image"
                             src="${getLifetimeImage(index)}"
-                            alt="${escapeHTML(item.title)}"
+                            alt="${escapeHTML(
+                                item.title
+                            )}"
                             loading="lazy">
 
                         <div class="lifetime-content">
 
-                            <h3>${escapeHTML(item.title)}</h3>
+                            <h3>
 
-                            <p>${escapeHTML(item.description)}</p>
+                                ${item.title}
+
+                            </h3>
+
+                            <p>
+
+                                ${item.description}
+
+                            </p>
 
                             ${item.habits.map(
                                 habit => `
+
                                     <div class="lifetime-habit">
-                                        ${escapeHTML(habit)}
+
+                                        ${escapeHTML(
+                                            habit
+                                        )}
+
                                     </div>
+
                                 `
                             ).join("")}
 
@@ -3826,29 +4872,80 @@ function renderLifetimeHabits() {
 }
 
 
+/* =========================
+   LIFETIME IMAGES
+========================= */
+
+function getLifetimeImage(index) {
+
+    const images = [
+
+        "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=1000&q=80",
+
+        "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=80",
+
+        "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=1000&q=80",
+
+        "https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=1000&q=80",
+
+        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1000&q=80",
+
+        "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80"
+
+    ];
+
+
+    return images[
+        index %
+        images.length
+    ];
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
 const navButtons =
-    document.querySelectorAll(".nav-btn");
+    document.querySelectorAll(
+        ".nav-btn"
+    );
 
 
 const sections =
-    document.querySelectorAll(".page-section");
+    document.querySelectorAll(
+        ".page-section"
+    );
 
 
-function openSection(sectionId) {
+function openSection(
+    sectionId
+) {
 
     sections.forEach(
         section => {
-            section.classList.remove("active");
+
+            section.classList.remove(
+                "active"
+            );
+
         }
     );
 
 
     const selected =
-        document.getElementById(sectionId);
+        document.getElementById(
+            sectionId
+        );
 
 
     if (selected) {
-        selected.classList.add("active");
+
+        selected.classList.add(
+            "active"
+        );
+
     }
 
 
@@ -3857,7 +4954,8 @@ function openSection(sectionId) {
 
             button.classList.toggle(
                 "active",
-                button.dataset.section === sectionId
+                button.dataset.section ===
+                sectionId
             );
 
         }
@@ -3866,14 +4964,9 @@ function openSection(sectionId) {
 
     document.getElementById(
         "sidebar"
-    ).classList.remove("open");
-
-
-    if (sectionId === "lifetimeSection") {
-
-        renderLifetimeSection();
-
-    }
+    ).classList.remove(
+        "open"
+    );
 
 
     window.scrollTo({
@@ -3884,7 +4977,8 @@ function openSection(sectionId) {
 }
 
 
-window.openSection = openSection;
+window.openSection =
+    openSection;
 
 
 navButtons.forEach(
@@ -3893,13 +4987,21 @@ navButtons.forEach(
         button.addEventListener(
             "click",
             () => {
-                openSection(button.dataset.section);
+
+                openSection(
+                    button.dataset.section
+                );
+
             }
         );
 
     }
 );
 
+
+/* =========================
+   BACK TO WEEKS
+========================= */
 
 document.getElementById(
     "backToWeeks"
@@ -3909,12 +5011,14 @@ document.getElementById(
 
         document.getElementById(
             "weekDetailView"
-        ).style.display = "none";
+        ).style.display =
+            "none";
 
 
         document.getElementById(
             "journeyListView"
-        ).style.display = "block";
+        ).style.display =
+            "block";
 
 
         renderWeeks();
@@ -3929,16 +5033,29 @@ document.getElementById(
 );
 
 
+/* =========================
+   PROFILE SAVE
+========================= */
+
 document.getElementById(
     "saveProfile"
-).addEventListener("click", saveProfile);
+).addEventListener(
+    "click",
+    saveProfile
+);
 
+
+/* =========================
+   LIVE CALCULATIONS
+========================= */
 
 profileFields.forEach(
     field => {
 
         const element =
-            document.getElementById(field);
+            document.getElementById(
+                field
+            );
 
 
         if (element) {
@@ -3954,10 +5071,21 @@ profileFields.forEach(
 );
 
 
+/* =========================
+   REFLECTION SAVE
+========================= */
+
 document.getElementById(
     "saveReflection"
-).addEventListener("click", saveReflection);
+).addEventListener(
+    "click",
+    saveReflection
+);
 
+
+/* =========================
+   LOGOUT
+========================= */
 
 document.getElementById(
     "logoutBtn"
@@ -3967,19 +5095,30 @@ document.getElementById(
 
         try {
 
-            await signOut(auth);
+            await signOut(
+                auth
+            );
 
-            window.location.href = "login.html";
+
+            window.location.href =
+                "login.html";
 
         } catch(error) {
 
-            console.error("LOGOUT ERROR", error);
+            console.error(
+                "LOGOUT ERROR",
+                error
+            );
 
         }
 
     }
 );
 
+
+/* =========================
+   MOBILE MENU
+========================= */
 
 document.getElementById(
     "mobileMenuBtn"
@@ -3989,11 +5128,17 @@ document.getElementById(
 
         document.getElementById(
             "sidebar"
-        ).classList.toggle("open");
+        ).classList.toggle(
+            "open"
+        );
 
     }
 );
 
+
+/* =========================
+   AUTH
+========================= */
 
 onAuthStateChanged(
     auth,
@@ -4001,34 +5146,39 @@ onAuthStateChanged(
 
         if (!user) {
 
-            window.location.href = "login.html";
+            window.location.href =
+                "login.html";
 
             return;
 
         }
 
 
-        currentUser = user;
+        currentUser =
+            user;
 
 
         document.getElementById(
             "memberEmail"
-        ).textContent = user.email;
+        ).textContent =
+            user.email;
 
 
-        await loadProfile(user);
+        await loadProfile(
+            user
+        );
 
 
         await loadMemberProgress();
 
 
-        renderWeeks();
+        await loadWeeklyContent();
+
+
+        await loadLifetimeHabits();
 
 
         updateOverallProgress();
-
-
-        updateLifetimeNavState();
 
     }
 );
@@ -4037,3 +5187,4 @@ onAuthStateChanged(
 
 </body>
 </html>
+
