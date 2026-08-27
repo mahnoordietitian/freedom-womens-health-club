@@ -6,355 +6,1291 @@
 
 <title>Freedom Women's Health Club</title>
 
+<meta name="description" content="Freedom Women's Health Club is a supportive online community helping women build sustainable weight loss habits through practical nutrition, movement and consistency.">
+
 <style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cream: #FBF8F3;
+    --plum: #6E4A7E;
+    --dark: #2D2D2D;
+    --champagne: #DCCBB3;
+    --taupe: #B7A89A;
+    --white: #FFFFFF;
+    --light-plum: #F1EAF4;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    line-height: 1.7;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: min(1120px, 92%);
+    margin: auto;
+}
+
+/* NAVIGATION */
+
+nav {
+    background: var(--cream);
+    border-bottom: 1px solid #e8e1da;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-inner {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.logo {
+    color: var(--plum);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    font-size: 14px;
+}
+
+.nav-links a:hover {
+    color: var(--plum);
+}
+
+.nav-button {
+    background: var(--plum);
+    color: white !important;
+    padding: 11px 20px;
+    border-radius: 6px;
+}
+
+/* HERO */
+
+.hero {
+    padding: 95px 0 90px;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 70px;
+}
+
+.eyebrow {
+    color: var(--plum);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1.08;
+    color: var(--dark);
+    margin-bottom: 24px;
+    font-weight: 700;
+}
+
+.hero h1 span {
+    color: var(--plum);
+}
+
+.hero-text {
+    font-size: 18px;
+    max-width: 650px;
+    color: #5a5552;
+    margin-bottom: 32px;
+}
+
+.primary-button {
+    display: inline-block;
+    background: var(--plum);
+    color: white;
+    padding: 15px 28px;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.secondary-button {
+    display: inline-block;
+    border: 1px solid var(--plum);
+    color: var(--plum);
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.primary-button:hover {
+    opacity: 0.9;
+}
+
+.secondary-button:hover {
+    background: var(--light-plum);
+}
+
+.hero-card {
+    background: var(--plum);
+    color: white;
+    padding: 42px;
+    border-radius: 18px;
+}
+
+.hero-card h3 {
+    font-size: 25px;
+    margin-bottom: 18px;
+}
+
+.hero-card p {
+    opacity: 0.92;
+    margin-bottom: 25px;
+}
+
+.hero-card-line {
+    border-top: 1px solid rgba(255,255,255,0.3);
+    padding-top: 18px;
+    margin-top: 18px;
+}
+
+/* GENERAL SECTIONS */
+
+section {
+    padding: 85px 0;
+}
+
+.section-light {
+    background: white;
+}
+
+.section-heading {
+    max-width: 720px;
+    margin-bottom: 48px;
+}
+
+.section-heading.center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.section-heading h2 {
+    font-size: 38px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    color: var(--dark);
+}
+
+.section-heading p {
+    color: #625d59;
+    font-size: 17px;
+}
+
+/* ABOUT */
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 55px;
+    align-items: center;
+}
+
+.about-box {
+    background: var(--light-plum);
+    padding: 40px;
+    border-radius: 15px;
+}
+
+.about-box h3 {
+    color: var(--plum);
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.about-text p {
+    margin-bottom: 18px;
+    color: #56514e;
+}
+
+/* WHO IT IS FOR */
+
+.audience-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.audience-card {
+    background: white;
+    padding: 28px;
+    border: 1px solid #e7e0da;
+    border-radius: 12px;
+}
+
+.audience-card h3 {
+    color: var(--plum);
+    font-size: 20px;
+    margin-bottom: 9px;
+}
+
+.audience-card p {
+    color: #5d5854;
+}
+
+/* FEATURES */
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.feature {
+    padding: 30px;
+    background: var(--cream);
+    border: 1px solid #e5ded7;
+    border-radius: 12px;
+}
+
+.feature-number {
+    color: var(--plum);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.feature h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    color: #625d59;
+}
+
+/* 90 DAY */
+
+.program {
+    background: var(--plum);
+    color: white;
+}
+
+.program .section-heading h2 {
+    color: white;
+}
+
+.program .section-heading p {
+    color: rgba(255,255,255,0.85);
+}
+
+.phases {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.phase {
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.phase-number {
+    color: var(--champagne);
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.phase h3 {
+    margin-bottom: 12px;
+    font-size: 22px;
+}
+
+.phase p {
+    color: rgba(255,255,255,0.85);
+}
+
+/* WHAT YOU GET */
+
+.get-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.get-item {
+    display: flex;
+    gap: 18px;
+    padding: 22px;
+    border-bottom: 1px solid #e5ded7;
+}
+
+.get-item strong {
+    color: var(--plum);
+    min-width: 25px;
+}
+
+.get-item p {
+    color: #5c5753;
+}
+
+/* METHOD */
+
+.method {
+    background: var(--light-plum);
+}
+
+.method-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.method-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.method-card strong {
+    display: block;
+    font-size: 25px;
+    color: var(--plum);
+    margin-bottom: 8px;
+}
+
+.method-card h3 {
+    margin-bottom: 7px;
+}
+
+.method-card p {
+    font-size: 14px;
+    color: #625d59;
+}
+
+/* CTA */
+
+.cta {
+    text-align: center;
+    background: var(--white);
+}
+
+.cta-box {
+    background: var(--cream);
+    border: 1px solid #e3dbd3;
+    border-radius: 18px;
+    padding: 65px 25px;
+}
+
+.cta-box h2 {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.cta-box p {
+    max-width: 650px;
+    margin: 0 auto 28px;
+    color: #5e5955;
+    font-size: 17px;
+}
+
+/* FAQ */
+
+.faq {
+    max-width: 800px;
+    margin: auto;
+}
+
+.faq-item {
+    border-bottom: 1px solid #ddd5ce;
+    padding: 23px 0;
+}
+
+.faq-item h3 {
+    color: var(--plum);
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.faq-item p {
+    color: #625d59;
+}
+
+/* FOOTER */
+
+footer {
+    background: #302a31;
+    color: white;
+    padding: 45px 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.footer-brand h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.footer-brand p {
+    color: #d4ced5;
+    max-width: 500px;
+}
+
+.footer-links {
+    text-align: right;
+}
+
+.footer-links a {
+    color: #ddd7de;
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+.copyright {
+    border-top: 1px solid rgba(255,255,255,0.15);
+    margin-top: 30px;
+    padding-top: 20px;
+    color: #bcb5bd;
+    font-size: 13px;
+}
+
+/* MOBILE */
+
+@media (max-width: 850px) {
+
+    .nav-links {
+        display: none;
     }
 
-    body {
-        font-family: Arial, sans-serif;
-        background: #FBF8F3;
-        color: #2D2D2D;
-        line-height: 1.6;
+    .hero {
+        padding: 65px 0;
     }
 
-    header {
-        background: #6E4A7E;
-        color: white;
-        padding: 45px 20px;
-        text-align: center;
+    .hero-grid,
+    .about-grid {
+        grid-template-columns: 1fr;
     }
 
-    header h1 {
-        font-size: 32px;
-        margin-bottom: 10px;
+    .features,
+    .phases {
+        grid-template-columns: 1fr;
     }
 
-    header p {
-        font-size: 16px;
-        opacity: 0.95;
+    .method-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .container {
-        max-width: 1000px;
-        margin: auto;
-        padding: 30px 20px;
+    .audience-grid,
+    .get-grid {
+        grid-template-columns: 1fr;
     }
 
-    .welcome {
-        background: white;
-        padding: 25px;
-        border-radius: 15px;
-        margin-bottom: 25px;
-        box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-    }
-
-    .welcome h2 {
-        color: #6E4A7E;
-        margin-bottom: 8px;
-    }
-
-    .progress-box {
-        background: white;
-        padding: 25px;
-        border-radius: 15px;
-        margin-bottom: 25px;
-    }
-
-    .progress-bar {
-        width: 100%;
-        height: 15px;
-        background: #eee;
-        border-radius: 20px;
-        overflow: hidden;
-        margin-top: 12px;
-    }
-
-    .progress-fill {
-        height: 100%;
-        width: 0%;
-        background: #6E4A7E;
-        transition: width 0.3s;
-    }
-
-    .days {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 15px;
-    }
-
-    .day {
-        background: white;
-        padding: 20px;
-        border-radius: 14px;
-        text-align: center;
-        border: 1px solid #eee;
-    }
-
-    .day h3 {
-        color: #6E4A7E;
-        margin-bottom: 8px;
-    }
-
-    .day button {
-        border: none;
-        background: #6E4A7E;
-        color: white;
-        padding: 9px 15px;
-        border-radius: 8px;
-        cursor: pointer;
-        margin-top: 10px;
-    }
-
-    .day button:hover {
-        opacity: 0.9;
-    }
-
-    .locked {
-        opacity: 0.55;
-    }
-
-    .locked button {
-        background: #aaa;
-        cursor: not-allowed;
-    }
-
-    .section {
-        background: white;
-        padding: 25px;
-        border-radius: 15px;
-        margin-top: 30px;
-    }
-
-    .section h2 {
-        color: #6E4A7E;
-        margin-bottom: 12px;
-    }
-
-    .checkin {
-        display: grid;
-        gap: 12px;
-        margin-top: 15px;
-    }
-
-    .checkin label {
-        font-weight: bold;
-    }
-
-    input, textarea {
-        width: 100%;
-        padding: 11px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        font-size: 15px;
-    }
-
-    .save-btn {
-        background: #6E4A7E;
-        color: white;
-        border: none;
-        padding: 12px;
-        border-radius: 8px;
-        cursor: pointer;
-    }
-
-    footer {
-        text-align: center;
+    .hero-card {
         padding: 30px;
-        margin-top: 40px;
-        color: #666;
     }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-links {
+        text-align: left;
+    }
+
+    .footer-links a {
+        margin-left: 0;
+        margin-right: 18px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    section {
+        padding: 60px 0;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .primary-button,
+    .secondary-button {
+        display: block;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .method-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading h2 {
+        font-size: 30px;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
-<header>
-    <h1>Freedom Women's Health Club</h1>
-    <p>A supportive community for sustainable weight loss, healthy habits and a healthier lifestyle.</p>
+<!-- NAVIGATION -->
+
+<nav>
+    <div class="container nav-inner">
+
+        <div class="logo">
+            Freedom Women's Health Club
+        </div>
+
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#included">What's Included</a>
+            <a href="#program">90 Days</a>
+            <a href="#faq">FAQs</a>
+            <a href="#join" class="nav-button">Join the Club</a>
+        </div>
+
+    </div>
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero">
+
+    <div class="container hero-grid">
+
+        <div>
+
+            <div class="eyebrow">
+                Freedom Women's Health Club
+            </div>
+
+            <h1>
+                Lose weight without
+                <span>extreme dieting.</span>
+            </h1>
+
+            <p class="hero-text">
+                A supportive women's health community designed to help you
+                build sustainable eating, movement and lifestyle habits
+                that fit into your real life.
+            </p>
+
+            <a href="#join" class="primary-button">
+                Join the Club
+            </a>
+
+            <a href="#about" class="secondary-button">
+                Learn More
+            </a>
+
+        </div>
+
+        <div class="hero-card">
+
+            <h3>
+                A different approach to weight loss
+            </h3>
+
+            <p>
+                No crash diets. No unrealistic restrictions.
+                No starting over every Monday.
+            </p>
+
+            <div class="hero-card-line">
+                Practical nutrition
+            </div>
+
+            <div class="hero-card-line">
+                Daily habits
+            </div>
+
+            <div class="hero-card-line">
+                Movement and consistency
+            </div>
+
+            <div class="hero-card-line">
+                Community and accountability
+            </div>
+
+        </div>
+
+    </div>
+
 </header>
 
-<div class="container">
 
-    <div class="welcome">
-        <h2>Welcome to Freedom 🌸</h2>
-        <p>
-            You don't need extreme diets to lose weight.
-            Over the next 90 days, we'll focus on simple habits,
-            better food choices, movement and consistency.
-        </p>
-    </div>
+<!-- ABOUT -->
 
-    <div class="progress-box">
-        <h2>Your 90-Day Progress</h2>
+<section id="about" class="section-light">
 
-        <p>
-            Completed:
-            <strong><span id="completed">0</span></strong> / 90 days
-        </p>
+    <div class="container about-grid">
 
-        <div class="progress-bar">
-            <div class="progress-fill" id="progress"></div>
-        </div>
-    </div>
+        <div class="about-text">
 
-    <div class="section">
-        <h2>90-Day Program</h2>
+            <div class="eyebrow">
+                About Freedom
+            </div>
 
-        <p style="margin-bottom:20px;">
-            Complete each day before moving forward.
-        </p>
-
-        <div class="days" id="days"></div>
-    </div>
-
-    <div class="section">
-        <h2>Daily Check-In</h2>
-
-        <p>
-            Use this space to reflect on your day and stay accountable.
-        </p>
-
-        <div class="checkin">
-
-            <label>Today's weight (optional)</label>
-            <input type="number" id="weight" placeholder="kg">
-
-            <label>Water</label>
-            <input type="text" id="water" placeholder="Example: 8 glasses">
-
-            <label>Walking / Steps</label>
-            <input type="text" id="steps" placeholder="Example: 30 minutes">
-
-            <label>Sleep</label>
-            <input type="text" id="sleep" placeholder="Example: 7 hours">
-
-            <label>How did you feel today?</label>
-            <textarea id="feeling" rows="4" placeholder="Write a few words..."></textarea>
-
-            <button class="save-btn" onclick="saveCheckin()">
-                Save Check-In
-            </button>
-
-        </div>
-
-        <p id="savedMessage" style="margin-top:12px;"></p>
-    </div>
-
-</div>
-
-<footer>
-    <p>Freedom Women's Health Club</p>
-    <p>Small steps. Consistent habits. Long-term results.</p>
-</footer>
-
-<script>
-
-let completedDays =
-    JSON.parse(localStorage.getItem("completedDays")) || [];
-
-function createDays() {
-
-    const daysContainer = document.getElementById("days");
-
-    for (let i = 1; i <= 90; i++) {
-
-        const day = document.createElement("div");
-        day.className = "day";
-
-        if (i > 30) {
-
-            day.classList.add("locked");
-
-            day.innerHTML = `
-                <h3>Day ${i}</h3>
-                <p>Coming Soon</p>
-                <button disabled>Locked</button>
-            `;
-
-        } else {
-
-            const completed =
-                completedDays.includes(i);
-
-            day.innerHTML = `
-                <h3>Day ${i}</h3>
+            <div class="section-heading">
+                <h2>
+                    Weight loss should fit your life.
+                </h2>
 
                 <p>
-                    ${completed
-                    ? "✓ Completed"
-                    : "Today's lesson"}
+                    Freedom Women's Health Club is a supportive online
+                    community for women who want to lose weight while
+                    learning how to make healthier choices in everyday life.
+                </p>
+            </div>
+
+            <p>
+                Instead of focusing only on what you should remove from
+                your diet, Freedom focuses on building habits you can
+                actually maintain.
+            </p>
+
+            <p>
+                You will learn how to make better choices with normal foods,
+                manage your routine, move more, improve consistency and
+                understand the habits that affect your progress.
+            </p>
+
+        </div>
+
+        <div class="about-box">
+
+            <h3>
+                Our goal
+            </h3>
+
+            <p>
+                Help women move from confusion and restrictive dieting
+                toward confidence, consistency and sustainable weight loss.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WHO IT IS FOR -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-heading center">
+
+            <div class="eyebrow">
+                Who It's For
+            </div>
+
+            <h2>
+                This club is for women who are ready for a realistic approach.
+            </h2>
+
+            <p>
+                Freedom is designed around real routines, real food and
+                realistic expectations.
+            </p>
+
+        </div>
+
+        <div class="audience-grid">
+
+            <div class="audience-card">
+                <h3>
+                    Women who want sustainable weight loss
+                </h3>
+                <p>
+                    You want results without relying on crash diets or
+                    extreme food restrictions.
+                </p>
+            </div>
+
+            <div class="audience-card">
+                <h3>
+                    Women tired of starting over
+                </h3>
+                <p>
+                    You want a routine that helps you stay consistent even
+                    when life gets busy.
+                </p>
+            </div>
+
+            <div class="audience-card">
+                <h3>
+                    Women who want practical guidance
+                </h3>
+                <p>
+                    You want simple guidance that works with everyday
+                    meals and your existing lifestyle.
+                </p>
+            </div>
+
+            <div class="audience-card">
+                <h3>
+                    Women who want accountability
+                </h3>
+                <p>
+                    You want support, structure and a community that helps
+                    you keep moving forward.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WHAT IS INCLUDED -->
+
+<section id="included" class="section-light">
+
+    <div class="container">
+
+        <div class="section-heading center">
+
+            <div class="eyebrow">
+                Inside The Club
+            </div>
+
+            <h2>
+                Everything is designed to help you build better habits.
+            </h2>
+
+            <p>
+                Your journey is structured so you always know what to focus on next.
+            </p>
+
+        </div>
+
+        <div class="features">
+
+            <div class="feature">
+                <div class="feature-number">01</div>
+                <h3>Guided Daily Lessons</h3>
+                <p>
+                    Follow simple lessons and actions throughout your
+                    weight-loss journey.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-number">02</div>
+                <h3>Nutrition Guidance</h3>
+                <p>
+                    Learn how to create balanced meals and make practical
+                    food choices.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-number">03</div>
+                <h3>Movement</h3>
+                <p>
+                    Build regular movement and exercise into your lifestyle
+                    without unrealistic routines.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-number">04</div>
+                <h3>Daily Accountability</h3>
+                <p>
+                    Use daily check-ins to stay aware of your habits and
+                    keep yourself accountable.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-number">05</div>
+                <h3>Progress Tracking</h3>
+                <p>
+                    Follow your progress and focus on more than just the
+                    number on the scale.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-number">06</div>
+                <h3>Supportive Community</h3>
+                <p>
+                    Stay connected with women working toward similar
+                    health and weight-loss goals.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- 90 DAY PROGRAM -->
+
+<section id="program" class="program">
+
+    <div class="container">
+
+        <div class="section-heading center">
+
+            <div class="eyebrow" style="color:#DCCBB3;">
+                The 90-Day Journey
+            </div>
+
+            <h2>
+                Three phases. One sustainable approach.
+            </h2>
+
+            <p>
+                Your journey is broken into manageable phases so you can
+                focus on progress one step at a time.
+            </p>
+
+        </div>
+
+        <div class="phases">
+
+            <div class="phase">
+
+                <div class="phase-number">
+                    PHASE 01
+                </div>
+
+                <h3>
+                    Reset
+                </h3>
+
+                <p>
+                    Build your foundation with simple nutrition, hydration,
+                    movement, sleep and daily routines.
                 </p>
 
-                <button onclick="completeDay(${i})">
-                    ${completed
-                    ? "Completed"
-                    : "Complete Day"}
-                </button>
-            `;
-        }
+            </div>
 
-        daysContainer.appendChild(day);
-    }
-}
+            <div class="phase">
 
-function completeDay(dayNumber) {
+                <div class="phase-number">
+                    PHASE 02
+                </div>
 
-    if (!completedDays.includes(dayNumber)) {
+                <h3>
+                    Build
+                </h3>
 
-        completedDays.push(dayNumber);
+                <p>
+                    Strengthen your habits, improve your meals and become
+                    more consistent with movement and daily choices.
+                </p>
 
-        localStorage.setItem(
-            "completedDays",
-            JSON.stringify(completedDays)
-        );
-    }
+            </div>
 
-    updateProgress();
+            <div class="phase">
 
-    document.getElementById("days").innerHTML = "";
+                <div class="phase-number">
+                    PHASE 03
+                </div>
 
-    createDays();
-}
+                <h3>
+                    Maintain
+                </h3>
 
-function updateProgress() {
+                <p>
+                    Learn how to handle real-life situations and build
+                    habits that can continue beyond the program.
+                </p>
 
-    const total = completedDays.length;
+            </div>
 
-    document.getElementById("completed").innerText = total;
+        </div>
 
-    const percentage = (total / 90) * 100;
+    </div>
 
-    document.getElementById("progress").style.width =
-        percentage + "%";
-}
+</section>
 
-function saveCheckin() {
 
-    const checkin = {
-        weight: document.getElementById("weight").value,
-        water: document.getElementById("water").value,
-        steps: document.getElementById("steps").value,
-        sleep: document.getElementById("sleep").value,
-        feeling: document.getElementById("feeling").value,
-        date: new Date().toLocaleDateString()
-    };
+<!-- WHAT YOU GET -->
 
-    localStorage.setItem(
-        "dailyCheckin",
-        JSON.stringify(checkin)
-    );
+<section>
 
-    document.getElementById("savedMessage").innerText =
-        "Your check-in has been saved on this device.";
-}
+    <div class="container">
 
-createDays();
-updateProgress();
+        <div class="section-heading">
 
-</script>
+            <div class="eyebrow">
+                Your Membership
+            </div>
+
+            <h2>
+                What you will have access to
+            </h2>
+
+        </div>
+
+        <div class="get-grid">
+
+            <div class="get-item">
+                <strong>01</strong>
+                <p>
+                    Structured 90-day weight-loss journey
+                </p>
+            </div>
+
+            <div class="get-item">
+                <strong>02</strong>
+                <p>
+                    Day-by-day educational content
+                </p>
+            </div>
+
+            <div class="get-item">
+                <strong>03</strong>
+                <p>
+                    Practical nutrition education
+                </p>
+            </div>
+
+            <div class="get-item">
+                <strong>04</strong>
+                <p>
+                    Daily habits and action steps
+                </p>
+            </div>
+
+            <div class="get-item">
+                <strong>05</strong>
+                <p>
+                    Movement and exercise guidance
+                </p>
+            </div>
+
+            <div class="get-item">
+                <strong>06</strong>
+                <p>
+                    Daily check-ins and accountability
+                </p>
+            </div>
+
+            <div class="get-item">
+                <strong>07</strong>
+                <p>
+                    Progress tracking
+                </p>
+            </div>
+
+            <div class="get-item">
+                <strong>08</strong>
+                <p>
+                    Supportive women's community
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- METHOD -->
+
+<section class="method">
+
+    <div class="container">
+
+        <div class="section-heading center">
+
+            <div class="eyebrow">
+                The Freedom Approach
+            </div>
+
+            <h2>
+                Learn the skills, not just the diet.
+            </h2>
+
+            <p>
+                The goal is not to follow a plan forever. The goal is to
+                become confident enough to make healthy choices yourself.
+            </p>
+
+        </div>
+
+        <div class="method-grid">
+
+            <div class="method-card">
+                <strong>01</strong>
+                <h3>Fuel</h3>
+                <p>
+                    Build balanced meals that support your goals.
+                </p>
+            </div>
+
+            <div class="method-card">
+                <strong>02</strong>
+                <h3>Reset</h3>
+                <p>
+                    Identify habits that are holding you back.
+                </p>
+            </div>
+
+            <div class="method-card">
+                <strong>03</strong>
+                <h3>Educate</h3>
+                <p>
+                    Understand your food and lifestyle choices.
+                </p>
+            </div>
+
+            <div class="method-card">
+                <strong>04</strong>
+                <h3>Exercise</h3>
+                <p>
+                    Make movement part of your routine.
+                </p>
+            </div>
+
+            <div class="method-card">
+                <strong>05</strong>
+                <h3>Develop</h3>
+                <p>
+                    Build habits through consistency.
+                </p>
+            </div>
+
+            <div class="method-card">
+                <strong>06</strong>
+                <h3>Own</h3>
+                <p>
+                    Become confident in your decisions.
+                </p>
+            </div>
+
+            <div class="method-card">
+                <strong>07</strong>
+                <h3>Maintain</h3>
+                <p>
+                    Carry your new habits into everyday life.
+                </p>
+            </div>
+
+            <div class="method-card">
+                <strong>08</strong>
+                <h3>Freedom</h3>
+                <p>
+                    Create a healthier relationship with food and your routine.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- JOIN -->
+
+<section id="join" class="cta">
+
+    <div class="container">
+
+        <div class="cta-box">
+
+            <div class="eyebrow">
+                Join Freedom
+            </div>
+
+            <h2>
+                Your healthier routine starts here.
+            </h2>
+
+            <p>
+                Join a supportive community of women working toward
+                sustainable weight loss, healthier habits and greater
+                confidence around food.
+            </p>
+
+            <a href="#" class="primary-button">
+                Join the Club
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section id="faq" class="section-light">
+
+    <div class="container">
+
+        <div class="section-heading center">
+
+            <div class="eyebrow">
+                Frequently Asked Questions
+            </div>
+
+            <h2>
+                Questions before joining?
+            </h2>
+
+        </div>
+
+        <div class="faq">
+
+            <div class="faq-item">
+
+                <h3>
+                    Is this a crash diet?
+                </h3>
+
+                <p>
+                    No. The focus is on sustainable habits, practical
+                    nutrition and consistency rather than extreme restriction.
+                </p>
+
+            </div>
+
+            <div class="faq-item">
+
+                <h3>
+                    How long is the program?
+                </h3>
+
+                <p>
+                    The full Freedom journey is structured over 90 days.
+                </p>
+
+            </div>
+
+            <div class="faq-item">
+
+                <h3>
+                    Do I need special foods?
+                </h3>
+
+                <p>
+                    The program focuses on practical food choices that can
+                    fit into your normal routine.
+                </p>
+
+            </div>
+
+            <div class="faq-item">
+
+                <h3>
+                    Will I receive daily guidance?
+                </h3>
+
+                <p>
+                    Members will follow structured day-by-day lessons,
+                    actions and check-ins throughout the journey.
+                </p>
+
+            </div>
+
+            <div class="faq-item">
+
+                <h3>
+                    Is this suitable for everyone?
+                </h3>
+
+                <p>
+                    The program is designed for adult women seeking general
+                    weight-loss and healthy lifestyle support. Individual
+                    medical conditions may require personalized guidance
+                    from an appropriately qualified healthcare professional.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div class="footer-brand">
+
+                <h3>
+                    Freedom Women's Health Club
+                </h3>
+
+                <p>
+                    A supportive community helping women build sustainable
+                    weight-loss and healthy lifestyle habits.
+                </p>
+
+            </div>
+
+            <div class="footer-links">
+
+                <a href="#about">About</a>
+                <a href="#included">Membership</a>
+                <a href="#program">90 Days</a>
+                <a href="#faq">FAQs</a>
+
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Freedom Women's Health Club. All rights reserved.
+        </div>
+
+    </div>
+
+</footer>
 
 </body>
 </html>
