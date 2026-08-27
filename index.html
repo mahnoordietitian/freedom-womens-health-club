@@ -6,7 +6,7 @@
 
 <title>Freedom Women's Health Club | Sustainable Weight Loss</title>
 
-<meta name="description" content="Freedom Women's Health Club is a supportive community helping women build sustainable weight loss and healthy lifestyle habits.">
+<meta name="description" content="Freedom Women's Health Club is a supportive community for women who want sustainable weight loss, healthier habits and a healthier lifestyle.">
 
 <style>
 
@@ -24,7 +24,8 @@
     --taupe: #B7A89A;
     --white: #FFFFFF;
     --light-plum: #F1EAF4;
-    --soft-gray: #F5F2EF;
+    --border: #E5DED7;
+    --text-light: #625D59;
 }
 
 html {
@@ -56,8 +57,8 @@ a {
 /* NAVIGATION */
 
 nav {
-    background: rgba(251,248,243,0.97);
-    border-bottom: 1px solid #e7dfd8;
+    background: rgba(251,248,243,0.98);
+    border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -80,7 +81,7 @@ nav {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 27px;
+    gap: 26px;
     font-size: 14px;
 }
 
@@ -121,6 +122,7 @@ nav {
     font-size: clamp(42px, 5vw, 66px);
     line-height: 1.08;
     margin-bottom: 24px;
+    font-weight: 700;
 }
 
 .hero h1 span {
@@ -130,7 +132,7 @@ nav {
 .hero-text {
     font-size: 18px;
     max-width: 650px;
-    color: #5c5753;
+    color: var(--text-light);
     margin-bottom: 30px;
 }
 
@@ -167,7 +169,7 @@ nav {
     border-radius: 18px;
 }
 
-/* SECTIONS */
+/* GENERAL SECTIONS */
 
 section {
     padding: 85px 0;
@@ -195,7 +197,7 @@ section {
 }
 
 .section-heading p {
-    color: #625d59;
+    color: var(--text-light);
     font-size: 17px;
 }
 
@@ -208,15 +210,15 @@ section {
     align-items: center;
 }
 
-.about-text p {
-    margin-bottom: 18px;
-    color: #56514e;
-}
-
 .about-image {
     height: 470px;
     object-fit: cover;
     border-radius: 16px;
+}
+
+.about-text p {
+    margin-bottom: 18px;
+    color: #56514E;
 }
 
 /* WHO IT IS FOR */
@@ -230,7 +232,7 @@ section {
 .audience-card {
     background: white;
     padding: 30px;
-    border: 1px solid #e7e0da;
+    border: 1px solid var(--border);
     border-radius: 12px;
 }
 
@@ -241,7 +243,7 @@ section {
 }
 
 .audience-card p {
-    color: #5d5854;
+    color: var(--text-light);
 }
 
 /* FEATURES */
@@ -255,7 +257,7 @@ section {
 .feature {
     padding: 30px;
     background: var(--cream);
-    border: 1px solid #e5ded7;
+    border: 1px solid var(--border);
     border-radius: 12px;
 }
 
@@ -273,7 +275,7 @@ section {
 }
 
 .feature p {
-    color: #625d59;
+    color: var(--text-light);
 }
 
 /* 90 DAY PROGRAM */
@@ -334,7 +336,7 @@ section {
     display: flex;
     gap: 18px;
     padding: 22px;
-    border-bottom: 1px solid #e5ded7;
+    border-bottom: 1px solid var(--border);
 }
 
 .get-item strong {
@@ -343,7 +345,7 @@ section {
 }
 
 .get-item p {
-    color: #5c5753;
+    color: var(--text-light);
 }
 
 /* FREEDOM METHOD */
@@ -362,7 +364,7 @@ section {
     background: white;
     padding: 30px;
     border-radius: 12px;
-    border: 1px solid #e7dfea;
+    border: 1px solid #E7DFEA;
 }
 
 .method-card strong {
@@ -377,7 +379,7 @@ section {
 }
 
 .method-card p {
-    color: #625d59;
+    color: var(--text-light);
 }
 
 /* ABOUT MAHNOOR */
@@ -415,15 +417,44 @@ section {
     color: var(--plum);
 }
 
+/* WHY FREEDOM */
+
+.why-section {
+    background: var(--cream);
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.why-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.why-card h3 {
+    color: var(--plum);
+    margin-bottom: 10px;
+}
+
+.why-card p {
+    color: var(--text-light);
+}
+
 /* JOIN */
 
 .cta {
     text-align: center;
+    background: white;
 }
 
 .cta-box {
     background: var(--cream);
-    border: 1px solid #e3dbd3;
+    border: 1px solid #E3DBD3;
     border-radius: 18px;
     padding: 65px 25px;
 }
@@ -436,7 +467,7 @@ section {
 .cta-box p {
     max-width: 650px;
     margin: 0 auto 28px;
-    color: #5e5955;
+    color: var(--text-light);
     font-size: 17px;
 }
 
@@ -448,7 +479,7 @@ section {
 }
 
 .faq-item {
-    border-bottom: 1px solid #ddd5ce;
+    border-bottom: 1px solid #DDD5CE;
     padding: 23px 0;
 }
 
@@ -459,13 +490,13 @@ section {
 }
 
 .faq-item p {
-    color: #625d59;
+    color: var(--text-light);
 }
 
 /* FOOTER */
 
 footer {
-    background: #302a31;
+    background: #302A31;
     color: white;
     padding: 45px 0;
 }
@@ -482,7 +513,7 @@ footer {
 }
 
 .footer-brand p {
-    color: #d4ced5;
+    color: #D4CED5;
     max-width: 500px;
 }
 
@@ -491,7 +522,7 @@ footer {
 }
 
 .footer-links a {
-    color: #ddd7de;
+    color: #DDD7DE;
     margin-left: 20px;
     font-size: 14px;
 }
@@ -500,7 +531,7 @@ footer {
     border-top: 1px solid rgba(255,255,255,0.15);
     margin-top: 30px;
     padding-top: 20px;
-    color: #bcb5bd;
+    color: #BCB5BD;
     font-size: 13px;
 }
 
@@ -533,7 +564,8 @@ footer {
 
     .features,
     .phases,
-    .method-grid {
+    .method-grid,
+    .why-grid {
         grid-template-columns: 1fr;
     }
 
@@ -591,9 +623,11 @@ footer {
 
 <body>
 
+
 <!-- NAVIGATION -->
 
 <nav>
+
     <div class="container nav-inner">
 
         <div class="logo">
@@ -601,15 +635,37 @@ footer {
         </div>
 
         <div class="nav-links">
+
             <a href="#about">About</a>
-            <a href="#included">What's Included</a>
-            <a href="#program">90 Days</a>
-            <a href="#mahnoor">About Mahnoor</a>
-            <a href="#faq">FAQs</a>
-            <a href="#join" class="nav-button">Join the Club</a>
+
+            <a href="#included">
+                What's Included
+            </a>
+
+            <a href="#program">
+                90 Days
+            </a>
+
+            <a href="#method">
+                FREEDOM Method
+            </a>
+
+            <a href="#mahnoor">
+                About Mahnoor
+            </a>
+
+            <a href="#faq">
+                FAQs
+            </a>
+
+            <a href="#join" class="nav-button">
+                Join the Club
+            </a>
+
         </div>
 
     </div>
+
 </nav>
 
 
@@ -626,14 +682,14 @@ footer {
             </div>
 
             <h1>
-                Sustainable weight loss
-                <span>starts with better habits.</span>
+                Lose weight without
+                <span>extreme dieting.</span>
             </h1>
 
             <p class="hero-text">
-                A supportive community for women who want to lose weight,
-                build healthier habits and feel more confident around food
-                without extreme dieting.
+                A supportive community for women who want sustainable
+                weight loss, healthier habits and more confidence around
+                food.
             </p>
 
             <a href="#join" class="primary-button">
@@ -651,7 +707,7 @@ footer {
             <img
                 class="hero-image"
                 src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=85"
-                alt="Woman doing gentle exercise at home"
+                alt="Woman doing gentle exercise"
             >
 
         </div>
@@ -672,7 +728,7 @@ footer {
             <img
                 class="about-image"
                 src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=900&q=85"
-                alt="Healthy food prepared for a balanced lifestyle"
+                alt="Balanced healthy food"
             >
 
         </div>
@@ -691,22 +747,26 @@ footer {
 
                 <p>
                     Freedom Women's Health Club is a supportive online
-                    community designed to help women build sustainable
-                    weight-loss and healthy lifestyle habits.
+                    community created for women who want to lose weight
+                    while building habits they can actually maintain.
                 </p>
 
             </div>
 
             <p>
-                Instead of focusing on extreme restrictions, the club
-                focuses on practical nutrition, movement, daily habits
-                and consistency.
+                We focus on practical nutrition, movement, daily habits,
+                consistency and learning how to make healthier choices
+                in everyday life.
             </p>
 
             <p>
-                The goal is not simply to follow a diet for a short period.
-                It is to learn skills that can continue to support you
-                long after the program ends.
+                You do not need to follow extreme diets or completely
+                change your lifestyle to make progress.
+            </p>
+
+            <p>
+                The goal is to help you create a healthier routine that
+                can continue long after the 90-day journey.
             </p>
 
         </div>
@@ -734,7 +794,7 @@ footer {
 
             <p>
                 Freedom is built around real routines, practical choices
-                and sustainable progress.
+                and sustainable weight-loss progress.
             </p>
 
         </div>
@@ -761,8 +821,8 @@ footer {
                 </h3>
 
                 <p>
-                    You want a routine that helps you stay consistent
-                    even when life gets busy.
+                    You want a routine that helps you stay consistent even
+                    when life gets busy.
                 </p>
 
             </div>
@@ -774,8 +834,8 @@ footer {
                 </h3>
 
                 <p>
-                    You want guidance that can fit into your normal meals,
-                    family routine and lifestyle.
+                    You want weight-loss guidance that can fit into your
+                    normal meals, family routine and lifestyle.
                 </p>
 
             </div>
@@ -813,7 +873,7 @@ footer {
             </div>
 
             <h2>
-                Everything is designed to help you build better habits.
+                Everything you need to build sustainable weight-loss habits.
             </h2>
 
             <p>
@@ -825,57 +885,105 @@ footer {
         <div class="features">
 
             <div class="feature">
-                <div class="feature-number">01</div>
-                <h3>Guided Daily Lessons</h3>
+
+                <div class="feature-number">
+                    01
+                </div>
+
+                <h3>
+                    Guided Daily Lessons
+                </h3>
+
                 <p>
                     Follow simple lessons and actions throughout your
-                    weight-loss journey.
+                    90-day weight-loss journey.
                 </p>
+
             </div>
 
             <div class="feature">
-                <div class="feature-number">02</div>
-                <h3>Nutrition Guidance</h3>
+
+                <div class="feature-number">
+                    02
+                </div>
+
+                <h3>
+                    Weight-Loss Nutrition
+                </h3>
+
                 <p>
-                    Learn how to create balanced meals and make practical
-                    food choices.
+                    Learn how to build balanced meals and make practical
+                    food choices that support your goals.
                 </p>
+
             </div>
 
             <div class="feature">
-                <div class="feature-number">03</div>
-                <h3>Movement</h3>
+
+                <div class="feature-number">
+                    03
+                </div>
+
+                <h3>
+                    Movement & Exercise
+                </h3>
+
                 <p>
-                    Build regular movement and exercise into your lifestyle
-                    without unrealistic routines.
+                    Build regular movement and exercise into your routine
+                    without unrealistic expectations.
                 </p>
+
             </div>
 
             <div class="feature">
-                <div class="feature-number">04</div>
-                <h3>Daily Accountability</h3>
+
+                <div class="feature-number">
+                    04
+                </div>
+
+                <h3>
+                    Daily Accountability
+                </h3>
+
                 <p>
                     Use daily check-ins to stay aware of your habits and
-                    keep yourself accountable.
+                    remain accountable.
                 </p>
+
             </div>
 
             <div class="feature">
-                <div class="feature-number">05</div>
-                <h3>Progress Tracking</h3>
+
+                <div class="feature-number">
+                    05
+                </div>
+
+                <h3>
+                    Progress Tracking
+                </h3>
+
                 <p>
-                    Follow your progress and focus on more than just
+                    Track your progress and focus on more than just
                     the number on the scale.
                 </p>
+
             </div>
 
             <div class="feature">
-                <div class="feature-number">06</div>
-                <h3>Supportive Community</h3>
+
+                <div class="feature-number">
+                    06
+                </div>
+
+                <h3>
+                    Supportive Community
+                </h3>
+
                 <p>
-                    Stay connected with women working toward similar
-                    weight-loss and lifestyle goals.
+                    Connect with women working toward sustainable
+                    weight loss and healthier lifestyles.
                 </p>
+
             </div>
 
         </div>
@@ -885,7 +993,7 @@ footer {
 </section>
 
 
-<!-- 90 DAY PROGRAM -->
+<!-- 90 DAY JOURNEY -->
 
 <section id="program" class="program">
 
@@ -898,12 +1006,12 @@ footer {
             </div>
 
             <h2>
-                Three phases. One sustainable approach.
+                A structured path toward sustainable weight loss.
             </h2>
 
             <p>
-                Your journey is broken into manageable phases so you can
-                focus on progress one step at a time.
+                Your journey is divided into three phases so you can
+                focus on one stage at a time.
             </p>
 
         </div>
@@ -921,8 +1029,8 @@ footer {
                 </h3>
 
                 <p>
-                    Build your foundation with simple nutrition, hydration,
-                    movement, sleep and daily routines.
+                    Build your foundation with simple nutrition,
+                    hydration, movement, sleep and daily routines.
                 </p>
 
             </div>
@@ -938,8 +1046,8 @@ footer {
                 </h3>
 
                 <p>
-                    Strengthen your habits, improve your meals and become
-                    more consistent with movement and daily choices.
+                    Strengthen your habits, improve your meals and
+                    become more consistent with movement.
                 </p>
 
             </div>
@@ -955,8 +1063,8 @@ footer {
                 </h3>
 
                 <p>
-                    Learn how to handle real-life situations and continue
-                    your habits beyond the program.
+                    Learn how to handle real-life situations and
+                    continue your healthier habits beyond the program.
                 </p>
 
             </div>
@@ -990,42 +1098,58 @@ footer {
 
             <div class="get-item">
                 <strong>01</strong>
-                <p>Structured 90-day weight-loss journey</p>
+                <p>
+                    Structured 90-day weight-loss journey
+                </p>
             </div>
 
             <div class="get-item">
                 <strong>02</strong>
-                <p>Day-by-day educational content</p>
+                <p>
+                    Day-by-day educational content
+                </p>
             </div>
 
             <div class="get-item">
                 <strong>03</strong>
-                <p>Practical nutrition education</p>
+                <p>
+                    Practical weight-loss nutrition education
+                </p>
             </div>
 
             <div class="get-item">
                 <strong>04</strong>
-                <p>Daily habits and action steps</p>
+                <p>
+                    Daily habits and action steps
+                </p>
             </div>
 
             <div class="get-item">
                 <strong>05</strong>
-                <p>Movement and exercise guidance</p>
+                <p>
+                    Movement and exercise guidance
+                </p>
             </div>
 
             <div class="get-item">
                 <strong>06</strong>
-                <p>Daily check-ins and accountability</p>
+                <p>
+                    Daily check-ins and accountability
+                </p>
             </div>
 
             <div class="get-item">
                 <strong>07</strong>
-                <p>Progress tracking</p>
+                <p>
+                    Progress tracking
+                </p>
             </div>
 
             <div class="get-item">
                 <strong>08</strong>
-                <p>Supportive women's community</p>
+                <p>
+                    Supportive women's community
+                </p>
             </div>
 
         </div>
@@ -1037,7 +1161,7 @@ footer {
 
 <!-- FREEDOM METHOD -->
 
-<section class="method">
+<section id="method" class="method">
 
     <div class="container">
 
@@ -1061,66 +1185,179 @@ footer {
         <div class="method-grid">
 
             <div class="method-card">
+
                 <strong>F</strong>
-                <h3>Fuel Your Body</h3>
+
+                <h3>
+                    Fuel Your Body
+                </h3>
+
                 <p>
                     Learn how to build balanced meals that support
                     weight loss and your health.
                 </p>
+
             </div>
 
             <div class="method-card">
+
                 <strong>R</strong>
-                <h3>Reset Your Habits</h3>
+
+                <h3>
+                    Reset Your Habits
+                </h3>
+
                 <p>
                     Identify everyday habits that may be slowing your
                     progress and replace them with realistic ones.
                 </p>
+
             </div>
 
             <div class="method-card">
+
                 <strong>E</strong>
-                <h3>Educate Yourself</h3>
+
+                <h3>
+                    Educate Yourself
+                </h3>
+
                 <p>
                     Understand food, portions, movement and choices
                     that affect your progress.
                 </p>
+
             </div>
 
             <div class="method-card">
+
                 <strong>E</strong>
-                <h3>Exercise Smart</h3>
+
+                <h3>
+                    Exercise Smart
+                </h3>
+
                 <p>
                     Use walking, strength training and regular movement
                     to support your goals.
                 </p>
+
             </div>
 
             <div class="method-card">
+
                 <strong>D</strong>
-                <h3>Develop Consistency</h3>
+
+                <h3>
+                    Develop Consistency
+                </h3>
+
                 <p>
                     Learn how to stay consistent without needing
                     perfection.
                 </p>
+
             </div>
 
             <div class="method-card">
+
                 <strong>O</strong>
-                <h3>Own Your Health</h3>
+
+                <h3>
+                    Own Your Health
+                </h3>
+
                 <p>
-                    Build confidence in making healthy choices for
+                    Build confidence in making healthier choices for
                     yourself and your lifestyle.
                 </p>
+
             </div>
 
             <div class="method-card">
+
                 <strong>M</strong>
-                <h3>Maintain Your Results</h3>
+
+                <h3>
+                    Maintain Your Results
+                </h3>
+
                 <p>
                     Learn how to continue your habits and maintain
                     your progress beyond the program.
                 </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WHY FREEDOM -->
+
+<section class="why-section">
+
+    <div class="container">
+
+        <div class="section-heading center">
+
+            <div class="eyebrow">
+                Why Freedom
+            </div>
+
+            <h2>
+                Weight loss without making food the enemy.
+            </h2>
+
+            <p>
+                Build a healthier routine while learning how to make
+                confident choices in everyday life.
+            </p>
+
+        </div>
+
+        <div class="why-grid">
+
+            <div class="why-card">
+
+                <h3>
+                    No extreme dieting
+                </h3>
+
+                <p>
+                    The focus is on realistic habits rather than
+                    unsustainable restriction.
+                </p>
+
+            </div>
+
+            <div class="why-card">
+
+                <h3>
+                    Practical for real life
+                </h3>
+
+                <p>
+                    Learn strategies that can work around your routine,
+                    family meals and everyday responsibilities.
+                </p>
+
+            </div>
+
+            <div class="why-card">
+
+                <h3>
+                    Focus on lasting habits
+                </h3>
+
+                <p>
+                    Learn skills that can continue supporting your
+                    weight-loss journey beyond 90 days.
+                </p>
+
             </div>
 
         </div>
@@ -1141,7 +1378,7 @@ footer {
             <img
                 class="about-me-image"
                 src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=85"
-                alt="Professional woman working at a desk"
+                alt="Professional woman working"
             >
 
         </div>
@@ -1155,22 +1392,22 @@ footer {
             <div class="section-heading">
 
                 <h2>
-                    Helping women build healthier habits with confidence.
+                    Helping women lose weight and build healthier habits with confidence.
                 </h2>
 
             </div>
 
             <p>
-                I'm Mahnoor, a nutrition professional passionate about
-                helping women make healthier choices without feeling
-                confused or overwhelmed by food.
+                I'm Mahnoor, a Dietitian who helps women work toward
+                sustainable weight loss through practical nutrition,
+                healthier habits and consistency.
             </p>
 
             <p>
-                I create nutrition content and coach women with
-                Type 2 Diabetes, helping them build healthier habits,
-                feel more confident around food and take control of
-                their diabetes.
+                I create nutrition content and coach women with Type 2
+                Diabetes, helping them lose weight, build healthier habits,
+                feel more confident around food and take better control
+                of their health.
             </p>
 
             <div class="credentials">
@@ -1180,7 +1417,7 @@ footer {
                 </strong>
 
                 <p>
-                    BS Human Nutrition & Dietetics
+                    BSc (Hons) Human Nutrition & Dietetics
                     — University of Agriculture Faisalabad (UAF)
                 </p>
 
@@ -1195,7 +1432,7 @@ footer {
 
 <!-- JOIN -->
 
-<section id="join">
+<section id="join" class="cta">
 
     <div class="container">
 
@@ -1249,12 +1486,13 @@ footer {
             <div class="faq-item">
 
                 <h3>
-                    Is this a crash diet?
+                    Is Freedom a crash diet?
                 </h3>
 
                 <p>
-                    No. The focus is on sustainable habits, practical
-                    nutrition and consistency rather than extreme restriction.
+                    No. The focus is on sustainable weight-loss habits,
+                    practical nutrition, movement and consistency rather
+                    than extreme restriction.
                 </p>
 
             </div>
@@ -1278,8 +1516,8 @@ footer {
                 </h3>
 
                 <p>
-                    The program focuses on practical food choices that
-                    can fit into your normal routine.
+                    No. The focus is on practical food choices that can
+                    fit into your normal routine.
                 </p>
 
             </div>
@@ -1304,11 +1542,10 @@ footer {
                 </h3>
 
                 <p>
-                    The program is designed for adult women seeking
-                    general weight-loss and healthy lifestyle support.
-                    Individual medical conditions may require
-                    personalized guidance from an appropriately
-                    qualified healthcare professional.
+                    The club is designed for adult women seeking general
+                    weight-loss and healthy lifestyle support. Individual
+                    medical conditions may require personalized guidance
+                    from an appropriately qualified healthcare professional.
                 </p>
 
             </div>
@@ -1344,10 +1581,26 @@ footer {
             <div class="footer-links">
 
                 <a href="#about">About</a>
-                <a href="#included">Membership</a>
-                <a href="#program">90 Days</a>
-                <a href="#mahnoor">About Mahnoor</a>
-                <a href="#faq">FAQs</a>
+
+                <a href="#included">
+                    Membership
+                </a>
+
+                <a href="#program">
+                    90 Days
+                </a>
+
+                <a href="#method">
+                    FREEDOM Method
+                </a>
+
+                <a href="#mahnoor">
+                    About Mahnoor
+                </a>
+
+                <a href="#faq">
+                    FAQs
+                </a>
 
             </div>
 
@@ -1360,6 +1613,7 @@ footer {
     </div>
 
 </footer>
+
 
 </body>
 </html>
