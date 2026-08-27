@@ -31,8 +31,6 @@ body {
     margin: auto;
 }
 
-/* HEADER */
-
 header {
     background: #FFFFFF;
     border-bottom: 1px solid #E5DED7;
@@ -56,12 +54,6 @@ header {
     text-decoration: none;
     font-size: 14px;
 }
-
-.home-link:hover {
-    text-decoration: underline;
-}
-
-/* MAIN */
 
 main {
     flex: 1;
@@ -102,8 +94,6 @@ h1 {
     margin-bottom: 30px;
 }
 
-/* FORM */
-
 label {
     display: block;
     text-align: left;
@@ -143,7 +133,10 @@ input:focus {
     opacity: 0.9;
 }
 
-/* MESSAGE */
+.login-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
 
 .message {
     margin-top: 18px;
@@ -159,8 +152,6 @@ input:focus {
     color: #6E4A7E;
 }
 
-/* INFO */
-
 .info {
     background: #F1EAF4;
     border-radius: 9px;
@@ -174,8 +165,6 @@ input:focus {
     font-size: 13px;
 }
 
-/* FOOTER */
-
 footer {
     background: #302A31;
     color: #FFFFFF;
@@ -187,8 +176,6 @@ footer p {
     color: #D4CED5;
     margin-bottom: 4px;
 }
-
-/* MOBILE */
 
 @media (max-width: 600px) {
 
@@ -210,8 +197,6 @@ footer p {
 <body>
 
 
-<!-- HEADER -->
-
 <header>
 
     <div class="container header-inner">
@@ -228,8 +213,6 @@ footer p {
 
 </header>
 
-
-<!-- MAIN -->
 
 <main>
 
@@ -251,7 +234,7 @@ footer p {
             </p>
 
 
-            <form onsubmit="login(event)">
+            <form id="loginForm">
 
                 <label for="email">
                     Email Address
@@ -267,6 +250,7 @@ footer p {
                 <button
                     type="submit"
                     class="login-button"
+                    id="loginButton"
                 >
                     Continue
                 </button>
@@ -274,16 +258,13 @@ footer p {
             </form>
 
 
-            <div
-                id="message"
-                class="message"
-            ></div>
+            <div id="message" class="message"></div>
 
 
             <div class="info">
 
                 <p>
-                    Your access is available only to approved
+                    Access is available only to approved
                     Freedom Women's Health Club members.
                 </p>
 
@@ -295,8 +276,6 @@ footer p {
 
 </main>
 
-
-<!-- FOOTER -->
 
 <footer>
 
@@ -315,57 +294,164 @@ footer p {
 </footer>
 
 
-<script>
+<script type="module">
 
 /*
 ==================================================
-APPROVED MEMBER EMAILS
-==================================================
-
-Add the email addresses of your paid members here.
-
-Example:
-
-"member1@gmail.com",
-"member2@gmail.com"
-
-For now, your test email is included below.
+FIREBASE
 ==================================================
 */
 
-const approvedEmails = [
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
-    "mahnoornazar2@gmail.com"
+import {
+    getFirestore,
+    doc,
+    getDoc
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
-];
+
+/*
+==================================================
+YOUR FIREBASE CONFIG
+==================================================
+*/
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyB1ISMm_aVwsbSHByUI0F67tn-8GJo1pO0",
+
+    authDomain:
+        "freedom-women-s-health-club.firebaseapp.com",
+
+    projectId:
+        "freedom-women-s-health-club",
+
+    storageBucket:
+        "freedom-women-s-health-club.firebasestorage.app",
+
+    messagingSenderId:
+        "445440093665",
+
+    appId:
+        "1:445440093665:web:9c3a77f1f64776f63cb6a0"
+
+};
 
 
-function login(event) {
+/*
+==================================================
+INITIALIZE FIREBASE
+==================================================
+*/
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+/*
+==================================================
+LOGIN
+==================================================
+*/
+
+const loginForm =
+    document.getElementById("loginForm");
+
+const emailInput =
+    document.getElementById("email");
+
+const message =
+    document.getElementById("message");
+
+const loginButton =
+    document.getElementById("loginButton");
+
+
+loginForm.addEventListener("submit", async function(event) {
 
     event.preventDefault();
 
-    const emailInput =
-        document.getElementById("email");
-
-    const message =
-        document.getElementById("message");
 
     const email =
         emailInput.value.trim().toLowerCase();
 
 
-    /*
-    Check whether the entered email
-    is on the approved member list.
-    */
+    message.className = "message";
 
-    const isApproved =
-        approvedEmails
-        .map(email => email.toLowerCase())
-        .includes(email);
+    message.innerText =
+        "Checking your membership...";
+
+    loginButton.disabled = true;
 
 
-    if (isApproved) {
+    try {
+
+        /*
+        Find the member document using
+        their email address.
+        */
+
+        const memberRef =
+            doc(db, "members", email);
+
+        const memberSnap =
+            await getDoc(memberRef);
+
+
+        /*
+        Member does not exist
+        */
+
+        if (!memberSnap.exists()) {
+
+            message.className =
+                "message error";
+
+            message.innerText =
+                "This email is not registered as a club member.";
+
+            loginButton.disabled = false;
+
+            return;
+
+        }
+
+
+        /*
+        Get member information
+        */
+
+        const memberData =
+            memberSnap.data();
+
+
+        /*
+        Check whether membership
+        is active.
+        */
+
+        if (memberData.active !== true) {
+
+            message.className =
+                "message error";
+
+            message.innerText =
+                "Your membership is currently inactive. Please contact me on WhatsApp.";
+
+            loginButton.disabled = false;
+
+            return;
+
+        }
+
+
+        /*
+        MEMBER APPROVED
+        */
 
         message.className =
             "message success";
@@ -375,8 +461,19 @@ function login(event) {
 
 
         /*
-        Approved member goes
-        directly to the dashboard.
+        Save the member email temporarily
+        so the dashboard knows which member
+        is viewing it.
+        */
+
+        sessionStorage.setItem(
+            "memberEmail",
+            email
+        );
+
+
+        /*
+        Open dashboard
         */
 
         setTimeout(function() {
@@ -387,17 +484,21 @@ function login(event) {
         }, 800);
 
 
-    } else {
+    } catch (error) {
+
+        console.error(error);
 
         message.className =
             "message error";
 
         message.innerText =
-            "This email is not registered as a club member. Please contact me on WhatsApp.";
+            "Unable to verify your membership right now. Please try again.";
+
+        loginButton.disabled = false;
 
     }
 
-}
+});
 
 </script>
 
