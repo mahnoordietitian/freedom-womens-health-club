@@ -1126,350 +1126,7 @@ button {
             class="primary-btn"
             onclick="openSection('journeySection')">
 
-            Continue My Journey →
-
-        </button>
-
-
-        <div class="progress-box">
-
-            <div class="progress-top">
-
-                <span>
-                    Overall Progress
-                </span>
-
-                <span>
-                    <strong id="progressDays">0</strong> / 90 days
-                </span>
-
-            </div>
-
-            <div class="progress-track">
-
-                <div
-                    class="progress-fill"
-                    id="progressFill">
-                </div>
-
-            </div>
-
-            <div
-                class="progress-note"
-                id="progressNote">
-
-                Your journey is ready to begin.
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="small-title">
-            How It Works
-        </div>
-
-        <h2>
-            One week at a time
-        </h2>
-
-        <div class="education-grid">
-
-            <div class="education-card">
-
-                <div class="education-label">
-                    Step 01
-                </div>
-
-                <h3>
-                    Open Your Week
-                </h3>
-
-                <p>
-                    Your current week opens automatically according
-                    to your personal start date.
-                </p>
-
-            </div>
-
-
-            <div class="education-card">
-
-                <div class="education-label">
-                    Step 02
-                </div>
-
-                <h3>
-                    Follow Each Day
-                </h3>
-
-                <p>
-                    Complete your daily movement, nutrition, hydration,
-                    sleep and lifestyle habits.
-                </p>
-
-            </div>
-
-
-            <div class="education-card">
-
-                <div class="education-label">
-                    Step 03
-                </div>
-
-                <h3>
-                    Build Consistency
-                </h3>
-
-                <p>
-                    Your progress is saved automatically as you
-                    complete your habits.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     PROFILE
-========================= -->
-
-<section
-    class="page-section"
-    id="profileSection">
-
-    <div class="page-header">
-
-        <div class="small-title">
-            Your Information
-        </div>
-
-        <h1>
-            My Profile
-        </h1>
-
-        <p>
-            Keep your measurements updated so your progress can be tracked.
-        </p>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="profile-grid">
-
-            <div class="field">
-                <label>Name</label>
-                <input id="name" type="text">
-            </div>
-
-            <div class="field">
-                <label>Age</label>
-                <input id="age" type="number">
-            </div>
-
-            <div class="field">
-                <label>Height (cm)</label>
-                <input id="height" type="number">
-            </div>
-
-            <div class="field">
-                <label>Starting Weight (kg)</label>
-                <input id="startingWeight" type="number" step="0.1">
-            </div>
-
-            <div class="field">
-                <label>Current Weight (kg)</label>
-                <input id="currentWeight" type="number" step="0.1">
-            </div>
-
-            <div class="field">
-                <label>Starting Waist (cm)</label>
-                <input id="startingWaist" type="number" step="0.1">
-            </div>
-
-            <div class="field">
-                <label>Current Waist (cm)</label>
-                <input id="currentWaist" type="number" step="0.1">
-            </div>
-
-            <div class="field">
-                <label>Starting Hip (cm)</label>
-                <input id="startingHip" type="number" step="0.1">
-            </div>
-
-            <div class="field">
-                <label>Current Hip (cm)</label>
-                <input id="currentHip" type="number" step="0.1">
-            </div>
-
-        </div>
-
-
-        <div class="profile-actions">
-
-            <button
-                class="primary-btn"
-                id="saveProfile">
-
-                Save Profile
-
-            </button>
-
-            <span
-                class="save-message"
-                id="saveMessage">
-            </span>
-
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="small-title">
-            Progress
-        </div>
-
-        <h2>
-            Your Measurements
-        </h2>
-
-
-        <div class="stats-grid">
-
-            <div class="stat">
-
-                <div class="stat-label">
-                    Weight Lost
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="weightLost">
-                    —
-                </div>
-
-                <div class="stat-help">
-                    Starting weight minus current weight.
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-label">
-                    Waist Change
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="waistChange">
-                    —
-                </div>
-
-                <div class="stat-help">
-                    Starting waist minus current waist.
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-label">
-                    BMI
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="bmi">
-                    —
-                </div>
-
-                <div class="stat-help">
-                    Uses current weight when available.
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-label">
-                    IBW Range
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="ibw">
-                    —
-                </div>
-
-                <div class="stat-help">
-                    Reference range based on height.
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-label">
-                    Starting WHR
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="startingWhr">
-                    —
-                </div>
-
-                <div class="stat-help">
-                    Starting waist ÷ starting hip.
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-label">
-                    Current WHR
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="currentWhr">
-                    —
-                </div>
-
-                <div class="stat-help">
-                    Current waist ÷ current hip.
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
+          <!-- =========================
      JOURNEY
 ========================= -->
 
@@ -1496,7 +1153,6 @@ button {
 
         </div>
 
-
         <div class="journey-intro">
 
             <div class="start-date-box">
@@ -1519,7 +1175,6 @@ button {
 
         </div>
 
-
         <div id="weeksContainer">
 
             <div class="loading-box">
@@ -1531,7 +1186,9 @@ button {
     </div>
 
 
-    <!-- WEEK DETAIL -->
+    <!-- =========================
+         WEEK DETAIL
+    ========================= -->
 
     <div
         class="week-detail"
@@ -1551,20 +1208,22 @@ button {
             <div
                 class="small-title"
                 id="detailWeekLabel">
+
                 Week 1
+
             </div>
 
             <h1 id="detailWeekTitle">
                 Loading...
             </h1>
 
-            <p id="detailWeekDescription"></p>
+            <p id="detailWeekDescription">
+            </p>
 
         </div>
 
 
-        <div
-            class="goal-box">
+        <div class="goal-box">
 
             <div class="goal-label">
                 Week Goal
@@ -1578,7 +1237,8 @@ button {
         </div>
 
 
-        <div id="weekContentContainer"></div>
+        <div id="weekContentContainer">
+        </div>
 
 
         <div
@@ -1593,7 +1253,8 @@ button {
                 Take a few minutes to reflect on your week.
             </p>
 
-            <div id="reflectionFields"></div>
+            <div id="reflectionFields">
+            </div>
 
             <button
                 class="save-reflection-btn"
@@ -1615,536 +1276,39 @@ button {
 </section>
 
 
-<!-- =========================
-     EDUCATION
-========================= -->
-
-<section
-    class="page-section"
-    id="educationSection">
-
-    <div class="page-header">
-
-        <div class="small-title">
-            Learn
-        </div>
-
-        <h1>
-            Weekly Education
-        </h1>
-
-        <p>
-            Simple lessons to help you make confident choices.
-        </p>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="education-grid">
-
-            <div class="education-card">
-
-                <div class="education-label">
-                    Nutrition
-                </div>
-
-                <h3>
-                    Building a Balanced Plate
-                </h3>
-
-                <p>
-                    Learn how to build balanced meals without giving up
-                    the foods you enjoy.
-                </p>
-
-            </div>
-
-
-            <div class="education-card">
-
-                <div class="education-label">
-                    Protein
-                </div>
-
-                <h3>
-                    Why Protein Matters
-                </h3>
-
-                <p>
-                    Understand how protein can support fullness,
-                    recovery and your weight-loss journey.
-                </p>
-
-            </div>
-
-
-            <div class="education-card">
-
-                <div class="education-label">
-                    Habits
-                </div>
-
-                <h3>
-                    Consistency Over Perfection
-                </h3>
-
-                <p>
-                    Learn how small actions repeated consistently
-                    create lasting change.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     COMMUNITY
-========================= -->
-
-<section
-    class="page-section"
-    id="communitySection">
-
-    <div class="page-header">
-
-        <div class="small-title">
-            Connect
-        </div>
-
-        <h1>
-            Freedom Community
-        </h1>
-
-        <p>
-            Share your journey, ask questions and celebrate your wins.
-        </p>
-
-    </div>
-
-
-    <div class="community-hero">
-
-        <h2>
-            You're not doing this alone.
-        </h2>
-
-        <p>
-            This is your space to share daily check-ins, meals,
-            workouts, wins, challenges and questions with other
-            Freedom members.
-        </p>
-
-        <div class="community-actions">
-
-            <a
-                href="community.html"
-                class="primary-btn">
-
-                Open Community →
-
-            </a>
-
-        </div>
-
-        <div class="community-note">
-
-            Your Community is separate from your personal progress
-            and profile.
-
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <h3>
-            What You Can Share
-        </h3>
-
-        <div class="education-grid">
-
-            <div class="education-card">
-
-                <div class="education-label">
-                    Daily Check-In
-                </div>
-
-                <h3>
-                    "Day 5 done!"
-                </h3>
-
-                <p>
-                    Tell the community what habits you completed today.
-                </p>
-
-            </div>
-
-
-            <div class="education-card">
-
-                <div class="education-label">
-                    Food
-                </div>
-
-                <h3>
-                    Share Your Meal
-                </h3>
-
-                <p>
-                    Share meals, ideas and practical food choices.
-                </p>
-
-            </div>
-
-
-            <div class="education-card">
-
-                <div class="education-label">
-                    Support
-                </div>
-
-                <h3>
-                    Ask Questions
-                </h3>
-
-                <p>
-                    Ask questions and encourage other members.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     LIFETIME HABITS
-========================= -->
-
-<section
-    class="page-section"
-    id="lifetimeSection">
-
-    <div class="page-header">
-
-        <div class="small-title">
-            After Day 90
-        </div>
-
-        <h1>
-            Lifetime Freedom Habits
-        </h1>
-
-        <p>
-            Your 90 days are not the finish line. These habits become
-            your long-term foundation.
-        </p>
-
-    </div>
-
-
-    <div class="lifetime-hero">
-
-        <div>
-
-            <h2>
-                Freedom is a lifestyle.
-            </h2>
-
-            <p>
-                You don't need another extreme diet after Day 90.
-                You need habits you can continue with your real life,
-                your family meals and your routine.
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <div id="lifetimeHabitsContainer">
-
-        <div class="loading-box">
-            Loading your Lifetime Freedom Habits...
-        </div>
-
-    </div>
-
-</section>
-
-
-    </div>
-
-</main>
-
-</div>
-
-
-<!-- =========================
-     FIREBASE
-========================= -->
-
-<script type="module">
-
-import {
-    initializeApp
-}
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-
-
-import {
-    getAuth,
-    onAuthStateChanged,
-    signOut
-}
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-
-
-import {
-    getFirestore,
-    doc,
-    getDoc,
-    setDoc,
-    collection,
-    getDocs
-}
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-
+<script>
 
 /* =========================
-   FIREBASE CONFIG
+   90-DAY JOURNEY
 ========================= */
-
-const firebaseConfig = {
-
-    apiKey:
-        "AIzaSyB1ISMm_aVwsbSHByUI0F67tn-8GJo1pO0",
-
-    authDomain:
-        "freedom-women-s-health-club.firebaseapp.com",
-
-    projectId:
-        "freedom-women-s-health-club",
-
-    storageBucket:
-        "freedom-women-s-health-club.firebasestorage.app",
-
-    messagingSenderId:
-        "445440093665",
-
-    appId:
-        "1:445440093665:web:9c3a77f1f64776f63cb6a0"
-
-};
-
-
-const app =
-    initializeApp(firebaseConfig);
-
-const auth =
-    getAuth(app);
-
-const db =
-    getFirestore(app);
-
-
-/* =========================
-   GLOBAL VARIABLES
-========================= */
-
-let currentUser = null;
-
-let weeklyContent = [];
-
-let lifetimeHabits = [];
-
-let memberProgress = {};
 
 let selectedWeek = null;
-
 let memberStartDate = null;
 
 
 /* =========================
-   PROFILE FIELDS
-========================= */
-
-const profileFields = [
-
-    "name",
-    "age",
-    "height",
-    "startingWeight",
-    "currentWeight",
-    "startingWaist",
-    "currentWaist",
-    "startingHip",
-    "currentHip"
-
-];
-
-
-/* =========================
-   HELPERS
-========================= */
-
-function getValue(id) {
-
-    const el =
-        document.getElementById(id);
-
-    return el
-        ? String(el.value || "").trim()
-        : "";
-
-}
-
-
-function getNumber(id) {
-
-    const value =
-        parseFloat(
-            getValue(id)
-        );
-
-    return Number.isFinite(value)
-        ? value
-        : null;
-
-}
-
-
-function escapeHTML(value) {
-
-    if (
-        value === undefined ||
-        value === null
-    ) {
-
-        return "";
-
-    }
-
-    return String(value)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-
-}
-
-
-/* =========================
-   START DATE
-========================= */
-
-function getStartDate(data) {
-
-    const possible = [
-
-        data.startDate,
-        data.joiningDate,
-        data.joinDate,
-        data.programStartDate,
-        data.membershipStartDate
-
-    ];
-
-
-    for (
-        const value of possible
-    ) {
-
-        if (!value) continue;
-
-
-        if (
-            value &&
-            typeof value.toDate === "function"
-        ) {
-
-            const date =
-                value.toDate();
-
-            if (!isNaN(date)) {
-                return date;
-            }
-
-        }
-
-
-        const date =
-            new Date(value);
-
-
-        if (!isNaN(date)) {
-
-            return date;
-
-        }
-
-    }
-
-
-    return new Date();
-
-}
-
-
-/* =========================
-   PROGRAM DAY
+   GET PROGRAM DAY
 ========================= */
 
 function getProgramDay() {
 
     if (!memberStartDate) {
-
         return 1;
-
     }
 
+    const now = new Date();
 
-    const now =
-        new Date();
+    const start = new Date(memberStartDate);
 
+    start.setHours(0, 0, 0, 0);
+    now.setHours(0, 0, 0, 0);
 
-    const start =
-        new Date(
-            memberStartDate
-        );
-
-
-    start.setHours(
-        0,0,0,0
-    );
-
-    now.setHours(
-        0,0,0,0
-    );
-
-
-    const difference =
-        now - start;
-
+    const difference = now - start;
 
     const day =
         Math.floor(
-            difference /
-            86400000
+            difference / 86400000
         ) + 1;
-
 
     return Math.max(
         1,
@@ -2163,15 +1327,11 @@ function getProgramDay() {
 
 function getUnlockedWeek() {
 
-    const day =
-        getProgramDay();
-
+    const day = getProgramDay();
 
     return Math.min(
         13,
-        Math.ceil(
-            day / 7
-        )
+        Math.ceil(day / 7)
     );
 
 }
@@ -2183,8 +1343,9 @@ function getUnlockedWeek() {
 
 function formatDate(date) {
 
-    if (!date) return "Not set";
-
+    if (!date) {
+        return "Not set";
+    }
 
     return new Intl.DateTimeFormat(
         "en-PK",
@@ -2199,152 +1360,860 @@ function formatDate(date) {
 
 
 /* =========================
-   PROFILE CALCULATIONS
+   SET MEMBER START DATE
 ========================= */
 
-function calculateProgress() {
+function setMemberStartDate(data) {
 
-    const height =
-        getNumber("height");
+    const possibleDates = [
 
-    const startingWeight =
-        getNumber("startingWeight");
+        data?.startDate,
 
-    const currentWeight =
-        getNumber("currentWeight");
+        data?.joiningDate,
 
-    const startingWaist =
-        getNumber("startingWaist");
+        data?.joinDate,
 
-    const currentWaist =
-        getNumber("currentWaist");
+        data?.programStartDate,
 
-    const startingHip =
-        getNumber("startingHip");
+        data?.membershipStartDate
 
-    const currentHip =
-        getNumber("currentHip");
+    ];
 
 
-    document.getElementById(
-        "weightLost"
-    ).textContent =
-        startingWeight !== null &&
-        currentWeight !== null
-            ? (
-                startingWeight -
-                currentWeight
-            ).toFixed(1) + " kg"
-            : "—";
-
-
-    document.getElementById(
-        "waistChange"
-    ).textContent =
-        startingWaist !== null &&
-        currentWaist !== null
-            ? (
-                startingWaist -
-                currentWaist
-            ).toFixed(1) + " cm"
-            : "—";
-
-
-    const weightForBMI =
-        currentWeight !== null
-            ? currentWeight
-            : startingWeight;
-
-
-    if (
-        height &&
-        weightForBMI !== null
+    for (
+        const value of possibleDates
     ) {
 
-        const heightM =
-            height / 100;
+        if (!value) {
+            continue;
+        }
 
 
-        const bmi =
-            weightForBMI /
-            (heightM * heightM);
+        /* Firebase Timestamp */
+
+        if (
+            typeof value.toDate === "function"
+        ) {
+
+            const date = value.toDate();
+
+            if (!isNaN(date)) {
+
+                memberStartDate = date;
+
+                return;
+
+            }
+
+        }
 
 
-        document.getElementById(
-            "bmi"
-        ).textContent =
-            bmi.toFixed(1);
+        /* Normal date */
 
-    } else {
+        const date = new Date(value);
 
-        document.getElementById(
-            "bmi"
-        ).textContent = "—";
+        if (!isNaN(date)) {
 
-    }
+            memberStartDate = date;
 
+            return;
 
-    if (height) {
-
-        const heightM =
-            height / 100;
-
-
-        const lower =
-            18.5 *
-            heightM *
-            heightM;
-
-
-        const upper =
-            24.9 *
-            heightM *
-            heightM;
-
-
-        document.getElementById(
-            "ibw"
-        ).textContent =
-            lower.toFixed(1)
-            + "–"
-            + upper.toFixed(1)
-            + " kg";
-
-    } else {
-
-        document.getElementById(
-            "ibw"
-        ).textContent = "—";
+        }
 
     }
 
 
-    document.getElementById(
-        "startingWhr"
-    ).textContent =
-        startingWaist !== null &&
-        startingHip !== null &&
-        startingHip > 0
-            ? (
-                startingWaist /
-                startingHip
-            ).toFixed(2)
-            : "—";
+    /*
+       IMPORTANT:
+       If no start date exists,
+       use today instead of breaking
+       the entire journey.
+    */
 
-
-    document.getElementById(
-        "currentWhr"
-    ).textContent =
-        currentWaist !== null &&
-        currentHip !== null &&
-        currentHip > 0
-            ? (
-                currentWaist /
-                currentHip
-            ).toFixed(2)
-            : "—";
+    memberStartDate = new Date();
 
 }
+
+
+/* =========================
+   UPDATE JOURNEY HEADER
+========================= */
+
+function updateJourneyHeader() {
+
+    const day =
+        getProgramDay();
+
+    const startDateElement =
+        document.getElementById(
+            "journeyStartDate"
+        );
+
+    const currentDayElement =
+        document.getElementById(
+            "currentProgramDay"
+        );
+
+
+    if (startDateElement) {
+
+        startDateElement.textContent =
+            formatDate(
+                memberStartDate
+            );
+
+    }
+
+
+    if (currentDayElement) {
+
+        currentDayElement.textContent =
+            "Day " + day;
+
+    }
+
+}
+
+
+/* =========================
+   CREATE WEEK CARDS
+========================= */
+
+function renderWeeks() {
+
+    const container =
+        document.getElementById(
+            "weeksContainer"
+        );
+
+    if (!container) {
+        return;
+    }
+
+
+    const currentDay =
+        getProgramDay();
+
+    const unlockedWeek =
+        getUnlockedWeek();
+
+
+    let html = "";
+
+
+    for (
+        let week = 1;
+        week <= 13;
+        week++
+    ) {
+
+        const firstDay =
+            ((week - 1) * 7) + 1;
+
+        const lastDay =
+            Math.min(
+                week * 7,
+                90
+            );
+
+
+        const isUnlocked =
+            week <= unlockedWeek;
+
+
+        const isCurrent =
+            currentDay >= firstDay &&
+            currentDay <= lastDay;
+
+
+        const statusText =
+            isCurrent
+                ? "Current Week"
+                : isUnlocked
+                    ? "Unlocked"
+                    : "Locked";
+
+
+        const lockedClass =
+            isUnlocked
+                ? ""
+                : " locked";
+
+
+        html += `
+
+            <div
+                class="week-card${lockedClass}"
+                data-week="${week}">
+
+                <div class="week-card-top">
+
+                    <div>
+
+                        <div class="small-title">
+                            Week ${week}
+                        </div>
+
+                        <h3>
+                            Days ${firstDay}–${lastDay}
+                        </h3>
+
+                    </div>
+
+                    <span class="week-status">
+                        ${statusText}
+                    </span>
+
+                </div>
+
+                <p>
+                    ${getWeekDescription(week)}
+                </p>
+
+                ${
+                    isUnlocked
+                        ? `
+                            <button
+                                class="primary-btn week-open-btn"
+                                data-week="${week}">
+
+                                Open Week →
+
+                            </button>
+                        `
+                        : `
+                            <div class="locked-message">
+                                🔒 This week will unlock as you progress.
+                            </div>
+                        `
+                }
+
+            </div>
+
+        `;
+
+    }
+
+
+    container.innerHTML = html;
+
+
+    /*
+       Add click events
+    */
+
+    document
+        .querySelectorAll(
+            ".week-open-btn"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        const week =
+                            Number(
+                                this.dataset.week
+                            );
+
+                        openWeek(week);
+
+                    }
+                );
+
+            }
+        );
+
+}
+
+
+/* =========================
+   WEEK DESCRIPTIONS
+========================= */
+
+function getWeekDescription(week) {
+
+    const descriptions = {
+
+        1:
+            "Reset your routine and build your foundation.",
+
+        2:
+            "Build simple nutrition and hydration habits.",
+
+        3:
+            "Improve your meals and daily movement.",
+
+        4:
+            "Strengthen your consistency and routines.",
+
+        5:
+            "Focus on protein, balanced meals and fat loss.",
+
+        6:
+            "Build strength and improve your daily activity.",
+
+        7:
+            "Learn how to manage hunger and cravings.",
+
+        8:
+            "Strengthen your habits and stay consistent.",
+
+        9:
+            "Learn flexible eating for real life.",
+
+        10:
+            "Improve your relationship with food.",
+
+        11:
+            "Handle social eating and difficult situations.",
+
+        12:
+            "Prepare for long-term weight maintenance.",
+
+        13:
+            "Complete your journey and build your lifetime habits."
+
+    };
+
+
+    return (
+        descriptions[week] ||
+        "Continue building healthy habits."
+    );
+
+}
+
+
+/* =========================
+   OPEN WEEK
+========================= */
+
+function openWeek(week) {
+
+    const unlockedWeek =
+        getUnlockedWeek();
+
+
+    if (week > unlockedWeek) {
+
+        return;
+
+    }
+
+
+    selectedWeek = week;
+
+
+    document.getElementById(
+        "journeyListView"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "weekDetailView"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "detailWeekLabel"
+    ).textContent =
+        "Week " + week;
+
+
+    document.getElementById(
+        "detailWeekTitle"
+    ).textContent =
+        getWeekTitle(week);
+
+
+    document.getElementById(
+        "detailWeekDescription"
+    ).textContent =
+        getWeekDescription(week);
+
+
+    document.getElementById(
+        "detailWeekGoal"
+    ).textContent =
+        getWeekGoal(week);
+
+
+    renderWeekContent(week);
+
+}
+
+
+/* =========================
+   WEEK TITLES
+========================= */
+
+function getWeekTitle(week) {
+
+    const titles = {
+
+        1: "Reset & Foundation",
+
+        2: "Build Better Meals",
+
+        3: "Movement & Routine",
+
+        4: "Consistency",
+
+        5: "Fuel for Fat Loss",
+
+        6: "Strength & Metabolism",
+
+        7: "Hunger & Cravings",
+
+        8: "Build Your Routine",
+
+        9: "Flexible Eating",
+
+        10: "Food Freedom",
+
+        11: "Real-Life Situations",
+
+        12: "Maintain Your Progress",
+
+        13: "Your Freedom Lifestyle"
+
+    };
+
+
+    return (
+        titles[week] ||
+        "Your Weekly Journey"
+    );
+
+}
+
+
+/* =========================
+   WEEK GOALS
+========================= */
+
+function getWeekGoal(week) {
+
+    const goals = {
+
+        1:
+            "Create a simple foundation you can follow every day.",
+
+        2:
+            "Build balanced meals and improve hydration.",
+
+        3:
+            "Make movement part of your daily routine.",
+
+        4:
+            "Focus on consistency instead of perfection.",
+
+        5:
+            "Prioritize protein and balanced meals.",
+
+        6:
+            "Add strength and improve your activity.",
+
+        7:
+            "Understand your hunger and manage cravings.",
+
+        8:
+            "Strengthen the habits that are already working.",
+
+        9:
+            "Learn to eat flexibly without losing progress.",
+
+        10:
+            "Build a healthier and calmer relationship with food.",
+
+        11:
+            "Learn how to handle eating outside your normal routine.",
+
+        12:
+            "Prepare your habits for life after the program.",
+
+        13:
+            "Turn your 90-day habits into your lifestyle."
+
+    };
+
+
+    return (
+        goals[week] ||
+        "Keep moving forward one day at a time."
+    );
+
+}
+
+
+/* =========================
+   WEEK CONTENT
+========================= */
+
+function renderWeekContent(week) {
+
+    const container =
+        document.getElementById(
+            "weekContentContainer"
+        );
+
+    if (!container) {
+        return;
+    }
+
+
+    const firstDay =
+        ((week - 1) * 7) + 1;
+
+    const lastDay =
+        Math.min(
+            week * 7,
+            90
+        );
+
+
+    let html = `
+
+        <div class="card">
+
+            <div class="small-title">
+                Your Daily Focus
+            </div>
+
+            <h2>
+                Days ${firstDay}–${lastDay}
+            </h2>
+
+            <p>
+                Complete the habits and lessons assigned
+                to your current week.
+            </p>
+
+        </div>
+
+    `;
+
+
+    for (
+        let day = firstDay;
+        day <= lastDay;
+        day++
+    ) {
+
+        const completed =
+            memberProgress?.days?.[day] === true;
+
+
+        html += `
+
+            <div class="education-card">
+
+                <div class="education-label">
+                    Day ${day}
+                </div>
+
+                <h3>
+                    Your Daily Habit
+                </h3>
+
+                <p>
+                    Follow today's nutrition,
+                    movement, hydration, sleep
+                    and lifestyle focus.
+                </p>
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        class="day-complete"
+                        data-day="${day}"
+                        ${completed ? "checked" : ""}>
+
+                    Mark Day ${day} Complete
+
+                </label>
+
+            </div>
+
+        `;
+
+    }
+
+
+    container.innerHTML = html;
+
+
+    /*
+       Save completion locally.
+       This prevents the journey from
+       breaking because of Firestore
+       permission problems.
+    */
+
+    container
+        .querySelectorAll(
+            ".day-complete"
+        )
+        .forEach(
+            checkbox => {
+
+                checkbox.addEventListener(
+                    "change",
+                    function () {
+
+                        const day =
+                            Number(
+                                this.dataset.day
+                            );
+
+
+                        if (!memberProgress.days) {
+
+                            memberProgress.days = {};
+
+                        }
+
+
+                        memberProgress.days[day] =
+                            this.checked;
+
+
+                        saveJourneyProgress();
+
+
+                        updateOverallProgress();
+
+                    }
+                );
+
+            }
+        );
+
+}
+
+
+/* =========================
+   SAVE JOURNEY PROGRESS
+========================= */
+
+function saveJourneyProgress() {
+
+    try {
+
+        localStorage.setItem(
+            "freedom90DayProgress",
+            JSON.stringify(
+                memberProgress
+            )
+        );
+
+    } catch (error) {
+
+        console.log(
+            "Progress could not be saved locally.",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================
+   LOAD JOURNEY PROGRESS
+========================= */
+
+function loadJourneyProgress() {
+
+    try {
+
+        const saved =
+            localStorage.getItem(
+                "freedom90DayProgress"
+            );
+
+
+        if (saved) {
+
+            memberProgress =
+                JSON.parse(saved);
+
+        }
+
+    } catch (error) {
+
+        memberProgress = {};
+
+    }
+
+
+    if (!memberProgress.days) {
+
+        memberProgress.days = {};
+
+    }
+
+}
+
+
+/* =========================
+   OVERALL PROGRESS
+========================= */
+
+function updateOverallProgress() {
+
+    const progressDays =
+        document.getElementById(
+            "progressDays"
+        );
+
+    const progressFill =
+        document.getElementById(
+            "progressFill"
+        );
+
+    const progressNote =
+        document.getElementById(
+            "progressNote"
+        );
+
+
+    if (!progressDays) {
+        return;
+    }
+
+
+    const completedDays =
+        Object.values(
+            memberProgress.days || {}
+        )
+        .filter(
+            value => value === true
+        )
+        .length;
+
+
+    progressDays.textContent =
+        completedDays;
+
+
+    const percentage =
+        Math.min(
+            100,
+            (completedDays / 90) * 100
+        );
+
+
+    if (progressFill) {
+
+        progressFill.style.width =
+            percentage + "%";
+
+    }
+
+
+    if (progressNote) {
+
+        if (completedDays === 0) {
+
+            progressNote.textContent =
+                "Your journey is ready to begin.";
+
+        } else if (completedDays < 90) {
+
+            progressNote.textContent =
+                `${completedDays} day${completedDays === 1 ? "" : "s"} completed. Keep going!`;
+
+        } else {
+
+            progressNote.textContent =
+                "Congratulations! You completed your 90-day journey.";
+
+        }
+
+    }
+
+}
+
+
+/* =========================
+   BACK TO WEEKS
+========================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const backButton =
+            document.getElementById(
+                "backToWeeks"
+            );
+
+
+        if (backButton) {
+
+            backButton.addEventListener(
+                "click",
+                function () {
+
+                    document.getElementById(
+                        "weekDetailView"
+                    ).style.display = "none";
+
+
+                    document.getElementById(
+                        "journeyListView"
+                    ).style.display = "block";
+
+                }
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================
+   START JOURNEY
+========================= */
+
+function start90DayJourney(profileData = {}) {
+
+    loadJourneyProgress();
+
+    setMemberStartDate(
+        profileData
+    );
+
+    updateJourneyHeader();
+
+    renderWeeks();
+
+    updateOverallProgress();
+
+}
+
+
+/*
+   If Firebase already gives you the
+   member profile, call:
+
+   start90DayJourney(profileData);
+
+   Example:
+
+   start90DayJourney({
+       startDate: "2026-08-28"
+   });
+*/
+
+</script>
+
 
 
 /* =========================
@@ -4465,6 +4334,7 @@ async function saveReflection() {
 
 /* =========================
    LIFETIME HABITS
+   UNLOCK AFTER DAY 90
 ========================= */
 
 async function loadLifetimeHabits() {
@@ -4474,6 +4344,73 @@ async function loadLifetimeHabits() {
             "lifetimeHabitsContainer"
         );
 
+    if (!container) return;
+
+    /* Check current program day */
+
+    const programDay =
+        getProgramDay();
+
+    /* =========================
+       LOCK UNTIL DAY 90
+    ========================= */
+
+    if (programDay < 90) {
+
+        container.innerHTML = `
+
+            <div class="lifetime-locked">
+
+                <div class="lifetime-lock-icon">
+                    🔒
+                </div>
+
+                <h3>
+                    Lifetime Freedom Habits
+                </h3>
+
+                <p>
+                    Complete your 90-Day Journey first.
+                    Your Lifetime Freedom Habits will unlock
+                    after Day 90.
+                </p>
+
+                <div class="lifetime-unlock-progress">
+
+                    <strong>
+                        Day ${programDay} of 90
+                    </strong>
+
+                    <div class="progress-track">
+
+                        <div
+                            class="progress-fill"
+                            style="width:${(
+                                programDay / 90
+                            ) * 100}%">
+                        </div>
+
+                    </div>
+
+                    <span>
+                        Keep going — you're building habits
+                        for life.
+                    </span>
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    /* =========================
+       DAY 90 COMPLETE
+       LOAD LIFETIME HABITS
+    ========================= */
 
     try {
 
@@ -4485,9 +4422,7 @@ async function loadLifetimeHabits() {
                 )
             );
 
-
         lifetimeHabits = [];
-
 
         snapshot.forEach(
             docSnap => {
@@ -4503,7 +4438,6 @@ async function loadLifetimeHabits() {
 
             }
         );
-
 
         lifetimeHabits.sort(
             (
@@ -4522,9 +4456,7 @@ async function loadLifetimeHabits() {
                 )
         );
 
-
         renderLifetimeHabits();
-
 
     } catch(error) {
 
@@ -4532,7 +4464,6 @@ async function loadLifetimeHabits() {
             "LIFETIME ERROR",
             error
         );
-
 
         renderLifetimeFallback();
 
@@ -4552,7 +4483,6 @@ function renderLifetimeHabits() {
             "lifetimeHabitsContainer"
         );
 
-
     if (!lifetimeHabits.length) {
 
         renderLifetimeFallback();
@@ -4561,8 +4491,25 @@ function renderLifetimeHabits() {
 
     }
 
-
     container.innerHTML = `
+
+        <div class="lifetime-unlocked-message">
+
+            <div class="small-title">
+                Day 90 Complete
+            </div>
+
+            <h2>
+                Your Lifetime Freedom Starts Now
+            </h2>
+
+            <p>
+                You've completed your 90-Day Journey.
+                Now continue with the habits that helped
+                you create lasting change.
+            </p>
+
+        </div>
 
         <div class="lifetime-grid">
 
@@ -4578,12 +4525,10 @@ function renderLifetimeHabits() {
                         item.category ||
                         "Freedom Habit";
 
-
                     const description =
                         item.description ||
                         item.details ||
                         "";
-
 
                     const habits =
                         Array.isArray(
@@ -4592,14 +4537,12 @@ function renderLifetimeHabits() {
                             ? item.habits
                             : [];
 
-
                     const image =
                         item.image ||
                         item.imageUrl ||
                         getLifetimeImage(
                             index
                         );
-
 
                     return `
 
@@ -4618,22 +4561,18 @@ function renderLifetimeHabits() {
                             <div class="lifetime-content">
 
                                 <h3>
-
                                     ${escapeHTML(
                                         title
                                     )}
-
                                 </h3>
 
                                 ${
                                     description
                                         ? `
                                             <p>
-
                                                 ${escapeHTML(
                                                     description
                                                 )}
-
                                             </p>
                                           `
                                         : ""
@@ -4652,7 +4591,6 @@ function renderLifetimeHabits() {
                                                           habit.title ||
                                                           "Habit";
 
-
                                                 const target =
                                                     typeof habit === "object"
                                                         ? habit.target ||
@@ -4660,17 +4598,14 @@ function renderLifetimeHabits() {
                                                           ""
                                                         : "";
 
-
                                                 return `
 
                                                     <div class="lifetime-habit">
 
                                                         <strong>
-
                                                             ${escapeHTML(
                                                                 name
                                                             )}
-
                                                         </strong>
 
                                                         ${
@@ -4714,7 +4649,6 @@ function renderLifetimeFallback() {
         document.getElementById(
             "lifetimeHabitsContainer"
         );
-
 
     const items = [
 
@@ -4809,8 +4743,24 @@ function renderLifetimeFallback() {
 
     ];
 
-
     container.innerHTML = `
+
+        <div class="lifetime-unlocked-message">
+
+            <div class="small-title">
+                Day 90 Complete
+            </div>
+
+            <h2>
+                Your Lifetime Freedom Starts Now
+            </h2>
+
+            <p>
+                You've completed your 90-Day Journey.
+                Keep these habits as your long-term foundation.
+            </p>
+
+        </div>
 
         <div class="lifetime-grid">
 
@@ -4833,15 +4783,15 @@ function renderLifetimeFallback() {
                         <div class="lifetime-content">
 
                             <h3>
-
-                                ${item.title}
-
+                                ${escapeHTML(
+                                    item.title
+                                )}
                             </h3>
 
                             <p>
-
-                                ${item.description}
-
+                                ${escapeHTML(
+                                    item.description
+                                )}
                             </p>
 
                             ${item.habits.map(
@@ -4872,319 +4822,4 @@ function renderLifetimeFallback() {
 }
 
 
-/* =========================
-   LIFETIME IMAGES
-========================= */
-
-function getLifetimeImage(index) {
-
-    const images = [
-
-        "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=1000&q=80",
-
-        "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=80",
-
-        "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=1000&q=80",
-
-        "https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=1000&q=80",
-
-        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1000&q=80",
-
-        "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80"
-
-    ];
-
-
-    return images[
-        index %
-        images.length
-    ];
-
-}
-
-
-/* =========================
-   NAVIGATION
-========================= */
-
-const navButtons =
-    document.querySelectorAll(
-        ".nav-btn"
-    );
-
-
-const sections =
-    document.querySelectorAll(
-        ".page-section"
-    );
-
-
-function openSection(
-    sectionId
-) {
-
-    sections.forEach(
-        section => {
-
-            section.classList.remove(
-                "active"
-            );
-
-        }
-    );
-
-
-    const selected =
-        document.getElementById(
-            sectionId
-        );
-
-
-    if (selected) {
-
-        selected.classList.add(
-            "active"
-        );
-
-    }
-
-
-    navButtons.forEach(
-        button => {
-
-            button.classList.toggle(
-                "active",
-                button.dataset.section ===
-                sectionId
-            );
-
-        }
-    );
-
-
-    document.getElementById(
-        "sidebar"
-    ).classList.remove(
-        "open"
-    );
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-}
-
-
-window.openSection =
-    openSection;
-
-
-navButtons.forEach(
-    button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                openSection(
-                    button.dataset.section
-                );
-
-            }
-        );
-
-    }
-);
-
-
-/* =========================
-   BACK TO WEEKS
-========================= */
-
-document.getElementById(
-    "backToWeeks"
-).addEventListener(
-    "click",
-    () => {
-
-        document.getElementById(
-            "weekDetailView"
-        ).style.display =
-            "none";
-
-
-        document.getElementById(
-            "journeyListView"
-        ).style.display =
-            "block";
-
-
-        renderWeeks();
-
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-    }
-);
-
-
-/* =========================
-   PROFILE SAVE
-========================= */
-
-document.getElementById(
-    "saveProfile"
-).addEventListener(
-    "click",
-    saveProfile
-);
-
-
-/* =========================
-   LIVE CALCULATIONS
-========================= */
-
-profileFields.forEach(
-    field => {
-
-        const element =
-            document.getElementById(
-                field
-            );
-
-
-        if (element) {
-
-            element.addEventListener(
-                "input",
-                calculateProgress
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================
-   REFLECTION SAVE
-========================= */
-
-document.getElementById(
-    "saveReflection"
-).addEventListener(
-    "click",
-    saveReflection
-);
-
-
-/* =========================
-   LOGOUT
-========================= */
-
-document.getElementById(
-    "logoutBtn"
-).addEventListener(
-    "click",
-    async () => {
-
-        try {
-
-            await signOut(
-                auth
-            );
-
-
-            window.location.href =
-                "login.html";
-
-        } catch(error) {
-
-            console.error(
-                "LOGOUT ERROR",
-                error
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================
-   MOBILE MENU
-========================= */
-
-document.getElementById(
-    "mobileMenuBtn"
-).addEventListener(
-    "click",
-    () => {
-
-        document.getElementById(
-            "sidebar"
-        ).classList.toggle(
-            "open"
-        );
-
-    }
-);
-
-
-/* =========================
-   AUTH
-========================= */
-
-onAuthStateChanged(
-    auth,
-    async user => {
-
-        if (!user) {
-
-            window.location.href =
-                "login.html";
-
-            return;
-
-        }
-
-
-        currentUser =
-            user;
-
-
-        document.getElementById(
-            "memberEmail"
-        ).textContent =
-            user.email;
-
-
-        await loadProfile(
-            user
-        );
-
-
-        await loadMemberProgress();
-
-
-        await loadWeeklyContent();
-
-
-        await loadLifetimeHabits();
-
-
-        updateOverallProgress();
-
-    }
-);
-
-</script>
-
-</body>
-</html>
 
