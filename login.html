@@ -31,9 +31,6 @@ body {
     margin: auto;
 }
 
-
-/* HEADER */
-
 header {
     background: #FFFFFF;
     border-bottom: 1px solid #E5DED7;
@@ -58,13 +55,6 @@ header {
     font-size: 14px;
 }
 
-.home-link:hover {
-    text-decoration: underline;
-}
-
-
-/* MAIN */
-
 main {
     flex: 1;
     display: flex;
@@ -82,9 +72,6 @@ main {
     text-align: center;
     box-shadow: 0 8px 30px rgba(45,45,45,0.04);
 }
-
-
-/* TEXT */
 
 .small-title {
     color: #6E4A7E;
@@ -108,12 +95,13 @@ h1 {
     line-height: 1.6;
 }
 
-
-/* FORM */
+.form-group {
+    text-align: left;
+    margin-bottom: 18px;
+}
 
 label {
     display: block;
-    text-align: left;
     font-size: 13px;
     font-weight: 600;
     margin-bottom: 8px;
@@ -143,7 +131,7 @@ input:focus {
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 5px;
 }
 
 .login-button:hover {
@@ -154,9 +142,6 @@ input:focus {
     opacity: 0.6;
     cursor: not-allowed;
 }
-
-
-/* MESSAGE */
 
 .message {
     margin-top: 18px;
@@ -173,9 +158,6 @@ input:focus {
     color: #6E4A7E;
 }
 
-
-/* INFO */
-
 .info {
     background: #F1EAF4;
     border-radius: 9px;
@@ -190,9 +172,6 @@ input:focus {
     line-height: 1.5;
 }
 
-
-/* FOOTER */
-
 footer {
     background: #302A31;
     color: #FFFFFF;
@@ -204,9 +183,6 @@ footer p {
     color: #D4CED5;
     margin-bottom: 4px;
 }
-
-
-/* MOBILE */
 
 @media (max-width: 600px) {
 
@@ -228,8 +204,6 @@ footer p {
 <body>
 
 
-<!-- HEADER -->
-
 <header>
 
     <div class="container header-inner">
@@ -238,9 +212,7 @@ footer p {
             Freedom Women's Health Club
         </div>
 
-        <a
-            href="index.html"
-            class="home-link">
+        <a href="index.html" class="home-link">
             Home
         </a>
 
@@ -249,8 +221,6 @@ footer p {
 </header>
 
 
-
-<!-- MAIN -->
 
 <main>
 
@@ -267,24 +237,48 @@ footer p {
             </h1>
 
             <p class="description">
-                Enter the email address you registered with
+                Enter the email and password you registered with
                 to continue to your Freedom journey.
             </p>
 
 
             <form id="loginForm">
 
-                <label for="email">
-                    Email Address
-                </label>
 
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Enter your email"
-                    autocomplete="email"
-                    required
-                >
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
 
 
                 <button
@@ -322,8 +316,6 @@ footer p {
 
 
 
-<!-- FOOTER -->
-
 <footer>
 
     <div class="container">
@@ -345,15 +337,31 @@ footer p {
 <script type="module">
 
 
-/*
-==================================================
-FIREBASE
-==================================================
-*/
+/* ==================================================
+   FIREBASE IMPORTS
+================================================== */
 
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
+import {
+    getAuth,
+    signInWithEmailAndPassword
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    doc,
+    getDoc
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+
+/* ==================================================
+   FIREBASE CONFIGURATION
+================================================== */
 
 const firebaseConfig = {
 
@@ -378,37 +386,22 @@ const firebaseConfig = {
 };
 
 
-const app =
-    initializeApp(firebaseConfig);
+
+/* ==================================================
+   START FIREBASE
+================================================== */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
 
 
 
-/*
-==================================================
-APPROVED MEMBER EMAILS
-==================================================
-
-For now, your test email is here.
-
-Later, we will move member approval
-into Firebase/Admin Panel so you don't
-have to edit this code.
-==================================================
-*/
-
-const approvedEmails = [
-
-    "mahnoornazar2@gmail.com"
-
-];
-
-
-
-/*
-==================================================
-LOGIN
-==================================================
-*/
+/* ==================================================
+   ELEMENTS
+================================================== */
 
 const loginForm =
     document.getElementById("loginForm");
@@ -416,17 +409,39 @@ const loginForm =
 const emailInput =
     document.getElementById("email");
 
-const message =
-    document.getElementById("message");
+const passwordInput =
+    document.getElementById("password");
 
 const loginButton =
     document.getElementById("loginButton");
 
+const message =
+    document.getElementById("message");
 
+
+
+/* ==================================================
+   SHOW MESSAGE
+================================================== */
+
+function showMessage(text, type) {
+
+    message.textContent = text;
+
+    message.className =
+        "message " + type;
+
+}
+
+
+
+/* ==================================================
+   LOGIN
+================================================== */
 
 loginForm.addEventListener(
     "submit",
-    function(event) {
+    async function(event) {
 
         event.preventDefault();
 
@@ -436,81 +451,281 @@ loginForm.addEventListener(
             .trim()
             .toLowerCase();
 
-
-        /*
-        Clear previous message
-        */
-
-        message.innerText = "";
-
-        message.className =
-            "message";
+        const password =
+            passwordInput.value;
 
 
-        /*
-        Check approved email
-        */
+        if (!email || !password) {
 
-        const isApproved =
-            approvedEmails.includes(email);
-
-
-        if (!isApproved) {
-
-            message.className =
-                "message error";
-
-            message.innerText =
-                "This email is not registered as a club member. Please contact Mahnoor.";
+            showMessage(
+                "Please enter your email and password.",
+                "error"
+            );
 
             return;
 
         }
 
 
-        /*
-        Save the member email
-        so the dashboard knows
-        which member is logged in.
-        */
-
-        localStorage.setItem(
-            "freedomMemberEmail",
-            email
-        );
-
-
-        /*
-        Show success message
-        */
-
-        message.className =
-            "message success";
-
-        message.innerText =
-            "Access approved. Opening your member dashboard...";
-
-
-        /*
-        Prevent multiple clicks
-        */
-
         loginButton.disabled = true;
 
+        loginButton.textContent =
+            "Checking...";
 
-        /*
-        Open dashboard
-        */
-
-        setTimeout(
-            function() {
-
-                window.location.href =
-                    "dashboard.html";
-
-            },
-            800
+        showMessage(
+            "",
+            ""
         );
+
+
+        try {
+
+
+            /* ==========================================
+               STEP 1
+               FIREBASE AUTHENTICATION
+            ========================================== */
+
+            const userCredential =
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+            const user =
+                userCredential.user;
+
+
+            const userEmail =
+                user.email
+                .toLowerCase();
+
+
+
+            /* ==========================================
+               STEP 2
+               FIND MEMBER IN FIRESTORE
+            ========================================== */
+
+            const memberRef =
+                doc(
+                    db,
+                    "members",
+                    userEmail
+                );
+
+
+            const memberSnapshot =
+                await getDoc(memberRef);
+
+
+
+            /* ==========================================
+               MEMBER DOCUMENT DOES NOT EXIST
+            ========================================== */
+
+            if (!memberSnapshot.exists()) {
+
+                showMessage(
+                    "Your account is not registered as a Freedom Women's Health Club member. Please contact Mahnoor.",
+                    "error"
+                );
+
+                loginButton.disabled = false;
+
+                loginButton.textContent =
+                    "Continue";
+
+                return;
+
+            }
+
+
+
+            /* ==========================================
+               GET MEMBER DATA
+            ========================================== */
+
+            const memberData =
+                memberSnapshot.data();
+
+
+
+            /* ==========================================
+               CHECK ACTIVE STATUS
+            ========================================== */
+
+            if (memberData.active !== true) {
+
+                showMessage(
+                    "Your membership is currently inactive. Please contact Mahnoor.",
+                    "error"
+                );
+
+                loginButton.disabled = false;
+
+                loginButton.textContent =
+                    "Continue";
+
+                return;
+
+            }
+
+
+
+            /* ==========================================
+               SAVE MEMBER INFORMATION
+            ========================================== */
+
+            localStorage.setItem(
+                "freedomMemberEmail",
+                userEmail
+            );
+
+
+            if (memberData.name) {
+
+                localStorage.setItem(
+                    "freedomMemberName",
+                    memberData.name
+                );
+
+            }
+
+
+
+            /* ==========================================
+               SUCCESS
+            ========================================== */
+
+            showMessage(
+                "Access approved. Opening your member dashboard...",
+                "success"
+            );
+
+
+            loginButton.textContent =
+                "Welcome";
+
+
+            /* ==========================================
+               GO TO DASHBOARD
+            ========================================== */
+
+            setTimeout(
+                function() {
+
+                    window.location.href =
+                        "dashboard.html";
+
+                },
+                700
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Login error:",
+                error
+            );
+
+
+            let errorMessage =
+                "Unable to log in. Please try again.";
+
+
+
+            /* ==========================================
+               FIREBASE ERROR MESSAGES
+            ========================================== */
+
+            if (
+                error.code ===
+                "auth/invalid-credential"
+            ) {
+
+                errorMessage =
+                    "Incorrect email or password.";
+
+            }
+
+            else if (
+                error.code ===
+                "auth/invalid-email"
+            ) {
+
+                errorMessage =
+                    "Please enter a valid email address.";
+
+            }
+
+            else if (
+                error.code ===
+                "auth/user-not-found"
+            ) {
+
+                errorMessage =
+                    "No account was found with this email.";
+
+            }
+
+            else if (
+                error.code ===
+                "auth/wrong-password"
+            ) {
+
+                errorMessage =
+                    "Incorrect password.";
+
+            }
+
+            else if (
+                error.code ===
+                "auth/too-many-requests"
+            ) {
+
+                errorMessage =
+                    "Too many login attempts. Please wait a while and try again.";
+
+            }
+
+            else if (
+                error.code ===
+                "auth/network-request-failed"
+            ) {
+
+                errorMessage =
+                    "Network error. Please check your internet connection.";
+
+            }
+
+            else if (
+                error.code ===
+                "permission-denied"
+            ) {
+
+                errorMessage =
+                    "Access to your membership information was denied. Please check your Firebase Firestore rules.";
+
+            }
+
+
+
+            showMessage(
+                errorMessage,
+                "error"
+            );
+
+
+            loginButton.disabled = false;
+
+            loginButton.textContent =
+                "Continue";
+
+        }
 
     }
 );
