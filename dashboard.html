@@ -24,9 +24,11 @@ body {
     line-height: 1.6;
 }
 
-/* =========================
-   LAYOUT
-========================= */
+button,
+input,
+textarea {
+    font-family: inherit;
+}
 
 .app {
     min-height: 100vh;
@@ -82,14 +84,13 @@ body {
     background: transparent;
     color: #514B48;
     text-align: left;
-    padding: 12px 12px;
+    padding: 12px;
     border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
     display: flex;
     align-items: center;
     gap: 11px;
-    transition: 0.2s;
 }
 
 .nav-btn:hover {
@@ -140,10 +141,6 @@ body {
     min-height: 100vh;
 }
 
-/* =========================
-   TOP BAR
-========================= */
-
 .topbar {
     height: 72px;
     background: #FFFFFF;
@@ -162,10 +159,6 @@ body {
     color: #706A66;
 }
 
-/* =========================
-   CONTENT
-========================= */
-
 .content {
     width: min(1050px, 92%);
     margin: auto;
@@ -179,10 +172,6 @@ body {
 .page-section.active {
     display: block;
 }
-
-/* =========================
-   PAGE HEADER
-========================= */
 
 .page-header {
     margin-bottom: 30px;
@@ -210,10 +199,6 @@ h1 {
     max-width: 720px;
 }
 
-/* =========================
-   CARDS
-========================= */
-
 .card {
     background: #FFFFFF;
     border: 1px solid #E5DED7;
@@ -234,25 +219,8 @@ h1 {
 }
 
 /* =========================
-   WELCOME
+   BUTTONS
 ========================= */
-
-.welcome-card {
-    background: #F1EAF4;
-    border-color: #DED1E4;
-}
-
-.welcome-card h2 {
-    font-size: 27px;
-    font-weight: 500;
-    margin-bottom: 10px;
-}
-
-.welcome-card p {
-    color: #625D59;
-    font-size: 14px;
-    max-width: 760px;
-}
 
 .primary-btn {
     display: inline-block;
@@ -267,13 +235,19 @@ h1 {
     cursor: pointer;
 }
 
+.secondary-btn {
+    padding: 10px 17px;
+    background: #F1EAF4;
+    color: #6E4A7E;
+    border: 1px solid #DED1E4;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
 /* =========================
    PROFILE
 ========================= */
-
-.profile-header {
-    margin-bottom: 25px;
-}
 
 .profile-grid {
     display: grid;
@@ -299,7 +273,6 @@ h1 {
     padding: 11px 12px;
     font-size: 14px;
     outline: none;
-    background: #FFFFFF;
 }
 
 .field input:focus {
@@ -395,7 +368,7 @@ h1 {
 }
 
 /* =========================
-   JOURNEY
+   WEEK LIST
 ========================= */
 
 .phase {
@@ -431,16 +404,19 @@ h1 {
     overflow: hidden;
 }
 
-.week-link {
+.week-button {
+    width: 100%;
+    border: none;
+    background: #FFFFFF;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 17px 19px;
-    text-decoration: none;
-    color: #2D2D2D;
+    cursor: pointer;
+    text-align: left;
 }
 
-.week-link:hover {
+.week-button:hover {
     background: #FBF8F3;
 }
 
@@ -461,6 +437,7 @@ h1 {
     justify-content: center;
     font-size: 12px;
     font-weight: 600;
+    flex-shrink: 0;
 }
 
 .week-title h4 {
@@ -473,14 +450,243 @@ h1 {
     font-size: 12px;
 }
 
+.week-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.week-percent {
+    font-size: 12px;
+    color: #6E4A7E;
+}
+
 .arrow {
     color: #6E4A7E;
     font-size: 19px;
 }
 
-.coming-soon {
-    color: #817972;
+/* =========================
+   WEEK DETAIL
+========================= */
+
+.week-detail-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.back-btn {
+    border: none;
+    background: transparent;
+    color: #6E4A7E;
+    cursor: pointer;
+    font-size: 13px;
+    padding: 5px 0;
+}
+
+.goal-box {
+    background: #F1EAF4;
+    border: 1px solid #DED1E4;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 22px;
+}
+
+.goal-label {
+    color: #6E4A7E;
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.goal-text {
+    font-size: 17px;
+}
+
+/* =========================
+   DAYS
+========================= */
+
+.day-card {
+    border: 1px solid #E5DED7;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    background: #FFFFFF;
+    overflow: hidden;
+}
+
+.day-header {
+    padding: 17px 20px;
+    background: #FBF8F3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.day-title {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.day-subtitle {
     font-size: 12px;
+    color: #706A66;
+}
+
+.day-progress {
+    color: #6E4A7E;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.day-body {
+    padding: 18px 20px;
+}
+
+/* =========================
+   HABITS
+========================= */
+
+.habit-item {
+    border: 1px solid #E5DED7;
+    border-radius: 9px;
+    padding: 14px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.habit-check {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    accent-color: #6E4A7E;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.habit-content {
+    flex: 1;
+}
+
+.habit-name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.habit-target {
+    font-size: 13px;
+    color: #6E4A7E;
+    margin-bottom: 4px;
+}
+
+.habit-details {
+    font-size: 12px;
+    color: #706A66;
+}
+
+/* =========================
+   WEEKLY HABITS
+========================= */
+
+.weekly-habits {
+    margin-bottom: 22px;
+}
+
+.weekly-habits-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+/* =========================
+   REFLECTION
+========================= */
+
+.reflection-card {
+    margin-top: 25px;
+}
+
+.reflection-card h3 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.reflection-description {
+    color: #706A66;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+.reflection-field {
+    margin-bottom: 16px;
+}
+
+.reflection-field label {
+    display: block;
+    font-size: 13px;
+    color: #514B48;
+    margin-bottom: 7px;
+}
+
+.reflection-field textarea {
+    width: 100%;
+    min-height: 90px;
+    border: 1px solid #D9D1CA;
+    border-radius: 8px;
+    padding: 11px;
+    resize: vertical;
+    outline: none;
+    font-size: 13px;
+}
+
+.reflection-field textarea:focus {
+    border-color: #6E4A7E;
+}
+
+.save-reflection-btn {
+    background: #6E4A7E;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.reflection-message {
+    color: #6E4A7E;
+    font-size: 13px;
+    margin-left: 10px;
+}
+
+/* =========================
+   EMPTY / LOADING
+========================= */
+
+.loading-box,
+.empty-box {
+    background: #FFFFFF;
+    border: 1px solid #E5DED7;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    color: #706A66;
+}
+
+.error-box {
+    background: #FFF7F5;
+    border: 1px solid #E8D1CA;
+    border-radius: 12px;
+    padding: 20px;
+    color: #8A5146;
 }
 
 /* =========================
@@ -539,7 +745,7 @@ h1 {
 }
 
 /* =========================
-   MOBILE MENU
+   MOBILE
 ========================= */
 
 .mobile-menu-btn {
@@ -550,10 +756,6 @@ h1 {
     cursor: pointer;
     color: #6E4A7E;
 }
-
-/* =========================
-   MOBILE
-========================= */
 
 @media (max-width: 850px) {
 
@@ -593,6 +795,9 @@ h1 {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .week-detail-header {
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 600px) {
@@ -622,18 +827,23 @@ h1 {
         grid-template-columns: 1fr;
     }
 
+    .week-right {
+        gap: 5px;
+    }
+
+    .week-percent {
+        display: none;
+    }
+
 }
 
 </style>
 
 </head>
 
-
 <body>
 
-
 <div class="app">
-
 
 <!-- =========================
      SIDEBAR
@@ -646,81 +856,43 @@ h1 {
         Health Club
     </div>
 
-
     <div class="sidebar-label">
         Member Area
     </div>
 
-
     <nav class="nav">
 
-
-        <button
-            class="nav-btn active"
-            data-section="profileSection">
-
+        <button class="nav-btn active" data-section="profileSection">
             <span class="nav-icon">👤</span>
-
             <span>My Profile</span>
-
         </button>
 
-
-        <button
-            class="nav-btn"
-            data-section="welcomeSection">
-
+        <button class="nav-btn" data-section="welcomeSection">
             <span class="nav-icon">🌿</span>
-
             <span>Welcome</span>
-
         </button>
 
-
-        <button
-            class="nav-btn"
-            data-section="journeySection">
-
+        <button class="nav-btn" data-section="journeySection">
             <span class="nav-icon">📅</span>
-
             <span>90-Day Journey</span>
-
         </button>
 
-
-        <button
-            class="nav-btn"
-            data-section="educationSection">
-
+        <button class="nav-btn" data-section="educationSection">
             <span class="nav-icon">📚</span>
-
             <span>Weekly Education</span>
-
         </button>
 
-
-        <button
-            class="nav-btn"
-            data-section="communitySection">
-
+        <button class="nav-btn" data-section="communitySection">
             <span class="nav-icon">💬</span>
-
             <span>Community</span>
-
         </button>
-
 
     </nav>
 
-
     <div class="sidebar-bottom">
 
-        <button
-            class="logout-btn"
-            id="logoutBtn">
-
+        <button class="logout-btn" id="logoutBtn">
             🚪 &nbsp; Log out
-
         </button>
 
     </div>
@@ -734,9 +906,6 @@ h1 {
 
 <div class="main">
 
-
-    <!-- TOP BAR -->
-
     <div class="topbar">
 
         <button
@@ -746,7 +915,6 @@ h1 {
             ☰
 
         </button>
-
 
         <span
             class="member-email"
@@ -763,13 +931,12 @@ h1 {
 
 
 <!-- =========================
-     PROFILE SECTION
+     PROFILE
 ========================= -->
 
 <section
     class="page-section active"
     id="profileSection">
-
 
     <div class="page-header">
 
@@ -783,165 +950,80 @@ h1 {
 
         <p>
             Your personal information and progress are saved here.
-            You only need to enter your details once.
         </p>
 
     </div>
 
 
-    <!-- PROFILE CARD -->
-
     <div class="card">
 
-        <div class="profile-header">
-
-            <div>
-
-                <div class="small-title">
-                    Your Details
-                </div>
-
-                <h2>
-                    Profile Information
-                </h2>
-
-                <p class="card-description">
-                    Update your information whenever you need to.
-                </p>
-
-            </div>
-
+        <div class="small-title">
+            Your Details
         </div>
 
+        <h2>
+            Profile Information
+        </h2>
+
+        <p class="card-description">
+            Update your information whenever you need to.
+        </p>
+
+        <br>
 
         <div class="profile-grid">
 
-
             <div class="field">
-
                 <label>Name</label>
-
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="Enter your name">
-
+                <input type="text" id="name">
             </div>
 
-
             <div class="field">
-
                 <label>Age</label>
-
-                <input
-                    type="number"
-                    id="age"
-                    placeholder="Enter your age">
-
+                <input type="number" id="age">
             </div>
 
-
             <div class="field">
-
                 <label>Height (cm)</label>
-
-                <input
-                    type="number"
-                    id="height"
-                    step="0.1"
-                    placeholder="Enter your height">
-
+                <input type="number" id="height" step="0.1">
             </div>
 
-
             <div class="field">
-
                 <label>Starting Weight (kg)</label>
-
-                <input
-                    type="number"
-                    id="startingWeight"
-                    step="0.1"
-                    placeholder="Enter starting weight">
-
+                <input type="number" id="startingWeight" step="0.1">
             </div>
 
-
             <div class="field">
-
                 <label>Current Weight (kg)</label>
-
-                <input
-                    type="number"
-                    id="currentWeight"
-                    step="0.1"
-                    placeholder="Add later">
-
+                <input type="number" id="currentWeight" step="0.1">
             </div>
 
-
             <div class="field">
-
                 <label>Starting Waist (cm)</label>
-
-                <input
-                    type="number"
-                    id="startingWaist"
-                    step="0.1"
-                    placeholder="Optional">
-
+                <input type="number" id="startingWaist" step="0.1">
             </div>
 
-
             <div class="field">
-
                 <label>Current Waist (cm)</label>
-
-                <input
-                    type="number"
-                    id="currentWaist"
-                    step="0.1"
-                    placeholder="Add later">
-
+                <input type="number" id="currentWaist" step="0.1">
             </div>
 
-
             <div class="field">
-
                 <label>Starting Hip (cm)</label>
-
-                <input
-                    type="number"
-                    id="startingHip"
-                    step="0.1"
-                    placeholder="Optional">
-
+                <input type="number" id="startingHip" step="0.1">
             </div>
-
 
             <div class="field">
-
                 <label>Current Hip (cm)</label>
-
-                <input
-                    type="number"
-                    id="currentHip"
-                    step="0.1"
-                    placeholder="Add later">
-
+                <input type="number" id="currentHip" step="0.1">
             </div>
-
 
         </div>
-
 
         <div class="optional-note">
-
-            Starting information can be entered when you begin.
-            Current measurements can be added later as you progress.
-
+            Starting measurements can be entered when you begin.
+            Current measurements can be updated as you progress.
         </div>
-
 
         <button
             class="save-btn"
@@ -951,17 +1033,13 @@ h1 {
 
         </button>
 
-
         <span
             class="save-message"
             id="saveMessage">
         </span>
 
-
     </div>
 
-
-    <!-- PROGRESS -->
 
     <div class="card">
 
@@ -983,7 +1061,6 @@ h1 {
 
         </div>
 
-
         <div class="progress-bar">
 
             <div
@@ -996,8 +1073,6 @@ h1 {
     </div>
 
 
-    <!-- NUMBERS -->
-
     <div class="card">
 
         <div class="small-title">
@@ -1009,159 +1084,63 @@ h1 {
         </h2>
 
         <p class="card-description">
-            These calculations update automatically when you add
-            your measurements.
+            These calculations update automatically when measurements are added.
         </p>
-
 
         <br>
 
-
         <div class="stats-grid">
 
-
             <div class="stat">
-
-                <div class="stat-label">
-                    Weight Lost
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="weightLost">
-
-                    —
-
-                </div>
-
-                <div class="stat-help">
-                    Starting weight minus current weight.
-                </div>
-
+                <div class="stat-label">Weight Lost</div>
+                <div class="stat-value" id="weightLost">—</div>
+                <div class="stat-help">Starting weight minus current weight.</div>
             </div>
 
-
             <div class="stat">
-
-                <div class="stat-label">
-                    Waist Change
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="waistChange">
-
-                    —
-
-                </div>
-
-                <div class="stat-help">
-                    Starting waist minus current waist.
-                </div>
-
+                <div class="stat-label">Waist Change</div>
+                <div class="stat-value" id="waistChange">—</div>
+                <div class="stat-help">Starting waist minus current waist.</div>
             </div>
 
-
             <div class="stat">
-
-                <div class="stat-label">
-                    BMI
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="bmi">
-
-                    —
-
-                </div>
-
-                <div class="stat-help">
-                    Uses current weight when available.
-                </div>
-
+                <div class="stat-label">BMI</div>
+                <div class="stat-value" id="bmi">—</div>
+                <div class="stat-help">Uses current weight when available.</div>
             </div>
 
-
             <div class="stat">
-
-                <div class="stat-label">
-                    IBW Range
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="ibw">
-
-                    —
-
-                </div>
-
-                <div class="stat-help">
-                    Reference range based on height.
-                </div>
-
+                <div class="stat-label">IBW Range</div>
+                <div class="stat-value" id="ibw">—</div>
+                <div class="stat-help">Reference range based on height.</div>
             </div>
 
-
             <div class="stat">
-
-                <div class="stat-label">
-                    Starting WHR
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="startingWhr">
-
-                    —
-
-                </div>
-
-                <div class="stat-help">
-                    Starting waist ÷ starting hip.
-                </div>
-
+                <div class="stat-label">Starting WHR</div>
+                <div class="stat-value" id="startingWhr">—</div>
+                <div class="stat-help">Starting waist ÷ starting hip.</div>
             </div>
 
-
             <div class="stat">
-
-                <div class="stat-label">
-                    Current WHR
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="currentWhr">
-
-                    —
-
-                </div>
-
-                <div class="stat-help">
-                    Current waist ÷ current hip.
-                </div>
-
+                <div class="stat-label">Current WHR</div>
+                <div class="stat-value" id="currentWhr">—</div>
+                <div class="stat-help">Current waist ÷ current hip.</div>
             </div>
-
 
         </div>
 
     </div>
 
-
 </section>
 
 
 <!-- =========================
-     WELCOME SECTION
+     WELCOME
 ========================= -->
 
 <section
     class="page-section"
     id="welcomeSection">
-
 
     <div class="page-header">
 
@@ -1174,8 +1153,7 @@ h1 {
         </h1>
 
         <p>
-            Everything you need for your 90-day journey is organized
-            here in simple steps.
+            Everything you need for your 90-day journey is organized here.
         </p>
 
     </div>
@@ -1192,13 +1170,10 @@ h1 {
         </h2>
 
         <p>
-            You are now inside your Freedom Women's Health Club
-            member area. Take things one step at a time. Follow
-            your weekly journey, learn from the education section,
-            track your progress and use the community whenever
-            you need support.
+            Take your journey one step at a time. Open your current week,
+            complete your habits, reflect on your progress and continue
+            building consistency.
         </p>
-
 
         <button
             class="primary-btn"
@@ -1222,16 +1197,13 @@ h1 {
         </h2>
 
         <p class="card-description">
-            You don't need to change everything at once. Each week
-            gives you simple actions to work on consistently.
+            Your program is organized into weeks. Some weeks may contain
+            individual days, while others may have weekly habits.
         </p>
-
 
         <br>
 
-
         <div class="education-grid">
-
 
             <div class="education-card">
 
@@ -1240,16 +1212,14 @@ h1 {
                 </div>
 
                 <h3>
-                    Follow Your Week
+                    Open Your Week
                 </h3>
 
                 <p>
-                    Open your current week's plan and complete
-                    the habits and activities.
+                    Follow the content added by your coach for that week.
                 </p>
 
             </div>
-
 
             <div class="education-card">
 
@@ -1258,16 +1228,14 @@ h1 {
                 </div>
 
                 <h3>
-                    Learn
+                    Complete Habits
                 </h3>
 
                 <p>
-                    Use the weekly education section to understand
-                    food, habits and weight loss.
+                    Tick off the habits you complete each day.
                 </p>
 
             </div>
-
 
             <div class="education-card">
 
@@ -1276,374 +1244,161 @@ h1 {
                 </div>
 
                 <h3>
-                    Connect
+                    Reflect
                 </h3>
 
                 <p>
-                    Ask questions, share wins and connect with
-                    other Freedom members.
+                    Complete your weekly reflection and note your progress.
                 </p>
 
             </div>
-
 
         </div>
 
     </div>
 
-
 </section>
 
 
 <!-- =========================
-     JOURNEY SECTION
+     JOURNEY
 ========================= -->
 
 <section
     class="page-section"
     id="journeySection">
 
+    <div id="journeyListView">
 
-    <div class="page-header">
+        <div class="page-header">
 
-        <div class="small-title">
-            Your Program
-        </div>
-
-        <h1>
-            90-Day Journey
-        </h1>
-
-        <p>
-            Follow one week at a time. Complete your current week
-            before moving forward.
-        </p>
-
-    </div>
-
-
-    <!-- PHASE 1 -->
-
-    <div class="card">
-
-        <div class="phase">
-
-            <div class="phase-label">
-                Phase 1 · Days 1–30
+            <div class="small-title">
+                Your Program
             </div>
 
-            <h3>
-                Reset & Foundation
-            </h3>
+            <h1>
+                90-Day Journey
+            </h1>
 
-            <p class="phase-description">
-                Build simple habits that create the foundation
-                for sustainable weight loss.
+            <p>
+                Your weekly content is automatically updated from your
+                member program.
             </p>
-
-
-            <div class="week">
-
-                <a
-                    href="week1.html"
-                    class="week-link">
-
-                    <div class="week-left">
-
-                        <div class="week-number">
-                            01
-                        </div>
-
-                        <div class="week-title">
-
-                            <h4>
-                                Week 1
-                            </h4>
-
-                            <p>
-                                Days 1–7 · Start Here
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    <div class="arrow">
-                        →
-                    </div>
-
-                </a>
-
-            </div>
-
-
-            <div class="week">
-
-                <a
-                    href="week2.html"
-                    class="week-link">
-
-                    <div class="week-left">
-
-                        <div class="week-number">
-                            02
-                        </div>
-
-                        <div class="week-title">
-
-                            <h4>
-                                Week 2
-                            </h4>
-
-                            <p>
-                                Days 8–14
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    <div class="arrow">
-                        →
-                    </div>
-
-                </a>
-
-            </div>
-
-
-            <div class="week">
-
-                <div class="week-link">
-
-                    <div class="week-left">
-
-                        <div class="week-number">
-                            03
-                        </div>
-
-                        <div class="week-title">
-
-                            <h4>
-                                Week 3
-                            </h4>
-
-                            <p>
-                                Days 15–21
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    <span class="coming-soon">
-                        Coming Soon
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="week">
-
-                <div class="week-link">
-
-                    <div class="week-left">
-
-                        <div class="week-number">
-                            04
-                        </div>
-
-                        <div class="week-title">
-
-                            <h4>
-                                Week 4
-                            </h4>
-
-                            <p>
-                                Days 22–30
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    <span class="coming-soon">
-                        Coming Soon
-                    </span>
-
-                </div>
-
-            </div>
 
         </div>
 
+        <div id="weeksContainer">
 
-        <!-- PHASE 2 -->
-
-        <div class="phase">
-
-            <div class="phase-label">
-                Phase 2 · Days 31–60
-            </div>
-
-            <h3>
-                Build & Progress
-            </h3>
-
-            <p class="phase-description">
-                Build on your foundation and strengthen your habits.
-            </p>
-
-
-            <div class="week">
-                <div class="week-link">
-                    <div class="week-left">
-                        <div class="week-number">05</div>
-                        <div class="week-title">
-                            <h4>Week 5</h4>
-                            <p>Days 31–37</p>
-                        </div>
-                    </div>
-                    <span class="coming-soon">Coming Soon</span>
-                </div>
-            </div>
-
-
-            <div class="week">
-                <div class="week-link">
-                    <div class="week-left">
-                        <div class="week-number">06</div>
-                        <div class="week-title">
-                            <h4>Week 6</h4>
-                            <p>Days 38–44</p>
-                        </div>
-                    </div>
-                    <span class="coming-soon">Coming Soon</span>
-                </div>
-            </div>
-
-
-            <div class="week">
-                <div class="week-link">
-                    <div class="week-left">
-                        <div class="week-number">07</div>
-                        <div class="week-title">
-                            <h4>Week 7</h4>
-                            <p>Days 45–51</p>
-                        </div>
-                    </div>
-                    <span class="coming-soon">Coming Soon</span>
-                </div>
-            </div>
-
-
-            <div class="week">
-                <div class="week-link">
-                    <div class="week-left">
-                        <div class="week-number">08</div>
-                        <div class="week-title">
-                            <h4>Week 8</h4>
-                            <p>Days 52–60</p>
-                        </div>
-                    </div>
-                    <span class="coming-soon">Coming Soon</span>
-                </div>
-            </div>
-
-        </div>
-
-
-        <!-- PHASE 3 -->
-
-        <div class="phase">
-
-            <div class="phase-label">
-                Phase 3 · Days 61–90
-            </div>
-
-            <h3>
-                Maintain & Thrive
-            </h3>
-
-            <p class="phase-description">
-                Strengthen confidence and learn how to maintain
-                your progress long term.
-            </p>
-
-
-            <div class="week">
-                <div class="week-link">
-                    <div class="week-left">
-                        <div class="week-number">09</div>
-                        <div class="week-title">
-                            <h4>Week 9</h4>
-                            <p>Days 61–67</p>
-                        </div>
-                    </div>
-                    <span class="coming-soon">Coming Soon</span>
-                </div>
-            </div>
-
-
-            <div class="week">
-                <div class="week-link">
-                    <div class="week-left">
-                        <div class="week-number">10</div>
-                        <div class="week-title">
-                            <h4>Week 10</h4>
-                            <p>Days 68–74</p>
-                        </div>
-                    </div>
-                    <span class="coming-soon">Coming Soon</span>
-                </div>
-            </div>
-
-
-            <div class="week">
-                <div class="week-link">
-                    <div class="week-left">
-                        <div class="week-number">11</div>
-                        <div class="week-title">
-                            <h4>Week 11</h4>
-                            <p>Days 75–81</p>
-                        </div>
-                    </div>
-                    <span class="coming-soon">Coming Soon</span>
-                </div>
-            </div>
-
-
-            <div class="week">
-                <div class="week-link">
-                    <div class="week-left">
-                        <div class="week-number">12</div>
-                        <div class="week-title">
-                            <h4>Week 12</h4>
-                            <p>Days 82–90</p>
-                        </div>
-                    </div>
-                    <span class="coming-soon">Coming Soon</span>
-                </div>
+            <div class="loading-box">
+                Loading your 90-day journey...
             </div>
 
         </div>
 
     </div>
 
+
+    <!-- =========================
+         WEEK DETAIL
+    ========================= -->
+
+    <div
+        id="weekDetailView"
+        style="display:none;">
+
+        <div class="week-detail-header">
+
+            <div>
+
+                <button
+                    class="back-btn"
+                    id="backToWeeks">
+
+                    ← Back to 90-Day Journey
+
+                </button>
+
+                <div class="small-title" id="detailWeekLabel">
+                    Week
+                </div>
+
+                <h1 id="detailWeekTitle">
+                    Loading...
+                </h1>
+
+                <p id="detailWeekDescription">
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="goal-box"
+            id="detailGoalBox">
+
+            <div class="goal-label">
+                Week Goal
+            </div>
+
+            <div
+                class="goal-text"
+                id="detailWeekGoal">
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="weekContentContainer">
+
+        </div>
+
+
+        <div
+            class="card reflection-card"
+            id="reflectionCard">
+
+            <h3>
+                Weekly Reflection
+            </h3>
+
+            <p class="reflection-description">
+                Take a few minutes to reflect on your week.
+            </p>
+
+            <div id="reflectionFields">
+            </div>
+
+            <button
+                class="save-reflection-btn"
+                id="saveReflection">
+
+                Save Reflection
+
+            </button>
+
+            <span
+                class="reflection-message"
+                id="reflectionMessage">
+            </span>
+
+        </div>
+
+    </div>
 
 </section>
 
 
 <!-- =========================
-     EDUCATION SECTION
+     EDUCATION
 ========================= -->
 
 <section
     class="page-section"
     id="educationSection">
-
 
     <div class="page-header">
 
@@ -1656,17 +1411,14 @@ h1 {
         </h1>
 
         <p>
-            Simple lessons to help you understand food, habits
-            and sustainable weight loss.
+            Simple lessons to support your weight-loss journey.
         </p>
 
     </div>
 
-
     <div class="card">
 
         <div class="education-grid">
-
 
             <div class="education-card">
 
@@ -1679,12 +1431,11 @@ h1 {
                 </h3>
 
                 <p>
-                    Learn how to build balanced meals without
-                    giving up the foods you enjoy.
+                    Learn how to build balanced meals without giving up
+                    the foods you enjoy.
                 </p>
 
             </div>
-
 
             <div class="education-card">
 
@@ -1697,12 +1448,11 @@ h1 {
                 </h3>
 
                 <p>
-                    Understand how protein can support fullness
-                    and your weight-loss journey.
+                    Understand how protein can support fullness and
+                    your weight-loss journey.
                 </p>
 
             </div>
-
 
             <div class="education-card">
 
@@ -1720,23 +1470,20 @@ h1 {
 
             </div>
 
-
         </div>
 
     </div>
-
 
 </section>
 
 
 <!-- =========================
-     COMMUNITY SECTION
+     COMMUNITY
 ========================= -->
 
 <section
     class="page-section"
     id="communitySection">
-
 
     <div class="page-header">
 
@@ -1749,12 +1496,10 @@ h1 {
         </h1>
 
         <p>
-            Connect with other Freedom members, ask questions,
-            share wins and support one another.
+            Connect with other Freedom members and share your progress.
         </p>
 
     </div>
-
 
     <div class="card">
 
@@ -1765,12 +1510,9 @@ h1 {
             </h3>
 
             <p>
-                This community will be a shared space for all
-                Freedom members. Members will be able to ask
-                questions, share their progress, celebrate wins
-                and communicate with each other.
+                Use the community to share wins, ask questions and
+                encourage other Freedom members.
             </p>
-
 
             <a
                 href="community.html"
@@ -1783,7 +1525,6 @@ h1 {
         </div>
 
     </div>
-
 
 </section>
 
@@ -1801,7 +1542,9 @@ h1 {
 
 <script type="module">
 
-import { initializeApp }
+import {
+    initializeApp
+}
 from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 import {
@@ -1815,7 +1558,9 @@ import {
     getFirestore,
     doc,
     getDoc,
-    setDoc
+    setDoc,
+    collection,
+    getDocs
 }
 from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
@@ -1847,24 +1592,27 @@ const firebaseConfig = {
 };
 
 
-const app =
-    initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-const auth =
-    getAuth(app);
+const auth = getAuth(app);
 
-const db =
-    getFirestore(app);
+const db = getFirestore(app);
 
 
 let currentUser = null;
+
+let weeklyContent = [];
+
+let memberProgress = {};
+
+let selectedWeek = null;
 
 
 /* =========================
    PROFILE FIELDS
 ========================= */
 
-const fields = [
+const profileFields = [
 
     "name",
     "age",
@@ -1888,6 +1636,8 @@ function getValue(id) {
     const element =
         document.getElementById(id);
 
+    if (!element) return "";
+
     return element.value.trim();
 
 }
@@ -1905,14 +1655,33 @@ function getNumber(id) {
 }
 
 
+function escapeHTML(value) {
+
+    if (value === undefined ||
+        value === null) {
+
+        return "";
+
+    }
+
+    return String(value)
+
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
 /* =========================
-   CALCULATIONS
+   PROFILE CALCULATIONS
 ========================= */
 
 function calculateProgress() {
 
-    const height =
-        getNumber("height");
+    const height = getNumber("height");
 
     const startingWeight =
         getNumber("startingWeight");
@@ -1933,19 +1702,15 @@ function calculateProgress() {
         getNumber("currentHip");
 
 
-    /* WEIGHT LOST */
-
     if (
         startingWeight !== null &&
         currentWeight !== null
     ) {
 
-        const lost =
-            startingWeight - currentWeight;
-
         document.getElementById("weightLost")
             .textContent =
-            lost.toFixed(1) + " kg";
+            (startingWeight - currentWeight).toFixed(1)
+            + " kg";
 
     } else {
 
@@ -1954,20 +1719,16 @@ function calculateProgress() {
 
     }
 
-
-    /* WAIST CHANGE */
 
     if (
         startingWaist !== null &&
         currentWaist !== null
     ) {
 
-        const change =
-            startingWaist - currentWaist;
-
         document.getElementById("waistChange")
             .textContent =
-            change.toFixed(1) + " cm";
+            (startingWaist - currentWaist).toFixed(1)
+            + " cm";
 
     } else {
 
@@ -1976,8 +1737,6 @@ function calculateProgress() {
 
     }
 
-
-    /* BMI */
 
     const weightForBMI =
         currentWeight !== null
@@ -1994,13 +1753,13 @@ function calculateProgress() {
         const heightM =
             height / 100;
 
-        const bmiValue =
+        const bmi =
             weightForBMI /
             (heightM * heightM);
 
         document.getElementById("bmi")
             .textContent =
-            bmiValue.toFixed(1);
+            bmi.toFixed(1);
 
     } else {
 
@@ -2009,8 +1768,6 @@ function calculateProgress() {
 
     }
 
-
-    /* IBW */
 
     if (
         height !== null &&
@@ -2045,8 +1802,6 @@ function calculateProgress() {
     }
 
 
-    /* STARTING WHR */
-
     if (
         startingWaist !== null &&
         startingHip !== null &&
@@ -2067,8 +1822,6 @@ function calculateProgress() {
 
     }
 
-
-    /* CURRENT WHR */
 
     if (
         currentWaist !== null &&
@@ -2099,15 +1852,14 @@ function calculateProgress() {
 
 async function loadProfile(user) {
 
-    const profileRef =
-        doc(
-            db,
-            "members",
-            user.email
-        );
-
-
     try {
+
+        const profileRef =
+            doc(
+                db,
+                "members",
+                user.email
+            );
 
         const snapshot =
             await getDoc(profileRef);
@@ -2119,15 +1871,18 @@ async function loadProfile(user) {
                 snapshot.data();
 
 
-            fields.forEach(field => {
+            profileFields.forEach(field => {
+
+                const element =
+                    document.getElementById(field);
 
                 if (
+                    element &&
                     data[field] !== undefined &&
                     data[field] !== null
                 ) {
 
-                    document.getElementById(field)
-                        .value =
+                    element.value =
                         data[field];
 
                 }
@@ -2155,7 +1910,7 @@ async function loadProfile(user) {
     } catch (error) {
 
         console.error(
-            "Error loading profile:",
+            "Profile loading error:",
             error
         );
 
@@ -2172,21 +1927,13 @@ async function loadProfile(user) {
 
 async function saveProfile() {
 
-    if (!currentUser) {
-
-        return;
-
-    }
-
-
-    const name =
-        getValue("name");
+    if (!currentUser) return;
 
 
     const data = {
 
         name:
-            name,
+            getValue("name"),
 
         age:
             getNumber("age"),
@@ -2240,6 +1987,10 @@ async function saveProfile() {
         );
 
 
+        const name =
+            data.name;
+
+
         if (name) {
 
             document.getElementById("memberName")
@@ -2260,7 +2011,6 @@ async function saveProfile() {
             .textContent =
             "Saved successfully.";
 
-
         setTimeout(() => {
 
             document.getElementById("saveMessage")
@@ -2271,18 +2021,1504 @@ async function saveProfile() {
 
     } catch (error) {
 
-        console.error(
-            "Error saving profile:",
-            error
-        );
+        console.error(error);
 
         document.getElementById("saveMessage")
             .textContent =
-            "Unable to save. Please check your Firebase rules.";
+            "Unable to save. Check Firebase rules.";
 
     }
 
 }
+
+
+/* =========================
+   LOAD MEMBER PROGRESS
+========================= */
+
+async function loadMemberProgress() {
+
+    if (!currentUser) return;
+
+
+    try {
+
+        const progressRef =
+            doc(
+                db,
+                "memberProgress",
+                currentUser.email
+            );
+
+
+        const snapshot =
+            await getDoc(progressRef);
+
+
+        if (snapshot.exists()) {
+
+            memberProgress =
+                snapshot.data();
+
+        } else {
+
+            memberProgress = {};
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "Progress loading error:",
+            error
+        );
+
+        memberProgress = {};
+
+    }
+
+}
+
+
+/* =========================
+   SAVE MEMBER PROGRESS
+========================= */
+
+async function saveMemberProgress() {
+
+    if (!currentUser) return;
+
+
+    try {
+
+        await setDoc(
+
+            doc(
+                db,
+                "memberProgress",
+                currentUser.email
+            ),
+
+            memberProgress,
+
+            {
+                merge: true
+            }
+
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Progress saving error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================
+   LOAD WEEKLY CONTENT
+========================= */
+
+async function loadWeeklyContent() {
+
+    const container =
+        document.getElementById(
+            "weeksContainer"
+        );
+
+
+    container.innerHTML = `
+        <div class="loading-box">
+            Loading your 90-day journey...
+        </div>
+    `;
+
+
+    try {
+
+        const contentRef =
+            collection(
+                db,
+                "weeklyContent"
+            );
+
+
+        const snapshot =
+            await getDocs(contentRef);
+
+
+        weeklyContent = [];
+
+
+        snapshot.forEach(item => {
+
+            weeklyContent.push({
+
+                id:
+                    item.id,
+
+                ...item.data()
+
+            });
+
+        });
+
+
+        weeklyContent.sort(
+            (a, b) =>
+                getWeekNumber(a) -
+                getWeekNumber(b)
+        );
+
+
+        renderWeeks();
+
+
+    } catch (error) {
+
+        console.error(
+            "Weekly content error:",
+            error
+        );
+
+
+        container.innerHTML = `
+
+            <div class="error-box">
+
+                <strong>
+                    Your program content could not be loaded.
+                </strong>
+
+                <br><br>
+
+                Please check that the Admin Portal is saving
+                content inside the <strong>weeklyContent</strong>
+                Firestore collection.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================
+   WEEK NUMBER
+========================= */
+
+function getWeekNumber(week) {
+
+    if (week.weekNumber !== undefined)
+        return Number(week.weekNumber);
+
+    if (week.number !== undefined)
+        return Number(week.number);
+
+    const match =
+        String(week.id || "")
+            .match(/(\d+)/);
+
+    return match
+        ? Number(match[1])
+        : 999;
+
+}
+
+
+/* =========================
+   GET WEEK DAYS
+========================= */
+
+function getDays(week) {
+
+    if (Array.isArray(week.days))
+        return week.days;
+
+    if (Array.isArray(week.dayContent))
+        return week.dayContent;
+
+    return [];
+
+}
+
+
+/* =========================
+   GET WEEK HABITS
+========================= */
+
+function getWeeklyHabits(week) {
+
+    if (Array.isArray(week.habits))
+        return week.habits;
+
+    if (Array.isArray(week.weeklyHabits))
+        return week.weeklyHabits;
+
+    return [];
+
+}
+
+
+/* =========================
+   RENDER WEEKS
+========================= */
+
+function renderWeeks() {
+
+    const container =
+        document.getElementById(
+            "weeksContainer"
+        );
+
+
+    if (!weeklyContent.length) {
+
+        container.innerHTML = `
+
+            <div class="empty-box">
+
+                No weekly content has been added yet.
+
+                <br><br>
+
+                Your coach will add your program here.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const phases = {
+
+        1: {
+            title:
+                "Phase 1 · Reset & Foundation",
+            description:
+                "Build simple habits and create a strong foundation."
+        },
+
+        2: {
+            title:
+                "Phase 2 · Build & Progress",
+            description:
+                "Build on your foundation and strengthen your routine."
+        },
+
+        3: {
+            title:
+                "Phase 3 · Maintain & Thrive",
+            description:
+                "Strengthen your confidence and create sustainable habits."
+        }
+
+    };
+
+
+    let html = "";
+
+
+    [1, 2, 3].forEach(phaseNumber => {
+
+        const start =
+            phaseNumber === 1 ? 1 :
+            phaseNumber === 2 ? 5 :
+            9;
+
+        const end =
+            phaseNumber === 1 ? 4 :
+            phaseNumber === 2 ? 8 :
+            12;
+
+
+        const weeks =
+            weeklyContent.filter(week => {
+
+                const number =
+                    getWeekNumber(week);
+
+                return (
+                    number >= start &&
+                    number <= end
+                );
+
+            });
+
+
+        if (!weeks.length) return;
+
+
+        const phase =
+            phases[phaseNumber];
+
+
+        html += `
+
+            <div class="card">
+
+                <div class="phase">
+
+                    <div class="phase-label">
+                        ${escapeHTML(phase.title)}
+                    </div>
+
+                    <h3>
+                        ${escapeHTML(
+                            phaseNumber === 1
+                                ? "Reset & Foundation"
+                                : phaseNumber === 2
+                                    ? "Build & Progress"
+                                    : "Maintain & Thrive"
+                        )}
+                    </h3>
+
+                    <p class="phase-description">
+                        ${escapeHTML(phase.description)}
+                    </p>
+
+        `;
+
+
+        weeks.forEach(week => {
+
+            const number =
+                getWeekNumber(week);
+
+            const title =
+                week.title ||
+                `Week ${number}`;
+
+            const days =
+                getDays(week);
+
+            const habits =
+                getWeeklyHabits(week);
+
+            const percent =
+                getWeekCompletion(week);
+
+
+            html += `
+
+                <div class="week">
+
+                    <button
+                        class="week-button"
+                        onclick="openWeek('${escapeHTML(week.id)}')">
+
+                        <div class="week-left">
+
+                            <div class="week-number">
+                                ${String(number).padStart(2, "0")}
+                            </div>
+
+                            <div class="week-title">
+
+                                <h4>
+                                    ${escapeHTML(title)}
+                                </h4>
+
+                                <p>
+                                    ${
+                                        days.length
+                                            ? `${days.length} days`
+                                            : habits.length
+                                                ? "Weekly habits"
+                                                : "Content"
+                                    }
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="week-right">
+
+                            <span class="week-percent">
+                                ${percent}% complete
+                            </span>
+
+                            <span class="arrow">
+                                →
+                            </span>
+
+                        </div>
+
+                    </button>
+
+                </div>
+
+            `;
+
+        });
+
+
+        html += `
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
+    container.innerHTML =
+        html;
+
+}
+
+
+/* =========================
+   OPEN WEEK
+========================= */
+
+window.openWeek =
+async function(weekId) {
+
+    selectedWeek =
+        weeklyContent.find(
+            week => week.id === weekId
+        );
+
+
+    if (!selectedWeek) return;
+
+
+    document.getElementById(
+        "journeyListView"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "weekDetailView"
+    ).style.display =
+        "block";
+
+
+    renderSelectedWeek();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+};
+
+
+/* =========================
+   RENDER SELECTED WEEK
+========================= */
+
+function renderSelectedWeek() {
+
+    if (!selectedWeek) return;
+
+
+    const number =
+        getWeekNumber(selectedWeek);
+
+
+    document.getElementById(
+        "detailWeekLabel"
+    ).textContent =
+        `Week ${number}`;
+
+
+    document.getElementById(
+        "detailWeekTitle"
+    ).textContent =
+        selectedWeek.title ||
+        `Week ${number}`;
+
+
+    document.getElementById(
+        "detailWeekDescription"
+    ).textContent =
+        selectedWeek.description ||
+        "";
+
+
+    document.getElementById(
+        "detailWeekGoal"
+    ).textContent =
+        selectedWeek.goal ||
+        selectedWeek.weekGoal ||
+        "Complete your weekly habits consistently.";
+
+
+    const days =
+        getDays(selectedWeek);
+
+    const weeklyHabits =
+        getWeeklyHabits(selectedWeek);
+
+
+    let html = "";
+
+
+    /*
+       DAY-WISE CONTENT
+    */
+
+    if (days.length) {
+
+        days.forEach(
+            (day, dayIndex) => {
+
+                const habits =
+                    Array.isArray(day.habits)
+                        ? day.habits
+                        : [];
+
+
+                const dayNumber =
+                    day.dayNumber ||
+                    day.number ||
+                    dayIndex + 1;
+
+
+                const dayTitle =
+                    day.title ||
+                    `Day ${dayNumber}`;
+
+
+                const completed =
+                    getCompletedHabitsForDay(
+                        selectedWeek.id,
+                        dayIndex,
+                        habits
+                    );
+
+
+                const total =
+                    habits.length;
+
+
+                const percent =
+                    total
+                        ? Math.round(
+                            (completed / total) * 100
+                        )
+                        : 0;
+
+
+                html += `
+
+                    <div class="day-card">
+
+                        <div class="day-header">
+
+                            <div>
+
+                                <div class="day-title">
+                                    ${escapeHTML(dayTitle)}
+                                </div>
+
+                                <div class="day-subtitle">
+                                    ${
+                                        day.description
+                                            ? escapeHTML(day.description)
+                                            : ""
+                                    }
+                                </div>
+
+                            </div>
+
+                            <div class="day-progress">
+                                ${percent}% complete
+                            </div>
+
+                        </div>
+
+                        <div class="day-body">
+
+                `;
+
+
+                if (!habits.length) {
+
+                    html += `
+
+                        <div class="empty-box">
+
+                            No habits added for this day yet.
+
+                        </div>
+
+                    `;
+
+                } else {
+
+                    habits.forEach(
+                        (habit, habitIndex) => {
+
+                            html += renderHabit(
+                                selectedWeek.id,
+                                dayIndex,
+                                habitIndex,
+                                habit
+                            );
+
+                        }
+                    );
+
+                }
+
+
+                html += `
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+    }
+
+
+    /*
+       WEEKLY CONTENT
+    */
+
+    else if (weeklyHabits.length) {
+
+        html += `
+
+            <div class="card weekly-habits">
+
+                <div class="weekly-habits-title">
+                    This Week's Habits
+                </div>
+
+        `;
+
+
+        weeklyHabits.forEach(
+            (habit, habitIndex) => {
+
+                html += renderHabit(
+                    selectedWeek.id,
+                    "weekly",
+                    habitIndex,
+                    habit
+                );
+
+            }
+        );
+
+
+        html += `
+
+            </div>
+
+        `;
+
+    }
+
+
+    else {
+
+        html += `
+
+            <div class="empty-box">
+
+                No habits have been added to this week yet.
+
+            </div>
+
+        `;
+
+    }
+
+
+    document.getElementById(
+        "weekContentContainer"
+    ).innerHTML =
+        html;
+
+
+    renderReflection();
+
+}
+
+
+/* =========================
+   RENDER HABIT
+========================= */
+
+function renderHabit(
+    weekId,
+    dayKey,
+    habitIndex,
+    habit
+) {
+
+    const name =
+        habit.name ||
+        habit.habit ||
+        habit.title ||
+        "Habit";
+
+
+    const target =
+        habit.target ||
+        habit.value ||
+        habit.goal ||
+        "";
+
+
+    const details =
+        habit.details ||
+        habit.instructions ||
+        habit.description ||
+        "";
+
+
+    const checked =
+        isHabitComplete(
+            weekId,
+            dayKey,
+            habitIndex
+        );
+
+
+    return `
+
+        <div class="habit-item">
+
+            <input
+                type="checkbox"
+                class="habit-check"
+                ${checked ? "checked" : ""}
+                onchange="toggleHabit(
+                    '${escapeHTML(weekId)}',
+                    '${escapeHTML(dayKey)}',
+                    ${habitIndex},
+                    this.checked
+                )">
+
+            <div class="habit-content">
+
+                <div class="habit-name">
+                    ${escapeHTML(name)}
+                </div>
+
+                ${
+                    target
+                        ? `
+                            <div class="habit-target">
+                                ${escapeHTML(target)}
+                            </div>
+                          `
+                        : ""
+                }
+
+                ${
+                    details
+                        ? `
+                            <div class="habit-details">
+                                ${escapeHTML(details)}
+                            </div>
+                          `
+                        : ""
+                }
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================
+   TOGGLE HABIT
+========================= */
+
+window.toggleHabit =
+async function(
+    weekId,
+    dayKey,
+    habitIndex,
+    checked
+) {
+
+    if (!memberProgress.weeks)
+        memberProgress.weeks = {};
+
+
+    if (!memberProgress.weeks[weekId])
+        memberProgress.weeks[weekId] = {};
+
+
+    if (!memberProgress.weeks[weekId].habits)
+        memberProgress.weeks[weekId].habits = {};
+
+
+    const key =
+        `${dayKey}_${habitIndex}`;
+
+
+    memberProgress.weeks[weekId].habits[key] =
+        checked;
+
+
+    await saveMemberProgress();
+
+
+    renderSelectedWeek();
+
+    renderWeeks();
+
+    updateOverallProgress();
+
+};
+
+
+/* =========================
+   CHECK HABIT
+========================= */
+
+function isHabitComplete(
+    weekId,
+    dayKey,
+    habitIndex
+) {
+
+    if (
+        !memberProgress.weeks ||
+        !memberProgress.weeks[weekId] ||
+        !memberProgress.weeks[weekId].habits
+    ) {
+
+        return false;
+
+    }
+
+
+    const key =
+        `${dayKey}_${habitIndex}`;
+
+
+    return (
+        memberProgress
+            .weeks[weekId]
+            .habits[key] === true
+    );
+
+}
+
+
+/* =========================
+   DAY COMPLETION
+========================= */
+
+function getCompletedHabitsForDay(
+    weekId,
+    dayIndex,
+    habits
+) {
+
+    let completed = 0;
+
+
+    habits.forEach(
+        (_, index) => {
+
+            if (
+                isHabitComplete(
+                    weekId,
+                    dayIndex,
+                    index
+                )
+            ) {
+
+                completed++;
+
+            }
+
+        }
+    );
+
+
+    return completed;
+
+}
+
+
+/* =========================
+   WEEK COMPLETION
+========================= */
+
+function getWeekCompletion(week) {
+
+    const days =
+        getDays(week);
+
+    const weeklyHabits =
+        getWeeklyHabits(week);
+
+
+    let total = 0;
+
+    let completed = 0;
+
+
+    if (days.length) {
+
+        days.forEach(
+            (day, dayIndex) => {
+
+                const habits =
+                    Array.isArray(day.habits)
+                        ? day.habits
+                        : [];
+
+
+                habits.forEach(
+                    (_, habitIndex) => {
+
+                        total++;
+
+
+                        if (
+                            isHabitComplete(
+                                week.id,
+                                dayIndex,
+                                habitIndex
+                            )
+                        ) {
+
+                            completed++;
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+    } else {
+
+        weeklyHabits.forEach(
+            (_, habitIndex) => {
+
+                total++;
+
+
+                if (
+                    isHabitComplete(
+                        week.id,
+                        "weekly",
+                        habitIndex
+                    )
+                ) {
+
+                    completed++;
+
+                }
+
+            }
+        );
+
+    }
+
+
+    if (!total) return 0;
+
+
+    return Math.round(
+        (completed / total) * 100
+    );
+
+}
+
+
+/* =========================
+   REFLECTION
+========================= */
+
+function getReflectionQuestions() {
+
+    if (!selectedWeek) return [];
+
+
+    if (
+        Array.isArray(
+            selectedWeek.reflection
+        )
+    ) {
+
+        return selectedWeek.reflection;
+
+    }
+
+
+    if (
+        Array.isArray(
+            selectedWeek.reflectionQuestions
+        )
+    ) {
+
+        return selectedWeek.reflectionQuestions;
+
+    }
+
+
+    return [
+
+        "What was your biggest win this week?",
+
+        "What was your biggest challenge?",
+
+        "What habit do you want to improve next week?"
+
+    ];
+
+}
+
+
+/* =========================
+   RENDER REFLECTION
+========================= */
+
+function renderReflection() {
+
+    const questions =
+        getReflectionQuestions();
+
+
+    const fields =
+        document.getElementById(
+            "reflectionFields"
+        );
+
+
+    let html = "";
+
+
+    questions.forEach(
+        (question, index) => {
+
+            const text =
+                typeof question === "string"
+                    ? question
+                    : question.question ||
+                      question.title ||
+                      `Reflection ${index + 1}`;
+
+
+            const saved =
+                getSavedReflection(index);
+
+
+            html += `
+
+                <div class="reflection-field">
+
+                    <label>
+                        ${escapeHTML(text)}
+                    </label>
+
+                    <textarea
+                        id="reflection_${index}"
+                        placeholder="Write your reflection here..."
+                    >${escapeHTML(saved)}</textarea>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    fields.innerHTML =
+        html;
+
+}
+
+
+/* =========================
+   GET SAVED REFLECTION
+========================= */
+
+function getSavedReflection(index) {
+
+    if (
+        !memberProgress.weeks ||
+        !selectedWeek ||
+        !memberProgress.weeks[selectedWeek.id]
+    ) {
+
+        return "";
+
+    }
+
+
+    const reflection =
+        memberProgress
+            .weeks[selectedWeek.id]
+            .reflection;
+
+
+    if (!reflection) return "";
+
+
+    return reflection[index] || "";
+
+}
+
+
+/* =========================
+   SAVE REFLECTION
+========================= */
+
+async function saveReflection() {
+
+    if (!selectedWeek) return;
+
+
+    const questions =
+        getReflectionQuestions();
+
+
+    const answers = {};
+
+
+    questions.forEach(
+        (_, index) => {
+
+            const field =
+                document.getElementById(
+                    `reflection_${index}`
+                );
+
+
+            if (field) {
+
+                answers[index] =
+                    field.value.trim();
+
+            }
+
+        }
+    );
+
+
+    if (!memberProgress.weeks)
+        memberProgress.weeks = {};
+
+
+    if (!memberProgress.weeks[selectedWeek.id])
+        memberProgress.weeks[selectedWeek.id] = {};
+
+
+    memberProgress.weeks[selectedWeek.id]
+        .reflection =
+        answers;
+
+
+    memberProgress.weeks[selectedWeek.id]
+        .reflectionUpdatedAt =
+        new Date().toISOString();
+
+
+    await saveMemberProgress();
+
+
+    const message =
+        document.getElementById(
+            "reflectionMessage"
+        );
+
+
+    message.textContent =
+        "Reflection saved.";
+
+
+    setTimeout(() => {
+
+        message.textContent = "";
+
+    }, 3000);
+
+}
+
+
+/* =========================
+   OVERALL 90 DAY PROGRESS
+========================= */
+
+function updateOverallProgress() {
+
+    let totalHabits = 0;
+
+    let completedHabits = 0;
+
+
+    weeklyContent.forEach(
+        week => {
+
+            const days =
+                getDays(week);
+
+            const weeklyHabits =
+                getWeeklyHabits(week);
+
+
+            if (days.length) {
+
+                days.forEach(
+                    (day, dayIndex) => {
+
+                        const habits =
+                            Array.isArray(day.habits)
+                                ? day.habits
+                                : [];
+
+
+                        habits.forEach(
+                            (_, habitIndex) => {
+
+                                totalHabits++;
+
+
+                                if (
+                                    isHabitComplete(
+                                        week.id,
+                                        dayIndex,
+                                        habitIndex
+                                    )
+                                ) {
+
+                                    completedHabits++;
+
+                                }
+
+                            }
+                        );
+
+                    }
+                );
+
+            } else {
+
+                weeklyHabits.forEach(
+                    (_, habitIndex) => {
+
+                        totalHabits++;
+
+
+                        if (
+                            isHabitComplete(
+                                week.id,
+                                "weekly",
+                                habitIndex
+                            )
+                        ) {
+
+                            completedHabits++;
+
+                        }
+
+                    }
+                );
+
+            }
+
+        }
+    );
+
+
+    const percentage =
+        totalHabits
+            ? Math.round(
+                (
+                    completedHabits /
+                    totalHabits
+                ) * 100
+            )
+            : 0;
+
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+        percentage + "%";
+
+
+    /*
+       Approximate day progress based on
+       completed habit groups.
+    */
+
+    document.getElementById(
+        "progressDays"
+    ).textContent =
+        Math.min(
+            90,
+            completedHabits
+        );
+
+}
+
+
+/* =========================
+   BACK TO WEEKS
+========================= */
+
+document.getElementById(
+    "backToWeeks"
+).addEventListener(
+    "click",
+    () => {
+
+        document.getElementById(
+            "weekDetailView"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "journeyListView"
+        ).style.display =
+            "block";
+
+
+        renderWeeks();
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+);
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+const navButtons =
+    document.querySelectorAll(
+        ".nav-btn"
+    );
+
+
+const sections =
+    document.querySelectorAll(
+        ".page-section"
+    );
+
+
+function openSection(sectionId) {
+
+    sections.forEach(
+        section => {
+
+            section.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    const selected =
+        document.getElementById(
+            sectionId
+        );
+
+
+    if (selected) {
+
+        selected.classList.add(
+            "active"
+        );
+
+    }
+
+
+    navButtons.forEach(
+        button => {
+
+            button.classList.remove(
+                "active"
+            );
+
+
+            if (
+                button.dataset.section ===
+                sectionId
+            ) {
+
+                button.classList.add(
+                    "active"
+                );
+
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "sidebar"
+    ).classList.remove(
+        "open"
+    );
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+window.openSection =
+    openSection;
+
+
+navButtons.forEach(
+    button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                openSection(
+                    button.dataset.section
+                );
+
+            }
+        );
+
+    }
+);
 
 
 /* =========================
@@ -2291,7 +3527,7 @@ async function saveProfile() {
 
 onAuthStateChanged(
     auth,
-    async (user) => {
+    async user => {
 
         if (!user) {
 
@@ -2307,162 +3543,181 @@ onAuthStateChanged(
             user;
 
 
-        document.getElementById("memberEmail")
-            .textContent =
+        document.getElementById(
+            "memberEmail"
+        ).textContent =
             user.email;
 
 
         await loadProfile(user);
+
+        await loadMemberProgress();
+
+        await loadWeeklyContent();
+
+        updateOverallProgress();
 
     }
 );
 
 
 /* =========================
-   SIDEBAR NAVIGATION
+   PROFILE SAVE
 ========================= */
 
-const navButtons =
-    document.querySelectorAll(".nav-btn");
-
-const sections =
-    document.querySelectorAll(".page-section");
-
-
-function openSection(sectionId) {
-
-    sections.forEach(section => {
-
-        section.classList.remove("active");
-
-    });
-
-
-    const selectedSection =
-        document.getElementById(sectionId);
-
-
-    if (selectedSection) {
-
-        selectedSection.classList.add("active");
-
-    }
-
-
-    navButtons.forEach(button => {
-
-        button.classList.remove("active");
-
-        if (
-            button.dataset.section === sectionId
-        ) {
-
-            button.classList.add("active");
-
-        }
-
-    });
-
-
-    /* Close mobile sidebar */
-
-    document.getElementById("sidebar")
-        .classList.remove("open");
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-}
-
-
-/* Make function available to buttons */
-
-window.openSection =
-    openSection;
-
-
-navButtons.forEach(button => {
-
-    button.addEventListener(
-        "click",
-        () => {
-
-            openSection(
-                button.dataset.section
-            );
-
-        }
-    );
-
-});
-
-
-/* =========================
-   SAVE BUTTON
-========================= */
-
-document.getElementById("saveProfile")
-    .addEventListener(
-        "click",
-        saveProfile
-    );
+document.getElementById(
+    "saveProfile"
+).addEventListener(
+    "click",
+    saveProfile
+);
 
 
 /* =========================
    LIVE CALCULATIONS
 ========================= */
 
-fields.forEach(field => {
+profileFields.forEach(
+    field => {
 
-    document.getElementById(field)
-        .addEventListener(
-            "input",
-            calculateProgress
-        );
+        const element =
+            document.getElementById(
+                field
+            );
 
-});
+
+        if (element) {
+
+            element.addEventListener(
+                "input",
+                calculateProgress
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================
+   REFLECTION SAVE
+========================= */
+
+document.getElementById(
+    "saveReflection"
+).addEventListener(
+    "click",
+    saveReflection
+);
 
 
 /* =========================
    LOGOUT
 ========================= */
 
-document.getElementById("logoutBtn")
-    .addEventListener(
-        "click",
-        async () => {
+document.getElementById(
+    "logoutBtn"
+).addEventListener(
+    "click",
+    async () => {
 
-            await signOut(auth);
+        await signOut(auth);
 
-            window.location.href =
-                "login.html";
+        window.location.href =
+            "login.html";
 
-        }
-    );
+    }
+);
 
 
 /* =========================
    MOBILE MENU
 ========================= */
 
-document.getElementById("mobileMenuBtn")
-    .addEventListener(
-        "click",
-        () => {
+document.getElementById(
+    "mobileMenuBtn"
+).addEventListener(
+    "click",
+    () => {
 
-            document.getElementById("sidebar")
-                .classList.toggle("open");
+        document.getElementById(
+            "sidebar"
+        ).classList.toggle(
+            "open"
+        );
 
-        }
-    );
+    }
+);
 
 </script>
-
 
 </body>
 
 </html>
 ```
+
+### How this now works
+
+**Admin Portal**
+
+You add/edit:
+
+`Week → Days → Habits → Reflection`
+
+↓
+
+**Firestore**
+
+`weeklyContent`
+
+↓
+
+**Member Dashboard**
+
+The member sees the updated content automatically.
+
+For example:
+
+**Week 1**
+
+* Day 1
+
+  * Steps
+  * Sleep
+  * Hydration
+  * Protein
+* Day 2
+
+  * Steps
+  * Sleep
+  * Hydration
+  * Protein
+* ...
+* Day 7
+* Reflection
+
+**Week 2**
+
+* Day 8
+* Day 9
+* ...
+* Day 14
+* Reflection
+
+Then:
+
+**Week 3**
+
+* Weekly habits
+* Weekly goal
+* Reflection
+
+And the same structure can continue through **Week 12**.
+
+Member habit completion is saved separately under:
+
+`memberProgress → member email → weeks → week`
+
+So when **you edit a habit or its instructions in Admin Portal later, you don't have to edit dashboard.html again.**
+
+One important thing before you paste this: **the `weeklyContent` collection/field structure must match the Admin Portal code we created.** If your current Admin Portal uses a different collection name or field structure, the dashboard won't receive the data correctly.
