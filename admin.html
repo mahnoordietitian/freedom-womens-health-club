@@ -1,0 +1,2872 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin | Freedom Women's Health Club</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #FBF8F3;
+    color: #2D2D2D;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.app {
+    min-height: 100vh;
+    display: flex;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    width: 250px;
+    background: #302A31;
+    color: white;
+    min-height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    padding: 28px 18px;
+    z-index: 100;
+}
+
+.brand {
+    padding: 0 12px 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.brand-title {
+    color: #FFFFFF;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.brand-subtitle {
+    color: #CFC7D0;
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.admin-label {
+    color: #DCCBB3;
+    font-size: 10px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    margin-top: 22px;
+    margin-bottom: 10px;
+    padding-left: 12px;
+}
+
+.nav-btn {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: #D8D2D8;
+    text-align: left;
+    padding: 13px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.nav-btn:hover {
+    background: rgba(255,255,255,0.08);
+    color: #FFFFFF;
+}
+
+.nav-btn.active {
+    background: #6E4A7E;
+    color: #FFFFFF;
+}
+
+.sidebar-bottom {
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 25px;
+}
+
+.view-dashboard {
+    display: block;
+    text-decoration: none;
+    color: #D8D2D8;
+    font-size: 12px;
+    padding: 11px 12px;
+    margin-bottom: 8px;
+}
+
+.logout-btn {
+    width: 100%;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: transparent;
+    color: #D8D2D8;
+    padding: 11px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    padding: 35px;
+}
+
+.topbar {
+    background: #FFFFFF;
+    border: 1px solid #E5DED7;
+    border-radius: 12px;
+    padding: 18px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 28px;
+}
+
+.topbar h1 {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.admin-email {
+    color: #706A66;
+    font-size: 12px;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+.section-title {
+    margin-bottom: 22px;
+}
+
+.small-title {
+    color: #6E4A7E;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 7px;
+}
+
+.section-title h2 {
+    font-size: 29px;
+    font-weight: 500;
+}
+
+.section-title p {
+    color: #625D59;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card {
+    background: #FFFFFF;
+    border: 1px solid #E5DED7;
+    border-radius: 13px;
+    padding: 25px;
+    margin-bottom: 22px;
+}
+
+.card h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.card-description {
+    color: #706A66;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 22px;
+}
+
+.stat {
+    background: #FFFFFF;
+    border: 1px solid #E5DED7;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.stat-label {
+    color: #706A66;
+    font-size: 12px;
+    margin-bottom: 7px;
+}
+
+.stat-value {
+    color: #6E4A7E;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.field.full {
+    grid-column: 1 / -1;
+}
+
+.field label {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #625D59;
+}
+
+.field input,
+.field textarea,
+.field select {
+    width: 100%;
+    border: 1px solid #D9D1CA;
+    border-radius: 7px;
+    padding: 11px 12px;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+    background: #FFFFFF;
+}
+
+.field textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+    border-color: #6E4A7E;
+}
+
+.primary-btn {
+    border: none;
+    background: #6E4A7E;
+    color: #FFFFFF;
+    padding: 12px 20px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-top: 18px;
+}
+
+.secondary-btn {
+    border: 1px solid #D9D1CA;
+    background: #FFFFFF;
+    color: #2D2D2D;
+    padding: 10px 16px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.danger-btn {
+    border: 1px solid #D9C5C5;
+    background: #FFFFFF;
+    color: #9A4D4D;
+    padding: 9px 13px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.form-message {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 12px;
+    color: #6E4A7E;
+}
+
+/* =========================
+   MEMBER TABLE
+========================= */
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    background: #FBF8F3;
+    color: #625D59;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 12px;
+    border-bottom: 1px solid #E5DED7;
+}
+
+td {
+    padding: 14px 12px;
+    border-bottom: 1px solid #EEE8E2;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.member-name {
+    font-weight: 600;
+}
+
+.member-email {
+    color: #817972;
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+.status {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.status.active {
+    background: #E9F2EA;
+    color: #48704D;
+}
+
+.status.inactive {
+    background: #F2E8E8;
+    color: #8A5555;
+}
+
+/* =========================
+   EDUCATION
+========================= */
+
+.lesson-list {
+    display: grid;
+    gap: 12px;
+}
+
+.lesson-item {
+    border: 1px solid #E5DED7;
+    border-radius: 10px;
+    padding: 17px;
+    background: #FFFFFF;
+}
+
+.lesson-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.lesson-week {
+    color: #6E4A7E;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.lesson-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.lesson-category {
+    color: #817972;
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+.lesson-preview {
+    color: #625D59;
+    font-size: 12px;
+    margin-top: 10px;
+    white-space: pre-wrap;
+}
+
+.lesson-actions {
+    display: flex;
+    gap: 7px;
+}
+
+/* =========================
+   COMMUNITY
+========================= */
+
+.community-list {
+    display: grid;
+    gap: 10px;
+}
+
+.message-card {
+    border: 1px solid #E5DED7;
+    border-radius: 10px;
+    padding: 16px;
+    background: #FFFFFF;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 7px;
+}
+
+.message-author {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.message-date {
+    color: #817972;
+    font-size: 10px;
+}
+
+.message-email {
+    color: #817972;
+    font-size: 10px;
+}
+
+.message-text {
+    color: #514C49;
+    font-size: 13px;
+    white-space: pre-wrap;
+}
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty {
+    padding: 35px;
+    text-align: center;
+    color: #817972;
+    font-size: 13px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        width: 205px;
+    }
+
+    .main {
+        margin-left: 205px;
+        width: calc(100% - 205px);
+        padding: 22px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .app {
+        display: block;
+    }
+
+    .sidebar {
+        position: static;
+        width: 100%;
+        min-height: auto;
+        padding: 15px;
+    }
+
+    .brand {
+        padding-bottom: 15px;
+    }
+
+    .admin-label {
+        margin-top: 14px;
+    }
+
+    .nav-btn {
+        width: auto;
+        display: inline-block;
+        margin-right: 4px;
+    }
+
+    .sidebar-bottom {
+        position: static;
+        margin-top: 10px;
+    }
+
+    .main {
+        margin-left: 0;
+        width: 100%;
+        padding: 15px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .field.full {
+        grid-column: auto;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-title">
+            Freedom Women's Health Club
+        </div>
+
+        <div class="brand-subtitle">
+            Admin Control Center
+        </div>
+
+    </div>
+
+
+    <div class="admin-label">
+        Manage
+    </div>
+
+
+    <button
+        class="nav-btn active"
+        data-section="overview">
+        Overview
+    </button>
+
+
+    <button
+        class="nav-btn"
+        data-section="members">
+        Members
+    </button>
+
+
+    <button
+        class="nav-btn"
+        data-section="education">
+        Weekly Education
+    </button>
+
+
+    <button
+        class="nav-btn"
+        data-section="community">
+        Community
+    </button>
+
+
+    <div class="sidebar-bottom">
+
+        <a
+            href="dashboard.html"
+            class="view-dashboard">
+            ← Member Dashboard
+        </a>
+
+        <button
+            class="logout-btn"
+            id="logoutBtn">
+            Log out
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="main">
+
+
+<div class="topbar">
+
+    <h1>
+        Admin Control Center
+    </h1>
+
+    <div
+        class="admin-email"
+        id="adminEmail">
+    </div>
+
+</div>
+
+
+<!-- =========================
+     OVERVIEW
+========================= -->
+
+<section
+    class="section active"
+    id="section-overview">
+
+    <div class="section-title">
+
+        <div class="small-title">
+            Dashboard
+        </div>
+
+        <h2>
+            Club Overview
+        </h2>
+
+        <p>
+            Manage your members and club content from one place.
+        </p>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Total Members
+            </div>
+
+            <div
+                class="stat-value"
+                id="totalMembers">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Active Members
+            </div>
+
+            <div
+                class="stat-value"
+                id="activeMembers">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Education Lessons
+            </div>
+
+            <div
+                class="stat-value"
+                id="totalLessons">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Community Messages
+            </div>
+
+            <div
+                class="stat-value"
+                id="totalMessages">
+                0
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            How your Admin panel works
+        </h3>
+
+        <p class="card-description">
+            Your member information, education lessons and community
+            messages are stored separately in Firebase. Updating a
+            lesson will not overwrite member profiles or progress.
+        </p>
+
+        <p class="card-description">
+            Use Members to add or update members. Use Weekly Education
+            to publish or edit lessons. Use Community to moderate
+            member messages.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MEMBERS
+========================= -->
+
+<section
+    class="section"
+    id="section-members">
+
+    <div class="section-title">
+
+        <div class="small-title">
+            Members
+        </div>
+
+        <h2>
+            Member Management
+        </h2>
+
+        <p>
+            Add and manage all Freedom Women's Health Club members.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            Add New Member
+        </h3>
+
+        <p class="card-description">
+            Enter the member's information once. It will be saved
+            under her own member record.
+        </p>
+
+
+        <div class="form-grid">
+
+
+            <div class="field">
+
+                <label>
+                    Name
+                </label>
+
+                <input
+                    type="text"
+                    id="memberNameInput"
+                    placeholder="Member name">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="memberEmailInput"
+                    placeholder="member@gmail.com">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Age
+                </label>
+
+                <input
+                    type="number"
+                    id="memberAgeInput"
+                    placeholder="Age">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Height (cm)
+                </label>
+
+                <input
+                    type="number"
+                    step="0.1"
+                    id="memberHeightInput"
+                    placeholder="Height">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Starting Weight (kg)
+                </label>
+
+                <input
+                    type="number"
+                    step="0.1"
+                    id="memberStartingWeightInput"
+                    placeholder="Starting weight">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Current Weight (kg)
+                </label>
+
+                <input
+                    type="number"
+                    step="0.1"
+                    id="memberCurrentWeightInput"
+                    placeholder="Current weight">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Starting Waist (cm)
+                </label>
+
+                <input
+                    type="number"
+                    step="0.1"
+                    id="memberStartingWaistInput"
+                    placeholder="Optional">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Starting Hip (cm)
+                </label>
+
+                <input
+                    type="number"
+                    step="0.1"
+                    id="memberStartingHipInput"
+                    placeholder="Optional">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Current Waist (cm)
+                </label>
+
+                <input
+                    type="number"
+                    step="0.1"
+                    id="memberCurrentWaistInput"
+                    placeholder="Optional">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Current Hip (cm)
+                </label>
+
+                <input
+                    type="number"
+                    step="0.1"
+                    id="memberCurrentHipInput"
+                    placeholder="Optional">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Membership Status
+                </label>
+
+                <select id="memberStatusInput">
+
+                    <option value="active">
+                        Active
+                    </option>
+
+                    <option value="inactive">
+                        Inactive
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="primary-btn"
+            id="saveMemberBtn">
+            Add / Save Member
+        </button>
+
+        <span
+            class="form-message"
+            id="memberMessage">
+        </span>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            All Members
+        </h3>
+
+        <p class="card-description">
+            Select Edit to load a member's information into the form.
+        </p>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Member
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Starting Weight
+                        </th>
+
+                        <th>
+                            Current Weight
+                        </th>
+
+                        <th>
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="membersTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     EDUCATION
+========================= -->
+
+<section
+    class="section"
+    id="section-education">
+
+    <div class="section-title">
+
+        <div class="small-title">
+            Content
+        </div>
+
+        <h2>
+            Weekly Education
+        </h2>
+
+        <p>
+            Add or update lessons without changing member information.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            Add / Edit Lesson
+        </h3>
+
+        <p class="card-description">
+            Each lesson is stored separately in the education collection.
+        </p>
+
+
+        <div class="form-grid">
+
+
+            <div class="field">
+
+                <label>
+                    Week Number
+                </label>
+
+                <input
+                    type="number"
+                    id="lessonWeek"
+                    placeholder="Example: 1">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Category
+                </label>
+
+                <input
+                    type="text"
+                    id="lessonCategory"
+                    placeholder="Nutrition, Habits, Exercise...">
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>
+                    Lesson Title
+                </label>
+
+                <input
+                    type="text"
+                    id="lessonTitle"
+                    placeholder="Lesson title">
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>
+                    Lesson Content
+                </label>
+
+                <textarea
+                    id="lessonContent"
+                    placeholder="Write or paste your lesson here..."></textarea>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Status
+                </label>
+
+                <select id="lessonStatus">
+
+                    <option value="published">
+                        Published
+                    </option>
+
+                    <option value="draft">
+                        Draft
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="primary-btn"
+            id="saveLessonBtn">
+            Publish / Save Lesson
+        </button>
+
+        <button
+            class="secondary-btn"
+            id="clearLessonBtn">
+            Clear
+        </button>
+
+        <span
+            class="form-message"
+            id="lessonMessage">
+        </span>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            Your Lessons
+        </h3>
+
+        <p class="card-description">
+            Editing a lesson changes only that education document.
+            Member profiles remain untouched.
+        </p>
+
+
+        <div
+            class="lesson-list"
+            id="lessonList">
+
+            <div class="empty">
+                No lessons added yet.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     COMMUNITY
+========================= -->
+
+<section
+    class="section"
+    id="section-community">
+
+    <div class="section-title">
+
+        <div class="small-title">
+            Community
+        </div>
+
+        <h2>
+            Community Management
+        </h2>
+
+        <p>
+            View and moderate messages from Freedom members.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            Community Messages
+        </h3>
+
+        <p class="card-description">
+            You can see messages posted by members here.
+        </p>
+
+
+        <div
+            class="community-list"
+            id="communityList">
+
+            <div class="empty">
+                No community messages yet.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+</div>
+
+
+<script type="module">
+
+
+/* =========================
+   FIREBASE
+========================= */
+
+import {
+    initializeApp
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    collection,
+    doc,
+    getDoc,
+    getDocs,
+    setDoc,
+    deleteDoc,
+    query,
+    orderBy
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyB1ISMm_aVwsbSHByUI0F67tn-8GJo1pO0",
+
+    authDomain:
+        "freedom-women-s-health-club.firebaseapp.com",
+
+    projectId:
+        "freedom-women-s-health-club",
+
+    storageBucket:
+        "freedom-women-s-health-club.firebasestorage.app",
+
+    messagingSenderId:
+        "445440093665",
+
+    appId:
+        "1:445440093665:web:9c3a77f1f64776f63cb6a0"
+
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+const auth =
+    getAuth(app);
+
+const db =
+    getFirestore(app);
+
+
+/* =========================
+   ADMIN EMAIL
+========================= */
+
+const ADMIN_EMAIL =
+    "mahnoordietitian3@gmail.com";
+
+
+let currentAdmin = null;
+
+let editingMemberEmail = null;
+
+let editingLessonId = null;
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+const navButtons =
+    document.querySelectorAll(".nav-btn");
+
+
+navButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            const section =
+                button.dataset.section;
+
+
+            navButtons.forEach(btn => {
+
+                btn.classList.remove("active");
+
+            });
+
+
+            button.classList.add("active");
+
+
+            document
+                .querySelectorAll(".section")
+                .forEach(sectionElement => {
+
+                    sectionElement.classList.remove("active");
+
+                });
+
+
+            document
+                .getElementById(
+                    "section-" + section
+                )
+                .classList.add("active");
+
+
+            if (section === "members") {
+
+                loadMembers();
+
+            }
+
+
+            if (section === "education") {
+
+                loadLessons();
+
+            }
+
+
+            if (section === "community") {
+
+                loadCommunity();
+
+            }
+
+        }
+    );
+
+});
+
+
+/* =========================
+   AUTH CHECK
+========================= */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+        if (!user) {
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        const email =
+            (user.email || "")
+            .toLowerCase();
+
+
+        if (email !== ADMIN_EMAIL) {
+
+            alert(
+                "Admin access is only available to the administrator."
+            );
+
+
+            window.location.href =
+                "dashboard.html";
+
+            return;
+
+        }
+
+
+        currentAdmin = user;
+
+
+        document.getElementById(
+            "adminEmail"
+        ).textContent =
+            user.email;
+
+
+        await loadOverview();
+
+    }
+);
+
+
+/* =========================
+   OVERVIEW
+========================= */
+
+async function loadOverview() {
+
+    try {
+
+        const membersSnapshot =
+            await getDocs(
+                collection(db, "members")
+            );
+
+
+        let activeCount = 0;
+
+
+        membersSnapshot.forEach(docSnap => {
+
+            const data =
+                docSnap.data();
+
+
+            if (
+                data.status === "active" ||
+                data.active === true ||
+                data.status === undefined
+            ) {
+
+                activeCount++;
+
+            }
+
+        });
+
+
+        document.getElementById(
+            "totalMembers"
+        ).textContent =
+            membersSnapshot.size;
+
+
+        document.getElementById(
+            "activeMembers"
+        ).textContent =
+            activeCount;
+
+
+        const lessonsSnapshot =
+            await getDocs(
+                collection(db, "education")
+            );
+
+
+        document.getElementById(
+            "totalLessons"
+        ).textContent =
+            lessonsSnapshot.size;
+
+
+        const communitySnapshot =
+            await getDocs(
+                collection(db, "community")
+            );
+
+
+        document.getElementById(
+            "totalMessages"
+        ).textContent =
+            communitySnapshot.size;
+
+
+    } catch (error) {
+
+        console.error(
+            "Overview error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================
+   MEMBERS
+========================= */
+
+async function loadMembers() {
+
+    const table =
+        document.getElementById(
+            "membersTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    try {
+
+        const snapshot =
+            await getDocs(
+                collection(db, "members")
+            );
+
+
+        if (snapshot.empty) {
+
+            table.innerHTML = `
+                <tr>
+                    <td colspan="5">
+                        <div class="empty">
+                            No members yet.
+                        </div>
+                    </td>
+                </tr>
+            `;
+
+            return;
+
+        }
+
+
+        snapshot.forEach(docSnap => {
+
+            const data =
+                docSnap.data();
+
+
+            const email =
+                docSnap.id;
+
+
+            const name =
+                data.name ||
+                "Member";
+
+
+            const status =
+                data.status ||
+                (
+                    data.active === false
+                        ? "inactive"
+                        : "active"
+                );
+
+
+            const startingWeight =
+                data.startingWeight !== undefined &&
+                data.startingWeight !== null
+                    ? data.startingWeight + " kg"
+                    : "—";
+
+
+            const currentWeight =
+                data.currentWeight !== undefined &&
+                data.currentWeight !== null
+                    ? data.currentWeight + " kg"
+                    : "—";
+
+
+            const row =
+                document.createElement("tr");
+
+
+            row.innerHTML = `
+
+                <td>
+
+                    <div class="member-name">
+                        ${escapeHtml(name)}
+                    </div>
+
+                    <div class="member-email">
+                        ${escapeHtml(email)}
+                    </div>
+
+                </td>
+
+
+                <td>
+
+                    <span class="status ${status === "active" ? "active" : "inactive"}">
+
+                        ${status === "active"
+                            ? "Active"
+                            : "Inactive"}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+                    ${startingWeight}
+                </td>
+
+
+                <td>
+                    ${currentWeight}
+                </td>
+
+
+                <td>
+
+                    <button
+                        class="secondary-btn edit-member">
+                        Edit
+                    </button>
+
+                </td>
+
+            `;
+
+
+            row
+                .querySelector(".edit-member")
+                .addEventListener(
+                    "click",
+                    () => {
+
+                        editMember(
+                            email,
+                            data
+                        );
+
+                    }
+                );
+
+
+            table.appendChild(row);
+
+        });
+
+
+    } catch (error) {
+
+        console.error(
+            "Member loading error:",
+            error
+        );
+
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="5">
+                    Unable to load members.
+                </td>
+            </tr>
+        `;
+
+    }
+
+}
+
+
+/* =========================
+   EDIT MEMBER
+========================= */
+
+function editMember(
+    email,
+    data
+) {
+
+    editingMemberEmail =
+        email;
+
+
+    document.getElementById(
+        "memberNameInput"
+    ).value =
+        data.name || "";
+
+
+    document.getElementById(
+        "memberEmailInput"
+    ).value =
+        email;
+
+
+    document.getElementById(
+        "memberAgeInput"
+    ).value =
+        data.age ?? "";
+
+
+    document.getElementById(
+        "memberHeightInput"
+    ).value =
+        data.height ?? "";
+
+
+    document.getElementById(
+        "memberStartingWeightInput"
+    ).value =
+        data.startingWeight ?? "";
+
+
+    document.getElementById(
+        "memberCurrentWeightInput"
+    ).value =
+        data.currentWeight ?? "";
+
+
+    document.getElementById(
+        "memberStartingWaistInput"
+    ).value =
+        data.startingWaist ?? "";
+
+
+    document.getElementById(
+        "memberCurrentWaistInput"
+    ).value =
+        data.currentWaist ?? "";
+
+
+    document.getElementById(
+        "memberStartingHipInput"
+    ).value =
+        data.startingHip ?? "";
+
+
+    document.getElementById(
+        "memberCurrentHipInput"
+    ).value =
+        data.currentHip ?? "";
+
+
+    document.getElementById(
+        "memberStatusInput"
+    ).value =
+        data.status ||
+        (
+            data.active === false
+                ? "inactive"
+                : "active"
+        );
+
+
+    document.getElementById(
+        "memberMessage"
+    ).textContent =
+        "Editing " + email;
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =========================
+   SAVE MEMBER
+========================= */
+
+document.getElementById(
+    "saveMemberBtn"
+).addEventListener(
+    "click",
+    async () => {
+
+        if (!currentAdmin) {
+
+            return;
+
+        }
+
+
+        const name =
+            document.getElementById(
+                "memberNameInput"
+            ).value.trim();
+
+
+        const email =
+            document.getElementById(
+                "memberEmailInput"
+            ).value.trim().toLowerCase();
+
+
+        if (!name || !email) {
+
+            document.getElementById(
+                "memberMessage"
+            ).textContent =
+                "Name and email are required.";
+
+            return;
+
+        }
+
+
+        const data = {
+
+            name: name,
+
+            email: email,
+
+            age:
+                numberOrNull(
+                    "memberAgeInput"
+                ),
+
+            height:
+                numberOrNull(
+                    "memberHeightInput"
+                ),
+
+            startingWeight:
+                numberOrNull(
+                    "memberStartingWeightInput"
+                ),
+
+            currentWeight:
+                numberOrNull(
+                    "memberCurrentWeightInput"
+                ),
+
+            startingWaist:
+                numberOrNull(
+                    "memberStartingWaistInput"
+                ),
+
+            currentWaist:
+                numberOrNull(
+                    "memberCurrentWaistInput"
+                ),
+
+            startingHip:
+                numberOrNull(
+                    "memberStartingHipInput"
+                ),
+
+            currentHip:
+                numberOrNull(
+                    "memberCurrentHipInput"
+                ),
+
+            status:
+                document.getElementById(
+                    "memberStatusInput"
+                ).value,
+
+            active:
+                document.getElementById(
+                    "memberStatusInput"
+                ).value === "active",
+
+            updatedAt:
+                new Date().toISOString()
+
+        };
+
+
+        try {
+
+            /*
+             IMPORTANT:
+             merge:true means existing fields
+             are not unnecessarily destroyed.
+            */
+
+            await setDoc(
+
+                doc(
+                    db,
+                    "members",
+                    email
+                ),
+
+                data,
+
+                {
+                    merge: true
+                }
+
+            );
+
+
+            editingMemberEmail =
+                null;
+
+
+            clearMemberForm();
+
+
+            document.getElementById(
+                "memberMessage"
+            ).textContent =
+                "Member saved successfully.";
+
+
+            await loadMembers();
+
+            await loadOverview();
+
+
+        } catch (error) {
+
+            console.error(
+                "Save member error:",
+                error
+            );
+
+
+            document.getElementById(
+                "memberMessage"
+            ).textContent =
+                "Unable to save member.";
+
+        }
+
+    }
+);
+
+
+/* =========================
+   EDUCATION
+========================= */
+
+async function loadLessons() {
+
+    const container =
+        document.getElementById(
+            "lessonList"
+        );
+
+
+    container.innerHTML = "";
+
+
+    try {
+
+        const snapshot =
+            await getDocs(
+                collection(db, "education")
+            );
+
+
+        if (snapshot.empty) {
+
+            container.innerHTML = `
+                <div class="empty">
+                    No lessons added yet.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        const lessons = [];
+
+
+        snapshot.forEach(docSnap => {
+
+            lessons.push({
+
+                id:
+                    docSnap.id,
+
+                data:
+                    docSnap.data()
+
+            });
+
+        });
+
+
+        lessons.sort(
+            (a, b) =>
+                Number(a.data.week || 0) -
+                Number(b.data.week || 0)
+        );
+
+
+        lessons.forEach(
+            lesson => {
+
+                const data =
+                    lesson.data;
+
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                item.className =
+                    "lesson-item";
+
+
+                item.innerHTML = `
+
+                    <div class="lesson-top">
+
+                        <div>
+
+                            <div class="lesson-week">
+                                Week ${escapeHtml(
+                                    String(data.week || "")
+                                )}
+                            </div>
+
+                            <div class="lesson-title">
+                                ${escapeHtml(
+                                    data.title || "Untitled lesson"
+                                )}
+                            </div>
+
+                            <div class="lesson-category">
+                                ${escapeHtml(
+                                    data.category || ""
+                                )}
+                                ·
+                                ${escapeHtml(
+                                    data.status || "draft"
+                                )}
+                            </div>
+
+                        </div>
+
+
+                        <div class="lesson-actions">
+
+                            <button
+                                class="secondary-btn edit-lesson">
+                                Edit
+                            </button>
+
+
+                            <button
+                                class="danger-btn delete-lesson">
+                                Delete
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="lesson-preview">
+                        ${escapeHtml(
+                            data.content || ""
+                        )}
+                    </div>
+
+                `;
+
+
+                item
+                    .querySelector(
+                        ".edit-lesson"
+                    )
+                    .addEventListener(
+                        "click",
+                        () => {
+
+                            editLesson(
+                                lesson.id,
+                                data
+                            );
+
+                        }
+                    );
+
+
+                item
+                    .querySelector(
+                        ".delete-lesson"
+                    )
+                    .addEventListener(
+                        "click",
+                        async () => {
+
+                            const confirmed =
+                                confirm(
+                                    "Delete this lesson?"
+                                );
+
+
+                            if (!confirmed) {
+
+                                return;
+
+                            }
+
+
+                            await deleteDoc(
+
+                                doc(
+                                    db,
+                                    "education",
+                                    lesson.id
+                                )
+
+                            );
+
+
+                            await loadLessons();
+
+                            await loadOverview();
+
+                        }
+                    );
+
+
+                container.appendChild(item);
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Lesson loading error:",
+            error
+        );
+
+
+        container.innerHTML = `
+            <div class="empty">
+                Unable to load lessons.
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* =========================
+   EDIT LESSON
+========================= */
+
+function editLesson(
+    id,
+    data
+) {
+
+    editingLessonId =
+        id;
+
+
+    document.getElementById(
+        "lessonWeek"
+    ).value =
+        data.week ?? "";
+
+
+    document.getElementById(
+        "lessonCategory"
+    ).value =
+        data.category || "";
+
+
+    document.getElementById(
+        "lessonTitle"
+    ).value =
+        data.title || "";
+
+
+    document.getElementById(
+        "lessonContent"
+    ).value =
+        data.content || "";
+
+
+    document.getElementById(
+        "lessonStatus"
+    ).value =
+        data.status || "draft";
+
+
+    document.getElementById(
+        "lessonMessage"
+    ).textContent =
+        "Editing lesson.";
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =========================
+   SAVE LESSON
+========================= */
+
+document.getElementById(
+    "saveLessonBtn"
+).addEventListener(
+    "click",
+    async () => {
+
+        const week =
+            document.getElementById(
+                "lessonWeek"
+            ).value.trim();
+
+
+        const category =
+            document.getElementById(
+                "lessonCategory"
+            ).value.trim();
+
+
+        const title =
+            document.getElementById(
+                "lessonTitle"
+            ).value.trim();
+
+
+        const content =
+            document.getElementById(
+                "lessonContent"
+            ).value.trim();
+
+
+        const status =
+            document.getElementById(
+                "lessonStatus"
+            ).value;
+
+
+        if (!week || !title || !content) {
+
+            document.getElementById(
+                "lessonMessage"
+            ).textContent =
+                "Week, title and lesson content are required.";
+
+            return;
+
+        }
+
+
+        const lessonId =
+            editingLessonId ||
+            "week-" + week;
+
+
+        const data = {
+
+            week:
+                Number(week),
+
+            category:
+                category,
+
+            title:
+                title,
+
+            content:
+                content,
+
+            status:
+                status,
+
+            updatedAt:
+                new Date().toISOString()
+
+        };
+
+
+        try {
+
+            /*
+             Education is saved in its own
+             collection. It does NOT modify
+             members or progress.
+            */
+
+            await setDoc(
+
+                doc(
+                    db,
+                    "education",
+                    lessonId
+                ),
+
+                data,
+
+                {
+                    merge: true
+                }
+
+            );
+
+
+            editingLessonId =
+                null;
+
+
+            clearLessonForm();
+
+
+            document.getElementById(
+                "lessonMessage"
+            ).textContent =
+                "Lesson saved successfully.";
+
+
+            await loadLessons();
+
+            await loadOverview();
+
+
+        } catch (error) {
+
+            console.error(
+                "Save lesson error:",
+                error
+            );
+
+
+            document.getElementById(
+                "lessonMessage"
+            ).textContent =
+                "Unable to save lesson.";
+
+        }
+
+    }
+);
+
+
+/* =========================
+   CLEAR LESSON
+========================= */
+
+document.getElementById(
+    "clearLessonBtn"
+).addEventListener(
+    "click",
+    () => {
+
+        clearLessonForm();
+
+        document.getElementById(
+            "lessonMessage"
+        ).textContent = "";
+
+    }
+);
+
+
+function clearLessonForm() {
+
+    editingLessonId =
+        null;
+
+
+    document.getElementById(
+        "lessonWeek"
+    ).value = "";
+
+
+    document.getElementById(
+        "lessonCategory"
+    ).value = "";
+
+
+    document.getElementById(
+        "lessonTitle"
+    ).value = "";
+
+
+    document.getElementById(
+        "lessonContent"
+    ).value = "";
+
+
+    document.getElementById(
+        "lessonStatus"
+    ).value =
+        "published";
+
+}
+
+
+/* =========================
+   COMMUNITY
+========================= */
+
+async function loadCommunity() {
+
+    const container =
+        document.getElementById(
+            "communityList"
+        );
+
+
+    container.innerHTML = "";
+
+
+    try {
+
+        let snapshot;
+
+
+        try {
+
+            const orderedQuery =
+                query(
+                    collection(
+                        db,
+                        "community"
+                    ),
+                    orderBy(
+                        "createdAt",
+                        "desc"
+                    )
+                );
+
+
+            snapshot =
+                await getDocs(
+                    orderedQuery
+                );
+
+
+        } catch (orderError) {
+
+            /*
+             If old community messages do not
+             have createdAt, load them normally.
+            */
+
+            snapshot =
+                await getDocs(
+                    collection(
+                        db,
+                        "community"
+                    )
+                );
+
+        }
+
+
+        if (snapshot.empty) {
+
+            container.innerHTML = `
+                <div class="empty">
+                    No community messages yet.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        snapshot.forEach(
+            messageDoc => {
+
+                const data =
+                    messageDoc.data();
+
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "message-card";
+
+
+                const date =
+                    formatDate(
+                        data.createdAt
+                    );
+
+
+                card.innerHTML = `
+
+                    <div class="message-header">
+
+                        <div>
+
+                            <div class="message-author">
+                                ${escapeHtml(
+                                    data.name ||
+                                    "Member"
+                                )}
+                            </div>
+
+                            <div class="message-email">
+                                ${escapeHtml(
+                                    data.email || ""
+                                )}
+                            </div>
+
+                        </div>
+
+                        <div class="message-date">
+                            ${date}
+                        </div>
+
+                    </div>
+
+
+                    <div class="message-text">
+                        ${escapeHtml(
+                            data.message ||
+                            data.text ||
+                            ""
+                        )}
+                    </div>
+
+
+                    <br>
+
+
+                    <button
+                        class="danger-btn delete-community">
+                        Delete Message
+                    </button>
+
+                `;
+
+
+                card
+                    .querySelector(
+                        ".delete-community"
+                    )
+                    .addEventListener(
+                        "click",
+                        async () => {
+
+                            const confirmed =
+                                confirm(
+                                    "Delete this community message?"
+                                );
+
+
+                            if (!confirmed) {
+
+                                return;
+
+                            }
+
+
+                            await deleteDoc(
+
+                                doc(
+                                    db,
+                                    "community",
+                                    messageDoc.id
+                                )
+
+                            );
+
+
+                            await loadCommunity();
+
+                            await loadOverview();
+
+                        }
+                    );
+
+
+                container.appendChild(card);
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Community loading error:",
+            error
+        );
+
+
+        container.innerHTML = `
+            <div class="empty">
+                Unable to load community messages.
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* =========================
+   CLEAR MEMBER
+========================= */
+
+function clearMemberForm() {
+
+    editingMemberEmail =
+        null;
+
+
+    document.getElementById(
+        "memberNameInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "memberEmailInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "memberAgeInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "memberHeightInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "memberStartingWeightInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "memberCurrentWeightInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "memberStartingWaistInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "memberCurrentWaistInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "memberStartingHipInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "memberCurrentHipInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "memberStatusInput"
+    ).value =
+        "active";
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+document.getElementById(
+    "logoutBtn"
+).addEventListener(
+    "click",
+    async () => {
+
+        await signOut(auth);
+
+        window.location.href =
+            "login.html";
+
+    }
+);
+
+
+/* =========================
+   HELPERS
+========================= */
+
+function numberOrNull(id) {
+
+    const value =
+        document.getElementById(
+            id
+        ).value.trim();
+
+
+    if (value === "") {
+
+        return null;
+
+    }
+
+
+    const number =
+        parseFloat(value);
+
+
+    return Number.isFinite(number)
+        ? number
+        : null;
+
+}
+
+
+function escapeHtml(value) {
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+function formatDate(value) {
+
+    if (!value) {
+
+        return "";
+
+    }
+
+
+    try {
+
+        if (
+            typeof value.toDate ===
+            "function"
+        ) {
+
+            return value
+                .toDate()
+                .toLocaleString();
+
+        }
+
+
+        return new Date(value)
+            .toLocaleString();
+
+    } catch {
+
+        return "";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
+```
