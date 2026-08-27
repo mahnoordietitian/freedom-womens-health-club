@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -25,6 +27,7 @@ body {
     width: min(1050px, 92%);
     margin: auto;
 }
+
 
 /* HEADER */
 
@@ -76,7 +79,7 @@ h1 {
 }
 
 .intro p {
-    max-width: 700px;
+    max-width: 680px;
     color: #625D59;
     font-size: 15px;
 }
@@ -122,7 +125,7 @@ h1 {
 /* PHASE */
 
 .phase {
-    margin-bottom: 50px;
+    margin-bottom: 45px;
 }
 
 .phase-heading {
@@ -139,7 +142,7 @@ h1 {
 }
 
 .phase-heading h2 {
-    font-size: 28px;
+    font-size: 27px;
     font-weight: 500;
 }
 
@@ -162,7 +165,6 @@ h1 {
 .week-button {
     width: 100%;
     background: #FFFFFF;
-    border: none;
     padding: 21px 23px;
     display: flex;
     align-items: center;
@@ -170,6 +172,7 @@ h1 {
     text-align: left;
     cursor: pointer;
     color: #2D2D2D;
+    text-decoration: none;
 }
 
 .week-button:hover {
@@ -209,64 +212,10 @@ h1 {
 .arrow {
     color: #6E4A7E;
     font-size: 20px;
-    transition: transform 0.2s;
-}
-
-.week.open .arrow {
-    transform: rotate(180deg);
 }
 
 
-/* DAYS */
-
-.days {
-    display: none;
-    border-top: 1px solid #E5DED7;
-    padding: 8px 20px 18px;
-}
-
-.week.open .days {
-    display: block;
-}
-
-.day {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 17px 5px;
-    border-bottom: 1px solid #EEE8E2;
-}
-
-.day:last-child {
-    border-bottom: none;
-}
-
-.day-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.day-number {
-    color: #6E4A7E;
-    font-size: 12px;
-    font-weight: 600;
-    min-width: 55px;
-}
-
-.day-title {
-    font-size: 14px;
-    color: #4F4A47;
-}
-
-.day-status {
-    color: #8B827D;
-    font-size: 12px;
-}
-
-
-/* LOCKED WEEKS */
+/* LOCKED */
 
 .locked {
     opacity: 0.65;
@@ -358,17 +307,10 @@ footer p {
         height: 40px;
     }
 
-    .day {
-        align-items: flex-start;
-    }
-
-    .day-status {
-        display: none;
-    }
-
 }
 
 </style>
+
 </head>
 
 
@@ -377,19 +319,20 @@ footer p {
 
 <header>
 
-<div class="container header-inner">
+    <div class="container header-inner">
 
-<div class="logo">
-Freedom Women's Health Club
-</div>
+        <div class="logo">
+            Freedom Women's Health Club
+        </div>
 
-<a href="index.html" class="home-link">
-Home
-</a>
+        <a href="index.html" class="home-link">
+            Home
+        </a>
 
-</div>
+    </div>
 
 </header>
+
 
 
 <main>
@@ -397,25 +340,26 @@ Home
 
 <section class="intro">
 
-<div class="container">
+    <div class="container">
 
-<div class="small-title">
-Member Dashboard
-</div>
+        <div class="small-title">
+            Member Dashboard
+        </div>
 
-<h1>
-Your 90-Day Freedom Journey
-</h1>
+        <h1>
+            Your 90-Day Freedom Journey
+        </h1>
 
-<p>
-Follow your journey one step at a time. Each phase is designed
-to help you build sustainable habits and work toward your
-weight-loss goals.
-</p>
+        <p>
+            Follow your journey one week at a time. Build simple,
+            sustainable habits and work toward your weight-loss goals
+            with consistency.
+        </p>
 
-</div>
+    </div>
 
 </section>
+
 
 
 <section>
@@ -427,23 +371,24 @@ weight-loss goals.
 
 <div class="progress-card">
 
-<div class="progress-heading">
+    <div class="progress-heading">
 
-<span>
-Your Progress
-</span>
+        <span>
+            Your Progress
+        </span>
 
-<span class="progress-number">
-0 / 90 Days
-</span>
+        <span class="progress-number">
+            0 / 90 Days
+        </span>
 
-</div>
+    </div>
 
-<div class="progress-bar">
 
-<div class="progress-fill"></div>
+    <div class="progress-bar">
 
-</div>
+        <div class="progress-fill"></div>
+
+    </div>
 
 </div>
 
@@ -453,19 +398,21 @@ Your Progress
 
 <div class="phase">
 
+
 <div class="phase-heading">
 
-<div class="phase-label">
-Phase 1 · Days 1–30
-</div>
+    <div class="phase-label">
+        Phase 1 · Days 1–30
+    </div>
 
-<h2>
-Reset & Foundation
-</h2>
+    <h2>
+        Reset & Foundation
+    </h2>
 
-<p>
-Build the foundation for sustainable weight loss and healthier habits.
-</p>
+    <p>
+        Build the foundation for sustainable weight loss
+        and healthier daily habits.
+    </p>
 
 </div>
 
@@ -473,188 +420,36 @@ Build the foundation for sustainable weight loss and healthier habits.
 
 <!-- WEEK 1 -->
 
-<div class="week open">
+<div class="week">
 
-<button class="week-button" onclick="toggleWeek(this)">
+<a href="week1.html" class="week-button">
 
-<div class="week-left">
+    <div class="week-left">
 
-<div class="week-number">
-01
-</div>
+        <div class="week-number">
+            01
+        </div>
 
-<div class="week-title">
+        <div class="week-title">
 
-<h3>
-Week 1
-</h3>
+            <h3>
+                Week 1
+            </h3>
 
-<p>
-Days 1–7
-</p>
+            <p>
+                Days 1–7
+            </p>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
-<div class="arrow">
-↓
-</div>
 
-</button>
+    <div class="arrow">
+        →
+    </div>
 
-
-<div class="days">
-
-
-<div class="day">
-
-<div class="day-info">
-
-<span class="day-number">
-DAY 1
-</span>
-
-<span class="day-title">
-Content will be added here
-</span>
-
-</div>
-
-<span class="day-status">
-Available
-</span>
-
-</div>
-
-
-<div class="day">
-
-<div class="day-info">
-
-<span class="day-number">
-DAY 2
-</span>
-
-<span class="day-title">
-Content will be added here
-</span>
-
-</div>
-
-<span class="day-status">
-Locked
-</span>
-
-</div>
-
-
-<div class="day">
-
-<div class="day-info">
-
-<span class="day-number">
-DAY 3
-</span>
-
-<span class="day-title">
-Content will be added here
-</span>
-
-</div>
-
-<span class="day-status">
-Locked
-</span>
-
-</div>
-
-
-<div class="day">
-
-<div class="day-info">
-
-<span class="day-number">
-DAY 4
-</span>
-
-<span class="day-title">
-Content will be added here
-</span>
-
-</div>
-
-<span class="day-status">
-Locked
-</span>
-
-</div>
-
-
-<div class="day">
-
-<div class="day-info">
-
-<span class="day-number">
-DAY 5
-</span>
-
-<span class="day-title">
-Content will be added here
-</span>
-
-</div>
-
-<span class="day-status">
-Locked
-</span>
-
-</div>
-
-
-<div class="day">
-
-<div class="day-info">
-
-<span class="day-number">
-DAY 6
-</span>
-
-<span class="day-title">
-Content will be added here
-</span>
-
-</div>
-
-<span class="day-status">
-Locked
-</span>
-
-</div>
-
-
-<div class="day">
-
-<div class="day-info">
-
-<span class="day-number">
-DAY 7
-</span>
-
-<span class="day-title">
-Content will be added here
-</span>
-
-</div>
-
-<span class="day-status">
-Locked
-</span>
-
-</div>
-
-
-</div>
+</a>
 
 </div>
 
@@ -664,102 +459,34 @@ Locked
 
 <div class="week">
 
-<button class="week-button" onclick="toggleWeek(this)">
+<a href="week2.html" class="week-button">
 
-<div class="week-left">
+    <div class="week-left">
 
-<div class="week-number">
-02
-</div>
+        <div class="week-number">
+            02
+        </div>
 
-<div class="week-title">
+        <div class="week-title">
 
-<h3>
-Week 2
-</h3>
+            <h3>
+                Week 2
+            </h3>
 
-<p>
-Days 8–14
-</p>
+            <p>
+                Days 8–14
+            </p>
 
-</div>
+        </div>
 
-</div>
-
-<div class="arrow">
-↓
-</div>
-
-</button>
+    </div>
 
 
-<div class="days">
+    <div class="arrow">
+        →
+    </div>
 
-
-<div class="day">
-<div class="day-info">
-<span class="day-number">DAY 8</span>
-<span class="day-title">Content will be added here</span>
-</div>
-<span class="day-status">Locked</span>
-</div>
-
-
-<div class="day">
-<div class="day-info">
-<span class="day-number">DAY 9</span>
-<span class="day-title">Content will be added here</span>
-</div>
-<span class="day-status">Locked</span>
-</div>
-
-
-<div class="day">
-<div class="day-info">
-<span class="day-number">DAY 10</span>
-<span class="day-title">Content will be added here</span>
-</div>
-<span class="day-status">Locked</span>
-</div>
-
-
-<div class="day">
-<div class="day-info">
-<span class="day-number">DAY 11</span>
-<span class="day-title">Content will be added here</span>
-</div>
-<span class="day-status">Locked</span>
-</div>
-
-
-<div class="day">
-<div class="day-info">
-<span class="day-number">DAY 12</span>
-<span class="day-title">Content will be added here</span>
-</div>
-<span class="day-status">Locked</span>
-</div>
-
-
-<div class="day">
-<div class="day-info">
-<span class="day-number">DAY 13</span>
-<span class="day-title">Content will be added here</span>
-</div>
-<span class="day-status">Locked</span>
-</div>
-
-
-<div class="day">
-<div class="day-info">
-<span class="day-number">DAY 14</span>
-<span class="day-title">Content will be added here</span>
-</div>
-<span class="day-status">Locked</span>
-</div>
-
-
-</div>
+</a>
 
 </div>
 
@@ -769,33 +496,34 @@ Days 8–14
 
 <div class="week locked">
 
-<button class="week-button">
+    <div class="week-button">
 
-<div class="week-left">
+        <div class="week-left">
 
-<div class="week-number">
-03
-</div>
+            <div class="week-number">
+                03
+            </div>
 
-<div class="week-title">
+            <div class="week-title">
 
-<h3>
-Week 3
-</h3>
+                <h3>
+                    Week 3
+                </h3>
 
-<p>
-Days 15–21
-</p>
+                <p>
+                    Days 15–21
+                </p>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-<span class="coming-soon">
-Coming Soon
-</span>
 
-</button>
+        <span class="coming-soon">
+            Coming Soon
+        </span>
+
+    </div>
 
 </div>
 
@@ -805,36 +533,36 @@ Coming Soon
 
 <div class="week locked">
 
-<button class="week-button">
+    <div class="week-button">
 
-<div class="week-left">
+        <div class="week-left">
 
-<div class="week-number">
-04
+            <div class="week-number">
+                04
+            </div>
+
+            <div class="week-title">
+
+                <h3>
+                    Week 4
+                </h3>
+
+                <p>
+                    Days 22–30
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <span class="coming-soon">
+            Coming Soon
+        </span>
+
+    </div>
+
 </div>
-
-<div class="week-title">
-
-<h3>
-Week 4
-</h3>
-
-<p>
-Days 22–30
-</p>
-
-</div>
-
-</div>
-
-<span class="coming-soon">
-Coming Soon
-</span>
-
-</button>
-
-</div>
-
 
 </div>
 
@@ -844,151 +572,157 @@ Coming Soon
 
 <div class="phase">
 
+
 <div class="phase-heading">
 
-<div class="phase-label">
-Phase 2 · Days 31–60
+    <div class="phase-label">
+        Phase 2 · Days 31–60
+    </div>
+
+    <h2>
+        Build & Progress
+    </h2>
+
+    <p>
+        Continue building stronger habits and supporting
+        your weight-loss progress.
+    </p>
+
 </div>
 
-<h2>
-Build & Progress
-</h2>
-
-<p>
-Continue building stronger habits and supporting your progress.
-</p>
-
-</div>
 
 
 <div class="week locked">
 
-<button class="week-button">
+    <div class="week-button">
 
-<div class="week-left">
+        <div class="week-left">
 
-<div class="week-number">
-05
+            <div class="week-number">
+                05
+            </div>
+
+            <div class="week-title">
+
+                <h3>
+                    Week 5
+                </h3>
+
+                <p>
+                    Days 31–37
+                </p>
+
+            </div>
+
+        </div>
+
+        <span class="coming-soon">
+            Coming Soon
+        </span>
+
+    </div>
+
 </div>
 
-<div class="week-title">
-
-<h3>
-Week 5
-</h3>
-
-<p>
-Days 31–37
-</p>
-
-</div>
-
-</div>
-
-<span class="coming-soon">
-Coming Soon
-</span>
-
-</button>
-
-</div>
 
 
 <div class="week locked">
 
-<button class="week-button">
+    <div class="week-button">
 
-<div class="week-left">
+        <div class="week-left">
 
-<div class="week-number">
-06
+            <div class="week-number">
+                06
+            </div>
+
+            <div class="week-title">
+
+                <h3>
+                    Week 6
+                </h3>
+
+                <p>
+                    Days 38–44
+                </p>
+
+            </div>
+
+        </div>
+
+        <span class="coming-soon">
+            Coming Soon
+        </span>
+
+    </div>
+
 </div>
 
-<div class="week-title">
-
-<h3>
-Week 6
-</h3>
-
-<p>
-Days 38–44
-</p>
-
-</div>
-
-</div>
-
-<span class="coming-soon">
-Coming Soon
-</span>
-
-</button>
-
-</div>
 
 
 <div class="week locked">
 
-<button class="week-button">
+    <div class="week-button">
 
-<div class="week-left">
+        <div class="week-left">
 
-<div class="week-number">
-07
+            <div class="week-number">
+                07
+            </div>
+
+            <div class="week-title">
+
+                <h3>
+                    Week 7
+                </h3>
+
+                <p>
+                    Days 45–51
+                </p>
+
+            </div>
+
+        </div>
+
+        <span class="coming-soon">
+            Coming Soon
+        </span>
+
+    </div>
+
 </div>
 
-<div class="week-title">
-
-<h3>
-Week 7
-</h3>
-
-<p>
-Days 45–51
-</p>
-
-</div>
-
-</div>
-
-<span class="coming-soon">
-Coming Soon
-</span>
-
-</button>
-
-</div>
 
 
 <div class="week locked">
 
-<button class="week-button">
+    <div class="week-button">
 
-<div class="week-left">
+        <div class="week-left">
 
-<div class="week-number">
-08
-</div>
+            <div class="week-number">
+                08
+            </div>
 
-<div class="week-title">
+            <div class="week-title">
 
-<h3>
-Week 8
-</h3>
+                <h3>
+                    Week 8
+                </h3>
 
-<p>
-Days 52–60
-</p>
+                <p>
+                    Days 52–60
+                </p>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-<span class="coming-soon">
-Coming Soon
-</span>
+        <span class="coming-soon">
+            Coming Soon
+        </span>
 
-</button>
+    </div>
 
 </div>
 
@@ -1000,152 +734,157 @@ Coming Soon
 
 <div class="phase">
 
+
 <div class="phase-heading">
 
-<div class="phase-label">
-Phase 3 · Days 61–90
+    <div class="phase-label">
+        Phase 3 · Days 61–90
+    </div>
+
+    <h2>
+        Maintain & Thrive
+    </h2>
+
+    <p>
+        Strengthen your confidence and prepare to maintain
+        your progress beyond the 90 days.
+    </p>
+
 </div>
 
-<h2>
-Maintain & Thrive
-</h2>
-
-<p>
-Strengthen your habits and prepare to maintain your progress
-beyond the 90 days.
-</p>
-
-</div>
 
 
 <div class="week locked">
 
-<button class="week-button">
+    <div class="week-button">
 
-<div class="week-left">
+        <div class="week-left">
 
-<div class="week-number">
-09
+            <div class="week-number">
+                09
+            </div>
+
+            <div class="week-title">
+
+                <h3>
+                    Week 9
+                </h3>
+
+                <p>
+                    Days 61–67
+                </p>
+
+            </div>
+
+        </div>
+
+        <span class="coming-soon">
+            Coming Soon
+        </span>
+
+    </div>
+
 </div>
 
-<div class="week-title">
-
-<h3>
-Week 9
-</h3>
-
-<p>
-Days 61–67
-</p>
-
-</div>
-
-</div>
-
-<span class="coming-soon">
-Coming Soon
-</span>
-
-</button>
-
-</div>
 
 
 <div class="week locked">
 
-<button class="week-button">
+    <div class="week-button">
 
-<div class="week-left">
+        <div class="week-left">
 
-<div class="week-number">
-10
+            <div class="week-number">
+                10
+            </div>
+
+            <div class="week-title">
+
+                <h3>
+                    Week 10
+                </h3>
+
+                <p>
+                    Days 68–74
+                </p>
+
+            </div>
+
+        </div>
+
+        <span class="coming-soon">
+            Coming Soon
+        </span>
+
+    </div>
+
 </div>
 
-<div class="week-title">
-
-<h3>
-Week 10
-</h3>
-
-<p>
-Days 68–74
-</p>
-
-</div>
-
-</div>
-
-<span class="coming-soon">
-Coming Soon
-</span>
-
-</button>
-
-</div>
 
 
 <div class="week locked">
 
-<button class="week-button">
+    <div class="week-button">
 
-<div class="week-left">
+        <div class="week-left">
 
-<div class="week-number">
-11
+            <div class="week-number">
+                11
+            </div>
+
+            <div class="week-title">
+
+                <h3>
+                    Week 11
+                </h3>
+
+                <p>
+                    Days 75–81
+                </p>
+
+            </div>
+
+        </div>
+
+        <span class="coming-soon">
+            Coming Soon
+        </span>
+
+    </div>
+
 </div>
 
-<div class="week-title">
-
-<h3>
-Week 11
-</h3>
-
-<p>
-Days 75–81
-</p>
-
-</div>
-
-</div>
-
-<span class="coming-soon">
-Coming Soon
-</span>
-
-</button>
-
-</div>
 
 
 <div class="week locked">
 
-<button class="week-button">
+    <div class="week-button">
 
-<div class="week-left">
+        <div class="week-left">
 
-<div class="week-number">
-12
-</div>
+            <div class="week-number">
+                12
+            </div>
 
-<div class="week-title">
+            <div class="week-title">
 
-<h3>
-Week 12
-</h3>
+                <h3>
+                    Week 12
+                </h3>
 
-<p>
-Days 82–90
-</p>
+                <p>
+                    Days 82–90
+                </p>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-<span class="coming-soon">
-Coming Soon
-</span>
+        <span class="coming-soon">
+            Coming Soon
+        </span>
 
-</button>
+    </div>
 
 </div>
 
@@ -1157,18 +896,18 @@ Coming Soon
 
 <div class="checkin">
 
-<div class="small-title">
-Progress Tracking
-</div>
+    <div class="small-title">
+        Progress Tracking
+    </div>
 
-<h2>
-Your Check-In
-</h2>
+    <h2>
+        Your Check-In
+    </h2>
 
-<p>
-Your weight, habits and progress tracking will be connected
-to your member account later.
-</p>
+    <p>
+        Your check-in and progress tracking will be connected
+        to your member account later.
+    </p>
 
 </div>
 
@@ -1180,35 +919,24 @@ to your member account later.
 </main>
 
 
+
 <footer>
 
 <div class="container">
 
-<p>
-Freedom Women's Health Club
-</p>
+    <p>
+        Freedom Women's Health Club
+    </p>
 
-<p>
-Small steps. Consistent habits. Long-term results.
-</p>
+    <p>
+        Small steps. Consistent habits. Long-term results.
+    </p>
 
 </div>
 
 </footer>
 
 
-<script>
-
-function toggleWeek(button) {
-
-const week = button.parentElement;
-
-week.classList.toggle("open");
-
-}
-
-</script>
-
-
 </body>
+
 </html>
