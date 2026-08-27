@@ -3,7 +3,6 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -31,6 +30,8 @@ body {
     margin: auto;
 }
 
+/* HEADER */
+
 header {
     background: #FFFFFF;
     border-bottom: 1px solid #E5DED7;
@@ -55,6 +56,8 @@ header {
     font-size: 14px;
 }
 
+/* MAIN */
+
 main {
     flex: 1;
     display: flex;
@@ -72,6 +75,8 @@ main {
     text-align: center;
     box-shadow: 0 8px 30px rgba(45,45,45,0.04);
 }
+
+/* TEXT */
 
 .small-title {
     color: #6E4A7E;
@@ -95,13 +100,15 @@ h1 {
     line-height: 1.6;
 }
 
+/* FORM */
+
 .form-group {
-    text-align: left;
     margin-bottom: 18px;
 }
 
 label {
     display: block;
+    text-align: left;
     font-size: 13px;
     font-weight: 600;
     margin-bottom: 8px;
@@ -121,6 +128,46 @@ input:focus {
     border-color: #6E4A7E;
 }
 
+/* PASSWORD */
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 75px;
+}
+
+.show-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    color: #6E4A7E;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+/* FORGOT PASSWORD */
+
+.forgot-password {
+    display: block;
+    text-align: right;
+    margin-top: 8px;
+    color: #6E4A7E;
+    font-size: 13px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* BUTTON */
+
 .login-button {
     width: 100%;
     border: none;
@@ -131,7 +178,7 @@ input:focus {
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    margin-top: 5px;
+    margin-top: 20px;
 }
 
 .login-button:hover {
@@ -142,6 +189,8 @@ input:focus {
     opacity: 0.6;
     cursor: not-allowed;
 }
+
+/* MESSAGE */
 
 .message {
     margin-top: 18px;
@@ -158,6 +207,8 @@ input:focus {
     color: #6E4A7E;
 }
 
+/* INFO */
+
 .info {
     background: #F1EAF4;
     border-radius: 9px;
@@ -172,6 +223,8 @@ input:focus {
     line-height: 1.5;
 }
 
+/* FOOTER */
+
 footer {
     background: #302A31;
     color: #FFFFFF;
@@ -183,6 +236,8 @@ footer p {
     color: #D4CED5;
     margin-bottom: 4px;
 }
+
+/* MOBILE */
 
 @media (max-width: 600px) {
 
@@ -199,7 +254,6 @@ footer p {
 </style>
 
 </head>
-
 
 <body>
 
@@ -221,7 +275,6 @@ footer p {
 </header>
 
 
-
 <main>
 
     <div class="container">
@@ -237,13 +290,14 @@ footer p {
             </h1>
 
             <p class="description">
-                Enter the email and password you registered with
-                to continue to your Freedom journey.
+                Enter your registered email and password
+                to continue your Freedom journey.
             </p>
 
 
             <form id="loginForm">
 
+                <!-- EMAIL -->
 
                 <div class="form-group">
 
@@ -262,6 +316,7 @@ footer p {
                 </div>
 
 
+                <!-- PASSWORD -->
 
                 <div class="form-group">
 
@@ -269,16 +324,38 @@ footer p {
                         Password
                     </label>
 
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="Enter your password"
-                        autocomplete="current-password"
-                        required
-                    >
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="show-password"
+                            id="showPassword">
+
+                            Show
+
+                        </button>
+
+                    </div>
+
+
+                    <a
+                        href="#"
+                        class="forgot-password"
+                        id="forgotPassword">
+
+                        Forgot password?
+
+                    </a>
 
                 </div>
-
 
 
                 <button
@@ -286,7 +363,7 @@ footer p {
                     class="login-button"
                     id="loginButton">
 
-                    Continue
+                    Log In
 
                 </button>
 
@@ -315,7 +392,6 @@ footer p {
 </main>
 
 
-
 <footer>
 
     <div class="container">
@@ -333,22 +409,26 @@ footer p {
 </footer>
 
 
-
 <script type="module">
 
 
-/* ==================================================
-   FIREBASE IMPORTS
-================================================== */
+/*
+==================================================
+FIREBASE
+==================================================
+*/
 
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
+
 import {
     getAuth,
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    sendPasswordResetEmail
 }
 from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
 
 import {
     getFirestore,
@@ -357,11 +437,6 @@ import {
 }
 from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
-
-
-/* ==================================================
-   FIREBASE CONFIGURATION
-================================================== */
 
 const firebaseConfig = {
 
@@ -386,22 +461,23 @@ const firebaseConfig = {
 };
 
 
-
-/* ==================================================
-   START FIREBASE
-================================================== */
-
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth(app);
-
-const db = getFirestore(app);
+const app =
+    initializeApp(firebaseConfig);
 
 
+const auth =
+    getAuth(app);
 
-/* ==================================================
-   ELEMENTS
-================================================== */
+
+const db =
+    getFirestore(app);
+
+
+/*
+==================================================
+ELEMENTS
+==================================================
+*/
 
 const loginForm =
     document.getElementById("loginForm");
@@ -418,11 +494,18 @@ const loginButton =
 const message =
     document.getElementById("message");
 
+const showPassword =
+    document.getElementById("showPassword");
+
+const forgotPassword =
+    document.getElementById("forgotPassword");
 
 
-/* ==================================================
-   SHOW MESSAGE
-================================================== */
+/*
+==================================================
+MESSAGE
+==================================================
+*/
 
 function showMessage(text, type) {
 
@@ -434,10 +517,41 @@ function showMessage(text, type) {
 }
 
 
+/*
+==================================================
+SHOW / HIDE PASSWORD
+==================================================
+*/
 
-/* ==================================================
-   LOGIN
-================================================== */
+showPassword.addEventListener(
+    "click",
+    function() {
+
+        if (passwordInput.type === "password") {
+
+            passwordInput.type = "text";
+
+            showPassword.textContent =
+                "Hide";
+
+        } else {
+
+            passwordInput.type = "password";
+
+            showPassword.textContent =
+                "Show";
+
+        }
+
+    }
+);
+
+
+/*
+==================================================
+LOGIN
+==================================================
+*/
 
 loginForm.addEventListener(
     "submit",
@@ -450,6 +564,7 @@ loginForm.addEventListener(
             emailInput.value
             .trim()
             .toLowerCase();
+
 
         const password =
             passwordInput.value;
@@ -470,21 +585,18 @@ loginForm.addEventListener(
         loginButton.disabled = true;
 
         loginButton.textContent =
-            "Checking...";
+            "Logging in...";
 
-        showMessage(
-            "",
-            ""
-        );
+
+        showMessage("", "success");
 
 
         try {
 
-
-            /* ==========================================
-               STEP 1
-               FIREBASE AUTHENTICATION
-            ========================================== */
+            /*
+            Firebase checks the email
+            and password.
+            */
 
             const userCredential =
                 await signInWithEmailAndPassword(
@@ -498,22 +610,16 @@ loginForm.addEventListener(
                 userCredential.user;
 
 
-            const userEmail =
-                user.email
-                .toLowerCase();
-
-
-
-            /* ==========================================
-               STEP 2
-               FIND MEMBER IN FIRESTORE
-            ========================================== */
+            /*
+            Check that the member also
+            exists in Firestore.
+            */
 
             const memberRef =
                 doc(
                     db,
                     "members",
-                    userEmail
+                    user.email
                 );
 
 
@@ -521,98 +627,44 @@ loginForm.addEventListener(
                 await getDoc(memberRef);
 
 
+            if (
+                !memberSnapshot.exists()
+            ) {
 
-            /* ==========================================
-               MEMBER DOCUMENT DOES NOT EXIST
-            ========================================== */
-
-            if (!memberSnapshot.exists()) {
+                await auth.signOut();
 
                 showMessage(
-                    "Your account is not registered as a Freedom Women's Health Club member. Please contact Mahnoor.",
+                    "Your login is valid, but your Freedom membership profile has not been activated yet. Please contact Mahnoor.",
                     "error"
                 );
 
                 loginButton.disabled = false;
 
                 loginButton.textContent =
-                    "Continue";
+                    "Log In";
 
                 return;
 
             }
 
 
-
-            /* ==========================================
-               GET MEMBER DATA
-            ========================================== */
-
-            const memberData =
-                memberSnapshot.data();
-
-
-
-            /* ==========================================
-               CHECK ACTIVE STATUS
-            ========================================== */
-
-            if (memberData.active !== true) {
-
-                showMessage(
-                    "Your membership is currently inactive. Please contact Mahnoor.",
-                    "error"
-                );
-
-                loginButton.disabled = false;
-
-                loginButton.textContent =
-                    "Continue";
-
-                return;
-
-            }
-
-
-
-            /* ==========================================
-               SAVE MEMBER INFORMATION
-            ========================================== */
+            /*
+            Save the email locally only
+            for compatibility with the
+            existing dashboard.
+            */
 
             localStorage.setItem(
                 "freedomMemberEmail",
-                userEmail
+                user.email
             );
 
 
-            if (memberData.name) {
-
-                localStorage.setItem(
-                    "freedomMemberName",
-                    memberData.name
-                );
-
-            }
-
-
-
-            /* ==========================================
-               SUCCESS
-            ========================================== */
-
             showMessage(
-                "Access approved. Opening your member dashboard...",
+                "Login successful. Opening your dashboard...",
                 "success"
             );
 
-
-            loginButton.textContent =
-                "Welcome";
-
-
-            /* ==========================================
-               GO TO DASHBOARD
-            ========================================== */
 
             setTimeout(
                 function() {
@@ -627,20 +679,12 @@ loginForm.addEventListener(
 
         } catch (error) {
 
-            console.error(
-                "Login error:",
-                error
-            );
+            console.error(error);
 
 
             let errorMessage =
-                "Unable to log in. Please try again.";
+                "Unable to log in. Please check your email and password.";
 
-
-
-            /* ==========================================
-               FIREBASE ERROR MESSAGES
-            ========================================== */
 
             if (
                 error.code ===
@@ -652,17 +696,8 @@ loginForm.addEventListener(
 
             }
 
-            else if (
-                error.code ===
-                "auth/invalid-email"
-            ) {
 
-                errorMessage =
-                    "Please enter a valid email address.";
-
-            }
-
-            else if (
+            if (
                 error.code ===
                 "auth/user-not-found"
             ) {
@@ -672,7 +707,8 @@ loginForm.addEventListener(
 
             }
 
-            else if (
+
+            if (
                 error.code ===
                 "auth/wrong-password"
             ) {
@@ -682,36 +718,27 @@ loginForm.addEventListener(
 
             }
 
-            else if (
+
+            if (
+                error.code ===
+                "auth/invalid-email"
+            ) {
+
+                errorMessage =
+                    "Please enter a valid email address.";
+
+            }
+
+
+            if (
                 error.code ===
                 "auth/too-many-requests"
             ) {
 
                 errorMessage =
-                    "Too many login attempts. Please wait a while and try again.";
+                    "Too many unsuccessful attempts. Please try again later.";
 
             }
-
-            else if (
-                error.code ===
-                "auth/network-request-failed"
-            ) {
-
-                errorMessage =
-                    "Network error. Please check your internet connection.";
-
-            }
-
-            else if (
-                error.code ===
-                "permission-denied"
-            ) {
-
-                errorMessage =
-                    "Access to your membership information was denied. Please check your Firebase Firestore rules.";
-
-            }
-
 
 
             showMessage(
@@ -723,7 +750,96 @@ loginForm.addEventListener(
             loginButton.disabled = false;
 
             loginButton.textContent =
-                "Continue";
+                "Log In";
+
+        }
+
+    }
+);
+
+
+/*
+==================================================
+FORGOT PASSWORD
+==================================================
+*/
+
+forgotPassword.addEventListener(
+    "click",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        const email =
+            emailInput.value
+            .trim()
+            .toLowerCase();
+
+
+        if (!email) {
+
+            showMessage(
+                "Enter your registered email address first, then click Forgot password.",
+                "error"
+            );
+
+            emailInput.focus();
+
+            return;
+
+        }
+
+
+        try {
+
+            await sendPasswordResetEmail(
+                auth,
+                email
+            );
+
+
+            showMessage(
+                "Password reset email sent. Check your email inbox and follow the link to create a new password.",
+                "success"
+            );
+
+
+        } catch (error) {
+
+            console.error(error);
+
+
+            let errorMessage =
+                "We couldn't send the password reset email.";
+
+
+            if (
+                error.code ===
+                "auth/user-not-found"
+            ) {
+
+                errorMessage =
+                    "No account was found with this email.";
+
+            }
+
+
+            if (
+                error.code ===
+                "auth/invalid-email"
+            ) {
+
+                errorMessage =
+                    "Please enter a valid email address.";
+
+            }
+
+
+            showMessage(
+                errorMessage,
+                "error"
+            );
 
         }
 
@@ -732,8 +848,6 @@ loginForm.addEventListener(
 
 </script>
 
-
 </body>
-
 </html>
 ```
