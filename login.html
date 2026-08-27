@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Member Access | Freedom Women's Health Club</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #FBF8F3;
+    color: #2D2D2D;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-box {
+    width: min(430px, 92%);
+    background: white;
+    padding: 40px;
+    border-radius: 14px;
+    border: 1px solid #E5DED7;
+    text-align: center;
+}
+
+.logo {
+    color: #6E4A7E;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.intro {
+    color: #625D59;
+    font-size: 14px;
+    margin-bottom: 28px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #D8D0C9;
+    border-radius: 6px;
+    margin-bottom: 18px;
+    font-size: 14px;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    background: #6E4A7E;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.message {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #6E4A7E;
+}
+
+.back {
+    display: block;
+    margin-top: 25px;
+    color: #6E4A7E;
+    text-decoration: none;
+    font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <div class="logo">
+        Freedom Women's Health Club
+    </div>
+
+    <h1>
+        Member Access
+    </h1>
+
+    <p class="intro">
+        Enter your member details to access your 90-day journey.
+    </p>
+
+    <form onsubmit="login(event)">
+
+        <label for="email">
+            Email
+        </label>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+        >
+
+        <label for="password">
+            Password
+        </label>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            required
+        >
+
+        <button type="submit">
+            Log In
+        </button>
+
+    </form>
+
+    <p id="message" class="message"></p>
+
+    <a href="index.html" class="back">
+        Back to Freedom Women's Health Club
+    </a>
+
+</div>
+
+<script>
+
+function login(event) {
+
+    event.preventDefault();
+
+    document.getElementById("message").innerText =
+        "Member access will be activated after your payment has been confirmed.";
+
+}
+
+</script>
+
+</body>
+</html>
