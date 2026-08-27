@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -9,6 +10,10 @@
 <meta name="description" content="Freedom Women's Health Club is a supportive community for women who want sustainable weight loss, healthier habits and a healthier lifestyle.">
 
 <style>
+
+/* =========================
+   GLOBAL
+========================= */
 
 * {
     margin: 0;
@@ -54,7 +59,10 @@ a {
     margin: auto;
 }
 
-/* NAVIGATION */
+
+/* =========================
+   NAVIGATION
+========================= */
 
 nav {
     background: rgba(251,248,243,0.98);
@@ -75,7 +83,7 @@ nav {
 .logo {
     color: var(--plum);
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .nav-links {
@@ -96,7 +104,10 @@ nav {
     border-radius: 6px;
 }
 
-/* HERO */
+
+/* =========================
+   HERO
+========================= */
 
 .hero {
     padding: 95px 0;
@@ -112,7 +123,7 @@ nav {
 .eyebrow {
     color: var(--plum);
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 18px;
@@ -122,7 +133,7 @@ nav {
     font-size: clamp(42px, 5vw, 66px);
     line-height: 1.08;
     margin-bottom: 24px;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .hero h1 span {
@@ -142,7 +153,7 @@ nav {
     color: white;
     padding: 15px 28px;
     border-radius: 6px;
-    font-weight: 600;
+    font-weight: 500;
     margin-right: 8px;
 }
 
@@ -152,7 +163,7 @@ nav {
     color: var(--plum);
     padding: 14px 28px;
     border-radius: 6px;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .primary-button:hover {
@@ -169,7 +180,10 @@ nav {
     border-radius: 18px;
 }
 
-/* GENERAL SECTIONS */
+
+/* =========================
+   GENERAL SECTIONS
+========================= */
 
 section {
     padding: 85px 0;
@@ -194,6 +208,7 @@ section {
     font-size: 38px;
     line-height: 1.2;
     margin-bottom: 16px;
+    font-weight: 500;
 }
 
 .section-heading p {
@@ -201,7 +216,10 @@ section {
     font-size: 17px;
 }
 
-/* ABOUT CLUB */
+
+/* =========================
+   ABOUT CLUB
+========================= */
 
 .about-grid {
     display: grid;
@@ -221,7 +239,10 @@ section {
     color: #56514E;
 }
 
-/* WHO IT IS FOR */
+
+/* =========================
+   WHO IT IS FOR
+========================= */
 
 .audience-grid {
     display: grid;
@@ -240,13 +261,17 @@ section {
     color: var(--plum);
     font-size: 20px;
     margin-bottom: 9px;
+    font-weight: 500;
 }
 
 .audience-card p {
     color: var(--text-light);
 }
 
-/* FEATURES */
+
+/* =========================
+   FEATURES
+========================= */
 
 .features {
     display: grid;
@@ -264,7 +289,7 @@ section {
 .feature-number {
     color: var(--plum);
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 1px;
     margin-bottom: 15px;
 }
@@ -272,13 +297,17 @@ section {
 .feature h3 {
     font-size: 20px;
     margin-bottom: 10px;
+    font-weight: 500;
 }
 
 .feature p {
     color: var(--text-light);
 }
 
-/* 90 DAY PROGRAM */
+
+/* =========================
+   90 DAY PROGRAM
+========================= */
 
 .program {
     background: var(--plum);
@@ -311,20 +340,24 @@ section {
 
 .phase-number {
     color: var(--champagne);
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 12px;
 }
 
 .phase h3 {
     margin-bottom: 12px;
     font-size: 22px;
+    font-weight: 500;
 }
 
 .phase p {
     color: rgba(255,255,255,0.85);
 }
 
-/* WHAT YOU GET */
+
+/* =========================
+   WHAT YOU GET
+========================= */
 
 .get-grid {
     display: grid;
@@ -342,13 +375,17 @@ section {
 .get-item strong {
     color: var(--plum);
     min-width: 25px;
+    font-weight: 600;
 }
 
 .get-item p {
     color: var(--text-light);
 }
 
-/* FREEDOM METHOD */
+
+/* =========================
+   FREEDOM METHOD
+========================= */
 
 .method {
     background: var(--light-plum);
@@ -372,17 +409,54 @@ section {
     font-size: 34px;
     color: var(--plum);
     margin-bottom: 8px;
+    font-weight: 500;
 }
 
 .method-card h3 {
     margin-bottom: 8px;
+    font-weight: 500;
 }
 
 .method-card p {
     color: var(--text-light);
 }
 
-/* ABOUT MAHNOOR */
+
+/* =========================
+   WHY FREEDOM
+========================= */
+
+.why-section {
+    background: var(--cream);
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.why-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.why-card h3 {
+    color: var(--plum);
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.why-card p {
+    color: var(--text-light);
+}
+
+
+/* =========================
+   ABOUT MAHNOOR
+========================= */
 
 .about-me {
     background: white;
@@ -415,37 +489,13 @@ section {
 
 .credentials strong {
     color: var(--plum);
+    font-weight: 600;
 }
 
-/* WHY FREEDOM */
 
-.why-section {
-    background: var(--cream);
-}
-
-.why-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.why-card {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-}
-
-.why-card h3 {
-    color: var(--plum);
-    margin-bottom: 10px;
-}
-
-.why-card p {
-    color: var(--text-light);
-}
-
-/* JOIN */
+/* =========================
+   JOIN
+========================= */
 
 .cta {
     text-align: center;
@@ -462,6 +512,7 @@ section {
 .cta-box h2 {
     font-size: 40px;
     margin-bottom: 15px;
+    font-weight: 500;
 }
 
 .cta-box p {
@@ -471,7 +522,10 @@ section {
     font-size: 17px;
 }
 
-/* FAQ */
+
+/* =========================
+   FAQ
+========================= */
 
 .faq {
     max-width: 800px;
@@ -487,55 +541,96 @@ section {
     color: var(--plum);
     margin-bottom: 8px;
     font-size: 18px;
+    font-weight: 500;
 }
 
 .faq-item p {
     color: var(--text-light);
 }
 
-/* FOOTER */
+
+/* =========================
+   PROFESSIONAL FOOTER
+========================= */
 
 footer {
     background: #302A31;
     color: white;
-    padding: 45px 0;
+    padding: 65px 0 25px;
 }
 
-.footer-grid {
+.footer-main {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 45px;
 }
 
 .footer-brand h3 {
+    color: white;
     font-size: 22px;
-    margin-bottom: 10px;
+    font-weight: 500;
+    margin-bottom: 15px;
 }
 
 .footer-brand p {
     color: #D4CED5;
-    max-width: 500px;
-}
-
-.footer-links {
-    text-align: right;
-}
-
-.footer-links a {
-    color: #DDD7DE;
-    margin-left: 20px;
+    max-width: 420px;
     font-size: 14px;
+    line-height: 1.7;
 }
 
-.copyright {
+.footer-column h4 {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 18px;
+}
+
+.footer-column a {
+    display: block;
+    color: #D4CED5;
+    font-size: 14px;
+    margin-bottom: 11px;
+    transition: 0.2s;
+}
+
+.footer-column a:hover {
+    color: white;
+}
+
+.footer-contact {
+    margin-top: 22px;
+}
+
+.footer-contact p {
+    color: #D4CED5;
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.footer-bottom {
     border-top: 1px solid rgba(255,255,255,0.15);
-    margin-top: 30px;
-    padding-top: 20px;
-    color: #BCB5BD;
+    padding-top: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-bottom p {
+    color: #BEB7BF;
     font-size: 13px;
 }
 
-/* MOBILE */
+.footer-tagline {
+    color: #DCCBB3 !important;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 850px) {
 
@@ -574,19 +669,17 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .footer-grid {
+    .footer-main {
         grid-template-columns: 1fr;
+        gap: 35px;
     }
 
-    .footer-links {
-        text-align: left;
-    }
-
-    .footer-links a {
-        margin-left: 0;
-        margin-right: 18px;
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
+
 
 @media (max-width: 500px) {
 
@@ -616,15 +709,19 @@ footer {
     .cta-box h2 {
         font-size: 30px;
     }
+
 }
 
 </style>
 </head>
 
+
 <body>
 
 
-<!-- NAVIGATION -->
+<!-- =========================
+     NAVIGATION
+========================= -->
 
 <nav>
 
@@ -636,7 +733,9 @@ footer {
 
         <div class="nav-links">
 
-            <a href="#about">About</a>
+            <a href="#about">
+                About
+            </a>
 
             <a href="#included">
                 What's Included
@@ -658,7 +757,9 @@ footer {
                 FAQs
             </a>
 
-            <a href="#join" class="nav-button">
+            <!-- BUTTON LINKED TO JOIN PAGE -->
+
+            <a href="join.html" class="nav-button">
                 Join the Club
             </a>
 
@@ -669,7 +770,9 @@ footer {
 </nav>
 
 
-<!-- HERO -->
+<!-- =========================
+     HERO
+========================= -->
 
 <header class="hero">
 
@@ -692,15 +795,20 @@ footer {
                 food.
             </p>
 
-            <a href="#join" class="primary-button">
+
+            <!-- BUTTON LINKED TO JOIN PAGE -->
+
+            <a href="join.html" class="primary-button">
                 Join the Club
             </a>
+
 
             <a href="#about" class="secondary-button">
                 Learn More
             </a>
 
         </div>
+
 
         <div>
 
@@ -717,7 +825,9 @@ footer {
 </header>
 
 
-<!-- ABOUT CLUB -->
+<!-- =========================
+     ABOUT CLUB
+========================= -->
 
 <section id="about" class="section-light">
 
@@ -732,6 +842,7 @@ footer {
             >
 
         </div>
+
 
         <div class="about-text">
 
@@ -776,7 +887,9 @@ footer {
 </section>
 
 
-<!-- WHO IT IS FOR -->
+<!-- =========================
+     WHO IT IS FOR
+========================= -->
 
 <section>
 
@@ -799,6 +912,7 @@ footer {
 
         </div>
 
+
         <div class="audience-grid">
 
             <div class="audience-card">
@@ -814,6 +928,7 @@ footer {
 
             </div>
 
+
             <div class="audience-card">
 
                 <h3>
@@ -827,6 +942,7 @@ footer {
 
             </div>
 
+
             <div class="audience-card">
 
                 <h3>
@@ -839,6 +955,7 @@ footer {
                 </p>
 
             </div>
+
 
             <div class="audience-card">
 
@@ -860,7 +977,9 @@ footer {
 </section>
 
 
-<!-- WHAT IS INCLUDED -->
+<!-- =========================
+     WHAT IS INCLUDED
+========================= -->
 
 <section id="included" class="section-light">
 
@@ -882,7 +1001,9 @@ footer {
 
         </div>
 
+
         <div class="features">
+
 
             <div class="feature">
 
@@ -901,6 +1022,7 @@ footer {
 
             </div>
 
+
             <div class="feature">
 
                 <div class="feature-number">
@@ -917,6 +1039,7 @@ footer {
                 </p>
 
             </div>
+
 
             <div class="feature">
 
@@ -935,6 +1058,7 @@ footer {
 
             </div>
 
+
             <div class="feature">
 
                 <div class="feature-number">
@@ -952,6 +1076,7 @@ footer {
 
             </div>
 
+
             <div class="feature">
 
                 <div class="feature-number">
@@ -968,6 +1093,7 @@ footer {
                 </p>
 
             </div>
+
 
             <div class="feature">
 
@@ -993,7 +1119,9 @@ footer {
 </section>
 
 
-<!-- 90 DAY JOURNEY -->
+<!-- =========================
+     90 DAY JOURNEY
+========================= -->
 
 <section id="program" class="program">
 
@@ -1016,7 +1144,9 @@ footer {
 
         </div>
 
+
         <div class="phases">
+
 
             <div class="phase">
 
@@ -1035,6 +1165,7 @@ footer {
 
             </div>
 
+
             <div class="phase">
 
                 <div class="phase-number">
@@ -1051,6 +1182,7 @@ footer {
                 </p>
 
             </div>
+
 
             <div class="phase">
 
@@ -1076,7 +1208,9 @@ footer {
 </section>
 
 
-<!-- WHAT YOU GET -->
+<!-- =========================
+     WHAT YOU GET
+========================= -->
 
 <section>
 
@@ -1094,7 +1228,9 @@ footer {
 
         </div>
 
+
         <div class="get-grid">
+
 
             <div class="get-item">
                 <strong>01</strong>
@@ -1103,12 +1239,14 @@ footer {
                 </p>
             </div>
 
+
             <div class="get-item">
                 <strong>02</strong>
                 <p>
-                    Day-by-day educational content
+                    Educational content throughout the journey
                 </p>
             </div>
+
 
             <div class="get-item">
                 <strong>03</strong>
@@ -1117,12 +1255,14 @@ footer {
                 </p>
             </div>
 
+
             <div class="get-item">
                 <strong>04</strong>
                 <p>
                     Daily habits and action steps
                 </p>
             </div>
+
 
             <div class="get-item">
                 <strong>05</strong>
@@ -1131,6 +1271,7 @@ footer {
                 </p>
             </div>
 
+
             <div class="get-item">
                 <strong>06</strong>
                 <p>
@@ -1138,12 +1279,14 @@ footer {
                 </p>
             </div>
 
+
             <div class="get-item">
                 <strong>07</strong>
                 <p>
                     Progress tracking
                 </p>
             </div>
+
 
             <div class="get-item">
                 <strong>08</strong>
@@ -1159,7 +1302,9 @@ footer {
 </section>
 
 
-<!-- FREEDOM METHOD -->
+<!-- =========================
+     FREEDOM METHOD
+========================= -->
 
 <section id="method" class="method">
 
@@ -1182,7 +1327,9 @@ footer {
 
         </div>
 
+
         <div class="method-grid">
+
 
             <div class="method-card">
 
@@ -1199,6 +1346,7 @@ footer {
 
             </div>
 
+
             <div class="method-card">
 
                 <strong>R</strong>
@@ -1213,6 +1361,7 @@ footer {
                 </p>
 
             </div>
+
 
             <div class="method-card">
 
@@ -1229,6 +1378,7 @@ footer {
 
             </div>
 
+
             <div class="method-card">
 
                 <strong>E</strong>
@@ -1243,6 +1393,7 @@ footer {
                 </p>
 
             </div>
+
 
             <div class="method-card">
 
@@ -1259,6 +1410,7 @@ footer {
 
             </div>
 
+
             <div class="method-card">
 
                 <strong>O</strong>
@@ -1273,6 +1425,7 @@ footer {
                 </p>
 
             </div>
+
 
             <div class="method-card">
 
@@ -1296,7 +1449,9 @@ footer {
 </section>
 
 
-<!-- WHY FREEDOM -->
+<!-- =========================
+     WHY FREEDOM
+========================= -->
 
 <section class="why-section">
 
@@ -1319,7 +1474,9 @@ footer {
 
         </div>
 
+
         <div class="why-grid">
+
 
             <div class="why-card">
 
@@ -1334,6 +1491,7 @@ footer {
 
             </div>
 
+
             <div class="why-card">
 
                 <h3>
@@ -1346,6 +1504,7 @@ footer {
                 </p>
 
             </div>
+
 
             <div class="why-card">
 
@@ -1367,11 +1526,14 @@ footer {
 </section>
 
 
-<!-- ABOUT MAHNOOR -->
+<!-- =========================
+     ABOUT MAHNOOR
+========================= -->
 
 <section id="mahnoor" class="about-me">
 
     <div class="container about-me-grid">
+
 
         <div>
 
@@ -1383,11 +1545,13 @@ footer {
 
         </div>
 
+
         <div class="about-me-text">
 
             <div class="eyebrow">
                 About Mahnoor
             </div>
+
 
             <div class="section-heading">
 
@@ -1397,11 +1561,13 @@ footer {
 
             </div>
 
+
             <p>
                 I'm Mahnoor, a Dietitian who helps women work toward
                 sustainable weight loss through practical nutrition,
                 healthier habits and consistency.
             </p>
+
 
             <p>
                 I create nutrition content and coach women with Type 2
@@ -1409,6 +1575,7 @@ footer {
                 feel more confident around food and take better control
                 of their health.
             </p>
+
 
             <div class="credentials">
 
@@ -1430,9 +1597,11 @@ footer {
 </section>
 
 
-<!-- JOIN -->
+<!-- =========================
+     JOIN SECTION
+========================= -->
 
-<section id="join" class="cta">
+<section class="cta">
 
     <div class="container">
 
@@ -1452,7 +1621,10 @@ footer {
                 confidence around food.
             </p>
 
-            <a href="#" class="primary-button">
+
+            <!-- BUTTON LINKED TO JOIN PAGE -->
+
+            <a href="join.html" class="primary-button">
                 Join the Club
             </a>
 
@@ -1463,7 +1635,9 @@ footer {
 </section>
 
 
-<!-- FAQ -->
+<!-- =========================
+     FAQ
+========================= -->
 
 <section id="faq" class="section-light">
 
@@ -1481,7 +1655,9 @@ footer {
 
         </div>
 
+
         <div class="faq">
+
 
             <div class="faq-item">
 
@@ -1497,6 +1673,7 @@ footer {
 
             </div>
 
+
             <div class="faq-item">
 
                 <h3>
@@ -1508,6 +1685,7 @@ footer {
                 </p>
 
             </div>
+
 
             <div class="faq-item">
 
@@ -1522,6 +1700,7 @@ footer {
 
             </div>
 
+
             <div class="faq-item">
 
                 <h3>
@@ -1529,11 +1708,12 @@ footer {
                 </h3>
 
                 <p>
-                    Members will follow structured day-by-day lessons,
+                    Members will follow structured educational content,
                     actions and check-ins throughout the journey.
                 </p>
 
             </div>
+
 
             <div class="faq-item">
 
@@ -1557,13 +1737,17 @@ footer {
 </section>
 
 
-<!-- FOOTER -->
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
     <div class="container">
 
-        <div class="footer-grid">
+
+        <div class="footer-main">
+
 
             <div class="footer-brand">
 
@@ -1572,27 +1756,44 @@ footer {
                 </h3>
 
                 <p>
-                    A supportive community helping women build sustainable
-                    weight-loss and healthy lifestyle habits.
+                    A supportive online community helping women build
+                    sustainable weight-loss habits, improve their lifestyle
+                    and become more confident around food.
                 </p>
 
             </div>
 
-            <div class="footer-links">
 
-                <a href="#about">About</a>
+            <div class="footer-column">
+
+                <h4>
+                    Explore
+                </h4>
+
+                <a href="#about">
+                    About The Club
+                </a>
 
                 <a href="#included">
-                    Membership
+                    What's Included
                 </a>
 
                 <a href="#program">
-                    90 Days
+                    90-Day Journey
                 </a>
 
                 <a href="#method">
                     FREEDOM Method
                 </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    More
+                </h4>
 
                 <a href="#mahnoor">
                     About Mahnoor
@@ -1602,12 +1803,45 @@ footer {
                     FAQs
                 </a>
 
+                <!-- LINKED TO JOIN PAGE -->
+
+                <a href="join.html">
+                    Join The Club
+                </a>
+
+
+                <div class="footer-contact">
+
+                    <p>
+                        Questions about joining?
+                    </p>
+
+                    <!-- WHATSAPP LINK -->
+
+                    <a
+                        href="https://wa.me/923164068060"
+                        target="_blank"
+                    >
+                        WhatsApp Mahnoor
+                    </a>
+
+                </div>
+
             </div>
 
         </div>
 
-        <div class="copyright">
-            © 2026 Freedom Women's Health Club. All rights reserved.
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Freedom Women's Health Club. All rights reserved.
+            </p>
+
+            <p class="footer-tagline">
+                Small steps. Consistent habits. Long-term results.
+            </p>
+
         </div>
 
     </div>
