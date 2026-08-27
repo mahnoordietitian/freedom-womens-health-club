@@ -29,7 +29,7 @@ body {
 }
 
 /* =========================
-   SIDEBAR
+SIDEBAR
 ========================= */
 
 .sidebar {
@@ -123,7 +123,7 @@ body {
 }
 
 /* =========================
-   MAIN
+MAIN
 ========================= */
 
 .main {
@@ -155,7 +155,7 @@ body {
 }
 
 /* =========================
-   SECTIONS
+SECTIONS
 ========================= */
 
 .section {
@@ -191,7 +191,7 @@ body {
 }
 
 /* =========================
-   CARDS
+CARDS
 ========================= */
 
 .card {
@@ -216,7 +216,7 @@ body {
 }
 
 /* =========================
-   STATS
+STATS
 ========================= */
 
 .stats {
@@ -246,7 +246,7 @@ body {
 }
 
 /* =========================
-   FORMS
+FORMS
 ========================= */
 
 .form-grid {
@@ -320,10 +320,6 @@ body {
     font-size: 12px;
 }
 
-.secondary-btn:hover {
-    border-color: #6E4A7E;
-}
-
 .danger-btn {
     border: 1px solid #D9C5C5;
     background: #FFFFFF;
@@ -342,7 +338,7 @@ body {
 }
 
 /* =========================
-   TABLE
+TABLE
 ========================= */
 
 .table-wrapper {
@@ -381,6 +377,10 @@ td {
     margin-top: 2px;
 }
 
+/* =========================
+STATUS
+========================= */
+
 .status {
     display: inline-block;
     padding: 5px 9px;
@@ -399,101 +399,74 @@ td {
     color: #8A5555;
 }
 
+.status.published {
+    background: #E9F2EA;
+    color: #48704D;
+}
+
+.status.draft {
+    background: #F3EDE7;
+    color: #75675D;
+}
+
 /* =========================
-   WEEKLY CONTENT
+CONTENT ITEMS
 ========================= */
 
-.week-list {
+.content-list {
     display: grid;
-    gap: 14px;
+    gap: 12px;
 }
 
-.week-card {
-    background: #FFFFFF;
+.content-item {
     border: 1px solid #E5DED7;
-    border-radius: 12px;
-    padding: 20px;
+    border-radius: 10px;
+    padding: 18px;
+    background: #FFFFFF;
 }
 
-.week-card-top {
+.content-top {
     display: flex;
     justify-content: space-between;
     gap: 15px;
     align-items: flex-start;
 }
 
-.week-number {
+.content-actions {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+}
+
+.content-week {
     color: #6E4A7E;
     font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 1.2px;
-    font-weight: 600;
+    letter-spacing: 1px;
 }
 
-.week-title {
-    font-size: 18px;
+.content-title {
+    font-size: 17px;
     font-weight: 600;
     margin-top: 5px;
 }
 
-.week-focus {
+.content-category {
     color: #817972;
-    font-size: 12px;
+    font-size: 11px;
     margin-top: 4px;
 }
 
-.week-status {
-    font-size: 10px;
-    padding: 5px 9px;
-    border-radius: 20px;
-}
-
-.week-status.published {
-    background: #E9F2EA;
-    color: #48704D;
-}
-
-.week-status.draft {
-    background: #F3ECE4;
-    color: #806A52;
-}
-
-.week-content-preview {
-    margin-top: 17px;
-    display: grid;
-    gap: 12px;
-}
-
-.content-box {
-    background: #FBF8F3;
-    border-radius: 8px;
-    padding: 13px;
-}
-
-.content-box-title {
-    color: #6E4A7E;
-    font-size: 11px;
-    font-weight: 600;
-    margin-bottom: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-}
-
-.content-box-text {
-    color: #514C49;
+.content-preview {
+    color: #625D59;
     font-size: 12px;
-    line-height: 1.6;
+    line-height: 1.7;
+    margin-top: 13px;
     white-space: pre-wrap;
 }
 
-.week-actions {
-    display: flex;
-    gap: 8px;
-    margin-top: 17px;
-}
-
 /* =========================
-   COMMUNITY
+COMMUNITY
 ========================= */
 
 .community-list {
@@ -534,10 +507,11 @@ td {
     color: #514C49;
     font-size: 13px;
     white-space: pre-wrap;
+    line-height: 1.6;
 }
 
 /* =========================
-   EMPTY
+EMPTY
 ========================= */
 
 .empty {
@@ -548,7 +522,7 @@ td {
 }
 
 /* =========================
-   MOBILE
+MOBILE
 ========================= */
 
 @media (max-width: 900px) {
@@ -624,41 +598,23 @@ td {
         flex-direction: column;
     }
 
-    .week-card-top {
+    .content-top {
         flex-direction: column;
     }
 
-}
-
-
-/* =========================
-   SMALL HELPER
-========================= */
-
-.helper {
-    background: #F1EAF4;
-    border-radius: 8px;
-    padding: 13px;
-    margin-bottom: 20px;
-    color: #514956;
-    font-size: 12px;
-    line-height: 1.6;
 }
 
 </style>
 
 </head>
 
-
 <body>
-
 
 <div class="app">
 
-
-<!-- ==================================================
-     SIDEBAR
-================================================== -->
+<!-- =========================
+SIDEBAR
+========================= -->
 
 <aside class="sidebar">
 
@@ -674,65 +630,38 @@ td {
 
     </div>
 
-
     <div class="admin-label">
         Manage
     </div>
 
-
-    <button
-        class="nav-btn active"
-        data-section="overview">
-
+    <button class="nav-btn active" data-section="overview">
         Overview
-
     </button>
 
-
-    <button
-        class="nav-btn"
-        data-section="members">
-
+    <button class="nav-btn" data-section="members">
         Members
-
     </button>
 
-
-    <button
-        class="nav-btn"
-        data-section="weekly">
-
-        90-Day Journey
-
+    <button class="nav-btn" data-section="weekly">
+        Weekly Content
     </button>
 
+    <button class="nav-btn" data-section="education">
+        Lessons
+    </button>
 
-    <button
-        class="nav-btn"
-        data-section="community">
-
+    <button class="nav-btn" data-section="community">
         Community
-
     </button>
-
 
     <div class="sidebar-bottom">
 
-        <a
-            href="dashboard.html"
-            class="view-dashboard">
-
+        <a href="dashboard.html" class="view-dashboard">
             ← Member Dashboard
-
         </a>
 
-
-        <button
-            class="logout-btn"
-            id="logoutBtn">
-
+        <button class="logout-btn" id="logoutBtn">
             Log out
-
         </button>
 
     </div>
@@ -740,12 +669,11 @@ td {
 </aside>
 
 
-<!-- ==================================================
-     MAIN
-================================================== -->
+<!-- =========================
+MAIN
+========================= -->
 
 <main class="main">
-
 
 <div class="topbar">
 
@@ -753,22 +681,17 @@ td {
         Admin Control Center
     </h1>
 
-    <div
-        class="admin-email"
-        id="adminEmail">
+    <div class="admin-email" id="adminEmail">
     </div>
 
 </div>
 
 
-<!-- ==================================================
-     OVERVIEW
-================================================== -->
+<!-- =========================
+OVERVIEW
+========================= -->
 
-<section
-    class="section active"
-    id="section-overview">
-
+<section class="section active" id="section-overview">
 
     <div class="section-title">
 
@@ -781,14 +704,12 @@ td {
         </h2>
 
         <p>
-            Manage your members, 90-day journey and community.
+            Manage members, weekly content, lessons and community.
         </p>
 
     </div>
 
-
     <div class="stats">
-
 
         <div class="stat">
 
@@ -796,16 +717,11 @@ td {
                 Total Members
             </div>
 
-            <div
-                class="stat-value"
-                id="totalMembers">
-
+            <div class="stat-value" id="totalMembers">
                 0
-
             </div>
 
         </div>
-
 
         <div class="stat">
 
@@ -813,16 +729,11 @@ td {
                 Active Members
             </div>
 
-            <div
-                class="stat-value"
-                id="activeMembers">
-
+            <div class="stat-value" id="activeMembers">
                 0
-
             </div>
 
         </div>
-
 
         <div class="stat">
 
@@ -830,92 +741,58 @@ td {
                 Weekly Content
             </div>
 
-            <div
-                class="stat-value"
-                id="totalWeeks">
-
+            <div class="stat-value" id="totalWeekly">
                 0
-
             </div>
 
         </div>
-
 
         <div class="stat">
 
             <div class="stat-label">
-                Community Messages
+                Lessons
             </div>
 
-            <div
-                class="stat-value"
-                id="totalMessages">
-
+            <div class="stat-value" id="totalLessons">
                 0
-
             </div>
 
         </div>
 
-
     </div>
-
 
     <div class="card">
 
         <h3>
-            Your 90-Day Journey
+            Your Admin System
         </h3>
 
         <p class="card-description">
-
-            The 90-day journey is stored separately from member
-            profiles and member progress.
-
-            You can change the content of any week whenever you want.
-
-            Changing Week 4, for example, will only change Week 4
-            content. It will not delete members, weights, measurements,
-            check-ins or progress.
-
+            Weekly Content, Lessons, Members and Progress are kept
+            in separate Firestore collections.
         </p>
 
+        <p class="card-description">
+            This means you can change Week 1, Week 5 or Week 12
+            content whenever you want without deleting or replacing
+            member progress.
+        </p>
 
-        <div class="helper">
-
-            <strong>
-                Example:
-            </strong>
-
-            You can create Week 1 today with walking, water and
-            breakfast habits. Next month you can edit Week 1 or add
-            Week 13 without touching any member data.
-
-        </div>
-
-
-        <button
-            class="primary-btn"
-            id="goWeeklyBtn">
-
-            Manage 90-Day Journey
-
-        </button>
+        <p class="card-description">
+            You can also add new weeks later without changing the
+            existing weeks.
+        </p>
 
     </div>
-
 
 </section>
 
 
-<!-- ==================================================
-     MEMBERS
-================================================== -->
+<!-- =========================
+MEMBERS
+========================= -->
 
-<section
-    class="section"
-    id="section-members">
-
+<section class="section" id="section-members">
 
     <div class="section-title">
 
@@ -928,35 +805,27 @@ td {
         </h2>
 
         <p>
-            View and update member profiles.
+            Add and update member information.
         </p>
 
     </div>
 
-
     <div class="card">
-
 
         <h3>
             Add / Edit Member
         </h3>
 
-
         <p class="card-description">
-
-            Member information is stored in the members collection.
-
+            Editing this profile uses merge mode so existing
+            member fields are not unnecessarily removed.
         </p>
-
 
         <div class="form-grid">
 
-
             <div class="field">
 
-                <label>
-                    Name
-                </label>
+                <label>Name</label>
 
                 <input
                     type="text"
@@ -965,12 +834,9 @@ td {
 
             </div>
 
-
             <div class="field">
 
-                <label>
-                    Email
-                </label>
+                <label>Email</label>
 
                 <input
                     type="email"
@@ -979,12 +845,9 @@ td {
 
             </div>
 
-
             <div class="field">
 
-                <label>
-                    Age
-                </label>
+                <label>Age</label>
 
                 <input
                     type="number"
@@ -992,12 +855,9 @@ td {
 
             </div>
 
-
             <div class="field">
 
-                <label>
-                    Height (cm)
-                </label>
+                <label>Height (cm)</label>
 
                 <input
                     type="number"
@@ -1006,12 +866,9 @@ td {
 
             </div>
 
-
             <div class="field">
 
-                <label>
-                    Starting Weight (kg)
-                </label>
+                <label>Starting Weight (kg)</label>
 
                 <input
                     type="number"
@@ -1020,12 +877,9 @@ td {
 
             </div>
 
-
             <div class="field">
 
-                <label>
-                    Current Weight (kg)
-                </label>
+                <label>Current Weight (kg)</label>
 
                 <input
                     type="number"
@@ -1034,12 +888,9 @@ td {
 
             </div>
 
-
             <div class="field">
 
-                <label>
-                    Starting Waist (cm)
-                </label>
+                <label>Starting Waist (cm)</label>
 
                 <input
                     type="number"
@@ -1048,12 +899,9 @@ td {
 
             </div>
 
-
             <div class="field">
 
-                <label>
-                    Current Waist (cm)
-                </label>
+                <label>Current Waist (cm)</label>
 
                 <input
                     type="number"
@@ -1062,12 +910,9 @@ td {
 
             </div>
 
-
             <div class="field">
 
-                <label>
-                    Starting Hip (cm)
-                </label>
+                <label>Starting Hip (cm)</label>
 
                 <input
                     type="number"
@@ -1076,12 +921,9 @@ td {
 
             </div>
 
-
             <div class="field">
 
-                <label>
-                    Current Hip (cm)
-                </label>
+                <label>Current Hip (cm)</label>
 
                 <input
                     type="number"
@@ -1090,12 +932,9 @@ td {
 
             </div>
 
-
             <div class="field">
 
-                <label>
-                    Membership Status
-                </label>
+                <label>Membership Status</label>
 
                 <select id="memberStatusInput">
 
@@ -1111,24 +950,14 @@ td {
 
             </div>
 
-
         </div>
 
-
-        <button
-            class="primary-btn"
-            id="saveMemberBtn">
-
+        <button class="primary-btn" id="saveMemberBtn">
             Save Member
-
         </button>
 
-
-        <span
-            class="form-message"
-            id="memberMessage">
+        <span class="form-message" id="memberMessage">
         </span>
-
 
     </div>
 
@@ -1139,7 +968,6 @@ td {
             All Members
         </h3>
 
-
         <div class="table-wrapper">
 
             <table>
@@ -1148,33 +976,21 @@ td {
 
                     <tr>
 
-                        <th>
-                            Member
-                        </th>
+                        <th>Member</th>
 
-                        <th>
-                            Status
-                        </th>
+                        <th>Status</th>
 
-                        <th>
-                            Starting Weight
-                        </th>
+                        <th>Starting Weight</th>
 
-                        <th>
-                            Current Weight
-                        </th>
+                        <th>Current Weight</th>
 
-                        <th>
-                            Action
-                        </th>
+                        <th>Action</th>
 
                     </tr>
 
                 </thead>
 
-
                 <tbody id="membersTable">
-
                 </tbody>
 
             </table>
@@ -1183,31 +999,27 @@ td {
 
     </div>
 
-
 </section>
 
 
-<!-- ==================================================
-     90-DAY JOURNEY
-================================================== -->
+<!-- =========================
+WEEKLY CONTENT
+========================= -->
 
-<section
-    class="section"
-    id="section-weekly">
-
+<section class="section" id="section-weekly">
 
     <div class="section-title">
 
         <div class="small-title">
-            90-Day Program
+            90 Day Journey
         </div>
 
         <h2>
-            Weekly Journey
+            Weekly Content
         </h2>
 
         <p>
-            Create and manage everything members need to do each week.
+            Create and update everything members need to do each week.
         </p>
 
     </div>
@@ -1215,40 +1027,17 @@ td {
 
     <div class="card">
 
-
         <h3>
-            Add / Edit Week
+            Add / Edit Weekly Content
         </h3>
 
-
         <p class="card-description">
-
-            This is where you will build your complete 90-day journey.
-
-            You can add a week now and come back later to edit anything.
-
+            Use this section for weekly habits, tasks, goals,
+            walking targets, strength training, water, sleep,
+            check-ins and anything else you want members to follow.
         </p>
 
-
-        <div class="helper">
-
-            <strong>
-                Important:
-            </strong>
-
-            This information is stored in the
-            <strong>weeklyContent</strong>
-            collection.
-
-            It is completely separate from members and progress.
-
-        </div>
-
-
         <div class="form-grid">
-
-
-            <!-- WEEK -->
 
             <div class="field">
 
@@ -1258,15 +1047,92 @@ td {
 
                 <input
                     type="number"
-                    id="weekNumber"
-                    min="1"
-                    max="52"
+                    id="weeklyNumber"
                     placeholder="Example: 1">
 
             </div>
 
 
-            <!-- STATUS -->
+            <div class="field">
+
+                <label>
+                    Week Title
+                </label>
+
+                <input
+                    type="text"
+                    id="weeklyTitle"
+                    placeholder="Example: Reset & Foundation">
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>
+                    Week Goal
+                </label>
+
+                <input
+                    type="text"
+                    id="weeklyGoal"
+                    placeholder="What is the main goal of this week?">
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>
+                    Habits / Tasks for the Week
+                </label>
+
+                <textarea
+                    id="weeklyHabits"
+                    placeholder="Example:
+
+1. Walk 30 minutes daily
+2. Drink 8–10 glasses water
+3. Eat protein at every meal
+4. Sleep before 11:30 PM
+5. Complete weekly check-in"></textarea>
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>
+                    Instructions / Details
+                </label>
+
+                <textarea
+                    id="weeklyInstructions"
+                    placeholder="Write any detailed instructions members need for this week..."></textarea>
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>
+                    What Members Should Track
+                </label>
+
+                <textarea
+                    id="weeklyTracking"
+                    placeholder="Example:
+
+Weight
+Waist
+Steps
+Water
+Sleep
+Blood sugar
+Workout completion"></textarea>
+
+            </div>
+
 
             <div class="field">
 
@@ -1274,7 +1140,7 @@ td {
                     Status
                 </label>
 
-                <select id="weekStatus">
+                <select id="weeklyStatus">
 
                     <option value="published">
                         Published
@@ -1288,208 +1154,34 @@ td {
 
             </div>
 
-
-            <!-- TITLE -->
-
-            <div class="field full">
-
-                <label>
-                    Week Title
-                </label>
-
-                <input
-                    type="text"
-                    id="weekTitle"
-                    placeholder="Example: Build Your Walking Habit">
-
-            </div>
-
-
-            <!-- FOCUS -->
-
-            <div class="field full">
-
-                <label>
-                    Main Focus of the Week
-                </label>
-
-                <input
-                    type="text"
-                    id="weekFocus"
-                    placeholder="Example: Consistency, hydration and daily movement">
-
-            </div>
-
-
-            <!-- HABITS -->
-
-            <div class="field full">
-
-                <label>
-                    Weekly Habits
-                </label>
-
-                <textarea
-                    id="weekHabits"
-                    placeholder="Write each habit on a new line.
-
-Example:
-1. Walk for 30 minutes daily.
-2. Drink 8–10 glasses of water.
-3. Have protein at every main meal.
-4. Sleep 30 minutes earlier."></textarea>
-
-            </div>
-
-
-            <!-- TASKS -->
-
-            <div class="field full">
-
-                <label>
-                    What Members Have To Do
-                </label>
-
-                <textarea
-                    id="weekTasks"
-                    placeholder="Write the weekly tasks here.
-
-Example:
-• Complete 5 walks this week.
-• Take a progress photo.
-• Track your breakfast for 3 days.
-• Complete the weekly check-in."></textarea>
-
-            </div>
-
-
-            <!-- NUTRITION -->
-
-            <div class="field full">
-
-                <label>
-                    Nutrition Guidance
-                </label>
-
-                <textarea
-                    id="weekNutrition"
-                    placeholder="Add the nutrition guidance for this week."></textarea>
-
-            </div>
-
-
-            <!-- EXERCISE -->
-
-            <div class="field full">
-
-                <label>
-                    Exercise / Movement
-                </label>
-
-                <textarea
-                    id="weekExercise"
-                    placeholder="Add walking, strength training, stretching or other movement guidance."></textarea>
-
-            </div>
-
-
-            <!-- SLEEP -->
-
-            <div class="field full">
-
-                <label>
-                    Sleep / Stress / Recovery
-                </label>
-
-                <textarea
-                    id="weekRecovery"
-                    placeholder="Add sleep, stress management, breathing or recovery tasks."></textarea>
-
-            </div>
-
-
-            <!-- LESSON -->
-
-            <div class="field full">
-
-                <label>
-                    Weekly Education / Lesson
-                </label>
-
-                <textarea
-                    id="weekLesson"
-                    placeholder="Add the educational lesson members should read/watch this week."></textarea>
-
-            </div>
-
-
-            <!-- NOTES -->
-
-            <div class="field full">
-
-                <label>
-                    Extra Notes / Instructions
-                </label>
-
-                <textarea
-                    id="weekNotes"
-                    placeholder="Anything else members need to know this week."></textarea>
-
-            </div>
-
-
         </div>
 
 
-        <button
-            class="primary-btn"
-            id="saveWeekBtn">
-
-            Save Week
-
+        <button class="primary-btn" id="saveWeeklyBtn">
+            Save Weekly Content
         </button>
 
-
-        <button
-            class="secondary-btn"
-            id="clearWeekBtn">
-
+        <button class="secondary-btn" id="clearWeeklyBtn">
             Clear
-
         </button>
 
-
-        <span
-            class="form-message"
-            id="weekMessage">
+        <span class="form-message" id="weeklyMessage">
         </span>
-
 
     </div>
 
 
-    <!-- ALL WEEKS -->
-
     <div class="card">
 
-
         <h3>
-            Your 90-Day Journey
+            All Weeks
         </h3>
 
-
         <p class="card-description">
-
-            Every week you create will appear here.
-
-            Click Edit whenever you want to change that week's content.
-
+            Edit any existing week or add a new week whenever you want.
         </p>
 
-
-        <div
-            class="week-list"
-            id="weekList">
+        <div class="content-list" id="weeklyList">
 
             <div class="empty">
                 No weekly content added yet.
@@ -1497,21 +1189,162 @@ Example:
 
         </div>
 
-
     </div>
-
 
 </section>
 
 
-<!-- ==================================================
-     COMMUNITY
-================================================== -->
+<!-- =========================
+LESSONS
+========================= -->
 
-<section
-    class="section"
-    id="section-community">
+<section class="section" id="section-education">
 
+    <div class="section-title">
+
+        <div class="small-title">
+            Education
+        </div>
+
+        <h2>
+            Lessons
+        </h2>
+
+        <p>
+            Add and edit educational lessons separately from weekly tasks.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            Add / Edit Lesson
+        </h3>
+
+        <p class="card-description">
+            Lessons are separate from weekly habits and tasks.
+        </p>
+
+        <div class="form-grid">
+
+            <div class="field">
+
+                <label>
+                    Week Number
+                </label>
+
+                <input
+                    type="number"
+                    id="lessonWeek"
+                    placeholder="Example: 1">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Category
+                </label>
+
+                <input
+                    type="text"
+                    id="lessonCategory"
+                    placeholder="Nutrition, Exercise, Hormones...">
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>
+                    Lesson Title
+                </label>
+
+                <input
+                    type="text"
+                    id="lessonTitle"
+                    placeholder="Lesson title">
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>
+                    Lesson Content
+                </label>
+
+                <textarea
+                    id="lessonContent"
+                    placeholder="Write or paste the educational lesson here..."></textarea>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Status
+                </label>
+
+                <select id="lessonStatus">
+
+                    <option value="published">
+                        Published
+                    </option>
+
+                    <option value="draft">
+                        Draft
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <button class="primary-btn" id="saveLessonBtn">
+            Save Lesson
+        </button>
+
+        <button class="secondary-btn" id="clearLessonBtn">
+            Clear
+        </button>
+
+        <span class="form-message" id="lessonMessage">
+        </span>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            All Lessons
+        </h3>
+
+        <div class="content-list" id="lessonList">
+
+            <div class="empty">
+                No lessons added yet.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+COMMUNITY
+========================= -->
+
+<section class="section" id="section-community">
 
     <div class="section-title">
 
@@ -1532,11 +1365,9 @@ Example:
 
     <div class="card">
 
-
         <h3>
             Community Messages
         </h3>
-
 
         <div
             class="community-list"
@@ -1548,9 +1379,7 @@ Example:
 
         </div>
 
-
     </div>
-
 
 </section>
 
@@ -1562,10 +1391,9 @@ Example:
 
 <script type="module">
 
-
-/* ==================================================
-   FIREBASE
-================================================== */
+/* =========================
+FIREBASE
+========================= */
 
 import {
     initializeApp
@@ -1620,18 +1448,16 @@ const firebaseConfig = {
 const app =
     initializeApp(firebaseConfig);
 
-
 const auth =
     getAuth(app);
-
 
 const db =
     getFirestore(app);
 
 
-/* ==================================================
-   ADMIN
-================================================== */
+/* =========================
+ADMIN
+========================= */
 
 const ADMIN_EMAIL =
     "mahnoordietitian3@gmail.com";
@@ -1641,100 +1467,76 @@ let currentAdmin = null;
 
 let editingMemberEmail = null;
 
-let editingWeekId = null;
+let editingWeeklyId = null;
+
+let editingLessonId = null;
 
 
-/* ==================================================
-   SIDEBAR
-================================================== */
+/* =========================
+NAVIGATION
+========================= */
 
-const navButtons =
-    document.querySelectorAll(".nav-btn");
+document
+    .querySelectorAll(".nav-btn")
+    .forEach(button => {
 
+        button.addEventListener(
+            "click",
+            () => {
 
-navButtons.forEach(button => {
-
-    button.addEventListener(
-        "click",
-        () => {
-
-            const section =
-                button.dataset.section;
+                const section =
+                    button.dataset.section;
 
 
-            navButtons.forEach(btn => {
-
-                btn.classList.remove("active");
-
-            });
-
-
-            button.classList.add("active");
+                document
+                    .querySelectorAll(".nav-btn")
+                    .forEach(btn =>
+                        btn.classList.remove("active")
+                    );
 
 
-            document
-                .querySelectorAll(".section")
-                .forEach(element => {
-
-                    element.classList.remove("active");
-
-                });
+                button.classList.add("active");
 
 
-            document
-                .getElementById(
-                    "section-" + section
-                )
-                .classList.add("active");
+                document
+                    .querySelectorAll(".section")
+                    .forEach(sectionElement =>
+                        sectionElement.classList.remove("active")
+                    );
 
 
-            if (section === "members") {
-
-                loadMembers();
-
-            }
-
-
-            if (section === "weekly") {
-
-                loadWeeklyContent();
-
-            }
+                document
+                    .getElementById(
+                        "section-" + section
+                    )
+                    .classList.add("active");
 
 
-            if (section === "community") {
+                if (section === "members") {
+                    loadMembers();
+                }
 
-                loadCommunity();
+                if (section === "weekly") {
+                    loadWeeklyContent();
+                }
+
+                if (section === "education") {
+                    loadLessons();
+                }
+
+                if (section === "community") {
+                    loadCommunity();
+                }
 
             }
+        );
 
-        }
-    );
-
-});
+    });
 
 
-/* ==================================================
-   GO TO WEEKLY
-================================================== */
-
-document.getElementById(
-    "goWeeklyBtn"
-).addEventListener(
-    "click",
-    () => {
-
-        document
-            .querySelector('[data-section="weekly"]')
-            .click();
-
-    }
-);
-
-
-/* ==================================================
-   AUTH CHECK
-================================================== */
+/* =========================
+AUTH CHECK
+========================= */
 
 onAuthStateChanged(
     auth,
@@ -1770,7 +1572,8 @@ onAuthStateChanged(
         }
 
 
-        currentAdmin = user;
+        currentAdmin =
+            user;
 
 
         document.getElementById(
@@ -1785,9 +1588,9 @@ onAuthStateChanged(
 );
 
 
-/* ==================================================
-   OVERVIEW
-================================================== */
+/* =========================
+OVERVIEW
+========================= */
 
 async function loadOverview() {
 
@@ -1795,10 +1598,7 @@ async function loadOverview() {
 
         const membersSnapshot =
             await getDocs(
-                collection(
-                    db,
-                    "members"
-                )
+                collection(db, "members")
             );
 
 
@@ -1806,10 +1606,10 @@ async function loadOverview() {
 
 
         membersSnapshot.forEach(
-            member => {
+            docSnap => {
 
                 const data =
-                    member.data();
+                    docSnap.data();
 
 
                 if (
@@ -1840,33 +1640,26 @@ async function loadOverview() {
 
         const weeklySnapshot =
             await getDocs(
-                collection(
-                    db,
-                    "weeklyContent"
-                )
+                collection(db, "weeklyContent")
             );
 
 
         document.getElementById(
-            "totalWeeks"
+            "totalWeekly"
         ).textContent =
             weeklySnapshot.size;
 
 
-        const communitySnapshot =
+        const lessonSnapshot =
             await getDocs(
-                collection(
-                    db,
-                    "community"
-                )
+                collection(db, "education")
             );
 
 
         document.getElementById(
-            "totalMessages"
+            "totalLessons"
         ).textContent =
-            communitySnapshot.size;
-
+            lessonSnapshot.size;
 
     } catch (error) {
 
@@ -1880,9 +1673,9 @@ async function loadOverview() {
 }
 
 
-/* ==================================================
-   MEMBERS
-================================================== */
+/* =========================
+MEMBERS
+========================= */
 
 async function loadMembers() {
 
@@ -1899,10 +1692,7 @@ async function loadMembers() {
 
         const snapshot =
             await getDocs(
-                collection(
-                    db,
-                    "members"
-                )
+                collection(db, "members")
             );
 
 
@@ -1924,19 +1714,14 @@ async function loadMembers() {
 
 
         snapshot.forEach(
-            memberDoc => {
+            docSnap => {
 
                 const data =
-                    memberDoc.data();
+                    docSnap.data();
 
 
                 const email =
-                    memberDoc.id;
-
-
-                const name =
-                    data.name ||
-                    "Member";
+                    docSnap.id;
 
 
                 const status =
@@ -1963,9 +1748,7 @@ async function loadMembers() {
 
 
                 const row =
-                    document.createElement(
-                        "tr"
-                    );
+                    document.createElement("tr");
 
 
                 row.innerHTML = `
@@ -1973,7 +1756,9 @@ async function loadMembers() {
                     <td>
 
                         <div class="member-name">
-                            ${escapeHtml(name)}
+                            ${escapeHtml(
+                                data.name || "Member"
+                            )}
                         </div>
 
                         <div class="member-email">
@@ -2001,20 +1786,22 @@ async function loadMembers() {
                     </td>
 
                     <td>
-                        ${startingWeight}
+                        ${escapeHtml(
+                            String(startingWeight)
+                        )}
                     </td>
 
                     <td>
-                        ${currentWeight}
+                        ${escapeHtml(
+                            String(currentWeight)
+                        )}
                     </td>
 
                     <td>
 
                         <button
                             class="secondary-btn edit-member">
-
                             Edit
-
                         </button>
 
                     </td>
@@ -2023,9 +1810,7 @@ async function loadMembers() {
 
 
                 row
-                    .querySelector(
-                        ".edit-member"
-                    )
+                    .querySelector(".edit-member")
                     .addEventListener(
                         "click",
                         () => {
@@ -2044,11 +1829,10 @@ async function loadMembers() {
             }
         );
 
-
     } catch (error) {
 
         console.error(
-            "Members error:",
+            "Member loading error:",
             error
         );
 
@@ -2066,9 +1850,9 @@ async function loadMembers() {
 }
 
 
-/* ==================================================
-   EDIT MEMBER
-================================================== */
+/* =========================
+EDIT MEMBER
+========================= */
 
 function editMember(
     email,
@@ -2164,9 +1948,9 @@ function editMember(
 }
 
 
-/* ==================================================
-   SAVE MEMBER
-================================================== */
+/* =========================
+SAVE MEMBER
+========================= */
 
 document.getElementById(
     "saveMemberBtn"
@@ -2175,9 +1959,7 @@ document.getElementById(
     async () => {
 
         if (!currentAdmin) {
-
             return;
-
         }
 
 
@@ -2299,13 +2081,9 @@ document.getElementById(
 
             await loadOverview();
 
-
         } catch (error) {
 
-            console.error(
-                "Save member error:",
-                error
-            );
+            console.error(error);
 
 
             document.getElementById(
@@ -2319,56 +2097,15 @@ document.getElementById(
 );
 
 
-/* ==================================================
-   CLEAR MEMBER
-================================================== */
-
-function clearMemberForm() {
-
-    editingMemberEmail =
-        null;
-
-
-    const ids = [
-
-        "memberNameInput",
-        "memberEmailInput",
-        "memberAgeInput",
-        "memberHeightInput",
-        "memberStartingWeightInput",
-        "memberCurrentWeightInput",
-        "memberStartingWaistInput",
-        "memberCurrentWaistInput",
-        "memberStartingHipInput",
-        "memberCurrentHipInput"
-
-    ];
-
-
-    ids.forEach(id => {
-
-        document.getElementById(id).value = "";
-
-    });
-
-
-    document.getElementById(
-        "memberStatusInput"
-    ).value =
-        "active";
-
-}
-
-
-/* ==================================================
-   WEEKLY CONTENT
-================================================== */
+/* =========================
+WEEKLY CONTENT
+========================= */
 
 async function loadWeeklyContent() {
 
     const container =
         document.getElementById(
-            "weekList"
+            "weeklyList"
         );
 
 
@@ -2403,15 +2140,15 @@ async function loadWeeklyContent() {
 
 
         snapshot.forEach(
-            weekDoc => {
+            docSnap => {
 
                 weeks.push({
 
                     id:
-                        weekDoc.id,
+                        docSnap.id,
 
                     data:
-                        weekDoc.data()
+                        docSnap.data()
 
                 });
 
@@ -2433,174 +2170,98 @@ async function loadWeeklyContent() {
                     week.data;
 
 
-                const card =
+                const item =
                     document.createElement(
                         "div"
                     );
 
 
-                card.className =
-                    "week-card";
+                item.className =
+                    "content-item";
 
 
-                card.innerHTML = `
+                item.innerHTML = `
 
-                    <div class="week-card-top">
+                    <div class="content-top">
 
                         <div>
 
-                            <div class="week-number">
-
-                                Week
-                                ${escapeHtml(
-                                    String(
-                                        data.week || ""
-                                    )
+                            <div class="content-week">
+                                Week ${escapeHtml(
+                                    String(data.week || "")
                                 )}
-
                             </div>
 
-
-                            <div class="week-title">
-
+                            <div class="content-title">
                                 ${escapeHtml(
                                     data.title ||
-                                    "Untitled Week"
+                                    "Untitled week"
                                 )}
-
                             </div>
 
-
-                            <div class="week-focus">
-
-                                ${
-                                    escapeHtml(
-                                        data.focus ||
-                                        ""
-                                    )
-                                }
-
+                            <div class="content-category">
+                                Goal:
+                                ${escapeHtml(
+                                    data.goal || "Not added"
+                                )}
                             </div>
 
                         </div>
 
 
-                        <div>
+                        <div class="content-actions">
 
-                            <span class="week-status ${
-                                data.status === "published"
-                                    ? "published"
-                                    : "draft"
-                            }">
+                            <button
+                                class="secondary-btn edit-week">
+                                Edit
+                            </button>
 
-                                ${
-                                    data.status === "published"
-                                        ? "Published"
-                                        : "Draft"
-                                }
-
-                            </span>
+                            <button
+                                class="danger-btn delete-week">
+                                Delete
+                            </button>
 
                         </div>
 
                     </div>
 
 
-                    <div class="week-content-preview">
+                    <div class="content-preview">
 
+                        <strong>Habits / Tasks:</strong>
 
-                        ${
-                            makeContentBox(
-                                "Weekly Habits",
-                                data.habits
-                            )
-                        }
+                        ${escapeHtml(
+                            data.habits || ""
+                        )}
 
+                        <br><br>
 
-                        ${
-                            makeContentBox(
-                                "What Members Have To Do",
-                                data.tasks
-                            )
-                        }
+                        <strong>Instructions:</strong>
 
+                        ${escapeHtml(
+                            data.instructions || ""
+                        )}
 
-                        ${
-                            makeContentBox(
-                                "Nutrition",
-                                data.nutrition
-                            )
-                        }
+                        <br><br>
 
+                        <strong>Track:</strong>
 
-                        ${
-                            makeContentBox(
-                                "Exercise / Movement",
-                                data.exercise
-                            )
-                        }
-
-
-                        ${
-                            makeContentBox(
-                                "Sleep / Stress / Recovery",
-                                data.recovery
-                            )
-                        }
-
-
-                        ${
-                            makeContentBox(
-                                "Education / Lesson",
-                                data.lesson
-                            )
-                        }
-
-
-                        ${
-                            makeContentBox(
-                                "Extra Notes",
-                                data.notes
-                            )
-                        }
-
-
-                    </div>
-
-
-                    <div class="week-actions">
-
-
-                        <button
-                            class="secondary-btn edit-week">
-
-                            Edit Week
-
-                        </button>
-
-
-                        <button
-                            class="danger-btn delete-week">
-
-                            Delete Week
-
-                        </button>
-
+                        ${escapeHtml(
+                            data.tracking || ""
+                        )}
 
                     </div>
 
                 `;
 
 
-                card
-                    .querySelector(
-                        ".edit-week"
-                    )
+                item
+                    .querySelector(".edit-week")
                     .addEventListener(
                         "click",
                         () => {
 
-                            editWeek(
+                            editWeeklyContent(
                                 week.id,
                                 data
                             );
@@ -2609,67 +2270,44 @@ async function loadWeeklyContent() {
                     );
 
 
-                card
-                    .querySelector(
-                        ".delete-week"
-                    )
+                item
+                    .querySelector(".delete-week")
                     .addEventListener(
                         "click",
                         async () => {
 
-                            const confirmed =
-                                confirm(
+                            if (
+                                !confirm(
                                     "Delete this week's content?"
-                                );
-
-
-                            if (!confirmed) {
-
+                                )
+                            ) {
                                 return;
-
                             }
 
 
-                            try {
+                            await deleteDoc(
 
-                                await deleteDoc(
+                                doc(
+                                    db,
+                                    "weeklyContent",
+                                    week.id
+                                )
 
-                                    doc(
-                                        db,
-                                        "weeklyContent",
-                                        week.id
-                                    )
-
-                                );
+                            );
 
 
-                                await loadWeeklyContent();
+                            await loadWeeklyContent();
 
-                                await loadOverview();
-
-
-                            } catch (error) {
-
-                                console.error(
-                                    "Delete week error:",
-                                    error
-                                );
-
-                                alert(
-                                    "Unable to delete this week."
-                                );
-
-                            }
+                            await loadOverview();
 
                         }
                     );
 
 
-                container.appendChild(card);
+                container.appendChild(item);
 
             }
         );
-
 
     } catch (error) {
 
@@ -2690,126 +2328,63 @@ async function loadWeeklyContent() {
 }
 
 
-/* ==================================================
-   CONTENT BOX
-================================================== */
+/* =========================
+EDIT WEEK
+========================= */
 
-function makeContentBox(
-    title,
-    content
-) {
-
-    if (!content) {
-
-        return "";
-
-    }
-
-
-    return `
-
-        <div class="content-box">
-
-            <div class="content-box-title">
-
-                ${escapeHtml(title)}
-
-            </div>
-
-            <div class="content-box-text">
-
-                ${escapeHtml(content)}
-
-            </div>
-
-        </div>
-
-    `;
-
-}
-
-
-/* ==================================================
-   EDIT WEEK
-================================================== */
-
-function editWeek(
+function editWeeklyContent(
     id,
     data
 ) {
 
-    editingWeekId =
+    editingWeeklyId =
         id;
 
 
     document.getElementById(
-        "weekNumber"
+        "weeklyNumber"
     ).value =
         data.week ?? "";
 
 
     document.getElementById(
-        "weekTitle"
+        "weeklyTitle"
     ).value =
         data.title || "";
 
 
     document.getElementById(
-        "weekFocus"
+        "weeklyGoal"
     ).value =
-        data.focus || "";
+        data.goal || "";
 
 
     document.getElementById(
-        "weekHabits"
+        "weeklyHabits"
     ).value =
         data.habits || "";
 
 
     document.getElementById(
-        "weekTasks"
+        "weeklyInstructions"
     ).value =
-        data.tasks || "";
+        data.instructions || "";
 
 
     document.getElementById(
-        "weekNutrition"
+        "weeklyTracking"
     ).value =
-        data.nutrition || "";
+        data.tracking || "";
 
 
     document.getElementById(
-        "weekExercise"
-    ).value =
-        data.exercise || "";
-
-
-    document.getElementById(
-        "weekRecovery"
-    ).value =
-        data.recovery || "";
-
-
-    document.getElementById(
-        "weekLesson"
-    ).value =
-        data.lesson || "";
-
-
-    document.getElementById(
-        "weekNotes"
-    ).value =
-        data.notes || "";
-
-
-    document.getElementById(
-        "weekStatus"
+        "weeklyStatus"
     ).value =
         data.status || "draft";
 
 
     document.getElementById(
-        "weekMessage"
+        "weeklyMessage"
     ).textContent =
         "Editing Week " + data.week;
 
@@ -2822,45 +2397,62 @@ function editWeek(
 }
 
 
-/* ==================================================
-   SAVE WEEK
-================================================== */
+/* =========================
+SAVE WEEKLY CONTENT
+========================= */
 
 document.getElementById(
-    "saveWeekBtn"
+    "saveWeeklyBtn"
 ).addEventListener(
     "click",
     async () => {
 
-        if (!currentAdmin) {
-
-            return;
-
-        }
-
-
         const week =
             document.getElementById(
-                "weekNumber"
+                "weeklyNumber"
             ).value.trim();
 
 
         const title =
             document.getElementById(
-                "weekTitle"
+                "weeklyTitle"
             ).value.trim();
 
 
-        const focus =
+        const goal =
             document.getElementById(
-                "weekFocus"
+                "weeklyGoal"
             ).value.trim();
+
+
+        const habits =
+            document.getElementById(
+                "weeklyHabits"
+            ).value.trim();
+
+
+        const instructions =
+            document.getElementById(
+                "weeklyInstructions"
+            ).value.trim();
+
+
+        const tracking =
+            document.getElementById(
+                "weeklyTracking"
+            ).value.trim();
+
+
+        const status =
+            document.getElementById(
+                "weeklyStatus"
+            ).value;
 
 
         if (!week || !title) {
 
             document.getElementById(
-                "weekMessage"
+                "weeklyMessage"
             ).textContent =
                 "Week number and title are required.";
 
@@ -2870,15 +2462,19 @@ document.getElementById(
 
 
         /*
-        If editing an existing week,
-        keep its original document ID.
+        Existing week keeps the same ID.
 
-        If creating a new week,
-        use week-1, week-2, etc.
+        New week automatically gets:
+        week-1
+        week-2
+        week-3
+        etc.
+
+        This makes future editing easy.
         */
 
-        const weekId =
-            editingWeekId ||
+        const weeklyId =
+            editingWeeklyId ||
             "week-" + week;
 
 
@@ -2889,53 +2485,18 @@ document.getElementById(
 
             title,
 
-            focus,
+            goal,
 
-            habits:
-                document.getElementById(
-                    "weekHabits"
-                ).value.trim(),
+            habits,
 
-            tasks:
-                document.getElementById(
-                    "weekTasks"
-                ).value.trim(),
+            instructions,
 
-            nutrition:
-                document.getElementById(
-                    "weekNutrition"
-                ).value.trim(),
+            tracking,
 
-            exercise:
-                document.getElementById(
-                    "weekExercise"
-                ).value.trim(),
-
-            recovery:
-                document.getElementById(
-                    "weekRecovery"
-                ).value.trim(),
-
-            lesson:
-                document.getElementById(
-                    "weekLesson"
-                ).value.trim(),
-
-            notes:
-                document.getElementById(
-                    "weekNotes"
-                ).value.trim(),
-
-            status:
-                document.getElementById(
-                    "weekStatus"
-                ).value,
+            status,
 
             updatedAt:
-                new Date().toISOString(),
-
-            updatedBy:
-                currentAdmin.email
+                new Date().toISOString()
 
         };
 
@@ -2947,7 +2508,7 @@ document.getElementById(
                 doc(
                     db,
                     "weeklyContent",
-                    weekId
+                    weeklyId
                 ),
 
                 data,
@@ -2959,32 +2520,35 @@ document.getElementById(
             );
 
 
-            clearWeekForm();
+            editingWeeklyId =
+                null;
+
+
+            clearWeeklyForm();
 
 
             document.getElementById(
-                "weekMessage"
+                "weeklyMessage"
             ).textContent =
-                "Week saved successfully.";
+                "Weekly content saved successfully.";
 
 
             await loadWeeklyContent();
 
             await loadOverview();
 
-
         } catch (error) {
 
             console.error(
-                "Save week error:",
+                "Weekly save error:",
                 error
             );
 
 
             document.getElementById(
-                "weekMessage"
+                "weeklyMessage"
             ).textContent =
-                "Unable to save week.";
+                "Unable to save weekly content.";
 
         }
 
@@ -2992,93 +2556,535 @@ document.getElementById(
 );
 
 
-/* ==================================================
-   CLEAR WEEK
-================================================== */
+/* =========================
+CLEAR WEEKLY FORM
+========================= */
 
 document.getElementById(
-    "clearWeekBtn"
+    "clearWeeklyBtn"
 ).addEventListener(
     "click",
     () => {
 
-        clearWeekForm();
+        clearWeeklyForm();
 
         document.getElementById(
-            "weekMessage"
+            "weeklyMessage"
         ).textContent = "";
 
     }
 );
 
 
-function clearWeekForm() {
+function clearWeeklyForm() {
 
-    editingWeekId =
+    editingWeeklyId =
         null;
 
 
     document.getElementById(
-        "weekNumber"
+        "weeklyNumber"
     ).value = "";
 
 
     document.getElementById(
-        "weekTitle"
+        "weeklyTitle"
     ).value = "";
 
 
     document.getElementById(
-        "weekFocus"
+        "weeklyGoal"
     ).value = "";
 
 
     document.getElementById(
-        "weekHabits"
+        "weeklyHabits"
     ).value = "";
 
 
     document.getElementById(
-        "weekTasks"
+        "weeklyInstructions"
     ).value = "";
 
 
     document.getElementById(
-        "weekNutrition"
+        "weeklyTracking"
     ).value = "";
 
 
     document.getElementById(
-        "weekExercise"
-    ).value = "";
-
-
-    document.getElementById(
-        "weekRecovery"
-    ).value = "";
-
-
-    document.getElementById(
-        "weekLesson"
-    ).value = "";
-
-
-    document.getElementById(
-        "weekNotes"
-    ).value = "";
-
-
-    document.getElementById(
-        "weekStatus"
+        "weeklyStatus"
     ).value =
         "published";
 
 }
 
 
-/* ==================================================
-   COMMUNITY
-================================================== */
+/* =========================
+LESSONS
+========================= */
+
+async function loadLessons() {
+
+    const container =
+        document.getElementById(
+            "lessonList"
+        );
+
+
+    container.innerHTML = "";
+
+
+    try {
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "education"
+                )
+            );
+
+
+        if (snapshot.empty) {
+
+            container.innerHTML = `
+                <div class="empty">
+                    No lessons added yet.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        const lessons = [];
+
+
+        snapshot.forEach(
+            docSnap => {
+
+                lessons.push({
+
+                    id:
+                        docSnap.id,
+
+                    data:
+                        docSnap.data()
+
+                });
+
+            }
+        );
+
+
+        lessons.sort(
+            (a, b) =>
+                Number(a.data.week || 0) -
+                Number(b.data.week || 0)
+        );
+
+
+        lessons.forEach(
+            lesson => {
+
+                const data =
+                    lesson.data;
+
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                item.className =
+                    "content-item";
+
+
+                item.innerHTML = `
+
+                    <div class="content-top">
+
+                        <div>
+
+                            <div class="content-week">
+                                Week ${escapeHtml(
+                                    String(data.week || "")
+                                )}
+                            </div>
+
+                            <div class="content-title">
+                                ${escapeHtml(
+                                    data.title ||
+                                    "Untitled lesson"
+                                )}
+                            </div>
+
+                            <div class="content-category">
+                                ${escapeHtml(
+                                    data.category || ""
+                                )}
+
+                                ·
+
+                                ${escapeHtml(
+                                    data.status || "draft"
+                                )}
+                            </div>
+
+                        </div>
+
+
+                        <div class="content-actions">
+
+                            <button
+                                class="secondary-btn edit-lesson">
+                                Edit
+                            </button>
+
+                            <button
+                                class="danger-btn delete-lesson">
+                                Delete
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="content-preview">
+                        ${escapeHtml(
+                            data.content || ""
+                        )}
+                    </div>
+
+                `;
+
+
+                item
+                    .querySelector(
+                        ".edit-lesson"
+                    )
+                    .addEventListener(
+                        "click",
+                        () => {
+
+                            editLesson(
+                                lesson.id,
+                                data
+                            );
+
+                        }
+                    );
+
+
+                item
+                    .querySelector(
+                        ".delete-lesson"
+                    )
+                    .addEventListener(
+                        "click",
+                        async () => {
+
+                            if (
+                                !confirm(
+                                    "Delete this lesson?"
+                                )
+                            ) {
+                                return;
+                            }
+
+
+                            await deleteDoc(
+
+                                doc(
+                                    db,
+                                    "education",
+                                    lesson.id
+                                )
+
+                            );
+
+
+                            await loadLessons();
+
+                            await loadOverview();
+
+                        }
+                    );
+
+
+                container.appendChild(item);
+
+            }
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Lesson loading error:",
+            error
+        );
+
+
+        container.innerHTML = `
+            <div class="empty">
+                Unable to load lessons.
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* =========================
+EDIT LESSON
+========================= */
+
+function editLesson(
+    id,
+    data
+) {
+
+    editingLessonId =
+        id;
+
+
+    document.getElementById(
+        "lessonWeek"
+    ).value =
+        data.week ?? "";
+
+
+    document.getElementById(
+        "lessonCategory"
+    ).value =
+        data.category || "";
+
+
+    document.getElementById(
+        "lessonTitle"
+    ).value =
+        data.title || "";
+
+
+    document.getElementById(
+        "lessonContent"
+    ).value =
+        data.content || "";
+
+
+    document.getElementById(
+        "lessonStatus"
+    ).value =
+        data.status || "draft";
+
+
+    document.getElementById(
+        "lessonMessage"
+    ).textContent =
+        "Editing lesson.";
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =========================
+SAVE LESSON
+========================= */
+
+document.getElementById(
+    "saveLessonBtn"
+).addEventListener(
+    "click",
+    async () => {
+
+        const week =
+            document.getElementById(
+                "lessonWeek"
+            ).value.trim();
+
+
+        const category =
+            document.getElementById(
+                "lessonCategory"
+            ).value.trim();
+
+
+        const title =
+            document.getElementById(
+                "lessonTitle"
+            ).value.trim();
+
+
+        const content =
+            document.getElementById(
+                "lessonContent"
+            ).value.trim();
+
+
+        const status =
+            document.getElementById(
+                "lessonStatus"
+            ).value;
+
+
+        if (!week || !title || !content) {
+
+            document.getElementById(
+                "lessonMessage"
+            ).textContent =
+                "Week, title and lesson content are required.";
+
+            return;
+
+        }
+
+
+        const lessonId =
+            editingLessonId ||
+            "week-" + week;
+
+
+        const data = {
+
+            week:
+                Number(week),
+
+            category,
+
+            title,
+
+            content,
+
+            status,
+
+            updatedAt:
+                new Date().toISOString()
+
+        };
+
+
+        try {
+
+            await setDoc(
+
+                doc(
+                    db,
+                    "education",
+                    lessonId
+                ),
+
+                data,
+
+                {
+                    merge: true
+                }
+
+            );
+
+
+            editingLessonId =
+                null;
+
+
+            clearLessonForm();
+
+
+            document.getElementById(
+                "lessonMessage"
+            ).textContent =
+                "Lesson saved successfully.";
+
+
+            await loadLessons();
+
+            await loadOverview();
+
+        } catch (error) {
+
+            console.error(
+                "Lesson save error:",
+                error
+            );
+
+
+            document.getElementById(
+                "lessonMessage"
+            ).textContent =
+                "Unable to save lesson.";
+
+        }
+
+    }
+);
+
+
+/* =========================
+CLEAR LESSON
+========================= */
+
+document.getElementById(
+    "clearLessonBtn"
+).addEventListener(
+    "click",
+    () => {
+
+        clearLessonForm();
+
+        document.getElementById(
+            "lessonMessage"
+        ).textContent = "";
+
+    }
+);
+
+
+function clearLessonForm() {
+
+    editingLessonId =
+        null;
+
+
+    document.getElementById(
+        "lessonWeek"
+    ).value = "";
+
+
+    document.getElementById(
+        "lessonCategory"
+    ).value = "";
+
+
+    document.getElementById(
+        "lessonTitle"
+    ).value = "";
+
+
+    document.getElementById(
+        "lessonContent"
+    ).value = "";
+
+
+    document.getElementById(
+        "lessonStatus"
+    ).value =
+        "published";
+
+}
+
+
+/* =========================
+COMMUNITY
+========================= */
 
 async function loadCommunity() {
 
@@ -3115,7 +3121,6 @@ async function loadCommunity() {
                 await getDocs(
                     orderedQuery
                 );
-
 
         } catch {
 
@@ -3167,46 +3172,35 @@ async function loadCommunity() {
                         <div>
 
                             <div class="message-author">
-
                                 ${escapeHtml(
                                     data.name ||
                                     "Member"
                                 )}
-
                             </div>
 
-
                             <div class="message-email">
-
                                 ${escapeHtml(
-                                    data.email ||
-                                    ""
+                                    data.email || ""
                                 )}
-
                             </div>
 
                         </div>
 
-
                         <div class="message-date">
-
                             ${formatDate(
                                 data.createdAt
                             )}
-
                         </div>
 
                     </div>
 
 
                     <div class="message-text">
-
                         ${escapeHtml(
                             data.message ||
                             data.text ||
                             ""
                         )}
-
                     </div>
 
 
@@ -3215,9 +3209,7 @@ async function loadCommunity() {
 
                     <button
                         class="danger-btn delete-community">
-
                         Delete Message
-
                     </button>
 
                 `;
@@ -3231,48 +3223,29 @@ async function loadCommunity() {
                         "click",
                         async () => {
 
-                            const confirmed =
-                                confirm(
+                            if (
+                                !confirm(
                                     "Delete this community message?"
-                                );
-
-
-                            if (!confirmed) {
-
+                                )
+                            ) {
                                 return;
-
                             }
 
 
-                            try {
+                            await deleteDoc(
 
-                                await deleteDoc(
+                                doc(
+                                    db,
+                                    "community",
+                                    messageDoc.id
+                                )
 
-                                    doc(
-                                        db,
-                                        "community",
-                                        messageDoc.id
-                                    )
-
-                                );
+                            );
 
 
-                                await loadCommunity();
+                            await loadCommunity();
 
-                                await loadOverview();
-
-
-                            } catch (error) {
-
-                                console.error(
-                                    error
-                                );
-
-                                alert(
-                                    "Unable to delete message."
-                                );
-
-                            }
+                            await loadOverview();
 
                         }
                     );
@@ -3282,7 +3255,6 @@ async function loadCommunity() {
 
             }
         );
-
 
     } catch (error) {
 
@@ -3303,9 +3275,77 @@ async function loadCommunity() {
 }
 
 
-/* ==================================================
-   LOGOUT
-================================================== */
+/* =========================
+CLEAR MEMBER
+========================= */
+
+function clearMemberForm() {
+
+    editingMemberEmail =
+        null;
+
+
+    document.getElementById(
+        "memberNameInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "memberEmailInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "memberAgeInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "memberHeightInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "memberStartingWeightInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "memberCurrentWeightInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "memberStartingWaistInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "memberCurrentWaistInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "memberStartingHipInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "memberCurrentHipInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "memberStatusInput"
+    ).value =
+        "active";
+
+}
+
+
+/* =========================
+LOGOUT
+========================= */
 
 document.getElementById(
     "logoutBtn"
@@ -3322,9 +3362,9 @@ document.getElementById(
 );
 
 
-/* ==================================================
-   HELPERS
-================================================== */
+/* =========================
+HELPERS
+========================= */
 
 function numberOrNull(id) {
 
@@ -3335,9 +3375,7 @@ function numberOrNull(id) {
 
 
     if (value === "") {
-
         return null;
-
     }
 
 
@@ -3355,31 +3393,11 @@ function numberOrNull(id) {
 function escapeHtml(value) {
 
     return String(value)
-
-        .replaceAll(
-            "&",
-            "&amp;"
-        )
-
-        .replaceAll(
-            "<",
-            "&lt;"
-        )
-
-        .replaceAll(
-            ">",
-            "&gt;"
-        )
-
-        .replaceAll(
-            '"',
-            "&quot;"
-        )
-
-        .replaceAll(
-            "'",
-            "&#039;"
-        );
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
 
 }
 
@@ -3387,9 +3405,7 @@ function escapeHtml(value) {
 function formatDate(value) {
 
     if (!value) {
-
         return "";
-
     }
 
 
