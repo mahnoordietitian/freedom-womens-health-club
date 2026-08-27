@@ -1,1 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Freedom Women's Health Club</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #FBF8F3;
+        color: #2D2D2D;
+        line-height: 1.6;
+    }
+
+    header {
+        background: #6E4A7E;
+        color: white;
+        padding: 45px 20px;
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+
+    header p {
+        font-size: 16px;
+        opacity: 0.95;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: auto;
+        padding: 30px 20px;
+    }
+
+    .welcome {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        margin-bottom: 25px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    }
+
+    .welcome h2 {
+        color: #6E4A7E;
+        margin-bottom: 8px;
+    }
+
+    .progress-box {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        margin-bottom: 25px;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 15px;
+        background: #eee;
+        border-radius: 20px;
+        overflow: hidden;
+        margin-top: 12px;
+    }
+
+    .progress-fill {
+        height: 100%;
+        width: 0%;
+        background: #6E4A7E;
+        transition: width 0.3s;
+    }
+
+    .days {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 15px;
+    }
+
+    .day {
+        background: white;
+        padding: 20px;
+        border-radius: 14px;
+        text-align: center;
+        border: 1px solid #eee;
+    }
+
+    .day h3 {
+        color: #6E4A7E;
+        margin-bottom: 8px;
+    }
+
+    .day button {
+        border: none;
+        background: #6E4A7E;
+        color: white;
+        padding: 9px 15px;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .day button:hover {
+        opacity: 0.9;
+    }
+
+    .locked {
+        opacity: 0.55;
+    }
+
+    .locked button {
+        background: #aaa;
+        cursor: not-allowed;
+    }
+
+    .section {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        margin-top: 30px;
+    }
+
+    .section h2 {
+        color: #6E4A7E;
+        margin-bottom: 12px;
+    }
+
+    .checkin {
+        display: grid;
+        gap: 12px;
+        margin-top: 15px;
+    }
+
+    .checkin label {
+        font-weight: bold;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 11px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 15px;
+    }
+
+    .save-btn {
+        background: #6E4A7E;
+        color: white;
+        border: none;
+        padding: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    footer {
+        text-align: center;
+        padding: 30px;
+        margin-top: 40px;
+        color: #666;
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Freedom Women's Health Club</h1>
+    <p>A supportive community for sustainable weight loss, healthy habits and a healthier lifestyle.</p>
+</header>
+
+<div class="container">
+
+    <div class="welcome">
+        <h2>Welcome to Freedom 🌸</h2>
+        <p>
+            You don't need extreme diets to lose weight.
+            Over the next 90 days, we'll focus on simple habits,
+            better food choices, movement and consistency.
+        </p>
+    </div>
+
+    <div class="progress-box">
+        <h2>Your 90-Day Progress</h2>
+
+        <p>
+            Completed:
+            <strong><span id="completed">0</span></strong> / 90 days
+        </p>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>90-Day Program</h2>
+
+        <p style="margin-bottom:20px;">
+            Complete each day before moving forward.
+        </p>
+
+        <div class="days" id="days"></div>
+    </div>
+
+    <div class="section">
+        <h2>Daily Check-In</h2>
+
+        <p>
+            Use this space to reflect on your day and stay accountable.
+        </p>
+
+        <div class="checkin">
+
+            <label>Today's weight (optional)</label>
+            <input type="number" id="weight" placeholder="kg">
+
+            <label>Water</label>
+            <input type="text" id="water" placeholder="Example: 8 glasses">
+
+            <label>Walking / Steps</label>
+            <input type="text" id="steps" placeholder="Example: 30 minutes">
+
+            <label>Sleep</label>
+            <input type="text" id="sleep" placeholder="Example: 7 hours">
+
+            <label>How did you feel today?</label>
+            <textarea id="feeling" rows="4" placeholder="Write a few words..."></textarea>
+
+            <button class="save-btn" onclick="saveCheckin()">
+                Save Check-In
+            </button>
+
+        </div>
+
+        <p id="savedMessage" style="margin-top:12px;"></p>
+    </div>
+
+</div>
+
+<footer>
+    <p>Freedom Women's Health Club</p>
+    <p>Small steps. Consistent habits. Long-term results.</p>
+</footer>
+
+<script>
+
+let completedDays =
+    JSON.parse(localStorage.getItem("completedDays")) || [];
+
+function createDays() {
+
+    const daysContainer = document.getElementById("days");
+
+    for (let i = 1; i <= 90; i++) {
+
+        const day = document.createElement("div");
+        day.className = "day";
+
+        if (i > 30) {
+
+            day.classList.add("locked");
+
+            day.innerHTML = `
+                <h3>Day ${i}</h3>
+                <p>Coming Soon</p>
+                <button disabled>Locked</button>
+            `;
+
+        } else {
+
+            const completed =
+                completedDays.includes(i);
+
+            day.innerHTML = `
+                <h3>Day ${i}</h3>
+
+                <p>
+                    ${completed
+                    ? "✓ Completed"
+                    : "Today's lesson"}
+                </p>
+
+                <button onclick="completeDay(${i})">
+                    ${completed
+                    ? "Completed"
+                    : "Complete Day"}
+                </button>
+            `;
+        }
+
+        daysContainer.appendChild(day);
+    }
+}
+
+function completeDay(dayNumber) {
+
+    if (!completedDays.includes(dayNumber)) {
+
+        completedDays.push(dayNumber);
+
+        localStorage.setItem(
+            "completedDays",
+            JSON.stringify(completedDays)
+        );
+    }
+
+    updateProgress();
+
+    document.getElementById("days").innerHTML = "";
+
+    createDays();
+}
+
+function updateProgress() {
+
+    const total = completedDays.length;
+
+    document.getElementById("completed").innerText = total;
+
+    const percentage = (total / 90) * 100;
+
+    document.getElementById("progress").style.width =
+        percentage + "%";
+}
+
+function saveCheckin() {
+
+    const checkin = {
+        weight: document.getElementById("weight").value,
+        water: document.getElementById("water").value,
+        steps: document.getElementById("steps").value,
+        sleep: document.getElementById("sleep").value,
+        feeling: document.getElementById("feeling").value,
+        date: new Date().toLocaleDateString()
+    };
+
+    localStorage.setItem(
+        "dailyCheckin",
+        JSON.stringify(checkin)
+    );
+
+    document.getElementById("savedMessage").innerText =
+        "Your check-in has been saved on this device.";
+}
+
+createDays();
+updateProgress();
+
+</script>
+
+</body>
+</html>
