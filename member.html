@@ -2,12 +2,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Freedom Women's Health Club</title>
 
 <style>
+
 :root{
   --cream:#FBF8F3;
   --plum:#6E4A7E;
@@ -19,10 +21,16 @@
   --border:#E6DDD3;
   --green:#4F8060;
   --green-light:#EAF4EC;
+  --red:#A44A4A;
+  --shadow:0 10px 30px rgba(0,0,0,.06);
 }
 
 *{
   box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
@@ -30,6 +38,7 @@ body{
   font-family:Arial,sans-serif;
   background:var(--cream);
   color:var(--charcoal);
+  line-height:1.65;
 }
 
 button,
@@ -37,6 +46,11 @@ input,
 textarea{
   font:inherit;
 }
+
+button{
+  cursor:pointer;
+}
+
 
 /* =====================================================
    LOGIN
@@ -64,6 +78,7 @@ textarea{
   text-align:center;
   color:var(--plum);
   line-height:1.35;
+  margin-top:0;
 }
 
 .subtitle{
@@ -90,6 +105,12 @@ textarea{
   border:1px solid var(--border);
   border-radius:9px;
   background:white;
+  outline:none;
+}
+
+input:focus,
+textarea:focus{
+  border-color:var(--plum);
 }
 
 .btn{
@@ -111,10 +132,11 @@ textarea{
 }
 
 .error{
-  color:#A44A4A;
+  color:var(--red);
   text-align:center;
   margin-top:15px;
 }
+
 
 /* =====================================================
    APP
@@ -134,6 +156,7 @@ textarea{
   color:white;
   padding:28px 18px;
   overflow-y:auto;
+  z-index:100;
 }
 
 .brand{
@@ -175,6 +198,7 @@ textarea{
   margin-left:245px;
   min-height:100vh;
   padding:30px;
+  max-width:1400px;
 }
 
 .topbar{
@@ -197,7 +221,9 @@ textarea{
   padding:9px 15px;
   border-radius:20px;
   margin-right:8px;
+  font-weight:bold;
 }
+
 
 /* =====================================================
    SECTIONS
@@ -211,8 +237,9 @@ textarea{
   display:block;
 }
 
+
 /* =====================================================
-   HOME
+   GENERAL CARDS
 ===================================================== */
 
 .welcome-card,
@@ -224,6 +251,7 @@ textarea{
   border:1px solid var(--border);
   border-radius:18px;
   padding:28px;
+  box-shadow:var(--shadow);
 }
 
 .welcome-card{
@@ -255,6 +283,7 @@ textarea{
   transition:width .3s;
 }
 
+
 /* =====================================================
    CLASSROOM
 ===================================================== */
@@ -270,6 +299,7 @@ textarea{
   border:1px solid var(--border);
   border-radius:14px;
   overflow:hidden;
+  box-shadow:0 5px 18px rgba(0,0,0,.03);
 }
 
 .classroom-header{
@@ -314,11 +344,24 @@ textarea{
   margin-top:8px;
   background:#FCFAF7;
   cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
 .child:hover{
   border-color:var(--plum);
 }
+
+.child-main{
+  flex:1;
+}
+
+.child-lock{
+  color:#777;
+  font-size:12px;
+}
+
 
 /* =====================================================
    COMPLETED DAY
@@ -330,10 +373,10 @@ textarea{
 }
 
 .completed-badge{
-  margin-left:auto;
   color:var(--green);
   font-weight:bold;
   font-size:13px;
+  white-space:nowrap;
 }
 
 .day-status{
@@ -348,13 +391,96 @@ textarea{
   font-size:14px;
 }
 
+
 /* =====================================================
    CONTENT
 ===================================================== */
 
+.content-box h1,
 .content-box h2,
-.content-box h3{
+.content-box h3,
+.content-box h4{
   color:var(--plum);
+  line-height:1.35;
+}
+
+.content-box h1{
+  font-size:30px;
+}
+
+.content-box h2{
+  font-size:26px;
+}
+
+.content-box h3{
+  font-size:21px;
+}
+
+.content-box p{
+  margin:12px 0;
+}
+
+.content-box ul,
+.content-box ol{
+  padding-left:25px;
+}
+
+.content-box li{
+  margin-bottom:7px;
+}
+
+.content-box strong,
+.content-box b{
+  font-weight:700;
+}
+
+.content-box a{
+  color:var(--plum);
+  font-weight:bold;
+}
+
+.content-box img{
+  display:block;
+  max-width:100%;
+  width:auto;
+  height:auto;
+  max-height:500px;
+  object-fit:contain;
+  border-radius:14px;
+  margin:20px auto;
+  border:1px solid var(--border);
+}
+
+.content-image{
+  text-align:center;
+  margin:25px 0;
+}
+
+.content-image img{
+  max-width:100%;
+  max-height:550px;
+  border-radius:15px;
+}
+
+.content-video{
+  margin:25px 0;
+}
+
+.content-video iframe{
+  width:100%;
+  min-height:400px;
+  border:0;
+  border-radius:14px;
+}
+
+.content-link{
+  display:inline-block;
+  background:var(--light);
+  color:var(--plum);
+  padding:12px 16px;
+  border-radius:10px;
+  text-decoration:none;
+  margin:8px 0;
 }
 
 .content-section{
@@ -366,6 +492,7 @@ textarea{
 .back-btn{
   margin-bottom:15px;
 }
+
 
 /* =====================================================
    COMPLETE BUTTON
@@ -404,6 +531,7 @@ textarea{
   font-weight:bold;
 }
 
+
 /* =====================================================
    PROFILE
 ===================================================== */
@@ -420,17 +548,53 @@ textarea{
   border-bottom:0;
 }
 
+
 /* =====================================================
    COMMUNITY
 ===================================================== */
 
+.community-box{
+  margin-top:20px;
+}
+
+.community-compose{
+  padding-bottom:25px;
+  margin-bottom:10px;
+  border-bottom:1px solid var(--border);
+}
+
+.community-compose textarea{
+  min-height:100px;
+  resize:vertical;
+  margin-bottom:10px;
+}
+
 .post{
-  padding:18px 0;
+  padding:20px 0;
   border-bottom:1px solid var(--border);
 }
 
 .post:last-child{
   border-bottom:0;
+}
+
+.post.pinned{
+  background:#FCF9F1;
+  border:1px solid var(--champagne);
+  border-radius:14px;
+  padding:18px;
+  margin:10px 0;
+}
+
+.pin-label{
+  display:inline-block;
+  background:var(--champagne);
+  color:#5d4c38;
+  padding:5px 10px;
+  border-radius:15px;
+  font-size:12px;
+  font-weight:bold;
+  margin-bottom:10px;
 }
 
 .post-author{
@@ -444,6 +608,59 @@ textarea{
   margin:5px 0 10px;
 }
 
+.post-content{
+  white-space:normal;
+  overflow-wrap:anywhere;
+}
+
+.post-content img{
+  display:block;
+  max-width:100%;
+  max-height:500px;
+  border-radius:14px;
+  margin-top:15px;
+  object-fit:contain;
+  border:1px solid var(--border);
+}
+
+.post-content a{
+  color:var(--plum);
+}
+
+.post-actions{
+  margin-top:12px;
+}
+
+.delete-post-btn{
+  border:0;
+  background:#F8EAEA;
+  color:var(--red);
+  padding:7px 11px;
+  border-radius:7px;
+  font-size:12px;
+  cursor:pointer;
+}
+
+
+/* =====================================================
+   LOCKED CONTENT
+===================================================== */
+
+.locked-card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:25px;
+  text-align:center;
+  color:#777;
+}
+
+.lock-icon{
+  font-size:35px;
+  margin-bottom:10px;
+}
+
+
 /* =====================================================
    EMPTY
 ===================================================== */
@@ -456,6 +673,7 @@ textarea{
   text-align:center;
   color:#777;
 }
+
 
 /* =====================================================
    MOBILE
@@ -496,11 +714,32 @@ textarea{
     flex-direction:column;
     gap:5px;
   }
+
+  .welcome-card,
+  .progress-card,
+  .profile-card,
+  .content-box,
+  .community-box{
+    padding:20px;
+  }
+
+  .content-video iframe{
+    min-height:220px;
+  }
+
+  .child{
+    align-items:flex-start;
+    flex-wrap:wrap;
+  }
+
 }
+
 </style>
 </head>
 
+
 <body>
+
 
 <!-- =====================================================
      LOGIN
@@ -557,11 +796,13 @@ textarea{
 </div>
 
 
+
 <!-- =====================================================
      MEMBER APP
 ===================================================== -->
 
 <div id="app">
+
 
   <aside class="sidebar">
 
@@ -577,6 +818,7 @@ textarea{
       </small>
 
     </div>
+
 
     <nav class="nav">
 
@@ -596,7 +838,7 @@ textarea{
       <button
         onclick="openPage('classroom',this)"
       >
-        📚 Classroom
+        📚 90-Day Journey
       </button>
 
       <button
@@ -622,7 +864,9 @@ textarea{
   </aside>
 
 
+
   <main class="main">
+
 
     <div class="topbar">
 
@@ -651,6 +895,7 @@ textarea{
     </div>
 
 
+
     <!-- =================================================
          HOME
     ================================================== -->
@@ -668,7 +913,7 @@ textarea{
 
         <p>
           Welcome to Freedom Women's Health Club.
-          Your complete program is available here.
+          Your complete 90-day journey is available here.
         </p>
 
       </div>
@@ -706,6 +951,7 @@ textarea{
     </section>
 
 
+
     <!-- =================================================
          COMMUNITY
     ================================================== -->
@@ -715,11 +961,36 @@ textarea{
       class="section"
     >
 
-      <h2>Community</h2>
+      <h2>
+        Community
+      </h2>
 
       <div class="community-box">
 
-        <h3>Community Posts</h3>
+        <div class="community-compose">
+
+          <h3>
+            Share with the community
+          </h3>
+
+          <textarea
+            id="communityText"
+            placeholder="Share your progress, workout, meal, win or question..."
+          ></textarea>
+
+          <button
+            class="btn"
+            onclick="createCommunityPost()"
+          >
+            Post
+          </button>
+
+        </div>
+
+
+        <h3>
+          Community Posts
+        </h3>
 
         <div id="communityPosts">
           Loading posts...
@@ -728,6 +999,7 @@ textarea{
       </div>
 
     </section>
+
 
 
     <!-- =================================================
@@ -739,10 +1011,13 @@ textarea{
       class="section"
     >
 
-      <h2>Classroom</h2>
+      <h2>
+        90-Day Journey
+      </h2>
 
       <p>
         Your program content is organized below.
+        Future content remains visible but locked until its unlock day.
       </p>
 
       <div
@@ -751,12 +1026,13 @@ textarea{
       >
 
         <div class="empty">
-          Loading classroom...
+          Loading journey...
         </div>
 
       </div>
 
     </section>
+
 
 
     <!-- =================================================
@@ -772,7 +1048,7 @@ textarea{
         class="btn back-btn"
         onclick="openPage('classroom')"
       >
-        ← Back to Classroom
+        ← Back to 90-Day Journey
       </button>
 
       <div
@@ -781,6 +1057,7 @@ textarea{
       ></div>
 
     </section>
+
 
 
     <!-- =================================================
@@ -805,6 +1082,7 @@ textarea{
     </section>
 
 
+
     <!-- =================================================
          LEADERBOARD
     ================================================== -->
@@ -827,6 +1105,7 @@ textarea{
       </div>
 
     </section>
+
 
 
     <!-- =================================================
@@ -880,12 +1159,15 @@ textarea{
 
     </section>
 
+
   </main>
 
 </div>
 
 
+
 <script type="module">
+
 
 /* =====================================================
    FIREBASE
@@ -897,6 +1179,7 @@ import {
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
+
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -906,19 +1189,24 @@ import {
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
+
 import {
   getFirestore,
   collection,
   getDocs,
+  addDoc,
   query,
   where,
+  orderBy,
   doc,
   getDoc,
   setDoc,
+  deleteDoc,
   serverTimestamp
 }
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
 
 
 const firebaseConfig = {
@@ -947,11 +1235,14 @@ const firebaseConfig = {
 const app =
 initializeApp(firebaseConfig);
 
+
 const auth =
 getAuth(app);
 
+
 const db =
 getFirestore(app);
+
 
 
 /* =====================================================
@@ -971,12 +1262,10 @@ let testMode = false;
 let programDay = 1;
 
 
-/* =====================================================
-   TEST ACCOUNT
-===================================================== */
 
 const TEST_EMAIL =
 "mahnoordietitian3@gmail.com";
+
 
 
 /* =====================================================
@@ -1008,6 +1297,7 @@ onAuthStateChanged(
 
   }
 );
+
 
 
 /* =====================================================
@@ -1069,6 +1359,7 @@ document
 
     }
   );
+
 
 
 /* =====================================================
@@ -1161,8 +1452,9 @@ async function loadMember(email){
 }
 
 
+
 /* =====================================================
-   LOAD PROGRESS FROM FIREBASE
+   LOAD PROGRESS
 ===================================================== */
 
 async function loadProgress(){
@@ -1170,11 +1462,8 @@ async function loadProgress(){
   completedDays = [];
 
 
-  if(!currentUser){
-
+  if(!currentUser)
     return;
-
-  }
 
 
   try{
@@ -1217,17 +1506,15 @@ async function loadProgress(){
 }
 
 
+
 /* =====================================================
-   SAVE PROGRESS TO FIREBASE
+   SAVE PROGRESS
 ===================================================== */
 
 async function saveProgress(){
 
-  if(!currentUser){
-
+  if(!currentUser)
     return false;
-
-  }
 
 
   try{
@@ -1274,7 +1561,7 @@ async function saveProgress(){
     );
 
     alert(
-      "Your progress could not be saved. Please check your internet connection."
+      "Your progress could not be saved."
     );
 
     return false;
@@ -1282,6 +1569,7 @@ async function saveProgress(){
   }
 
 }
+
 
 
 /* =====================================================
@@ -1349,16 +1637,12 @@ function showApp(){
 }
 
 
+
 /* =====================================================
    PROGRAM DAY
 ===================================================== */
 
 function calculateProgramDay(){
-
-  /*
-  TEST MODE:
-  Admin sees all 90 days.
-  */
 
   if(testMode){
 
@@ -1432,6 +1716,7 @@ function calculateProgramDay(){
 }
 
 
+
 /* =====================================================
    PROGRAM DAY DISPLAY
 ===================================================== */
@@ -1446,8 +1731,9 @@ function setProgramDay(day){
 }
 
 
+
 /* =====================================================
-   UPDATE PROGRESS DISPLAY
+   UPDATE PROGRESS
 ===================================================== */
 
 function updateProgressDisplay(){
@@ -1520,17 +1806,12 @@ function updateProgressDisplay(){
 }
 
 
+
 /* =====================================================
-   CHECK IF DAY IS COMPLETED
+   CHECK DAY
 ===================================================== */
 
 function isDayCompleted(item){
-
-  /*
-  We use the item's dayNumber first.
-  If there is no dayNumber, we also check
-  the item's unlockDay.
-  */
 
   const dayNumber =
     Number(
@@ -1541,11 +1822,8 @@ function isDayCompleted(item){
     );
 
 
-  if(!dayNumber){
-
+  if(!dayNumber)
     return false;
-
-  }
 
 
   return completedDays.includes(
@@ -1553,6 +1831,7 @@ function isDayCompleted(item){
   );
 
 }
+
 
 
 /* =====================================================
@@ -1566,18 +1845,12 @@ async function(dayNumber){
     Number(dayNumber);
 
 
-  if(!dayNumber){
-
+  if(!dayNumber)
     return;
 
-  }
 
-
-  if(completedDays.includes(dayNumber)){
-
+  if(completedDays.includes(dayNumber))
     return;
-
-  }
 
 
   completedDays.push(dayNumber);
@@ -1596,11 +1869,6 @@ async function(dayNumber){
 
   if(!saved){
 
-    /*
-    If Firebase save fails,
-    remove the local change.
-    */
-
     completedDays =
       completedDays.filter(
         day =>
@@ -1616,15 +1884,10 @@ async function(dayNumber){
 
   await loadClassroom();
 
-
-  /*
-  Re-open the same day so the button
-  immediately changes to completed.
-  */
-
   openContentByDay(dayNumber);
 
 };
+
 
 
 /* =====================================================
@@ -1645,13 +1908,11 @@ function openContentByDay(dayNumber){
     );
 
 
-  if(item){
-
+  if(item)
     openContent(item.id);
 
-  }
-
 }
+
 
 
 /* =====================================================
@@ -1704,7 +1965,7 @@ async function loadClassroom(){
 
         <div class="empty">
 
-          Unable to load classroom.
+          Unable to load journey.
 
         </div>
 
@@ -1713,6 +1974,7 @@ async function loadClassroom(){
   }
 
 }
+
 
 
 /* =====================================================
@@ -1747,7 +2009,7 @@ function renderClassroom(){
 
       <div class="empty">
 
-        Your classroom is being prepared.
+        Your 90-day journey is being prepared.
 
       </div>
 
@@ -1769,8 +2031,9 @@ function renderClassroom(){
 }
 
 
+
 /* =====================================================
-   RENDER ROOT ITEM
+   RENDER ROOT
 ===================================================== */
 
 function renderItem(item){
@@ -1808,11 +2071,11 @@ function renderItem(item){
           </span>
 
           <div class="classroom-title">
-            ${safe(item.title)}
+            ${safeText(item.title)}
           </div>
 
           <span class="unlock">
-            Unlocks Day ${item.unlockDay}
+            Unlocks Day ${safeText(item.unlockDay)}
           </span>
 
         </div>
@@ -1833,7 +2096,7 @@ function renderItem(item){
 
       <div
         class="classroom-children"
-        id="children-${item.id}"
+        id="children-${safeAttr(item.id)}"
       >
 
         ${
@@ -1858,19 +2121,23 @@ function renderItem(item){
 
       <div
         class="classroom-header"
-        onclick="toggleChildren('${item.id}')"
+        onclick="toggleChildren('${safeAttr(item.id)}')"
       >
 
         <span class="classroom-icon">
-          📁
+          ${
+            item.image
+            ? "🖼️"
+            : "📁"
+          }
         </span>
 
         <div class="classroom-title">
-          ${safe(item.title)}
+          ${safeText(item.title)}
         </div>
 
         <span class="unlock">
-          Day ${item.unlockDay || 1}
+          Day ${safeText(item.unlockDay || 1)}
         </span>
 
       </div>
@@ -1882,6 +2149,7 @@ function renderItem(item){
   `;
 
 }
+
 
 
 /* =====================================================
@@ -1903,12 +2171,18 @@ function renderChild(item){
 
       <div class="child">
 
-        🔒
-        ${safe(item.title)}
+        <span class="child-main">
 
-        <small>
-          — Unlocks Day ${item.unlockDay}
-        </small>
+          🔒
+          ${safeText(item.title)}
+
+        </span>
+
+        <span class="child-lock">
+
+          Unlocks Day ${safeText(item.unlockDay)}
+
+        </span>
 
       </div>
 
@@ -1924,20 +2198,20 @@ function renderChild(item){
   const icon =
     item.type === "lesson"
     ? "📖"
-    : "📁";
+    : "📅";
 
 
   return `
 
     <div
       class="child ${completed ? "completed" : ""}"
-      onclick="openContent('${item.id}')"
+      onclick="openContent('${safeAttr(item.id)}')"
     >
 
-      <span>
+      <span class="child-main">
 
         ${icon}
-        ${safe(item.title)}
+        ${safeText(item.title)}
 
       </span>
 
@@ -1958,6 +2232,7 @@ function renderChild(item){
   `;
 
 }
+
 
 
 /* =====================================================
@@ -1981,6 +2256,7 @@ function(id){
   }
 
 };
+
 
 
 /* =====================================================
@@ -2039,7 +2315,7 @@ function(id){
   let html = `
 
     <h2>
-      ${safe(item.title)}
+      ${safeText(item.title)}
     </h2>
 
     ${
@@ -2054,16 +2330,124 @@ function(id){
       ""
     }
 
-    ${
-      item.description
-      ?
-      `<p>${safe(item.description)}</p>`
-      :
-      ""
-    }
-
   `;
 
+
+  /*
+   IMPORTANT FIX:
+
+   Admin content may already contain HTML such as:
+
+   <p>...</p>
+   <strong>...</strong>
+   <h3>...</h3>
+
+   We therefore sanitize and render it as HTML.
+  */
+
+
+  if(item.description){
+
+    html += `
+
+      <div class="content-section">
+
+        ${sanitizeHTML(item.description)}
+
+      </div>
+
+    `;
+
+  }
+
+
+  /* ===================================================
+     IMAGE
+  =================================================== */
+
+  const image =
+    item.image ||
+    item.imageUrl ||
+    item.photo ||
+    "";
+
+
+  if(image){
+
+    html += `
+
+      <div class="content-image">
+
+        <img
+          src="${safeAttr(image)}"
+          alt="${safeAttr(item.title || "Program image")}"
+          loading="lazy"
+        >
+
+      </div>
+
+    `;
+
+  }
+
+
+  /* ===================================================
+     EXTRA IMAGES
+  =================================================== */
+
+  const images =
+    Array.isArray(item.images)
+    ? item.images
+    : [];
+
+
+  images.forEach(
+    imageUrl => {
+
+      if(!imageUrl)
+        return;
+
+
+      html += `
+
+        <div class="content-image">
+
+          <img
+            src="${safeAttr(imageUrl)}"
+            alt="Program image"
+            loading="lazy"
+          >
+
+        </div>
+
+      `;
+
+    }
+  );
+
+
+  /* ===================================================
+     HTML CONTENT
+  =================================================== */
+
+  if(item.content){
+
+    html += `
+
+      <div class="content-section">
+
+        ${sanitizeHTML(item.content)}
+
+      </div>
+
+    `;
+
+  }
+
+
+  /* ===================================================
+     DAY SECTIONS
+  =================================================== */
 
   const sections = [
 
@@ -2128,17 +2512,15 @@ function(id){
           <div class="content-section">
 
             <h3>
-              ${section[0]}
+              ${safeText(section[0])}
             </h3>
 
-            <p>
-              ${safe(section[1])}
-            </p>
+            ${renderRichText(section[1])}
 
             ${
               section[2]
               ?
-              `<p>${safe(section[2])}</p>`
+              renderRichText(section[2])
               :
               ""
             }
@@ -2153,11 +2535,60 @@ function(id){
   );
 
 
-  /*
-  Only show the complete button
-  when this classroom item represents
-  an actual numbered day.
-  */
+  /* ===================================================
+     VIDEO URL
+  =================================================== */
+
+  const videoUrl =
+    item.videoUrl ||
+    item.video ||
+    d.videoUrl ||
+    "";
+
+
+  if(videoUrl){
+
+    html += renderVideo(videoUrl);
+
+  }
+
+
+  /* ===================================================
+     GOOGLE DRIVE LINK
+  =================================================== */
+
+  const driveLink =
+    item.driveLink ||
+    item.googleDriveLink ||
+    d.driveLink ||
+    "";
+
+
+  if(driveLink){
+
+    html += `
+
+      <div class="content-section">
+
+        <a
+          class="content-link"
+          href="${safeAttr(driveLink)}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          📂 Open Google Drive Resource
+        </a>
+
+      </div>
+
+    `;
+
+  }
+
+
+  /* ===================================================
+     COMPLETE BUTTON
+  =================================================== */
 
   if(dayNumber){
 
@@ -2228,6 +2659,7 @@ function(id){
 };
 
 
+
 /* =====================================================
    COMMUNITY
 ===================================================== */
@@ -2265,6 +2697,17 @@ async function loadCommunity(){
 
     posts.sort(
       (a,b) => {
+
+        /*
+         Pinned posts always appear first.
+        */
+
+        if(Boolean(a.pinned) !== Boolean(b.pinned)){
+
+          return a.pinned ? -1 : 1;
+
+        }
+
 
         const aTime =
           a.createdAt?.seconds ||
@@ -2305,41 +2748,8 @@ async function loadCommunity(){
     container.innerHTML =
       posts
         .map(
-          post => `
-
-            <div class="post">
-
-              <div class="post-author">
-
-                ${safe(
-                  post.name ||
-                  post.email ||
-                  "Member"
-                )}
-
-              </div>
-
-              <div class="post-date">
-
-                ${formatDate(
-                  post.createdAt
-                )}
-
-              </div>
-
-              <div>
-
-                ${safe(
-                  post.content ||
-                  post.text ||
-                  ""
-                )}
-
-              </div>
-
-            </div>
-
-          `
+          post =>
+            renderCommunityPost(post)
         )
         .join("");
 
@@ -2363,6 +2773,643 @@ async function loadCommunity(){
   }
 
 }
+
+
+
+/* =====================================================
+   RENDER COMMUNITY POST
+===================================================== */
+
+function renderCommunityPost(post){
+
+  const email =
+    currentUser?.email ||
+    "";
+
+
+  const canDelete =
+    email &&
+    post.email &&
+    email.toLowerCase() ===
+    post.email.toLowerCase();
+
+
+  const image =
+    post.image ||
+    post.imageUrl ||
+    "";
+
+
+  let content =
+    post.content ||
+    post.text ||
+    "";
+
+
+  /*
+   Community text is rendered as plain text
+   unless it contains safe HTML from admin.
+  */
+
+  content =
+    looksLikeHTML(content)
+    ? sanitizeHTML(content)
+    : safeText(content)
+      .replace(/\n/g,"<br>");
+
+
+  if(image){
+
+    content += `
+
+      <img
+        src="${safeAttr(image)}"
+        alt="Community photo"
+        loading="lazy"
+      >
+
+    `;
+
+  }
+
+
+  return `
+
+    <div
+      class="post ${post.pinned ? "pinned" : ""}"
+    >
+
+      ${
+        post.pinned
+        ?
+        `
+          <div class="pin-label">
+            📌 Pinned Post
+          </div>
+        `
+        :
+        ""
+      }
+
+      <div class="post-author">
+
+        ${safeText(
+          post.name ||
+          post.email ||
+          "Member"
+        )}
+
+      </div>
+
+
+      <div class="post-date">
+
+        ${formatDate(
+          post.createdAt
+        )}
+
+      </div>
+
+
+      <div class="post-content">
+
+        ${content}
+
+      </div>
+
+
+      ${
+        canDelete
+        ?
+        `
+          <div class="post-actions">
+
+            <button
+              class="delete-post-btn"
+              onclick="deleteCommunityPost('${safeAttr(post.id)}')"
+            >
+              Delete
+            </button>
+
+          </div>
+        `
+        :
+        ""
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+
+/* =====================================================
+   CREATE COMMUNITY POST
+===================================================== */
+
+window.createCommunityPost =
+async function(){
+
+  if(!currentUser)
+    return;
+
+
+  const textarea =
+    document.getElementById(
+      "communityText"
+    );
+
+
+  const content =
+    textarea.value.trim();
+
+
+  if(!content){
+
+    alert(
+      "Please write something before posting."
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    await addDoc(
+      collection(
+        db,
+        "community"
+      ),
+      {
+
+        email:
+          currentUser.email,
+
+        name:
+          currentMember?.name ||
+          currentUser.email,
+
+        content:
+          content,
+
+        pinned:
+          false,
+
+        createdAt:
+          serverTimestamp()
+
+      }
+    );
+
+
+    textarea.value = "";
+
+    await loadCommunity();
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    alert(
+      "Your post could not be published."
+    );
+
+  }
+
+};
+
+
+
+/* =====================================================
+   DELETE COMMUNITY POST
+===================================================== */
+
+window.deleteCommunityPost =
+async function(id){
+
+  if(!id)
+    return;
+
+
+  if(!confirm(
+    "Delete this post?"
+  )){
+    return;
+  }
+
+
+  try{
+
+    await deleteDoc(
+      doc(
+        db,
+        "community",
+        id
+      )
+    );
+
+
+    await loadCommunity();
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    alert(
+      "The post could not be deleted."
+    );
+
+  }
+
+};
+
+
+
+/* =====================================================
+   VIDEO RENDERER
+===================================================== */
+
+function renderVideo(url){
+
+  if(!url)
+    return "";
+
+
+  const clean =
+    String(url).trim();
+
+
+  /*
+   YouTube
+  */
+
+  let youtubeId = null;
+
+
+  const youtubeMatch =
+    clean.match(
+      /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&?/]+)/
+    );
+
+
+  if(youtubeMatch){
+
+    youtubeId =
+      youtubeMatch[1];
+
+  }
+
+
+  if(youtubeId){
+
+    return `
+
+      <div class="content-video">
+
+        <iframe
+          src="https://www.youtube.com/embed/${safeAttr(youtubeId)}"
+          title="Program video"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+
+      </div>
+
+    `;
+
+  }
+
+
+  /*
+   Google Drive video
+  */
+
+  const driveMatch =
+    clean.match(
+      /drive\.google\.com\/file\/d\/([^/]+)/
+    );
+
+
+  if(driveMatch){
+
+    const fileId =
+      driveMatch[1];
+
+
+    return `
+
+      <div class="content-video">
+
+        <iframe
+          src="https://drive.google.com/file/d/${safeAttr(fileId)}/preview"
+          title="Google Drive video"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+
+      </div>
+
+    `;
+
+  }
+
+
+  /*
+   Other video URLs are shown as a link.
+  */
+
+  return `
+
+    <div class="content-section">
+
+      <a
+        class="content-link"
+        href="${safeAttr(clean)}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        ▶ Open Video
+      </a>
+
+    </div>
+
+  `;
+
+}
+
+
+
+/* =====================================================
+   RICH TEXT
+===================================================== */
+
+function renderRichText(value){
+
+  if(value === null || value === undefined)
+    return "";
+
+
+  const text =
+    String(value);
+
+
+  /*
+   If admin entered formatted HTML,
+   keep the formatting.
+
+   If admin entered normal text,
+   preserve line breaks.
+  */
+
+  if(looksLikeHTML(text)){
+
+    return sanitizeHTML(text);
+
+  }
+
+
+  return safeText(text)
+    .replace(/\n/g,"<br>");
+
+}
+
+
+
+/* =====================================================
+   DETECT HTML
+===================================================== */
+
+function looksLikeHTML(value){
+
+  return /<\/?[a-z][\s\S]*>/i.test(
+    String(value || "")
+  );
+
+}
+
+
+
+/* =====================================================
+   SANITIZE HTML
+===================================================== */
+
+function sanitizeHTML(html){
+
+  const template =
+    document.createElement("template");
+
+
+  template.innerHTML =
+    String(html || "");
+
+
+  /*
+   Remove dangerous elements.
+  */
+
+  const forbidden = [
+    "script",
+    "iframe",
+    "object",
+    "embed",
+    "style",
+    "link",
+    "meta",
+    "form"
+  ];
+
+
+  forbidden.forEach(
+    tag => {
+
+      template.content
+        .querySelectorAll(tag)
+        .forEach(
+          element =>
+            element.remove()
+        );
+
+    }
+  );
+
+
+  /*
+   Remove dangerous attributes.
+  */
+
+  template.content
+    .querySelectorAll("*")
+    .forEach(
+      element => {
+
+        [...element.attributes]
+          .forEach(
+            attr => {
+
+              const name =
+                attr.name.toLowerCase();
+
+              const value =
+                attr.value.trim();
+
+
+              if(
+                name.startsWith("on") ||
+                name === "srcdoc"
+              ){
+
+                element.removeAttribute(
+                  attr.name
+                );
+
+                return;
+
+              }
+
+
+              if(
+                (
+                  name === "href" ||
+                  name === "src"
+                ) &&
+                /^javascript:/i.test(value)
+              ){
+
+                element.removeAttribute(
+                  attr.name
+                );
+
+              }
+
+            }
+          );
+
+      }
+    );
+
+
+  return template.innerHTML;
+
+}
+
+
+
+/* =====================================================
+   TEXT ESCAPE
+===================================================== */
+
+function safeText(value){
+
+  return String(value ?? "")
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+
+/* =====================================================
+   ATTRIBUTE ESCAPE
+===================================================== */
+
+function safeAttr(value){
+
+  return String(value ?? "")
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    );
+
+}
+
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDate(timestamp){
+
+  if(!timestamp)
+    return "";
+
+
+  try{
+
+    const date =
+      timestamp.toDate
+      ? timestamp.toDate()
+      : new Date(timestamp);
+
+
+    return date.toLocaleDateString(
+      undefined,
+      {
+        year:"numeric",
+        month:"short",
+        day:"numeric"
+      }
+    );
+
+  }
+  catch{
+
+    return "";
+
+  }
+
+}
+
 
 
 /* =====================================================
@@ -2410,7 +3457,7 @@ function(id,button){
 
     community:"Community",
 
-    classroom:"Classroom",
+    classroom:"90-Day Journey",
 
     content:"Lesson",
 
@@ -2431,7 +3478,14 @@ function(id,button){
     titles[id] ||
     "Freedom Club";
 
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
 };
+
 
 
 /* =====================================================
@@ -2445,67 +3499,6 @@ async function(){
 
 };
 
-
-/* =====================================================
-   HELPERS
-===================================================== */
-
-function safe(value){
-
-  return String(value ?? "")
-
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-
-    .replace(
-      /</g,
-      "&lt;"
-    )
-
-    .replace(
-      />/g,
-      "&gt;"
-    )
-
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-
-    .replace(
-      /'/g,
-      "&#039;"
-    );
-
-}
-
-
-function formatDate(timestamp){
-
-  if(!timestamp)
-    return "";
-
-
-  try{
-
-    const date =
-      timestamp.toDate
-      ? timestamp.toDate()
-      : new Date(timestamp);
-
-
-    return date.toLocaleDateString();
-
-  }
-  catch{
-
-    return "";
-
-  }
-
-}
 
 </script>
 
