@@ -6,17 +6,12 @@
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+        content="width=device-width, initial-scale=1.0">
 
     <title>Freedom Women's Health Club</title>
 
 
     <style>
-
-        /* =========================
-           RESET
-        ========================= */
 
         * {
             margin: 0;
@@ -24,21 +19,20 @@
             box-sizing: border-box;
         }
 
-
         body {
             font-family: Arial, sans-serif;
             background: #FBF8F3;
             color: #2D2D2D;
         }
 
-
-        button {
+        button,
+        input {
             font-family: inherit;
         }
 
 
         /* =========================
-           DASHBOARD LAYOUT
+           DASHBOARD
         ========================= */
 
         .dashboard {
@@ -56,6 +50,7 @@
             min-height: 100vh;
             background: #6E4A7E;
             color: white;
+
             padding: 28px 18px;
 
             position: fixed;
@@ -84,7 +79,7 @@
 
 
         /* =========================
-           NAVIGATION
+           SIDEBAR NAVIGATION
         ========================= */
 
         .sidebar-nav {
@@ -96,8 +91,10 @@
 
         .nav-btn {
             width: 100%;
+
             border: none;
             background: transparent;
+
             color: white;
 
             padding: 13px 14px;
@@ -131,7 +128,9 @@
 
         .main-content {
             margin-left: 250px;
+
             width: calc(100% - 250px);
+
             min-height: 100vh;
 
             padding: 40px;
@@ -144,7 +143,9 @@
 
         .page-section {
             display: none;
+
             max-width: 1100px;
+
             margin: 0 auto;
         }
 
@@ -163,36 +164,323 @@
         }
 
 
-        .page-header .small-title {
+        .small-title {
             color: #6E4A7E;
+
             font-size: 13px;
+
             font-weight: 700;
+
             text-transform: uppercase;
+
             letter-spacing: 1px;
+
             margin-bottom: 8px;
         }
 
 
         .page-header h1 {
             font-size: 34px;
+
             margin-bottom: 10px;
         }
 
 
         .page-header p {
             color: #666;
+
             font-size: 16px;
+
             line-height: 1.6;
         }
 
 
         /* =========================
-           PLACEHOLDER CARD
+           CARDS
+        ========================= */
+
+        .card {
+            background: white;
+
+            border-radius: 16px;
+
+            padding: 30px;
+
+            border: 1px solid #eee;
+
+            margin-bottom: 25px;
+        }
+
+
+        .card h2 {
+            font-size: 24px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .card p {
+            color: #666;
+
+            line-height: 1.6;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================
+           PROFILE GRID
+        ========================= */
+
+        .profile-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 20px;
+        }
+
+
+        .field {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+        }
+
+
+        .field label {
+            font-size: 14px;
+
+            font-weight: 600;
+
+            color: #444;
+        }
+
+
+        .field input {
+            width: 100%;
+
+            padding: 12px 14px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 9px;
+
+            font-size: 15px;
+
+            background: #fff;
+        }
+
+
+        .field input:focus {
+            outline: none;
+
+            border-color: #6E4A7E;
+        }
+
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, minmax(0, 1fr));
+
+            gap: 15px;
+        }
+
+
+        .stat {
+            background: #FBF8F3;
+
+            border-radius: 12px;
+
+            padding: 18px;
+        }
+
+
+        .stat-label {
+            font-size: 13px;
+
+            color: #777;
+
+            margin-bottom: 8px;
+        }
+
+
+        .stat-value {
+            font-size: 22px;
+
+            font-weight: 700;
+
+            color: #6E4A7E;
+        }
+
+
+        /* =========================
+           PROFILE ACTIONS
+        ========================= */
+
+        .profile-actions {
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .primary-btn {
+            border: none;
+
+            background: #6E4A7E;
+
+            color: white;
+
+            padding: 13px 22px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            font-weight: 600;
+        }
+
+
+        .primary-btn:hover {
+            opacity: 0.9;
+        }
+
+
+        .secondary-btn {
+            border: 1px solid #ddd;
+
+            background: white;
+
+            padding: 9px 13px;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+        }
+
+
+        .save-message {
+            color: #6E4A7E;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           PROGRESS CHART
+        ========================= */
+
+        .progress-chart-wrapper {
+            width: 100%;
+
+            height: 320px;
+
+            position: relative;
+
+            margin-top: 20px;
+        }
+
+
+        /* =========================
+           TRACKING TABLE
+        ========================= */
+
+        .tracking-table-wrapper {
+            width: 100%;
+
+            overflow-x: auto;
+
+            margin-top: 20px;
+        }
+
+
+        .tracking-table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 850px;
+        }
+
+
+        .tracking-table th,
+        .tracking-table td {
+            padding: 14px 12px;
+
+            border-bottom: 1px solid #eee;
+
+            text-align: left;
+
+            font-size: 14px;
+        }
+
+
+        .tracking-table th {
+            background: #FBF8F3;
+
+            font-weight: 700;
+
+            color: #444;
+        }
+
+
+        .tracking-status {
+            display: inline-block;
+
+            padding: 6px 9px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+
+        .tracking-status.completed {
+            background: #eee7f1;
+
+            color: #6E4A7E;
+        }
+
+
+        .tracking-status.locked {
+            background: #f1f1f1;
+
+            color: #888;
+        }
+
+
+        .tracking-status.available {
+            background: #e9f2e9;
+
+            color: #557255;
+        }
+
+
+        /* =========================
+           PLACEHOLDER
         ========================= */
 
         .placeholder-card {
             background: white;
+
             border-radius: 16px;
+
             padding: 35px;
 
             border: 1px solid #eee;
@@ -200,7 +488,9 @@
             min-height: 180px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             text-align: center;
@@ -210,7 +500,7 @@
 
 
         /* =========================
-           MOBILE
+           MOBILE HEADER
         ========================= */
 
         .mobile-header {
@@ -218,12 +508,29 @@
         }
 
 
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .stats-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+        }
+
+
         @media (max-width: 768px) {
 
             .sidebar {
                 width: 230px;
+
                 transform: translateX(-100%);
+
                 transition: 0.3s ease;
+
                 z-index: 1000;
             }
 
@@ -235,7 +542,9 @@
 
             .main-content {
                 margin-left: 0;
+
                 width: 100%;
+
                 padding: 80px 20px 30px;
             }
 
@@ -265,6 +574,7 @@
 
             .mobile-menu-btn {
                 border: none;
+
                 background: transparent;
 
                 font-size: 25px;
@@ -277,12 +587,37 @@
 
             .mobile-header h3 {
                 color: #6E4A7E;
+
                 font-size: 17px;
+            }
+
+
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
             }
 
 
             .page-header h1 {
                 font-size: 28px;
+            }
+
+
+            .card {
+                padding: 22px;
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .stats-grid {
+                grid-template-columns: 1fr;
             }
 
         }
@@ -295,1222 +630,1599 @@
 <body>
 
 
+<div class="dashboard">
+
+
     <!-- =========================
-         DASHBOARD
+         MOBILE HEADER
     ========================= -->
 
-    <div class="dashboard">
+    <div class="mobile-header">
+
+        <button
+            class="mobile-menu-btn"
+            id="mobileMenuBtn">
+
+            ☰
+
+        </button>
+
+        <h3>
+            Freedom
+        </h3>
+
+    </div>
 
 
-        <!-- =========================
-             MOBILE HEADER
-        ========================= -->
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
 
-        <div class="mobile-header">
+    <aside
+        class="sidebar"
+        id="sidebar">
 
-            <button
-                class="mobile-menu-btn"
-                id="mobileMenuBtn"
-            >
-                ☰
-            </button>
 
-            <h3>
-                Freedom
-            </h3>
+        <div class="brand">
+
+            <h2>
+                Freedom Women's
+                <br>
+                Health Club
+            </h2>
+
+            <p>
+                Your personal dashboard
+            </p>
 
         </div>
 
 
+        <nav class="sidebar-nav">
+
+
+            <button
+                class="nav-btn active"
+                data-section="homeSection">
+
+                Home
+
+            </button>
+
+
+            <button
+                class="nav-btn"
+                data-section="profileSection">
+
+                Profile
+
+            </button>
+
+
+            <button
+                class="nav-btn"
+                data-section="journeySection">
+
+                90-Day Journey
+
+            </button>
+
+
+            <button
+                class="nav-btn"
+                data-section="dietPlansSection">
+
+                Diet Plans
+
+            </button>
+
+
+            <button
+                class="nav-btn"
+                data-section="resourcesSection">
+
+                Resources
+
+            </button>
+
+
+            <button
+                class="nav-btn"
+                data-section="communitySection">
+
+                Community
+
+            </button>
+
+
+            <button
+                class="nav-btn"
+                data-section="lifetimeSection">
+
+                Lifetime Habits
+
+            </button>
+
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================= -->
+
+    <main class="main-content">
+
+
         <!-- =========================
-             SIDEBAR
+             HOME
         ========================= -->
 
-        <aside
-            class="sidebar"
-            id="sidebar"
-        >
+        <section
+            class="page-section active"
+            id="homeSection">
 
-            <div class="brand">
+            <div class="page-header">
 
-                <h2>
-                    Freedom Women's
-                    <br>
-                    Health Club
-                </h2>
+                <div class="small-title">
+                    Welcome
+                </div>
+
+                <h1>
+                    Home
+                </h1>
 
                 <p>
-                    Your personal dashboard
+                    Welcome to your Freedom dashboard.
                 </p>
 
             </div>
 
 
-            <nav class="sidebar-nav">
+            <div class="placeholder-card">
 
+                Home content will be added here.
 
-                <!-- HOME -->
+            </div>
 
-                <button
-                    class="nav-btn active"
-                    data-section="homeSection"
-                >
-                    Home
-                </button>
-
-
-                <!-- PROFILE -->
-
-                <button
-                    class="nav-btn"
-                    data-section="profileSection"
-                >
-                    Profile
-                </button>
-
-
-                <!-- 90 DAY JOURNEY -->
-
-                <button
-                    class="nav-btn"
-                    data-section="journeySection"
-                >
-                    90-Day Journey
-                </button>
-
-
-                <!-- DIET PLANS -->
-
-                <button
-                    class="nav-btn"
-                    data-section="dietPlansSection"
-                >
-                    Diet Plans
-                </button>
-
-
-                <!-- RESOURCES -->
-
-                <button
-                    class="nav-btn"
-                    data-section="resourcesSection"
-                >
-                    Resources
-                </button>
-
-
-                <!-- COMMUNITY -->
-
-                <button
-                    class="nav-btn"
-                    data-section="communitySection"
-                >
-                    Community
-                </button>
-
-
-                <!-- LIFETIME HABITS -->
-
-                <button
-                    class="nav-btn"
-                    data-section="lifetimeSection"
-                >
-                    Lifetime Habits
-                </button>
-
-
-            </nav>
-
-        </aside>
+        </section>
 
 
         <!-- =========================
-             MAIN CONTENT
+             PROFILE
         ========================= -->
 
-        <main class="main-content">
+        <section
+            class="page-section"
+            id="profileSection">
 
 
-            <!-- =========================
-                 HOME
-            ========================= -->
+            <div class="page-header">
 
-            <section
-                class="page-section active"
-                id="homeSection"
-            >
+                <div class="small-title">
+                    YOUR INFORMATION
+                </div>
 
-                <div class="page-header">
+                <h1>
+                    Welcome,
+                    <span id="profileMemberName">
+                        Member
+                    </span>
+                </h1>
 
-                    <div class="small-title">
-                        Welcome
+                <p>
+                    Your personal information,
+                    health details and progress tracking.
+                </p>
+
+            </div>
+
+
+            <!-- PERSONAL DETAILS -->
+
+            <div class="card">
+
+                <div class="small-title">
+                    Personal Details
+                </div>
+
+                <h2>
+                    About You
+                </h2>
+
+
+                <div class="profile-grid">
+
+
+                    <div class="field">
+
+                        <label>
+                            Full Name
+                        </label>
+
+                        <input
+                            id="name"
+                            type="text">
+
                     </div>
 
-                    <h1>
-                        Home
-                    </h1>
 
-                    <p>
-                        Welcome to your Freedom dashboard.
-                    </p>
+                    <div class="field">
 
-                </div>
+                        <label>
+                            Age
+                        </label>
 
+                        <input
+                            id="age"
+                            type="number">
 
-                <div class="placeholder-card">
-
-                    Home content will be added here.
-
-                </div>
-
-            </section>
-
-
-            <!-- =========================
-                 PROFILE
-            ========================= -->
-
-            <section
-                class="page-section"
-                id="profileSection"
-            >
-
-                <div class="page-header">
-
-                    <div class="small-title">
-                        Your Information
                     </div>
 
-                    <h1>
-                        Profile
-                    </h1>
 
-                    <p>
-                        Your personal information and progress.
-                    </p>
+                    <div class="field">
 
-                </div>
+                        <label>
+                            Gender
+                        </label>
 
+                        <input
+                            id="gender"
+                            type="text">
 
-                <div class="placeholder-card">
-
-                    Profile content will be added here.
-
-                </div>
-
-            </section>
-
-
-            <!-- =========================
-                 90-DAY JOURNEY
-            ========================= -->
-
-            <section
-                class="page-section"
-                id="journeySection"
-            >
-
-                <div class="page-header">
-
-                    <div class="small-title">
-                        Your Program
                     </div>
 
-                    <h1>
-                        90-Day Journey
-                    </h1>
 
-                    <p>
-                        Your 90-day program will appear here.
-                    </p>
+                    <div class="field">
 
-                </div>
+                        <label>
+                            Phone Number
+                        </label>
 
+                        <input
+                            id="phone"
+                            type="tel">
 
-                <div class="placeholder-card">
-
-                    90-Day Journey content will be added here.
-
-                </div>
-
-            </section>
-
-
-            <!-- =========================
-                 DIET PLANS
-            ========================= -->
-
-            <section
-                class="page-section"
-                id="dietPlansSection"
-            >
-
-                <div class="page-header">
-
-                    <div class="small-title">
-                        Nutrition
                     </div>
 
-                    <h1>
-                        Diet Plans
-                    </h1>
 
-                    <p>
-                        Your personalized diet plans will appear here.
-                    </p>
+                    <div class="field">
 
-                </div>
+                        <label>
+                            Email
+                        </label>
 
+                        <input
+                            id="email"
+                            type="email"
+                            readonly>
 
-                <div class="placeholder-card">
-
-                    Diet Plans content will be added here.
-
-                </div>
-
-            </section>
-
-
-            <!-- =========================
-                 RESOURCES
-            ========================= -->
-
-            <section
-                class="page-section"
-                id="resourcesSection"
-            >
-
-                <div class="page-header">
-
-                    <div class="small-title">
-                        Learn
                     </div>
 
-                    <h1>
-                        Resources
-                    </h1>
 
-                    <p>
-                        Helpful resources and educational materials.
-                    </p>
+                    <div class="field">
 
-                </div>
+                        <label>
+                            Occupation
+                        </label>
 
+                        <input
+                            id="occupation"
+                            type="text">
 
-                <div class="placeholder-card">
-
-                    Resources content will be added here.
-
-                </div>
-
-            </section>
-
-
-            <!-- =========================
-                 COMMUNITY
-            ========================= -->
-
-            <section
-                class="page-section"
-                id="communitySection"
-            >
-
-                <div class="page-header">
-
-                    <div class="small-title">
-                        Connect
                     </div>
 
-                    <h1>
-                        Community
-                    </h1>
 
-                    <p>
-                        Connect, share and support each other.
-                    </p>
+                    <div class="field">
 
-                </div>
+                        <label>
+                            Height (cm)
+                        </label>
 
+                        <input
+                            id="height"
+                            type="number">
 
-                <div class="placeholder-card">
-
-                    Community content will be added here.
-
-                </div>
-
-            </section>
-
-
-            <!-- =========================
-                 LIFETIME HABITS
-            ========================= -->
-
-            <section
-                class="page-section"
-                id="lifetimeSection"
-            >
-
-                <div class="page-header">
-
-                    <div class="small-title">
-                        After Day 90
                     </div>
 
-                    <h1>
-                        Lifetime Habits
-                    </h1>
 
-                    <p>
-                        Habits to help you maintain your progress
-                        beyond the 90-day journey.
-                    </p>
+                    <div class="field">
+
+                        <label>
+                            Starting Weight (kg)
+                        </label>
+
+                        <input
+                            id="startingWeight"
+                            type="number"
+                            step="0.1">
+
+                    </div>
+
 
                 </div>
 
+            </div>
 
-                <div class="placeholder-card">
 
-                    Lifetime Habits content will be added here.
+            <!-- HEALTH INFORMATION -->
+
+            <div class="card">
+
+                <div class="small-title">
+                    Health Information
+                </div>
+
+                <h2>
+                    Your Health Profile
+                </h2>
+
+
+                <div class="profile-grid">
+
+
+                    <div class="field">
+
+                        <label>
+                            Primary Health Concern
+                        </label>
+
+                        <input
+                            id="primaryConcern"
+                            type="text">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Diabetes
+                        </label>
+
+                        <input
+                            id="diabetes"
+                            type="text"
+                            placeholder="Type 1 / Type 2 / Prediabetes / No">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            PCOS
+                        </label>
+
+                        <input
+                            id="pcos"
+                            type="text">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Thyroid
+                        </label>
+
+                        <input
+                            id="thyroid"
+                            type="text">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Blood Pressure
+                        </label>
+
+                        <input
+                            id="bloodPressure"
+                            type="text">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Cholesterol
+                        </label>
+
+                        <input
+                            id="cholesterol"
+                            type="text">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Insulin Resistance
+                        </label>
+
+                        <input
+                            id="insulinResistance"
+                            type="text">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Other Health Conditions
+                        </label>
+
+                        <input
+                            id="otherConditions"
+                            type="text">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Current Medications
+                        </label>
+
+                        <input
+                            id="medications"
+                            type="text">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Supplements
+                        </label>
+
+                        <input
+                            id="supplements"
+                            type="text">
+
+                    </div>
+
 
                 </div>
 
-            </section>
+            </div>
 
 
-        </main>
+            <!-- LIFESTYLE -->
 
-    </div>
+            <div class="card">
 
+                <div class="small-title">
+                    Lifestyle
+                </div>
 
-    <!-- =========================
-         JAVASCRIPT
-    ========================= -->
-
-    <script>
-
-
-        /* =========================
-           ELEMENTS
-        ========================= */
-
-        const navButtons =
-            document.querySelectorAll(
-                ".nav-btn"
-            );
+                <h2>
+                    Your Daily Routine
+                </h2>
 
 
-        const sections =
-            document.querySelectorAll(
-                ".page-section"
-            );
+                <div class="profile-grid">
 
 
-        const sidebar =
-            document.getElementById(
-                "sidebar"
-            );
+                    <div class="field">
+
+                        <label>
+                            Sleep Time
+                        </label>
+
+                        <input
+                            id="sleepTime"
+                            type="text">
+
+                    </div>
 
 
-        const mobileMenuBtn =
-            document.getElementById(
-                "mobileMenuBtn"
-            );
+                    <div class="field">
+
+                        <label>
+                            Wake-Up Time
+                        </label>
+
+                        <input
+                            id="wakeTime"
+                            type="text">
+
+                    </div>
 
 
-        /* =========================
-           OPEN SECTION
-        ========================= */
+                    <div class="field">
 
-        function openSection(sectionId) {
+                        <label>
+                            Sleep Duration
+                        </label>
 
+                        <input
+                            id="sleepDuration"
+                            type="text">
 
-            /*
-             * Hide all sections
-             */
-
-            sections.forEach(
-                section => {
-
-                    section.classList.remove(
-                        "active"
-                    );
-
-                }
-            );
+                    </div>
 
 
-            /*
-             * Show selected section
-             */
+                    <div class="field">
 
-            const selectedSection =
-                document.getElementById(
-                    sectionId
-                );
+                        <label>
+                            Daily Water Intake
+                        </label>
+
+                        <input
+                            id="waterIntake"
+                            type="text">
+
+                    </div>
 
 
-            if (selectedSection) {
+                    <div class="field">
 
-                selectedSection.classList.add(
+                        <label>
+                            Daily Activity
+                        </label>
+
+                        <input
+                            id="activityLevel"
+                            type="text">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Exercise Routine
+                        </label>
+
+                        <input
+                            id="exerciseRoutine"
+                            type="text">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Stress Level
+                        </label>
+
+                        <input
+                            id="stressLevel"
+                            type="text">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Typical Meal Timing
+                        </label>
+
+                        <input
+                            id="mealTiming"
+                            type="text">
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- NUTRITION -->
+
+            <div class="card">
+
+                <div class="small-title">
+                    Nutrition
+                </div>
+
+                <h2>
+                    Your Eating Pattern
+                </h2>
+
+
+                <div class="profile-grid">
+
+
+                    <div class="field">
+
+                        <label>
+                            Breakfast Pattern
+                        </label>
+
+                        <input
+                            id="breakfastPattern"
+                            type="text">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Lunch Pattern
+                        </label>
+
+                        <input
+                            id="lunchPattern"
+                            type="text">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Dinner Pattern
+                        </label>
+
+                        <input
+                            id="dinnerPattern"
+                            type="text">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Snacking Pattern
+                        </label>
+
+                        <input
+                            id="snackingPattern"
+                            type="text">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Food Preferences
+                        </label>
+
+                        <input
+                            id="foodPreferences"
+                            type="text">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Foods You Avoid
+                        </label>
+
+                        <input
+                            id="foodsAvoid"
+                            type="text">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Cravings
+                        </label>
+
+                        <input
+                            id="cravings"
+                            type="text">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Eating Challenges
+                        </label>
+
+                        <input
+                            id="eatingChallenges"
+                            type="text">
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- MEASUREMENTS -->
+
+            <div class="card">
+
+                <div class="small-title">
+                    Measurements
+                </div>
+
+                <h2>
+                    Body Measurements
+                </h2>
+
+
+                <div class="profile-grid">
+
+
+                    <div class="field">
+
+                        <label>
+                            Starting Waist (cm)
+                        </label>
+
+                        <input
+                            id="startingWaist"
+                            type="number"
+                            step="0.1">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Current Waist (cm)
+                        </label>
+
+                        <input
+                            id="currentWaist"
+                            type="number"
+                            step="0.1">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Starting Hip (cm)
+                        </label>
+
+                        <input
+                            id="startingHip"
+                            type="number"
+                            step="0.1">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Current Hip (cm)
+                        </label>
+
+                        <input
+                            id="currentHip"
+                            type="number"
+                            step="0.1">
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- PROGRESS SUMMARY -->
+
+            <div class="card">
+
+                <div class="small-title">
+                    Progress
+                </div>
+
+                <h2>
+                    Your Progress
+                </h2>
+
+
+                <div class="stats-grid">
+
+
+                    <div class="stat">
+
+                        <div class="stat-label">
+                            Starting Weight
+                        </div>
+
+                        <div
+                            class="stat-value"
+                            id="progressStartingWeight">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <div class="stat-label">
+                            Current Weight
+                        </div>
+
+                        <div
+                            class="stat-value"
+                            id="progressCurrentWeight">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <div class="stat-label">
+                            Weight Lost
+                        </div>
+
+                        <div
+                            class="stat-value"
+                            id="weightLost">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <div class="stat-label">
+                            Waist Change
+                        </div>
+
+                        <div
+                            class="stat-value"
+                            id="waistChange">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <div class="stat-label">
+                            BMI
+                        </div>
+
+                        <div
+                            class="stat-value"
+                            id="bmi">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- WEIGHT GRAPH -->
+
+            <div class="card">
+
+                <div class="small-title">
+                    Progress Graph
+                </div>
+
+                <h2>
+                    Weight Progress
+                </h2>
+
+                <p>
+                    Your weight changes will appear here
+                    as you complete your weekly check-ins.
+                </p>
+
+
+                <div class="progress-chart-wrapper">
+
+                    <canvas
+                        id="weightProgressChart">
+                    </canvas>
+
+                </div>
+
+            </div>
+
+
+            <!-- WEEKLY TRACKING -->
+
+            <div class="card">
+
+                <div class="small-title">
+                    Weekly Tracking
+                </div>
+
+                <h2>
+                    Your Weekly Updates
+                </h2>
+
+                <p>
+                    A new check-in becomes available
+                    when you reach each tracking day.
+                </p>
+
+
+                <div class="tracking-table-wrapper">
+
+                    <table
+                        class="tracking-table">
+
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Check-In
+                                </th>
+
+                                <th>
+                                    Day
+                                </th>
+
+                                <th>
+                                    Date
+                                </th>
+
+                                <th>
+                                    Weight
+                                </th>
+
+                                <th>
+                                    Waist
+                                </th>
+
+                                <th>
+                                    Hip
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody
+                            id="weeklyTrackingBody">
+
+
+                            <tr>
+
+                                <td>
+                                    Starting
+                                </td>
+
+                                <td>
+                                    Day 1
+                                </td>
+
+                                <td>
+                                    —
+                                </td>
+
+                                <td>
+                                    —
+                                </td>
+
+                                <td>
+                                    —
+                                </td>
+
+                                <td>
+                                    —
+                                </td>
+
+                                <td>
+
+                                    <span
+                                        class="tracking-status completed">
+
+                                        Starting Point
+
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="secondary-btn"
+                                        disabled>
+
+                                        Recorded
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- SAVE PROFILE -->
+
+            <div class="card">
+
+                <div class="profile-actions">
+
+                    <button
+                        class="primary-btn"
+                        id="saveProfile">
+
+                        Save Profile
+
+                    </button>
+
+
+                    <span
+                        class="save-message"
+                        id="saveMessage">
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =========================
+             90-DAY JOURNEY
+        ========================= -->
+
+        <section
+            class="page-section"
+            id="journeySection">
+
+            <div class="page-header">
+
+                <div class="small-title">
+                    Your Program
+                </div>
+
+                <h1>
+                    90-Day Journey
+                </h1>
+
+                <p>
+                    Your 90-day program will appear here.
+                </p>
+
+            </div>
+
+
+            <div class="placeholder-card">
+
+                90-Day Journey content will be added here.
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             DIET PLANS
+        ========================= -->
+
+        <section
+            class="page-section"
+            id="dietPlansSection">
+
+            <div class="page-header">
+
+                <div class="small-title">
+                    Nutrition
+                </div>
+
+                <h1>
+                    Diet Plans
+                </h1>
+
+                <p>
+                    Your personalized diet plans will appear here.
+                </p>
+
+            </div>
+
+
+            <div class="placeholder-card">
+
+                Diet Plans content will be added here.
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             RESOURCES
+        ========================= -->
+
+        <section
+            class="page-section"
+            id="resourcesSection">
+
+            <div class="page-header">
+
+                <div class="small-title">
+                    Learn
+                </div>
+
+                <h1>
+                    Resources
+                </h1>
+
+                <p>
+                    Helpful resources and educational materials.
+                </p>
+
+            </div>
+
+
+            <div class="placeholder-card">
+
+                Resources content will be added here.
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             COMMUNITY
+        ========================= -->
+
+        <section
+            class="page-section"
+            id="communitySection">
+
+            <div class="page-header">
+
+                <div class="small-title">
+                    Connect
+                </div>
+
+                <h1>
+                    Community
+                </h1>
+
+                <p>
+                    Connect, share and support each other.
+                </p>
+
+            </div>
+
+
+            <div class="placeholder-card">
+
+                Community content will be added here.
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             LIFETIME HABITS
+        ========================= -->
+
+        <section
+            class="page-section"
+            id="lifetimeSection">
+
+            <div class="page-header">
+
+                <div class="small-title">
+                    After Day 90
+                </div>
+
+                <h1>
+                    Lifetime Habits
+                </h1>
+
+                <p>
+                    Habits to help you maintain your progress
+                    beyond the 90-day journey.
+                </p>
+
+            </div>
+
+
+            <div class="placeholder-card">
+
+                Lifetime Habits content will be added here.
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    const navButtons =
+        document.querySelectorAll(
+            ".nav-btn"
+        );
+
+
+    const sections =
+        document.querySelectorAll(
+            ".page-section"
+        );
+
+
+    const sidebar =
+        document.getElementById(
+            "sidebar"
+        );
+
+
+    const mobileMenuBtn =
+        document.getElementById(
+            "mobileMenuBtn"
+        );
+
+
+    function openSection(sectionId) {
+
+
+        sections.forEach(
+            section => {
+
+                section.classList.remove(
                     "active"
                 );
 
             }
+        );
 
 
-            /*
-             * Update active sidebar button
-             */
+        const selectedSection =
+            document.getElementById(
+                sectionId
+            );
 
-            navButtons.forEach(
-                button => {
 
-                    button.classList.toggle(
-                        "active",
-                        button.dataset.section ===
-                        sectionId
+        if (selectedSection) {
+
+            selectedSection.classList.add(
+                "active"
+            );
+
+        }
+
+
+        navButtons.forEach(
+            button => {
+
+                button.classList.toggle(
+                    "active",
+
+                    button.dataset.section ===
+                    sectionId
+                );
+
+            }
+        );
+
+
+        sidebar.classList.remove(
+            "open"
+        );
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    navButtons.forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    openSection(
+                        button.dataset.section
                     );
 
                 }
             );
 
+        }
+    );
 
-            /*
-             * Close mobile sidebar
-             */
 
-            sidebar.classList.remove(
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
+    mobileMenuBtn.addEventListener(
+        "click",
+        () => {
+
+            sidebar.classList.toggle(
                 "open"
             );
 
+        }
+    );
 
-            /*
-             * Scroll to top
-             */
 
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+    /* =========================
+       PROFILE CALCULATIONS
+    ========================= */
+
+    function getNumber(id) {
+
+        const element =
+            document.getElementById(id);
+
+        if (!element) {
+            return null;
+        }
+
+        const value =
+            parseFloat(
+                element.value
+            );
+
+        return Number.isFinite(value)
+            ? value
+            : null;
+
+    }
+
+
+    function calculateProfileProgress() {
+
+
+        const startingWeight =
+            getNumber(
+                "startingWeight"
+            );
+
+
+        const currentWeight =
+            getNumber(
+                "currentWeight"
+            );
+
+
+        const startingWaist =
+            getNumber(
+                "startingWaist"
+            );
+
+
+        const currentWaist =
+            getNumber(
+                "currentWaist"
+            );
+
+
+        const height =
+            getNumber(
+                "height"
+            );
+
+
+        document.getElementById(
+            "progressStartingWeight"
+        ).textContent =
+            startingWeight !== null
+                ? startingWeight.toFixed(1) + " kg"
+                : "—";
+
+
+        document.getElementById(
+            "progressCurrentWeight"
+        ).textContent =
+            currentWeight !== null
+                ? currentWeight.toFixed(1) + " kg"
+                : "—";
+
+
+        document.getElementById(
+            "weightLost"
+        ).textContent =
+            startingWeight !== null &&
+            currentWeight !== null
+                ? (
+                    startingWeight -
+                    currentWeight
+                ).toFixed(1) + " kg"
+                : "—";
+
+
+        document.getElementById(
+            "waistChange"
+        ).textContent =
+            startingWaist !== null &&
+            currentWaist !== null
+                ? (
+                    startingWaist -
+                    currentWaist
+                ).toFixed(1) + " cm"
+                : "—";
+
+
+        if (
+            height &&
+            currentWeight !== null
+        ) {
+
+            const heightM =
+                height / 100;
+
+
+            const bmi =
+                currentWeight /
+                (heightM * heightM);
+
+
+            document.getElementById(
+                "bmi"
+            ).textContent =
+                bmi.toFixed(1);
+
+        } else {
+
+            document.getElementById(
+                "bmi"
+            ).textContent =
+                "—";
 
         }
 
+    }
 
-        /* =========================
-           SIDEBAR CLICK
-        ========================= */
 
-        navButtons.forEach(
-            button => {
+    /* =========================
+       LIVE PROFILE CALCULATIONS
+    ========================= */
 
-                button.addEventListener(
-                    "click",
-                    () => {
+    const calculationFields = [
 
-                        openSection(
-                            button.dataset.section
-                        );
+        "height",
+        "startingWeight",
+        "currentWeight",
+        "startingWaist",
+        "currentWaist"
 
-                    }
+    ];
+
+
+    calculationFields.forEach(
+        fieldId => {
+
+            const element =
+                document.getElementById(
+                    fieldId
+                );
+
+
+            if (element) {
+
+                element.addEventListener(
+                    "input",
+                    calculateProfileProgress
                 );
 
             }
-        );
+
+        }
+    );
 
 
-        /* =========================
-           MOBILE MENU
-        ========================= */
+    /* =========================
+       SAVE PROFILE BUTTON
+    ========================= */
 
-        mobileMenuBtn.addEventListener(
-            "click",
-            () => {
+    document.getElementById(
+        "saveProfile"
+    ).addEventListener(
+        "click",
+        () => {
 
-                sidebar.classList.toggle(
-                    "open"
-                );
+            const name =
+                document.getElementById(
+                    "name"
+                ).value.trim();
+
+
+            if (name) {
+
+                document.getElementById(
+                    "profileMemberName"
+                ).textContent =
+                    name;
 
             }
-        );
 
 
-    </script>
+            document.getElementById(
+                "saveMessage"
+            ).textContent =
+                "Profile saved.";
+
+        }
+    );
+
+
+</script>
 
 
 </body>
 </html>
-
-
-<!-- 
-
-=========================
-     PROFILE
-========================= -->
-
-<section
-    class="page-section"
-    id="profileSection">
-
-    <div class="page-header">
-
-        <div class="small-title">
-            YOUR INFORMATION
-        </div>
-
-        <h1>
-            Welcome, <span id="profileMemberName">Member</span>
-        </h1>
-
-        <p>
-            Your personal information, health details and progress tracking.
-        </p>
-
-    </div>
-
-
-    <!-- =========================
-         PERSONAL DETAILS
-    ========================= -->
-
-    <div class="card">
-
-        <div class="small-title">
-            Personal Details
-        </div>
-
-        <h2>
-            About You
-        </h2>
-
-        <div class="profile-grid">
-
-            <div class="field">
-                <label>Full Name</label>
-                <input id="name" type="text">
-            </div>
-
-            <div class="field">
-                <label>Age</label>
-                <input id="age" type="number">
-            </div>
-
-            <div class="field">
-                <label>Gender</label>
-                <input id="gender" type="text">
-            </div>
-
-            <div class="field">
-                <label>Phone Number</label>
-                <input id="phone" type="tel">
-            </div>
-
-            <div class="field">
-                <label>Email</label>
-                <input id="email" type="email" readonly>
-            </div>
-
-            <div class="field">
-                <label>Occupation</label>
-                <input id="occupation" type="text">
-            </div>
-
-            <div class="field">
-                <label>Height (cm)</label>
-                <input id="height" type="number">
-            </div>
-
-            <div class="field">
-                <label>Starting Weight (kg)</label>
-                <input
-                    id="startingWeight"
-                    type="number"
-                    step="0.1">
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         HEALTH & ASSESSMENT
-    ========================= -->
-
-    <div class="card">
-
-        <div class="small-title">
-            Health Information
-        </div>
-
-        <h2>
-            Your Health Profile
-        </h2>
-
-        <div class="profile-grid">
-
-            <div class="field">
-                <label>Primary Health Concern</label>
-                <input
-                    id="primaryConcern"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Diabetes</label>
-                <input
-                    id="diabetes"
-                    type="text"
-                    placeholder="Type 1 / Type 2 / Prediabetes / No">
-            </div>
-
-            <div class="field">
-                <label>PCOS</label>
-                <input
-                    id="pcos"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Thyroid</label>
-                <input
-                    id="thyroid"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Blood Pressure</label>
-                <input
-                    id="bloodPressure"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Cholesterol</label>
-                <input
-                    id="cholesterol"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Insulin Resistance</label>
-                <input
-                    id="insulinResistance"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Other Health Conditions</label>
-                <input
-                    id="otherConditions"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Current Medications</label>
-                <input
-                    id="medications"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Supplements</label>
-                <input
-                    id="supplements"
-                    type="text">
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         LIFESTYLE & ROUTINE
-    ========================= -->
-
-    <div class="card">
-
-        <div class="small-title">
-            Lifestyle
-        </div>
-
-        <h2>
-            Your Daily Routine
-        </h2>
-
-        <div class="profile-grid">
-
-            <div class="field">
-                <label>Sleep Time</label>
-                <input
-                    id="sleepTime"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Wake-Up Time</label>
-                <input
-                    id="wakeTime"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Sleep Duration</label>
-                <input
-                    id="sleepDuration"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Daily Water Intake</label>
-                <input
-                    id="waterIntake"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Daily Activity</label>
-                <input
-                    id="activityLevel"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Exercise Routine</label>
-                <input
-                    id="exerciseRoutine"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Stress Level</label>
-                <input
-                    id="stressLevel"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Typical Meal Timing</label>
-                <input
-                    id="mealTiming"
-                    type="text">
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         FOOD & EATING PATTERN
-    ========================= -->
-
-    <div class="card">
-
-        <div class="small-title">
-            Nutrition
-        </div>
-
-        <h2>
-            Your Eating Pattern
-        </h2>
-
-        <div class="profile-grid">
-
-            <div class="field">
-                <label>Breakfast Pattern</label>
-                <input
-                    id="breakfastPattern"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Lunch Pattern</label>
-                <input
-                    id="lunchPattern"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Dinner Pattern</label>
-                <input
-                    id="dinnerPattern"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Snacking Pattern</label>
-                <input
-                    id="snackingPattern"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Food Preferences</label>
-                <input
-                    id="foodPreferences"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Foods You Avoid</label>
-                <input
-                    id="foodsAvoid"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Cravings</label>
-                <input
-                    id="cravings"
-                    type="text">
-            </div>
-
-            <div class="field">
-                <label>Eating Challenges</label>
-                <input
-                    id="eatingChallenges"
-                    type="text">
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         MEASUREMENTS
-    ========================= -->
-
-    <div class="card">
-
-        <div class="small-title">
-            Measurements
-        </div>
-
-        <h2>
-            Body Measurements
-        </h2>
-
-        <div class="profile-grid">
-
-            <div class="field">
-                <label>Starting Waist (cm)</label>
-                <input
-                    id="startingWaist"
-                    type="number"
-                    step="0.1">
-            </div>
-
-            <div class="field">
-                <label>Current Waist (cm)</label>
-                <input
-                    id="currentWaist"
-                    type="number"
-                    step="0.1">
-            </div>
-
-            <div class="field">
-                <label>Starting Hip (cm)</label>
-                <input
-                    id="startingHip"
-                    type="number"
-                    step="0.1">
-            </div>
-
-            <div class="field">
-                <label>Current Hip (cm)</label>
-                <input
-                    id="currentHip"
-                    type="number"
-                    step="0.1">
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         PROGRESS SUMMARY
-    ========================= -->
-
-    <div class="card">
-
-        <div class="small-title">
-            Progress
-        </div>
-
-        <h2>
-            Your Progress
-        </h2>
-
-        <div class="stats-grid">
-
-            <div class="stat">
-
-                <div class="stat-label">
-                    Starting Weight
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="progressStartingWeight">
-                    —
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-label">
-                    Current Weight
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="progressCurrentWeight">
-                    —
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-label">
-                    Weight Lost
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="weightLost">
-                    —
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-label">
-                    Waist Change
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="waistChange">
-                    —
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-label">
-                    BMI
-                </div>
-
-                <div
-                    class="stat-value"
-                    id="bmi">
-                    —
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         PROGRESS GRAPH
-    ========================= -->
-
-    <div class="card">
-
-        <div class="small-title">
-            Progress Graph
-        </div>
-
-        <h2>
-            Weight Progress
-        </h2>
-
-        <p>
-            Your weight changes will appear here as you complete your weekly check-ins.
-        </p>
-
-        <div
-            class="progress-chart-wrapper"
-            style="position:relative; height:320px; width:100%;">
-
-            <canvas
-                id="weightProgressChart">
-            </canvas>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         WEEKLY TRACKING
-    ========================= -->
-
-    <div class="card">
-
-        <div class="small-title">
-            Weekly Tracking
-        </div>
-
-        <h2>
-            Your Weekly Updates
-        </h2>
-
-        <p>
-            A new check-in becomes available when you reach each tracking day.
-        </p>
-
-
-        <div class="tracking-table-wrapper">
-
-            <table
-                class="tracking-table">
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            Check-In
-                        </th>
-
-                        <th>
-                            Day
-                        </th>
-
-                        <th>
-                            Date
-                        </th>
-
-                        <th>
-                            Weight
-                        </th>
-
-                        <th>
-                            Waist
-                        </th>
-
-                        <th>
-                            Hip
-                        </th>
-
-                        <th>
-                            Status
-                        </th>
-
-                        <th>
-                            Action
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-
-                <tbody id="weeklyTrackingBody">
-
-                    <!--
-                        Rows will be generated automatically.
-                        Example:
-
-                        Day 1
-                        Day 7
-                        Day 14
-                        Day 21
-                        ...
-                        Day 90
-                    -->
-
-                    <tr>
-
-                        <td>
-                            Starting
-                        </td>
-
-                        <td>
-                            Day 1
-                        </td>
-
-                        <td id="trackingDay1Date">
-                            —
-                        </td>
-
-                        <td id="trackingDay1Weight">
-                            —
-                        </td>
-
-                        <td id="trackingDay1Waist">
-                            —
-                        </td>
-
-                        <td id="trackingDay1Hip">
-                            —
-                        </td>
-
-                        <td>
-                            <span class="tracking-status completed">
-                                Starting Point
-                            </span>
-                        </td>
-
-                        <td>
-                            <button
-                                class="secondary-btn"
-                                disabled>
-                                Recorded
-                            </button>
-                        </td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         SAVE PROFILE
-    ========================= -->
-
-    <div class="card">
-
-        <div class="profile-actions">
-
-            <button
-                class="primary-btn"
-                id="saveProfile">
-
-                Save Profile
-
-            </button>
-
-            <span
-                class="save-message"
-                id="saveMessage">
-            </span>
-
-        </div>
-
-    </div>
-
-</section>
-
