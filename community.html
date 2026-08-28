@@ -2038,32 +2038,30 @@
        AUTH
     ===================================================== */
 
-    onAuthStateChanged(
+  onAuthStateChanged(
 
-        auth,
+    auth,
 
-        async user => {
+    async user => {
 
+        if (!user) {
 
-            if (!user) {
+            alert(
+                "Firebase says you are NOT logged in on the community page."
+            );
 
-                window.location.href =
-                    "login.html";
-
-                return;
-
-            }
-
-
-            currentUser =
-                user;
-
-
-            await loadCommunity();
+            return;
 
         }
 
-    );
+        currentUser =
+            user;
+
+        await loadCommunity();
+
+    }
+
+);
 
 
 </script>
