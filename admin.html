@@ -1,4167 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Freedom Women's Health Club | Admin</title>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#FBF8F3;
-    color:#2D2D2D;
-}
-
-button,
-input,
-textarea,
-select{
-    font-family:inherit;
-}
-
-button{
-    cursor:pointer;
-    border:none;
-}
-
-.admin-login{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:25px;
-}
-
-.login-box{
-    width:min(430px,100%);
-    background:white;
-    border:1px solid #E5DED7;
-    border-radius:18px;
-    padding:40px;
-    box-shadow:0 10px 35px rgba(45,45,45,.06);
-}
-
-.logo{
-    color:#6E4A7E;
-    font-size:20px;
-    font-weight:700;
-    margin-bottom:8px;
-}
-
-.login-box h1{
-    font-size:30px;
-    font-weight:500;
-    margin-bottom:10px;
-}
-
-.login-description{
-    color:#625D59;
-    font-size:14px;
-    line-height:1.6;
-    margin-bottom:25px;
-}
-
-input,
-textarea,
-select{
-    width:100%;
-    padding:12px 13px;
-    border:1px solid #DCD4CE;
-    border-radius:8px;
-    background:#fff;
-    font-size:14px;
-    outline:none;
-}
-
-textarea{
-    min-height:120px;
-    resize:vertical;
-}
-
-input:focus,
-textarea:focus,
-select:focus{
-    border-color:#6E4A7E;
-}
-
-label{
-    display:block;
-    font-size:13px;
-    font-weight:600;
-    margin-bottom:7px;
-}
-
-.form-group{
-    margin-bottom:18px;
-}
-
-.primary-btn{
-    background:#6E4A7E;
-    color:white;
-    padding:12px 18px;
-    border-radius:8px;
-    font-size:14px;
-}
-
-.secondary-btn{
-    background:#F1EAF4;
-    color:#6E4A7E;
-    padding:11px 16px;
-    border-radius:8px;
-    font-size:14px;
-}
-
-.danger-btn{
-    background:#F7E7E7;
-    color:#9A4D4D;
-    padding:10px 14px;
-    border-radius:8px;
-    font-size:13px;
-}
-
-.small-btn{
-    padding:8px 11px;
-    font-size:12px;
-}
-
-.message{
-    margin-top:15px;
-    font-size:13px;
-}
-
-.error{
-    color:#9A4D4D;
-}
-
-.success{
-    color:#5C765D;
-}
-
-.admin-app{
-    display:none;
-    min-height:100vh;
-}
-
-.sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    bottom:0;
-    width:245px;
-    background:#302A31;
-    color:white;
-    padding:28px 18px;
-    overflow-y:auto;
-    z-index:900;
-}
-
-.sidebar-logo{
-    color:#DCCBB3;
-    font-size:18px;
-    font-weight:700;
-    line-height:1.4;
-    padding:0 10px;
-    margin-bottom:35px;
-}
-
-.sidebar-button{
-    width:100%;
-    background:transparent;
-    color:#DDD6DE;
-    text-align:left;
-    padding:12px 13px;
-    margin-bottom:5px;
-    border-radius:8px;
-    font-size:14px;
-}
-
-.sidebar-button:hover,
-.sidebar-button.active{
-    background:#6E4A7E;
-    color:white;
-}
-
-.logout-btn{
-    margin-top:30px;
-    width:100%;
-    background:#493F4A;
-    color:#E8E1E8;
-    padding:12px;
-    border-radius:8px;
-}
-
-.main{
-    margin-left:245px;
-    min-height:100vh;
-    padding:35px;
-}
-
-.mobile-menu{
-    display:none;
-}
-
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:30px;
-}
-
-.topbar h1{
-    font-size:28px;
-    font-weight:500;
-}
-
-.admin-email{
-    font-size:13px;
-    color:#6E4A7E;
-}
-
-.section{
-    display:none;
-}
-
-.card{
-    background:white;
-    border:1px solid #E5DED7;
-    border-radius:14px;
-    padding:24px;
-    margin-bottom:22px;
-}
-
-.card h2{
-    font-size:20px;
-    font-weight:500;
-    margin-bottom:8px;
-}
-
-.card-description{
-    color:#6A6460;
-    font-size:13px;
-    line-height:1.6;
-    margin-bottom:20px;
-}
-
-.stats-grid{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:15px;
-}
-
-.stat-card{
-    background:white;
-    border:1px solid #E5DED7;
-    border-radius:14px;
-    padding:22px;
-}
-
-.stat-number{
-    font-size:30px;
-    color:#6E4A7E;
-    margin-bottom:5px;
-}
-
-.stat-label{
-    color:#6A6460;
-    font-size:13px;
-}
-
-.week-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:16px;
-}
-
-.week-card{
-    border:1px solid #E5DED7;
-    background:#fff;
-    border-radius:13px;
-    padding:20px;
-}
-
-.week-card h3{
-    font-size:17px;
-    color:#6E4A7E;
-    margin-bottom:8px;
-}
-
-.week-title{
-    font-size:15px;
-    font-weight:600;
-    margin-bottom:8px;
-}
-
-.week-goal{
-    color:#625D59;
-    font-size:13px;
-    line-height:1.5;
-    min-height:42px;
-}
-
-.week-days{
-    color:#746D68;
-    font-size:12px;
-    margin:12px 0;
-}
-
-.status{
-    display:inline-block;
-    padding:5px 9px;
-    border-radius:20px;
-    font-size:11px;
-    margin-bottom:12px;
-}
-
-.status.published{
-    background:#E8F2E9;
-    color:#557258;
-}
-
-.status.draft{
-    background:#F3ECE7;
-    color:#786B62;
-}
-
-.week-actions{
-    display:flex;
-    gap:7px;
-    flex-wrap:wrap;
-}
-
-.editor-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    margin-bottom:20px;
-}
-
-.day-card{
-    border:1px solid #E5DED7;
-    border-radius:13px;
-    padding:20px;
-    margin-bottom:18px;
-    background:#FFFDFC;
-}
-
-.day-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    margin-bottom:18px;
-}
-
-.day-header h3{
-    color:#6E4A7E;
-    font-size:19px;
-}
-
-.day-focus{
-    color:#746D68;
-    font-size:13px;
-    margin-top:4px;
-}
-
-.habit-card{
-    border:1px solid #E5DED7;
-    border-radius:10px;
-    padding:16px;
-    margin-top:12px;
-    background:white;
-}
-
-.habit-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:12px;
-}
-
-.habit-header strong{
-    color:#6E4A7E;
-}
-
-.habit-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:14px;
-}
-
-.reflection-box{
-    background:#F1EAF4;
-    border-radius:12px;
-    padding:20px;
-}
-
-.lesson-card,
-.community-card,
-.member-card{
-    border:1px solid #E5DED7;
-    border-radius:12px;
-    background:white;
-    padding:18px;
-    margin-bottom:12px;
-}
-
-.lesson-card h3,
-.community-card h3,
-.member-card h3{
-    font-size:16px;
-    margin-bottom:7px;
-}
-
-.lesson-meta,
-.community-meta{
-    color:#716A66;
-    font-size:12px;
-    margin-bottom:12px;
-}
-
-.community-content{
-    font-size:14px;
-    line-height:1.6;
-    color:#4F4945;
-    white-space:pre-wrap;
-    margin-bottom:14px;
-}
-
-.community-category{
-    display:inline-block;
-    background:#F1EAF4;
-    color:#6E4A7E;
-    padding:5px 9px;
-    border-radius:20px;
-    font-size:11px;
-    margin-bottom:10px;
-}
-
-.community-filter{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    margin-bottom:20px;
-}
-
-.empty{
-    text-align:center;
-    padding:40px;
-    color:#746D68;
-    font-size:14px;
-}
-
-.loading{
-    text-align:center;
-    padding:30px;
-    color:#746D68;
-}
-
-.notice{
-    background:#F1EAF4;
-    border-left:4px solid #6E4A7E;
-    padding:15px 17px;
-    border-radius:8px;
-    font-size:13px;
-    line-height:1.6;
-    margin-bottom:20px;
-}
-
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(45,45,45,.55);
-    z-index:1000;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-
-.modal-box{
-    width:min(650px,100%);
-    max-height:90vh;
-    overflow-y:auto;
-    background:white;
-    border-radius:15px;
-    padding:28px;
-}
-
-.modal-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.close-btn{
-    background:#F3EFEC;
-    padding:7px 10px;
-    border-radius:7px;
-}
-
-@media(max-width:1100px){
-
-    .stats-grid{
-        grid-template-columns:repeat(3,1fr);
-    }
-
-    .week-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-}
-
-@media(max-width:900px){
-
-    .sidebar{
-        transform:translateX(-100%);
-        transition:.25s;
-    }
-
-    .sidebar.open{
-        transform:translateX(0);
-    }
-
-    .main{
-        margin-left:0;
-        padding:20px;
-    }
-
-    .mobile-menu{
-        display:block;
-        background:#6E4A7E;
-        color:white;
-        padding:10px 13px;
-        margin-bottom:20px;
-        border-radius:8px;
-    }
-
-    .stats-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .week-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-}
-
-@media(max-width:600px){
-
-    .stats-grid,
-    .week-grid,
-    .habit-grid{
-        grid-template-columns:1fr;
-    }
-
-    .main{
-        padding:15px;
-    }
-
-    .card{
-        padding:18px;
-    }
-
-    .login-box{
-        padding:28px 22px;
-    }
-
-    .topbar{
-        align-items:flex-start;
-        flex-direction:column;
-        gap:8px;
-    }
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-
-<!-- =====================================================
-     LOGIN
-===================================================== -->
-
-<div id="loginScreen" class="admin-login">
-
-    <div class="login-box">
-
-        <div class="logo">
-            Freedom Women's Health Club
-        </div>
-
-        <h1>Admin Panel</h1>
-
-        <p class="login-description">
-            Manage your 90-day journey, lessons, members
-            and community.
-        </p>
-
-        <form id="adminLoginForm">
-
-            <div class="form-group">
-
-                <label>Email Address</label>
-
-                <input
-                    type="email"
-                    id="adminEmail"
-                    placeholder="Admin email"
-                    required
-                >
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Password</label>
-
-                <input
-                    type="password"
-                    id="adminPassword"
-                    placeholder="Password"
-                    required
-                >
-
-            </div>
-
-            <button
-                type="submit"
-                class="primary-btn"
-                style="width:100%;">
-
-                Log In
-
-            </button>
-
-        </form>
-
-        <div id="loginMessage" class="message"></div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     ADMIN APP
-===================================================== -->
-
-<div id="adminApp" class="admin-app">
-
-
-<aside class="sidebar" id="sidebar">
-
-    <div class="sidebar-logo">
-
-        Freedom Women's<br>
-        Health Club
-
-    </div>
-
-    <button class="sidebar-button active"
-            data-section="dashboard">
-        Dashboard
-    </button>
-
-    <button class="sidebar-button"
-            data-section="weeks">
-        90-Day Journey
-    </button>
-
-    <button class="sidebar-button"
-            data-section="lessons">
-        Lessons
-    </button>
-
-    <button class="sidebar-button"
-            data-section="community">
-        Community
-    </button>
-
-    <button class="sidebar-button"
-            data-section="members">
-        Members
-    </button>
-
-    <button class="sidebar-button"
-            data-section="settings">
-        Settings
-    </button>
-
-    <button
-        id="logoutButton"
-        class="logout-btn">
-        Log Out
-    </button>
-
-</aside>
-
-
-<main class="main">
-
-    <button
-        class="mobile-menu"
-        id="mobileMenuButton">
-        ☰ Menu
-    </button>
-
-
-    <div class="topbar">
-
-        <h1 id="pageTitle">
-            Dashboard
-        </h1>
-
-        <div
-            id="adminEmailDisplay"
-            class="admin-email">
-        </div>
-
-    </div>
-
-
-<!-- =====================================================
-     DASHBOARD
-===================================================== -->
-
-<section id="dashboardSection"
-         class="section"
-         style="display:block;">
-
-    <div class="stats-grid">
-
-        <div class="stat-card">
-            <div id="memberCount" class="stat-number">0</div>
-            <div class="stat-label">Members</div>
-        </div>
-
-        <div class="stat-card">
-            <div id="weekCount" class="stat-number">0</div>
-            <div class="stat-label">Weeks</div>
-        </div>
-
-        <div class="stat-card">
-            <div id="dayCount" class="stat-number">0</div>
-            <div class="stat-label">Days</div>
-        </div>
-
-        <div class="stat-card">
-            <div id="lessonCount" class="stat-number">0</div>
-            <div class="stat-label">Lessons</div>
-        </div>
-
-        <div class="stat-card">
-            <div id="communityCount" class="stat-number">0</div>
-            <div class="stat-label">Community Posts</div>
-        </div>
-
-    </div>
-
-
-    <div class="card" style="margin-top:22px;">
-
-        <h2>
-            Your 90-Day Program
-        </h2>
-
-        <p class="card-description">
-            Your actual 90-day content is stored in the
-            Firestore weeks collection. The program is divided
-            into weekly sections while keeping all 90 daily
-            tasks.
-        </p>
-
-        <button
-            class="primary-btn"
-            onclick="showSection('weeks')">
-            Open 90-Day Journey
-        </button>
-
-    </div>
-
-
-    <div class="card">
-
-        <h2>
-            Community
-        </h2>
-
-        <p class="card-description">
-            Members can create their own daily check-ins,
-            wins, discussions, queries, meal posts and
-            workout updates from the client community page.
-            You can view and moderate their posts here.
-        </p>
-
-        <button
-            class="secondary-btn"
-            onclick="showSection('community')">
-            Open Community
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     WEEKS
-===================================================== -->
-
-<section id="weeksSection"
-         class="section">
-
-    <div class="card">
-
-        <div class="editor-header">
-
-            <div>
-
-                <h2>
-                    90-Day Journey
-                </h2>
-
-                <p class="card-description"
-                   style="margin-bottom:0;">
-
-                    Your complete 90-day content is already
-                    organized into weekly sections.
-
-                </p>
-
-            </div>
-
-            <button
-                class="secondary-btn"
-                id="seedProgramButton">
-
-                Check / Load Program
-
-            </button>
-
-        </div>
-
-    </div>
-
-    <div
-        id="weekList"
-        class="week-grid">
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     WEEK EDITOR
-===================================================== -->
-
-<section id="weekEditorSection"
-         class="section">
-
-    <div class="card">
-
-        <div class="editor-header">
-
-            <div>
-
-                <h2 id="weekEditorTitle">
-                    Week
-                </h2>
-
-                <p class="card-description"
-                   style="margin-bottom:0;">
-
-                    Review and edit the content for this week.
-
-                </p>
-
-            </div>
-
-            <button
-                class="secondary-btn"
-                onclick="showSection('weeks')">
-
-                ← Back
-
-            </button>
-
-        </div>
-
-
-        <div class="habit-grid">
-
-            <div class="form-group">
-
-                <label>Week Number</label>
-
-                <input
-                    type="number"
-                    id="weekNumber"
-                    min="1">
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>Week Title</label>
-
-                <input
-                    type="text"
-                    id="weekTitle">
-
-            </div>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>Week Goal</label>
-
-            <textarea id="weekGoal"></textarea>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>Week Overview</label>
-
-            <textarea id="weekOverview"></textarea>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>Status</label>
-
-            <select id="weekStatus">
-
-                <option value="published">
-                    Published
-                </option>
-
-                <option value="draft">
-                    Draft
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <button
-            class="primary-btn"
-            id="saveWeekButton">
-
-            Save Week
-
-        </button>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="editor-header">
-
-            <div>
-
-                <h2>
-                    Daily Content
-                </h2>
-
-                <p class="card-description"
-                   style="margin-bottom:0;">
-
-                    These are the actual daily habits from
-                    your 90-day program.
-
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div id="daysContainer"></div>
-
-    </div>
-
-
-    <div class="card">
-
-        <h2>
-            Weekly Reflection
-        </h2>
-
-        <p class="card-description">
-            Reflection questions members can answer at
-            the end of this week.
-        </p>
-
-        <div
-            id="reflectionQuestions"
-            class="reflection-box">
-        </div>
-
-        <br>
-
-        <button
-            class="primary-btn"
-            id="saveReflectionButton">
-
-            Save Reflection
-
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     LESSONS
-===================================================== -->
-
-<section id="lessonsSection"
-         class="section">
-
-    <div class="card">
-
-        <div class="editor-header">
-
-            <div>
-
-                <h2>Lessons</h2>
-
-                <p class="card-description"
-                   style="margin-bottom:0;">
-
-                    Educational lessons remain separate from
-                    the daily journey.
-
-                </p>
-
-            </div>
-
-            <button
-                class="primary-btn"
-                id="addLessonButton">
-
-                + Add Lesson
-
-            </button>
-
-        </div>
-
-    </div>
-
-    <div id="lessonList"></div>
-
-</section>
-
-
-<!-- =====================================================
-     COMMUNITY
-===================================================== -->
-
-<section id="communitySection"
-         class="section">
-
-    <div class="card">
-
-        <div class="editor-header">
-
-            <div>
-
-                <h2>
-                    Community
-                </h2>
-
-                <p class="card-description"
-                   style="margin-bottom:0;">
-
-                    View and moderate posts created by your
-                    members.
-
-                </p>
-
-            </div>
-
-            <button
-                class="secondary-btn"
-                id="refreshCommunityButton">
-
-                Refresh
-
-            </button>
-
-        </div>
-
-
-        <div class="notice">
-
-            <strong>How this works:</strong><br><br>
-
-            Members create their own posts from the client
-            Community page. Their posts are saved in the
-            <strong>community</strong> collection.
-
-            You do not need to manually create their
-            check-ins from this Admin Panel.
-
-        </div>
-
-
-        <div class="community-filter">
-
-            <button
-                class="secondary-btn small-btn"
-                data-community-filter="all">
-                All
-            </button>
-
-            <button
-                class="secondary-btn small-btn"
-                data-community-filter="checkin">
-                Daily Check-in
-            </button>
-
-            <button
-                class="secondary-btn small-btn"
-                data-community-filter="win">
-                Wins
-            </button>
-
-            <button
-                class="secondary-btn small-btn"
-                data-community-filter="discussion">
-                Discussion
-            </button>
-
-            <button
-                class="secondary-btn small-btn"
-                data-community-filter="query">
-                Queries
-            </button>
-
-            <button
-                class="secondary-btn small-btn"
-                data-community-filter="meal">
-                Meals
-            </button>
-
-            <button
-                class="secondary-btn small-btn"
-                data-community-filter="workout">
-                Workout
-            </button>
-
-            <button
-                class="secondary-btn small-btn"
-                data-community-filter="announcement">
-                Announcements
-            </button>
-
-        </div>
-
-
-        <div id="communityList">
-
-            <div class="loading">
-                Loading community...
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     MEMBERS
-===================================================== -->
-
-<section id="membersSection"
-         class="section">
-
-    <div class="card">
-
-        <div class="editor-header">
-
-            <div>
-
-                <h2>Members</h2>
-
-                <p class="card-description"
-                   style="margin-bottom:0;">
-
-                    View members registered in your system.
-
-                </p>
-
-            </div>
-
-            <button
-                class="secondary-btn"
-                id="refreshMembersButton">
-
-                Refresh
-
-            </button>
-
-        </div>
-
-        <div id="memberList"></div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     SETTINGS
-===================================================== -->
-
-<section id="settingsSection"
-         class="section">
-
-    <div class="card">
-
-        <h2>
-            Admin Settings
-        </h2>
-
-        <p class="card-description">
-            This admin panel uses Firebase Authentication
-            and Firestore.
-        </p>
-
-        <p style="font-size:14px;">
-
-            Logged in as:
-
-            <strong id="settingsEmail"></strong>
-
-        </p>
-
-    </div>
-
-</section>
-
-
-</main>
-
-</div>
-
-
-<!-- =====================================================
-     LESSON MODAL
-===================================================== -->
-
-<div id="lessonModal"
-     class="modal">
-
-    <div class="modal-box">
-
-        <div class="modal-header">
-
-            <h2>Add / Edit Lesson</h2>
-
-            <button
-                class="close-btn"
-                onclick="closeModal('lessonModal')">
-                ✕
-            </button>
-
-        </div>
-
-
-        <input
-            type="hidden"
-            id="lessonId">
-
-
-        <div class="form-group">
-
-            <label>Lesson Title</label>
-
-            <input
-                id="lessonTitle"
-                placeholder="Lesson title">
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>Category</label>
-
-            <input
-                id="lessonCategory"
-                placeholder="Nutrition">
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>Lesson Content</label>
-
-            <textarea
-                id="lessonContent"
-                style="min-height:220px;">
-            </textarea>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>Video URL</label>
-
-            <input
-                type="url"
-                id="lessonVideo"
-                placeholder="https://...">
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>Status</label>
-
-            <select id="lessonStatus">
-
-                <option value="published">
-                    Published
-                </option>
-
-                <option value="draft">
-                    Draft
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <button
-            class="primary-btn"
-            id="saveLessonButton">
-
-            Save Lesson
-
-        </button>
-
-    </div>
-
-</div>
-
-
-<script type="module">
-
-
-/* =========================================================
-   FIREBASE IMPORTS
-========================================================= */
-
-import {
-    initializeApp
-}
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-
-
-import {
-    getAuth,
-    signInWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut
-}
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-
-
-import {
-    getFirestore,
-    collection,
-    doc,
-    getDoc,
-    getDocs,
-    setDoc,
-    addDoc,
-    updateDoc,
-    deleteDoc,
-    query,
-    orderBy,
-    limit
-}
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-
-
-/* =========================================================
-   FIREBASE CONFIG
-========================================================= */
-
-const firebaseConfig = {
-
-    apiKey:
-        "AIzaSyB1ISMm_aVwsbSHByUI0F67tn-8GJo1pO0",
-
-    authDomain:
-        "freedom-women-s-health-club.firebaseapp.com",
-
-    projectId:
-        "freedom-women-s-health-club",
-
-    storageBucket:
-        "freedom-women-s-health-club.firebasestorage.app",
-
-    messagingSenderId:
-        "445440093665",
-
-    appId:
-        "1:445440093665:web:9c3a77f1f64776f63cb6a0"
-
-};
-
-
-const app =
-    initializeApp(firebaseConfig);
-
-const auth =
-    getAuth(app);
-
-const db =
-    getFirestore(app);
-
-
-/* =========================================================
-   GLOBAL STATE
-========================================================= */
-
-let currentUser = null;
-
-let currentWeekId = null;
-
-let currentWeekData = null;
-
-let allCommunityPosts = [];
-
-let currentCommunityFilter = "all";
-
-
-/* =========================================================
-   90-DAY CONTENT
-========================================================= */
-
-const programDays = [
-
-[1,"Foundation","2,500 steps","5 hr","1.5 L","15–20 g/meal","Don't skip meals","5 min breathing","10 min",""],
-[2,"Foundation","3,500 steps","5.5 hr","1.7 L","15–20 g/meal","Don't skip meals","5 min breathing","10 min",""],
-[3,"Foundation","4,500 steps","6 hr","1.8 L","20 g/meal","Don't skip meals","5 min breathing","10 min",""],
-[4,"Foundation","5,500 steps","6.5 hr","1.9 L","20 g/meal","Regular meals","5 min breathing","10 min",""],
-[5,"Foundation","6,500 steps","7 hr","2 L","20 g/meal","Reduce added sugar","5 min breathing","10 min","Avoid late-night eating"],
-[6,"Foundation","8,000 steps","7 hr","2 L","25 g/meal","Healthy snacks if hungry","5 min breathing","10 min","Fixed sleep routine"],
-[7,"Foundation","10,000 steps*","7 hr","2 L","25–30 g/meal","Balanced meals","Gratitude + breathing","15 min","Week review"],
-
-[8,"Balanced Eating","10,000*","7–8 hr","2 L","25–30 g/meal","Balanced plate","5 min breathing","10–15 min","Digital sunset"],
-[9,"Protein Focus","10,000*","7–8 hr","2 L","25–30 g/meal","Protein every meal","5 min breathing","10–15 min","Digital sunset"],
-[10,"Fiber Focus","10,000*","7–8 hr","2 L","25–30 g/meal","Add vegetables/legumes","5 min breathing","10–15 min","Digital sunset"],
-[11,"Carb Balance","10,000*","7–8 hr","2 L","25–30 g/meal","Moderate roti/rice","5 min breathing","10–15 min","1 hr screen-free"],
-[12,"Post-Meal Movement","10,000*","7–8 hr","2 L","25–30 g/meal","Balanced meals","5 min breathing","10–15 min","Post-meal walks"],
-[13,"Smart Snacking","10,000*","7–8 hr","2 L","25–30 g/meal","Snack only when hungry","Stress 1–10","10–15 min","Digital sunset"],
-[14,"Week Review","10,000*","7–8 hr","2 L","25–30 g/meal","Review portions","Gratitude","10–15 min","Weekly review"],
-
-[15,"Stress Reset","10,000*","7–8 hr","2 L","20 g/meal","Limit processed foods","Stress 1–10 + breathing","10–15 min","No late-night eating"],
-[16,"Calm Building","10,000*","7–8 hr","2 L","20 g/meal","Whole foods","Stress 1–10","10–15 min","Digital sunset"],
-[17,"Craving Control","10,000*","7–8 hr","2 L","20 g/meal","Protein + fiber","Stress 1–10","10–15 min","No late-night eating"],
-[18,"Hormone Support","10,000*","7–8 hr","2 L","25 g/meal","Whole foods + seeds","Stress 1–10","10–15 min","Digital sunset"],
-[19,"Balance","10,000*","7–8 hr","2 L","25 g/meal","Balanced meals","Stress 1–10","10–15 min","Recovery routine"],
-[20,"Strong Foundation","10,000*","7–8 hr","2 L","25–30 g/meal","Protein + fiber","Stress 1–10","10–15 min","Digital sunset"],
-[21,"Habit Lock-In","10,000*","7–8 hr","2 L","30 g/meal","Consistent meals","Gratitude + stress check","10–15 min","Week review"],
-
-[22,"Portion Awareness","10,000*","7–8 hr","2 L","25–30 g/meal","Learn portions","5 min breathing","10–15 min","Digital sunset"],
-[23,"Meal Planning","10,000*","7–8 hr","2 L","25–30 g/meal","Plan meals ahead","Stress check","10–15 min","Fixed bedtime"],
-[24,"Desi Food Balance","10,000*","7–8 hr","2 L","25–30 g/meal","Roti/rice + protein + vegetables","5 min breathing","10–15 min","Screen-free hour"],
-[25,"Hunger Awareness","10,000*","7–8 hr","2 L","25–30 g/meal","Eat according to hunger","Hunger check","10–15 min","No distracted eating"],
-[26,"Eating Slowly","10,000*","7–8 hr","2 L","25–30 g/meal","Slow, mindful eating","5 min breathing","10–15 min","Digital sunset"],
-[27,"Sugar Awareness","10,000*","7–8 hr","2 L","25–30 g/meal","Reduce sugary foods/drinks","Stress check","10–15 min","No late-night eating"],
-[28,"Consistency","10,000*","7–8 hr","2 L","25–30 g/meal","Follow routine","Gratitude","10–15 min","Weekly review"],
-
-[29,"Flexible Eating","10,000*","7–8 hr","2 L","25–30 g/meal","Flexible portions","5 min breathing","10–15 min","Recovery"],
-[30,"Month 1 Review","10,000*","7–8 hr","2 L","25–30 g/meal","Review eating habits","Stress + gratitude","10–15 min","Progress review"],
-[31,"Strength Foundation","10,000*","7–8 hr","2 L","20–30 g/meal","Balanced plate","5 min breathing","10–15 min","20 min strength"],
-[32,"Strength + Routine","10,000*","7–8 hr","2 L","20–30 g/meal","Follow plan","Stress check","10–15 min","20 min strength"],
-[33,"Strength Focus","10,000*","7–8 hr","2 L","20–30 g/meal","Follow plan","Gratitude","10–15 min","20 min strength"],
-[34,"Energy","10,000*","7–8 hr","2 L","20–30 g/meal","Balanced meals","5 min breathing","10–15 min","20 min strength"],
-[35,"Mind + Body","10,000*","7–8 hr","2 L","20–30 g/meal","Follow plan","Stress check","10–15 min","20 min strength"],
-
-[36,"Strength Consistency","10,000*","7–8 hr","2 L","20–30 g/meal","Follow plan","Gratitude","10–15 min","20 min strength"],
-[37,"Week Review","10,000*","7–8 hr","2 L","20–30 g/meal","Review routine","Stress + gratitude","10–15 min","Recovery"],
-[38,"Strength Progression","10,000*","7–8 hr","2 L","20–30 g/meal","Balanced meals","Stress check","10–15 min","25 min strength"],
-[39,"Consistency","10,000*","7–8 hr","2 L","20–30 g/meal","Follow plan","5 min breathing","10–15 min","25 min strength"],
-[40,"Progressive Strength","10,000*","7–8 hr","2 L","20–30 g/meal","Follow plan","Stress check","10–15 min","25 min strength"],
-[41,"Energy Focus","10,000*","7–8 hr","2 L","20–30 g/meal","Balanced meals","Gratitude","10–15 min","25 min strength"],
-[42,"Mind + Body","10,000*","7–8 hr","2 L","20–30 g/meal","Follow plan","Stress check","10–15 min","25 min strength"],
-
-[43,"Habit Lock-In","10,000*","7–8 hr","2 L","20–30 g/meal","Follow plan","5 min breathing","10–15 min","25 min strength"],
-[44,"Progress Review","10,000*","7–8 hr","2 L","20–30 g/meal","Review progress","Stress + gratitude","10–15 min","Recovery"],
-[45,"Legs & Glutes","10,000*","7–8 hr","2 L","25–30 g/meal","Protein + fiber","5 min breathing","10–15 min","25–30 min legs/glutes"],
-[46,"Shoulders & Arms","10,000*","7–8 hr","2 L","25–30 g/meal","Balanced meals","Stress check","10–15 min","25–30 min shoulders/arms"],
-[47,"Active Recovery","10,000*","7–8 hr","2 L","25–30 g/meal","Follow plan","Gratitude","10–15 min","Recovery / light activity"],
-[48,"Back & Core","10,000*","7–8 hr","2 L","25–30 g/meal","Protein + fiber","5 min breathing","10–15 min","25–30 min back/core"],
-[49,"Chest + Full Body","10,000*","7–8 hr","2 L","25–30 g/meal","Balanced meals","Stress check","10–15 min","25–30 min chest/full body"],
-
-[50,"Active Recovery","10,000*","7–8 hr","2 L","25–30 g/meal","Follow plan","Gratitude","10–15 min","Recovery / light activity"],
-[51,"Full Body + HIIT","10,000*","7–8 hr","2 L","25–30 g/meal","Balanced meals","Stress check","10–15 min","25–30 min full body + HIIT"],
-[52,"Legs & Glutes","10,000*","7–8 hr","2 L","25–30 g/meal","Protein + vegetables","5 min breathing","10–15 min","25–30 min legs/glutes"],
-[53,"Shoulders & Arms","10,000*","7–8 hr","2 L","25–30 g/meal","Balanced meals","Stress check","10–15 min","25–30 min shoulders/arms"],
-[54,"Active Recovery","10,000*","7–8 hr","2 L","25–30 g/meal","Follow plan","Gratitude","10–15 min","Recovery"],
-[55,"Back & Core","10,000*","7–8 hr","2 L","25–30 g/meal","Protein + fiber","5 min breathing","10–15 min","25–30 min back/core"],
-[56,"Chest + Full Body","10,000*","7–8 hr","2 L","25–30 g/meal","Balanced meals","Stress check","10–15 min","25–30 min chest/full body"],
-
-[57,"Active Recovery","10,000*","7–8 hr","2 L","25–30 g/meal","Follow plan","Gratitude","10–15 min","Recovery"],
-[58,"Full Body + HIIT","10,000*","7–8 hr","2 L","25–30 g/meal","Balanced meals","Stress check","10–15 min","25–30 min full body + HIIT"],
-[59,"Fat-Loss Nutrition","10,000*","7–8 hr","2 L","25–30 g/meal","Portion awareness","5 min breathing","10–15 min","Strength/recovery"],
-[60,"Fat-Loss Nutrition","10,000*","7–8 hr","2 L","25–30 g/meal","Protein + fiber","Stress check","10–15 min","Digital sunset"],
-[61,"Fat-Loss Nutrition","10,000*","7–8 hr","2 L","25–30 g/meal","Balanced desi meals","Gratitude","10–15 min","Strength/recovery"],
-[62,"Fat-Loss Nutrition","10,000*","7–8 hr","2 L","25–30 g/meal","Limit liquid calories","Stress check","10–15 min","Digital sunset"],
-[63,"Fat-Loss Nutrition","10,000*","7–8 hr","2 L","25–30 g/meal","Smart snacks","5 min breathing","10–15 min","Recovery"],
-
-[64,"Fat-Loss Nutrition","10,000*","7–8 hr","2 L","25–30 g/meal","Portion control","Gratitude","10–15 min","Strength/recovery"],
-[65,"Weekly Review","10,000*","7–8 hr","2 L","25–30 g/meal","Review consistency","Stress check","10–15 min","Recovery"],
-[66,"Blood Sugar-Friendly Meals","10,000*","7–8 hr","2 L","25–30 g/meal","Protein + fiber + carbs","5 min breathing","10–15 min","Post-meal walk"],
-[67,"Blood Sugar-Friendly Meals","10,000*","7–8 hr","2 L","25–30 g/meal","Consistent meal timing","Stress check","10–15 min","Post-meal walk"],
-[68,"Blood Sugar-Friendly Meals","10,000*","7–8 hr","2 L","25–30 g/meal","Balanced breakfast","Gratitude","10–15 min","Digital sunset"],
-[69,"Blood Sugar-Friendly Meals","10,000*","7–8 hr","2 L","25–30 g/meal","Balanced lunch","5 min breathing","10–15 min","Post-meal walk"],
-[70,"Blood Sugar-Friendly Meals","10,000*","7–8 hr","2 L","25–30 g/meal","Balanced dinner","Stress check","10–15 min","No late-night eating"],
-
-[71,"Blood Sugar-Friendly Meals","10,000*","7–8 hr","2 L","25–30 g/meal","Limit sugary drinks","Gratitude","10–15 min","Recovery"],
-[72,"Week Review","10,000*","7–8 hr","2 L","25–30 g/meal","Review meal patterns","Stress + gratitude","10–15 min","Weekly review"],
-[73,"Craving Control","10,000*","7–8 hr","2 L","25–30 g/meal","Identify triggers","Stress check","10–15 min","Digital sunset"],
-[74,"Craving Control","10,000*","7–8 hr","2 L","25–30 g/meal","Protein-rich meals","5 min breathing","10–15 min","No distracted eating"],
-[75,"Weekend Skills","10,000*","7–8 hr","2 L","25–30 g/meal","Plan treats intentionally","Stress check","10–15 min","Recovery"],
-[76,"Social Eating","10,000*","7–8 hr","2 L","25–30 g/meal","Balanced plate","Gratitude","10–15 min","Post-meal walk"],
-[77,"Social Eating","10,000*","7–8 hr","2 L","25–30 g/meal","Portion awareness","Stress check","10–15 min","Digital sunset"],
-
-[78,"Weekend Eating","10,000*","7–8 hr","2 L","25–30 g/meal","Don't compensate by starving","5 min breathing","10–15 min","Recovery"],
-[79,"Weekly Review","10,000*","7–8 hr","2 L","25–30 g/meal","Review cravings/social meals","Gratitude","10–15 min","Recovery"],
-[80,"Flexible Lifestyle","10,000*","7–8 hr","2 L","25–30 g/meal","80/20 approach","Stress check","10–15 min","Strength/recovery"],
-[81,"Flexible Lifestyle","10,000*","7–8 hr","2 L","25–30 g/meal","Enjoy desi foods mindfully","5 min breathing","10–15 min","Digital sunset"],
-[82,"Flexible Lifestyle","10,000*","7–8 hr","2 L","25–30 g/meal","Portion flexibility","Gratitude","10–15 min","Post-meal walk"],
-[83,"Sustainable Eating","10,000*","7–8 hr","2 L","25–30 g/meal","Eat without guilt","Stress check","10–15 min","Recovery"],
-[84,"Week Review","10,000*","7–8 hr","2 L","25–30 g/meal","Review flexibility","Gratitude","10–15 min","Weekly review"],
-
-[85,"Maintenance Skills","10,000*","7–8 hr","2 L","25–30 g/meal","Maintain balanced meals","Stress check","10–15 min","Strength/recovery"],
-[86,"Maintenance Skills","10,000*","7–8 hr","2 L","25–30 g/meal","Continue protein + fiber","5 min breathing","10–15 min","Digital sunset"],
-[87,"90-Day Review","Individual target","7–8 hr","2 L","25–30 g/meal","Review eating habits","Reflect on progress","10–15 min","Recovery"],
-[88,"Future Planning","Individual target","7–8 hr","2 L","25–30 g/meal","Create sustainable routine","Gratitude","10–15 min","Strength/recovery"],
-[89,"Lifestyle Lock-In","Individual target","7–8 hr","2 L","25–30 g/meal","Follow your sustainable routine","Stress check","10–15 min","Digital sunset"],
-[90,"90-Day Completion","Individual target","7–8 hr","2 L","25–30 g/meal","Maintain your lifestyle","Final reflection","10–15 min","90-day review"]
-
-];
-
-
-/* =========================================================
-   WEEK TITLES
-========================================================= */
-
-const weekTitles = [
-
-    "Foundation",
-    "Balanced Eating",
-    "Stress & Craving Control",
-    "Meal Planning & Desi Food Balance",
-    "Strength Foundation",
-    "Strength Progression",
-    "Strength & Full Body Training",
-    "Fat-Loss Nutrition",
-    "Blood Sugar-Friendly Meals",
-    "Craving & Social Eating",
-    "Flexible Lifestyle",
-    "Sustainable Eating",
-    "Maintenance & 90-Day Completion"
-
-];
-
-
-/* =========================================================
-   CREATE DAY OBJECT
-========================================================= */
-
-function makeDay(row){
-
-    return {
-
-        dayNumber: row[0],
-
-        title:
-            "Day " +
-            row[0] +
-            " — " +
-            row[1],
-
-        focus:
-            row[1],
-
-        overview:
-            "Today's focus: " +
-            row[1] +
-            ". Complete your movement, sleep, hydration, protein, nutrition, stress and sunlight habits.",
-
-        completionMessage:
-            "Day " +
-            row[0] +
-            " completed. Keep building your Freedom habits.",
-
-        habits: [
-
-            {
-                name:"Movement",
-                target:row[2],
-                instructions:
-                    "Complete your daily movement target. Build consistency rather than trying to be perfect.",
-                trackingType:"number",
-                trackingUnit:"steps",
-                details:""
-            },
-
-            {
-                name:"Sleep",
-                target:row[3],
-                instructions:
-                    "Aim for your sleep target and keep your bedtime routine as consistent as possible.",
-                trackingType:"hours",
-                trackingUnit:"hours",
-                details:""
-            },
-
-            {
-                name:"Hydration",
-                target:row[4],
-                instructions:
-                    "Spread your water intake across the day instead of drinking it all at once.",
-                trackingType:"text",
-                trackingUnit:"litres",
-                details:""
-            },
-
-            {
-                name:"Protein",
-                target:row[5],
-                instructions:
-                    "Include your protein target across your meals.",
-                trackingType:"text",
-                trackingUnit:"",
-                details:""
-            },
-
-            {
-                name:"Nutrition",
-                target:row[6],
-                instructions:
-                    row[6],
-                trackingType:"checkbox",
-                trackingUnit:"",
-                details:""
-            },
-
-            {
-                name:"Mind / Stress",
-                target:row[7],
-                instructions:
-                    row[7],
-                trackingType:"checkbox",
-                trackingUnit:"",
-                details:""
-            },
-
-            {
-                name:"Sunlight",
-                target:row[8],
-                instructions:
-                    "Spend time outdoors or in natural sunlight according to today's target.",
-                trackingType:"minutes",
-                trackingUnit:"minutes",
-                details:""
-            },
-
-            {
-                name:"Recovery",
-                target:row[9] || "Recovery",
-                instructions:
-                    row[9] || "Focus on recovery today.",
-                trackingType:"checkbox",
-                trackingUnit:"",
-                details:""
-            }
-
-        ]
-
-    };
-
-}
-
-
-/* =========================================================
-   BUILD WEEKS
-========================================================= */
-
-function buildProgramWeeks(){
-
-    const weeks = [];
-
-    for(
-        let weekIndex = 0;
-        weekIndex < 13;
-        weekIndex++
-    ){
-
-        const start =
-            weekIndex * 7;
-
-        const end =
-            Math.min(
-                start + 7,
-                programDays.length
-            );
-
-        const rows =
-            programDays.slice(
-                start,
-                end
-            );
-
-        const days =
-            rows.map(
-                makeDay
-            );
-
-        weeks.push({
-
-            weekNumber:
-                weekIndex + 1,
-
-            title:
-                weekTitles[weekIndex],
-
-            goal:
-                "Build consistency with the daily habits and focus of this week.",
-
-            overview:
-                "Follow the daily movement, sleep, hydration, protein, nutrition, mind/stress, sunlight and recovery targets.",
-
-            status:
-                "published",
-
-            days:
-                days,
-
-            reflection:{
-
-                questions:[
-                    "What went well for you this week?",
-                    "Which habit was easiest to follow?",
-                    "Which habit was most difficult?",
-                    "What will you improve next week?"
-                ],
-
-                measurements:
-                    true
-
-            },
-
-            programVersion:
-                "Freedom 90-Day Program",
-
-            createdAt:
-                new Date().toISOString(),
-
-            updatedAt:
-                new Date().toISOString()
-
-        });
-
-    }
-
-    return weeks;
-
-}
-
-
-/* =========================================================
-   SEED PROGRAM
-========================================================= */
-
-async function seedProgram(){
-
-    try{
-
-        const existing =
-            await getDocs(
-                collection(
-                    db,
-                    "weeks"
-                )
-            );
-
-
-        if(
-            existing.size > 0
-        ){
-
-            return {
-                created:false,
-                count:existing.size
-            };
-
-        }
-
-
-        const weeks =
-            buildProgramWeeks();
-
-
-        for(
-            const week of weeks
-        ){
-
-            const weekId =
-                "week-" +
-                String(
-                    week.weekNumber
-                ).padStart(2,"0");
-
-
-            await setDoc(
-                doc(
-                    db,
-                    "weeks",
-                    weekId
-                ),
-                week
-            );
-
-        }
-
-
-        return {
-            created:true,
-            count:weeks.length
-        };
-
-    }catch(error){
-
-        console.error(
-            "Program seed error:",
-            error
-        );
-
-        throw error;
-
-    }
-
-}
-
-
-/* =========================================================
-   AUTH
-========================================================= */
-
-onAuthStateChanged(
-    auth,
-    async function(user){
-
-        if(!user){
-
-            currentUser = null;
-
-            loginScreen.style.display =
-                "flex";
-
-            adminApp.style.display =
-                "none";
-
-            return;
-
-        }
-
-
-        currentUser = user;
-
-        loginScreen.style.display =
-            "none";
-
-        adminApp.style.display =
-            "block";
-
-
-        document.getElementById(
-            "adminEmailDisplay"
-        ).textContent =
-            user.email || "";
-
-
-        document.getElementById(
-            "settingsEmail"
-        ).textContent =
-            user.email || "";
-
-
-        try{
-
-            /*
-             * THIS IS IMPORTANT:
-             *
-             * If weeks are empty, the actual 90-day
-             * program above is automatically created.
-             *
-             * If weeks already exist, nothing is duplicated.
-             */
-
-            await seedProgram();
-
-            await loadDashboard();
-
-            await loadWeeks();
-
-            await loadLessons();
-
-            await loadMembers();
-
-            await loadCommunity();
-
-        }catch(error){
-
-            console.error(
-                "Initial loading error:",
-                error
-            );
-
-            alert(
-                "Admin panel loaded, but some Firestore data could not be loaded. Check your Firestore Rules."
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   LOGIN
-========================================================= */
-
-document
-.getElementById("adminLoginForm")
-.addEventListener(
-    "submit",
-    async function(e){
-
-        e.preventDefault();
-
-
-        const email =
-            document.getElementById(
-                "adminEmail"
-            )
-            .value
-            .trim()
-            .toLowerCase();
-
-
-        const password =
-            document.getElementById(
-                "adminPassword"
-            )
-            .value;
-
-
-        const message =
-            document.getElementById(
-                "loginMessage"
-            );
-
-
-        message.textContent =
-            "Logging in...";
-
-
-        message.className =
-            "message";
-
-
-        try{
-
-            await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
-
-
-            message.textContent =
-                "Login successful.";
-
-            message.className =
-                "message success";
-
-        }catch(error){
-
-            console.error(error);
-
-            message.textContent =
-                "Unable to log in. Check your admin email and password.";
-
-            message.className =
-                "message error";
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   LOGOUT
-========================================================= */
-
-document
-.getElementById("logoutButton")
-.addEventListener(
-    "click",
-    async function(){
-
-        await signOut(auth);
-
-    }
-);
-
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-const sectionNames = [
-
-    "dashboard",
-    "weeks",
-    "weekEditor",
-    "lessons",
-    "community",
-    "members",
-    "settings"
-
-];
-
-
-window.showSection = function(section){
-
-    sectionNames.forEach(
-        function(name){
-
-            const element =
-                document.getElementById(
-                    name + "Section"
-                );
-
-            if(element){
-
-                element.style.display =
-                    "none";
-
-            }
-
-        }
-    );
-
-
-    const selected =
-        document.getElementById(
-            section + "Section"
-        );
-
-
-    if(selected){
-
-        selected.style.display =
-            "block";
-
-    }
-
-
-    document
-    .querySelectorAll(
-        ".sidebar-button"
-    )
-    .forEach(
-        function(button){
-
-            button.classList.remove(
-                "active"
-            );
-
-
-            if(
-                button.dataset.section ===
-                section
-            ){
-
-                button.classList.add(
-                    "active"
-                );
-
-            }
-
-        }
-    );
-
-
-    const titles = {
-
-        dashboard:"Dashboard",
-
-        weeks:"90-Day Journey",
-
-        weekEditor:"Week Editor",
-
-        lessons:"Lessons",
-
-        community:"Community",
-
-        members:"Members",
-
-        settings:"Settings"
-
-    };
-
-
-    document.getElementById(
-        "pageTitle"
-    ).textContent =
-        titles[section] ||
-        "Admin Panel";
-
-};
-
-
-document
-.querySelectorAll(
-    ".sidebar-button"
-)
-.forEach(
-    function(button){
-
-        button.addEventListener(
-            "click",
-            function(){
-
-                showSection(
-                    button.dataset.section
-                );
-
-
-                document
-                .getElementById(
-                    "sidebar"
-                )
-                .classList.remove(
-                    "open"
-                );
-
-            }
-        );
-
-    }
-);
-
-
-/* =========================================================
-   MOBILE MENU
-========================================================= */
-
-document
-.getElementById(
-    "mobileMenuButton"
-)
-.addEventListener(
-    "click",
-    function(){
-
-        document
-        .getElementById(
-            "sidebar"
-        )
-        .classList.toggle(
-            "open"
-        );
-
-    }
-);
-
-
-/* =========================================================
-   DASHBOARD
-========================================================= */
-
-async function loadDashboard(){
-
-    try{
-
-        const members =
-            await getDocs(
-                collection(
-                    db,
-                    "members"
-                )
-            );
-
-
-        const weeks =
-            await getDocs(
-                collection(
-                    db,
-                    "weeks"
-                )
-            );
-
-
-        const lessons =
-            await getDocs(
-                collection(
-                    db,
-                    "lessons"
-                )
-            );
-
-
-        const community =
-            await getDocs(
-                collection(
-                    db,
-                    "community"
-                )
-            );
-
-
-        let days = 0;
-
-
-        weeks.forEach(
-            function(item){
-
-                const data =
-                    item.data();
-
-
-                if(
-                    Array.isArray(
-                        data.days
-                    )
-                ){
-
-                    days +=
-                        data.days.length;
-
-                }
-
-            }
-        );
-
-
-        document.getElementById(
-            "memberCount"
-        ).textContent =
-            members.size;
-
-
-        document.getElementById(
-            "weekCount"
-        ).textContent =
-            weeks.size;
-
-
-        document.getElementById(
-            "dayCount"
-        ).textContent =
-            days;
-
-
-        document.getElementById(
-            "lessonCount"
-        ).textContent =
-            lessons.size;
-
-
-        document.getElementById(
-            "communityCount"
-        ).textContent =
-            community.size;
-
-    }catch(error){
-
-        console.error(
-            "Dashboard error:",
-            error
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   LOAD WEEKS
-========================================================= */
-
-async function loadWeeks(){
-
-    const container =
-        document.getElementById(
-            "weekList"
-        );
-
-
-    container.innerHTML =
-        "<div class='loading'>Loading 90-day program...</div>";
-
-
-    try{
-
-        const snapshot =
-            await getDocs(
-                query(
-                    collection(
-                        db,
-                        "weeks"
-                    ),
-                    orderBy(
-                        "weekNumber",
-                        "asc"
-                    )
-                )
-            );
-
-
-        container.innerHTML = "";
-
-
-        if(snapshot.empty){
-
-            container.innerHTML =
-                "<div class='empty'>No program found. Click Check / Load Program.</div>";
-
-            return;
-
-        }
-
-
-        snapshot.forEach(
-            function(item){
-
-                const week =
-                    item.data();
-
-
-                const days =
-                    Array.isArray(
-                        week.days
-                    )
-                    ? week.days.length
-                    : 0;
-
-
-                const card =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                card.className =
-                    "week-card";
-
-
-                card.innerHTML = `
-
-                    <h3>
-                        WEEK ${escapeHTML(week.weekNumber)}
-                    </h3>
-
-                    <div class="week-title">
-                        ${escapeHTML(week.title)}
-                    </div>
-
-                    <div class="week-goal">
-                        ${escapeHTML(week.goal)}
-                    </div>
-
-                    <div class="week-days">
-                        ${days} day${days === 1 ? "" : "s"}
-                    </div>
-
-                    <span class="status ${
-                        week.status === "published"
-                        ? "published"
-                        : "draft"
-                    }">
-
-                        ${
-                            week.status === "published"
-                            ? "Published"
-                            : "Draft"
-                        }
-
-                    </span>
-
-                    <div class="week-actions">
-
-                        <button
-                            class="primary-btn small-btn"
-                            data-edit-week>
-
-                            Open Week
-
-                        </button>
-
-                    </div>
-
-                `;
-
-
-                card
-                .querySelector(
-                    "[data-edit-week]"
-                )
-                .addEventListener(
-                    "click",
-                    function(){
-
-                        openWeekEditor(
-                            item.id
-                        );
-
-                    }
-                );
-
-
-                container.appendChild(
-                    card
-                );
-
-            }
-        );
-
-    }catch(error){
-
-        console.error(
-            "Weeks error:",
-            error
-        );
-
-
-        container.innerHTML =
-            "<div class='empty'>Unable to load weeks. Check Firestore Rules and make sure you are logged in as the admin.</div>";
-
-    }
-
-}
-
-
-/* =========================================================
-   CHECK / LOAD PROGRAM
-========================================================= */
-
-document
-.getElementById(
-    "seedProgramButton"
-)
-.addEventListener(
-    "click",
-    async function(){
-
-        try{
-
-            const result =
-                await seedProgram();
-
-
-            await loadWeeks();
-
-            await loadDashboard();
-
-
-            if(result.created){
-
-                alert(
-                    "Your complete 90-day program has been added."
-                );
-
-            }else{
-
-                alert(
-                    "Your program is already in Firestore. Nothing was duplicated."
-                );
-
-            }
-
-        }catch(error){
-
-            console.error(error);
-
-            alert(
-                "Unable to load the program. Check Firestore Rules."
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   OPEN WEEK
-========================================================= */
-
-async function openWeekEditor(
-    weekId
-){
-
-    try{
-
-        const snapshot =
-            await getDoc(
-                doc(
-                    db,
-                    "weeks",
-                    weekId
-                )
-            );
-
-
-        if(!snapshot.exists()){
-
-            alert(
-                "Week not found."
-            );
-
-            return;
-
-        }
-
-
-        currentWeekId =
-            weekId;
-
-
-        currentWeekData =
-            snapshot.data();
-
-
-        document.getElementById(
-            "weekNumber"
-        ).value =
-            currentWeekData.weekNumber || "";
-
-
-        document.getElementById(
-            "weekTitle"
-        ).value =
-            currentWeekData.title || "";
-
-
-        document.getElementById(
-            "weekGoal"
-        ).value =
-            currentWeekData.goal || "";
-
-
-        document.getElementById(
-            "weekOverview"
-        ).value =
-            currentWeekData.overview || "";
-
-
-        document.getElementById(
-            "weekStatus"
-        ).value =
-            currentWeekData.status ||
-            "published";
-
-
-        document.getElementById(
-            "weekEditorTitle"
-        ).textContent =
-            "Week " +
-            currentWeekData.weekNumber +
-            " — " +
-            (
-                currentWeekData.title ||
-                ""
-            );
-
-
-        renderDays();
-
-        renderReflection();
-
-        showSection(
-            "weekEditor"
-        );
-
-    }catch(error){
-
-        console.error(error);
-
-        alert(
-            "Unable to open week."
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   SAVE WEEK
-========================================================= */
-
-document
-.getElementById(
-    "saveWeekButton"
-)
-.addEventListener(
-    "click",
-    async function(){
-
-        if(!currentWeekId){
-            return;
-        }
-
-
-        const weekNumber =
-            Number(
-                document.getElementById(
-                    "weekNumber"
-                ).value
-            );
-
-
-        const title =
-            document.getElementById(
-                "weekTitle"
-            ).value.trim();
-
-
-        const goal =
-            document.getElementById(
-                "weekGoal"
-            ).value.trim();
-
-
-        const overview =
-            document.getElementById(
-                "weekOverview"
-            ).value.trim();
-
-
-        const status =
-            document.getElementById(
-                "weekStatus"
-            ).value;
-
-
-        try{
-
-            await updateDoc(
-                doc(
-                    db,
-                    "weeks",
-                    currentWeekId
-                ),
-                {
-
-                    weekNumber,
-                    title,
-                    goal,
-                    overview,
-                    status,
-
-                    updatedAt:
-                        new Date().toISOString()
-
-                }
-            );
-
-
-            currentWeekData.weekNumber =
-                weekNumber;
-
-            currentWeekData.title =
-                title;
-
-            currentWeekData.goal =
-                goal;
-
-            currentWeekData.overview =
-                overview;
-
-            currentWeekData.status =
-                status;
-
-
-            document.getElementById(
-                "weekEditorTitle"
-            ).textContent =
-                "Week " +
-                weekNumber +
-                " — " +
-                title;
-
-
-            await loadWeeks();
-
-            await loadDashboard();
-
-
-            alert(
-                "Week saved."
-            );
-
-        }catch(error){
-
-            console.error(error);
-
-            alert(
-                "Unable to save week."
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   RENDER DAYS
-========================================================= */
-
-function renderDays(){
-
-    const container =
-        document.getElementById(
-            "daysContainer"
-        );
-
-
-    container.innerHTML = "";
-
-
-    const days =
-        Array.isArray(
-            currentWeekData.days
-        )
-        ? currentWeekData.days
-        : [];
-
-
-    if(!days.length){
-
-        container.innerHTML =
-            "<div class='empty'>No days in this week.</div>";
-
-        return;
-
-    }
-
-
-    days.forEach(
-        function(day,index){
-
-            const dayCard =
-                document.createElement(
-                    "div"
-                );
-
-
-            dayCard.className =
-                "day-card";
-
-
-            dayCard.innerHTML = `
-
-                <div class="day-header">
-
-                    <div>
-
-                        <h3>
-                            ${escapeHTML(
-                                day.title ||
-                                "Day " +
-                                (index + 1)
-                            )}
-                        </h3>
-
-                        <div class="day-focus">
-
-                            Focus:
-                            ${escapeHTML(
-                                day.focus ||
-                                ""
-                            )}
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Daily Overview
-                    </label>
-
-                    <textarea
-                        class="day-overview">
-${escapeHTML(day.overview || "")}</textarea>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Completion Message
-                    </label>
-
-                    <input
-                        class="day-message"
-                        value="${escapeAttribute(
-                            day.completionMessage ||
-                            ""
-                        )}">
-
-                </div>
-
-
-                <h4>
-                    Daily Habits
-                </h4>
-
-                <div class="habits-container"></div>
-
-                <button
-                    class="primary-btn small-btn"
-                    data-save-day
-                    style="margin-top:15px;">
-
-                    Save Day
-
-                </button>
-
-            `;
-
-
-            const habitsContainer =
-                dayCard.querySelector(
-                    ".habits-container"
-                );
-
-
-            const habits =
-                Array.isArray(
-                    day.habits
-                )
-                ? day.habits
-                : [];
-
-
-            habits.forEach(
-                function(habit){
-
-                    const habitCard =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    habitCard.className =
-                        "habit-card";
-
-
-                    habitCard.innerHTML = `
-
-                        <div class="habit-header">
-
-                            <strong>
-                                ${escapeHTML(
-                                    habit.name
-                                )}
-                            </strong>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                Target
-                            </label>
-
-                            <input
-                                class="habit-target"
-                                value="${escapeAttribute(
-                                    habit.target || ""
-                                )}">
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                Instructions
-                            </label>
-
-                            <textarea
-                                class="habit-instructions">${escapeHTML(
-                                    habit.instructions || ""
-                                )}</textarea>
-
-                        </div>
-
-
-                        <div class="habit-grid">
-
-                            <div class="form-group">
-
-                                <label>
-                                    Tracking Type
-                                </label>
-
-                                <select
-                                    class="habit-type">
-
-                                    <option
-                                        value="checkbox"
-                                        ${
-                                            habit.trackingType === "checkbox"
-                                            ? "selected"
-                                            : ""
-                                        }>
-                                        Complete / Not Complete
-                                    </option>
-
-                                    <option
-                                        value="number"
-                                        ${
-                                            habit.trackingType === "number"
-                                            ? "selected"
-                                            : ""
-                                        }>
-                                        Number
-                                    </option>
-
-                                    <option
-                                        value="minutes"
-                                        ${
-                                            habit.trackingType === "minutes"
-                                            ? "selected"
-                                            : ""
-                                        }>
-                                        Minutes
-                                    </option>
-
-                                    <option
-                                        value="hours"
-                                        ${
-                                            habit.trackingType === "hours"
-                                            ? "selected"
-                                            : ""
-                                        }>
-                                        Hours
-                                    </option>
-
-                                    <option
-                                        value="text"
-                                        ${
-                                            habit.trackingType === "text"
-                                            ? "selected"
-                                            : ""
-                                        }>
-                                        Text
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-
-                            <div class="form-group">
-
-                                <label>
-                                    Unit
-                                </label>
-
-                                <input
-                                    class="habit-unit"
-                                    value="${escapeAttribute(
-                                        habit.trackingUnit || ""
-                                    )}">
-
-                            </div>
-
-                        </div>
-
-                    `;
-
-
-                    habitsContainer.appendChild(
-                        habitCard
-                    );
-
-                }
-            );
-
-
-            dayCard
-            .querySelector(
-                "[data-save-day]"
-            )
-            .addEventListener(
-                "click",
-                async function(){
-
-                    const updatedHabits = [];
-
-
-                    dayCard
-                    .querySelectorAll(
-                        ".habit-card"
-                    )
-                    .forEach(
-                        function(card,habitIndex){
-
-                            const original =
-                                habits[habitIndex] ||
-                                {};
-
-
-                            updatedHabits.push({
-
-                                name:
-                                    original.name || "",
-
-                                target:
-                                    card
-                                    .querySelector(
-                                        ".habit-target"
-                                    )
-                                    .value
-                                    .trim(),
-
-                                instructions:
-                                    card
-                                    .querySelector(
-                                        ".habit-instructions"
-                                    )
-                                    .value
-                                    .trim(),
-
-                                trackingType:
-                                    card
-                                    .querySelector(
-                                        ".habit-type"
-                                    )
-                                    .value,
-
-                                trackingUnit:
-                                    card
-                                    .querySelector(
-                                        ".habit-unit"
-                                    )
-                                    .value
-                                    .trim(),
-
-                                details:
-                                    original.details ||
-                                    ""
-
-                            });
-
-                        }
-                    );
-
-
-                    currentWeekData.days[index] = {
-
-                        ...currentWeekData.days[index],
-
-                        overview:
-                            dayCard
-                            .querySelector(
-                                ".day-overview"
-                            )
-                            .value
-                            .trim(),
-
-                        completionMessage:
-                            dayCard
-                            .querySelector(
-                                ".day-message"
-                            )
-                            .value
-                            .trim(),
-
-                        habits:
-                            updatedHabits
-
-                    };
-
-
-                    try{
-
-                        await updateDoc(
-                            doc(
-                                db,
-                                "weeks",
-                                currentWeekId
-                            ),
-                            {
-
-                                days:
-                                    currentWeekData.days,
-
-                                updatedAt:
-                                    new Date().toISOString()
-
-                            }
-                        );
-
-
-                        alert(
-                            "Day saved."
-                        );
-
-
-                        await loadDashboard();
-
-                    }catch(error){
-
-                        console.error(error);
-
-                        alert(
-                            "Unable to save day."
-                        );
-
-                    }
-
-                }
-            );
-
-
-            container.appendChild(
-                dayCard
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   REFLECTION
-========================================================= */
-
-function renderReflection(){
-
-    const container =
-        document.getElementById(
-            "reflectionQuestions"
-        );
-
-
-    const reflection =
-        currentWeekData.reflection ||
-        {};
-
-
-    const questions =
-        Array.isArray(
-            reflection.questions
-        )
-        ? reflection.questions
-        : [];
-
-
-    container.innerHTML = "";
-
-
-    questions.forEach(
-        function(question){
-
-            const input =
-                document.createElement(
-                    "input"
-                );
-
-
-            input.className =
-                "reflection-input";
-
-
-            input.value =
-                question;
-
-
-            input.style.marginBottom =
-                "10px";
-
-
-            container.appendChild(
-                input
-            );
-
-        }
-    );
-
-
-    if(!questions.length){
-
-        container.innerHTML =
-            "<p style='font-size:13px;color:#746D68;'>No reflection questions.</p>";
-
-    }
-
-}
-
-
-/* =========================================================
-   SAVE REFLECTION
-========================================================= */
-
-document
-.getElementById(
-    "saveReflectionButton"
-)
-.addEventListener(
-    "click",
-    async function(){
-
-        if(!currentWeekId){
-            return;
-        }
-
-
-        const questions = [];
-
-
-        document
-        .querySelectorAll(
-            ".reflection-input"
-        )
-        .forEach(
-            function(input){
-
-                if(
-                    input.value.trim()
-                ){
-
-                    questions.push(
-                        input.value.trim()
-                    );
-
-                }
-
-            }
-        );
-
-
-        try{
-
-            await updateDoc(
-                doc(
-                    db,
-                    "weeks",
-                    currentWeekId
-                ),
-                {
-
-                    reflection:{
-
-                        questions,
-
-                        measurements:true
-
-                    },
-
-                    updatedAt:
-                        new Date().toISOString()
-
-                }
-            );
-
-
-            currentWeekData.reflection = {
-
-                questions,
-
-                measurements:true
-
-            };
-
-
-            alert(
-                "Reflection saved."
-            );
-
-        }catch(error){
-
-            console.error(error);
-
-            alert(
-                "Unable to save reflection."
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   LESSONS
-========================================================= */
-
-async function loadLessons(){
-
-    const container =
-        document.getElementById(
-            "lessonList"
-        );
-
-
-    container.innerHTML =
-        "<div class='loading'>Loading lessons...</div>";
-
-
-    try{
-
-        const snapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "lessons"
-                )
-            );
-
-
-        container.innerHTML = "";
-
-
-        if(snapshot.empty){
-
-            container.innerHTML =
-                "<div class='empty'>No lessons added yet.</div>";
-
-            return;
-
-        }
-
-
-        snapshot.forEach(
-            function(item){
-
-                const lesson =
-                    item.data();
-
-
-                const card =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                card.className =
-                    "lesson-card";
-
-
-                card.innerHTML = `
-
-                    <h3>
-                        ${escapeHTML(
-                            lesson.title ||
-                            "Untitled Lesson"
-                        )}
-                    </h3>
-
-                    <div class="lesson-meta">
-
-                        ${escapeHTML(
-                            lesson.category ||
-                            "General"
-                        )}
-
-                        ·
-
-                        ${
-                            lesson.status === "published"
-                            ? "Published"
-                            : "Draft"
-                        }
-
-                    </div>
-
-                    <p style="
-                        font-size:13px;
-                        line-height:1.6;
-                        color:#625D59;
-                        margin-bottom:14px;">
-
-                        ${escapeHTML(
-                            (
-                                lesson.content ||
-                                ""
-                            ).substring(
-                                0,
-                                250
-                            )
-                        )}
-
-                    </p>
-
-                    <div style="
-                        display:flex;
-                        gap:8px;">
-
-                        <button
-                            class="primary-btn small-btn"
-                            data-edit-lesson>
-
-                            Edit
-
-                        </button>
-
-                        <button
-                            class="danger-btn small-btn"
-                            data-delete-lesson>
-
-                            Delete
-
-                        </button>
-
-                    </div>
-
-                `;
-
-
-                card
-                .querySelector(
-                    "[data-edit-lesson]"
-                )
-                .addEventListener(
-                    "click",
-                    function(){
-
-                        openLessonEditor(
-                            item.id,
-                            lesson
-                        );
-
-                    }
-                );
-
-
-                card
-                .querySelector(
-                    "[data-delete-lesson]"
-                )
-                .addEventListener(
-                    "click",
-                    function(){
-
-                        deleteLesson(
-                            item.id
-                        );
-
-                    }
-                );
-
-
-                container.appendChild(
-                    card
-                );
-
-            }
-        );
-
-    }catch(error){
-
-        console.error(error);
-
-        container.innerHTML =
-            "<div class='empty'>Unable to load lessons.</div>";
-
-    }
-
-}
-
-
-/* =========================================================
-   ADD LESSON
-========================================================= */
-
-document
-.getElementById(
-    "addLessonButton"
-)
-.addEventListener(
-    "click",
-    function(){
-
-        document.getElementById(
-            "lessonId"
-        ).value = "";
-
-        document.getElementById(
-            "lessonTitle"
-        ).value = "";
-
-        document.getElementById(
-            "lessonCategory"
-        ).value = "";
-
-        document.getElementById(
-            "lessonContent"
-        ).value = "";
-
-        document.getElementById(
-            "lessonVideo"
-        ).value = "";
-
-        document.getElementById(
-            "lessonStatus"
-        ).value =
-            "draft";
-
-
-        openModal(
-            "lessonModal"
-        );
-
-    }
-);
-
-
-/* =========================================================
-   OPEN LESSON
-========================================================= */
-
-function openLessonEditor(
-    id,
-    lesson
-){
-
-    document.getElementById(
-        "lessonId"
-    ).value =
-        id;
-
-
-    document.getElementById(
-        "lessonTitle"
-    ).value =
-        lesson.title || "";
-
-
-    document.getElementById(
-        "lessonCategory"
-    ).value =
-        lesson.category || "";
-
-
-    document.getElementById(
-        "lessonContent"
-    ).value =
-        lesson.content || "";
-
-
-    document.getElementById(
-        "lessonVideo"
-    ).value =
-        lesson.video || "";
-
-
-    document.getElementById(
-        "lessonStatus"
-    ).value =
-        lesson.status || "draft";
-
-
-    openModal(
-        "lessonModal"
-    );
-
-}
-
-
-/* =========================================================
-   SAVE LESSON
-========================================================= */
-
-document
-.getElementById(
-    "saveLessonButton"
-)
-.addEventListener(
-    "click",
-    async function(){
-
-        const id =
-            document.getElementById(
-                "lessonId"
-            ).value;
-
-
-        const title =
-            document.getElementById(
-                "lessonTitle"
-            ).value.trim();
-
-
-        const category =
-            document.getElementById(
-                "lessonCategory"
-            ).value.trim();
-
-
-        const content =
-            document.getElementById(
-                "lessonContent"
-            ).value.trim();
-
-
-        const video =
-            document.getElementById(
-                "lessonVideo"
-            ).value.trim();
-
-
-        const status =
-            document.getElementById(
-                "lessonStatus"
-            ).value;
-
-
-        if(!title || !content){
-
-            alert(
-                "Please add a title and lesson content."
-            );
-
-            return;
-
-        }
-
-
-        const data = {
-
-            title,
-
-            category,
-
-            content,
-
-            video,
-
-            status,
-
-            updatedAt:
-                new Date().toISOString()
-
-        };
-
-
-        try{
-
-            if(id){
-
-                await updateDoc(
-                    doc(
-                        db,
-                        "lessons",
-                        id
-                    ),
-                    data
-                );
-
-            }else{
-
-                await addDoc(
-                    collection(
-                        db,
-                        "lessons"
-                    ),
-                    {
-
-                        ...data,
-
-                        createdAt:
-                            new Date().toISOString()
-
-                    }
-                );
-
-            }
-
-
-            closeModal(
-                "lessonModal"
-            );
-
-
-            await loadLessons();
-
-            await loadDashboard();
-
-
-            alert(
-                "Lesson saved."
-            );
-
-        }catch(error){
-
-            console.error(error);
-
-            alert(
-                "Unable to save lesson."
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   DELETE LESSON
-========================================================= */
-
-async function deleteLesson(
-    id
-){
-
-    if(
-        !confirm(
-            "Delete this lesson?"
-        )
-    ){
-        return;
-    }
-
-
-    try{
-
-        await deleteDoc(
-            doc(
-                db,
-                "lessons",
-                id
-            )
-        );
-
-
-        await loadLessons();
-
-        await loadDashboard();
-
-
-        alert(
-            "Lesson deleted."
-        );
-
-    }catch(error){
-
-        console.error(error);
-
-        alert(
-            "Unable to delete lesson."
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   COMMUNITY
-========================================================= */
-
-async function loadCommunity(){
-
-    const container =
-        document.getElementById(
-            "communityList"
-        );
-
-
-    container.innerHTML =
-        "<div class='loading'>Loading community posts...</div>";
-
-
-    try{
-
-        const snapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "community"
-                )
-            );
-
-
-        allCommunityPosts = [];
-
-
-        snapshot.forEach(
-            function(item){
-
-                allCommunityPosts.push({
-
-                    id:item.id,
-
-                    ...item.data()
-
-                });
-
-            }
-        );
-
-
-        allCommunityPosts.sort(
-            function(a,b){
-
-                const aTime =
-                    a.createdAt
-                    ? new Date(a.createdAt).getTime()
-                    : 0;
-
-                const bTime =
-                    b.createdAt
-                    ? new Date(b.createdAt).getTime()
-                    : 0;
-
-                return bTime - aTime;
-
-            }
-        );
-
-
-        renderCommunity();
-
-    }catch(error){
-
-        console.error(
-            "Community error:",
-            error
-        );
-
-
-        container.innerHTML =
-            "<div class='empty'>Unable to load community posts. Check your Firestore Rules.</div>";
-
-    }
-
-}
-
-
-/* =========================================================
-   RENDER COMMUNITY
-========================================================= */
-
-function renderCommunity(){
-
-    const container =
-        document.getElementById(
-            "communityList"
-        );
-
-
-    container.innerHTML = "";
-
-
-    let posts =
-        allCommunityPosts;
-
-
-    if(
-        currentCommunityFilter !==
-        "all"
-    ){
-
-        posts =
-            posts.filter(
-                function(post){
-
-                    return normalizeCategory(
-                        post.category ||
-                        post.type ||
-                        ""
-                    ) ===
-                    currentCommunityFilter;
-
-                }
-            );
-
-    }
-
-
-    if(!posts.length){
-
-        container.innerHTML =
-            "<div class='empty'>No community posts found.</div>";
-
-        return;
-
-    }
-
-
-    posts.forEach(
-        function(post){
-
-            const card =
-                document.createElement(
-                    "div"
-                );
-
-
-            card.className =
-                "community-card";
-
-
-            const category =
-                normalizeCategory(
-                    post.category ||
-                    post.type ||
-                    "discussion"
-                );
-
-
-            const displayCategory =
-                getCategoryName(
-                    category
-                );
-
-
-            const author =
-                post.name ||
-                post.userName ||
-                post.email ||
-                "Member";
-
-
-            const content =
-                post.content ||
-                post.message ||
-                post.text ||
-                "";
-
-
-            card.innerHTML = `
-
-                <span class="community-category">
-
-                    ${escapeHTML(
-                        displayCategory
-                    )}
-
-                </span>
-
-                <h3>
-                    ${escapeHTML(
-                        author
-                    )}
-                </h3>
-
-                <div class="community-meta">
-
-                    ${escapeHTML(
-                        post.email ||
-                        ""
-                    )}
-
-                    ${
-                        post.createdAt
-                        ? " · " +
-                          escapeHTML(
-                              formatDate(
-                                  post.createdAt
-                              )
-                          )
-                        : ""
-                    }
-
-                </div>
-
-                <div class="community-content">
-
-                    ${escapeHTML(
-                        content
-                    )}
-
-                </div>
-
-                <button
-                    class="danger-btn small-btn"
-                    data-delete-community>
-
-                    Delete Post
-
-                </button>
-
-            `;
-
-
-            card
-            .querySelector(
-                "[data-delete-community]"
-            )
-            .addEventListener(
-                "click",
-                function(){
-
-                    deleteCommunityPost(
-                        post.id
-                    );
-
-                }
-            );
-
-
-            container.appendChild(
-                card
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   COMMUNITY FILTERS
-========================================================= */
-
-document
-.querySelectorAll(
-    "[data-community-filter]"
-)
-.forEach(
-    function(button){
-
-        button.addEventListener(
-            "click",
-            function(){
-
-                currentCommunityFilter =
-                    button.dataset.communityFilter;
-
-                renderCommunity();
-
-            }
-        );
-
-    }
-);
-
-
-/* =========================================================
-   DELETE COMMUNITY POST
-========================================================= */
-
-async function deleteCommunityPost(
-    id
-){
-
-    if(
-        !confirm(
-            "Delete this community post?"
-        )
-    ){
-        return;
-    }
-
-
-    try{
-
-        await deleteDoc(
-            doc(
-                db,
-                "community",
-                id
-            )
-        );
-
-
-        await loadCommunity();
-
-        await loadDashboard();
-
-
-    }catch(error){
-
-        console.error(error);
-
-        alert(
-            "Unable to delete community post."
-        );
-
-    }
-
-}
-
-
-document
-.getElementById(
-    "refreshCommunityButton"
-)
-.addEventListener(
-    "click",
-    async function(){
-
-        await loadCommunity();
-
-        await loadDashboard();
-
-    }
-);
-
-
-/* =========================================================
-   MEMBERS
-========================================================= */
+/* =====================================================
+   MEMBERS — ADMIN VIEW
+===================================================== */
 
 async function loadMembers(){
 
@@ -4216,37 +55,171 @@ async function loadMembers(){
                     "member-card";
 
 
+                card.style.cursor =
+                    "pointer";
+
+
                 card.innerHTML = `
 
-                    <h3>
-                        ${escapeHTML(
-                            member.name ||
-                            "Member"
-                        )}
-                    </h3>
+                    <div style="
+                        display:flex;
+                        justify-content:space-between;
+                        align-items:flex-start;
+                        gap:15px;
+                    ">
 
-                    <div class="lesson-meta">
+                        <div>
 
-                        ${escapeHTML(
-                            member.email ||
-                            item.id
-                        )}
+                            <h3>
+                                ${escapeHTML(
+                                    member.name ||
+                                    "Member"
+                                )}
+                            </h3>
+
+                            <div class="lesson-meta">
+
+                                ${escapeHTML(
+                                    member.email ||
+                                    item.id
+                                )}
+
+                            </div>
+
+                        </div>
+
+
+                        <span style="
+                            font-size:12px;
+                            padding:5px 10px;
+                            border-radius:20px;
+                            background:#f1ebe5;
+                            color:#6E4A7E;
+                        ">
+
+                            ${escapeHTML(
+                                member.status ||
+                                "Active"
+                            )}
+
+                        </span>
 
                     </div>
 
-                    <p style="
+
+                    <div style="
+                        display:grid;
+                        grid-template-columns:
+                        repeat(auto-fit,minmax(100px,1fr));
+                        gap:10px;
+                        margin-top:15px;
+                    ">
+
+
+                        <div>
+
+                            <small>
+                                Weight
+                            </small>
+
+                            <strong>
+                                ${
+                                    member.weight
+                                    ? escapeHTML(
+                                        member.weight
+                                    ) + " kg"
+                                    : "—"
+                                }
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <small>
+                                BMI
+                            </small>
+
+                            <strong>
+                                ${
+                                    member.bmi
+                                    ? escapeHTML(
+                                        member.bmi
+                                    )
+                                    : "—"
+                                }
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <small>
+                                Waist
+                            </small>
+
+                            <strong>
+                                ${
+                                    member.waist
+                                    ? escapeHTML(
+                                        member.waist
+                                    ) + " cm"
+                                    : "—"
+                                }
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <small>
+                                Program Day
+                            </small>
+
+                            <strong>
+                                ${
+                                    member.currentDay
+                                    ? "Day " +
+                                      escapeHTML(
+                                          member.currentDay
+                                      )
+                                    : "—"
+                                }
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div style="
+                        margin-top:15px;
                         font-size:13px;
-                        color:#625D59;">
+                        color:#6E4A7E;
+                        font-weight:600;
+                    ">
 
-                        Status:
-                        ${escapeHTML(
-                            member.status ||
-                            "Active"
-                        )}
-
-                    </p>
+                        View Client Profile →
+                    
+                    </div>
 
                 `;
+
+
+                card.addEventListener(
+                    "click",
+                    function(){
+
+                        openAdminMemberProfile(
+                            item.id,
+                            member
+                        );
+
+                    }
+                );
 
 
                 container.appendChild(
@@ -4256,9 +229,15 @@ async function loadMembers(){
             }
         );
 
-    }catch(error){
+    }
 
-        console.error(error);
+    catch(error){
+
+        console.error(
+            "MEMBERS ERROR:",
+            error
+        );
+
 
         container.innerHTML =
             "<div class='empty'>Unable to load members.</div>";
@@ -4268,6 +247,535 @@ async function loadMembers(){
 }
 
 
+/* =====================================================
+   OPEN MEMBER PROFILE
+===================================================== */
+
+async function openAdminMemberProfile(
+    memberId,
+    member
+){
+
+    const container =
+        document.getElementById(
+            "memberList"
+        );
+
+
+    container.innerHTML = `
+
+        <div style="
+            margin-bottom:20px;
+        ">
+
+            <button
+                id="backToMembersButton"
+                class="secondary-btn"
+            >
+                ← Back to Members
+            </button>
+
+        </div>
+
+
+        <div class="member-profile-admin">
+
+            <div class="admin-profile-header">
+
+                <h2>
+
+                    ${escapeHTML(
+                        member.name ||
+                        "Member"
+                    )}
+
+                </h2>
+
+                <p>
+
+                    ${escapeHTML(
+                        member.email ||
+                        memberId
+                    )}
+
+                </p>
+
+            </div>
+
+
+            <div class="admin-profile-grid">
+
+
+                <div class="admin-info-card">
+
+                    <h3>
+                        Personal Details
+                    </h3>
+
+                    <p>
+                        <strong>Name:</strong>
+                        ${escapeHTML(
+                            member.name || "—"
+                        )}
+                    </p>
+
+                    <p>
+                        <strong>Age:</strong>
+                        ${escapeHTML(
+                            member.age || "—"
+                        )}
+                    </p>
+
+                    <p>
+                        <strong>Gender:</strong>
+                        ${escapeHTML(
+                            member.gender || "—"
+                        )}
+                    </p>
+
+                    <p>
+                        <strong>Email:</strong>
+                        ${escapeHTML(
+                            member.email || memberId
+                        )}
+                    </p>
+
+                </div>
+
+
+                <div class="admin-info-card">
+
+                    <h3>
+                        Body Measurements
+                    </h3>
+
+                    <p>
+                        <strong>Height:</strong>
+                        ${
+                            member.height
+                            ? escapeHTML(
+                                member.height
+                            ) + " cm"
+                            : "—"
+                        }
+                    </p>
+
+                    <p>
+                        <strong>Weight:</strong>
+                        ${
+                            member.weight
+                            ? escapeHTML(
+                                member.weight
+                            ) + " kg"
+                            : "—"
+                        }
+                    </p>
+
+                    <p>
+                        <strong>Target Weight:</strong>
+                        ${
+                            member.targetWeight
+                            ? escapeHTML(
+                                member.targetWeight
+                            ) + " kg"
+                            : "—"
+                        }
+                    </p>
+
+                    <p>
+                        <strong>Waist:</strong>
+                        ${
+                            member.waist
+                            ? escapeHTML(
+                                member.waist
+                            ) + " cm"
+                            : "—"
+                        }
+                    </p>
+
+                    <p>
+                        <strong>BMI:</strong>
+                        ${escapeHTML(
+                            member.bmi || "—"
+                        )}
+                    </p>
+
+                    <p>
+                        <strong>IBW:</strong>
+                        ${
+                            member.ibw
+                            ? escapeHTML(
+                                member.ibw
+                            ) + " kg"
+                            : "—"
+                        }
+                    </p>
+
+                    <p>
+                        <strong>Waist-to-Height Ratio:</strong>
+                        ${escapeHTML(
+                            member.waistHeightRatio ||
+                            member.whr ||
+                            "—"
+                        )}
+
+                    </p>
+
+                </div>
+
+
+                <div class="admin-info-card">
+
+                    <h3>
+                        Health & Assessment
+                    </h3>
+
+                    <p>
+                        <strong>Condition:</strong>
+                        ${escapeHTML(
+                            member.disease ||
+                            member.condition ||
+                            "—"
+                        )}
+                    </p>
+
+                    <p>
+                        <strong>Other Conditions:</strong>
+                        ${escapeHTML(
+                            member.otherConditions ||
+                            "—"
+                        )}
+                    </p>
+
+                    <p>
+                        <strong>Medication:</strong>
+                        ${escapeHTML(
+                            member.medication ||
+                            member.medications ||
+                            "—"
+                        )}
+                    </p>
+
+                    <p>
+                        <strong>Sleep:</strong>
+                        ${escapeHTML(
+                            member.sleep ||
+                            member.sleepHours ||
+                            "—"
+                        )}
+                    </p>
+
+                    <p>
+                        <strong>Activity:</strong>
+                        ${escapeHTML(
+                            member.activity ||
+                            member.activityLevel ||
+                            "—"
+                        )}
+                    </p>
+
+                </div>
+
+
+                <div class="admin-info-card">
+
+                    <h3>
+                        Program Progress
+                    </h3>
+
+                    <p>
+                        <strong>Current Day:</strong>
+                        ${
+                            member.currentDay
+                            ? "Day " +
+                              escapeHTML(
+                                  member.currentDay
+                              )
+                            : "—"
+                        }
+                    </p>
+
+                    <p>
+                        <strong>Completed Days:</strong>
+                        ${escapeHTML(
+                            member.completedDays ||
+                            "0"
+                        )}
+                    </p>
+
+                    <p>
+                        <strong>Program Status:</strong>
+                        ${escapeHTML(
+                            member.status ||
+                            "Active"
+                        )}
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <div
+                id="adminProgressArea"
+                style="margin-top:25px;"
+            >
+
+                <div class="loading">
+                    Loading progress...
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    document
+        .getElementById(
+            "backToMembersButton"
+        )
+        .addEventListener(
+            "click",
+            loadMembers
+        );
+
+
+    await loadAdminMemberProgress(
+        memberId
+    );
+
+}
+
+
+/* =====================================================
+   MEMBER PROGRESS
+===================================================== */
+
+async function loadAdminMemberProgress(
+    memberId
+){
+
+    const container =
+        document.getElementById(
+            "adminProgressArea"
+        );
+
+
+    if(!container){
+        return;
+    }
+
+
+    try{
+
+        const progressRef =
+            doc(
+                db,
+                "progress",
+                memberId
+            );
+
+
+        const progressSnap =
+            await getDoc(
+                progressRef
+            );
+
+
+        if(
+            !progressSnap.exists()
+        ){
+
+            container.innerHTML = `
+
+                <div class="admin-info-card">
+
+                    <h3>
+                        Progress Tracking
+                    </h3>
+
+                    <p>
+                        No progress has been recorded yet.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        const progress =
+            progressSnap.data();
+
+
+        const history =
+            Array.isArray(
+                progress.weightHistory
+            )
+                ? progress.weightHistory
+                : [];
+
+
+        container.innerHTML = `
+
+            <div class="admin-info-card">
+
+                <h3>
+                    Progress Tracking
+                </h3>
+
+
+                <div style="
+                    overflow-x:auto;
+                    margin-top:15px;
+                ">
+
+                    <table style="
+                        width:100%;
+                        border-collapse:collapse;
+                    ">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Check-in
+                                </th>
+
+                                <th>
+                                    Weight
+                                </th>
+
+                                <th>
+                                    Waist
+                                </th>
+
+                                <th>
+                                    Date
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            ${
+                                history.length
+                                ?
+
+                                history.map(
+                                    item => `
+
+                                        <tr>
+
+                                            <td>
+                                                ${escapeHTML(
+                                                    item.day ||
+                                                    "—"
+                                                )}
+                                            </td>
+
+                                            <td>
+                                                ${
+                                                    item.weight
+                                                    ? escapeHTML(
+                                                        item.weight
+                                                    ) + " kg"
+                                                    : "—"
+                                                }
+                                            </td>
+
+                                            <td>
+                                                ${
+                                                    item.waist
+                                                    ? escapeHTML(
+                                                        item.waist
+                                                    ) + " cm"
+                                                    : "—"
+                                                }
+                                            </td>
+
+                                            <td>
+                                                ${escapeHTML(
+                                                    item.date ||
+                                                    "—"
+                                                )}
+                                            </td>
+
+                                        </tr>
+
+                                    `
+                                ).join("")
+
+                                :
+
+                                `
+
+                                    <tr>
+
+                                        <td colspan="4">
+                                            No weekly tracking data yet.
+                                        </td>
+
+                                    </tr>
+
+                                `
+                            }
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+    catch(error){
+
+        console.error(
+            "ADMIN PROGRESS ERROR:",
+            error
+        );
+
+
+        container.innerHTML = `
+
+            <div class="admin-info-card">
+
+                <h3>
+                    Progress Tracking
+                </h3>
+
+                <p>
+                    Unable to load progress.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   REFRESH MEMBERS
+===================================================== */
+
 document
 .getElementById(
     "refreshMembersButton"
@@ -4276,208 +784,3 @@ document
     "click",
     loadMembers
 );
-
-
-/* =========================================================
-   MODALS
-========================================================= */
-
-window.openModal = function(id){
-
-    document.getElementById(
-        id
-    ).style.display =
-        "flex";
-
-};
-
-
-window.closeModal = function(id){
-
-    document.getElementById(
-        id
-    ).style.display =
-        "none";
-
-};
-
-
-/* =========================================================
-   HELPERS
-========================================================= */
-
-function normalizeCategory(
-    category
-){
-
-    const value =
-        String(
-            category ||
-            ""
-        )
-        .toLowerCase()
-        .trim();
-
-
-    if(
-        value.includes("check")
-    ){
-        return "checkin";
-    }
-
-    if(
-        value.includes("win")
-    ){
-        return "win";
-    }
-
-    if(
-        value.includes("query") ||
-        value.includes("question")
-    ){
-        return "query";
-    }
-
-    if(
-        value.includes("meal") ||
-        value.includes("food")
-    ){
-        return "meal";
-    }
-
-    if(
-        value.includes("workout") ||
-        value.includes("exercise")
-    ){
-        return "workout";
-    }
-
-    if(
-        value.includes("announcement")
-    ){
-        return "announcement";
-    }
-
-    return "discussion";
-
-}
-
-
-function getCategoryName(
-    category
-){
-
-    const names = {
-
-        checkin:"Daily Check-in",
-
-        win:"Wins",
-
-        discussion:"Discussion",
-
-        query:"Queries",
-
-        meal:"Meals",
-
-        workout:"Workout",
-
-        announcement:"Announcement"
-
-    };
-
-
-    return (
-        names[category] ||
-        "Discussion"
-    );
-
-}
-
-
-function formatDate(
-    value
-){
-
-    try{
-
-        return new Date(
-            value
-        ).toLocaleString();
-
-    }catch{
-
-        return "";
-
-    }
-
-}
-
-
-function escapeHTML(
-    value
-){
-
-    if(
-        value === null ||
-        value === undefined
-    ){
-
-        return "";
-
-    }
-
-
-    return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
-
-function escapeAttribute(
-    value
-){
-
-    return escapeHTML(
-        value
-    );
-
-}
-
-
-/* =========================================================
-   INITIAL
-========================================================= */
-
-showSection(
-    "dashboard"
-);
-
-</script>
-
-</body>
-
-</html>
