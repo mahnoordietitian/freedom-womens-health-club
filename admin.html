@@ -1,5 +1,7 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -7,736 +9,1582 @@
 
 <title>Freedom Women's Health Club — Admin</title>
 
+<!-- =====================================================
+     FONT
+===================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+rel="stylesheet"
+>
+
 <style>
 
+/* =====================================================
+   VARIABLES
+===================================================== */
+
 :root{
+
     --cream:#FBF8F3;
     --plum:#6E4A7E;
+    --plum-dark:#583667;
+
     --charcoal:#2D2D2D;
+
     --champagne:#DCCBB3;
     --taupe:#B7A89A;
+
     --white:#FFFFFF;
+
     --light:#F1EAF3;
+    --light-cream:#FCFAF7;
+
     --border:#E6DDD3;
+
     --danger:#A44A4A;
+    --danger-light:#F8EAEA;
+
     --success:#5B8064;
-    --muted:#777;
+    --success-light:#E8F2EA;
+
+    --warning:#A87938;
+    --warning-light:#F8F0E3;
+
+    --muted:#777777;
+
 }
+
+
+/* =====================================================
+   RESET
+===================================================== */
 
 *{
     box-sizing:border-box;
 }
 
-body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:var(--cream);
-    color:var(--charcoal);
+
+html{
+    scroll-behavior:smooth;
 }
+
+
+body{
+
+    margin:0;
+
+    font-family:
+        "Manrope",
+        Arial,
+        sans-serif;
+
+    background:var(--cream);
+
+    color:var(--charcoal);
+
+    line-height:1.5;
+
+}
+
 
 button,
 input,
 textarea,
 select{
+
     font:inherit;
+
 }
 
+
 button{
+
     cursor:pointer;
+
 }
+
 
 input,
 textarea,
 select{
+
     width:100%;
-    padding:12px;
+
+    padding:12px 13px;
+
     border:1px solid var(--border);
+
     border-radius:9px;
+
     background:white;
+
     color:var(--charcoal);
+
+    outline:none;
+
+    transition:.2s;
+
 }
+
+
+input:focus,
+textarea:focus,
+select:focus{
+
+    border-color:var(--plum);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(110,74,126,.10);
+
+}
+
 
 textarea{
+
     min-height:120px;
+
     resize:vertical;
+
 }
+
 
 label{
+
     display:block;
+
     font-size:13px;
-    font-weight:bold;
+
+    font-weight:700;
+
     margin-bottom:7px;
+
 }
+
 
 .form-group{
+
     margin-bottom:18px;
+
 }
 
+
 .hidden{
+
     display:none!important;
+
 }
+
 
 /* =====================================================
    LOGIN
 ===================================================== */
 
 #loginPage{
+
     min-height:100vh;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
     padding:20px;
+
 }
+
 
 .login-box{
+
     width:100%;
+
     max-width:420px;
+
     background:white;
+
     padding:40px;
-    border-radius:20px;
+
+    border-radius:22px;
+
     border:1px solid var(--border);
-    box-shadow:0 15px 40px rgba(0,0,0,.07);
+
+    box-shadow:
+        0 20px 50px
+        rgba(45,45,45,.08);
+
 }
+
 
 .login-box h1{
+
     color:var(--plum);
+
     text-align:center;
+
     font-size:23px;
-    line-height:1.3;
+
+    line-height:1.35;
+
+    font-weight:800;
+
+    letter-spacing:.2px;
+
 }
+
 
 .login-box p{
+
     text-align:center;
-    color:#777;
+
+    color:var(--muted);
+
 }
 
+
 .login-error{
+
     color:var(--danger)!important;
+
+    font-size:13px;
+
 }
+
 
 /* =====================================================
    ADMIN LAYOUT
 ===================================================== */
 
 #adminApp{
+
     display:none;
+
 }
+
 
 .sidebar{
+
     position:fixed;
+
     left:0;
+
     top:0;
+
     bottom:0;
-    width:245px;
+
+    width:250px;
+
     background:var(--plum);
+
     color:white;
+
     padding:28px 18px;
+
     overflow-y:auto;
+
 }
+
 
 .logo{
+
     padding:0 10px 30px;
+
 }
+
 
 .logo h2{
+
     font-size:19px;
+
     line-height:1.4;
+
     margin:0;
+
+    font-weight:800;
+
 }
+
 
 .logo small{
+
     opacity:.7;
+
+    font-size:12px;
+
 }
+
 
 .nav{
+
     display:flex;
+
     flex-direction:column;
+
     gap:5px;
+
 }
 
+
 .nav button{
+
     border:0;
+
     background:transparent;
+
     color:white;
+
     padding:13px;
-    border-radius:9px;
+
+    border-radius:10px;
+
     text-align:left;
+
+    font-weight:600;
+
+    transition:.2s;
+
 }
+
 
 .nav button:hover,
 .nav button.active{
+
     background:rgba(255,255,255,.15);
+
 }
+
 
 .main{
-    margin-left:245px;
+
+    margin-left:250px;
+
     padding:30px;
+
     min-height:100vh;
+
 }
+
 
 .topbar{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     margin-bottom:30px;
+
     gap:20px;
+
 }
+
 
 .topbar h1{
+
     margin:0;
+
+    font-size:28px;
+
+    font-weight:800;
+
 }
 
+
 .admin-pill{
+
     background:var(--light);
+
     color:var(--plum);
+
     padding:9px 14px;
+
     border-radius:30px;
+
     font-size:13px;
+
+    font-weight:700;
+
+    margin-right:8px;
+
 }
+
 
 /* =====================================================
    BUTTONS
 ===================================================== */
 
 .btn{
+
     border:0;
+
     background:var(--plum);
+
     color:white;
+
     padding:11px 17px;
+
     border-radius:9px;
+
+    font-weight:700;
+
+    transition:.2s;
+
 }
+
 
 .btn:hover{
-    opacity:.9;
+
+    background:var(--plum-dark);
+
 }
+
+
+.btn:disabled{
+
+    opacity:.55;
+
+    cursor:not-allowed;
+
+}
+
 
 .btn-secondary{
+
     background:var(--champagne);
+
     color:var(--charcoal);
+
 }
+
+
+.btn-secondary:hover{
+
+    background:#cfbda3;
+
+}
+
 
 .btn-danger{
+
     background:var(--danger);
+
 }
+
+
+.btn-danger:hover{
+
+    background:#8d3d3d;
+
+}
+
 
 .btn-success{
+
     background:var(--success);
+
 }
 
+
 .btn-small{
+
     padding:7px 10px;
+
     font-size:12px;
+
 }
+
 
 /* =====================================================
    SECTIONS
 ===================================================== */
 
 .section{
+
     display:none;
+
 }
 
+
 .section.active{
+
     display:block;
+
 }
+
 
 /* =====================================================
    CARDS
 ===================================================== */
 
 .stats{
+
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+        repeat(4,1fr);
+
     gap:18px;
+
 }
+
 
 .card{
+
     background:white;
+
     border:1px solid var(--border);
+
     border-radius:15px;
+
     padding:22px;
+
 }
 
+
 .stat{
+
     font-size:30px;
+
     color:var(--plum);
-    font-weight:bold;
+
+    font-weight:800;
+
     margin-top:8px;
+
 }
+
 
 /* =====================================================
    TOOLBAR
 ===================================================== */
 
 .toolbar{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     margin-bottom:20px;
+
     gap:20px;
+
 }
+
 
 .toolbar h2{
+
     margin-bottom:5px;
+
+    font-weight:800;
+
 }
 
+
 .toolbar p{
+
     margin-top:0;
+
     color:var(--muted);
+
 }
+
+
+/* =====================================================
+   MEMBER ACCESS SUMMARY
+===================================================== */
+
+.access-info{
+
+    background:var(--light-cream);
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    padding:15px 17px;
+
+    margin-bottom:20px;
+
+}
+
+
+.access-info strong{
+
+    color:var(--plum);
+
+}
+
+
+.access-info p{
+
+    margin:5px 0 0;
+
+    color:var(--muted);
+
+    font-size:13px;
+
+}
+
 
 /* =====================================================
    TREE
 ===================================================== */
 
 .tree{
+
     background:white;
+
     border:1px solid var(--border);
+
     border-radius:15px;
+
     padding:20px;
+
 }
+
 
 .tree-item{
+
     margin-bottom:8px;
+
 }
+
 
 .tree-row{
+
     display:flex;
+
     align-items:center;
+
     gap:9px;
+
     padding:12px;
+
     border:1px solid var(--border);
+
     background:#FCFAF7;
+
     border-radius:9px;
+
 }
+
 
 .tree-title{
+
     flex:1;
-    font-weight:bold;
+
+    font-weight:700;
+
 }
+
 
 .tree-meta{
+
     font-size:12px;
+
     color:#777;
+
     white-space:nowrap;
+
 }
+
 
 .tree-toggle{
+
     border:0;
+
     background:none;
+
     color:var(--plum);
+
     width:25px;
+
 }
+
 
 .children{
+
     display:none;
+
     margin-left:30px;
+
     margin-top:7px;
+
 }
+
 
 .children.open{
+
     display:block;
+
 }
+
 
 .actions{
+
     display:flex;
+
     gap:5px;
+
     flex-wrap:wrap;
+
 }
+
 
 .small{
+
     border:1px solid var(--border);
+
     background:white;
+
     padding:6px 8px;
+
     border-radius:6px;
+
     font-size:12px;
+
 }
+
+
+.small:hover{
+
+    background:var(--light);
+
+}
+
 
 .badge{
+
     display:inline-block;
+
     padding:5px 8px;
+
     border-radius:20px;
+
     font-size:11px;
-    font-weight:bold;
+
+    font-weight:800;
+
+    white-space:nowrap;
+
 }
+
 
 .badge-published{
-    background:#E8F2EA;
+
+    background:var(--success-light);
+
     color:var(--success);
+
 }
+
 
 .badge-draft{
-    background:#F3E8E8;
+
+    background:var(--danger-light);
+
     color:var(--danger);
+
 }
 
+
 .badge-locked{
+
     background:#EEEAF3;
+
     color:var(--plum);
+
 }
+
+
+.badge-active{
+
+    background:var(--success-light);
+
+    color:var(--success);
+
+}
+
+
+.badge-expired{
+
+    background:var(--danger-light);
+
+    color:var(--danger);
+
+}
+
+
+.badge-warning{
+
+    background:var(--warning-light);
+
+    color:var(--warning);
+
+}
+
 
 /* =====================================================
    FORM
 ===================================================== */
 
 .form-card{
+
     max-width:1000px;
+
     background:white;
+
     border:1px solid var(--border);
+
     border-radius:15px;
+
     padding:28px;
+
 }
+
 
 .form-card h2{
+
     margin-top:0;
+
     color:var(--plum);
+
+    font-weight:800;
+
 }
+
 
 .editor-section{
+
     border:1px solid var(--border);
+
     padding:20px;
+
     border-radius:12px;
+
     margin-top:18px;
+
 }
+
 
 .editor-section h3{
+
     color:var(--plum);
+
     margin-top:0;
+
+    font-weight:800;
+
 }
 
+
 .form-actions{
+
     display:flex;
+
     gap:8px;
+
     margin-top:25px;
+
     flex-wrap:wrap;
+
 }
+
 
 /* =====================================================
    RICH TEXT
 ===================================================== */
 
 .rich-editor{
+
     min-height:150px;
+
     border:1px solid var(--border);
+
     border-radius:9px;
+
     padding:14px;
+
     background:white;
-    line-height:1.6;
+
+    line-height:1.7;
+
 }
+
 
 .rich-editor:focus{
-    outline:2px solid rgba(110,74,126,.2);
+
+    outline:2px solid
+        rgba(110,74,126,.18);
+
 }
+
 
 .editor-toolbar{
+
     display:flex;
+
     gap:5px;
+
     flex-wrap:wrap;
+
     margin-bottom:8px;
+
 }
+
 
 .editor-toolbar button{
+
     border:1px solid var(--border);
+
     background:white;
+
     border-radius:6px;
+
     padding:7px 11px;
-    font-weight:bold;
+
+    font-weight:800;
+
 }
 
+
 .editor-toolbar button:hover{
+
     background:var(--light);
+
 }
+
 
 /* =====================================================
    IMAGE UPLOAD
 ===================================================== */
 
 .upload-box{
+
     border:2px dashed var(--border);
+
     border-radius:12px;
+
     padding:18px;
+
     background:#FCFAF7;
+
 }
+
 
 .upload-box input[type=file]{
+
     border:0;
+
     padding:5px;
+
     background:transparent;
+
 }
+
 
 .image-preview{
+
     margin-top:12px;
+
     max-width:240px;
+
 }
+
 
 .image-preview img{
+
     width:100%;
+
     max-height:180px;
+
     object-fit:cover;
+
     border-radius:10px;
+
     border:1px solid var(--border);
+
 }
+
 
 .upload-status{
+
     margin-top:8px;
+
     font-size:13px;
+
     color:var(--plum);
+
 }
+
 
 .progress{
+
     width:100%;
+
     height:8px;
+
     background:#eee;
+
     border-radius:20px;
+
     overflow:hidden;
+
     margin-top:8px;
+
 }
 
+
 .progress-bar{
+
     height:100%;
+
     width:0%;
+
     background:var(--plum);
+
     transition:width .2s;
+
 }
+
 
 /* =====================================================
    CONTENT LINKS
 ===================================================== */
 
 .link-row{
+
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
+
     gap:12px;
+
 }
+
 
 .link-card{
+
     border:1px solid var(--border);
+
     border-radius:10px;
+
     padding:14px;
+
     margin-top:10px;
+
     background:#FCFAF7;
+
 }
 
+
 .link-card strong{
+
     color:var(--plum);
+
 }
+
 
 /* =====================================================
    DAY CONTENT
 ===================================================== */
 
 .day-grid{
+
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
+
     gap:15px;
+
 }
+
 
 /* =====================================================
    TABLE
 ===================================================== */
 
-.table{
-    width:100%;
-    border-collapse:collapse;
+.table-card{
+
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:15px;
+
+    overflow:auto;
+
 }
+
+
+.table-head{
+
+    padding:20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+.table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:850px;
+
+}
+
 
 .table th,
 .table td{
+
     padding:14px;
+
     border-bottom:1px solid var(--border);
+
     text-align:left;
-    font-size:14px;
+
+    font-size:13px;
+
+    vertical-align:middle;
+
 }
+
 
 .table th{
+
     background:var(--cream);
+
+    font-weight:800;
+
 }
 
-.table-card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:15px;
-    overflow:hidden;
+
+.table tr:hover td{
+
+    background:#FCFAF7;
+
 }
 
-.table-head{
-    padding:20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
+
+.member-name{
+
+    font-weight:800;
+
+    color:var(--plum);
+
 }
+
+
+.days-left{
+
+    font-weight:800;
+
+}
+
+
+.days-left.expired{
+
+    color:var(--danger);
+
+}
+
+
+.days-left.active{
+
+    color:var(--success);
+
+}
+
 
 /* =====================================================
    COMMUNITY
 ===================================================== */
 
+/*
+ * Community now uses Manrope.
+ * This gives it a clean, modern and readable look.
+ */
+
 .community-admin-list{
+
     display:grid;
+
     gap:15px;
+
 }
+
 
 .community-post{
+
     background:white;
+
     border:1px solid var(--border);
+
     border-radius:15px;
+
     padding:20px;
+
+    font-family:
+        "Manrope",
+        Arial,
+        sans-serif;
+
 }
+
 
 .community-post.pinned{
+
     border:2px solid var(--plum);
+
     background:#FCF9FD;
+
 }
+
 
 .post-top{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:flex-start;
+
     gap:15px;
+
 }
+
 
 .post-author{
-    font-weight:bold;
+
+    font-weight:800;
+
     color:var(--plum);
+
 }
+
 
 .post-date{
+
     font-size:12px;
+
     color:#888;
+
+    margin-top:2px;
+
 }
+
 
 .pin-label{
+
     background:var(--plum);
+
     color:white;
+
     padding:5px 9px;
+
     border-radius:20px;
+
     font-size:11px;
-    font-weight:bold;
+
+    font-weight:800;
+
 }
+
+
+.post-body{
+
+    margin-top:12px;
+
+    font-size:14px;
+
+    line-height:1.75;
+
+}
+
 
 .post-image{
+
     width:100%;
+
     max-width:500px;
+
     max-height:400px;
+
     object-fit:cover;
+
     border-radius:12px;
+
     margin-top:12px;
+
 }
 
+
 .post-actions{
+
     margin-top:15px;
+
     display:flex;
+
     gap:8px;
+
     flex-wrap:wrap;
+
 }
+
 
 /* =====================================================
    PREVIEW
 ===================================================== */
 
 .preview{
+
     background:white;
+
     border:1px solid var(--border);
+
     border-radius:15px;
+
     padding:30px;
+
     line-height:1.7;
+
 }
+
 
 .preview h2,
 .preview h3{
+
     color:var(--plum);
+
 }
+
 
 .preview img{
+
     max-width:100%;
+
     border-radius:12px;
+
     margin:10px 0;
+
 }
+
 
 .preview a{
+
     color:var(--plum);
+
 }
+
 
 .empty{
+
     text-align:center;
+
     padding:40px;
+
     color:#888;
+
 }
+
 
 .checkbox{
+
     display:flex;
+
     gap:8px;
+
     align-items:center;
+
     margin:15px 0;
+
 }
 
+
 .checkbox input{
+
     width:auto;
+
 }
+
+
+/* =====================================================
+   ACCESS BOX IN MEMBER FORM
+===================================================== */
+
+.access-box{
+
+    background:#FCF9FD;
+
+    border:1px solid #E4D6E9;
+
+    border-radius:12px;
+
+    padding:18px;
+
+    margin-top:10px;
+
+}
+
+
+.access-box h4{
+
+    margin:0 0 5px;
+
+    color:var(--plum);
+
+}
+
+
+.access-result{
+
+    margin-top:12px;
+
+    padding:12px;
+
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:9px;
+
+    font-size:13px;
+
+}
+
+
+.access-result strong{
+
+    color:var(--plum);
+
+}
+
 
 /* =====================================================
    MOBILE
 ===================================================== */
 
-@media(max-width:1000px){
+@media(max-width:1100px){
 
     .stats{
-        grid-template-columns:repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(2,1fr);
+
     }
 
     .day-grid,
     .link-row{
+
         grid-template-columns:1fr;
+
     }
 
 }
+
 
 @media(max-width:900px){
 
     .sidebar{
+
         width:70px;
+
         padding:20px 7px;
+
     }
+
 
     .logo h2,
     .logo small{
+
         display:none;
+
     }
+
 
     .nav button{
+
         font-size:0;
+
         text-align:center;
+
     }
+
 
     .nav button:first-letter{
+
         font-size:20px;
+
     }
 
+
     .main{
+
         margin-left:70px;
+
         padding:20px;
+
     }
 
 }
 
+
 @media(max-width:600px){
 
     .stats{
+
         grid-template-columns:1fr;
+
     }
+
 
     .tree-row{
+
         align-items:flex-start;
+
         flex-wrap:wrap;
+
     }
+
 
     .tree-meta{
+
         width:100%;
+
     }
 
+
     .topbar{
+
         align-items:flex-start;
+
         flex-direction:column;
+
+    }
+
+
+    .login-box{
+
+        padding:28px 20px;
+
     }
 
 }
@@ -744,6 +1592,7 @@ label{
 </style>
 
 </head>
+
 
 <body>
 
@@ -754,50 +1603,57 @@ label{
 
 <div id="loginPage">
 
-<div class="login-box">
+    <div class="login-box">
 
-<h1>
-FREEDOM WOMEN'S<br>
-HEALTH CLUB
-</h1>
+        <h1>
+            FREEDOM WOMEN'S<br>
+            HEALTH CLUB
+        </h1>
 
-<p>Admin Panel</p>
+        <p>Admin Panel</p>
 
-<div class="form-group">
 
-<label>Email</label>
+        <div class="form-group">
 
-<input
-id="email"
-type="email"
-placeholder="Admin email"
->
+            <label>Email</label>
 
-</div>
+            <input
+                id="email"
+                type="email"
+                placeholder="Admin email"
+            >
 
-<div class="form-group">
+        </div>
 
-<label>Password</label>
 
-<input
-id="password"
-type="password"
-placeholder="Password"
->
+        <div class="form-group">
 
-</div>
+            <label>Password</label>
 
-<button
-id="loginBtn"
-class="btn"
-style="width:100%"
->
-Login
-</button>
+            <input
+                id="password"
+                type="password"
+                placeholder="Password"
+            >
 
-<p id="loginError" class="login-error"></p>
+        </div>
 
-</div>
+
+        <button
+            id="loginBtn"
+            class="btn"
+            style="width:100%"
+        >
+            Login
+        </button>
+
+
+        <p
+            id="loginError"
+            class="login-error"
+        ></p>
+
+    </div>
 
 </div>
 
@@ -808,85 +1664,95 @@ Login
 
 <div id="adminApp">
 
+
 <aside class="sidebar">
 
-<div class="logo">
+    <div class="logo">
 
-<h2>
-FREEDOM<br>
-WOMEN'S HEALTH CLUB
-</h2>
+        <h2>
+            FREEDOM<br>
+            WOMEN'S HEALTH CLUB
+        </h2>
 
-<small>Admin Panel</small>
+        <small>Admin Panel</small>
 
-</div>
+    </div>
 
-<nav class="nav">
 
-<button
-class="active"
-onclick="openSection('dashboard',this)"
->
-🏠 Dashboard
-</button>
+    <nav class="nav">
 
-<button
-onclick="openSection('members',this)"
->
-👥 Members
-</button>
+        <button
+            class="active"
+            onclick="openSection('dashboard',this)"
+        >
+            🏠 Dashboard
+        </button>
 
-<button
-onclick="openSection('classroom',this)"
->
-📚 Classroom
-</button>
 
-<button
-onclick="openSection('community',this)"
->
-💬 Community
-</button>
+        <button
+            onclick="openSection('members',this)"
+        >
+            👥 Members
+        </button>
 
-<button
-onclick="openSection('leaderboard',this)"
->
-🏆 Leaderboard
-</button>
 
-<button
-onclick="openSection('settings',this)"
->
-⚙️ Settings
-</button>
+        <button
+            onclick="openSection('classroom',this)"
+        >
+            📚 Classroom
+        </button>
 
-</nav>
+
+        <button
+            onclick="openSection('community',this)"
+        >
+            💬 Community
+        </button>
+
+
+        <button
+            onclick="openSection('leaderboard',this)"
+        >
+            🏆 Leaderboard
+        </button>
+
+
+        <button
+            onclick="openSection('settings',this)"
+        >
+            ⚙️ Settings
+        </button>
+
+    </nav>
 
 </aside>
 
 
 <main class="main">
 
+
 <div class="topbar">
 
-<h1 id="pageTitle">
-Dashboard
-</h1>
+    <h1 id="pageTitle">
+        Dashboard
+    </h1>
 
-<div>
 
-<span class="admin-pill">
-Admin
-</span>
+    <div>
 
-<button
-class="btn btn-secondary"
-onclick="logout()"
->
-Logout
-</button>
+        <span class="admin-pill">
+            Admin
+        </span>
 
-</div>
+
+        <button
+            class="btn btn-secondary"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </div>
 
 </div>
 
@@ -896,48 +1762,88 @@ Logout
 ===================================================== -->
 
 <section
-id="dashboard"
-class="section active"
+    id="dashboard"
+    class="section active"
 >
 
-<div class="stats">
+    <div class="stats">
 
-<div class="card">
-Members
-<div class="stat" id="memberCount">0</div>
-</div>
 
-<div class="card">
-Active Members
-<div class="stat" id="activeCount">0</div>
-</div>
+        <div class="card">
 
-<div class="card">
-Classroom Items
-<div class="stat" id="classroomCount">0</div>
-</div>
+            Members
 
-<div class="card">
-Community Posts
-<div class="stat" id="communityCount">0</div>
-</div>
+            <div
+                class="stat"
+                id="memberCount"
+            >
+                0
+            </div>
 
-</div>
+        </div>
 
-<br>
 
-<div class="card">
+        <div class="card">
 
-<h3>
-Welcome to your Freedom Club Admin Panel
-</h3>
+            Active Members
 
-<p>
-Create and manage your 90-day classroom, member access,
-community posts and progress from here.
-</p>
+            <div
+                class="stat"
+                id="activeCount"
+            >
+                0
+            </div>
 
-</div>
+        </div>
+
+
+        <div class="card">
+
+            Classroom Items
+
+            <div
+                class="stat"
+                id="classroomCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            Community Posts
+
+            <div
+                class="stat"
+                id="communityCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <br>
+
+
+    <div class="card">
+
+        <h3>
+            Welcome to your Freedom Club Admin Panel
+        </h3>
+
+        <p>
+            Manage members, control their access period,
+            create your 90-day classroom and manage
+            community posts from one place.
+        </p>
+
+    </div>
 
 </section>
 
@@ -947,53 +1853,86 @@ community posts and progress from here.
 ===================================================== -->
 
 <section
-id="members"
-class="section"
+    id="members"
+    class="section"
 >
 
-<div class="table-card">
+    <div class="access-info">
 
-<div class="table-head">
+        <strong>Member Access System</strong>
 
-<h2>Members</h2>
+        <p>
+            Each member has a Start Date and Access Duration.
+            The system calculates the Access Until date automatically.
+            Once access expires, classroom content should remain locked
+            for that member.
+        </p>
 
-<button
-class="btn"
-onclick="openSection('addMember')"
->
-+ Add Member
-</button>
+    </div>
 
-</div>
 
-<table class="table">
+    <div class="table-card">
 
-<thead>
+        <div class="table-head">
 
-<tr>
-<th>Name</th>
-<th>Email</th>
-<th>Phone</th>
-<th>Start Date</th>
-<th>Access</th>
-<th>Status</th>
-</tr>
+            <h2>Members</h2>
 
-</thead>
 
-<tbody id="membersTable">
+            <button
+                class="btn"
+                onclick="openAddMember()"
+            >
+                + Add Member
+            </button>
 
-<tr>
-<td colspan="6" class="empty">
-Loading...
-</td>
-</tr>
+        </div>
 
-</tbody>
 
-</table>
+        <table class="table">
 
-</div>
+            <thead>
+
+                <tr>
+
+                    <th>Name</th>
+
+                    <th>Email</th>
+
+                    <th>Phone</th>
+
+                    <th>Start Date</th>
+
+                    <th>Access</th>
+
+                    <th>Access Until</th>
+
+                    <th>Days Left</th>
+
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="membersTable">
+
+                <tr>
+
+                    <td
+                        colspan="8"
+                        class="empty"
+                    >
+                        Loading...
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
 
 </section>
 
@@ -1003,80 +1942,184 @@ Loading...
 ===================================================== -->
 
 <section
-id="addMember"
-class="section"
+    id="addMember"
+    class="section"
 >
 
-<div class="form-card">
+    <div class="form-card">
 
-<h2>Add Member</h2>
+        <h2>Add Member</h2>
 
-<div class="form-group">
-<label>Name</label>
-<input id="mName">
-</div>
 
-<div class="form-group">
-<label>Email</label>
-<input id="mEmail" type="email">
-</div>
+        <div class="form-group">
 
-<div class="form-group">
-<label>Phone</label>
-<input id="mPhone">
-</div>
+            <label>
+                Member Name
+            </label>
 
-<div class="form-group">
-<label>Start Date</label>
-<input id="mStart" type="date">
-</div>
+            <input
+                id="mName"
+                placeholder="Member full name"
+            >
 
-<div class="form-group">
+        </div>
 
-<label>Access Until Day</label>
 
-<select id="mAccess">
+        <div class="form-group">
 
-<option value="30">Day 30</option>
-<option value="60">Day 60</option>
-<option value="90">Day 90</option>
+            <label>
+                Firebase Login Email
+            </label>
 
-</select>
+            <input
+                id="mEmail"
+                type="email"
+                placeholder="member@email.com"
+            >
 
-</div>
+            <small
+                style="color:#777"
+            >
+                This should match the email used by the member
+                when logging into Firebase Authentication.
+            </small>
 
-<div class="form-group">
+        </div>
 
-<label>Status</label>
 
-<select id="mStatus">
+        <div class="form-group">
 
-<option value="Active">Active</option>
-<option value="Inactive">Inactive</option>
+            <label>
+                Phone
+            </label>
 
-</select>
+            <input
+                id="mPhone"
+                placeholder="03XX XXXXXXX"
+            >
 
-</div>
+        </div>
 
-<div class="form-actions">
 
-<button
-class="btn"
-onclick="saveMember()"
->
-Save Member
-</button>
+        <div class="form-group">
 
-<button
-class="btn btn-secondary"
-onclick="openSection('members')"
->
-Cancel
-</button>
+            <label>
+                Start Date
+            </label>
 
-</div>
+            <input
+                id="mStart"
+                type="date"
+            >
 
-</div>
+        </div>
+
+
+        <!-- ACCESS -->
+
+        <div class="access-box">
+
+            <h4>
+                Content Access
+            </h4>
+
+            <p
+                style="
+                    margin:0;
+                    color:#777;
+                    font-size:13px;
+                "
+            >
+                Choose how long this member can access
+                the classroom.
+            </p>
+
+
+            <div
+                class="form-group"
+                style="margin-top:15px"
+            >
+
+                <label>
+                    Access Duration
+                </label>
+
+                <select id="mAccess">
+
+                    <option value="30">
+                        30 Days
+                    </option>
+
+                    <option value="60">
+                        60 Days
+                    </option>
+
+                    <option value="90">
+                        90 Days
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                id="accessCalculation"
+                class="access-result"
+            >
+                Select a start date to calculate access.
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Member Status
+            </label>
+
+            <select id="mStatus">
+
+                <option value="Active">
+                    Active
+                </option>
+
+                <option value="Inactive">
+                    Inactive
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-actions">
+
+            <button
+                class="btn"
+                onclick="saveMember()"
+            >
+                Save Member
+            </button>
+
+
+            <button
+                class="btn btn-secondary"
+                onclick="openSection('members')"
+            >
+                Cancel
+            </button>
+
+        </div>
+
+
+        <p
+            id="memberSaveStatus"
+            style="color:var(--plum)"
+        ></p>
+
+    </div>
 
 </section>
 
@@ -1086,42 +2129,46 @@ Cancel
 ===================================================== -->
 
 <section
-id="classroom"
-class="section"
+    id="classroom"
+    class="section"
 >
 
-<div class="toolbar">
+    <div class="toolbar">
 
-<div>
+        <div>
 
-<h2>90-Day Classroom</h2>
+            <h2>
+                90-Day Classroom
+            </h2>
 
-<p>
-Phase → Week → Day
-</p>
+            <p>
+                Phase → Week → Day
+            </p>
 
-</div>
+        </div>
 
-<button
-class="btn"
-onclick="newItem()"
->
-+ Add Content
-</button>
 
-</div>
+        <button
+            class="btn"
+            onclick="newItem()"
+        >
+            + Add Content
+        </button>
 
-<div class="tree">
+    </div>
 
-<div id="treeContainer">
 
-<div class="empty">
-No classroom content yet.
-</div>
+    <div class="tree">
 
-</div>
+        <div id="treeContainer">
 
-</div>
+            <div class="empty">
+                No classroom content yet.
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
@@ -1131,39 +2178,42 @@ No classroom content yet.
 ===================================================== -->
 
 <section
-id="itemEditor"
-class="section"
+    id="itemEditor"
+    class="section"
 >
 
 <div class="form-card">
 
 <h2 id="editorHeading">
-Add Classroom Content
+    Add Classroom Content
 </h2>
 
 
-<!-- BASIC -->
-
 <div class="editor-section">
 
-<h3>Basic Information</h3>
+<h3>
+    Basic Information
+</h3>
+
 
 <div class="form-group">
 
-<label>Content Type</label>
+<label>
+    Content Type
+</label>
 
 <select id="itemType">
 
 <option value="module">
-Phase
+    Phase
 </option>
 
 <option value="subsection">
-Week
+    Week
 </option>
 
 <option value="lesson">
-Day / Lesson
+    Day / Lesson
 </option>
 
 </select>
@@ -1173,12 +2223,14 @@ Day / Lesson
 
 <div class="form-group">
 
-<label>Parent</label>
+<label>
+    Parent
+</label>
 
 <select id="itemParent">
 
 <option value="">
-Top Level
+    Top Level
 </option>
 
 </select>
@@ -1188,49 +2240,57 @@ Top Level
 
 <div class="form-group">
 
-<label>Title</label>
+<label>
+    Title
+</label>
 
 <input
-id="itemTitle"
-placeholder="Example: Phase 1 — Reset"
->
+    id="itemTitle"
+    placeholder="Example: Phase 1 — Reset"
+/>
 
 </div>
 
 
 <div class="form-group">
 
-<label>Description / Introduction</label>
+<label>
+    Description / Introduction
+</label>
+
 
 <div class="editor-toolbar">
 
 <button
-type="button"
-onclick="formatText('bold')"
+    type="button"
+    onclick="formatText('bold')"
 >
-B
+    B
 </button>
 
-<button
-type="button"
-onclick="formatText('italic')"
->
-I
-</button>
 
 <button
-type="button"
-onclick="formatText('underline')"
+    type="button"
+    onclick="formatText('italic')"
 >
-U
+    I
+</button>
+
+
+<button
+    type="button"
+    onclick="formatText('underline')"
+>
+    U
 </button>
 
 </div>
 
+
 <div
-id="itemDescription"
-class="rich-editor"
-contenteditable="true"
+    id="itemDescription"
+    class="rich-editor"
+    contenteditable="true"
 ></div>
 
 </div>
@@ -1238,14 +2298,16 @@ contenteditable="true"
 
 <div class="form-group">
 
-<label>Unlock Day</label>
+<label>
+    Unlock Day
+</label>
 
 <input
-id="unlockDay"
-type="number"
-min="1"
-max="90"
-value="1"
+    id="unlockDay"
+    type="number"
+    min="1"
+    max="90"
+    value="1"
 >
 
 </div>
@@ -1253,16 +2315,18 @@ value="1"
 
 <div class="form-group">
 
-<label>Content Status</label>
+<label>
+    Content Status
+</label>
 
 <select id="itemStatus">
 
 <option value="published">
-Published — visible to members
+    Published — visible to members
 </option>
 
 <option value="draft">
-Draft — hidden from members
+    Draft — hidden from members
 </option>
 
 </select>
@@ -1273,15 +2337,15 @@ Draft — hidden from members
 <div class="checkbox">
 
 <input
-id="allowChildren"
-type="checkbox"
+    id="allowChildren"
+    type="checkbox"
 >
 
 <label
-for="allowChildren"
-style="margin:0"
+    for="allowChildren"
+    style="margin:0"
 >
-Allow content inside this item
+    Allow content inside this item
 </label>
 
 </div>
@@ -1289,98 +2353,116 @@ Allow content inside this item
 </div>
 
 
-<!-- =====================================================
-     IMAGE
-===================================================== -->
+<!-- IMAGE -->
 
 <div class="editor-section">
 
-<h3>📷 Image</h3>
+<h3>
+    📷 Image
+</h3>
 
-<p style="color:#777;font-size:13px">
-Add a photo for this phase, week or day.
-The image is uploaded separately so saving the text/content stays fast.
+<p
+    style="
+        color:#777;
+        font-size:13px;
+    "
+>
+    Add a photo for this phase, week or day.
 </p>
+
 
 <div class="upload-box">
 
 <input
-id="itemImage"
-type="file"
-accept="image/*"
+    id="itemImage"
+    type="file"
+    accept="image/*"
+>
+
+
+<div
+    id="itemImagePreview"
+    class="image-preview"
+></div>
+
+
+<div
+    id="imageUploadStatus"
+    class="upload-status"
+></div>
+
+
+<div
+    id="imageProgress"
+    class="progress hidden"
 >
 
 <div
-id="itemImagePreview"
-class="image-preview"
-></div>
-
-<div
-id="imageUploadStatus"
-class="upload-status"
-></div>
-
-<div
-id="imageProgress"
-class="progress hidden"
->
-
-<div
-id="imageProgressBar"
-class="progress-bar"
+    id="imageProgressBar"
+    class="progress-bar"
 ></div>
 
 </div>
 
 </div>
+
 
 <input
-id="existingImageUrl"
-type="hidden"
+    id="existingImageUrl"
+    type="hidden"
 >
 
 </div>
 
 
-<!-- =====================================================
-     LINKS
-===================================================== -->
+<!-- LINKS -->
 
 <div class="editor-section">
 
-<h3>🎥 Videos & Google Drive</h3>
+<h3>
+    🎥 Videos & Google Drive
+</h3>
+
 
 <div class="form-group">
 
-<label>Video URL</label>
+<label>
+    Video URL
+</label>
 
 <input
-id="videoUrl"
-type="url"
-placeholder="https://youtube.com/..."
+    id="videoUrl"
+    type="url"
+    placeholder="https://youtube.com/..."
 >
 
 </div>
 
+
 <div class="form-group">
 
-<label>Google Drive Link</label>
+<label>
+    Google Drive Link
+</label>
 
 <input
-id="driveUrl"
-type="url"
-placeholder="https://drive.google.com/..."
+    id="driveUrl"
+    type="url"
+    placeholder="https://drive.google.com/..."
 >
 
 </div>
 
+
 <div class="form-group">
 
-<label>Button / Resource Name</label>
+<label>
+    Button / Resource Name
+</label>
 
 <input
-id="resourceLabel"
-placeholder="Watch Video / Open Workbook / View Recipe"
+    id="resourceLabel"
+    placeholder="Watch Video / Open Workbook / View Recipe"
 >
 
 </div>
@@ -1388,29 +2470,42 @@ placeholder="Watch Video / Open Workbook / View Recipe"
 </div>
 
 
-<!-- =====================================================
-     DAY CONTENT
-===================================================== -->
+<!-- DAY CONTENT -->
 
 <div
-id="dayContent"
-style="display:none"
+    id="dayContent"
+    style="display:none"
 >
+
 
 <div class="editor-section">
 
-<h3>Movement</h3>
+<h3>
+    Movement
+</h3>
+
 
 <div class="day-grid">
 
 <div>
-<label>Target</label>
+
+<label>
+    Target
+</label>
+
 <input id="movement">
+
 </div>
 
+
 <div>
-<label>Instructions</label>
+
+<label>
+    Instructions
+</label>
+
 <textarea id="movementInstructions"></textarea>
+
 </div>
 
 </div>
@@ -1420,18 +2515,32 @@ style="display:none"
 
 <div class="editor-section">
 
-<h3>Hydration</h3>
+<h3>
+    Hydration
+</h3>
+
 
 <div class="day-grid">
 
 <div>
-<label>Target</label>
+
+<label>
+    Target
+</label>
+
 <input id="hydration">
+
 </div>
 
+
 <div>
-<label>Instructions</label>
+
+<label>
+    Instructions
+</label>
+
 <textarea id="hydrationInstructions"></textarea>
+
 </div>
 
 </div>
@@ -1441,18 +2550,32 @@ style="display:none"
 
 <div class="editor-section">
 
-<h3>Protein</h3>
+<h3>
+    Protein
+</h3>
+
 
 <div class="day-grid">
 
 <div>
-<label>Target</label>
+
+<label>
+    Target
+</label>
+
 <input id="protein">
+
 </div>
 
+
 <div>
-<label>Instructions</label>
+
+<label>
+    Instructions
+</label>
+
 <textarea id="proteinInstructions"></textarea>
+
 </div>
 
 </div>
@@ -1462,18 +2585,32 @@ style="display:none"
 
 <div class="editor-section">
 
-<h3>Sleep</h3>
+<h3>
+    Sleep
+</h3>
+
 
 <div class="day-grid">
 
 <div>
-<label>Target</label>
+
+<label>
+    Target
+</label>
+
 <input id="sleep">
+
 </div>
+
 
 <div>
-<label>Instructions</label>
+
+<label>
+    Instructions
+</label>
+
 <textarea id="sleepInstructions"></textarea>
+
 </div>
 
 </div>
@@ -1483,12 +2620,14 @@ style="display:none"
 
 <div class="editor-section">
 
-<h3>Nutrition</h3>
+<h3>
+    Nutrition
+</h3>
 
 <div
-id="nutrition"
-class="rich-editor"
-contenteditable="true"
+    id="nutrition"
+    class="rich-editor"
+    contenteditable="true"
 ></div>
 
 </div>
@@ -1496,12 +2635,14 @@ contenteditable="true"
 
 <div class="editor-section">
 
-<h3>Mind / Stress</h3>
+<h3>
+    Mind / Stress
+</h3>
 
 <div
-id="mind"
-class="rich-editor"
-contenteditable="true"
+    id="mind"
+    class="rich-editor"
+    contenteditable="true"
 ></div>
 
 </div>
@@ -1509,7 +2650,9 @@ contenteditable="true"
 
 <div class="editor-section">
 
-<h3>Sunlight</h3>
+<h3>
+    Sunlight
+</h3>
 
 <input id="sunlight">
 
@@ -1518,12 +2661,14 @@ contenteditable="true"
 
 <div class="editor-section">
 
-<h3>Recovery</h3>
+<h3>
+    Recovery
+</h3>
 
 <div
-id="recovery"
-class="rich-editor"
-contenteditable="true"
+    id="recovery"
+    class="rich-editor"
+    contenteditable="true"
 ></div>
 
 </div>
@@ -1534,25 +2679,27 @@ contenteditable="true"
 <div class="form-actions">
 
 <button
-id="saveItemBtn"
-class="btn"
-onclick="saveItem()"
+    id="saveItemBtn"
+    class="btn"
+    onclick="saveItem()"
 >
-Save Content
+    Save Content
 </button>
 
+
 <button
-class="btn btn-secondary"
-onclick="openSection('classroom')"
+    class="btn btn-secondary"
+    onclick="openSection('classroom')"
 >
-Cancel
+    Cancel
 </button>
 
 </div>
 
+
 <p
-id="saveItemStatus"
-style="color:var(--plum)"
+    id="saveItemStatus"
+    style="color:var(--plum)"
 ></p>
 
 </div>
@@ -1565,22 +2712,24 @@ style="color:var(--plum)"
 ===================================================== -->
 
 <section
-id="preview"
-class="section"
+    id="preview"
+    class="section"
 >
 
 <button
-class="btn btn-secondary"
-onclick="openSection('classroom')"
+    class="btn btn-secondary"
+    onclick="openSection('classroom')"
 >
-← Back
+    ← Back
 </button>
+
 
 <br><br>
 
+
 <div
-id="previewContent"
-class="preview"
+    id="previewContent"
+    class="preview"
 ></div>
 
 </section>
@@ -1591,39 +2740,42 @@ class="preview"
 ===================================================== -->
 
 <section
-id="community"
-class="section"
+    id="community"
+    class="section"
 >
 
 <div class="toolbar">
 
 <div>
 
-<h2>Community</h2>
+<h2>
+    Community
+</h2>
 
 <p>
-Manage member posts, images and pinned announcements.
+    Manage member posts, images and pinned announcements.
 </p>
 
 </div>
 
+
 <button
-class="btn"
-onclick="openSection('communityComposer')"
+    class="btn"
+    onclick="openCommunityComposer()"
 >
-+ Create Post
+    + Create Post
 </button>
 
 </div>
 
 
 <div
-id="communityList"
-class="community-admin-list"
+    id="communityList"
+    class="community-admin-list"
 >
 
 <div class="empty">
-Loading community...
+    Loading community...
 </div>
 
 </div>
@@ -1636,50 +2788,56 @@ Loading community...
 ===================================================== -->
 
 <section
-id="communityComposer"
-class="section"
+    id="communityComposer"
+    class="section"
 >
 
 <div class="form-card">
 
 <h2 id="communityEditorHeading">
-Create Community Post
+    Create Community Post
 </h2>
 
 
 <div class="form-group">
 
-<label>Post Text</label>
+<label>
+    Post Text
+</label>
+
 
 <div class="editor-toolbar">
 
 <button
-type="button"
-onclick="formatCommunity('bold')"
+    type="button"
+    onclick="formatCommunity('bold')"
 >
-B
+    B
 </button>
 
-<button
-type="button"
-onclick="formatCommunity('italic')"
->
-I
-</button>
 
 <button
-type="button"
-onclick="formatCommunity('underline')"
+    type="button"
+    onclick="formatCommunity('italic')"
 >
-U
+    I
+</button>
+
+
+<button
+    type="button"
+    onclick="formatCommunity('underline')"
+>
+    U
 </button>
 
 </div>
 
+
 <div
-id="communityText"
-class="rich-editor"
-contenteditable="true"
+    id="communityText"
+    class="rich-editor"
+    contenteditable="true"
 ></div>
 
 </div>
@@ -1687,43 +2845,50 @@ contenteditable="true"
 
 <div class="editor-section">
 
-<h3>📷 Add Image</h3>
+<h3>
+    📷 Add Image
+</h3>
+
 
 <div class="upload-box">
 
 <input
-id="communityImage"
-type="file"
-accept="image/*"
+    id="communityImage"
+    type="file"
+    accept="image/*"
+>
+
+
+<div
+    id="communityImagePreview"
+    class="image-preview"
+></div>
+
+
+<div
+    id="communityUploadStatus"
+    class="upload-status"
+></div>
+
+
+<div
+    id="communityProgress"
+    class="progress hidden"
 >
 
 <div
-id="communityImagePreview"
-class="image-preview"
-></div>
-
-<div
-id="communityUploadStatus"
-class="upload-status"
-></div>
-
-<div
-id="communityProgress"
-class="progress hidden"
->
-
-<div
-id="communityProgressBar"
-class="progress-bar"
+    id="communityProgressBar"
+    class="progress-bar"
 ></div>
 
 </div>
 
 </div>
+
 
 <input
-id="communityExistingImage"
-type="hidden"
+    id="communityExistingImage"
+    type="hidden"
 >
 
 </div>
@@ -1731,20 +2896,24 @@ type="hidden"
 
 <div class="editor-section">
 
-<h3>📌 Pin Post</h3>
+<h3>
+    📌 Pin Post
+</h3>
+
 
 <div class="checkbox">
 
 <input
-id="communityPinned"
-type="checkbox"
+    id="communityPinned"
+    type="checkbox"
 >
 
+
 <label
-for="communityPinned"
-style="margin:0"
+    for="communityPinned"
+    style="margin:0"
 >
-Pin this post at the top of the community
+    Pin this post at the top of the community
 </label>
 
 </div>
@@ -1755,24 +2924,26 @@ Pin this post at the top of the community
 <div class="form-actions">
 
 <button
-class="btn"
-onclick="saveCommunityPost()"
+    class="btn"
+    onclick="saveCommunityPost()"
 >
-Save Post
+    Save Post
 </button>
 
+
 <button
-class="btn btn-secondary"
-onclick="openSection('community')"
+    class="btn btn-secondary"
+    onclick="openSection('community')"
 >
-Cancel
+    Cancel
 </button>
 
 </div>
 
+
 <p
-id="communitySaveStatus"
-style="color:var(--plum)"
+    id="communitySaveStatus"
+    style="color:var(--plum)"
 ></p>
 
 </div>
@@ -1785,16 +2956,18 @@ style="color:var(--plum)"
 ===================================================== -->
 
 <section
-id="leaderboard"
-class="section"
+    id="leaderboard"
+    class="section"
 >
 
 <div class="card">
 
-<h2>Leaderboard</h2>
+<h2>
+    Leaderboard
+</h2>
 
 <p>
-Member points will be connected to progress.
+    Member points will be connected to progress.
 </p>
 
 </div>
@@ -1807,16 +2980,18 @@ Member points will be connected to progress.
 ===================================================== -->
 
 <section
-id="settings"
-class="section"
+    id="settings"
+    class="section"
 >
 
 <div class="card">
 
-<h2>Settings</h2>
+<h2>
+    Settings
+</h2>
 
 <p>
-Freedom Women's Health Club settings.
+    Freedom Women's Health Club settings.
 </p>
 
 </div>
@@ -1830,6 +3005,7 @@ Freedom Women's Health Club settings.
 
 
 <script type="module">
+
 
 /* =====================================================
    FIREBASE
@@ -1860,9 +3036,7 @@ import {
     doc,
     updateDoc,
     deleteDoc,
-    serverTimestamp,
-    query,
-    orderBy
+    serverTimestamp
 }
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
@@ -1877,6 +3051,10 @@ import {
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
 
+
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
 
 const firebaseConfig = {
 
@@ -1904,11 +3082,14 @@ const firebaseConfig = {
 const app =
 initializeApp(firebaseConfig);
 
+
 const auth =
 getAuth(app);
 
+
 const db =
 getFirestore(app);
+
 
 const storage =
 getStorage(app);
@@ -1919,6 +3100,7 @@ const ADMIN =
 
 
 let items=[];
+
 let editingId=null;
 
 let editingCommunityId=null;
@@ -1929,49 +3111,58 @@ let editingCommunityId=null;
 ===================================================== */
 
 onAuthStateChanged(
-auth,
-user=>{
+    auth,
+    user=>{
 
-    if(!user){
+        if(!user){
+
+            document
+            .getElementById("loginPage")
+            .style.display="flex";
+
+            document
+            .getElementById("adminApp")
+            .style.display="none";
+
+            return;
+
+        }
+
+
+        if(
+            user.email?.toLowerCase() !==
+            ADMIN.toLowerCase()
+        ){
+
+            alert(
+                "This account is not the admin account."
+            );
+
+            signOut(auth);
+
+            return;
+
+        }
+
 
         document
         .getElementById("loginPage")
-        .style.display="flex";
+        .style.display="none";
+
 
         document
         .getElementById("adminApp")
-        .style.display="none";
+        .style.display="block";
 
-        return;
+
+        loadMembers();
+
+        loadClassroom();
+
+        loadCommunity();
+
     }
-
-
-    if(user.email!==ADMIN){
-
-        alert(
-            "This account is not the admin account."
-        );
-
-        signOut(auth);
-
-        return;
-    }
-
-
-    document
-    .getElementById("loginPage")
-    .style.display="none";
-
-    document
-    .getElementById("adminApp")
-    .style.display="block";
-
-
-    loadMembers();
-    loadClassroom();
-    loadCommunity();
-
-});
+);
 
 
 /* =====================================================
@@ -1981,43 +3172,51 @@ user=>{
 document
 .getElementById("loginBtn")
 .addEventListener(
-"click",
-async()=>{
+    "click",
+    async()=>{
 
-    const email=
-    document
-    .getElementById("email")
-    .value
-    .trim();
-
-    const password=
-    document
-    .getElementById("password")
-    .value;
-
-
-    try{
-
-        await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
+        const email=
         document
-        .getElementById("loginError")
-        .textContent=
-        error.message;
+        .getElementById("email")
+        .value
+        .trim();
+
+
+        const password=
+        document
+        .getElementById("password")
+        .value;
+
+
+        const errorBox=
+        document
+        .getElementById("loginError");
+
+
+        errorBox.textContent="";
+
+
+        try{
+
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+            errorBox.textContent=
+            "Login failed. Please check your email and password.";
+
+        }
 
     }
-
-});
+);
 
 
 window.logout=
@@ -2045,8 +3244,11 @@ function(id,button){
     const section=
     document.getElementById(id);
 
+
     if(section){
+
         section.classList.add("active");
+
     }
 
 
@@ -2058,21 +3260,32 @@ function(id,button){
 
 
     if(button){
+
         button.classList.add("active");
+
     }
 
 
     const names={
 
         dashboard:"Dashboard",
+
         members:"Members",
+
         classroom:"Classroom",
+
         community:"Community",
+
         leaderboard:"Leaderboard",
+
         settings:"Settings",
+
         addMember:"Add Member",
+
         itemEditor:"Classroom Editor",
+
         preview:"Preview",
+
         communityComposer:"Community Post"
 
     };
@@ -2087,6 +3300,301 @@ function(id,button){
 
 
 /* =====================================================
+   MEMBER ACCESS CALCULATION
+===================================================== */
+
+/*
+ * IMPORTANT:
+ *
+ * accessUntilDate is calculated from the Start Date.
+ *
+ * Example:
+ *
+ * Start Date = 28 Aug 2026
+ * Access = 30 days
+ *
+ * Access Until = 26 Sep 2026
+ *
+ * We store both:
+ *
+ * accessDays
+ * accessUntilDate
+ *
+ * The member-side application should use
+ * accessUntilDate to decide whether content
+ * is accessible.
+ */
+
+function calculateAccessUntil(
+    startDate,
+    accessDays
+){
+
+    if(!startDate){
+
+        return "";
+
+    }
+
+
+    const date=
+    new Date(
+        startDate+"T00:00:00"
+    );
+
+
+    if(
+        Number.isNaN(
+            date.getTime()
+        )
+    ){
+
+        return "";
+
+    }
+
+
+    /*
+     * Start day counts as Day 1.
+     *
+     * Therefore:
+     * 30-day access = start + 29 days.
+     */
+
+    date.setDate(
+        date.getDate()+
+        Number(accessDays)-
+        1
+    );
+
+
+    return formatDateOnly(date);
+
+}
+
+
+function formatDateOnly(date){
+
+    const year=
+    date.getFullYear();
+
+
+    const month=
+    String(
+        date.getMonth()+1
+    )
+    .padStart(2,"0");
+
+
+    const day=
+    String(
+        date.getDate()
+    )
+    .padStart(2,"0");
+
+
+    return `${year}-${month}-${day}`;
+
+}
+
+
+function formatReadableDate(
+    dateString
+){
+
+    if(!dateString){
+
+        return "—";
+
+    }
+
+
+    const date=
+    new Date(
+        dateString+"T00:00:00"
+    );
+
+
+    if(
+        Number.isNaN(
+            date.getTime()
+        )
+    ){
+
+        return dateString;
+
+    }
+
+
+    return date.toLocaleDateString(
+        undefined,
+        {
+            day:"numeric",
+            month:"short",
+            year:"numeric"
+        }
+    );
+
+}
+
+
+function getDaysLeft(
+    accessUntilDate
+){
+
+    if(!accessUntilDate){
+
+        return 0;
+
+    }
+
+
+    const today=
+    new Date();
+
+
+    today.setHours(
+        0,0,0,0
+    );
+
+
+    const expiry=
+    new Date(
+        accessUntilDate+
+        "T00:00:00"
+    );
+
+
+    const difference=
+    expiry.getTime()-
+    today.getTime();
+
+
+    return Math.ceil(
+        difference/
+        (1000*60*60*24)
+    );
+
+}
+
+
+/*
+ * Access is valid through the end of
+ * accessUntilDate.
+ *
+ * So:
+ *
+ * daysLeft >= 0 = active
+ * daysLeft < 0 = expired
+ */
+
+function isAccessExpired(
+    accessUntilDate
+){
+
+    return getDaysLeft(
+        accessUntilDate
+    ) < 0;
+
+}
+
+
+/* =====================================================
+   LIVE ACCESS PREVIEW
+===================================================== */
+
+function updateAccessCalculation(){
+
+    const startDate=
+    value("mStart");
+
+
+    const accessDays=
+    Number(
+        value("mAccess")
+    );
+
+
+    const box=
+    document
+    .getElementById(
+        "accessCalculation"
+    );
+
+
+    if(!startDate){
+
+        box.innerHTML=
+        "Select a start date to calculate access.";
+
+        return;
+
+    }
+
+
+    const until=
+    calculateAccessUntil(
+        startDate,
+        accessDays
+    );
+
+
+    box.innerHTML=`
+
+        <strong>
+            ${accessDays} days access
+        </strong>
+
+        <br>
+
+        Start:
+        ${formatReadableDate(startDate)}
+
+        <br>
+
+        Access Until:
+        <strong>
+            ${formatReadableDate(until)}
+        </strong>
+
+    `;
+
+}
+
+
+document
+.getElementById("mStart")
+.addEventListener(
+    "change",
+    updateAccessCalculation
+);
+
+
+document
+.getElementById("mAccess")
+.addEventListener(
+    "change",
+    updateAccessCalculation
+);
+
+
+/* =====================================================
+   OPEN ADD MEMBER
+===================================================== */
+
+window.openAddMember=
+function(){
+
+    clearMemberForm();
+
+    openSection(
+        "addMember"
+    );
+
+};
+
+
+/* =====================================================
    MEMBERS
 ===================================================== */
 
@@ -2096,7 +3604,10 @@ async function loadMembers(){
 
         const snap=
         await getDocs(
-            collection(db,"members")
+            collection(
+                db,
+                "members"
+            )
         );
 
 
@@ -2107,35 +3618,172 @@ async function loadMembers(){
 
 
         let html="";
+
         let active=0;
 
 
         snap.forEach(s=>{
 
-            const m=s.data();
+            const m={
+                id:s.id,
+                ...s.data()
+            };
 
-            if(m.status==="Active"){
+
+            const daysLeft=
+            getDaysLeft(
+                m.accessUntilDate
+            );
+
+
+            const expired=
+            isAccessExpired(
+                m.accessUntilDate
+            );
+
+
+            const manuallyInactive=
+            m.status !== "Active";
+
+
+            const memberActive=
+            !expired &&
+            !manuallyInactive;
+
+
+            if(memberActive){
+
                 active++;
+
+            }
+
+
+            let statusHTML;
+
+
+            if(manuallyInactive){
+
+                statusHTML=`
+                    <span class="badge badge-warning">
+                        Inactive
+                    </span>
+                `;
+
+            }
+
+            else if(expired){
+
+                statusHTML=`
+                    <span class="badge badge-expired">
+                        Expired
+                    </span>
+                `;
+
+            }
+
+            else{
+
+                statusHTML=`
+                    <span class="badge badge-active">
+                        Active
+                    </span>
+                `;
+
+            }
+
+
+            let daysHTML;
+
+
+            if(expired){
+
+                daysHTML=`
+                    <span class="days-left expired">
+                        Expired
+                    </span>
+                `;
+
+            }
+
+            else{
+
+                daysHTML=`
+                    <span class="days-left active">
+                        ${daysLeft} day${daysLeft===1?"":"s"}
+                    </span>
+                `;
+
             }
 
 
             html+=`
 
-            <tr>
+                <tr>
 
-                <td>${safe(m.name)}</td>
+                    <td>
 
-                <td>${safe(m.email)}</td>
+                        <div class="member-name">
+                            ${safe(m.name)}
+                        </div>
 
-                <td>${safe(m.phone)}</td>
+                    </td>
 
-                <td>${safe(m.startDate)}</td>
 
-                <td>Day ${safe(m.accessUntilDay)}</td>
+                    <td>
+                        ${safe(m.email)}
+                    </td>
 
-                <td>${safe(m.status)}</td>
 
-            </tr>
+                    <td>
+                        ${safe(m.phone)}
+                    </td>
+
+
+                    <td>
+                        ${formatReadableDate(
+                            m.startDate
+                        )}
+                    </td>
+
+
+                    <td>
+
+                        <span class="badge badge-locked">
+
+                            ${Number(
+                                m.accessDays ||
+                                m.accessUntilDay ||
+                                30
+                            )} Days
+
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        ${formatReadableDate(
+                            m.accessUntilDate
+                        )}
+
+                    </td>
+
+
+                    <td>
+
+                        ${daysHTML}
+
+                    </td>
+
+
+                    <td>
+
+                        ${statusHTML}
+
+                    </td>
+
+                </tr>
 
             `;
 
@@ -2146,16 +3794,16 @@ async function loadMembers(){
 
             html=`
 
-            <tr>
+                <tr>
 
-                <td
-                colspan="6"
-                class="empty"
-                >
-                No members yet.
-                </td>
+                    <td
+                        colspan="8"
+                        class="empty"
+                    >
+                        No members yet.
+                    </td>
 
-            </tr>
+                </tr>
 
             `;
 
@@ -2167,12 +3815,14 @@ async function loadMembers(){
 
         document
         .getElementById("memberCount")
-        .textContent=snap.size;
+        .textContent=
+        snap.size;
 
 
         document
         .getElementById("activeCount")
-        .textContent=active;
+        .textContent=
+        active;
 
     }
 
@@ -2183,80 +3833,213 @@ async function loadMembers(){
             error
         );
 
+
+        document
+        .getElementById("membersTable")
+        .innerHTML=`
+
+            <tr>
+
+                <td
+                    colspan="8"
+                    class="empty"
+                >
+
+                    Firebase could not load members.
+
+                    <br><br>
+
+                    ${safe(error.message)}
+
+                </td>
+
+            </tr>
+
+        `;
+
     }
 
 }
 
 
+/* =====================================================
+   SAVE MEMBER
+===================================================== */
+
 window.saveMember=
 async function(){
+
+    const status=
+    document.getElementById(
+        "memberSaveStatus"
+    );
+
 
     const name=
     value("mName").trim();
 
+
     const email=
-    value("mEmail").trim();
+    value("mEmail").trim()
+    .toLowerCase();
+
 
     const phone=
     value("mPhone").trim();
 
+
     const startDate=
     value("mStart");
 
-    const accessUntilDay=
-    Number(value("mAccess"));
 
-    const status=
+    const accessDays=
+    Number(
+        value("mAccess")
+    );
+
+
+    const memberStatus=
     value("mStatus");
 
 
-    if(!name||!email||!startDate){
+    if(
+        !name ||
+        !email ||
+        !startDate
+    ){
 
         alert(
             "Please enter name, email and start date."
         );
 
         return;
+
     }
+
+
+    if(
+        !accessDays ||
+        ![30,60,90].includes(accessDays)
+    ){
+
+        alert(
+            "Please select 30, 60 or 90 days."
+        );
+
+        return;
+
+    }
+
+
+    const accessUntilDate=
+    calculateAccessUntil(
+        startDate,
+        accessDays
+    );
+
+
+    if(!accessUntilDate){
+
+        alert(
+            "Could not calculate access expiry."
+        );
+
+        return;
+
+    }
+
+
+    status.textContent=
+    "Saving member...";
 
 
     try{
 
         await addDoc(
-            collection(db,"members"),
+            collection(
+                db,
+                "members"
+            ),
             {
 
                 name,
+
                 email,
+
                 phone,
+
                 startDate,
-                accessUntilDay,
-                status,
+
+                accessDays,
+
+                /*
+                 * Kept for compatibility with
+                 * your previous member documents.
+                 */
+
+                accessUntilDay:
+                accessDays,
+
+                accessUntilDate,
+
+                status:
+                memberStatus,
+
+                /*
+                 * This is useful on the member
+                 * dashboard.
+                 */
+
+                contentAccess:
+                memberStatus==="Active",
 
                 createdAt:
+                serverTimestamp(),
+
+                updatedAt:
                 serverTimestamp()
 
             }
         );
 
 
-        alert("Member saved.");
+        status.textContent=
+        "✓ Member saved successfully.";
+
+
+        alert(
+            `Member added successfully.\n\n`+
+            `Access: ${accessDays} days\n`+
+            `Access until: ${formatReadableDate(accessUntilDate)}`
+        );
 
 
         clearMemberForm();
 
+
         await loadMembers();
 
-        openSection("members");
+
+        openSection(
+            "members"
+        );
 
     }
 
     catch(error){
 
-        console.error(error);
+        console.error(
+            "SAVE MEMBER ERROR",
+            error
+        );
+
+
+        status.textContent=
+        "Error: "+error.message;
+
 
         alert(
-            "Firebase error:\n"+
+            "Could not save member:\n\n"+
             error.message
         );
 
@@ -2264,6 +4047,10 @@ async function(){
 
 };
 
+
+/* =====================================================
+   CLEAR MEMBER FORM
+===================================================== */
 
 function clearMemberForm(){
 
@@ -2274,8 +4061,37 @@ function clearMemberForm(){
         "mStart"
     ]
     .forEach(id=>{
-        document.getElementById(id).value="";
+
+        document
+        .getElementById(id)
+        .value="";
+
     });
+
+
+    document
+    .getElementById("mAccess")
+    .value="30";
+
+
+    document
+    .getElementById("mStatus")
+    .value="Active";
+
+
+    document
+    .getElementById(
+        "accessCalculation"
+    )
+    .innerHTML=
+    "Select a start date to calculate access.";
+
+
+    document
+    .getElementById(
+        "memberSaveStatus"
+    )
+    .textContent="";
 
 }
 
@@ -2290,7 +4106,10 @@ async function loadClassroom(){
 
         const snap=
         await getDocs(
-            collection(db,"classroom")
+            collection(
+                db,
+                "classroom"
+            )
         );
 
 
@@ -2302,6 +4121,7 @@ async function loadClassroom(){
             items.push({
 
                 id:s.id,
+
                 ...s.data()
 
             });
@@ -2317,7 +4137,9 @@ async function loadClassroom(){
 
 
         document
-        .getElementById("classroomCount")
+        .getElementById(
+            "classroomCount"
+        )
         .textContent=
         items.length;
 
@@ -2335,19 +4157,22 @@ async function loadClassroom(){
             error
         );
 
+
         document
-        .getElementById("treeContainer")
+        .getElementById(
+            "treeContainer"
+        )
         .innerHTML=`
 
-        <div class="empty">
+            <div class="empty">
 
-        Firebase could not load Classroom.
+                Firebase could not load Classroom.
 
-        <br><br>
+                <br><br>
 
-        ${safe(error.message)}
+                ${safe(error.message)}
 
-        </div>
+            </div>
 
         `;
 
@@ -2369,93 +4194,133 @@ function(){
 
     populateParents();
 
-    openSection("itemEditor");
+    openSection(
+        "itemEditor"
+    );
 
 };
 
 
+/* =====================================================
+   CLEAR EDITOR
+===================================================== */
+
 function clearEditor(){
 
     document
-    .getElementById("editorHeading")
+    .getElementById(
+        "editorHeading"
+    )
     .textContent=
     "Add Classroom Content";
 
 
     document
-    .getElementById("itemType")
+    .getElementById(
+        "itemType"
+    )
     .value=
     "module";
 
 
     document
-    .getElementById("itemParent")
+    .getElementById(
+        "itemParent"
+    )
     .value="";
 
 
     document
-    .getElementById("itemTitle")
+    .getElementById(
+        "itemTitle"
+    )
     .value="";
 
 
     document
-    .getElementById("itemDescription")
+    .getElementById(
+        "itemDescription"
+    )
     .innerHTML="";
 
 
     document
-    .getElementById("unlockDay")
+    .getElementById(
+        "unlockDay"
+    )
     .value=1;
 
 
     document
-    .getElementById("itemStatus")
+    .getElementById(
+        "itemStatus"
+    )
     .value=
     "published";
 
 
     document
-    .getElementById("allowChildren")
+    .getElementById(
+        "allowChildren"
+    )
     .checked=false;
 
 
     document
-    .getElementById("existingImageUrl")
+    .getElementById(
+        "existingImageUrl"
+    )
     .value="";
 
 
     document
-    .getElementById("itemImage")
+    .getElementById(
+        "itemImage"
+    )
     .value="";
 
 
     document
-    .getElementById("itemImagePreview")
+    .getElementById(
+        "itemImagePreview"
+    )
     .innerHTML="";
 
 
     document
-    .getElementById("imageUploadStatus")
+    .getElementById(
+        "imageUploadStatus"
+    )
     .textContent="";
 
 
     document
-    .getElementById("imageProgress")
-    .classList.add("hidden");
+    .getElementById(
+        "imageProgress"
+    )
+    .classList.add(
+        "hidden"
+    );
 
 
     document
-    .getElementById("videoUrl")
+    .getElementById(
+        "videoUrl"
+    )
     .value="";
 
 
     document
-    .getElementById("driveUrl")
+    .getElementById(
+        "driveUrl"
+    )
     .value="";
 
 
     document
-    .getElementById("resourceLabel")
+    .getElementById(
+        "resourceLabel"
+    )
     .value="";
 
 
@@ -2471,7 +4336,11 @@ function clearEditor(){
         "sunlight"
     ]
     .forEach(id=>{
-        document.getElementById(id).value="";
+
+        document
+        .getElementById(id)
+        .value="";
+
     });
 
 
@@ -2481,12 +4350,18 @@ function clearEditor(){
         "recovery"
     ]
     .forEach(id=>{
-        document.getElementById(id).innerHTML="";
+
+        document
+        .getElementById(id)
+        .innerHTML="";
+
     });
 
 
     document
-    .getElementById("dayContent")
+    .getElementById(
+        "dayContent"
+    )
     .style.display="none";
 
 }
@@ -2506,9 +4381,9 @@ function populateParents(){
 
     select.innerHTML=`
 
-    <option value="">
-    Top Level
-    </option>
+        <option value="">
+            Top Level
+        </option>
 
     `;
 
@@ -2521,14 +4396,24 @@ function populateParents(){
     .forEach(item=>{
 
         const option=
-        document.createElement("option");
+        document.createElement(
+            "option"
+        );
 
-        option.value=item.id;
+
+        option.value=
+        item.id;
+
 
         option.textContent=
-        getFullPath(item.id);
+        getFullPath(
+            item.id
+        );
 
-        select.appendChild(option);
+
+        select.appendChild(
+            option
+        );
 
     });
 
@@ -2538,10 +4423,15 @@ function populateParents(){
 function getFullPath(id){
 
     const current=
-    items.find(x=>x.id===id);
+    items.find(
+        x=>x.id===id
+    );
+
 
     if(!current){
+
         return "";
+
     }
 
 
@@ -2563,7 +4453,9 @@ function getFullPath(id){
 
 
         if(!parent){
+
             break;
+
         }
 
 
@@ -2578,7 +4470,9 @@ function getFullPath(id){
     }
 
 
-    return result.join(" → ");
+    return result.join(
+        " → "
+    );
 
 }
 
@@ -2590,21 +4484,24 @@ function getFullPath(id){
 document
 .getElementById("itemType")
 .addEventListener(
-"change",
-function(){
+    "change",
+    function(){
 
-    const isLesson=
-    this.value==="lesson";
+        const isLesson=
+        this.value==="lesson";
 
 
-    document
-    .getElementById("dayContent")
-    .style.display=
-    isLesson
-    ?"block"
-    :"none";
+        document
+        .getElementById(
+            "dayContent"
+        )
+        .style.display=
+        isLesson
+        ?"block"
+        :"none";
 
-});
+    }
+);
 
 
 /* =====================================================
@@ -2683,16 +4580,10 @@ async function(){
         }
 
 
-        /*
-         * IMPORTANT:
-         * Firestore content is saved first.
-         * Image upload happens only if an image
-         * was selected.
-         */
-
         const data={
 
             type,
+
             parentId,
 
             title,
@@ -2716,6 +4607,7 @@ async function(){
 
             imageUrl:
             value("existingImageUrl"),
+
 
             dayContent:{
 
@@ -2745,12 +4637,16 @@ async function(){
 
                 nutrition:
                 document
-                .getElementById("nutrition")
+                .getElementById(
+                    "nutrition"
+                )
                 .innerHTML,
 
                 mind:
                 document
-                .getElementById("mind")
+                .getElementById(
+                    "mind"
+                )
                 .innerHTML,
 
                 sunlight:
@@ -2758,7 +4654,9 @@ async function(){
 
                 recovery:
                 document
-                .getElementById("recovery")
+                .getElementById(
+                    "recovery"
+                )
                 .innerHTML
 
             },
@@ -2773,6 +4671,7 @@ async function(){
 
             data.createdAt=
             serverTimestamp();
+
 
             data.order=
             Date.now();
@@ -2807,23 +4706,15 @@ async function(){
         }
 
 
-        /*
-         * FIRESTORE IS NOW SAVED.
-         * This means text/content doesn't wait
-         * for an image upload.
-         */
-
         status.textContent=
         "Content saved successfully.";
 
 
-        /*
-         * Upload image only when selected.
-         */
-
         const file=
         document
-        .getElementById("itemImage")
+        .getElementById(
+            "itemImage"
+        )
         .files[0];
 
 
@@ -2875,7 +4766,9 @@ async function(){
 
         setTimeout(
             ()=>{
-                openSection("classroom");
+                openSection(
+                    "classroom"
+                );
             },
             500
         );
@@ -2892,6 +4785,7 @@ async function(){
 
         status.textContent=
         "Error: "+error.message;
+
 
         alert(
             "Could not save:\n\n"+
@@ -2926,104 +4820,113 @@ function uploadImage(
 ){
 
     return new Promise(
-    (resolve,reject)=>{
+        (resolve,reject)=>{
 
-        const safeName=
-        file.name
-        .replace(
-            /[^a-zA-Z0-9._-]/g,
-            "_"
-        );
-
-
-        const filePath=
-        `${folder}/${documentId}/${Date.now()}_${safeName}`;
+            const safeName=
+            file.name
+            .replace(
+                /[^a-zA-Z0-9._-]/g,
+                "_"
+            );
 
 
-        const storageRef=
-        ref(
-            storage,
-            filePath
-        );
+            const filePath=
+            `${folder}/${documentId}/${Date.now()}_${safeName}`;
 
 
-        const task=
-        uploadBytesResumable(
-            storageRef,
-            file
-        );
+            const storageRef=
+            ref(
+                storage,
+                filePath
+            );
 
 
-        const progressBox=
-        document.getElementById(
-            progressId
-        );
+            const task=
+            uploadBytesResumable(
+                storageRef,
+                file
+            );
 
 
-        const progressBar=
-        document.getElementById(
-            progressBarId
-        );
+            const progressBox=
+            document.getElementById(
+                progressId
+            );
 
 
-        progressBox.classList.remove(
-            "hidden"
-        );
+            const progressBar=
+            document.getElementById(
+                progressBarId
+            );
 
 
-        task.on(
-
-            "state_changed",
-
-            snapshot=>{
-
-                const percent=
-                Math.round(
-                    (
-                        snapshot.bytesTransferred /
-                        snapshot.totalBytes
-                    )*100
-                );
+            progressBox.classList.remove(
+                "hidden"
+            );
 
 
-                progressBar.style.width=
-                percent+"%";
+            task.on(
+
+                "state_changed",
+
+                snapshot=>{
+
+                    const percent=
+                    Math.round(
+                        (
+                            snapshot.bytesTransferred/
+                            snapshot.totalBytes
+                        )*100
+                    );
 
 
-                document
-                .getElementById(statusId)
-                .textContent=
-                "Uploading image "+percent+"%";
-
-            },
-
-            error=>{
-
-                reject(error);
-
-            },
-
-            async()=>{
-
-                const url=
-                await getDownloadURL(
-                    task.snapshot.ref
-                );
+                    progressBar.style.width=
+                    percent+"%";
 
 
-                document
-                .getElementById(statusId)
-                .textContent=
-                "Image uploaded ✓";
+                    document
+                    .getElementById(
+                        statusId
+                    )
+                    .textContent=
+                    "Uploading image "+
+                    percent+
+                    "%";
+
+                },
 
 
-                resolve(url);
+                error=>{
 
-            }
+                    reject(error);
 
-        );
+                },
 
-    });
+
+                async()=>{
+
+                    const url=
+                    await getDownloadURL(
+                        task.snapshot.ref
+                    );
+
+
+                    document
+                    .getElementById(
+                        statusId
+                    )
+                    .textContent=
+                    "Image uploaded ✓";
+
+
+                    resolve(url);
+
+                }
+
+            );
+
+        }
+    );
 
 }
 
@@ -3035,59 +4938,75 @@ function uploadImage(
 document
 .getElementById("itemImage")
 .addEventListener(
-"change",
-function(){
+    "change",
+    function(){
 
-    const file=this.files[0];
+        const file=
+        this.files[0];
 
-    if(!file){
-        return;
+
+        if(!file){
+
+            return;
+
+        }
+
+
+        const url=
+        URL.createObjectURL(
+            file
+        );
+
+
+        document
+        .getElementById(
+            "itemImagePreview"
+        )
+        .innerHTML=`
+
+            <img src="${safe(url)}">
+
+        `;
+
     }
-
-
-    const url=
-    URL.createObjectURL(file);
-
-
-    document
-    .getElementById("itemImagePreview")
-    .innerHTML=`
-
-    <img src="${url}">
-
-    `;
-
-});
+);
 
 
 document
 .getElementById("communityImage")
 .addEventListener(
-"change",
-function(){
+    "change",
+    function(){
 
-    const file=this.files[0];
+        const file=
+        this.files[0];
 
-    if(!file){
-        return;
+
+        if(!file){
+
+            return;
+
+        }
+
+
+        const url=
+        URL.createObjectURL(
+            file
+        );
+
+
+        document
+        .getElementById(
+            "communityImagePreview"
+        )
+        .innerHTML=`
+
+            <img src="${safe(url)}">
+
+        `;
+
     }
-
-
-    const url=
-    URL.createObjectURL(file);
-
-
-    document
-    .getElementById(
-        "communityImagePreview"
-    )
-    .innerHTML=`
-
-    <img src="${url}">
-
-    `;
-
-});
+);
 
 
 /* =====================================================
@@ -3103,8 +5022,7 @@ function renderTree(){
 
 
     const roots=
-    items
-    .filter(
+    items.filter(
         x=>!x.parentId
     );
 
@@ -3113,15 +5031,15 @@ function renderTree(){
 
         container.innerHTML=`
 
-        <div class="empty">
+            <div class="empty">
 
-        No classroom content yet.
+                No classroom content yet.
 
-        <br><br>
+                <br><br>
 
-        Click <b>+ Add Content</b>.
+                Click <b>+ Add Content</b>.
 
-        </div>
+            </div>
 
         `;
 
@@ -3132,7 +5050,9 @@ function renderTree(){
 
     container.innerHTML=
     roots
-    .map(item=>treeItem(item))
+    .map(
+        item=>treeItem(item)
+    )
     .join("");
 
 }
@@ -3157,115 +5077,134 @@ function treeItem(item){
 
     const statusBadge=
     item.status==="published"
+
     ?
 
     `<span class="badge badge-published">
-    Published
+        Published
     </span>`
 
     :
 
     `<span class="badge badge-draft">
-    Draft
+        Draft
     </span>`;
 
 
     const imageBadge=
     item.imageUrl
-    ?
-    " 📷"
+    ?" 📷"
     :"";
 
 
     const lockBadge=
     item.status==="published"
+
     ?
+
     `<span class="badge badge-locked">
-    Unlock Day ${item.unlockDay||1}
+        Unlock Day ${item.unlockDay||1}
     </span>`
+
     :"";
 
 
     return `
 
-    <div class="tree-item">
+        <div class="tree-item">
 
-        <div class="tree-row">
+            <div class="tree-row">
 
-            <button
-            class="tree-toggle"
-            onclick="toggle('${item.id}')"
+                <button
+                    class="tree-toggle"
+                    onclick="toggle('${item.id}')"
+                >
+                    ${children.length?"▶":""}
+                </button>
+
+
+                <span>
+                    ${icon}
+                </span>
+
+
+                <div class="tree-title">
+
+                    ${safe(item.title)}
+
+                    ${imageBadge}
+
+                </div>
+
+
+                ${statusBadge}
+
+                ${lockBadge}
+
+
+                <div class="actions">
+
+
+                    <button
+                        class="small"
+                        onclick="addChild('${item.id}')"
+                    >
+                        + Child
+                    </button>
+
+
+                    <button
+                        class="small"
+                        onclick="editItem('${item.id}')"
+                    >
+                        Edit
+                    </button>
+
+
+                    <button
+                        class="small"
+                        onclick="preview('${item.id}')"
+                    >
+                        Preview
+                    </button>
+
+
+                    <button
+                        class="small"
+                        onclick="removeItem('${item.id}')"
+                    >
+                        Delete
+                    </button>
+
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="children"
+                id="child-${item.id}"
             >
-            ${children.length?"▶":""}
-            </button>
 
-            <span>
-            ${icon}
-            </span>
-
-            <div class="tree-title">
-
-            ${safe(item.title)}
-            ${imageBadge}
-
-            </div>
-
-            ${statusBadge}
-
-            ${lockBadge}
-
-            <div class="actions">
-
-                <button
-                class="small"
-                onclick="addChild('${item.id}')"
-                >
-                + Child
-                </button>
-
-                <button
-                class="small"
-                onclick="editItem('${item.id}')"
-                >
-                Edit
-                </button>
-
-                <button
-                class="small"
-                onclick="preview('${item.id}')"
-                >
-                Preview
-                </button>
-
-                <button
-                class="small"
-                onclick="removeItem('${item.id}')"
-                >
-                Delete
-                </button>
+                ${children
+                .map(
+                    child=>treeItem(child)
+                )
+                .join("")}
 
             </div>
 
         </div>
-
-
-        <div
-        class="children"
-        id="child-${item.id}"
-        >
-
-        ${children
-        .map(child=>treeItem(child))
-        .join("")}
-
-        </div>
-
-    </div>
 
     `;
 
 }
 
+
+/* =====================================================
+   TOGGLE
+===================================================== */
 
 window.toggle=
 function(id){
@@ -3277,7 +5216,11 @@ function(id){
 
 
     if(box){
-        box.classList.toggle("open");
+
+        box.classList.toggle(
+            "open"
+        );
+
     }
 
 };
@@ -3303,7 +5246,9 @@ function(parentId){
     }
 
 
-    if(parent.hasChildren!==true){
+    if(
+        parent.hasChildren!==true
+    ){
 
         alert(
             "Edit this item and enable 'Allow content inside this item'."
@@ -3316,7 +5261,9 @@ function(parentId){
 
     clearEditor();
 
+
     editingId=null;
+
 
     populateParents();
 
@@ -3337,15 +5284,9 @@ function(parentId){
     "subsection";
 
 
-    document
-    .getElementById(
-        "dayContent"
-    )
-    .style.display=
-    "none";
-
-
-    openSection("itemEditor");
+    openSection(
+        "itemEditor"
+    );
 
 };
 
@@ -3364,7 +5305,9 @@ function(id){
 
 
     if(!item){
+
         return;
+
     }
 
 
@@ -3454,7 +5397,9 @@ function(id){
         )
         .innerHTML=`
 
-        <img src="${safe(item.imageUrl)}">
+            <img
+                src="${safe(item.imageUrl)}"
+            >
 
         `;
 
@@ -3494,40 +5439,48 @@ function(id){
         d.movement
     );
 
+
     setValue(
         "movementInstructions",
         d.movementInstructions
     );
+
 
     setValue(
         "hydration",
         d.hydration
     );
 
+
     setValue(
         "hydrationInstructions",
         d.hydrationInstructions
     );
+
 
     setValue(
         "protein",
         d.protein
     );
 
+
     setValue(
         "proteinInstructions",
         d.proteinInstructions
     );
+
 
     setValue(
         "sleep",
         d.sleep
     );
 
+
     setValue(
         "sleepInstructions",
         d.sleepInstructions
     );
+
 
     setValue(
         "sunlight",
@@ -3569,7 +5522,9 @@ function(id){
     :"none";
 
 
-    openSection("itemEditor");
+    openSection(
+        "itemEditor"
+    );
 
 };
 
@@ -3588,7 +5543,9 @@ async function(id){
 
 
     if(!item){
+
         return;
+
     }
 
 
@@ -3611,17 +5568,13 @@ async function(id){
 
 
     if(!confirm(message)){
+
         return;
+
     }
 
 
     try{
-
-        /*
-         * Delete direct children.
-         * Your existing structure uses direct
-         * Phase → Week → Day nesting.
-         */
 
         for(
             const child
@@ -3651,13 +5604,16 @@ async function(id){
         await loadClassroom();
 
 
-        alert("Deleted.");
+        alert(
+            "Deleted."
+        );
 
     }
 
     catch(error){
 
         console.error(error);
+
 
         alert(
             "Delete failed:\n"+
@@ -3670,7 +5626,7 @@ async function(id){
 
 
 /* =====================================================
-   CLASSROOM PREVIEW
+   PREVIEW
 ===================================================== */
 
 window.preview=
@@ -3683,7 +5639,9 @@ function(id){
 
 
     if(!item){
+
         return;
+
     }
 
 
@@ -3693,37 +5651,48 @@ function(id){
 
     let html=`
 
-    <h2>
-    ${safe(item.title)}
-    </h2>
-
-    ${
-        item.imageUrl
-        ?
-        `<img src="${safe(item.imageUrl)}">`
-        :""
-    }
+        <h2>
+            ${safe(item.title)}
+        </h2>
 
 
-    ${
-        item.description
-        ?
-        `<div>${safeHTML(item.description)}</div>`
-        :""
-    }
+        ${
+            item.imageUrl
+
+            ?
+
+            `<img
+                src="${safe(item.imageUrl)}"
+            >`
+
+            :""
+        }
 
 
-    <p>
+        ${
+            item.description
 
-    <b>Unlock Day:</b>
-    ${item.unlockDay||1}
+            ?
 
-    &nbsp;
+            `<div>
+                ${safeHTML(item.description)}
+            </div>`
 
-    <b>Status:</b>
-    ${item.status||"published"}
+            :""
+        }
 
-    </p>
+
+        <p>
+
+            <b>Unlock Day:</b>
+            ${item.unlockDay||1}
+
+            &nbsp;
+
+            <b>Status:</b>
+            ${item.status||"published"}
+
+        </p>
 
     `;
 
@@ -3732,21 +5701,26 @@ function(id){
 
         html+=`
 
-        <div class="link-card">
+            <div class="link-card">
 
-        <strong>🎥 Video</strong>
+                <strong>
+                    🎥 Video
+                </strong>
 
-        <br>
+                <br>
 
-        <a
-        href="${safe(item.videoUrl)}"
-        target="_blank"
-        rel="noopener"
-        >
-        ${safe(item.resourceLabel||"Watch Video")}
-        </a>
+                <a
+                    href="${safe(item.videoUrl)}"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    ${safe(
+                        item.resourceLabel||
+                        "Watch Video"
+                    )}
+                </a>
 
-        </div>
+            </div>
 
         `;
 
@@ -3757,21 +5731,26 @@ function(id){
 
         html+=`
 
-        <div class="link-card">
+            <div class="link-card">
 
-        <strong>📁 Google Drive</strong>
+                <strong>
+                    📁 Google Drive
+                </strong>
 
-        <br>
+                <br>
 
-        <a
-        href="${safe(item.driveUrl)}"
-        target="_blank"
-        rel="noopener"
-        >
-        ${safe(item.resourceLabel||"Open Resource")}
-        </a>
+                <a
+                    href="${safe(item.driveUrl)}"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    ${safe(
+                        item.resourceLabel||
+                        "Open Resource"
+                    )}
+                </a>
 
-        </div>
+            </div>
 
         `;
 
@@ -3831,32 +5810,41 @@ function(id){
     ];
 
 
-    sections.forEach(section=>{
+    sections.forEach(
+        section=>{
 
-        if(section[1]){
+            if(section[1]){
 
-            html+=`
+                html+=`
 
-            <h3>
-            ${section[0]}
-            </h3>
+                    <h3>
+                        ${section[0]}
+                    </h3>
 
-            <div>
-            ${safeHTML(section[1])}
-            </div>
+                    <div>
+                        ${safeHTML(section[1])}
+                    </div>
 
-            ${
-                section[2]
-                ?
-                `<p>${safe(section[2])}</p>`
-                :""
+                    ${
+                        section[2]
+
+                        ?
+
+                        `<p>
+                            ${safe(
+                                section[2]
+                            )}
+                        </p>`
+
+                        :""
+                    }
+
+                `;
+
             }
 
-            `;
-
         }
-
-    });
+    );
 
 
     document
@@ -3867,7 +5855,9 @@ function(id){
     html;
 
 
-    openSection("preview");
+    openSection(
+        "preview"
+    );
 
 };
 
@@ -3897,6 +5887,7 @@ async function loadCommunity(){
             posts.push({
 
                 id:s.id,
+
                 ...s.data()
 
             });
@@ -3911,25 +5902,28 @@ async function loadCommunity(){
                     a.pinned===true &&
                     b.pinned!==true
                 ){
+
                     return -1;
+
                 }
+
 
                 if(
                     a.pinned!==true &&
                     b.pinned===true
                 ){
+
                     return 1;
+
                 }
 
 
-                const aTime=
-                getTime(a.createdAt);
-
-                const bTime=
-                getTime(b.createdAt);
-
-
-                return bTime-aTime;
+                return getTime(
+                    b.createdAt
+                )-
+                getTime(
+                    a.createdAt
+                );
 
             }
         );
@@ -3943,7 +5937,9 @@ async function loadCommunity(){
         posts.length;
 
 
-        renderCommunity(posts);
+        renderCommunity(
+            posts
+        );
 
     }
 
@@ -3961,15 +5957,15 @@ async function loadCommunity(){
         )
         .innerHTML=`
 
-        <div class="empty">
+            <div class="empty">
 
-        Could not load community.
+                Could not load community.
 
-        <br><br>
+                <br><br>
 
-        ${safe(error.message)}
+                ${safe(error.message)}
 
-        </div>
+            </div>
 
         `;
 
@@ -3977,6 +5973,10 @@ async function loadCommunity(){
 
 }
 
+
+/* =====================================================
+   COMMUNITY RENDER
+===================================================== */
 
 function renderCommunity(posts){
 
@@ -3990,11 +5990,11 @@ function renderCommunity(posts){
 
         container.innerHTML=`
 
-        <div class="empty">
+            <div class="empty">
 
-        No community posts yet.
+                No community posts yet.
 
-        </div>
+            </div>
 
         `;
 
@@ -4004,119 +6004,155 @@ function renderCommunity(posts){
 
 
     container.innerHTML=
-    posts.map(post=>{
+    posts.map(
+        post=>{
 
-        const date=
-        formatDate(post.createdAt);
+            const date=
+            formatDate(
+                post.createdAt
+            );
 
 
-        return `
+            return `
 
-        <div
-        class="community-post
-        ${post.pinned===true?"pinned":""}"
-        >
+                <div
+                    class="
+                        community-post
+                        ${post.pinned===true?"pinned":""}
+                    "
+                >
 
-            <div class="post-top">
 
-                <div>
+                    <div class="post-top">
 
-                    <div class="post-author">
 
-                    ${safe(
-                        post.name||
-                        post.email||
-                        "Member"
-                    )}
+                        <div>
+
+                            <div class="post-author">
+
+                                ${safe(
+                                    post.name||
+                                    post.email||
+                                    "Member"
+                                )}
+
+                            </div>
+
+
+                            <div class="post-date">
+
+                                ${date}
+
+                            </div>
+
+                        </div>
+
+
+                        ${
+                            post.pinned===true
+
+                            ?
+
+                            `<span class="pin-label">
+                                📌 PINNED
+                            </span>`
+
+                            :""
+                        }
 
                     </div>
 
-                    <div class="post-date">
 
-                    ${date}
+                    ${
+                        post.text
+
+                        ?
+
+                        `<div class="post-body">
+                            ${safeHTML(post.text)}
+                        </div>`
+
+                        :""
+                    }
+
+
+                    ${
+                        post.imageUrl
+
+                        ?
+
+                        `<img
+                            class="post-image"
+                            src="${safe(post.imageUrl)}"
+                        >`
+
+                        :""
+                    }
+
+
+                    <div class="post-actions">
+
+
+                        <button
+                            class="btn btn-small"
+                            onclick="editCommunityPost('${post.id}')"
+                        >
+                            Edit
+                        </button>
+
+
+                        <button
+                            class="btn btn-small"
+                            onclick="togglePin(
+                                '${post.id}',
+                                ${post.pinned===true}
+                            )"
+                        >
+
+                            ${
+                                post.pinned===true
+                                ?"Unpin"
+                                :"📌 Pin"
+                            }
+
+                        </button>
+
+
+                        <button
+                            class="btn btn-danger btn-small"
+                            onclick="deleteCommunityPost('${post.id}')"
+                        >
+                            Delete
+                        </button>
+
 
                     </div>
 
                 </div>
 
+            `;
 
-                ${
-                    post.pinned===true
-                    ?
-                    `<span class="pin-label">
-                    📌 PINNED
-                    </span>`
-                    :""
-                }
-
-            </div>
-
-
-            ${
-                post.text
-                ?
-                `<div style="margin-top:12px">
-                ${safeHTML(post.text)}
-                </div>`
-                :""
-            }
-
-
-            ${
-                post.imageUrl
-                ?
-                `<img
-                class="post-image"
-                src="${safe(post.imageUrl)}"
-                >
-                `
-                :""
-            }
-
-
-            <div class="post-actions">
-
-                <button
-                class="btn btn-small"
-                onclick="editCommunityPost('${post.id}')"
-                >
-                Edit
-                </button>
-
-
-                <button
-                class="btn btn-small"
-                onclick="togglePin('${post.id}',${post.pinned===true})"
-                >
-                ${
-                    post.pinned===true
-                    ?"Unpin"
-                    :"📌 Pin"
-                }
-                </button>
-
-
-                <button
-                class="btn btn-danger btn-small"
-                onclick="deleteCommunityPost('${post.id}')"
-                >
-                Delete
-                </button>
-
-            </div>
-
-        </div>
-
-        `;
-
-    }).join("");
+        }
+    ).join("");
 
 }
 
 
 /* =====================================================
-   COMMUNITY CREATE
+   COMMUNITY COMPOSER
 ===================================================== */
+
+window.openCommunityComposer=
+function(){
+
+    clearCommunityComposer();
+
+    openSection(
+        "communityComposer"
+    );
+
+};
+
 
 window.saveCommunityPost=
 async function(){
@@ -4160,15 +6196,20 @@ async function(){
             pinned,
 
             email:
-            user?.email||ADMIN,
+            user?.email||
+            ADMIN,
 
             name:
             user?.email===ADMIN
-            ?"Freedom Women's Health Club"
-            :"Admin",
+            ?
+            "Freedom Women's Health Club"
+            :
+            "Admin",
 
             imageUrl:
-            value("communityExistingImage"),
+            value(
+                "communityExistingImage"
+            ),
 
             createdAt:
             serverTimestamp(),
@@ -4192,11 +6233,14 @@ async function(){
                 ),
                 {
 
-                    text:data.text,
+                    text:
+                    data.text,
 
-                    pinned:data.pinned,
+                    pinned:
+                    data.pinned,
 
-                    imageUrl:data.imageUrl,
+                    imageUrl:
+                    data.imageUrl,
 
                     updatedAt:
                     serverTimestamp()
@@ -4227,11 +6271,6 @@ async function(){
 
         }
 
-
-        /*
-         * Firestore post saves immediately.
-         * Image uploads separately.
-         */
 
         const file=
         document
@@ -4292,7 +6331,9 @@ async function(){
 
         setTimeout(
             ()=>{
-                openSection("community");
+                openSection(
+                    "community"
+                );
             },
             500
         );
@@ -4303,8 +6344,10 @@ async function(){
 
         console.error(error);
 
+
         status.textContent=
         "Error: "+error.message;
+
 
         alert(
             "Could not save post:\n\n"+
@@ -4325,7 +6368,10 @@ async function(id){
 
     const snap=
     await getDocs(
-        collection(db,"community")
+        collection(
+            db,
+            "community"
+        )
     );
 
 
@@ -4337,8 +6383,11 @@ async function(id){
         if(s.id===id){
 
             post={
+
                 id:s.id,
+
                 ...s.data()
+
             };
 
         }
@@ -4347,7 +6396,9 @@ async function(id){
 
 
     if(!post){
+
         return;
+
     }
 
 
@@ -4394,9 +6445,9 @@ async function(id){
         )
         .innerHTML=`
 
-        <img
-        src="${safe(post.imageUrl)}"
-        >
+            <img
+                src="${safe(post.imageUrl)}"
+            >
 
         `;
 
@@ -4415,14 +6466,12 @@ async function(id){
 ===================================================== */
 
 window.togglePin=
-async function(id,currentPinned){
+async function(
+    id,
+    currentPinned
+){
 
     try{
-
-        /*
-         * Only one post is pinned.
-         * Unpin all existing pinned posts first.
-         */
 
         if(!currentPinned){
 
@@ -4495,6 +6544,7 @@ async function(id,currentPinned){
 
         console.error(error);
 
+
         alert(
             "Could not change pin:\n"+
             error.message
@@ -4517,7 +6567,9 @@ async function(id){
             "Delete this community post?"
         )
     ){
+
         return;
+
     }
 
 
@@ -4539,6 +6591,7 @@ async function(id){
     catch(error){
 
         console.error(error);
+
 
         alert(
             error.message
@@ -4607,35 +6660,24 @@ function clearCommunityComposer(){
     )
     .textContent="";
 
+
+    document
+    .getElementById(
+        "communitySaveStatus"
+    )
+    .textContent="";
+
 }
 
 
 /* =====================================================
-   OPEN COMMUNITY COMPOSER
-===================================================== */
-
-document
-.querySelector(
-    '[onclick="openSection(\'communityComposer\')"]'
-)
-?.addEventListener(
-"click",
-()=>{
-
-    clearCommunityComposer();
-
-});
-
-
-/* =====================================================
-   BOLD / RICH TEXT
+   RICH TEXT
 ===================================================== */
 
 window.formatText=
 function(command){
 
-    document
-    .execCommand(
+    document.execCommand(
         command,
         false,
         null
@@ -4647,8 +6689,7 @@ function(command){
 window.formatCommunity=
 function(command){
 
-    document
-    .execCommand(
+    document.execCommand(
         command,
         false,
         null
@@ -4666,17 +6707,24 @@ function value(id){
     const el=
     document.getElementById(id);
 
+
     return el
-    ?el.value
-    :"";
+    ?
+    el.value
+    :
+    "";
 
 }
 
 
-function setValue(id,val){
+function setValue(
+    id,
+    val
+){
 
     const el=
     document.getElementById(id);
+
 
     if(el){
 
@@ -4687,6 +6735,10 @@ function setValue(id,val){
 
 }
 
+
+/* =====================================================
+   HTML ESCAPING
+===================================================== */
 
 function safe(val){
 
@@ -4718,25 +6770,30 @@ function safe(val){
 
 
 /*
- * Rich text is entered by the admin.
- * Only allow basic formatting tags.
+ * Allow only basic rich-text formatting.
  */
 
 function safeHTML(html){
 
     if(!html){
+
         return "";
+
     }
 
 
     const temp=
-    document.createElement("div");
+    document.createElement(
+        "div"
+    );
 
 
-    temp.innerHTML=html;
+    temp.innerHTML=
+    html;
 
 
     const allowed=[
+
         "B",
         "STRONG",
         "I",
@@ -4748,38 +6805,45 @@ function safeHTML(html){
         "UL",
         "OL",
         "LI"
+
     ];
 
 
     temp
     .querySelectorAll("*")
-    .forEach(el=>{
+    .forEach(
+        el=>{
 
-        if(
-            !allowed.includes(
-                el.tagName
-            )
-        ){
-
-            el.replaceWith(
-                document.createTextNode(
-                    el.textContent
+            if(
+                !allowed.includes(
+                    el.tagName
                 )
+            ){
+
+                el.replaceWith(
+                    document.createTextNode(
+                        el.textContent
+                    )
+                );
+
+            }
+
+
+            [
+                ...el.attributes
+            ]
+            .forEach(
+                attr=>{
+
+                    el.removeAttribute(
+                        attr.name
+                    );
+
+                }
             );
 
         }
-
-
-        [...el.attributes]
-        .forEach(attr=>{
-
-            el.removeAttribute(
-                attr.name
-            );
-
-        });
-
-    });
+    );
 
 
     return temp.innerHTML;
@@ -4787,15 +6851,22 @@ function safeHTML(html){
 }
 
 
+/* =====================================================
+   TIMESTAMP
+===================================================== */
+
 function getTime(timestamp){
 
     if(!timestamp){
+
         return 0;
+
     }
 
 
     if(
-        typeof timestamp.toMillis==="function"
+        typeof timestamp.toMillis===
+        "function"
     ){
 
         return timestamp.toMillis();
@@ -4803,11 +6874,10 @@ function getTime(timestamp){
     }
 
 
-    if(
-        timestamp.seconds
-    ){
+    if(timestamp.seconds){
 
-        return timestamp.seconds*1000;
+        return timestamp.seconds*
+        1000;
 
     }
 
@@ -4817,6 +6887,10 @@ function getTime(timestamp){
 }
 
 
+/* =====================================================
+   DATE FORMAT
+===================================================== */
+
 function formatDate(timestamp){
 
     const time=
@@ -4824,11 +6898,15 @@ function formatDate(timestamp){
 
 
     if(!time){
+
         return "";
+
     }
 
 
-    return new Date(time)
+    return new Date(
+        time
+    )
     .toLocaleString();
 
 }
@@ -4840,40 +6918,43 @@ function formatDate(timestamp){
 
 document
 .addEventListener(
-"keydown",
-event=>{
-
-    if(
-        event.ctrlKey &&
-        event.key.toLowerCase()==="b"
-    ){
-
-        const active=
-        document.activeElement;
-
+    "keydown",
+    event=>{
 
         if(
-            active?.classList.contains(
-                "rich-editor"
-            )
+            event.ctrlKey &&
+            event.key.toLowerCase()==="b"
         ){
 
-            event.preventDefault();
+            const active=
+            document.activeElement;
 
-            document.execCommand(
-                "bold",
-                false,
-                null
-            );
+
+            if(
+                active?.classList.contains(
+                    "rich-editor"
+                )
+            ){
+
+                event.preventDefault();
+
+
+                document.execCommand(
+                    "bold",
+                    false,
+                    null
+                );
+
+            }
 
         }
 
     }
-
-});
-
+);
 
 </script>
 
 </body>
+
 </html>
+```
