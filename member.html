@@ -17,9 +17,13 @@
   --white:#FFFFFF;
   --light:#F1EAF3;
   --border:#E6DDD3;
+  --green:#4F8060;
+  --green-light:#EAF4EC;
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
@@ -28,11 +32,15 @@ body{
   color:var(--charcoal);
 }
 
-button,input,textarea{
+button,
+input,
+textarea{
   font:inherit;
 }
 
-/* LOGIN */
+/* =====================================================
+   LOGIN
+===================================================== */
 
 #loginPage{
   min-height:100vh;
@@ -75,7 +83,8 @@ label{
   margin-bottom:7px;
 }
 
-input,textarea{
+input,
+textarea{
   width:100%;
   padding:13px;
   border:1px solid var(--border);
@@ -107,7 +116,9 @@ input,textarea{
   margin-top:15px;
 }
 
-/* APP */
+/* =====================================================
+   APP
+===================================================== */
 
 #app{
   display:none;
@@ -188,7 +199,9 @@ input,textarea{
   margin-right:8px;
 }
 
-/* SECTIONS */
+/* =====================================================
+   SECTIONS
+===================================================== */
 
 .section{
   display:none;
@@ -198,7 +211,9 @@ input,textarea{
   display:block;
 }
 
-/* HOME */
+/* =====================================================
+   HOME
+===================================================== */
 
 .welcome-card,
 .progress-card,
@@ -240,7 +255,9 @@ input,textarea{
   transition:width .3s;
 }
 
-/* CLASSROOM */
+/* =====================================================
+   CLASSROOM
+===================================================== */
 
 .classroom-grid{
   display:flex;
@@ -303,7 +320,37 @@ input,textarea{
   border-color:var(--plum);
 }
 
-/* CONTENT */
+/* =====================================================
+   COMPLETED DAY
+===================================================== */
+
+.child.completed{
+  border-color:var(--green);
+  background:var(--green-light);
+}
+
+.completed-badge{
+  margin-left:auto;
+  color:var(--green);
+  font-weight:bold;
+  font-size:13px;
+}
+
+.day-status{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  background:var(--green-light);
+  color:var(--green);
+  padding:8px 13px;
+  border-radius:20px;
+  font-weight:bold;
+  font-size:14px;
+}
+
+/* =====================================================
+   CONTENT
+===================================================== */
 
 .content-box h2,
 .content-box h3{
@@ -320,7 +367,46 @@ input,textarea{
   margin-bottom:15px;
 }
 
-/* PROFILE */
+/* =====================================================
+   COMPLETE BUTTON
+===================================================== */
+
+.complete-area{
+  margin-top:30px;
+  padding-top:25px;
+  border-top:1px solid var(--border);
+}
+
+.complete-btn{
+  width:100%;
+  padding:16px;
+  border:0;
+  border-radius:12px;
+  background:var(--plum);
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  font-size:16px;
+}
+
+.complete-btn:hover{
+  opacity:.92;
+}
+
+.complete-btn.completed{
+  background:var(--green);
+}
+
+.complete-message{
+  margin-top:12px;
+  text-align:center;
+  color:var(--green);
+  font-weight:bold;
+}
+
+/* =====================================================
+   PROFILE
+===================================================== */
 
 .profile-row{
   display:flex;
@@ -334,7 +420,9 @@ input,textarea{
   border-bottom:0;
 }
 
-/* COMMUNITY */
+/* =====================================================
+   COMMUNITY
+===================================================== */
 
 .post{
   padding:18px 0;
@@ -356,6 +444,10 @@ input,textarea{
   margin:5px 0 10px;
 }
 
+/* =====================================================
+   EMPTY
+===================================================== */
+
 .empty{
   background:white;
   border:1px solid var(--border);
@@ -365,7 +457,9 @@ input,textarea{
   color:#777;
 }
 
-/* MOBILE */
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:800px){
 
@@ -426,21 +520,27 @@ input,textarea{
     </p>
 
     <div class="form-group">
+
       <label>Email</label>
+
       <input
         id="email"
         type="email"
         placeholder="Enter your email"
       >
+
     </div>
 
     <div class="form-group">
+
       <label>Password</label>
+
       <input
         id="password"
         type="password"
         placeholder="Enter your password"
       >
+
     </div>
 
     <button
@@ -466,6 +566,7 @@ input,textarea{
   <aside class="sidebar">
 
     <div class="brand">
+
       <h2>
         FREEDOM<br>
         WOMEN'S HEALTH CLUB
@@ -474,6 +575,7 @@ input,textarea{
       <small>
         Member Area
       </small>
+
     </div>
 
     <nav class="nav">
@@ -549,7 +651,9 @@ input,textarea{
     </div>
 
 
-    <!-- HOME -->
+    <!-- =================================================
+         HOME
+    ================================================== -->
 
     <section
       id="home"
@@ -584,7 +688,7 @@ input,textarea{
         </div>
 
         <div id="programProgressText">
-          1 of 90 days
+          0 of 90 days completed
         </div>
 
         <div class="progress-bar">
@@ -592,6 +696,7 @@ input,textarea{
           <div
             id="progressFill"
             class="progress-fill"
+            style="width:0%"
           ></div>
 
         </div>
@@ -601,7 +706,9 @@ input,textarea{
     </section>
 
 
-    <!-- COMMUNITY -->
+    <!-- =================================================
+         COMMUNITY
+    ================================================== -->
 
     <section
       id="community"
@@ -623,7 +730,9 @@ input,textarea{
     </section>
 
 
-    <!-- CLASSROOM -->
+    <!-- =================================================
+         CLASSROOM
+    ================================================== -->
 
     <section
       id="classroom"
@@ -640,15 +749,19 @@ input,textarea{
         id="classroomContainer"
         class="classroom-grid"
       >
+
         <div class="empty">
           Loading classroom...
         </div>
+
       </div>
 
     </section>
 
 
-    <!-- CONTENT -->
+    <!-- =================================================
+         CONTENT
+    ================================================== -->
 
     <section
       id="content"
@@ -670,7 +783,9 @@ input,textarea{
     </section>
 
 
-    <!-- PROGRESS -->
+    <!-- =================================================
+         PROGRESS
+    ================================================== -->
 
     <section
       id="progress"
@@ -690,7 +805,9 @@ input,textarea{
     </section>
 
 
-    <!-- LEADERBOARD -->
+    <!-- =================================================
+         LEADERBOARD
+    ================================================== -->
 
     <section
       id="leaderboard"
@@ -712,7 +829,9 @@ input,textarea{
     </section>
 
 
-    <!-- PROFILE -->
+    <!-- =================================================
+         PROFILE
+    ================================================== -->
 
     <section
       id="profile"
@@ -726,23 +845,35 @@ input,textarea{
         </h2>
 
         <div class="profile-row">
+
           <span>Name</span>
+
           <strong id="profileName"></strong>
+
         </div>
 
         <div class="profile-row">
+
           <span>Email</span>
+
           <strong id="profileEmail"></strong>
+
         </div>
 
         <div class="profile-row">
+
           <span>Start Date</span>
+
           <strong id="profileStart"></strong>
+
         </div>
 
         <div class="profile-row">
+
           <span>Access Until</span>
+
           <strong id="profileAccess"></strong>
+
         </div>
 
       </div>
@@ -780,7 +911,11 @@ import {
   collection,
   getDocs,
   query,
-  where
+  where,
+  doc,
+  getDoc,
+  setDoc,
+  serverTimestamp
 }
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
@@ -819,28 +954,29 @@ const db =
 getFirestore(app);
 
 
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
+
 let currentUser = null;
+
 let currentMember = null;
+
 let classroomItems = [];
 
+let completedDays = [];
 
-/*
-=======================================================
-TEST MODE
+let testMode = false;
 
-Your admin email can use the member page and see
-everything unlocked for testing.
+let programDay = 1;
 
-Real members will follow their Start Date.
-=======================================================
-*/
+
+/* =====================================================
+   TEST ACCOUNT
+===================================================== */
 
 const TEST_EMAIL =
 "mahnoordietitian3@gmail.com";
-
-
-let testMode = false;
-let programDay = 1;
 
 
 /* =====================================================
@@ -862,7 +998,9 @@ onAuthStateChanged(
         .style.display = "none";
 
       return;
+
     }
+
 
     currentUser = user;
 
@@ -907,6 +1045,7 @@ document
           "Please enter your email and password.";
 
         return;
+
       }
 
 
@@ -940,10 +1079,6 @@ async function loadMember(email){
 
   try{
 
-    /*
-    Your admin email is allowed into TEST MODE.
-    */
-
     testMode =
       email.toLowerCase() ===
       TEST_EMAIL.toLowerCase();
@@ -961,11 +1096,6 @@ async function loadMember(email){
 
 
     if(snap.empty){
-
-      /*
-      Admin test account can still enter the member
-      side even if a member record isn't found.
-      */
 
       if(testMode){
 
@@ -1005,9 +1135,13 @@ async function loadMember(email){
     }
 
 
+    await loadProgress();
+
     showApp();
 
     calculateProgramDay();
+
+    updateProgressDisplay();
 
     await loadClassroom();
 
@@ -1028,6 +1162,129 @@ async function loadMember(email){
 
 
 /* =====================================================
+   LOAD PROGRESS FROM FIREBASE
+===================================================== */
+
+async function loadProgress(){
+
+  completedDays = [];
+
+
+  if(!currentUser){
+
+    return;
+
+  }
+
+
+  try{
+
+    const progressRef =
+      doc(
+        db,
+        "progress",
+        currentUser.email
+      );
+
+
+    const progressSnap =
+      await getDoc(progressRef);
+
+
+    if(progressSnap.exists()){
+
+      const data =
+        progressSnap.data();
+
+
+      completedDays =
+        Array.isArray(data.completedDays)
+        ? data.completedDays
+        : [];
+
+    }
+
+  }
+  catch(error){
+
+    console.error(
+      "Could not load progress:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   SAVE PROGRESS TO FIREBASE
+===================================================== */
+
+async function saveProgress(){
+
+  if(!currentUser){
+
+    return false;
+
+  }
+
+
+  try{
+
+    const progressRef =
+      doc(
+        db,
+        "progress",
+        currentUser.email
+      );
+
+
+    await setDoc(
+      progressRef,
+      {
+
+        email:
+          currentUser.email,
+
+        completedDays:
+          completedDays,
+
+        completedCount:
+          completedDays.length,
+
+        updatedAt:
+          serverTimestamp()
+
+      },
+      {
+        merge:true
+      }
+    );
+
+
+    return true;
+
+  }
+  catch(error){
+
+    console.error(
+      "Could not save progress:",
+      error
+    );
+
+    alert(
+      "Your progress could not be saved. Please check your internet connection."
+    );
+
+    return false;
+
+  }
+
+}
+
+
+/* =====================================================
    SHOW APP
 ===================================================== */
 
@@ -1036,6 +1293,7 @@ function showApp(){
   document
     .getElementById("loginPage")
     .style.display = "none";
+
 
   document
     .getElementById("app")
@@ -1174,6 +1432,10 @@ function calculateProgramDay(){
 }
 
 
+/* =====================================================
+   PROGRAM DAY DISPLAY
+===================================================== */
+
 function setProgramDay(day){
 
   document
@@ -1181,39 +1443,213 @@ function setProgramDay(day){
     .textContent =
     "Day " + day;
 
+}
+
+
+/* =====================================================
+   UPDATE PROGRESS DISPLAY
+===================================================== */
+
+function updateProgressDisplay(){
+
+  const completedCount =
+    completedDays.length;
+
+
+  const percentage =
+    Math.min(
+      100,
+      (completedCount / 90) * 100
+    );
+
 
   document
-    .getElementById("programProgressText")
+    .getElementById(
+      "programProgressText"
+    )
     .textContent =
-    day + " of 90 days";
+    completedCount +
+    " of 90 days completed";
 
 
   document
-    .getElementById("progressFill")
+    .getElementById(
+      "progressFill"
+    )
     .style.width =
-    ((day / 90) * 100) + "%";
+    percentage + "%";
 
 
   document
-    .getElementById("progressDetails")
+    .getElementById(
+      "progressDetails"
+    )
     .innerHTML = `
 
       <p>
-        You are currently on
-        <strong>Day ${day}</strong>
-        of your 90-day journey.
+        You have completed
+        <strong>
+          ${completedCount}
+        </strong>
+        of 90 days.
       </p>
 
       <div class="progress-bar">
 
         <div
           class="progress-fill"
-          style="width:${(day / 90) * 100}%"
+          style="width:${percentage}%"
         ></div>
 
       </div>
 
+      <p style="margin-top:18px;">
+
+        ${
+          completedCount === 0
+          ? "Start your journey by completing Day 1."
+          : completedCount >= 90
+          ? "Amazing! You completed your 90-day journey."
+          : "Keep going. Every completed day counts!"
+        }
+
+      </p>
+
     `;
+
+}
+
+
+/* =====================================================
+   CHECK IF DAY IS COMPLETED
+===================================================== */
+
+function isDayCompleted(item){
+
+  /*
+  We use the item's dayNumber first.
+  If there is no dayNumber, we also check
+  the item's unlockDay.
+  */
+
+  const dayNumber =
+    Number(
+      item.dayNumber ||
+      item.day ||
+      item.unlockDay ||
+      0
+    );
+
+
+  if(!dayNumber){
+
+    return false;
+
+  }
+
+
+  return completedDays.includes(
+    dayNumber
+  );
+
+}
+
+
+/* =====================================================
+   MARK DAY COMPLETE
+===================================================== */
+
+window.markDayComplete =
+async function(dayNumber){
+
+  dayNumber =
+    Number(dayNumber);
+
+
+  if(!dayNumber){
+
+    return;
+
+  }
+
+
+  if(completedDays.includes(dayNumber)){
+
+    return;
+
+  }
+
+
+  completedDays.push(dayNumber);
+
+
+  completedDays =
+    [...new Set(completedDays)]
+      .sort(
+        (a,b) => a-b
+      );
+
+
+  const saved =
+    await saveProgress();
+
+
+  if(!saved){
+
+    /*
+    If Firebase save fails,
+    remove the local change.
+    */
+
+    completedDays =
+      completedDays.filter(
+        day =>
+          day !== dayNumber
+      );
+
+    return;
+
+  }
+
+
+  updateProgressDisplay();
+
+  await loadClassroom();
+
+
+  /*
+  Re-open the same day so the button
+  immediately changes to completed.
+  */
+
+  openContentByDay(dayNumber);
+
+};
+
+
+/* =====================================================
+   OPEN CONTENT BY DAY
+===================================================== */
+
+function openContentByDay(dayNumber){
+
+  const item =
+    classroomItems.find(
+      x =>
+        Number(
+          x.dayNumber ||
+          x.day ||
+          x.unlockDay ||
+          0
+        ) === Number(dayNumber)
+    );
+
+
+  if(item){
+
+    openContent(item.id);
+
+  }
 
 }
 
@@ -1239,12 +1675,13 @@ async function loadClassroom(){
 
 
     snap.forEach(
-      doc => {
+      docSnap => {
 
         classroomItems.push({
 
-          id:doc.id,
-          ...doc.data()
+          id:docSnap.id,
+
+          ...docSnap.data()
 
         });
 
@@ -1364,9 +1801,7 @@ function renderItem(item){
 
       <div class="classroom-card">
 
-        <div
-          class="classroom-header"
-        >
+        <div class="classroom-header">
 
           <span class="classroom-icon">
             🔒
@@ -1482,20 +1917,41 @@ function renderChild(item){
   }
 
 
+  const completed =
+    isDayCompleted(item);
+
+
+  const icon =
+    item.type === "lesson"
+    ? "📖"
+    : "📁";
+
+
   return `
 
     <div
-      class="child"
+      class="child ${completed ? "completed" : ""}"
       onclick="openContent('${item.id}')"
     >
 
-      ${
-        item.type === "lesson"
-        ? "📖"
-        : "📁"
-      }
+      <span>
 
-      ${safe(item.title)}
+        ${icon}
+        ${safe(item.title)}
+
+      </span>
+
+      ${
+        completed
+        ?
+        `
+          <span class="completed-badge">
+            ✓ Completed
+          </span>
+        `
+        :
+        ""
+      }
 
     </div>
 
@@ -1567,11 +2023,36 @@ function(id){
     item.dayContent || {};
 
 
+  const dayNumber =
+    Number(
+      item.dayNumber ||
+      item.day ||
+      item.unlockDay ||
+      0
+    );
+
+
+  const completed =
+    isDayCompleted(item);
+
+
   let html = `
 
     <h2>
       ${safe(item.title)}
     </h2>
+
+    ${
+      completed
+      ?
+      `
+        <div class="day-status">
+          ✓ Day Completed
+        </div>
+      `
+      :
+      ""
+    }
 
     ${
       item.description
@@ -1672,6 +2153,68 @@ function(id){
   );
 
 
+  /*
+  Only show the complete button
+  when this classroom item represents
+  an actual numbered day.
+  */
+
+  if(dayNumber){
+
+    if(completed){
+
+      html += `
+
+        <div class="complete-area">
+
+          <button
+            class="complete-btn completed"
+            disabled
+          >
+            ✓ Day ${dayNumber} Completed
+          </button>
+
+          <div class="complete-message">
+
+            Great job! You completed Day ${dayNumber}.
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+    else{
+
+      html += `
+
+        <div class="complete-area">
+
+          <button
+            class="complete-btn"
+            onclick="markDayComplete(${dayNumber})"
+          >
+
+            ✓ Mark Day ${dayNumber} Complete
+
+          </button>
+
+          <div class="complete-message">
+
+            Complete today's activities, then mark this day complete.
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+  }
+
+
   document
     .getElementById(
       "contentBox"
@@ -1706,12 +2249,13 @@ async function loadCommunity(){
 
 
     snap.forEach(
-      doc => {
+      docSnap => {
 
         posts.push({
 
-          id:doc.id,
-          ...doc.data()
+          id:docSnap.id,
+
+          ...docSnap.data()
 
         });
 
@@ -1746,9 +2290,11 @@ async function loadCommunity(){
     if(!posts.length){
 
       container.innerHTML = `
+
         <p>
           No community posts yet.
         </p>
+
       `;
 
       return;
@@ -1764,23 +2310,31 @@ async function loadCommunity(){
             <div class="post">
 
               <div class="post-author">
+
                 ${safe(
                   post.name ||
                   post.email ||
                   "Member"
                 )}
+
               </div>
 
               <div class="post-date">
-                ${formatDate(post.createdAt)}
+
+                ${formatDate(
+                  post.createdAt
+                )}
+
               </div>
 
               <div>
+
                 ${safe(
                   post.content ||
                   post.text ||
                   ""
                 )}
+
               </div>
 
             </div>
@@ -1799,9 +2353,11 @@ async function loadCommunity(){
         "communityPosts"
       )
       .innerHTML = `
+
         <p>
           Community is currently unavailable.
         </p>
+
       `;
 
   }
@@ -1851,11 +2407,17 @@ function(id,button){
   const titles = {
 
     home:"Home",
+
     community:"Community",
+
     classroom:"Classroom",
+
     content:"Lesson",
+
     progress:"Progress",
+
     leaderboard:"Leaderboard",
+
     profile:"Profile"
 
   };
@@ -1891,11 +2453,31 @@ async function(){
 function safe(value){
 
   return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
 
@@ -1905,12 +2487,14 @@ function formatDate(timestamp){
   if(!timestamp)
     return "";
 
+
   try{
 
     const date =
       timestamp.toDate
       ? timestamp.toDate()
       : new Date(timestamp);
+
 
     return date.toLocaleDateString();
 
