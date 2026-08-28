@@ -1,0 +1,1907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Freedom Community</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family:
+                "Manrope",
+                Arial,
+                sans-serif;
+
+            background: #FBF8F3;
+            color: #2D2D2D;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .topbar {
+            background: #6E4A7E;
+            color: white;
+
+            padding:
+                18px
+                24px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .back-btn {
+            border: none;
+            background: rgba(255,255,255,0.15);
+            color: white;
+
+            padding:
+                10px
+                16px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-size: 14px;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .page {
+            max-width: 1100px;
+            margin: auto;
+
+            padding:
+                35px
+                20px
+                60px;
+        }
+
+
+        .hero {
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            color: #6E4A7E;
+
+            font-size: 32px;
+
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #666;
+
+            max-width: 650px;
+
+            margin: auto;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           CATEGORY TABS
+        ========================= */
+
+        .community-tabs {
+
+            display: flex;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+
+            border: 1px solid #DCCBB3;
+
+            background: white;
+
+            color: #6E4A7E;
+
+            padding:
+                11px
+                17px;
+
+            border-radius: 25px;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            transition: 0.2s;
+        }
+
+        .tab-btn:hover,
+        .tab-btn.active {
+
+            background: #6E4A7E;
+
+            color: white;
+
+            border-color: #6E4A7E;
+        }
+
+
+        /* =========================
+           POST BOX
+        ========================= */
+
+        .post-box {
+
+            background: white;
+
+            border: 1px solid #E8DED2;
+
+            border-radius: 18px;
+
+            padding: 22px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.04);
+        }
+
+        .post-box h2 {
+
+            font-size: 19px;
+
+            color: #6E4A7E;
+
+            margin-bottom: 15px;
+        }
+
+        textarea {
+
+            width: 100%;
+
+            min-height: 110px;
+
+            resize: vertical;
+
+            border:
+                1px solid #DCCBB3;
+
+            border-radius: 12px;
+
+            padding: 14px;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            outline: none;
+        }
+
+        textarea:focus {
+
+            border-color:
+                #6E4A7E;
+        }
+
+        .post-actions {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-top: 12px;
+
+            gap: 10px;
+        }
+
+        .selected-category {
+
+            color: #777;
+
+            font-size: 13px;
+        }
+
+        .primary-btn {
+
+            background: #6E4A7E;
+
+            color: white;
+
+            border: none;
+
+            padding:
+                11px
+                20px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-weight: 600;
+        }
+
+        .primary-btn:hover {
+
+            opacity: 0.9;
+        }
+
+        .primary-btn:disabled {
+
+            opacity: 0.5;
+
+            cursor: not-allowed;
+        }
+
+
+        /* =========================
+           POSTS
+        ========================= */
+
+        #postsContainer {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 18px;
+        }
+
+        .community-post {
+
+            background: white;
+
+            border:
+                1px solid
+                #E8DED2;
+
+            border-radius: 18px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 4px 16px
+                rgba(0,0,0,0.035);
+        }
+
+        .post-header {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 14px;
+        }
+
+        .member-info {
+
+            display: flex;
+
+            gap: 11px;
+
+            align-items: center;
+        }
+
+        .avatar {
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 50%;
+
+            background: #DCCBB3;
+
+            color: #6E4A7E;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-weight: 700;
+        }
+
+        .member-name {
+
+            font-weight: 700;
+
+            font-size: 14px;
+        }
+
+        .post-time {
+
+            color: #999;
+
+            font-size: 12px;
+
+            margin-top: 3px;
+        }
+
+        .category-badge {
+
+            background:
+                #F1EAF3;
+
+            color:
+                #6E4A7E;
+
+            border-radius: 20px;
+
+            padding:
+                6px
+                10px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+        }
+
+        .post-text {
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+            white-space: pre-wrap;
+
+            margin-bottom: 15px;
+        }
+
+
+        /* =========================
+           POST FOOTER
+        ========================= */
+
+        .post-footer {
+
+            border-top:
+                1px solid
+                #F0EAE3;
+
+            padding-top: 12px;
+
+            display: flex;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+        }
+
+        .post-action {
+
+            background: none;
+
+            border: none;
+
+            color: #6E4A7E;
+
+            cursor: pointer;
+
+            font-size: 13px;
+
+            padding: 5px 8px;
+        }
+
+        .post-action:hover {
+
+            text-decoration: underline;
+        }
+
+        .delete-btn {
+
+            color: #A33A3A;
+        }
+
+
+        /* =========================
+           REPLIES
+        ========================= */
+
+        .replies {
+
+            margin-top: 15px;
+
+            padding-left: 15px;
+
+            border-left:
+                2px solid
+                #DCCBB3;
+        }
+
+        .reply {
+
+            background:
+                #FBF8F3;
+
+            border-radius: 10px;
+
+            padding: 10px 12px;
+
+            margin-bottom: 8px;
+        }
+
+        .reply-name {
+
+            font-weight: 700;
+
+            font-size: 12px;
+
+            color: #6E4A7E;
+
+            margin-bottom: 4px;
+        }
+
+        .reply-text {
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+        .reply-form {
+
+            margin-top: 12px;
+
+            display: none;
+
+            gap: 8px;
+        }
+
+        .reply-form.show {
+
+            display: flex;
+        }
+
+        .reply-input {
+
+            flex: 1;
+
+            border:
+                1px solid
+                #DCCBB3;
+
+            border-radius: 9px;
+
+            padding: 9px;
+
+            font-family: inherit;
+
+            outline: none;
+        }
+
+        .reply-submit {
+
+            background: #6E4A7E;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 9px;
+
+            padding:
+                8px
+                13px;
+
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           EMPTY STATE
+        ========================= */
+
+        .empty-state {
+
+            background: white;
+
+            border:
+                1px solid
+                #E8DED2;
+
+            border-radius: 18px;
+
+            text-align: center;
+
+            padding: 45px 20px;
+
+            color: #777;
+        }
+
+        .empty-state h3 {
+
+            color: #6E4A7E;
+
+            margin-bottom: 8px;
+        }
+
+
+        /* =========================
+           LOADING
+        ========================= */
+
+        .loading {
+
+            text-align: center;
+
+            padding: 30px;
+
+            color: #777;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .page {
+
+                padding:
+                    25px
+                    14px
+                    50px;
+            }
+
+            .hero h1 {
+
+                font-size: 27px;
+            }
+
+            .post-header {
+
+                flex-direction: column;
+            }
+
+            .post-actions {
+
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+            .primary-btn {
+
+                width: 100%;
+            }
+
+            .reply-form {
+
+                flex-direction: column;
+            }
+
+            .reply-submit {
+
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="topbar">
+
+    <div class="brand">
+        Freedom Community
+    </div>
+
+    <button
+        class="back-btn"
+        id="backBtn"
+    >
+        ← Back to Dashboard
+    </button>
+
+</header>
+
+
+
+<!-- =========================
+     PAGE
+========================= -->
+
+<main class="page">
+
+
+    <section class="hero">
+
+        <h1>
+            Freedom Community
+        </h1>
+
+        <p>
+            Share your journey, ask questions,
+            celebrate your wins and support other
+            Freedom members.
+        </p>
+
+    </section>
+
+
+
+    <!-- =========================
+         TABS
+    ========================= -->
+
+    <div class="community-tabs">
+
+        <button
+            class="tab-btn active"
+            data-category="all"
+        >
+            All
+        </button>
+
+        <button
+            class="tab-btn"
+            data-category="checkin"
+        >
+            Daily Check-ins
+        </button>
+
+        <button
+            class="tab-btn"
+            data-category="workout"
+        >
+            Workout & Exercise
+        </button>
+
+        <button
+            class="tab-btn"
+            data-category="wins"
+        >
+            Wins
+        </button>
+
+        <button
+            class="tab-btn"
+            data-category="question"
+        >
+            Questions
+        </button>
+
+        <button
+            class="tab-btn"
+            data-category="discussion"
+        >
+            Discussions
+        </button>
+
+    </div>
+
+
+
+    <!-- =========================
+         CREATE POST
+    ========================= -->
+
+    <section class="post-box">
+
+        <h2>
+            Share with the community
+        </h2>
+
+        <textarea
+            id="postText"
+            placeholder="Share your progress, ask a question or tell us about your day..."
+        ></textarea>
+
+
+        <div class="post-actions">
+
+            <span
+                class="selected-category"
+                id="selectedCategory"
+            >
+                Category: Daily Check-ins
+            </span>
+
+            <button
+                class="primary-btn"
+                id="postBtn"
+            >
+                Post
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         POSTS
+    ========================= -->
+
+    <section id="postsContainer">
+
+        <div class="loading">
+            Loading community...
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================
+     FIREBASE
+========================= -->
+
+<script type="module">
+
+    import {
+        initializeApp
+    }
+    from
+        "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+    import {
+        getAuth,
+        onAuthStateChanged
+    }
+    from
+        "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+    import {
+        getFirestore,
+        collection,
+        addDoc,
+        getDocs,
+        deleteDoc,
+        doc,
+        query,
+        orderBy,
+        serverTimestamp
+    }
+    from
+        "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
+    /* =========================
+       FIREBASE CONFIG
+
+       IMPORTANT:
+       Replace these values with
+       the SAME Firebase config
+       used in your dashboard.
+    ========================= */
+
+    const firebaseConfig = {
+
+        apiKey:
+            "YOUR_API_KEY",
+
+        authDomain:
+            "YOUR_PROJECT.firebaseapp.com",
+
+        projectId:
+            "YOUR_PROJECT_ID",
+
+        storageBucket:
+            "YOUR_PROJECT.firebasestorage.app",
+
+        messagingSenderId:
+            "YOUR_MESSAGING_SENDER_ID",
+
+        appId:
+            "YOUR_APP_ID"
+
+    };
+
+
+
+    const app =
+        initializeApp(
+            firebaseConfig
+        );
+
+
+    const auth =
+        getAuth(app);
+
+
+    const db =
+        getFirestore(app);
+
+
+
+    /* =========================
+       VARIABLES
+    ========================= */
+
+    let currentUser = null;
+
+    let currentCategory = "checkin";
+
+    let allPosts = [];
+
+
+
+    /*
+       CHANGE THIS EMAIL TO YOUR
+       ADMIN EMAIL.
+
+       Example:
+
+       const ADMIN_EMAIL =
+           "mahnoor@example.com";
+    */
+
+    const ADMIN_EMAIL =
+        "YOUR_ADMIN_EMAIL";
+
+
+
+    /* =========================
+       CATEGORY NAMES
+    ========================= */
+
+    const categoryNames = {
+
+        checkin:
+            "Daily Check-in",
+
+        workout:
+            "Workout & Exercise",
+
+        wins:
+            "Win",
+
+        question:
+            "Question",
+
+        discussion:
+            "Discussion"
+
+    };
+
+
+
+    /* =========================
+       ESCAPE HTML
+    ========================= */
+
+    function escapeHTML(value) {
+
+        return String(value || "")
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+    }
+
+
+
+    /* =========================
+       FORMAT TIME
+    ========================= */
+
+    function formatTime(timestamp) {
+
+        if (!timestamp) {
+            return "Just now";
+        }
+
+        try {
+
+            const date =
+                timestamp.toDate
+                    ? timestamp.toDate()
+                    : new Date(timestamp);
+
+            return date.toLocaleString(
+                "en-PK",
+                {
+                    dateStyle: "medium",
+                    timeStyle: "short"
+                }
+            );
+
+        } catch {
+
+            return "Recently";
+
+        }
+
+    }
+
+
+
+    /* =========================
+       GET MEMBER NAME
+    ========================= */
+
+    function getMemberName(post) {
+
+        return (
+            post.memberName ||
+            post.name ||
+            post.displayName ||
+            "Freedom Member"
+        );
+
+    }
+
+
+
+    /* =========================
+       GET INITIAL
+    ========================= */
+
+    function getInitial(name) {
+
+        return (
+            String(name || "F")
+                .trim()
+                .charAt(0)
+                .toUpperCase()
+        );
+
+    }
+
+
+
+    /* =========================
+       LOAD POSTS
+    ========================= */
+
+    async function loadPosts() {
+
+        const container =
+            document.getElementById(
+                "postsContainer"
+            );
+
+        container.innerHTML = `
+            <div class="loading">
+                Loading community...
+            </div>
+        `;
+
+
+        try {
+
+            const postsQuery =
+                query(
+                    collection(
+                        db,
+                        "communityPosts"
+                    ),
+                    orderBy(
+                        "createdAt",
+                        "desc"
+                    )
+                );
+
+
+            const snapshot =
+                await getDocs(
+                    postsQuery
+                );
+
+
+            allPosts = [];
+
+
+            snapshot.forEach(
+                postDoc => {
+
+                    allPosts.push({
+
+                        id:
+                            postDoc.id,
+
+                        ...postDoc.data()
+
+                    });
+
+                }
+            );
+
+
+            renderPosts();
+
+
+        } catch(error) {
+
+            console.error(
+                "COMMUNITY LOAD ERROR:",
+                error
+            );
+
+
+            container.innerHTML = `
+
+                <div class="empty-state">
+
+                    <h3>
+                        Community couldn't load
+                    </h3>
+
+                    <p>
+                        Please check your Firebase
+                        configuration and Firestore
+                        rules.
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+
+
+    /* =========================
+       RENDER POSTS
+    ========================= */
+
+    function renderPosts() {
+
+        const container =
+            document.getElementById(
+                "postsContainer"
+            );
+
+
+        let posts =
+            allPosts;
+
+
+        if (
+            currentCategory !==
+            "all"
+        ) {
+
+            posts =
+                allPosts.filter(
+                    post =>
+                        post.category ===
+                        currentCategory
+                );
+
+        }
+
+
+        if (!posts.length) {
+
+            container.innerHTML = `
+
+                <div class="empty-state">
+
+                    <h3>
+                        No posts yet
+                    </h3>
+
+                    <p>
+                        Be the first member to
+                        share something here.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            posts
+                .map(
+                    post =>
+                        renderPost(post)
+                )
+                .join("");
+
+    }
+
+
+
+    /* =========================
+       RENDER SINGLE POST
+    ========================= */
+
+    function renderPost(post) {
+
+        const name =
+            getMemberName(post);
+
+
+        const category =
+            categoryNames[
+                post.category
+            ] ||
+            "Community";
+
+
+        const isOwner =
+            currentUser &&
+            post.userId ===
+                currentUser.uid;
+
+
+        const isAdmin =
+            currentUser &&
+            currentUser.email ===
+                ADMIN_EMAIL;
+
+
+        const canDelete =
+            isOwner ||
+            isAdmin;
+
+
+        const replies =
+            Array.isArray(
+                post.replies
+            )
+                ? post.replies
+                : [];
+
+
+        return `
+
+            <article
+                class="community-post"
+                data-post-id="${escapeHTML(post.id)}"
+            >
+
+                <div class="post-header">
+
+                    <div class="member-info">
+
+                        <div class="avatar">
+
+                            ${escapeHTML(
+                                getInitial(name)
+                            )}
+
+                        </div>
+
+                        <div>
+
+                            <div class="member-name">
+
+                                ${escapeHTML(name)}
+
+                            </div>
+
+                            <div class="post-time">
+
+                                ${escapeHTML(
+                                    formatTime(
+                                        post.createdAt
+                                    )
+                                )}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <span
+                        class="category-badge"
+                    >
+                        ${escapeHTML(category)}
+                    </span>
+
+                </div>
+
+
+                <div class="post-text">
+
+                    ${escapeHTML(
+                        post.text
+                    )}
+
+                </div>
+
+
+                <div class="post-footer">
+
+                    <button
+                        class="post-action reply-toggle"
+                        data-id="${escapeHTML(post.id)}"
+                    >
+                        Reply
+                    </button>
+
+                    ${
+                        canDelete
+                            ? `
+                                <button
+                                    class="post-action delete-btn delete-post"
+                                    data-id="${escapeHTML(post.id)}"
+                                >
+                                    Delete
+                                </button>
+                              `
+                            : ""
+                    }
+
+                </div>
+
+
+                <div class="replies">
+
+                    ${
+                        replies
+                            .map(
+                                reply => `
+
+                                    <div class="reply">
+
+                                        <div class="reply-name">
+
+                                            ${escapeHTML(
+                                                reply.name ||
+                                                "Member"
+                                            )}
+
+                                        </div>
+
+                                        <div class="reply-text">
+
+                                            ${escapeHTML(
+                                                reply.text
+                                            )}
+
+                                        </div>
+
+                                    </div>
+
+                                `
+                            )
+                            .join("")
+                    }
+
+
+                    <div
+                        class="reply-form"
+                        id="reply-${escapeHTML(post.id)}"
+                    >
+
+                        <input
+                            class="reply-input"
+                            id="replyInput-${escapeHTML(post.id)}"
+                            placeholder="Write a reply..."
+                        >
+
+                        <button
+                            class="reply-submit"
+                            data-id="${escapeHTML(post.id)}"
+                        >
+                            Reply
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        `;
+
+    }
+
+
+
+    /* =========================
+       CREATE POST
+    ========================= */
+
+    async function createPost() {
+
+        if (!currentUser) {
+
+            alert(
+                "Please log in first."
+            );
+
+            return;
+
+        }
+
+
+        const textarea =
+            document.getElementById(
+                "postText"
+            );
+
+
+        const text =
+            textarea.value.trim();
+
+
+        if (!text) {
+
+            alert(
+                "Please write something before posting."
+            );
+
+            return;
+
+        }
+
+
+        const button =
+            document.getElementById(
+                "postBtn"
+            );
+
+
+        button.disabled = true;
+
+        button.textContent =
+            "Posting...";
+
+
+        try {
+
+            const memberName =
+                currentUser.displayName ||
+                currentUser.email
+                    ?.split("@")[0] ||
+                "Freedom Member";
+
+
+            await addDoc(
+                collection(
+                    db,
+                    "communityPosts"
+                ),
+                {
+
+                    userId:
+                        currentUser.uid,
+
+                    memberName:
+                        memberName,
+
+                    email:
+                        currentUser.email || "",
+
+                    category:
+                        currentCategory ===
+                        "all"
+                            ? "checkin"
+                            : currentCategory,
+
+                    text:
+                        text,
+
+                    replies:
+                        [],
+
+                    createdAt:
+                        serverTimestamp()
+
+                }
+            );
+
+
+            textarea.value = "";
+
+
+            await loadPosts();
+
+
+        } catch(error) {
+
+            console.error(
+                "POST ERROR:",
+                error
+            );
+
+
+            alert(
+                "Your post could not be added. Please try again."
+            );
+
+        }
+
+
+        button.disabled = false;
+
+        button.textContent =
+            "Post";
+
+    }
+
+
+
+    /* =========================
+       DELETE POST
+    ========================= */
+
+    async function deletePost(postId) {
+
+        if (!currentUser) {
+            return;
+        }
+
+
+        const post =
+            allPosts.find(
+                item =>
+                    item.id === postId
+            );
+
+
+        if (!post) {
+            return;
+        }
+
+
+        const isOwner =
+            post.userId ===
+            currentUser.uid;
+
+
+        const isAdmin =
+            currentUser.email ===
+            ADMIN_EMAIL;
+
+
+        if (
+            !isOwner &&
+            !isAdmin
+        ) {
+
+            alert(
+                "You don't have permission to delete this post."
+            );
+
+            return;
+
+        }
+
+
+        const confirmed =
+            confirm(
+                "Are you sure you want to remove this post?"
+            );
+
+
+        if (!confirmed) {
+            return;
+        }
+
+
+        try {
+
+            await deleteDoc(
+                doc(
+                    db,
+                    "communityPosts",
+                    postId
+                )
+            );
+
+
+            await loadPosts();
+
+
+        } catch(error) {
+
+            console.error(
+                "DELETE ERROR:",
+                error
+            );
+
+
+            alert(
+                "The post could not be deleted."
+            );
+
+        }
+
+    }
+
+
+
+    /* =========================
+       ADD REPLY
+    ========================= */
+
+    async function addReply(postId) {
+
+        if (!currentUser) {
+            return;
+        }
+
+
+        const input =
+            document.getElementById(
+                `replyInput-${postId}`
+            );
+
+
+        const text =
+            input.value.trim();
+
+
+        if (!text) {
+
+            alert(
+                "Please write a reply."
+            );
+
+            return;
+
+        }
+
+
+        const post =
+            allPosts.find(
+                item =>
+                    item.id === postId
+            );
+
+
+        if (!post) {
+            return;
+        }
+
+
+        const memberName =
+            currentUser.displayName ||
+            currentUser.email
+                ?.split("@")[0] ||
+            "Freedom Member";
+
+
+        const replies =
+            Array.isArray(
+                post.replies
+            )
+                ? [
+                    ...post.replies
+                ]
+                : [];
+
+
+        replies.push({
+
+            userId:
+                currentUser.uid,
+
+            name:
+                memberName,
+
+            text:
+                text,
+
+            createdAt:
+                new Date()
+                    .toISOString()
+
+        });
+
+
+        try {
+
+            /*
+               We use updateDoc here.
+               It is imported below.
+            */
+
+            await updateDoc(
+                doc(
+                    db,
+                    "communityPosts",
+                    postId
+                ),
+                {
+                    replies:
+                        replies
+                }
+            );
+
+
+            await loadPosts();
+
+
+        } catch(error) {
+
+            console.error(
+                "REPLY ERROR:",
+                error
+            );
+
+
+            alert(
+                "Your reply could not be added."
+            );
+
+        }
+
+    }
+
+
+
+    /* =========================
+       TAB EVENTS
+    ========================= */
+
+    document
+        .querySelectorAll(
+            ".tab-btn"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        document
+                            .querySelectorAll(
+                                ".tab-btn"
+                            )
+                            .forEach(
+                                btn =>
+                                    btn.classList.remove(
+                                        "active"
+                                    )
+                            );
+
+
+                        button.classList.add(
+                            "active"
+                        );
+
+
+                        currentCategory =
+                            button.dataset.category;
+
+
+                        const selected =
+                            document.getElementById(
+                                "selectedCategory"
+                            );
+
+
+                        selected.textContent =
+                            currentCategory ===
+                            "all"
+
+                                ? "Category: Community"
+
+                                : `Category: ${
+                                    categoryNames[
+                                        currentCategory
+                                    ]
+                                }`;
+
+
+                        renderPosts();
+
+                    }
+                );
+
+            }
+        );
+
+
+
+    /* =========================
+       POST BUTTON
+    ========================= */
+
+    document
+        .getElementById(
+            "postBtn"
+        )
+        .addEventListener(
+            "click",
+            createPost
+        );
+
+
+
+    /* =========================
+       POST / REPLY ACTIONS
+    ========================= */
+
+    document.addEventListener(
+        "click",
+        event => {
+
+
+            if (
+                event.target.classList.contains(
+                    "delete-post"
+                )
+            ) {
+
+                deletePost(
+                    event.target.dataset.id
+                );
+
+                return;
+
+            }
+
+
+            if (
+                event.target.classList.contains(
+                    "reply-toggle"
+                )
+            ) {
+
+                const id =
+                    event.target.dataset.id;
+
+
+                const form =
+                    document.getElementById(
+                        `reply-${id}`
+                    );
+
+
+                if (form) {
+
+                    form.classList.toggle(
+                        "show"
+                    );
+
+                }
+
+                return;
+
+            }
+
+
+            if (
+                event.target.classList.contains(
+                    "reply-submit"
+                )
+            ) {
+
+                addReply(
+                    event.target.dataset.id
+                );
+
+            }
+
+        }
+    );
+
+
+
+    /* =========================
+       BACK BUTTON
+    ========================= */
+
+    document
+        .getElementById(
+            "backBtn"
+        )
+        .addEventListener(
+            "click",
+            () => {
+
+                window.location.href =
+                    "index.html";
+
+            }
+        );
+
+
+
+    /* =========================
+       AUTH
+    ========================= */
+
+    onAuthStateChanged(
+        auth,
+        async user => {
+
+            if (!user) {
+
+                window.location.href =
+                    "login.html";
+
+                return;
+
+            }
+
+
+            currentUser =
+                user;
+
+
+            await loadPosts();
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
