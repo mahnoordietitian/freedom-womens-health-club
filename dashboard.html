@@ -841,3 +841,673 @@
 </body>
 </html>
 ```
+<!-- =========================
+     PROFILE
+========================= -->
+
+<section
+    class="page-section"
+    id="profileSection">
+
+    <div class="page-header">
+
+        <div class="small-title">
+            YOUR INFORMATION
+        </div>
+
+        <h1>
+            Welcome, <span id="profileMemberName">Member</span>
+        </h1>
+
+        <p>
+            Your personal information, health details and progress tracking.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         PERSONAL DETAILS
+    ========================= -->
+
+    <div class="card">
+
+        <div class="small-title">
+            Personal Details
+        </div>
+
+        <h2>
+            About You
+        </h2>
+
+        <div class="profile-grid">
+
+            <div class="field">
+                <label>Full Name</label>
+                <input id="name" type="text">
+            </div>
+
+            <div class="field">
+                <label>Age</label>
+                <input id="age" type="number">
+            </div>
+
+            <div class="field">
+                <label>Gender</label>
+                <input id="gender" type="text">
+            </div>
+
+            <div class="field">
+                <label>Phone Number</label>
+                <input id="phone" type="tel">
+            </div>
+
+            <div class="field">
+                <label>Email</label>
+                <input id="email" type="email" readonly>
+            </div>
+
+            <div class="field">
+                <label>Occupation</label>
+                <input id="occupation" type="text">
+            </div>
+
+            <div class="field">
+                <label>Height (cm)</label>
+                <input id="height" type="number">
+            </div>
+
+            <div class="field">
+                <label>Starting Weight (kg)</label>
+                <input
+                    id="startingWeight"
+                    type="number"
+                    step="0.1">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         HEALTH & ASSESSMENT
+    ========================= -->
+
+    <div class="card">
+
+        <div class="small-title">
+            Health Information
+        </div>
+
+        <h2>
+            Your Health Profile
+        </h2>
+
+        <div class="profile-grid">
+
+            <div class="field">
+                <label>Primary Health Concern</label>
+                <input
+                    id="primaryConcern"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Diabetes</label>
+                <input
+                    id="diabetes"
+                    type="text"
+                    placeholder="Type 1 / Type 2 / Prediabetes / No">
+            </div>
+
+            <div class="field">
+                <label>PCOS</label>
+                <input
+                    id="pcos"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Thyroid</label>
+                <input
+                    id="thyroid"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Blood Pressure</label>
+                <input
+                    id="bloodPressure"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Cholesterol</label>
+                <input
+                    id="cholesterol"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Insulin Resistance</label>
+                <input
+                    id="insulinResistance"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Other Health Conditions</label>
+                <input
+                    id="otherConditions"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Current Medications</label>
+                <input
+                    id="medications"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Supplements</label>
+                <input
+                    id="supplements"
+                    type="text">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         LIFESTYLE & ROUTINE
+    ========================= -->
+
+    <div class="card">
+
+        <div class="small-title">
+            Lifestyle
+        </div>
+
+        <h2>
+            Your Daily Routine
+        </h2>
+
+        <div class="profile-grid">
+
+            <div class="field">
+                <label>Sleep Time</label>
+                <input
+                    id="sleepTime"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Wake-Up Time</label>
+                <input
+                    id="wakeTime"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Sleep Duration</label>
+                <input
+                    id="sleepDuration"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Daily Water Intake</label>
+                <input
+                    id="waterIntake"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Daily Activity</label>
+                <input
+                    id="activityLevel"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Exercise Routine</label>
+                <input
+                    id="exerciseRoutine"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Stress Level</label>
+                <input
+                    id="stressLevel"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Typical Meal Timing</label>
+                <input
+                    id="mealTiming"
+                    type="text">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FOOD & EATING PATTERN
+    ========================= -->
+
+    <div class="card">
+
+        <div class="small-title">
+            Nutrition
+        </div>
+
+        <h2>
+            Your Eating Pattern
+        </h2>
+
+        <div class="profile-grid">
+
+            <div class="field">
+                <label>Breakfast Pattern</label>
+                <input
+                    id="breakfastPattern"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Lunch Pattern</label>
+                <input
+                    id="lunchPattern"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Dinner Pattern</label>
+                <input
+                    id="dinnerPattern"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Snacking Pattern</label>
+                <input
+                    id="snackingPattern"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Food Preferences</label>
+                <input
+                    id="foodPreferences"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Foods You Avoid</label>
+                <input
+                    id="foodsAvoid"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Cravings</label>
+                <input
+                    id="cravings"
+                    type="text">
+            </div>
+
+            <div class="field">
+                <label>Eating Challenges</label>
+                <input
+                    id="eatingChallenges"
+                    type="text">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MEASUREMENTS
+    ========================= -->
+
+    <div class="card">
+
+        <div class="small-title">
+            Measurements
+        </div>
+
+        <h2>
+            Body Measurements
+        </h2>
+
+        <div class="profile-grid">
+
+            <div class="field">
+                <label>Starting Waist (cm)</label>
+                <input
+                    id="startingWaist"
+                    type="number"
+                    step="0.1">
+            </div>
+
+            <div class="field">
+                <label>Current Waist (cm)</label>
+                <input
+                    id="currentWaist"
+                    type="number"
+                    step="0.1">
+            </div>
+
+            <div class="field">
+                <label>Starting Hip (cm)</label>
+                <input
+                    id="startingHip"
+                    type="number"
+                    step="0.1">
+            </div>
+
+            <div class="field">
+                <label>Current Hip (cm)</label>
+                <input
+                    id="currentHip"
+                    type="number"
+                    step="0.1">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PROGRESS SUMMARY
+    ========================= -->
+
+    <div class="card">
+
+        <div class="small-title">
+            Progress
+        </div>
+
+        <h2>
+            Your Progress
+        </h2>
+
+        <div class="stats-grid">
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    Starting Weight
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="progressStartingWeight">
+                    —
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    Current Weight
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="progressCurrentWeight">
+                    —
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    Weight Lost
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="weightLost">
+                    —
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    Waist Change
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="waistChange">
+                    —
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    BMI
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="bmi">
+                    —
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PROGRESS GRAPH
+    ========================= -->
+
+    <div class="card">
+
+        <div class="small-title">
+            Progress Graph
+        </div>
+
+        <h2>
+            Weight Progress
+        </h2>
+
+        <p>
+            Your weight changes will appear here as you complete your weekly check-ins.
+        </p>
+
+        <div
+            class="progress-chart-wrapper"
+            style="position:relative; height:320px; width:100%;">
+
+            <canvas
+                id="weightProgressChart">
+            </canvas>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         WEEKLY TRACKING
+    ========================= -->
+
+    <div class="card">
+
+        <div class="small-title">
+            Weekly Tracking
+        </div>
+
+        <h2>
+            Your Weekly Updates
+        </h2>
+
+        <p>
+            A new check-in becomes available when you reach each tracking day.
+        </p>
+
+
+        <div class="tracking-table-wrapper">
+
+            <table
+                class="tracking-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Check-In
+                        </th>
+
+                        <th>
+                            Day
+                        </th>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Weight
+                        </th>
+
+                        <th>
+                            Waist
+                        </th>
+
+                        <th>
+                            Hip
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="weeklyTrackingBody">
+
+                    <!--
+                        Rows will be generated automatically.
+                        Example:
+
+                        Day 1
+                        Day 7
+                        Day 14
+                        Day 21
+                        ...
+                        Day 90
+                    -->
+
+                    <tr>
+
+                        <td>
+                            Starting
+                        </td>
+
+                        <td>
+                            Day 1
+                        </td>
+
+                        <td id="trackingDay1Date">
+                            —
+                        </td>
+
+                        <td id="trackingDay1Weight">
+                            —
+                        </td>
+
+                        <td id="trackingDay1Waist">
+                            —
+                        </td>
+
+                        <td id="trackingDay1Hip">
+                            —
+                        </td>
+
+                        <td>
+                            <span class="tracking-status completed">
+                                Starting Point
+                            </span>
+                        </td>
+
+                        <td>
+                            <button
+                                class="secondary-btn"
+                                disabled>
+                                Recorded
+                            </button>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SAVE PROFILE
+    ========================= -->
+
+    <div class="card">
+
+        <div class="profile-actions">
+
+            <button
+                class="primary-btn"
+                id="saveProfile">
+
+                Save Profile
+
+            </button>
+
+            <span
+                class="save-message"
+                id="saveMessage">
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
