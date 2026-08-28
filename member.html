@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Freedom Women's Health Club</title>
+
+<style>
+
+:root{
+    --cream:#FBF8F3;
+    --plum:#6E4A7E;
+    --charcoal:#2D2D2D;
+    --champagne:#DCCBB3;
+    --taupe:#B7A89A;
+    --white:#FFFFFF;
+    --light:#F1EAF3;
+    --border:#E6DDD3;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:var(--cream);
+    color:var(--charcoal);
+}
+
+/* LOGIN */
+
+#loginPage{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.login-box{
+    width:100%;
+    max-width:420px;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    border:1px solid var(--border);
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
+
+.logo{
+    text-align:center;
+    color:var(--plum);
+    margin-bottom:10px;
+    line-height:1.35;
+}
+
+.subtitle{
+    text-align:center;
+    color:#777;
+    margin-bottom:30px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    font-size:14px;
+    margin-bottom:7px;
+}
+
+input{
+    width:100%;
+    padding:13px;
+    border:1px solid var(--border);
+    border-radius:9px;
+    font-size:15px;
+}
+
+.btn{
+    border:0;
+    background:var(--plum);
+    color:white;
+    padding:13px 20px;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.btn:hover{
+    opacity:.9;
+}
+
+.login-btn{
+    width:100%;
+}
+
+.error{
+    color:#A44A4A;
+    text-align:center;
+    margin-top:15px;
+}
+
+
+/* APP */
+
+#app{
+    display:none;
+}
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:240px;
+    background:var(--plum);
+    color:white;
+    padding:28px 18px;
+}
+
+.brand{
+    padding:0 10px 30px;
+}
+
+.brand h2{
+    margin:0;
+    line-height:1.35;
+    font-size:19px;
+}
+
+.brand small{
+    opacity:.7;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.nav button{
+    border:0;
+    background:transparent;
+    color:white;
+    padding:13px;
+    border-radius:9px;
+    text-align:left;
+    cursor:pointer;
+}
+
+.nav button:hover,
+.nav button.active{
+    background:rgba(255,255,255,.15);
+}
+
+.main{
+    margin-left:240px;
+    min-height:100vh;
+    padding:30px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.topbar h1{
+    margin:0;
+    color:var(--plum);
+}
+
+.member-name{
+    background:var(--light);
+    color:var(--plum);
+    padding:9px 15px;
+    border-radius:20px;
+}
+
+
+/* SECTIONS */
+
+.section{
+    display:none;
+}
+
+.section.active{
+    display:block;
+}
+
+
+/* DASHBOARD */
+
+.welcome-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:30px;
+    margin-bottom:20px;
+}
+
+.welcome-card h2{
+    color:var(--plum);
+}
+
+.progress-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:25px;
+}
+
+.progress-number{
+    font-size:35px;
+    color:var(--plum);
+    font-weight:bold;
+}
+
+.progress-bar{
+    height:12px;
+    background:#eee;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:15px;
+}
+
+.progress-fill{
+    height:100%;
+    background:var(--plum);
+    width:0%;
+}
+
+
+/* CLASSROOM */
+
+.classroom-grid{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.classroom-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+}
+
+.classroom-header{
+    padding:18px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    cursor:pointer;
+}
+
+.classroom-header:hover{
+    background:#FCFAF7;
+}
+
+.classroom-icon{
+    font-size:22px;
+}
+
+.classroom-title{
+    flex:1;
+    font-weight:bold;
+}
+
+.unlock{
+    font-size:12px;
+    color:#777;
+}
+
+.locked{
+    opacity:.55;
+}
+
+.classroom-children{
+    display:none;
+    padding:0 18px 18px 55px;
+}
+
+.classroom-children.open{
+    display:block;
+}
+
+.child{
+    padding:13px;
+    border:1px solid var(--border);
+    border-radius:9px;
+    margin-top:8px;
+    background:#FCFAF7;
+    cursor:pointer;
+}
+
+.child:hover{
+    border-color:var(--plum);
+}
+
+.child.locked{
+    cursor:not-allowed;
+}
+
+
+/* CONTENT */
+
+.content-box{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:30px;
+    line-height:1.7;
+}
+
+.content-box h2,
+.content-box h3{
+    color:var(--plum);
+}
+
+.content-section{
+    border-top:1px solid var(--border);
+    padding-top:18px;
+    margin-top:18px;
+}
+
+
+/* PROFILE */
+
+.profile-card{
+    max-width:700px;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:30px;
+}
+
+.profile-row{
+    display:flex;
+    justify-content:space-between;
+    border-bottom:1px solid var(--border);
+    padding:15px 0;
+}
+
+.profile-row:last-child{
+    border-bottom:0;
+}
+
+
+/* EMPTY */
+
+.empty{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:40px;
+    text-align:center;
+    color:#777;
+}
+
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+    .sidebar{
+        width:70px;
+        padding:20px 7px;
+    }
+
+    .brand h2,
+    .brand small{
+        display:none;
+    }
+
+    .nav button{
+        font-size:0;
+        text-align:center;
+    }
+
+    .main{
+        margin-left:70px;
+        padding:20px;
+    }
+
+    .topbar{
+        gap:10px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
+
+<div id="loginPage">
+
+    <div class="login-box">
+
+        <h1 class="logo">
+            FREEDOM WOMEN'S<br>
+            HEALTH CLUB
+        </h1>
+
+        <p class="subtitle">
+            Member Login
+        </p>
+
+
+        <div class="form-group">
+
+            <label>
+                Email
+            </label>
+
+            <input
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Password
+            </label>
+
+            <input
+                id="password"
+                type="password"
+                placeholder="Enter your password"
+            >
+
+        </div>
+
+
+        <button
+            id="loginBtn"
+            class="btn login-btn"
+        >
+            Login
+        </button>
+
+
+        <p
+            id="loginError"
+            class="error"
+        ></p>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MEMBER APP
+===================================================== -->
+
+<div id="app">
+
+
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <h2>
+            FREEDOM<br>
+            WOMEN'S HEALTH CLUB
+        </h2>
+
+        <small>
+            Member Area
+        </small>
+
+    </div>
+
+
+    <nav class="nav">
+
+        <button
+            class="active"
+            onclick="openPage('home',this)"
+        >
+            🏠 Home
+        </button>
+
+        <button
+            onclick="openPage('community',this)"
+        >
+            💬 Community
+        </button>
+
+        <button
+            onclick="openPage('classroom',this)"
+        >
+            📚 Classroom
+        </button>
+
+        <button
+            onclick="openPage('progress',this)"
+        >
+            📈 Progress
+        </button>
+
+        <button
+            onclick="openPage('leaderboard',this)"
+        >
+            🏆 Leaderboard
+        </button>
+
+        <button
+            onclick="openPage('profile',this)"
+        >
+            👤 Profile
+        </button>
+
+    </nav>
+
+</aside>
+
+
+
+<main class="main">
+
+
+<div class="topbar">
+
+    <h1 id="pageTitle">
+        Home
+    </h1>
+
+    <div>
+
+        <span
+            id="memberName"
+            class="member-name"
+        >
+            Member
+        </span>
+
+        <button
+            class="btn"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- HOME -->
+
+<section
+id="home"
+class="section active"
+>
+
+<div class="welcome-card">
+
+    <h2>
+        Welcome, <span id="welcomeName"></span>
+    </h2>
+
+    <p>
+        Welcome to Freedom Women's Health Club.
+        Your journey is unlocked day by day.
+    </p>
+
+</div>
+
+
+<div class="progress-card">
+
+    <div>
+        Your Program Day
+    </div>
+
+    <div
+        id="programDay"
+        class="progress-number"
+    >
+        Day 1
+    </div>
+
+    <div
+        id="programProgressText"
+    >
+        1 of 90 days
+    </div>
+
+    <div class="progress-bar">
+
+        <div
+            id="progressFill"
+            class="progress-fill"
+        ></div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- COMMUNITY -->
+
+<section
+id="community"
+class="section"
+>
+
+<div class="empty">
+
+    <h2>
+        Community
+    </h2>
+
+    <p>
+        Community posts will appear here.
+    </p>
+
+</div>
+
+</section>
+
+
+
+<!-- CLASSROOM -->
+
+<section
+id="classroom"
+class="section"
+>
+
+<h2>
+    Classroom
+</h2>
+
+<p>
+    Your lessons unlock according to your program day.
+</p>
+
+
+<div
+id="classroomContainer"
+class="classroom-grid"
+>
+
+    <div class="empty">
+        Loading classroom...
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- CONTENT -->
+
+<section
+id="content"
+class="section"
+>
+
+<button
+class="btn"
+onclick="openPage('classroom')"
+>
+← Back to Classroom
+</button>
+
+<br><br>
+
+<div
+id="contentBox"
+class="content-box"
+></div>
+
+</section>
+
+
+
+<!-- PROGRESS -->
+
+<section
+id="progress"
+class="section"
+>
+
+<div class="progress-card">
+
+    <h2>
+        Your Progress
+    </h2>
+
+    <div
+        id="progressDetails"
+    ></div>
+
+</div>
+
+</section>
+
+
+
+<!-- LEADERBOARD -->
+
+<section
+id="leaderboard"
+class="section"
+>
+
+<div class="empty">
+
+    <h2>
+        Leaderboard
+    </h2>
+
+    <p>
+        Your points and ranking will appear here.
+    </p>
+
+</div>
+
+</section>
+
+
+
+<!-- PROFILE -->
+
+<section
+id="profile"
+class="section"
+>
+
+<div class="profile-card">
+
+    <h2>
+        Your Profile
+    </h2>
+
+    <div class="profile-row">
+
+        <span>
+            Name
+        </span>
+
+        <strong
+            id="profileName"
+        >
+        </strong>
+
+    </div>
+
+
+    <div class="profile-row">
+
+        <span>
+            Email
+        </span>
+
+        <strong
+            id="profileEmail"
+        >
+        </strong>
+
+    </div>
+
+
+    <div class="profile-row">
+
+        <span>
+            Start Date
+        </span>
+
+        <strong
+            id="profileStart"
+        >
+        </strong>
+
+    </div>
+
+
+    <div class="profile-row">
+
+        <span>
+            Access
+        </span>
+
+        <strong
+            id="profileAccess"
+        >
+        </strong>
+
+    </div>
+
+</div>
+
+</section>
+
+
+</main>
+
+</div>
+
+
+
+<script type="module">
+
+
+/* =====================================================
+   FIREBASE
+===================================================== */
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    query,
+    where
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+    apiKey:
+    "AIzaSyB1ISMm_aVwsbSHByUI0F67tn-8GJo1pO0",
+
+    authDomain:
+    "freedom-women-s-health-club.firebaseapp.com",
+
+    projectId:
+    "freedom-women-s-health-club",
+
+    storageBucket:
+    "freedom-women-s-health-club.firebasestorage.app",
+
+    messagingSenderId:
+    "445440093665",
+
+    appId:
+    "1:445440093665:web:9c3a77f1f64776f63cb6a0"
+
+};
+
+
+const app =
+initializeApp(firebaseConfig);
+
+const auth =
+getAuth(app);
+
+const db =
+getFirestore(app);
+
+
+let currentUser=null;
+let currentMember=null;
+let classroomItems=[];
+
+
+
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+onAuthStateChanged(
+auth,
+async user=>{
+
+    if(!user){
+
+        document
+        .getElementById("loginPage")
+        .style.display="flex";
+
+        document
+        .getElementById("app")
+        .style.display="none";
+
+        return;
+
+    }
+
+
+    currentUser=user;
+
+
+    await loadMember(user.email);
+
+});
+
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+document
+.getElementById("loginBtn")
+.addEventListener(
+"click",
+async()=>{
+
+    const email=
+    document
+    .getElementById("email")
+    .value
+    .trim();
+
+    const password=
+    document
+    .getElementById("password")
+    .value;
+
+
+    if(!email || !password){
+
+        document
+        .getElementById("loginError")
+        .textContent=
+        "Please enter your email and password.";
+
+        return;
+
+    }
+
+
+    try{
+
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        document
+        .getElementById("loginError")
+        .textContent=
+        "Login failed. Please check your email and password.";
+
+    }
+
+});
+
+
+
+/* =====================================================
+   LOAD MEMBER
+===================================================== */
+
+async function loadMember(email){
+
+    try{
+
+        const q=
+        query(
+            collection(
+                db,
+                "members"
+            ),
+            where(
+                "email",
+                "==",
+                email
+            )
+        );
+
+
+        const snap=
+        await getDocs(q);
+
+
+        if(snap.empty){
+
+            alert(
+                "Your login exists, but your member profile has not been added by the admin yet."
+            );
+
+            await signOut(auth);
+
+            return;
+
+        }
+
+
+        currentMember=
+        snap.docs[0].data();
+
+
+        showApp();
+
+        calculateProgramDay();
+
+        loadClassroom();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "Could not load your member profile."
+        );
+
+    }
+
+}
+
+
+
+/* =====================================================
+   SHOW APP
+===================================================== */
+
+function showApp(){
+
+    document
+    .getElementById("loginPage")
+    .style.display="none";
+
+
+    document
+    .getElementById("app")
+    .style.display="block";
+
+
+    const name=
+    currentMember.name ||
+    "Member";
+
+
+    document
+    .getElementById("memberName")
+    .textContent=
+    name;
+
+
+    document
+    .getElementById("welcomeName")
+    .textContent=
+    name;
+
+
+    document
+    .getElementById("profileName")
+    .textContent=
+    name;
+
+
+    document
+    .getElementById("profileEmail")
+    .textContent=
+    currentMember.email ||
+    currentUser.email;
+
+
+    document
+    .getElementById("profileStart")
+    .textContent=
+    currentMember.startDate ||
+    "Not set";
+
+
+    document
+    .getElementById("profileAccess")
+    .textContent=
+    "Day "+
+    (
+        currentMember.accessUntilDay ||
+        30
+    );
+
+}
+
+
+
+/* =====================================================
+   PROGRAM DAY
+===================================================== */
+
+function calculateProgramDay(){
+
+    if(!currentMember.startDate){
+
+        setProgramDay(1);
+
+        return;
+
+    }
+
+
+    const start=
+    new Date(
+        currentMember.startDate+
+        "T00:00:00"
+    );
+
+
+    const today=
+    new Date();
+
+
+    today.setHours(
+        0,0,0,0
+    );
+
+
+    const difference=
+    today-start;
+
+
+    let day=
+    Math.floor(
+        difference/
+        (1000*60*60*24)
+    )+1;
+
+
+    if(day<1)
+        day=1;
+
+
+    const access=
+    Number(
+        currentMember.accessUntilDay ||
+        90
+    );
+
+
+    if(day>access){
+
+        day=access;
+
+    }
+
+
+    if(day>90)
+        day=90;
+
+
+    setProgramDay(day);
+
+}
+
+
+
+function setProgramDay(day){
+
+    window.programDay=day;
+
+
+    document
+    .getElementById("programDay")
+    .textContent=
+    "Day "+day;
+
+
+    document
+    .getElementById(
+        "programProgressText"
+    )
+    .textContent=
+    day+
+    " of 90 days";
+
+
+    document
+    .getElementById(
+        "progressFill"
+    )
+    .style.width=
+    ((day/90)*100)+"%";
+
+
+    document
+    .getElementById(
+        "progressDetails"
+    )
+    .innerHTML=
+
+    `
+
+    <p>
+    You are currently on
+    <strong>Day ${day}</strong>
+    of your 90-day journey.
+    </p>
+
+    <div class="progress-bar">
+
+        <div
+        class="progress-fill"
+        style="width:${(day/90)*100}%"
+        ></div>
+
+    </div>
+
+    `;
+
+}
+
+
+
+/* =====================================================
+   LOAD CLASSROOM
+===================================================== */
+
+async function loadClassroom(){
+
+    try{
+
+        const snap=
+        await getDocs(
+            collection(
+                db,
+                "classroom"
+            )
+        );
+
+
+        classroomItems=[];
+
+
+        snap.forEach(
+        doc=>{
+
+            classroomItems.push({
+
+                id:doc.id,
+                ...doc.data()
+
+            });
+
+        });
+
+
+        renderClassroom();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        document
+        .getElementById(
+            "classroomContainer"
+        )
+        .innerHTML=
+
+        `
+
+        <div class="empty">
+
+        Unable to load classroom.
+
+        </div>
+
+        `;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   RENDER CLASSROOM
+===================================================== */
+
+function renderClassroom(){
+
+    const container=
+    document
+    .getElementById(
+        "classroomContainer"
+    );
+
+
+    const roots=
+    classroomItems
+    .filter(
+        x=>!x.parentId
+    )
+    .sort(
+        (a,b)=>
+        (a.order||0)-
+        (b.order||0)
+    );
+
+
+    if(!roots.length){
+
+        container.innerHTML=
+
+        `
+
+        <div class="empty">
+
+        Your classroom is being prepared.
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML=
+    roots
+    .map(
+        item=>renderItem(item)
+    )
+    .join("");
+
+}
+
+
+
+/* =====================================================
+   RENDER ITEM
+===================================================== */
+
+function renderItem(item){
+
+    const unlocked=
+    Number(
+        item.unlockDay||1
+    )
+    <=
+    Number(
+        window.programDay||1
+    );
+
+
+    const children=
+    classroomItems
+    .filter(
+        x=>
+        x.parentId===item.id
+    )
+    .sort(
+        (a,b)=>
+        (a.order||0)-
+        (b.order||0)
+    );
+
+
+    const icon=
+    item.type==="lesson"
+    ?"📖"
+    :"📁";
+
+
+    if(!unlocked){
+
+        return `
+
+        <div
+        class="classroom-card locked"
+        >
+
+            <div
+            class="classroom-header"
+            >
+
+                <span class="classroom-icon">
+                🔒
+                </span>
+
+                <div class="classroom-title">
+                ${safe(item.title)}
+                </div>
+
+                <span class="unlock">
+                Unlocks Day ${item.unlockDay}
+                </span>
+
+            </div>
+
+        </div>
+
+        `;
+
+    }
+
+
+    let childHTML="";
+
+
+    if(children.length){
+
+        childHTML=
+        `
+
+        <div
+        class="classroom-children"
+        id="children-${item.id}"
+        >
+
+        ${
+            children
+            .map(
+                child=>renderChild(child)
+            )
+            .join("")
+        }
+
+        </div>
+
+        `;
+
+    }
+
+
+    return `
+
+    <div
+    class="classroom-card"
+    >
+
+        <div
+        class="classroom-header"
+        onclick="toggleChildren('${item.id}')"
+        >
+
+            <span class="classroom-icon">
+            ${icon}
+            </span>
+
+            <div class="classroom-title">
+            ${safe(item.title)}
+            </div>
+
+            <span class="unlock">
+            Day ${item.unlockDay||1}
+            </span>
+
+        </div>
+
+        ${childHTML}
+
+    </div>
+
+    `;
+
+}
+
+
+
+/* =====================================================
+   CHILD
+===================================================== */
+
+function renderChild(item){
+
+    const unlocked=
+    Number(
+        item.unlockDay||1
+    )
+    <=
+    Number(
+        window.programDay||1
+    );
+
+
+    if(!unlocked){
+
+        return `
+
+        <div
+        class="child locked"
+        >
+
+        🔒
+        ${safe(item.title)}
+
+        <small>
+        — Day ${item.unlockDay}
+        </small>
+
+        </div>
+
+        `;
+
+    }
+
+
+    return `
+
+    <div
+    class="child"
+    onclick="openContent('${item.id}')"
+    >
+
+    ${
+        item.type==="lesson"
+        ?"📖"
+        :"📁"
+    }
+
+    ${safe(item.title)}
+
+    </div>
+
+    `;
+
+}
+
+
+
+/* =====================================================
+   OPEN CHILDREN
+===================================================== */
+
+window.toggleChildren=
+function(id){
+
+    const box=
+    document
+    .getElementById(
+        "children-"+id
+    );
+
+
+    if(box){
+
+        box.classList.toggle(
+            "open"
+        );
+
+    }
+
+};
+
+
+
+/* =====================================================
+   OPEN CONTENT
+===================================================== */
+
+window.openContent=
+function(id){
+
+    const item=
+    classroomItems.find(
+        x=>x.id===id
+    );
+
+
+    if(!item)
+        return;
+
+
+    if(
+        Number(item.unlockDay||1)
+        >
+        Number(window.programDay||1)
+    ){
+
+        alert(
+            "This content is not unlocked yet."
+        );
+
+        return;
+
+    }
+
+
+    const d=
+    item.dayContent||{};
+
+
+    let html=
+
+    `
+
+    <h2>
+    ${safe(item.title)}
+    </h2>
+
+    <p>
+    ${safe(item.description||"")}
+    </p>
+
+    `;
+
+
+    const sections=[
+
+        [
+            "Movement",
+            d.movement,
+            d.movementInstructions
+        ],
+
+        [
+            "Hydration",
+            d.hydration,
+            d.hydrationInstructions
+        ],
+
+        [
+            "Protein",
+            d.protein,
+            d.proteinInstructions
+        ],
+
+        [
+            "Sleep",
+            d.sleep,
+            d.sleepInstructions
+        ],
+
+        [
+            "Nutrition",
+            d.nutrition,
+            ""
+        ],
+
+        [
+            "Mind / Stress",
+            d.mind,
+            ""
+        ],
+
+        [
+            "Sunlight",
+            d.sunlight,
+            ""
+        ],
+
+        [
+            "Recovery",
+            d.recovery,
+            ""
+        ]
+
+    ];
+
+
+    sections.forEach(
+    section=>{
+
+        if(section[1]){
+
+            html+=`
+
+            <div
+            class="content-section"
+            >
+
+                <h3>
+                ${section[0]}
+                </h3>
+
+                <p>
+                ${safe(section[1])}
+                </p>
+
+                ${
+                    section[2]
+                    ?
+                    `<p>${safe(section[2])}</p>`
+                    :
+                    ""
+                }
+
+            </div>
+
+            `;
+
+        }
+
+    });
+
+
+    document
+    .getElementById(
+        "contentBox"
+    )
+    .innerHTML=
+    html;
+
+
+    openPage("content");
+
+};
+
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+window.openPage=
+function(id,button){
+
+    document
+    .querySelectorAll(".section")
+    .forEach(
+        x=>
+        x.classList.remove("active")
+    );
+
+
+    document
+    .getElementById(id)
+    .classList.add("active");
+
+
+    document
+    .querySelectorAll(".nav button")
+    .forEach(
+        x=>
+        x.classList.remove("active")
+    );
+
+
+    if(button){
+
+        button.classList.add("active");
+
+    }
+
+
+    const titles={
+
+        home:"Home",
+        community:"Community",
+        classroom:"Classroom",
+        content:"Lesson",
+        progress:"Progress",
+        leaderboard:"Leaderboard",
+        profile:"Profile"
+
+    };
+
+
+    document
+    .getElementById(
+        "pageTitle"
+    )
+    .textContent=
+    titles[id]||
+    "Freedom Club";
+
+};
+
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+window.logout=
+async function(){
+
+    await signOut(auth);
+
+};
+
+
+
+/* =====================================================
+   SECURITY DISPLAY HELPER
+===================================================== */
+
+function safe(value){
+
+    return String(
+        value??""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+</script>
+
+</body>
+</html>
