@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -10,6 +12,7 @@
 
     <title>Freedom Community</title>
 
+
     <style>
 
         * {
@@ -18,60 +21,72 @@
             padding: 0;
         }
 
+
         body {
+
             font-family:
-                "Manrope",
                 Arial,
                 sans-serif;
 
             background: #FBF8F3;
+
             color: #2D2D2D;
+
         }
+
 
         /* =========================
            HEADER
         ========================= */
 
         .topbar {
+
             background: #6E4A7E;
+
             color: white;
 
-            padding:
-                18px
-                24px;
+            padding: 18px 25px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
 
             position: sticky;
+
             top: 0;
+
             z-index: 100;
+
         }
+
 
         .brand {
+
             font-size: 20px;
+
             font-weight: 700;
+
         }
 
+
         .back-btn {
+
             border: none;
-            background: rgba(255,255,255,0.15);
+
+            background:
+                rgba(255,255,255,0.15);
+
             color: white;
 
             padding:
-                10px
-                16px;
+                10px 16px;
 
             border-radius: 10px;
 
             cursor: pointer;
 
-            font-size: 14px;
-        }
-
-        .back-btn:hover {
-            background: rgba(255,255,255,0.25);
         }
 
 
@@ -80,99 +95,111 @@
         ========================= */
 
         .page {
-            max-width: 1100px;
+
+            max-width: 1050px;
+
             margin: auto;
 
             padding:
-                35px
-                20px
-                60px;
+                35px 20px 60px;
+
         }
 
 
         .hero {
+
             text-align: center;
 
             margin-bottom: 30px;
+
         }
 
+
         .hero h1 {
+
             color: #6E4A7E;
 
             font-size: 32px;
 
             margin-bottom: 10px;
+
         }
 
+
         .hero p {
+
             color: #666;
+
+            line-height: 1.7;
 
             max-width: 650px;
 
             margin: auto;
 
-            line-height: 1.7;
         }
 
 
         /* =========================
-           CATEGORY TABS
+           CATEGORY BUTTONS
         ========================= */
 
-        .community-tabs {
+        .categories {
 
             display: flex;
-
-            gap: 10px;
 
             flex-wrap: wrap;
 
             justify-content: center;
 
-            margin-bottom: 30px;
+            gap: 10px;
+
+            margin-bottom: 25px;
+
         }
 
-        .tab-btn {
 
-            border: 1px solid #DCCBB3;
+        .category-btn {
 
             background: white;
 
             color: #6E4A7E;
 
+            border:
+                1px solid #DCCBB3;
+
             padding:
-                11px
-                17px;
+                10px 16px;
 
             border-radius: 25px;
 
             cursor: pointer;
 
-            font-size: 14px;
+            font-size: 13px;
 
-            transition: 0.2s;
         }
 
-        .tab-btn:hover,
-        .tab-btn.active {
+
+        .category-btn.active {
 
             background: #6E4A7E;
 
             color: white;
 
             border-color: #6E4A7E;
+
         }
 
 
         /* =========================
-           POST BOX
+           CREATE POST
         ========================= */
 
-        .post-box {
+        .create-box {
 
             background: white;
 
-            border: 1px solid #E8DED2;
+            border:
+                1px solid #E7DDD2;
 
             border-radius: 18px;
 
@@ -181,18 +208,22 @@
             margin-bottom: 25px;
 
             box-shadow:
-                0 5px 20px
+                0 5px 18px
                 rgba(0,0,0,0.04);
+
         }
 
-        .post-box h2 {
 
-            font-size: 19px;
+        .create-box h2 {
 
             color: #6E4A7E;
 
+            font-size: 19px;
+
             margin-bottom: 15px;
+
         }
+
 
         textarea {
 
@@ -214,15 +245,18 @@
             font-size: 14px;
 
             outline: none;
+
         }
+
 
         textarea:focus {
 
-            border-color:
-                #6E4A7E;
+            border-color: #6E4A7E;
+
         }
 
-        .post-actions {
+
+        .create-footer {
 
             display: flex;
 
@@ -233,16 +267,20 @@
             margin-top: 12px;
 
             gap: 10px;
+
         }
 
-        .selected-category {
+
+        .current-category {
+
+            font-size: 13px;
 
             color: #777;
 
-            font-size: 13px;
         }
 
-        .primary-btn {
+
+        .post-btn {
 
             background: #6E4A7E;
 
@@ -251,26 +289,23 @@
             border: none;
 
             padding:
-                11px
-                20px;
+                11px 22px;
 
             border-radius: 10px;
 
             cursor: pointer;
 
             font-weight: 600;
+
         }
 
-        .primary-btn:hover {
 
-            opacity: 0.9;
-        }
-
-        .primary-btn:disabled {
+        .post-btn:disabled {
 
             opacity: 0.5;
 
             cursor: not-allowed;
+
         }
 
 
@@ -278,57 +313,65 @@
            POSTS
         ========================= */
 
-        #postsContainer {
+        #communityContainer {
 
             display: flex;
 
             flex-direction: column;
 
             gap: 18px;
+
         }
 
-        .community-post {
+
+        .post-card {
 
             background: white;
 
             border:
-                1px solid
-                #E8DED2;
+                1px solid #E7DDD2;
 
             border-radius: 18px;
 
             padding: 20px;
 
             box-shadow:
-                0 4px 16px
+                0 4px 15px
                 rgba(0,0,0,0.035);
+
         }
+
 
         .post-header {
 
             display: flex;
 
-            align-items: flex-start;
-
             justify-content: space-between;
+
+            align-items: flex-start;
 
             gap: 15px;
 
-            margin-bottom: 14px;
+            margin-bottom: 15px;
+
         }
 
-        .member-info {
+
+        .member {
 
             display: flex;
 
+            align-items: center;
+
             gap: 11px;
 
-            align-items: center;
         }
+
 
         .avatar {
 
             width: 42px;
+
             height: 42px;
 
             border-radius: 50%;
@@ -340,49 +383,53 @@
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
             font-weight: 700;
+
         }
+
 
         .member-name {
 
             font-weight: 700;
 
             font-size: 14px;
+
         }
 
-        .post-time {
+
+        .post-date {
+
+            font-size: 11px;
 
             color: #999;
 
-            font-size: 12px;
-
             margin-top: 3px;
+
         }
 
-        .category-badge {
 
-            background:
-                #F1EAF3;
+        .badge {
 
-            color:
-                #6E4A7E;
+            background: #F1EAF3;
 
-            border-radius: 20px;
+            color: #6E4A7E;
 
             padding:
-                6px
-                10px;
+                6px 10px;
+
+            border-radius: 20px;
 
             font-size: 11px;
 
             font-weight: 700;
 
-            white-space: nowrap;
         }
 
-        .post-text {
+
+        .post-message {
 
             font-size: 14px;
 
@@ -390,19 +437,15 @@
 
             white-space: pre-wrap;
 
-            margin-bottom: 15px;
         }
 
 
-        /* =========================
-           POST FOOTER
-        ========================= */
-
-        .post-footer {
+        .post-actions {
 
             border-top:
-                1px solid
-                #F0EAE3;
+                1px solid #F0EAE3;
+
+            margin-top: 15px;
 
             padding-top: 12px;
 
@@ -410,10 +453,10 @@
 
             gap: 10px;
 
-            flex-wrap: wrap;
         }
 
-        .post-action {
+
+        .action-btn {
 
             background: none;
 
@@ -425,17 +468,55 @@
 
             font-size: 13px;
 
-            padding: 5px 8px;
         }
 
-        .post-action:hover {
-
-            text-decoration: underline;
-        }
 
         .delete-btn {
 
             color: #A33A3A;
+
+        }
+
+
+        /* =========================
+           EMPTY / LOADING
+        ========================= */
+
+        .empty {
+
+            background: white;
+
+            border:
+                1px solid #E7DDD2;
+
+            border-radius: 18px;
+
+            padding: 45px 20px;
+
+            text-align: center;
+
+            color: #777;
+
+        }
+
+
+        .empty h3 {
+
+            color: #6E4A7E;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .loading {
+
+            text-align: center;
+
+            padding: 35px;
+
+            color: #777;
+
         }
 
 
@@ -450,129 +531,97 @@
             padding-left: 15px;
 
             border-left:
-                2px solid
-                #DCCBB3;
+                2px solid #DCCBB3;
+
         }
+
 
         .reply {
 
-            background:
-                #FBF8F3;
+            background: #FBF8F3;
 
             border-radius: 10px;
 
             padding: 10px 12px;
 
             margin-bottom: 8px;
+
         }
+
 
         .reply-name {
 
             font-weight: 700;
 
-            font-size: 12px;
-
             color: #6E4A7E;
 
+            font-size: 12px;
+
             margin-bottom: 4px;
+
         }
 
-        .reply-text {
+
+        .reply-message {
 
             font-size: 13px;
 
             line-height: 1.5;
+
         }
 
-        .reply-form {
 
-            margin-top: 12px;
+        .reply-form {
 
             display: none;
 
             gap: 8px;
+
+            margin-top: 12px;
+
         }
+
 
         .reply-form.show {
 
             display: flex;
+
         }
+
 
         .reply-input {
 
             flex: 1;
 
             border:
-                1px solid
-                #DCCBB3;
+                1px solid #DCCBB3;
 
             border-radius: 9px;
 
             padding: 9px;
 
+            outline: none;
+
             font-family: inherit;
 
-            outline: none;
         }
 
+
         .reply-submit {
+
+            border: none;
 
             background: #6E4A7E;
 
             color: white;
 
-            border: none;
-
             border-radius: 9px;
 
             padding:
-                8px
-                13px;
+                8px 13px;
 
             cursor: pointer;
-        }
 
-
-        /* =========================
-           EMPTY STATE
-        ========================= */
-
-        .empty-state {
-
-            background: white;
-
-            border:
-                1px solid
-                #E8DED2;
-
-            border-radius: 18px;
-
-            text-align: center;
-
-            padding: 45px 20px;
-
-            color: #777;
-        }
-
-        .empty-state h3 {
-
-            color: #6E4A7E;
-
-            margin-bottom: 8px;
-        }
-
-
-        /* =========================
-           LOADING
-        ========================= */
-
-        .loading {
-
-            text-align: center;
-
-            padding: 30px;
-
-            color: #777;
         }
 
 
@@ -585,45 +634,58 @@
             .page {
 
                 padding:
-                    25px
-                    14px
-                    50px;
+                    25px 14px 50px;
+
             }
+
 
             .hero h1 {
 
                 font-size: 27px;
+
             }
+
 
             .post-header {
 
                 flex-direction: column;
+
             }
 
-            .post-actions {
+
+            .create-footer {
 
                 flex-direction: column;
 
                 align-items: stretch;
+
             }
 
-            .primary-btn {
+
+            .post-btn {
 
                 width: 100%;
+
             }
 
-            .reply-form {
+
+            .reply-form.show {
 
                 flex-direction: column;
+
             }
+
 
             .reply-submit {
 
                 width: 100%;
+
             }
+
         }
 
     </style>
+
 </head>
 
 
@@ -640,6 +702,7 @@
         Freedom Community
     </div>
 
+
     <button
         class="back-btn"
         id="backBtn"
@@ -652,7 +715,7 @@
 
 
 <!-- =========================
-     PAGE
+     MAIN
 ========================= -->
 
 <main class="page">
@@ -675,48 +738,53 @@
 
 
     <!-- =========================
-         TABS
+         CATEGORIES
     ========================= -->
 
-    <div class="community-tabs">
+    <div class="categories">
 
         <button
-            class="tab-btn active"
+            class="category-btn active"
             data-category="all"
         >
             All
         </button>
 
+
         <button
-            class="tab-btn"
+            class="category-btn"
             data-category="checkin"
         >
             Daily Check-ins
         </button>
 
+
         <button
-            class="tab-btn"
+            class="category-btn"
             data-category="workout"
         >
             Workout & Exercise
         </button>
 
+
         <button
-            class="tab-btn"
+            class="category-btn"
             data-category="wins"
         >
             Wins
         </button>
 
+
         <button
-            class="tab-btn"
+            class="category-btn"
             data-category="question"
         >
             Questions
         </button>
 
+
         <button
-            class="tab-btn"
+            class="category-btn"
             data-category="discussion"
         >
             Discussions
@@ -730,30 +798,32 @@
          CREATE POST
     ========================= -->
 
-    <section class="post-box">
+    <section class="create-box">
 
         <h2>
             Share with the community
         </h2>
 
+
         <textarea
-            id="postText"
-            placeholder="Share your progress, ask a question or tell us about your day..."
+            id="messageInput"
+            placeholder="Share your progress, ask a question, celebrate a win or start a discussion..."
         ></textarea>
 
 
-        <div class="post-actions">
+        <div class="create-footer">
 
             <span
-                class="selected-category"
-                id="selectedCategory"
+                class="current-category"
+                id="currentCategory"
             >
-                Category: Daily Check-ins
+                Category: Community
             </span>
 
+
             <button
-                class="primary-btn"
-                id="postBtn"
+                class="post-btn"
+                id="postButton"
             >
                 Post
             </button>
@@ -765,10 +835,10 @@
 
 
     <!-- =========================
-         POSTS
+         COMMUNITY POSTS
     ========================= -->
 
-    <section id="postsContainer">
+    <section id="communityContainer">
 
         <div class="loading">
             Loading community...
@@ -786,6 +856,11 @@
 ========================= -->
 
 <script type="module">
+
+
+    /* =====================================================
+       FIREBASE IMPORTS
+    ===================================================== */
 
     import {
         initializeApp
@@ -808,6 +883,7 @@
         addDoc,
         getDocs,
         deleteDoc,
+        updateDoc,
         doc,
         query,
         orderBy,
@@ -818,38 +894,44 @@
 
 
 
-    /* =========================
+    /* =====================================================
        FIREBASE CONFIG
+    =====================================================
 
        IMPORTANT:
-       Replace these values with
-       the SAME Firebase config
-       used in your dashboard.
-    ========================= */
+
+       Paste the EXACT SAME firebaseConfig
+       from your existing dashboard here.
+
+    ===================================================== */
 
     const firebaseConfig = {
 
         apiKey:
-            "YOUR_API_KEY",
+            "PASTE_YOUR_API_KEY",
 
         authDomain:
-            "YOUR_PROJECT.firebaseapp.com",
+            "PASTE_YOUR_AUTH_DOMAIN",
 
         projectId:
-            "YOUR_PROJECT_ID",
+            "PASTE_YOUR_PROJECT_ID",
 
         storageBucket:
-            "YOUR_PROJECT.firebasestorage.app",
+            "PASTE_YOUR_STORAGE_BUCKET",
 
         messagingSenderId:
-            "YOUR_MESSAGING_SENDER_ID",
+            "PASTE_YOUR_MESSAGING_SENDER_ID",
 
         appId:
-            "YOUR_APP_ID"
+            "PASTE_YOUR_APP_ID"
 
     };
 
 
+
+    /* =====================================================
+       INITIALIZE FIREBASE
+    ===================================================== */
 
     const app =
         initializeApp(
@@ -866,36 +948,21 @@
 
 
 
-    /* =========================
+    /* =====================================================
        VARIABLES
-    ========================= */
+    ===================================================== */
 
     let currentUser = null;
 
-    let currentCategory = "checkin";
+    let currentCategory = "all";
 
     let allPosts = [];
 
 
 
-    /*
-       CHANGE THIS EMAIL TO YOUR
-       ADMIN EMAIL.
-
-       Example:
-
-       const ADMIN_EMAIL =
-           "mahnoor@example.com";
-    */
-
-    const ADMIN_EMAIL =
-        "YOUR_ADMIN_EMAIL";
-
-
-
-    /* =========================
+    /* =====================================================
        CATEGORY NAMES
-    ========================= */
+    ===================================================== */
 
     const categoryNames = {
 
@@ -918,47 +985,120 @@
 
 
 
-    /* =========================
+    /* =====================================================
+       ADMIN EMAIL
+    =====================================================
+
+       This matches your Firestore rules.
+
+    ===================================================== */
+
+    const ADMIN_EMAIL =
+        "mahnoordietitian3@gmail.com";
+
+
+
+    /* =====================================================
        ESCAPE HTML
-    ========================= */
+    ===================================================== */
 
     function escapeHTML(value) {
 
-        return String(value || "")
-            .replace(
-                /&/g,
-                "&amp;"
-            )
-            .replace(
-                /</g,
-                "&lt;"
-            )
-            .replace(
-                />/g,
-                "&gt;"
-            )
-            .replace(
-                /"/g,
-                "&quot;"
-            )
-            .replace(
-                /'/g,
-                "&#039;"
-            );
+        return String(
+            value || ""
+        )
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
     }
 
 
 
-    /* =========================
-       FORMAT TIME
-    ========================= */
+    /* =====================================================
+       GET MEMBER NAME
+    ===================================================== */
 
-    function formatTime(timestamp) {
+    function getMemberName() {
+
+        if (
+            currentUser &&
+            currentUser.displayName
+        ) {
+
+            return currentUser.displayName;
+
+        }
+
+
+        if (
+            currentUser &&
+            currentUser.email
+        ) {
+
+            return currentUser.email
+                .split("@")[0];
+
+        }
+
+
+        return "Freedom Member";
+
+    }
+
+
+
+    /* =====================================================
+       GET INITIAL
+    ===================================================== */
+
+    function getInitial(name) {
+
+        return String(
+            name || "F"
+        )
+        .trim()
+        .charAt(0)
+        .toUpperCase();
+
+    }
+
+
+
+    /* =====================================================
+       FORMAT DATE
+    ===================================================== */
+
+    function formatDate(timestamp) {
 
         if (!timestamp) {
+
             return "Just now";
+
         }
+
 
         try {
 
@@ -967,15 +1107,20 @@
                     ? timestamp.toDate()
                     : new Date(timestamp);
 
+
             return date.toLocaleString(
                 "en-PK",
                 {
-                    dateStyle: "medium",
-                    timeStyle: "short"
+                    dateStyle:
+                        "medium",
+                    timeStyle:
+                        "short"
                 }
             );
 
-        } catch {
+        }
+
+        catch {
 
             return "Recently";
 
@@ -985,66 +1130,36 @@
 
 
 
-    /* =========================
-       GET MEMBER NAME
-    ========================= */
+    /* =====================================================
+       LOAD COMMUNITY
+    ===================================================== */
 
-    function getMemberName(post) {
-
-        return (
-            post.memberName ||
-            post.name ||
-            post.displayName ||
-            "Freedom Member"
-        );
-
-    }
-
-
-
-    /* =========================
-       GET INITIAL
-    ========================= */
-
-    function getInitial(name) {
-
-        return (
-            String(name || "F")
-                .trim()
-                .charAt(0)
-                .toUpperCase()
-        );
-
-    }
-
-
-
-    /* =========================
-       LOAD POSTS
-    ========================= */
-
-    async function loadPosts() {
+    async function loadCommunity() {
 
         const container =
             document.getElementById(
-                "postsContainer"
+                "communityContainer"
             );
 
+
         container.innerHTML = `
+
             <div class="loading">
                 Loading community...
             </div>
+
         `;
 
 
         try {
 
-            const postsQuery =
+            const communityQuery =
                 query(
                     collection(
                         db,
-                        "communityPosts"
+                        "community"
                     ),
+
                     orderBy(
                         "createdAt",
                         "desc"
@@ -1054,7 +1169,7 @@
 
             const snapshot =
                 await getDocs(
-                    postsQuery
+                    communityQuery
                 );
 
 
@@ -1077,10 +1192,11 @@
             );
 
 
-            renderPosts();
+            renderCommunity();
 
+        }
 
-        } catch(error) {
+        catch(error) {
 
             console.error(
                 "COMMUNITY LOAD ERROR:",
@@ -1090,10 +1206,10 @@
 
             container.innerHTML = `
 
-                <div class="empty-state">
+                <div class="empty">
 
                     <h3>
-                        Community couldn't load
+                        Community could not load
                     </h3>
 
                     <p>
@@ -1112,15 +1228,15 @@
 
 
 
-    /* =========================
-       RENDER POSTS
-    ========================= */
+    /* =====================================================
+       RENDER COMMUNITY
+    ===================================================== */
 
-    function renderPosts() {
+    function renderCommunity() {
 
         const container =
             document.getElementById(
-                "postsContainer"
+                "communityContainer"
             );
 
 
@@ -1147,7 +1263,7 @@
 
             container.innerHTML = `
 
-                <div class="empty-state">
+                <div class="empty">
 
                     <h3>
                         No posts yet
@@ -1179,14 +1295,15 @@
 
 
 
-    /* =========================
-       RENDER SINGLE POST
-    ========================= */
+    /* =====================================================
+       RENDER POST
+    ===================================================== */
 
     function renderPost(post) {
 
         const name =
-            getMemberName(post);
+            post.name ||
+            "Freedom Member";
 
 
         const category =
@@ -1198,8 +1315,8 @@
 
         const isOwner =
             currentUser &&
-            post.userId ===
-                currentUser.uid;
+            post.email ===
+                currentUser.email;
 
 
         const isAdmin =
@@ -1224,13 +1341,16 @@
         return `
 
             <article
-                class="community-post"
-                data-post-id="${escapeHTML(post.id)}"
+                class="post-card"
+                data-id="${escapeHTML(post.id)}"
             >
+
 
                 <div class="post-header">
 
-                    <div class="member-info">
+
+                    <div class="member">
+
 
                         <div class="avatar">
 
@@ -1240,18 +1360,22 @@
 
                         </div>
 
+
                         <div>
 
                             <div class="member-name">
 
-                                ${escapeHTML(name)}
+                                ${escapeHTML(
+                                    name
+                                )}
 
                             </div>
 
-                            <div class="post-time">
+
+                            <div class="post-date">
 
                                 ${escapeHTML(
-                                    formatTime(
+                                    formatDate(
                                         post.createdAt
                                     )
                                 )}
@@ -1263,104 +1387,129 @@
                     </div>
 
 
-                    <span
-                        class="category-badge"
-                    >
-                        ${escapeHTML(category)}
+                    <span class="badge">
+
+                        ${escapeHTML(
+                            category
+                        )}
+
                     </span>
+
 
                 </div>
 
 
-                <div class="post-text">
+
+                <div class="post-message">
 
                     ${escapeHTML(
-                        post.text
+                        post.message
                     )}
 
                 </div>
 
 
-                <div class="post-footer">
+
+                <div class="post-actions">
+
 
                     <button
-                        class="post-action reply-toggle"
+                        class="action-btn reply-toggle"
                         data-id="${escapeHTML(post.id)}"
                     >
                         Reply
                     </button>
 
+
                     ${
                         canDelete
                             ? `
+
                                 <button
-                                    class="post-action delete-btn delete-post"
+                                    class="action-btn delete-btn delete-post"
                                     data-id="${escapeHTML(post.id)}"
                                 >
                                     Delete
                                 </button>
+
                               `
                             : ""
                     }
 
+
                 </div>
 
 
-                <div class="replies">
 
-                    ${
-                        replies
-                            .map(
-                                reply => `
+                ${
+                    replies.length
+                        ? `
 
-                                    <div class="reply">
+                            <div class="replies">
 
-                                        <div class="reply-name">
+                                ${
 
-                                            ${escapeHTML(
-                                                reply.name ||
-                                                "Member"
-                                            )}
+                                    replies
+                                        .map(
+                                            reply => `
 
-                                        </div>
+                                                <div class="reply">
 
-                                        <div class="reply-text">
+                                                    <div class="reply-name">
 
-                                            ${escapeHTML(
-                                                reply.text
-                                            )}
+                                                        ${escapeHTML(
+                                                            reply.name ||
+                                                            "Member"
+                                                        )}
 
-                                        </div>
+                                                    </div>
 
-                                    </div>
+                                                    <div class="reply-message">
 
-                                `
-                            )
-                            .join("")
-                    }
+                                                        ${escapeHTML(
+                                                            reply.message ||
+                                                            ""
+                                                        )}
+
+                                                    </div>
+
+                                                </div>
+
+                                            `
+                                        )
+                                        .join("")
+
+                                }
+
+                            </div>
+
+                          `
+                        : ""
+                }
 
 
-                    <div
-                        class="reply-form"
-                        id="reply-${escapeHTML(post.id)}"
+
+                <div
+                    class="reply-form"
+                    id="replyForm-${escapeHTML(post.id)}"
+                >
+
+                    <input
+                        class="reply-input"
+                        id="replyInput-${escapeHTML(post.id)}"
+                        placeholder="Write a reply..."
                     >
 
-                        <input
-                            class="reply-input"
-                            id="replyInput-${escapeHTML(post.id)}"
-                            placeholder="Write a reply..."
-                        >
 
-                        <button
-                            class="reply-submit"
-                            data-id="${escapeHTML(post.id)}"
-                        >
-                            Reply
-                        </button>
-
-                    </div>
+                    <button
+                        class="reply-submit"
+                        data-id="${escapeHTML(post.id)}"
+                    >
+                        Reply
+                    </button>
 
                 </div>
+
 
             </article>
 
@@ -1370,9 +1519,9 @@
 
 
 
-    /* =========================
+    /* =====================================================
        CREATE POST
-    ========================= */
+    ===================================================== */
 
     async function createPost() {
 
@@ -1387,20 +1536,20 @@
         }
 
 
-        const textarea =
+        const input =
             document.getElementById(
-                "postText"
+                "messageInput"
             );
 
 
-        const text =
-            textarea.value.trim();
+        const message =
+            input.value.trim();
 
 
-        if (!text) {
+        if (!message) {
 
             alert(
-                "Please write something before posting."
+                "Please write something first."
             );
 
             return;
@@ -1410,7 +1559,7 @@
 
         const button =
             document.getElementById(
-                "postBtn"
+                "postButton"
             );
 
 
@@ -1422,28 +1571,21 @@
 
         try {
 
-            const memberName =
-                currentUser.displayName ||
-                currentUser.email
-                    ?.split("@")[0] ||
-                "Freedom Member";
-
-
             await addDoc(
                 collection(
                     db,
-                    "communityPosts"
+                    "community"
                 ),
                 {
 
-                    userId:
-                        currentUser.uid,
-
-                    memberName:
-                        memberName,
+                    name:
+                        getMemberName(),
 
                     email:
                         currentUser.email || "",
+
+                    uid:
+                        currentUser.uid,
 
                     category:
                         currentCategory ===
@@ -1451,8 +1593,8 @@
                             ? "checkin"
                             : currentCategory,
 
-                    text:
-                        text,
+                    message:
+                        message,
 
                     replies:
                         [],
@@ -1464,13 +1606,14 @@
             );
 
 
-            textarea.value = "";
+            input.value = "";
 
 
-            await loadPosts();
+            await loadCommunity();
 
+        }
 
-        } catch(error) {
+        catch(error) {
 
             console.error(
                 "POST ERROR:",
@@ -1479,7 +1622,7 @@
 
 
             alert(
-                "Your post could not be added. Please try again."
+                "Your post could not be added."
             );
 
         }
@@ -1494,11 +1637,13 @@
 
 
 
-    /* =========================
+    /* =====================================================
        DELETE POST
-    ========================= */
+    ===================================================== */
 
-    async function deletePost(postId) {
+    async function deletePost(
+        postId
+    ) {
 
         if (!currentUser) {
             return;
@@ -1518,8 +1663,8 @@
 
 
         const isOwner =
-            post.userId ===
-            currentUser.uid;
+            post.email ===
+            currentUser.email;
 
 
         const isAdmin =
@@ -1533,7 +1678,7 @@
         ) {
 
             alert(
-                "You don't have permission to delete this post."
+                "You do not have permission to delete this post."
             );
 
             return;
@@ -1543,7 +1688,7 @@
 
         const confirmed =
             confirm(
-                "Are you sure you want to remove this post?"
+                "Delete this community post?"
             );
 
 
@@ -1557,16 +1702,17 @@
             await deleteDoc(
                 doc(
                     db,
-                    "communityPosts",
+                    "community",
                     postId
                 )
             );
 
 
-            await loadPosts();
+            await loadCommunity();
 
+        }
 
-        } catch(error) {
+        catch(error) {
 
             console.error(
                 "DELETE ERROR:",
@@ -1584,11 +1730,13 @@
 
 
 
-    /* =========================
+    /* =====================================================
        ADD REPLY
-    ========================= */
+    ===================================================== */
 
-    async function addReply(postId) {
+    async function addReply(
+        postId
+    ) {
 
         if (!currentUser) {
             return;
@@ -1601,11 +1749,11 @@
             );
 
 
-        const text =
+        const message =
             input.value.trim();
 
 
-        if (!text) {
+        if (!message) {
 
             alert(
                 "Please write a reply."
@@ -1628,13 +1776,6 @@
         }
 
 
-        const memberName =
-            currentUser.displayName ||
-            currentUser.email
-                ?.split("@")[0] ||
-            "Freedom Member";
-
-
         const replies =
             Array.isArray(
                 post.replies
@@ -1647,14 +1788,17 @@
 
         replies.push({
 
-            userId:
+            name:
+                getMemberName(),
+
+            email:
+                currentUser.email || "",
+
+            uid:
                 currentUser.uid,
 
-            name:
-                memberName,
-
-            text:
-                text,
+            message:
+                message,
 
             createdAt:
                 new Date()
@@ -1665,28 +1809,27 @@
 
         try {
 
-            /*
-               We use updateDoc here.
-               It is imported below.
-            */
-
             await updateDoc(
+
                 doc(
                     db,
-                    "communityPosts",
+                    "community",
                     postId
                 ),
+
                 {
                     replies:
                         replies
                 }
+
             );
 
 
-            await loadPosts();
+            await loadCommunity();
 
+        }
 
-        } catch(error) {
+        catch(error) {
 
             console.error(
                 "REPLY ERROR:",
@@ -1704,13 +1847,13 @@
 
 
 
-    /* =========================
-       TAB EVENTS
-    ========================= */
+    /* =====================================================
+       CATEGORY BUTTONS
+    ===================================================== */
 
     document
         .querySelectorAll(
-            ".tab-btn"
+            ".category-btn"
         )
         .forEach(
             button => {
@@ -1721,7 +1864,7 @@
 
                         document
                             .querySelectorAll(
-                                ".tab-btn"
+                                ".category-btn"
                             )
                             .forEach(
                                 btn =>
@@ -1740,26 +1883,35 @@
                             button.dataset.category;
 
 
-                        const selected =
+                        const label =
                             document.getElementById(
-                                "selectedCategory"
+                                "currentCategory"
                             );
 
 
-                        selected.textContent =
+                        if (
                             currentCategory ===
                             "all"
+                        ) {
 
-                                ? "Category: Community"
+                            label.textContent =
+                                "Category: Community";
 
-                                : `Category: ${
+                        }
+
+                        else {
+
+                            label.textContent =
+                                `Category: ${
                                     categoryNames[
                                         currentCategory
                                     ]
                                 }`;
 
+                        }
 
-                        renderPosts();
+
+                        renderCommunity();
 
                     }
                 );
@@ -1769,13 +1921,13 @@
 
 
 
-    /* =========================
+    /* =====================================================
        POST BUTTON
-    ========================= */
+    ===================================================== */
 
     document
         .getElementById(
-            "postBtn"
+            "postButton"
         )
         .addEventListener(
             "click",
@@ -1784,14 +1936,16 @@
 
 
 
-    /* =========================
-       POST / REPLY ACTIONS
-    ========================= */
+    /* =====================================================
+       POST ACTIONS
+    ===================================================== */
 
     document.addEventListener(
         "click",
         event => {
 
+
+            /* DELETE */
 
             if (
                 event.target.classList.contains(
@@ -1808,6 +1962,9 @@
             }
 
 
+
+            /* REPLY OPEN */
+
             if (
                 event.target.classList.contains(
                     "reply-toggle"
@@ -1820,7 +1977,7 @@
 
                 const form =
                     document.getElementById(
-                        `reply-${id}`
+                        `replyForm-${id}`
                     );
 
 
@@ -1836,6 +1993,9 @@
 
             }
 
+
+
+            /* REPLY SUBMIT */
 
             if (
                 event.target.classList.contains(
@@ -1854,9 +2014,9 @@
 
 
 
-    /* =========================
-       BACK BUTTON
-    ========================= */
+    /* =====================================================
+       BACK TO DASHBOARD
+    ===================================================== */
 
     document
         .getElementById(
@@ -1874,13 +2034,16 @@
 
 
 
-    /* =========================
+    /* =====================================================
        AUTH
-    ========================= */
+    ===================================================== */
 
     onAuthStateChanged(
+
         auth,
+
         async user => {
+
 
             if (!user) {
 
@@ -1896,12 +2059,15 @@
                 user;
 
 
-            await loadPosts();
+            await loadCommunity();
 
         }
+
     );
+
 
 </script>
 
 </body>
+
 </html>
