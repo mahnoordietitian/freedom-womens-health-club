@@ -1,408 +1,412 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Freedom Women's Health Club</title>
 
 <style>
-
 :root{
-    --cream:#FBF8F3;
-    --plum:#6E4A7E;
-    --charcoal:#2D2D2D;
-    --champagne:#DCCBB3;
-    --taupe:#B7A89A;
-    --white:#FFFFFF;
-    --light:#F1EAF3;
-    --border:#E6DDD3;
+  --cream:#FBF8F3;
+  --plum:#6E4A7E;
+  --charcoal:#2D2D2D;
+  --champagne:#DCCBB3;
+  --taupe:#B7A89A;
+  --white:#FFFFFF;
+  --light:#F1EAF3;
+  --border:#E6DDD3;
 }
 
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:var(--cream);
-    color:var(--charcoal);
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:var(--cream);
+  color:var(--charcoal);
+}
+
+button,input,textarea{
+  font:inherit;
 }
 
 /* LOGIN */
 
 #loginPage{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
 }
 
 .login-box{
-    width:100%;
-    max-width:420px;
-    background:white;
-    padding:40px;
-    border-radius:20px;
-    border:1px solid var(--border);
-    box-shadow:0 15px 40px rgba(0,0,0,.08);
+  width:100%;
+  max-width:420px;
+  background:white;
+  padding:40px;
+  border-radius:20px;
+  border:1px solid var(--border);
+  box-shadow:0 15px 40px rgba(0,0,0,.08);
 }
 
 .logo{
-    text-align:center;
-    color:var(--plum);
-    margin-bottom:10px;
-    line-height:1.35;
+  text-align:center;
+  color:var(--plum);
+  line-height:1.35;
 }
 
 .subtitle{
-    text-align:center;
-    color:#777;
-    margin-bottom:30px;
+  text-align:center;
+  color:#777;
+  margin-bottom:30px;
 }
 
 .form-group{
-    margin-bottom:18px;
+  margin-bottom:18px;
 }
 
 label{
-    display:block;
-    font-weight:bold;
-    font-size:14px;
-    margin-bottom:7px;
+  display:block;
+  font-weight:bold;
+  font-size:14px;
+  margin-bottom:7px;
 }
 
-input{
-    width:100%;
-    padding:13px;
-    border:1px solid var(--border);
-    border-radius:9px;
-    font-size:15px;
+input,textarea{
+  width:100%;
+  padding:13px;
+  border:1px solid var(--border);
+  border-radius:9px;
+  background:white;
 }
 
 .btn{
-    border:0;
-    background:var(--plum);
-    color:white;
-    padding:13px 20px;
-    border-radius:9px;
-    cursor:pointer;
-    font-weight:bold;
+  border:0;
+  background:var(--plum);
+  color:white;
+  padding:12px 18px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:bold;
 }
 
 .btn:hover{
-    opacity:.9;
+  opacity:.9;
 }
 
 .login-btn{
-    width:100%;
+  width:100%;
 }
 
 .error{
-    color:#A44A4A;
-    text-align:center;
-    margin-top:15px;
+  color:#A44A4A;
+  text-align:center;
+  margin-top:15px;
 }
-
 
 /* APP */
 
 #app{
-    display:none;
+  display:none;
 }
 
 .sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    bottom:0;
-    width:240px;
-    background:var(--plum);
-    color:white;
-    padding:28px 18px;
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  width:245px;
+  background:var(--plum);
+  color:white;
+  padding:28px 18px;
+  overflow-y:auto;
 }
 
 .brand{
-    padding:0 10px 30px;
+  padding:0 10px 30px;
 }
 
 .brand h2{
-    margin:0;
-    line-height:1.35;
-    font-size:19px;
+  margin:0;
+  line-height:1.35;
+  font-size:19px;
 }
 
 .brand small{
-    opacity:.7;
+  opacity:.7;
 }
 
 .nav{
-    display:flex;
-    flex-direction:column;
-    gap:5px;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
 }
 
 .nav button{
-    border:0;
-    background:transparent;
-    color:white;
-    padding:13px;
-    border-radius:9px;
-    text-align:left;
-    cursor:pointer;
+  border:0;
+  background:transparent;
+  color:white;
+  padding:13px;
+  border-radius:9px;
+  text-align:left;
+  cursor:pointer;
 }
 
 .nav button:hover,
 .nav button.active{
-    background:rgba(255,255,255,.15);
+  background:rgba(255,255,255,.15);
 }
 
 .main{
-    margin-left:240px;
-    min-height:100vh;
-    padding:30px;
+  margin-left:245px;
+  min-height:100vh;
+  padding:30px;
 }
 
 .topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:30px;
 }
 
 .topbar h1{
-    margin:0;
-    color:var(--plum);
+  margin:0;
+  color:var(--plum);
 }
 
 .member-name{
-    background:var(--light);
-    color:var(--plum);
-    padding:9px 15px;
-    border-radius:20px;
+  display:inline-block;
+  background:var(--light);
+  color:var(--plum);
+  padding:9px 15px;
+  border-radius:20px;
+  margin-right:8px;
 }
-
 
 /* SECTIONS */
 
 .section{
-    display:none;
+  display:none;
 }
 
 .section.active{
-    display:block;
+  display:block;
 }
 
+/* HOME */
 
-/* DASHBOARD */
+.welcome-card,
+.progress-card,
+.profile-card,
+.content-box,
+.community-box{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:28px;
+}
 
 .welcome-card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:30px;
-    margin-bottom:20px;
+  margin-bottom:20px;
 }
 
 .welcome-card h2{
-    color:var(--plum);
-}
-
-.progress-card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:25px;
+  color:var(--plum);
 }
 
 .progress-number{
-    font-size:35px;
-    color:var(--plum);
-    font-weight:bold;
+  font-size:38px;
+  color:var(--plum);
+  font-weight:bold;
+  margin-top:8px;
 }
 
 .progress-bar{
-    height:12px;
-    background:#eee;
-    border-radius:20px;
-    overflow:hidden;
-    margin-top:15px;
+  height:12px;
+  background:#eee;
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:15px;
 }
 
 .progress-fill{
-    height:100%;
-    background:var(--plum);
-    width:0%;
+  height:100%;
+  background:var(--plum);
+  transition:width .3s;
 }
-
 
 /* CLASSROOM */
 
 .classroom-grid{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
 }
 
 .classroom-card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:14px;
-    overflow:hidden;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:14px;
+  overflow:hidden;
 }
 
 .classroom-header{
-    padding:18px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    cursor:pointer;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  cursor:pointer;
 }
 
 .classroom-header:hover{
-    background:#FCFAF7;
+  background:#FCFAF7;
 }
 
 .classroom-icon{
-    font-size:22px;
+  font-size:22px;
 }
 
 .classroom-title{
-    flex:1;
-    font-weight:bold;
+  flex:1;
+  font-weight:bold;
 }
 
 .unlock{
-    font-size:12px;
-    color:#777;
-}
-
-.locked{
-    opacity:.55;
+  font-size:12px;
+  color:#777;
 }
 
 .classroom-children{
-    display:none;
-    padding:0 18px 18px 55px;
+  display:none;
+  padding:0 18px 18px 55px;
 }
 
 .classroom-children.open{
-    display:block;
+  display:block;
 }
 
 .child{
-    padding:13px;
-    border:1px solid var(--border);
-    border-radius:9px;
-    margin-top:8px;
-    background:#FCFAF7;
-    cursor:pointer;
+  padding:14px;
+  border:1px solid var(--border);
+  border-radius:9px;
+  margin-top:8px;
+  background:#FCFAF7;
+  cursor:pointer;
 }
 
 .child:hover{
-    border-color:var(--plum);
+  border-color:var(--plum);
 }
-
-.child.locked{
-    cursor:not-allowed;
-}
-
 
 /* CONTENT */
 
-.content-box{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:30px;
-    line-height:1.7;
-}
-
 .content-box h2,
 .content-box h3{
-    color:var(--plum);
+  color:var(--plum);
 }
 
 .content-section{
-    border-top:1px solid var(--border);
-    padding-top:18px;
-    margin-top:18px;
+  border-top:1px solid var(--border);
+  padding-top:18px;
+  margin-top:18px;
 }
 
+.back-btn{
+  margin-bottom:15px;
+}
 
 /* PROFILE */
 
-.profile-card{
-    max-width:700px;
-    background:white;
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:30px;
-}
-
 .profile-row{
-    display:flex;
-    justify-content:space-between;
-    border-bottom:1px solid var(--border);
-    padding:15px 0;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  border-bottom:1px solid var(--border);
+  padding:15px 0;
 }
 
 .profile-row:last-child{
-    border-bottom:0;
+  border-bottom:0;
 }
 
+/* COMMUNITY */
 
-/* EMPTY */
+.post{
+  padding:18px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.post:last-child{
+  border-bottom:0;
+}
+
+.post-author{
+  color:var(--plum);
+  font-weight:bold;
+}
+
+.post-date{
+  font-size:12px;
+  color:#888;
+  margin:5px 0 10px;
+}
 
 .empty{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:15px;
-    padding:40px;
-    text-align:center;
-    color:#777;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:40px;
+  text-align:center;
+  color:#777;
 }
-
 
 /* MOBILE */
 
 @media(max-width:800px){
 
-    .sidebar{
-        width:70px;
-        padding:20px 7px;
-    }
+  .sidebar{
+    width:70px;
+    padding:20px 7px;
+  }
 
-    .brand h2,
-    .brand small{
-        display:none;
-    }
+  .brand h2,
+  .brand small{
+    display:none;
+  }
 
-    .nav button{
-        font-size:0;
-        text-align:center;
-    }
+  .nav button{
+    font-size:0;
+    text-align:center;
+  }
 
-    .main{
-        margin-left:70px;
-        padding:20px;
-    }
+  .nav button:first-letter{
+    font-size:20px;
+  }
 
-    .topbar{
-        gap:10px;
-    }
+  .main{
+    margin-left:70px;
+    padding:18px;
+  }
 
+  .topbar{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .profile-row{
+    flex-direction:column;
+    gap:5px;
+  }
 }
-
 </style>
-
 </head>
 
 <body>
-
 
 <!-- =====================================================
      LOGIN
@@ -410,65 +414,47 @@ input{
 
 <div id="loginPage">
 
-    <div class="login-box">
+  <div class="login-box">
 
-        <h1 class="logo">
-            FREEDOM WOMEN'S<br>
-            HEALTH CLUB
-        </h1>
+    <h1 class="logo">
+      FREEDOM WOMEN'S<br>
+      HEALTH CLUB
+    </h1>
 
-        <p class="subtitle">
-            Member Login
-        </p>
+    <p class="subtitle">
+      Member Login
+    </p>
 
-
-        <div class="form-group">
-
-            <label>
-                Email
-            </label>
-
-            <input
-                id="email"
-                type="email"
-                placeholder="Enter your email"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Password
-            </label>
-
-            <input
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-            >
-
-        </div>
-
-
-        <button
-            id="loginBtn"
-            class="btn login-btn"
-        >
-            Login
-        </button>
-
-
-        <p
-            id="loginError"
-            class="error"
-        ></p>
-
+    <div class="form-group">
+      <label>Email</label>
+      <input
+        id="email"
+        type="email"
+        placeholder="Enter your email"
+      >
     </div>
 
-</div>
+    <div class="form-group">
+      <label>Password</label>
+      <input
+        id="password"
+        type="password"
+        placeholder="Enter your password"
+      >
+    </div>
 
+    <button
+      id="loginBtn"
+      class="btn login-btn"
+    >
+      Login
+    </button>
+
+    <p id="loginError" class="error"></p>
+
+  </div>
+
+</div>
 
 
 <!-- =====================================================
@@ -477,388 +463,324 @@ input{
 
 <div id="app">
 
-
-<aside class="sidebar">
+  <aside class="sidebar">
 
     <div class="brand">
+      <h2>
+        FREEDOM<br>
+        WOMEN'S HEALTH CLUB
+      </h2>
 
-        <h2>
-            FREEDOM<br>
-            WOMEN'S HEALTH CLUB
-        </h2>
-
-        <small>
-            Member Area
-        </small>
-
+      <small>
+        Member Area
+      </small>
     </div>
-
 
     <nav class="nav">
 
-        <button
-            class="active"
-            onclick="openPage('home',this)"
-        >
-            🏠 Home
-        </button>
+      <button
+        class="active"
+        onclick="openPage('home',this)"
+      >
+        🏠 Home
+      </button>
 
-        <button
-            onclick="openPage('community',this)"
-        >
-            💬 Community
-        </button>
+      <button
+        onclick="openPage('community',this)"
+      >
+        💬 Community
+      </button>
 
-        <button
-            onclick="openPage('classroom',this)"
-        >
-            📚 Classroom
-        </button>
+      <button
+        onclick="openPage('classroom',this)"
+      >
+        📚 Classroom
+      </button>
 
-        <button
-            onclick="openPage('progress',this)"
-        >
-            📈 Progress
-        </button>
+      <button
+        onclick="openPage('progress',this)"
+      >
+        📈 Progress
+      </button>
 
-        <button
-            onclick="openPage('leaderboard',this)"
-        >
-            🏆 Leaderboard
-        </button>
+      <button
+        onclick="openPage('leaderboard',this)"
+      >
+        🏆 Leaderboard
+      </button>
 
-        <button
-            onclick="openPage('profile',this)"
-        >
-            👤 Profile
-        </button>
+      <button
+        onclick="openPage('profile',this)"
+      >
+        👤 Profile
+      </button>
 
     </nav>
 
-</aside>
+  </aside>
 
 
+  <main class="main">
 
-<main class="main">
+    <div class="topbar">
 
-
-<div class="topbar">
-
-    <h1 id="pageTitle">
+      <h1 id="pageTitle">
         Home
-    </h1>
+      </h1>
 
-    <div>
+      <div>
 
         <span
-            id="memberName"
-            class="member-name"
+          id="memberName"
+          class="member-name"
         >
-            Member
+          Member
         </span>
 
         <button
-            class="btn"
-            onclick="logout()"
+          class="btn"
+          onclick="logout()"
         >
-            Logout
+          Logout
         </button>
 
+      </div>
+
     </div>
 
-</div>
 
+    <!-- HOME -->
 
-
-<!-- HOME -->
-
-<section
-id="home"
-class="section active"
->
-
-<div class="welcome-card">
-
-    <h2>
-        Welcome, <span id="welcomeName"></span>
-    </h2>
-
-    <p>
-        Welcome to Freedom Women's Health Club.
-        Your journey is unlocked day by day.
-    </p>
-
-</div>
-
-
-<div class="progress-card">
-
-    <div>
-        Your Program Day
-    </div>
-
-    <div
-        id="programDay"
-        class="progress-number"
+    <section
+      id="home"
+      class="section active"
     >
-        Day 1
-    </div>
 
-    <div
-        id="programProgressText"
-    >
-        1 of 90 days
-    </div>
+      <div class="welcome-card">
 
-    <div class="progress-bar">
+        <h2>
+          Welcome, <span id="welcomeName"></span>
+        </h2>
+
+        <p>
+          Welcome to Freedom Women's Health Club.
+          Your complete program is available here.
+        </p>
+
+      </div>
+
+
+      <div class="progress-card">
+
+        <div>
+          Your Program Day
+        </div>
 
         <div
+          id="programDay"
+          class="progress-number"
+        >
+          Day 1
+        </div>
+
+        <div id="programProgressText">
+          1 of 90 days
+        </div>
+
+        <div class="progress-bar">
+
+          <div
             id="progressFill"
             class="progress-fill"
-        ></div>
+          ></div>
 
-    </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- COMMUNITY -->
+
+    <section
+      id="community"
+      class="section"
+    >
+
+      <h2>Community</h2>
+
+      <div class="community-box">
+
+        <h3>Community Posts</h3>
+
+        <div id="communityPosts">
+          Loading posts...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CLASSROOM -->
+
+    <section
+      id="classroom"
+      class="section"
+    >
+
+      <h2>Classroom</h2>
+
+      <p>
+        Your program content is organized below.
+      </p>
+
+      <div
+        id="classroomContainer"
+        class="classroom-grid"
+      >
+        <div class="empty">
+          Loading classroom...
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- CONTENT -->
+
+    <section
+      id="content"
+      class="section"
+    >
+
+      <button
+        class="btn back-btn"
+        onclick="openPage('classroom')"
+      >
+        ← Back to Classroom
+      </button>
+
+      <div
+        id="contentBox"
+        class="content-box"
+      ></div>
+
+    </section>
+
+
+    <!-- PROGRESS -->
+
+    <section
+      id="progress"
+      class="section"
+    >
+
+      <div class="progress-card">
+
+        <h2>
+          Your Progress
+        </h2>
+
+        <div id="progressDetails"></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- LEADERBOARD -->
+
+    <section
+      id="leaderboard"
+      class="section"
+    >
+
+      <div class="empty">
+
+        <h2>
+          Leaderboard
+        </h2>
+
+        <p>
+          Your points and ranking will appear here.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- PROFILE -->
+
+    <section
+      id="profile"
+      class="section"
+    >
+
+      <div class="profile-card">
+
+        <h2>
+          Your Profile
+        </h2>
+
+        <div class="profile-row">
+          <span>Name</span>
+          <strong id="profileName"></strong>
+        </div>
+
+        <div class="profile-row">
+          <span>Email</span>
+          <strong id="profileEmail"></strong>
+        </div>
+
+        <div class="profile-row">
+          <span>Start Date</span>
+          <strong id="profileStart"></strong>
+        </div>
+
+        <div class="profile-row">
+          <span>Access Until</span>
+          <strong id="profileAccess"></strong>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
 
 </div>
-
-</section>
-
-
-
-<!-- COMMUNITY -->
-
-<section
-id="community"
-class="section"
->
-
-<div class="empty">
-
-    <h2>
-        Community
-    </h2>
-
-    <p>
-        Community posts will appear here.
-    </p>
-
-</div>
-
-</section>
-
-
-
-<!-- CLASSROOM -->
-
-<section
-id="classroom"
-class="section"
->
-
-<h2>
-    Classroom
-</h2>
-
-<p>
-    Your lessons unlock according to your program day.
-</p>
-
-
-<div
-id="classroomContainer"
-class="classroom-grid"
->
-
-    <div class="empty">
-        Loading classroom...
-    </div>
-
-</div>
-
-</section>
-
-
-
-<!-- CONTENT -->
-
-<section
-id="content"
-class="section"
->
-
-<button
-class="btn"
-onclick="openPage('classroom')"
->
-← Back to Classroom
-</button>
-
-<br><br>
-
-<div
-id="contentBox"
-class="content-box"
-></div>
-
-</section>
-
-
-
-<!-- PROGRESS -->
-
-<section
-id="progress"
-class="section"
->
-
-<div class="progress-card">
-
-    <h2>
-        Your Progress
-    </h2>
-
-    <div
-        id="progressDetails"
-    ></div>
-
-</div>
-
-</section>
-
-
-
-<!-- LEADERBOARD -->
-
-<section
-id="leaderboard"
-class="section"
->
-
-<div class="empty">
-
-    <h2>
-        Leaderboard
-    </h2>
-
-    <p>
-        Your points and ranking will appear here.
-    </p>
-
-</div>
-
-</section>
-
-
-
-<!-- PROFILE -->
-
-<section
-id="profile"
-class="section"
->
-
-<div class="profile-card">
-
-    <h2>
-        Your Profile
-    </h2>
-
-    <div class="profile-row">
-
-        <span>
-            Name
-        </span>
-
-        <strong
-            id="profileName"
-        >
-        </strong>
-
-    </div>
-
-
-    <div class="profile-row">
-
-        <span>
-            Email
-        </span>
-
-        <strong
-            id="profileEmail"
-        >
-        </strong>
-
-    </div>
-
-
-    <div class="profile-row">
-
-        <span>
-            Start Date
-        </span>
-
-        <strong
-            id="profileStart"
-        >
-        </strong>
-
-    </div>
-
-
-    <div class="profile-row">
-
-        <span>
-            Access
-        </span>
-
-        <strong
-            id="profileAccess"
-        >
-        </strong>
-
-    </div>
-
-</div>
-
-</section>
-
-
-</main>
-
-</div>
-
 
 
 <script type="module">
-
 
 /* =====================================================
    FIREBASE
 ===================================================== */
 
 import {
-    initializeApp
+  initializeApp
 }
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
-
 import {
-    getAuth,
-    signInWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
 }
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-
 import {
-    getFirestore,
-    collection,
-    getDocs,
-    query,
-    where
+  getFirestore,
+  collection,
+  getDocs,
+  query,
+  where
 }
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
@@ -866,23 +788,23 @@ from
 
 const firebaseConfig = {
 
-    apiKey:
-    "AIzaSyB1ISMm_aVwsbSHByUI0F67tn-8GJo1pO0",
+  apiKey:
+  "AIzaSyB1ISMm_aVwsbSHByUI0F67tn-8GJo1pO0",
 
-    authDomain:
-    "freedom-women-s-health-club.firebaseapp.com",
+  authDomain:
+  "freedom-women-s-health-club.firebaseapp.com",
 
-    projectId:
-    "freedom-women-s-health-club",
+  projectId:
+  "freedom-women-s-health-club",
 
-    storageBucket:
-    "freedom-women-s-health-club.firebasestorage.app",
+  storageBucket:
+  "freedom-women-s-health-club.firebasestorage.app",
 
-    messagingSenderId:
-    "445440093665",
+  messagingSenderId:
+  "445440093665",
 
-    appId:
-    "1:445440093665:web:9c3a77f1f64776f63cb6a0"
+  appId:
+  "1:445440093665:web:9c3a77f1f64776f63cb6a0"
 
 };
 
@@ -897,10 +819,28 @@ const db =
 getFirestore(app);
 
 
-let currentUser=null;
-let currentMember=null;
-let classroomItems=[];
+let currentUser = null;
+let currentMember = null;
+let classroomItems = [];
 
+
+/*
+=======================================================
+TEST MODE
+
+Your admin email can use the member page and see
+everything unlocked for testing.
+
+Real members will follow their Start Date.
+=======================================================
+*/
+
+const TEST_EMAIL =
+"mahnoordietitian3@gmail.com";
+
+
+let testMode = false;
+let programDay = 1;
 
 
 /* =====================================================
@@ -908,31 +848,28 @@ let classroomItems=[];
 ===================================================== */
 
 onAuthStateChanged(
-auth,
-async user=>{
+  auth,
+  async user => {
 
     if(!user){
 
-        document
+      document
         .getElementById("loginPage")
-        .style.display="flex";
+        .style.display = "flex";
 
-        document
+      document
         .getElementById("app")
-        .style.display="none";
+        .style.display = "none";
 
-        return;
-
+      return;
     }
 
-
-    currentUser=user;
-
+    currentUser = user;
 
     await loadMember(user.email);
 
-});
-
+  }
+);
 
 
 /* =====================================================
@@ -940,58 +877,59 @@ async user=>{
 ===================================================== */
 
 document
-.getElementById("loginBtn")
-.addEventListener(
-"click",
-async()=>{
+  .getElementById("loginBtn")
+  .addEventListener(
+    "click",
+    async () => {
 
-    const email=
-    document
-    .getElementById("email")
-    .value
-    .trim();
-
-    const password=
-    document
-    .getElementById("password")
-    .value;
-
-
-    if(!email || !password){
-
+      const email =
         document
-        .getElementById("loginError")
-        .textContent=
-        "Please enter your email and password.";
+          .getElementById("email")
+          .value
+          .trim();
+
+      const password =
+        document
+          .getElementById("password")
+          .value;
+
+      const errorBox =
+        document
+          .getElementById("loginError");
+
+
+      errorBox.textContent = "";
+
+
+      if(!email || !password){
+
+        errorBox.textContent =
+          "Please enter your email and password.";
 
         return;
+      }
 
-    }
 
-
-    try{
+      try{
 
         await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
+          auth,
+          email,
+          password
         );
 
-    }
-
-    catch(error){
+      }
+      catch(error){
 
         console.error(error);
 
-        document
-        .getElementById("loginError")
-        .textContent=
-        "Login failed. Please check your email and password.";
+        errorBox.textContent =
+          "Login failed. Please check your email and password.";
+
+      }
 
     }
-
-});
-
+  );
 
 
 /* =====================================================
@@ -1000,63 +938,93 @@ async()=>{
 
 async function loadMember(email){
 
-    try{
+  try{
 
-        const q=
-        query(
-            collection(
-                db,
-                "members"
-            ),
-            where(
-                "email",
-                "==",
-                email
-            )
-        );
+    /*
+    Your admin email is allowed into TEST MODE.
+    */
+
+    testMode =
+      email.toLowerCase() ===
+      TEST_EMAIL.toLowerCase();
 
 
-        const snap=
-        await getDocs(q);
+    const q =
+      query(
+        collection(db,"members"),
+        where("email","==",email)
+      );
 
 
-        if(snap.empty){
-
-            alert(
-                "Your login exists, but your member profile has not been added by the admin yet."
-            );
-
-            await signOut(auth);
-
-            return;
-
-        }
+    const snap =
+      await getDocs(q);
 
 
-        currentMember=
-        snap.docs[0].data();
+    if(snap.empty){
 
+      /*
+      Admin test account can still enter the member
+      side even if a member record isn't found.
+      */
 
-        showApp();
+      if(testMode){
 
-        calculateProgramDay();
+        currentMember = {
 
-        loadClassroom();
+          name:"Mahnoor Test",
 
-    }
+          email:email,
 
-    catch(error){
+          startDate:"2026-08-28",
 
-        console.error(error);
+          accessUntilDay:90,
+
+          status:"Active"
+
+        };
+
+      }
+      else{
 
         alert(
-            "Could not load your member profile."
+          "Your member profile has not been added yet."
         );
+
+        await signOut(auth);
+
+        return;
+
+      }
+
+    }
+    else{
+
+      currentMember =
+        snap.docs[0].data();
 
     }
 
-}
 
+    showApp();
+
+    calculateProgramDay();
+
+    await loadClassroom();
+
+    await loadCommunity();
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    alert(
+      "Could not load your member information."
+    );
+
+  }
+
+}
 
 
 /* =====================================================
@@ -1065,64 +1033,62 @@ async function loadMember(email){
 
 function showApp(){
 
-    document
+  document
     .getElementById("loginPage")
-    .style.display="none";
+    .style.display = "none";
 
-
-    document
+  document
     .getElementById("app")
-    .style.display="block";
+    .style.display = "block";
 
 
-    const name=
+  const name =
     currentMember.name ||
     "Member";
 
 
-    document
+  document
     .getElementById("memberName")
-    .textContent=
+    .textContent =
     name;
 
 
-    document
+  document
     .getElementById("welcomeName")
-    .textContent=
+    .textContent =
     name;
 
 
-    document
+  document
     .getElementById("profileName")
-    .textContent=
+    .textContent =
     name;
 
 
-    document
+  document
     .getElementById("profileEmail")
-    .textContent=
+    .textContent =
     currentMember.email ||
     currentUser.email;
 
 
-    document
+  document
     .getElementById("profileStart")
-    .textContent=
+    .textContent =
     currentMember.startDate ||
     "Not set";
 
 
-    document
+  document
     .getElementById("profileAccess")
-    .textContent=
-    "Day "+
+    .textContent =
+    "Day " +
     (
-        currentMember.accessUntilDay ||
-        30
+      currentMember.accessUntilDay ||
+      90
     );
 
 }
-
 
 
 /* =====================================================
@@ -1131,125 +1097,125 @@ function showApp(){
 
 function calculateProgramDay(){
 
-    if(!currentMember.startDate){
+  /*
+  TEST MODE:
+  Admin sees all 90 days.
+  */
 
-        setProgramDay(1);
+  if(testMode){
 
-        return;
+    programDay = 90;
 
-    }
+    setProgramDay(90);
+
+    return;
+
+  }
 
 
-    const start=
+  if(!currentMember.startDate){
+
+    programDay = 1;
+
+    setProgramDay(1);
+
+    return;
+
+  }
+
+
+  const start =
     new Date(
-        currentMember.startDate+
-        "T00:00:00"
+      currentMember.startDate +
+      "T00:00:00"
     );
 
 
-    const today=
+  const today =
     new Date();
 
-
-    today.setHours(
-        0,0,0,0
-    );
+  today.setHours(0,0,0,0);
 
 
-    const difference=
-    today-start;
+  const difference =
+    today - start;
 
 
-    let day=
+  let day =
     Math.floor(
-        difference/
-        (1000*60*60*24)
-    )+1;
+      difference /
+      (1000 * 60 * 60 * 24)
+    ) + 1;
 
 
-    if(day<1)
-        day=1;
+  if(day < 1)
+    day = 1;
 
 
-    const access=
+  const access =
     Number(
-        currentMember.accessUntilDay ||
-        90
+      currentMember.accessUntilDay ||
+      90
     );
 
 
-    if(day>access){
-
-        day=access;
-
-    }
+  if(day > access)
+    day = access;
 
 
-    if(day>90)
-        day=90;
+  if(day > 90)
+    day = 90;
 
 
-    setProgramDay(day);
+  programDay = day;
+
+  setProgramDay(day);
 
 }
-
 
 
 function setProgramDay(day){
 
-    window.programDay=day;
-
-
-    document
+  document
     .getElementById("programDay")
-    .textContent=
-    "Day "+day;
+    .textContent =
+    "Day " + day;
 
 
-    document
-    .getElementById(
-        "programProgressText"
-    )
-    .textContent=
-    day+
-    " of 90 days";
+  document
+    .getElementById("programProgressText")
+    .textContent =
+    day + " of 90 days";
 
 
-    document
-    .getElementById(
-        "progressFill"
-    )
-    .style.width=
-    ((day/90)*100)+"%";
+  document
+    .getElementById("progressFill")
+    .style.width =
+    ((day / 90) * 100) + "%";
 
 
-    document
-    .getElementById(
-        "progressDetails"
-    )
-    .innerHTML=
+  document
+    .getElementById("progressDetails")
+    .innerHTML = `
 
-    `
+      <p>
+        You are currently on
+        <strong>Day ${day}</strong>
+        of your 90-day journey.
+      </p>
 
-    <p>
-    You are currently on
-    <strong>Day ${day}</strong>
-    of your 90-day journey.
-    </p>
-
-    <div class="progress-bar">
+      <div class="progress-bar">
 
         <div
-        class="progress-fill"
-        style="width:${(day/90)*100}%"
+          class="progress-fill"
+          style="width:${(day / 90) * 100}%"
         ></div>
 
-    </div>
+      </div>
 
     `;
 
 }
-
 
 
 /* =====================================================
@@ -1258,61 +1224,58 @@ function setProgramDay(day){
 
 async function loadClassroom(){
 
-    try{
+  try{
 
-        const snap=
-        await getDocs(
-            collection(
-                db,
-                "classroom"
-            )
-        );
-
-
-        classroomItems=[];
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          "classroom"
+        )
+      );
 
 
-        snap.forEach(
-        doc=>{
+    classroomItems = [];
 
-            classroomItems.push({
 
-                id:doc.id,
-                ...doc.data()
+    snap.forEach(
+      doc => {
 
-            });
+        classroomItems.push({
+
+          id:doc.id,
+          ...doc.data()
 
         });
 
+      }
+    );
 
-        renderClassroom();
 
-    }
+    renderClassroom();
 
-    catch(error){
+  }
+  catch(error){
 
-        console.error(error);
+    console.error(error);
 
-        document
-        .getElementById(
-            "classroomContainer"
-        )
-        .innerHTML=
-
-        `
+    document
+      .getElementById(
+        "classroomContainer"
+      )
+      .innerHTML = `
 
         <div class="empty">
 
-        Unable to load classroom.
+          Unable to load classroom.
 
         </div>
 
-        `;
+      `;
 
-    }
+  }
 
 }
-
 
 
 /* =====================================================
@@ -1321,534 +1284,647 @@ async function loadClassroom(){
 
 function renderClassroom(){
 
-    const container=
+  const container =
     document
-    .getElementById(
+      .getElementById(
         "classroomContainer"
-    );
+      );
 
 
-    const roots=
+  const roots =
     classroomItems
-    .filter(
-        x=>!x.parentId
-    )
-    .sort(
-        (a,b)=>
-        (a.order||0)-
-        (b.order||0)
-    );
+      .filter(
+        item =>
+          !item.parentId
+      )
+      .sort(
+        (a,b) =>
+          (a.order || 0) -
+          (b.order || 0)
+      );
 
 
-    if(!roots.length){
+  if(!roots.length){
 
-        container.innerHTML=
+    container.innerHTML = `
 
-        `
-
-        <div class="empty">
+      <div class="empty">
 
         Your classroom is being prepared.
 
-        </div>
+      </div>
 
-        `;
+    `;
 
-        return;
+    return;
 
-    }
+  }
 
 
-    container.innerHTML=
+  container.innerHTML =
     roots
-    .map(
-        item=>renderItem(item)
-    )
-    .join("");
+      .map(
+        item =>
+          renderItem(item)
+      )
+      .join("");
 
 }
 
 
-
 /* =====================================================
-   RENDER ITEM
+   RENDER ROOT ITEM
 ===================================================== */
 
 function renderItem(item){
 
-    const unlocked=
-    Number(
-        item.unlockDay||1
-    )
+  const unlocked =
+    testMode ||
+    Number(item.unlockDay || 1)
     <=
-    Number(
-        window.programDay||1
-    );
+    Number(programDay);
 
 
-    const children=
+  const children =
     classroomItems
-    .filter(
-        x=>
-        x.parentId===item.id
-    )
-    .sort(
-        (a,b)=>
-        (a.order||0)-
-        (b.order||0)
-    );
+      .filter(
+        x =>
+          x.parentId === item.id
+      )
+      .sort(
+        (a,b) =>
+          (a.order || 0) -
+          (b.order || 0)
+      );
 
 
-    const icon=
-    item.type==="lesson"
-    ?"📖"
-    :"📁";
+  if(!unlocked){
 
+    return `
 
-    if(!unlocked){
-
-        return `
+      <div class="classroom-card">
 
         <div
-        class="classroom-card locked"
+          class="classroom-header"
         >
 
-            <div
-            class="classroom-header"
-            >
+          <span class="classroom-icon">
+            🔒
+          </span>
 
-                <span class="classroom-icon">
-                🔒
-                </span>
+          <div class="classroom-title">
+            ${safe(item.title)}
+          </div>
 
-                <div class="classroom-title">
-                ${safe(item.title)}
-                </div>
-
-                <span class="unlock">
-                Unlocks Day ${item.unlockDay}
-                </span>
-
-            </div>
+          <span class="unlock">
+            Unlocks Day ${item.unlockDay}
+          </span>
 
         </div>
 
-        `;
+      </div>
 
-    }
+    `;
+
+  }
 
 
-    let childHTML="";
+  let childHTML = "";
 
 
-    if(children.length){
+  if(children.length){
 
-        childHTML=
-        `
+    childHTML = `
 
-        <div
+      <div
         class="classroom-children"
         id="children-${item.id}"
-        >
+      >
 
         ${
-            children
+          children
             .map(
-                child=>renderChild(child)
+              child =>
+                renderChild(child)
             )
             .join("")
         }
 
-        </div>
+      </div>
 
-        `;
+    `;
 
-    }
+  }
 
 
-    return `
+  return `
 
-    <div
-    class="classroom-card"
-    >
+    <div class="classroom-card">
 
-        <div
+      <div
         class="classroom-header"
         onclick="toggleChildren('${item.id}')"
-        >
+      >
 
-            <span class="classroom-icon">
-            ${icon}
-            </span>
+        <span class="classroom-icon">
+          📁
+        </span>
 
-            <div class="classroom-title">
-            ${safe(item.title)}
-            </div>
-
-            <span class="unlock">
-            Day ${item.unlockDay||1}
-            </span>
-
+        <div class="classroom-title">
+          ${safe(item.title)}
         </div>
 
-        ${childHTML}
+        <span class="unlock">
+          Day ${item.unlockDay || 1}
+        </span>
+
+      </div>
+
+      ${childHTML}
 
     </div>
 
-    `;
+  `;
 
 }
 
 
-
 /* =====================================================
-   CHILD
+   RENDER CHILD
 ===================================================== */
 
 function renderChild(item){
 
-    const unlocked=
-    Number(
-        item.unlockDay||1
-    )
+  const unlocked =
+    testMode ||
+    Number(item.unlockDay || 1)
     <=
-    Number(
-        window.programDay||1
-    );
+    Number(programDay);
 
 
-    if(!unlocked){
+  if(!unlocked){
 
-        return `
+    return `
 
-        <div
-        class="child locked"
-        >
+      <div class="child">
 
         🔒
         ${safe(item.title)}
 
         <small>
-        — Day ${item.unlockDay}
+          — Unlocks Day ${item.unlockDay}
         </small>
 
-        </div>
+      </div>
 
-        `;
+    `;
 
-    }
+  }
 
 
-    return `
+  return `
 
     <div
-    class="child"
-    onclick="openContent('${item.id}')"
+      class="child"
+      onclick="openContent('${item.id}')"
     >
 
-    ${
-        item.type==="lesson"
-        ?"📖"
-        :"📁"
-    }
+      ${
+        item.type === "lesson"
+        ? "📖"
+        : "📁"
+      }
 
-    ${safe(item.title)}
+      ${safe(item.title)}
 
     </div>
 
-    `;
+  `;
 
 }
 
 
-
 /* =====================================================
-   OPEN CHILDREN
+   TOGGLE
 ===================================================== */
 
-window.toggleChildren=
+window.toggleChildren =
 function(id){
 
-    const box=
+  const box =
     document
-    .getElementById(
-        "children-"+id
-    );
+      .getElementById(
+        "children-" + id
+      );
 
 
-    if(box){
+  if(box){
 
-        box.classList.toggle(
-            "open"
-        );
+    box.classList.toggle("open");
 
-    }
+  }
 
 };
-
 
 
 /* =====================================================
    OPEN CONTENT
 ===================================================== */
 
-window.openContent=
+window.openContent =
 function(id){
 
-    const item=
+  const item =
     classroomItems.find(
-        x=>x.id===id
+      x =>
+        x.id === id
     );
 
 
-    if(!item)
-        return;
+  if(!item)
+    return;
 
 
-    if(
-        Number(item.unlockDay||1)
-        >
-        Number(window.programDay||1)
-    ){
+  const unlocked =
+    testMode ||
+    Number(item.unlockDay || 1)
+    <=
+    Number(programDay);
 
-        alert(
-            "This content is not unlocked yet."
+
+  if(!unlocked){
+
+    alert(
+      "This content is not unlocked yet."
+    );
+
+    return;
+
+  }
+
+
+  const d =
+    item.dayContent || {};
+
+
+  let html = `
+
+    <h2>
+      ${safe(item.title)}
+    </h2>
+
+    ${
+      item.description
+      ?
+      `<p>${safe(item.description)}</p>`
+      :
+      ""
+    }
+
+  `;
+
+
+  const sections = [
+
+    [
+      "Movement",
+      d.movement,
+      d.movementInstructions
+    ],
+
+    [
+      "Hydration",
+      d.hydration,
+      d.hydrationInstructions
+    ],
+
+    [
+      "Protein",
+      d.protein,
+      d.proteinInstructions
+    ],
+
+    [
+      "Sleep",
+      d.sleep,
+      d.sleepInstructions
+    ],
+
+    [
+      "Nutrition",
+      d.nutrition,
+      d.nutritionInstructions
+    ],
+
+    [
+      "Mind / Stress",
+      d.mind,
+      d.mindInstructions
+    ],
+
+    [
+      "Sunlight",
+      d.sunlight,
+      d.sunlightInstructions
+    ],
+
+    [
+      "Recovery",
+      d.recovery,
+      d.recoveryInstructions
+    ]
+
+  ];
+
+
+  sections.forEach(
+    section => {
+
+      if(section[1]){
+
+        html += `
+
+          <div class="content-section">
+
+            <h3>
+              ${section[0]}
+            </h3>
+
+            <p>
+              ${safe(section[1])}
+            </p>
+
+            ${
+              section[2]
+              ?
+              `<p>${safe(section[2])}</p>`
+              :
+              ""
+            }
+
+          </div>
+
+        `;
+
+      }
+
+    }
+  );
+
+
+  document
+    .getElementById(
+      "contentBox"
+    )
+    .innerHTML =
+    html;
+
+
+  openPage("content");
+
+};
+
+
+/* =====================================================
+   COMMUNITY
+===================================================== */
+
+async function loadCommunity(){
+
+  try{
+
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          "community"
+        )
+      );
+
+
+    const posts = [];
+
+
+    snap.forEach(
+      doc => {
+
+        posts.push({
+
+          id:doc.id,
+          ...doc.data()
+
+        });
+
+      }
+    );
+
+
+    posts.sort(
+      (a,b) => {
+
+        const aTime =
+          a.createdAt?.seconds ||
+          0;
+
+        const bTime =
+          b.createdAt?.seconds ||
+          0;
+
+        return bTime - aTime;
+
+      }
+    );
+
+
+    const container =
+      document
+        .getElementById(
+          "communityPosts"
         );
 
-        return;
+
+    if(!posts.length){
+
+      container.innerHTML = `
+        <p>
+          No community posts yet.
+        </p>
+      `;
+
+      return;
 
     }
 
 
-    const d=
-    item.dayContent||{};
+    container.innerHTML =
+      posts
+        .map(
+          post => `
 
+            <div class="post">
 
-    let html=
+              <div class="post-author">
+                ${safe(
+                  post.name ||
+                  post.email ||
+                  "Member"
+                )}
+              </div>
 
-    `
+              <div class="post-date">
+                ${formatDate(post.createdAt)}
+              </div>
 
-    <h2>
-    ${safe(item.title)}
-    </h2>
-
-    <p>
-    ${safe(item.description||"")}
-    </p>
-
-    `;
-
-
-    const sections=[
-
-        [
-            "Movement",
-            d.movement,
-            d.movementInstructions
-        ],
-
-        [
-            "Hydration",
-            d.hydration,
-            d.hydrationInstructions
-        ],
-
-        [
-            "Protein",
-            d.protein,
-            d.proteinInstructions
-        ],
-
-        [
-            "Sleep",
-            d.sleep,
-            d.sleepInstructions
-        ],
-
-        [
-            "Nutrition",
-            d.nutrition,
-            ""
-        ],
-
-        [
-            "Mind / Stress",
-            d.mind,
-            ""
-        ],
-
-        [
-            "Sunlight",
-            d.sunlight,
-            ""
-        ],
-
-        [
-            "Recovery",
-            d.recovery,
-            ""
-        ]
-
-    ];
-
-
-    sections.forEach(
-    section=>{
-
-        if(section[1]){
-
-            html+=`
-
-            <div
-            class="content-section"
-            >
-
-                <h3>
-                ${section[0]}
-                </h3>
-
-                <p>
-                ${safe(section[1])}
-                </p>
-
-                ${
-                    section[2]
-                    ?
-                    `<p>${safe(section[2])}</p>`
-                    :
-                    ""
-                }
+              <div>
+                ${safe(
+                  post.content ||
+                  post.text ||
+                  ""
+                )}
+              </div>
 
             </div>
 
-            `;
+          `
+        )
+        .join("");
 
-        }
+  }
+  catch(error){
 
-    });
-
+    console.error(error);
 
     document
-    .getElementById(
-        "contentBox"
-    )
-    .innerHTML=
-    html;
+      .getElementById(
+        "communityPosts"
+      )
+      .innerHTML = `
+        <p>
+          Community is currently unavailable.
+        </p>
+      `;
 
+  }
 
-    openPage("content");
-
-};
-
+}
 
 
 /* =====================================================
    NAVIGATION
 ===================================================== */
 
-window.openPage=
+window.openPage =
 function(id,button){
 
-    document
+  document
     .querySelectorAll(".section")
     .forEach(
-        x=>
-        x.classList.remove("active")
+      section =>
+        section.classList.remove(
+          "active"
+        )
     );
 
 
-    document
-    .getElementById(id)
-    .classList.add("active");
+  const target =
+    document.getElementById(id);
 
 
-    document
+  if(target)
+    target.classList.add("active");
+
+
+  document
     .querySelectorAll(".nav button")
     .forEach(
-        x=>
-        x.classList.remove("active")
+      btn =>
+        btn.classList.remove(
+          "active"
+        )
     );
 
 
-    if(button){
-
-        button.classList.add("active");
-
-    }
+  if(button)
+    button.classList.add("active");
 
 
-    const titles={
+  const titles = {
 
-        home:"Home",
-        community:"Community",
-        classroom:"Classroom",
-        content:"Lesson",
-        progress:"Progress",
-        leaderboard:"Leaderboard",
-        profile:"Profile"
+    home:"Home",
+    community:"Community",
+    classroom:"Classroom",
+    content:"Lesson",
+    progress:"Progress",
+    leaderboard:"Leaderboard",
+    profile:"Profile"
 
-    };
+  };
 
 
-    document
+  document
     .getElementById(
-        "pageTitle"
+      "pageTitle"
     )
-    .textContent=
-    titles[id]||
+    .textContent =
+    titles[id] ||
     "Freedom Club";
 
 };
-
 
 
 /* =====================================================
    LOGOUT
 ===================================================== */
 
-window.logout=
+window.logout =
 async function(){
 
-    await signOut(auth);
+  await signOut(auth);
 
 };
 
 
-
 /* =====================================================
-   SECURITY DISPLAY HELPER
+   HELPERS
 ===================================================== */
 
 function safe(value){
 
-    return String(
-        value??""
-    )
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-    .replace(
-        /</g,
-        "&lt;"
-    )
-    .replace(
-        />/g,
-        "&gt;"
-    )
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-    .replace(
-        /'/g,
-        "&#039;"
-    );
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
+
+function formatDate(timestamp){
+
+  if(!timestamp)
+    return "";
+
+  try{
+
+    const date =
+      timestamp.toDate
+      ? timestamp.toDate()
+      : new Date(timestamp);
+
+    return date.toLocaleDateString();
+
+  }
+  catch{
+
+    return "";
+
+  }
+
+}
 
 </script>
 
 </body>
 </html>
+```
