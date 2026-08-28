@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Freedom Women's Health Club — Admin</title>
 
 <style>
+
 :root{
     --cream:#FBF8F3;
     --plum:#6E4A7E;
@@ -18,7 +19,8 @@
     --light:#F1EAF3;
     --border:#E6DDD3;
     --danger:#A44A4A;
-    --success:#557A5A;
+    --success:#5B8064;
+    --muted:#777;
 }
 
 *{
@@ -55,7 +57,7 @@ select{
 }
 
 textarea{
-    min-height:130px;
+    min-height:120px;
     resize:vertical;
 }
 
@@ -68,6 +70,10 @@ label{
 
 .form-group{
     margin-bottom:18px;
+}
+
+.hidden{
+    display:none!important;
 }
 
 /* =====================================================
@@ -109,7 +115,7 @@ label{
 }
 
 /* =====================================================
-   ADMIN
+   ADMIN LAYOUT
 ===================================================== */
 
 #adminApp{
@@ -188,6 +194,10 @@ label{
     font-size:13px;
 }
 
+/* =====================================================
+   BUTTONS
+===================================================== */
+
 .btn{
     border:0;
     background:var(--plum);
@@ -212,6 +222,15 @@ label{
 .btn-success{
     background:var(--success);
 }
+
+.btn-small{
+    padding:7px 10px;
+    font-size:12px;
+}
+
+/* =====================================================
+   SECTIONS
+===================================================== */
 
 .section{
     display:none;
@@ -246,7 +265,7 @@ label{
 }
 
 /* =====================================================
-   CLASSROOM
+   TOOLBAR
 ===================================================== */
 
 .toolbar{
@@ -257,6 +276,19 @@ label{
     gap:20px;
 }
 
+.toolbar h2{
+    margin-bottom:5px;
+}
+
+.toolbar p{
+    margin-top:0;
+    color:var(--muted);
+}
+
+/* =====================================================
+   TREE
+===================================================== */
+
 .tree{
     background:white;
     border:1px solid var(--border);
@@ -265,29 +297,28 @@ label{
 }
 
 .tree-item{
-    margin-bottom:7px;
+    margin-bottom:8px;
 }
 
 .tree-row{
     display:flex;
     align-items:center;
-    gap:8px;
+    gap:9px;
     padding:12px;
     border:1px solid var(--border);
     background:#FCFAF7;
     border-radius:9px;
-    flex-wrap:wrap;
 }
 
 .tree-title{
     flex:1;
     font-weight:bold;
-    min-width:180px;
 }
 
 .tree-meta{
     font-size:12px;
     color:#777;
+    white-space:nowrap;
 }
 
 .tree-toggle{
@@ -321,8 +352,31 @@ label{
     font-size:12px;
 }
 
+.badge{
+    display:inline-block;
+    padding:5px 8px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.badge-published{
+    background:#E8F2EA;
+    color:var(--success);
+}
+
+.badge-draft{
+    background:#F3E8E8;
+    color:var(--danger);
+}
+
+.badge-locked{
+    background:#EEEAF3;
+    color:var(--plum);
+}
+
 /* =====================================================
-   FORMS
+   FORM
 ===================================================== */
 
 .form-card{
@@ -333,11 +387,9 @@ label{
     padding:28px;
 }
 
-.form-actions{
-    display:flex;
-    gap:8px;
-    margin-top:20px;
-    flex-wrap:wrap;
+.form-card h2{
+    margin-top:0;
+    color:var(--plum);
 }
 
 .editor-section{
@@ -352,110 +404,131 @@ label{
     margin-top:0;
 }
 
-.help{
-    font-size:12px;
-    color:#777;
-    margin-top:6px;
+.form-actions{
+    display:flex;
+    gap:8px;
+    margin-top:25px;
+    flex-wrap:wrap;
 }
 
 /* =====================================================
    RICH TEXT
 ===================================================== */
 
+.rich-editor{
+    min-height:150px;
+    border:1px solid var(--border);
+    border-radius:9px;
+    padding:14px;
+    background:white;
+    line-height:1.6;
+}
+
+.rich-editor:focus{
+    outline:2px solid rgba(110,74,126,.2);
+}
+
 .editor-toolbar{
     display:flex;
     gap:5px;
     flex-wrap:wrap;
-    padding:8px;
-    background:#F8F4F0;
-    border:1px solid var(--border);
-    border-bottom:0;
-    border-radius:9px 9px 0 0;
+    margin-bottom:8px;
 }
 
 .editor-toolbar button{
     border:1px solid var(--border);
     background:white;
-    padding:7px 11px;
     border-radius:6px;
+    padding:7px 11px;
     font-weight:bold;
 }
 
-.rich-editor{
-    min-height:140px;
-    padding:13px;
-    border:1px solid var(--border);
-    border-radius:0 0 9px 9px;
-    background:white;
-    outline:none;
-}
-
-.rich-editor:focus{
-    border-color:var(--plum);
+.editor-toolbar button:hover{
+    background:var(--light);
 }
 
 /* =====================================================
-   MEDIA
+   IMAGE UPLOAD
 ===================================================== */
 
-.media-box{
-    border:1px dashed var(--taupe);
-    padding:18px;
+.upload-box{
+    border:2px dashed var(--border);
     border-radius:12px;
+    padding:18px;
     background:#FCFAF7;
 }
 
-.media-preview{
-    margin-top:12px;
-    display:none;
+.upload-box input[type=file]{
+    border:0;
+    padding:5px;
+    background:transparent;
 }
 
-.media-preview img{
-    max-width:100%;
-    max-height:260px;
-    border-radius:12px;
+.image-preview{
+    margin-top:12px;
+    max-width:240px;
+}
+
+.image-preview img{
+    width:100%;
+    max-height:180px;
     object-fit:cover;
-    border:1px solid var(--border);
-}
-
-.current-image{
-    margin-top:12px;
-}
-
-.current-image img{
-    width:220px;
-    max-width:100%;
-    border-radius:12px;
+    border-radius:10px;
     border:1px solid var(--border);
 }
 
 .upload-status{
-    font-size:12px;
     margin-top:8px;
-    color:#777;
+    font-size:13px;
+    color:var(--plum);
 }
 
-.upload-status.success{
-    color:var(--success);
+.progress{
+    width:100%;
+    height:8px;
+    background:#eee;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:8px;
 }
 
-.upload-status.error{
-    color:var(--danger);
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:var(--plum);
+    transition:width .2s;
 }
 
 /* =====================================================
-   CHECKBOX
+   CONTENT LINKS
 ===================================================== */
 
-.checkbox{
-    display:flex;
-    gap:8px;
-    align-items:center;
-    margin:15px 0;
+.link-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
 }
 
-.checkbox input{
-    width:auto;
+.link-card{
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:14px;
+    margin-top:10px;
+    background:#FCFAF7;
+}
+
+.link-card strong{
+    color:var(--plum);
+}
+
+/* =====================================================
+   DAY CONTENT
+===================================================== */
+
+.day-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
 }
 
 /* =====================================================
@@ -498,51 +571,63 @@ label{
    COMMUNITY
 ===================================================== */
 
-.community-grid{
+.community-admin-list{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
+    gap:15px;
 }
 
-.post{
+.community-post{
     background:white;
     border:1px solid var(--border);
     border-radius:15px;
-    padding:18px;
-    margin-bottom:14px;
+    padding:20px;
 }
 
-.post-header{
+.community-post.pinned{
+    border:2px solid var(--plum);
+    background:#FCF9FD;
+}
+
+.post-top{
     display:flex;
     justify-content:space-between;
-    gap:10px;
+    align-items:flex-start;
+    gap:15px;
 }
 
-.post-name{
+.post-author{
     font-weight:bold;
     color:var(--plum);
 }
 
 .post-date{
-    font-size:11px;
+    font-size:12px;
     color:#888;
 }
 
-.post-image{
-    margin-top:12px;
+.pin-label{
+    background:var(--plum);
+    color:white;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
 }
 
-.post-image img{
+.post-image{
     width:100%;
-    max-height:350px;
+    max-width:500px;
+    max-height:400px;
     object-fit:cover;
     border-radius:12px;
+    margin-top:12px;
 }
 
 .post-actions{
+    margin-top:15px;
     display:flex;
-    gap:7px;
-    margin-top:12px;
+    gap:8px;
+    flex-wrap:wrap;
 }
 
 /* =====================================================
@@ -562,31 +647,14 @@ label{
     color:var(--plum);
 }
 
-.preview-image{
-    width:100%;
-    max-height:400px;
-    object-fit:cover;
-    border-radius:15px;
-    margin-bottom:20px;
-}
-
-.preview-video{
-    margin-top:20px;
-}
-
-.preview-video iframe{
-    width:100%;
-    min-height:400px;
-    border:0;
+.preview img{
+    max-width:100%;
     border-radius:12px;
+    margin:10px 0;
 }
 
-.link-box{
-    padding:12px;
-    background:#F8F4F0;
-    border-radius:8px;
-    margin-top:10px;
-    word-break:break-word;
+.preview a{
+    color:var(--plum);
 }
 
 .empty{
@@ -595,36 +663,33 @@ label{
     color:#888;
 }
 
-.status-badge{
-    display:inline-block;
-    padding:5px 9px;
-    border-radius:20px;
-    font-size:11px;
-    background:#EEE;
-}
-
-.status-published{
-    background:#E7F1E7;
-    color:var(--success);
-}
-
-.status-draft{
-    background:#F2ECE7;
-    color:#777;
-}
-
-.lock-info{
-    padding:12px;
-    background:#F5F0F7;
-    border-left:4px solid var(--plum);
-    border-radius:8px;
+.checkbox{
+    display:flex;
+    gap:8px;
+    align-items:center;
     margin:15px 0;
-    font-size:13px;
+}
+
+.checkbox input{
+    width:auto;
 }
 
 /* =====================================================
    MOBILE
 ===================================================== */
+
+@media(max-width:1000px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .day-grid,
+    .link-row{
+        grid-template-columns:1fr;
+    }
+
+}
 
 @media(max-width:900px){
 
@@ -643,18 +708,15 @@ label{
         text-align:center;
     }
 
+    .nav button:first-letter{
+        font-size:20px;
+    }
+
     .main{
         margin-left:70px;
         padding:20px;
     }
 
-    .stats{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .community-grid{
-        grid-template-columns:1fr;
-    }
 }
 
 @media(max-width:600px){
@@ -663,25 +725,28 @@ label{
         grid-template-columns:1fr;
     }
 
+    .tree-row{
+        align-items:flex-start;
+        flex-wrap:wrap;
+    }
+
+    .tree-meta{
+        width:100%;
+    }
+
     .topbar{
         align-items:flex-start;
         flex-direction:column;
     }
 
-    .toolbar{
-        align-items:flex-start;
-        flex-direction:column;
-    }
-
-    .table-card{
-        overflow-x:auto;
-    }
 }
+
 </style>
 
 </head>
 
 <body>
+
 
 <!-- =====================================================
      LOGIN
@@ -689,51 +754,53 @@ label{
 
 <div id="loginPage">
 
-```
 <div class="login-box">
 
-    <h1>
-        FREEDOM WOMEN'S<br>
-        HEALTH CLUB
-    </h1>
+<h1>
+FREEDOM WOMEN'S<br>
+HEALTH CLUB
+</h1>
 
-    <p>Admin Panel</p>
+<p>Admin Panel</p>
 
-    <div class="form-group">
-        <label>Email</label>
-        <input
-            id="email"
-            type="email"
-            placeholder="Admin email"
-        >
-    </div>
+<div class="form-group">
 
-    <div class="form-group">
-        <label>Password</label>
-        <input
-            id="password"
-            type="password"
-            placeholder="Password"
-        >
-    </div>
+<label>Email</label>
 
-    <button
-        id="loginBtn"
-        class="btn"
-        style="width:100%"
-    >
-        Login
-    </button>
-
-    <p
-        id="loginError"
-        class="login-error"
-    ></p>
+<input
+id="email"
+type="email"
+placeholder="Admin email"
+>
 
 </div>
-```
+
+<div class="form-group">
+
+<label>Password</label>
+
+<input
+id="password"
+type="password"
+placeholder="Password"
+>
 
 </div>
+
+<button
+id="loginBtn"
+class="btn"
+style="width:100%"
+>
+Login
+</button>
+
+<p id="loginError" class="login-error"></p>
+
+</div>
+
+</div>
+
 
 <!-- =====================================================
      ADMIN APP
@@ -743,140 +810,117 @@ label{
 
 <aside class="sidebar">
 
-```
 <div class="logo">
 
-    <h2>
-        FREEDOM<br>
-        WOMEN'S HEALTH CLUB
-    </h2>
+<h2>
+FREEDOM<br>
+WOMEN'S HEALTH CLUB
+</h2>
 
-    <small>Admin Panel</small>
+<small>Admin Panel</small>
 
 </div>
 
 <nav class="nav">
 
-    <button
-        class="active"
-        onclick="openSection('dashboard',this)"
-    >
-        🏠 Dashboard
-    </button>
+<button
+class="active"
+onclick="openSection('dashboard',this)"
+>
+🏠 Dashboard
+</button>
 
-    <button
-        onclick="openSection('members',this)"
-    >
-        👥 Members
-    </button>
+<button
+onclick="openSection('members',this)"
+>
+👥 Members
+</button>
 
-    <button
-        onclick="openSection('classroom',this)"
-    >
-        📚 Classroom
-    </button>
+<button
+onclick="openSection('classroom',this)"
+>
+📚 Classroom
+</button>
 
-    <button
-        onclick="openSection('community',this)"
-    >
-        💬 Community
-    </button>
+<button
+onclick="openSection('community',this)"
+>
+💬 Community
+</button>
 
-    <button
-        onclick="openSection('leaderboard',this)"
-    >
-        🏆 Leaderboard
-    </button>
+<button
+onclick="openSection('leaderboard',this)"
+>
+🏆 Leaderboard
+</button>
 
-    <button
-        onclick="openSection('settings',this)"
-    >
-        ⚙️ Settings
-    </button>
+<button
+onclick="openSection('settings',this)"
+>
+⚙️ Settings
+</button>
 
 </nav>
-```
 
 </aside>
+
 
 <main class="main">
 
 <div class="topbar">
 
-```
 <h1 id="pageTitle">
-    Dashboard
+Dashboard
 </h1>
 
 <div>
 
-    <span class="admin-pill">
-        Admin
-    </span>
+<span class="admin-pill">
+Admin
+</span>
 
-    <button
-        class="btn btn-secondary"
-        onclick="logout()"
-    >
-        Logout
-    </button>
-
-</div>
-```
+<button
+class="btn btn-secondary"
+onclick="logout()"
+>
+Logout
+</button>
 
 </div>
+
+</div>
+
 
 <!-- =====================================================
      DASHBOARD
 ===================================================== -->
 
 <section
-    id="dashboard"
-    class="section active"
+id="dashboard"
+class="section active"
 >
 
-```
 <div class="stats">
 
-    <div class="card">
-        Members
-        <div
-            class="stat"
-            id="memberCount"
-        >
-            0
-        </div>
-    </div>
+<div class="card">
+Members
+<div class="stat" id="memberCount">0</div>
+</div>
 
-    <div class="card">
-        Active Members
-        <div
-            class="stat"
-            id="activeCount"
-        >
-            0
-        </div>
-    </div>
+<div class="card">
+Active Members
+<div class="stat" id="activeCount">0</div>
+</div>
 
-    <div class="card">
-        Classroom Items
-        <div
-            class="stat"
-            id="classroomCount"
-        >
-            0
-        </div>
-    </div>
+<div class="card">
+Classroom Items
+<div class="stat" id="classroomCount">0</div>
+</div>
 
-    <div class="card">
-        Community Posts
-        <div
-            class="stat"
-            id="communityCount"
-        >
-            0
-        </div>
-    </div>
+<div class="card">
+Community Posts
+<div class="stat" id="communityCount">0</div>
+</div>
 
 </div>
 
@@ -884,58 +928,41 @@ label{
 
 <div class="card">
 
-    <h3>
-        Freedom Women's Health Club
-    </h3>
+<h3>
+Welcome to your Freedom Club Admin Panel
+</h3>
 
-    <p>
-        Build your 90-Day Journey from here.
-    </p>
-
-    <p>
-        You can publish future content in advance.
-        Members will see the content card but it will remain
-        locked until their assigned program day.
-    </p>
-
-    <div class="lock-info">
-
-        🔒 <b>How locked content works:</b><br><br>
-
-        Example: You publish Day 20 today.
-        A member currently on Day 5 can see Day 20,
-        but cannot open it until Day 20.
-
-    </div>
+<p>
+Create and manage your 90-day classroom, member access,
+community posts and progress from here.
+</p>
 
 </div>
-```
 
 </section>
+
 
 <!-- =====================================================
      MEMBERS
 ===================================================== -->
 
 <section
-    id="members"
-    class="section"
+id="members"
+class="section"
 >
 
 <div class="table-card">
 
 <div class="table-head">
 
-```
 <h2>Members</h2>
 
 <button
-    class="btn"
-    onclick="openSection('addMember')"
+class="btn"
+onclick="openSection('addMember')"
 >
-    + Add Member
++ Add Member
 </button>
-```
 
 </div>
 
@@ -944,12 +971,12 @@ label{
 <thead>
 
 <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Phone</th>
-    <th>Start Date</th>
-    <th>Access</th>
-    <th>Status</th>
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Start Date</th>
+<th>Access</th>
+<th>Status</th>
 </tr>
 
 </thead>
@@ -957,10 +984,7 @@ label{
 <tbody id="membersTable">
 
 <tr>
-<td
-    colspan="6"
-    class="empty"
->
+<td colspan="6" class="empty">
 Loading...
 </td>
 </tr>
@@ -973,13 +997,14 @@ Loading...
 
 </section>
 
+
 <!-- =====================================================
      ADD MEMBER
 ===================================================== -->
 
 <section
-    id="addMember"
-    class="section"
+id="addMember"
+class="section"
 >
 
 <div class="form-card">
@@ -1038,25 +1063,15 @@ Loading...
 <button
 class="btn"
 onclick="saveMember()"
-
 >
-
-```
 Save Member
-```
-
 </button>
 
 <button
 class="btn btn-secondary"
 onclick="openSection('members')"
-
 >
-
-```
 Cancel
-```
-
 </button>
 
 </div>
@@ -1065,13 +1080,14 @@ Cancel
 
 </section>
 
+
 <!-- =====================================================
      CLASSROOM
 ===================================================== -->
 
 <section
-    id="classroom"
-    class="section"
+id="classroom"
+class="section"
 >
 
 <div class="toolbar">
@@ -1089,13 +1105,8 @@ Phase → Week → Day
 <button
 class="btn"
 onclick="newItem()"
-
 >
-
-```
 + Add Content
-```
-
 </button>
 
 </div>
@@ -1114,13 +1125,14 @@ No classroom content yet.
 
 </section>
 
+
 <!-- =====================================================
-     ITEM EDITOR
+     CLASSROOM EDITOR
 ===================================================== -->
 
 <section
-    id="itemEditor"
-    class="section"
+id="itemEditor"
+class="section"
 >
 
 <div class="form-card">
@@ -1129,7 +1141,12 @@ No classroom content yet.
 Add Classroom Content
 </h2>
 
-<!-- TYPE -->
+
+<!-- BASIC -->
+
+<div class="editor-section">
+
+<h3>Basic Information</h3>
 
 <div class="form-group">
 
@@ -1153,7 +1170,6 @@ Day / Lesson
 
 </div>
 
-<!-- PARENT -->
 
 <div class="form-group">
 
@@ -1167,14 +1183,8 @@ Top Level
 
 </select>
 
-<div class="help">
-Example: select Phase 1 when creating Week 1.
-Select Week 1 when creating Day 1.
 </div>
 
-</div>
-
-<!-- TITLE -->
 
 <div class="form-group">
 
@@ -1182,13 +1192,11 @@ Select Week 1 when creating Day 1.
 
 <input
 id="itemTitle"
-placeholder="Example: Phase 1 — Reset & Foundation"
-
+placeholder="Example: Phase 1 — Reset"
 >
 
 </div>
 
-<!-- DESCRIPTION -->
 
 <div class="form-group">
 
@@ -1199,58 +1207,38 @@ placeholder="Example: Phase 1 — Reset & Foundation"
 <button
 type="button"
 onclick="formatText('bold')"
-
 >
-
-```
 B
-```
-
 </button>
 
 <button
 type="button"
 onclick="formatText('italic')"
-
 >
-
-```
 I
-```
-
 </button>
 
 <button
 type="button"
 onclick="formatText('underline')"
-
 >
-
-```
 U
-```
-
 </button>
 
 </div>
 
 <div
-    id="itemDescription"
-    class="rich-editor"
-    contenteditable="true"
+id="itemDescription"
+class="rich-editor"
+contenteditable="true"
 ></div>
 
-<div class="help">
-You can select words and make them bold, italic or underlined.
 </div>
 
-</div>
-
-<!-- UNLOCK -->
 
 <div class="form-group">
 
-<label>Unlock / Program Day</label>
+<label>Unlock Day</label>
 
 <input
 id="unlockDay"
@@ -1258,21 +1246,14 @@ type="number"
 min="1"
 max="90"
 value="1"
-
 >
 
-<div class="help">
-The content can be published now while remaining locked for members
-until this program day.
 </div>
 
-</div>
-
-<!-- PUBLISH -->
 
 <div class="form-group">
 
-<label>Publication Status</label>
+<label>Content Status</label>
 
 <select id="itemStatus">
 
@@ -1281,32 +1262,32 @@ Published — visible to members
 </option>
 
 <option value="draft">
-Draft — admin only
+Draft — hidden from members
 </option>
 
 </select>
 
 </div>
 
-<!-- CHILDREN -->
 
 <div class="checkbox">
 
 <input
 id="allowChildren"
 type="checkbox"
-
 >
 
 <label
 for="allowChildren"
 style="margin:0"
-
 >
-
-Allow children inside this item </label>
+Allow content inside this item
+</label>
 
 </div>
+
+</div>
+
 
 <!-- =====================================================
      IMAGE
@@ -1316,61 +1297,58 @@ Allow children inside this item </label>
 
 <h3>📷 Image</h3>
 
-<p>
-Add a beautiful image to your Phase, Week or Day.
-The image is stored separately from the classroom text
-so saving content remains fast.
+<p style="color:#777;font-size:13px">
+Add a photo for this phase, week or day.
+The image is uploaded separately so saving the text/content stays fast.
 </p>
 
-<div class="media-box">
-
-<label>
-Upload Image
-</label>
+<div class="upload-box">
 
 <input
 id="itemImage"
 type="file"
 accept="image/*"
-onchange="previewImage(this)"
-
 >
 
 <div
-    id="imagePreview"
-    class="media-preview"
->
-
-<img
-id="previewImage"
-src=""
-alt="Preview"
-
->
-
-</div>
-
-<div
-    id="currentImage"
-    class="current-image"
+id="itemImagePreview"
+class="image-preview"
 ></div>
 
 <div
-    id="imageStatus"
-    class="upload-status"
+id="imageUploadStatus"
+class="upload-status"
+></div>
+
+<div
+id="imageProgress"
+class="progress hidden"
+>
+
+<div
+id="imageProgressBar"
+class="progress-bar"
 ></div>
 
 </div>
 
 </div>
+
+<input
+id="existingImageUrl"
+type="hidden"
+>
+
+</div>
+
 
 <!-- =====================================================
-     VIDEO / DRIVE
+     LINKS
 ===================================================== -->
 
 <div class="editor-section">
 
-<h3>🎥 Video / Google Drive</h3>
+<h3>🎥 Videos & Google Drive</h3>
 
 <div class="form-group">
 
@@ -1380,242 +1358,154 @@ alt="Preview"
 id="videoUrl"
 type="url"
 placeholder="https://youtube.com/..."
-
 >
-
-<div class="help">
-Use this for YouTube or another video link.
-</div>
 
 </div>
 
 <div class="form-group">
 
-<label>Google Drive URL</label>
+<label>Google Drive Link</label>
 
 <input
 id="driveUrl"
 type="url"
 placeholder="https://drive.google.com/..."
-
 >
 
-<div class="help">
-Use this for Google Drive files, PDFs, worksheets or videos.
 </div>
+
+<div class="form-group">
+
+<label>Button / Resource Name</label>
+
+<input
+id="resourceLabel"
+placeholder="Watch Video / Open Workbook / View Recipe"
+>
 
 </div>
 
 </div>
+
 
 <!-- =====================================================
      DAY CONTENT
 ===================================================== -->
 
 <div
-    id="dayContent"
-    style="display:none"
+id="dayContent"
+style="display:none"
 >
 
 <div class="editor-section">
 
 <h3>Movement</h3>
 
-<div class="form-group">
+<div class="day-grid">
 
+<div>
 <label>Target</label>
-
 <input id="movement">
-
 </div>
 
-<div class="form-group">
-
+<div>
 <label>Instructions</label>
-
-<div class="editor-toolbar">
-
-<button
-type="button"
-onclick="formatEditor('movementInstructions','bold')"
-
->
-
-B </button>
-
+<textarea id="movementInstructions"></textarea>
 </div>
-
-<div
-    id="movementInstructions"
-    class="rich-editor"
-    contenteditable="true"
-></div>
 
 </div>
 
 </div>
+
 
 <div class="editor-section">
 
 <h3>Hydration</h3>
 
-<div class="form-group">
+<div class="day-grid">
 
+<div>
 <label>Target</label>
-
 <input id="hydration">
-
 </div>
 
-<div class="form-group">
-
+<div>
 <label>Instructions</label>
-
-<div class="editor-toolbar">
-
-<button
-type="button"
-onclick="formatEditor('hydrationInstructions','bold')"
-
->
-
-B </button>
-
+<textarea id="hydrationInstructions"></textarea>
 </div>
-
-<div
-    id="hydrationInstructions"
-    class="rich-editor"
-    contenteditable="true"
-></div>
 
 </div>
 
 </div>
+
 
 <div class="editor-section">
 
 <h3>Protein</h3>
 
-<div class="form-group">
+<div class="day-grid">
 
+<div>
 <label>Target</label>
-
 <input id="protein">
-
 </div>
 
-<div class="form-group">
-
+<div>
 <label>Instructions</label>
-
-<div class="editor-toolbar">
-
-<button
-type="button"
-onclick="formatEditor('proteinInstructions','bold')"
-
->
-
-B </button>
-
+<textarea id="proteinInstructions"></textarea>
 </div>
-
-<div
-    id="proteinInstructions"
-    class="rich-editor"
-    contenteditable="true"
-></div>
 
 </div>
 
 </div>
+
 
 <div class="editor-section">
 
 <h3>Sleep</h3>
 
-<div class="form-group">
+<div class="day-grid">
 
+<div>
 <label>Target</label>
-
 <input id="sleep">
-
 </div>
 
-<div class="form-group">
-
+<div>
 <label>Instructions</label>
-
-<div class="editor-toolbar">
-
-<button
-type="button"
-onclick="formatEditor('sleepInstructions','bold')"
-
->
-
-B </button>
-
+<textarea id="sleepInstructions"></textarea>
 </div>
-
-<div
-    id="sleepInstructions"
-    class="rich-editor"
-    contenteditable="true"
-></div>
 
 </div>
 
 </div>
+
 
 <div class="editor-section">
 
 <h3>Nutrition</h3>
 
-<div class="editor-toolbar">
-
-<button
-type="button"
-onclick="formatEditor('nutrition','bold')"
-
->
-
-B </button>
-
-</div>
-
 <div
-    id="nutrition"
-    class="rich-editor"
-    contenteditable="true"
+id="nutrition"
+class="rich-editor"
+contenteditable="true"
 ></div>
 
 </div>
+
 
 <div class="editor-section">
 
 <h3>Mind / Stress</h3>
 
-<div class="editor-toolbar">
-
-<button
-type="button"
-onclick="formatEditor('mind','bold')"
-
->
-
-B </button>
-
-</div>
-
 <div
-    id="mind"
-    class="rich-editor"
-    contenteditable="true"
+id="mind"
+class="rich-editor"
+contenteditable="true"
 ></div>
 
 </div>
+
 
 <div class="editor-section">
 
@@ -1625,256 +1515,278 @@ B </button>
 
 </div>
 
+
 <div class="editor-section">
 
 <h3>Recovery</h3>
 
-<div class="editor-toolbar">
-
-<button
-type="button"
-onclick="formatEditor('recovery','bold')"
-
->
-
-B </button>
-
-</div>
-
 <div
-    id="recovery"
-    class="rich-editor"
-    contenteditable="true"
+id="recovery"
+class="rich-editor"
+contenteditable="true"
 ></div>
 
 </div>
 
 </div>
 
-<!-- ACTIONS -->
 
 <div class="form-actions">
 
 <button
-class="btn"
 id="saveItemBtn"
+class="btn"
 onclick="saveItem()"
-
 >
-
-```
 Save Content
-```
-
 </button>
 
 <button
 class="btn btn-secondary"
 onclick="openSection('classroom')"
-
 >
-
-```
 Cancel
-```
-
 </button>
 
 </div>
 
 <p
-    id="saveStatus"
-    class="upload-status"
+id="saveItemStatus"
+style="color:var(--plum)"
 ></p>
 
 </div>
 
 </section>
 
+
 <!-- =====================================================
      PREVIEW
 ===================================================== -->
 
 <section
-    id="preview"
-    class="section"
+id="preview"
+class="section"
 >
 
 <button
 class="btn btn-secondary"
 onclick="openSection('classroom')"
-
 >
-
-← Back </button>
+← Back
+</button>
 
 <br><br>
 
 <div
-    id="previewContent"
-    class="preview"
+id="previewContent"
+class="preview"
 ></div>
 
 </section>
+
 
 <!-- =====================================================
      COMMUNITY
 ===================================================== -->
 
 <section
-    id="community"
-    class="section"
+id="community"
+class="section"
 >
 
-<div class="community-grid">
+<div class="toolbar">
 
-<div class="form-card">
+<div>
 
-<h2>Create Community Post</h2>
+<h2>Community</h2>
 
-<div class="form-group">
-
-<label>Post Title</label>
-
-<input
-id="communityTitle"
-placeholder="Example: Today's Meal Inspiration"
-
->
-
-</div>
-
-<div class="form-group">
-
-<label>Post Content</label>
-
-<div class="editor-toolbar">
-
-<button
-type="button"
-onclick="formatEditor('communityContent','bold')"
-
->
-
-B </button>
-
-<button
-type="button"
-onclick="formatEditor('communityContent','italic')"
-
->
-
-I </button>
-
-</div>
-
-<div
-    id="communityContent"
-    class="rich-editor"
-    contenteditable="true"
-></div>
-
-</div>
-
-<div class="editor-section">
-
-<h3>📷 Share Image</h3>
-
-<div class="media-box">
-
-<input
-id="communityImage"
-type="file"
-accept="image/*"
-onchange="previewCommunityImage(this)"
-
->
-
-<div
-    id="communityImagePreview"
-    class="media-preview"
->
-
-<img
-id="communityPreviewImg"
-src=""
-alt="Community image"
-
->
-
-</div>
-
-<div
-    id="communityImageStatus"
-    class="upload-status"
-></div>
-
-</div>
-
-</div>
-
-<div class="form-group">
-
-<label>Video URL — optional</label>
-
-<input
-id="communityVideo"
-type="url"
-placeholder="https://..."
-
->
-
-</div>
-
-<div class="form-group">
-
-<label>Google Drive URL — optional</label>
-
-<input
-id="communityDrive"
-type="url"
-placeholder="https://drive.google.com/..."
-
->
+<p>
+Manage member posts, images and pinned announcements.
+</p>
 
 </div>
 
 <button
 class="btn"
-id="communitySaveBtn"
-onclick="saveCommunityPost()"
+onclick="openSection('communityComposer')"
+>
++ Create Post
+</button>
 
+</div>
+
+
+<div
+id="communityList"
+class="community-admin-list"
 >
 
-Post to Community </button>
-
-</div>
-
-<div>
-
-<h2>Community Posts</h2>
-
-<div id="communityPosts">
-
 <div class="empty">
-Loading...
-</div>
-
-</div>
-
+Loading community...
 </div>
 
 </div>
 
 </section>
 
+
+<!-- =====================================================
+     COMMUNITY COMPOSER
+===================================================== -->
+
+<section
+id="communityComposer"
+class="section"
+>
+
+<div class="form-card">
+
+<h2 id="communityEditorHeading">
+Create Community Post
+</h2>
+
+
+<div class="form-group">
+
+<label>Post Text</label>
+
+<div class="editor-toolbar">
+
+<button
+type="button"
+onclick="formatCommunity('bold')"
+>
+B
+</button>
+
+<button
+type="button"
+onclick="formatCommunity('italic')"
+>
+I
+</button>
+
+<button
+type="button"
+onclick="formatCommunity('underline')"
+>
+U
+</button>
+
+</div>
+
+<div
+id="communityText"
+class="rich-editor"
+contenteditable="true"
+></div>
+
+</div>
+
+
+<div class="editor-section">
+
+<h3>📷 Add Image</h3>
+
+<div class="upload-box">
+
+<input
+id="communityImage"
+type="file"
+accept="image/*"
+>
+
+<div
+id="communityImagePreview"
+class="image-preview"
+></div>
+
+<div
+id="communityUploadStatus"
+class="upload-status"
+></div>
+
+<div
+id="communityProgress"
+class="progress hidden"
+>
+
+<div
+id="communityProgressBar"
+class="progress-bar"
+></div>
+
+</div>
+
+</div>
+
+<input
+id="communityExistingImage"
+type="hidden"
+>
+
+</div>
+
+
+<div class="editor-section">
+
+<h3>📌 Pin Post</h3>
+
+<div class="checkbox">
+
+<input
+id="communityPinned"
+type="checkbox"
+>
+
+<label
+for="communityPinned"
+style="margin:0"
+>
+Pin this post at the top of the community
+</label>
+
+</div>
+
+</div>
+
+
+<div class="form-actions">
+
+<button
+class="btn"
+onclick="saveCommunityPost()"
+>
+Save Post
+</button>
+
+<button
+class="btn btn-secondary"
+onclick="openSection('community')"
+>
+Cancel
+</button>
+
+</div>
+
+<p
+id="communitySaveStatus"
+style="color:var(--plum)"
+></p>
+
+</div>
+
+</section>
+
+
 <!-- =====================================================
      LEADERBOARD
 ===================================================== -->
 
 <section
-    id="leaderboard"
-    class="section"
+id="leaderboard"
+class="section"
 >
 
 <div class="card">
@@ -1882,20 +1794,21 @@ Loading...
 <h2>Leaderboard</h2>
 
 <p>
-Member points can be connected to progress.
+Member points will be connected to progress.
 </p>
 
 </div>
 
 </section>
 
+
 <!-- =====================================================
      SETTINGS
 ===================================================== -->
 
 <section
-    id="settings"
-    class="section"
+id="settings"
+class="section"
 >
 
 <div class="card">
@@ -1910,14 +1823,17 @@ Freedom Women's Health Club settings.
 
 </section>
 
+
 </main>
+
 </div>
 
-<!-- =====================================================
-     FIREBASE
-===================================================== -->
 
 <script type="module">
+
+/* =====================================================
+   FIREBASE
+===================================================== */
 
 import {
     initializeApp
@@ -1944,7 +1860,9 @@ import {
     doc,
     updateDoc,
     deleteDoc,
-    serverTimestamp
+    serverTimestamp,
+    query,
+    orderBy
 }
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
@@ -1953,16 +1871,12 @@ from
 import {
     getStorage,
     ref,
-    uploadBytes,
+    uploadBytesResumable,
     getDownloadURL
 }
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
 
-
-/* =====================================================
-   FIREBASE CONFIG
-===================================================== */
 
 const firebaseConfig = {
 
@@ -2004,9 +1918,10 @@ const ADMIN =
 "mahnoordietitian3@gmail.com";
 
 
-let items = [];
+let items=[];
+let editingId=null;
 
-let editingId = null;
+let editingCommunityId=null;
 
 
 /* =====================================================
@@ -2015,7 +1930,7 @@ let editingId = null;
 
 onAuthStateChanged(
 auth,
-user => {
+user=>{
 
     if(!user){
 
@@ -2031,9 +1946,7 @@ user => {
     }
 
 
-    if(
-        user.email !== ADMIN
-    ){
+    if(user.email!==ADMIN){
 
         alert(
             "This account is not the admin account."
@@ -2071,13 +1984,13 @@ document
 "click",
 async()=>{
 
-    const email =
+    const email=
     document
     .getElementById("email")
     .value
     .trim();
 
-    const password =
+    const password=
     document
     .getElementById("password")
     .value;
@@ -2099,7 +2012,7 @@ async()=>{
 
         document
         .getElementById("loginError")
-        .textContent =
+        .textContent=
         error.message;
 
     }
@@ -2107,7 +2020,7 @@ async()=>{
 });
 
 
-window.logout =
+window.logout=
 async function(){
 
     await signOut(auth);
@@ -2119,7 +2032,7 @@ async function(){
    NAVIGATION
 ===================================================== */
 
-window.openSection =
+window.openSection=
 function(id,button){
 
     document
@@ -2129,12 +2042,12 @@ function(id,button){
     );
 
 
-    const section =
+    const section=
     document.getElementById(id);
 
-
-    if(section)
+    if(section){
         section.classList.add("active");
+    }
 
 
     document
@@ -2144,8 +2057,9 @@ function(id,button){
     );
 
 
-    if(button)
+    if(button){
         button.classList.add("active");
+    }
 
 
     const names={
@@ -2158,15 +2072,16 @@ function(id,button){
         settings:"Settings",
         addMember:"Add Member",
         itemEditor:"Classroom Editor",
-        preview:"Preview"
+        preview:"Preview",
+        communityComposer:"Community Post"
 
     };
 
 
     document
     .getElementById("pageTitle")
-    .textContent =
-    names[id] || "Admin Panel";
+    .textContent=
+    names[id]||"Admin Panel";
 
 };
 
@@ -2179,63 +2094,46 @@ async function loadMembers(){
 
     try{
 
-        const snap =
+        const snap=
         await getDocs(
-            collection(
-                db,
-                "members"
-            )
+            collection(db,"members")
         );
 
 
-        const table =
-        document
-        .getElementById(
+        const table=
+        document.getElementById(
             "membersTable"
         );
 
 
         let html="";
-
         let active=0;
 
 
-        snap.forEach(
-        s=>{
+        snap.forEach(s=>{
 
             const m=s.data();
 
-            if(m.status==="Active")
+            if(m.status==="Active"){
                 active++;
+            }
 
 
-            html += `
+            html+=`
 
             <tr>
 
-            <td>
-            ${safe(m.name)}
-            </td>
+                <td>${safe(m.name)}</td>
 
-            <td>
-            ${safe(m.email)}
-            </td>
+                <td>${safe(m.email)}</td>
 
-            <td>
-            ${safe(m.phone)}
-            </td>
+                <td>${safe(m.phone)}</td>
 
-            <td>
-            ${safe(m.startDate)}
-            </td>
+                <td>${safe(m.startDate)}</td>
 
-            <td>
-            Day ${safe(m.accessUntilDay)}
-            </td>
+                <td>Day ${safe(m.accessUntilDay)}</td>
 
-            <td>
-            ${safe(m.status)}
-            </td>
+                <td>${safe(m.status)}</td>
 
             </tr>
 
@@ -2249,12 +2147,14 @@ async function loadMembers(){
             html=`
 
             <tr>
-            <td
+
+                <td
                 colspan="6"
                 class="empty"
-            >
-            No members yet.
-            </td>
+                >
+                No members yet.
+                </td>
+
             </tr>
 
             `;
@@ -2279,7 +2179,7 @@ async function loadMembers(){
     catch(error){
 
         console.error(
-            "MEMBERS ERROR:",
+            "MEMBERS ERROR",
             error
         );
 
@@ -2288,64 +2188,42 @@ async function loadMembers(){
 }
 
 
-window.saveMember =
+window.saveMember=
 async function(){
 
-    const name =
-    document
-    .getElementById("mName")
-    .value.trim();
+    const name=
+    value("mName").trim();
 
-    const email =
-    document
-    .getElementById("mEmail")
-    .value.trim();
+    const email=
+    value("mEmail").trim();
 
-    const phone =
-    document
-    .getElementById("mPhone")
-    .value.trim();
+    const phone=
+    value("mPhone").trim();
 
-    const startDate =
-    document
-    .getElementById("mStart")
-    .value;
+    const startDate=
+    value("mStart");
 
-    const accessUntilDay =
-    Number(
-        document
-        .getElementById("mAccess")
-        .value
-    );
+    const accessUntilDay=
+    Number(value("mAccess"));
 
-    const status =
-    document
-    .getElementById("mStatus")
-    .value;
+    const status=
+    value("mStatus");
 
 
-    if(
-        !name ||
-        !email ||
-        !startDate
-    ){
+    if(!name||!email||!startDate){
 
         alert(
             "Please enter name, email and start date."
         );
 
         return;
-
     }
 
 
     try{
 
         await addDoc(
-            collection(
-                db,
-                "members"
-            ),
+            collection(db,"members"),
             {
 
                 name,
@@ -2362,27 +2240,10 @@ async function(){
         );
 
 
-        alert(
-            "Member saved."
-        );
+        alert("Member saved.");
 
 
-        document
-        .getElementById("mName")
-        .value="";
-
-        document
-        .getElementById("mEmail")
-        .value="";
-
-        document
-        .getElementById("mPhone")
-        .value="";
-
-        document
-        .getElementById("mStart")
-        .value="";
-
+        clearMemberForm();
 
         await loadMembers();
 
@@ -2395,13 +2256,28 @@ async function(){
         console.error(error);
 
         alert(
-            "Firebase error: "+
+            "Firebase error:\n"+
             error.message
         );
 
     }
 
 };
+
+
+function clearMemberForm(){
+
+    [
+        "mName",
+        "mEmail",
+        "mPhone",
+        "mStart"
+    ]
+    .forEach(id=>{
+        document.getElementById(id).value="";
+    });
+
+}
 
 
 /* =====================================================
@@ -2412,20 +2288,16 @@ async function loadClassroom(){
 
     try{
 
-        const snap =
+        const snap=
         await getDocs(
-            collection(
-                db,
-                "classroom"
-            )
+            collection(db,"classroom")
         );
 
 
         items=[];
 
 
-        snap.forEach(
-        s=>{
+        snap.forEach(s=>{
 
             items.push({
 
@@ -2435,6 +2307,13 @@ async function loadClassroom(){
             });
 
         });
+
+
+        items.sort(
+            (a,b)=>
+            Number(a.order||0)-
+            Number(b.order||0)
+        );
 
 
         document
@@ -2451,12 +2330,13 @@ async function loadClassroom(){
 
     catch(error){
 
-        console.error(error);
+        console.error(
+            "CLASSROOM ERROR",
+            error
+        );
 
         document
-        .getElementById(
-            "treeContainer"
-        )
+        .getElementById("treeContainer")
         .innerHTML=`
 
         <div class="empty">
@@ -2477,10 +2357,10 @@ async function loadClassroom(){
 
 
 /* =====================================================
-   NEW ITEM
+   NEW CLASSROOM ITEM
 ===================================================== */
 
-window.newItem =
+window.newItem=
 function(){
 
     editingId=null;
@@ -2494,15 +2374,132 @@ function(){
 };
 
 
+function clearEditor(){
+
+    document
+    .getElementById("editorHeading")
+    .textContent=
+    "Add Classroom Content";
+
+
+    document
+    .getElementById("itemType")
+    .value=
+    "module";
+
+
+    document
+    .getElementById("itemParent")
+    .value="";
+
+
+    document
+    .getElementById("itemTitle")
+    .value="";
+
+
+    document
+    .getElementById("itemDescription")
+    .innerHTML="";
+
+
+    document
+    .getElementById("unlockDay")
+    .value=1;
+
+
+    document
+    .getElementById("itemStatus")
+    .value=
+    "published";
+
+
+    document
+    .getElementById("allowChildren")
+    .checked=false;
+
+
+    document
+    .getElementById("existingImageUrl")
+    .value="";
+
+
+    document
+    .getElementById("itemImage")
+    .value="";
+
+
+    document
+    .getElementById("itemImagePreview")
+    .innerHTML="";
+
+
+    document
+    .getElementById("imageUploadStatus")
+    .textContent="";
+
+
+    document
+    .getElementById("imageProgress")
+    .classList.add("hidden");
+
+
+    document
+    .getElementById("videoUrl")
+    .value="";
+
+
+    document
+    .getElementById("driveUrl")
+    .value="";
+
+
+    document
+    .getElementById("resourceLabel")
+    .value="";
+
+
+    [
+        "movement",
+        "movementInstructions",
+        "hydration",
+        "hydrationInstructions",
+        "protein",
+        "proteinInstructions",
+        "sleep",
+        "sleepInstructions",
+        "sunlight"
+    ]
+    .forEach(id=>{
+        document.getElementById(id).value="";
+    });
+
+
+    [
+        "nutrition",
+        "mind",
+        "recovery"
+    ]
+    .forEach(id=>{
+        document.getElementById(id).innerHTML="";
+    });
+
+
+    document
+    .getElementById("dayContent")
+    .style.display="none";
+
+}
+
+
 /* =====================================================
    PARENTS
 ===================================================== */
 
 function populateParents(){
 
-    const select =
-    document
-    .getElementById(
+    const select=
+    document.getElementById(
         "itemParent"
     );
 
@@ -2518,27 +2515,20 @@ function populateParents(){
 
     items
     .filter(
-        x=>x.hasChildren===true
+        x=>
+        x.hasChildren===true
     )
-    .forEach(
-    item=>{
+    .forEach(item=>{
 
-        const option =
-        document.createElement(
-            "option"
-        );
+        const option=
+        document.createElement("option");
 
-
-        option.value=
-        item.id;
+        option.value=item.id;
 
         option.textContent=
         getFullPath(item.id);
 
-
-        select.appendChild(
-            option
-        );
+        select.appendChild(option);
 
     });
 
@@ -2547,17 +2537,15 @@ function populateParents(){
 
 function getFullPath(id){
 
-    const current =
-    items.find(
-        x=>x.id===id
-    );
+    const current=
+    items.find(x=>x.id===id);
 
-
-    if(!current)
+    if(!current){
         return "";
+    }
 
 
-    let result=[
+    const result=[
         current.title
     ];
 
@@ -2574,8 +2562,9 @@ function getFullPath(id){
         );
 
 
-        if(!parent)
+        if(!parent){
             break;
+        }
 
 
         result.unshift(
@@ -2589,9 +2578,7 @@ function getFullPath(id){
     }
 
 
-    return result.join(
-        " → "
-    );
+    return result.join(" → ");
 
 }
 
@@ -2606,10 +2593,14 @@ document
 "change",
 function(){
 
+    const isLesson=
+    this.value==="lesson";
+
+
     document
     .getElementById("dayContent")
     .style.display=
-    this.value==="lesson"
+    isLesson
     ?"block"
     :"none";
 
@@ -2620,203 +2611,189 @@ function(){
    SAVE CLASSROOM
 ===================================================== */
 
-window.saveItem =
+window.saveItem=
 async function(){
 
-    const saveButton =
+    const button=
     document.getElementById(
         "saveItemBtn"
     );
 
-    const saveStatus =
+
+    const status=
     document.getElementById(
-        "saveStatus"
+        "saveItemStatus"
     );
 
 
-    saveButton.disabled=true;
+    button.disabled=true;
 
-    saveButton.textContent=
+    button.textContent=
     "Saving...";
-
-
-    saveStatus.textContent=
-    "Saving content...";
-
-
-    const type =
-    document
-    .getElementById("itemType")
-    .value;
-
-
-    const parentId =
-    document
-    .getElementById("itemParent")
-    .value ||
-    null;
-
-
-    const title =
-    document
-    .getElementById("itemTitle")
-    .value
-    .trim();
-
-
-    const description =
-    document
-    .getElementById(
-        "itemDescription"
-    )
-    .innerHTML
-    .trim();
-
-
-    const unlockDay =
-    Number(
-        document
-        .getElementById("unlockDay")
-        .value
-    );
-
-
-    const hasChildren =
-    document
-    .getElementById(
-        "allowChildren"
-    )
-    .checked;
-
-
-    const status =
-    document
-    .getElementById(
-        "itemStatus"
-    )
-    .value;
-
-
-    const videoUrl =
-    document
-    .getElementById(
-        "videoUrl"
-    )
-    .value
-    .trim();
-
-
-    const driveUrl =
-    document
-    .getElementById(
-        "driveUrl"
-    )
-    .value
-    .trim();
-
-
-    if(!title){
-
-        alert(
-            "Please enter a title."
-        );
-
-        resetSaveButton();
-
-        return;
-
-    }
-
-
-    /* =================================================
-       DAY CONTENT
-    ================================================= */
-
-    const dayContent={
-
-        movement:
-        value("movement"),
-
-        movementInstructions:
-        richValue("movementInstructions"),
-
-        hydration:
-        value("hydration"),
-
-        hydrationInstructions:
-        richValue("hydrationInstructions"),
-
-        protein:
-        value("protein"),
-
-        proteinInstructions:
-        richValue("proteinInstructions"),
-
-        sleep:
-        value("sleep"),
-
-        sleepInstructions:
-        richValue("sleepInstructions"),
-
-        nutrition:
-        richValue("nutrition"),
-
-        mind:
-        richValue("mind"),
-
-        sunlight:
-        value("sunlight"),
-
-        recovery:
-        richValue("recovery")
-
-    };
-
-
-    /* =================================================
-       IMPORTANT:
-       SAVE FIRESTORE FIRST.
-       IMAGE IS NOT WAITED ON.
-    ================================================= */
-
-    const data={
-
-        type,
-        parentId,
-        title,
-        description,
-        unlockDay,
-        hasChildren,
-        status,
-
-        videoUrl,
-        driveUrl,
-
-        dayContent,
-
-        order:
-        editingId
-        ? (
-            items.find(
-                x=>x.id===editingId
-            )?.order ||
-            Date.now()
-        )
-        : Date.now(),
-
-        updatedAt:
-        serverTimestamp()
-
-    };
 
 
     try{
 
-        let savedId =
-        editingId;
+        const type=
+        value("itemType");
 
 
-        if(editingId){
+        const parentId=
+        value("itemParent")||null;
+
+
+        const title=
+        value("itemTitle").trim();
+
+
+        const description=
+        document
+        .getElementById(
+            "itemDescription"
+        )
+        .innerHTML;
+
+
+        const unlockDay=
+        Number(
+            value("unlockDay")
+        );
+
+
+        const itemStatus=
+        value("itemStatus");
+
+
+        const hasChildren=
+        document
+        .getElementById(
+            "allowChildren"
+        )
+        .checked;
+
+
+        if(!title){
+
+            alert(
+                "Please enter a title."
+            );
+
+            return;
+
+        }
+
+
+        /*
+         * IMPORTANT:
+         * Firestore content is saved first.
+         * Image upload happens only if an image
+         * was selected.
+         */
+
+        const data={
+
+            type,
+            parentId,
+
+            title,
+
+            description,
+
+            unlockDay,
+
+            hasChildren,
+
+            status:itemStatus,
+
+            videoUrl:
+            value("videoUrl").trim(),
+
+            driveUrl:
+            value("driveUrl").trim(),
+
+            resourceLabel:
+            value("resourceLabel").trim(),
+
+            imageUrl:
+            value("existingImageUrl"),
+
+            dayContent:{
+
+                movement:
+                value("movement"),
+
+                movementInstructions:
+                value("movementInstructions"),
+
+                hydration:
+                value("hydration"),
+
+                hydrationInstructions:
+                value("hydrationInstructions"),
+
+                protein:
+                value("protein"),
+
+                proteinInstructions:
+                value("proteinInstructions"),
+
+                sleep:
+                value("sleep"),
+
+                sleepInstructions:
+                value("sleepInstructions"),
+
+                nutrition:
+                document
+                .getElementById("nutrition")
+                .innerHTML,
+
+                mind:
+                document
+                .getElementById("mind")
+                .innerHTML,
+
+                sunlight:
+                value("sunlight"),
+
+                recovery:
+                document
+                .getElementById("recovery")
+                .innerHTML
+
+            },
+
+            updatedAt:
+            serverTimestamp()
+
+        };
+
+
+        if(!editingId){
+
+            data.createdAt=
+            serverTimestamp();
+
+            data.order=
+            Date.now();
+
+
+            const newDoc=
+            await addDoc(
+                collection(
+                    db,
+                    "classroom"
+                ),
+                data
+            );
+
+
+            editingId=
+            newDoc.id;
+
+        }
+
+        else{
 
             await updateDoc(
                 doc(
@@ -2829,108 +2806,69 @@ async function(){
 
         }
 
-        else{
-
-            data.createdAt=
-            serverTimestamp();
-
-            const created =
-            await addDoc(
-                collection(
-                    db,
-                    "classroom"
-                ),
-                data
-            );
-
-            savedId=
-            created.id;
-
-        }
-
 
         /*
          * FIRESTORE IS NOW SAVED.
-         * This is the fast part.
+         * This means text/content doesn't wait
+         * for an image upload.
          */
 
-        saveStatus.textContent=
-        "Content saved. Uploading image separately...";
-
-
-        saveStatus.className=
-        "upload-status success";
+        status.textContent=
+        "Content saved successfully.";
 
 
         /*
-         * Upload image only if user selected one.
+         * Upload image only when selected.
          */
 
-        const imageFile =
+        const file=
         document
-        .getElementById(
-            "itemImage"
-        )
+        .getElementById("itemImage")
         .files[0];
 
 
-        if(imageFile){
+        if(file){
 
-            try{
-
-                const imageUrl =
-                await uploadClassroomImage(
-                    imageFile,
-                    savedId
-                );
+            status.textContent=
+            "Content saved. Uploading image...";
 
 
-                await updateDoc(
-                    doc(
-                        db,
-                        "classroom",
-                        savedId
-                    ),
-                    {
-                        imageUrl,
-                        imageUpdatedAt:
-                        serverTimestamp()
-                    }
-                );
+            const imageUrl=
+            await uploadImage(
+                file,
+                "classroom",
+                editingId,
+                "imageUploadStatus",
+                "imageProgress",
+                "imageProgressBar"
+            );
 
 
-                saveStatus.textContent=
-                "Content and image saved successfully.";
+            await updateDoc(
+                doc(
+                    db,
+                    "classroom",
+                    editingId
+                ),
+                {
 
-            }
+                    imageUrl,
 
-            catch(imageError){
+                    updatedAt:
+                    serverTimestamp()
 
-                console.error(
-                    imageError
-                );
-
-
-                saveStatus.textContent=
-                "Content saved, but image upload failed: "+
-                imageError.message;
-
-                saveStatus.className=
-                "upload-status error";
-
-            }
+                }
+            );
 
         }
 
-        else{
 
-            saveStatus.textContent=
-            "Content saved successfully.";
-
-        }
+        status.textContent=
+        "✓ Saved successfully.";
 
 
         editingId=null;
+
 
         await loadClassroom();
 
@@ -2947,21 +2885,16 @@ async function(){
     catch(error){
 
         console.error(
-            "CLASSROOM SAVE ERROR:",
+            "SAVE CLASSROOM ERROR",
             error
         );
 
 
-        saveStatus.textContent=
-        "Save failed: "+
-        error.message;
-
-
-        saveStatus.className=
-        "upload-status error";
+        status.textContent=
+        "Error: "+error.message;
 
         alert(
-            "Firebase error:\n\n"+
+            "Could not save:\n\n"+
             error.message
         );
 
@@ -2969,102 +2902,128 @@ async function(){
 
     finally{
 
-        resetSaveButton();
+        button.disabled=false;
+
+        button.textContent=
+        "Save Content";
 
     }
 
 };
 
 
-function resetSaveButton(){
-
-    const button =
-    document.getElementById(
-        "saveItemBtn"
-    );
-
-
-    button.disabled=false;
-
-    button.textContent=
-    "Save Content";
-
-}
-
-
 /* =====================================================
    IMAGE UPLOAD
 ===================================================== */
 
-async function uploadClassroomImage(
+function uploadImage(
     file,
-    itemId
+    folder,
+    documentId,
+    statusId,
+    progressId,
+    progressBarId
 ){
 
-    if(
-        !file.type.startsWith(
-            "image/"
-        )
-    ){
+    return new Promise(
+    (resolve,reject)=>{
 
-        throw new Error(
-            "Please select an image file."
+        const safeName=
+        file.name
+        .replace(
+            /[^a-zA-Z0-9._-]/g,
+            "_"
         );
 
-    }
+
+        const filePath=
+        `${folder}/${documentId}/${Date.now()}_${safeName}`;
 
 
-    /*
-     * Keep images reasonably small.
-     */
-
-    if(
-        file.size >
-        10 * 1024 * 1024
-    ){
-
-        throw new Error(
-            "Image must be smaller than 10 MB."
+        const storageRef=
+        ref(
+            storage,
+            filePath
         );
 
-    }
+
+        const task=
+        uploadBytesResumable(
+            storageRef,
+            file
+        );
 
 
-    const extension =
-    file.name
-    .split(".")
-    .pop();
+        const progressBox=
+        document.getElementById(
+            progressId
+        );
 
 
-    const filename =
-    "classroom_"+
-    itemId+
-    "_"+
-    Date.now()+
-    "."+
-    extension;
+        const progressBar=
+        document.getElementById(
+            progressBarId
+        );
 
 
-    const storageRef =
-    ref(
-        storage,
-        "classroom-images/"+
-        filename
-    );
+        progressBox.classList.remove(
+            "hidden"
+        );
 
 
-    await uploadBytes(
-        storageRef,
-        file,
-        {
-            contentType:file.type
-        }
-    );
+        task.on(
+
+            "state_changed",
+
+            snapshot=>{
+
+                const percent=
+                Math.round(
+                    (
+                        snapshot.bytesTransferred /
+                        snapshot.totalBytes
+                    )*100
+                );
 
 
-    return await getDownloadURL(
-        storageRef
-    );
+                progressBar.style.width=
+                percent+"%";
+
+
+                document
+                .getElementById(statusId)
+                .textContent=
+                "Uploading image "+percent+"%";
+
+            },
+
+            error=>{
+
+                reject(error);
+
+            },
+
+            async()=>{
+
+                const url=
+                await getDownloadURL(
+                    task.snapshot.ref
+                );
+
+
+                document
+                .getElementById(statusId)
+                .textContent=
+                "Image uploaded ✓";
+
+
+                resolve(url);
+
+            }
+
+        );
+
+    });
 
 }
 
@@ -3073,67 +3032,80 @@ async function uploadClassroomImage(
    IMAGE PREVIEW
 ===================================================== */
 
-window.previewImage =
-function(input){
+document
+.getElementById("itemImage")
+.addEventListener(
+"change",
+function(){
 
-    const preview =
-    document.getElementById(
-        "imagePreview"
-    );
-
-    const image =
-    document.getElementById(
-        "previewImage"
-    );
-
-
-    const file =
-    input.files[0];
-
+    const file=this.files[0];
 
     if(!file){
-
-        preview.style.display=
-        "none";
-
         return;
-
     }
 
 
-    image.src=
-    URL.createObjectURL(
-        file
-    );
+    const url=
+    URL.createObjectURL(file);
 
 
-    preview.style.display=
-    "block";
+    document
+    .getElementById("itemImagePreview")
+    .innerHTML=`
 
-};
+    <img src="${url}">
+
+    `;
+
+});
+
+
+document
+.getElementById("communityImage")
+.addEventListener(
+"change",
+function(){
+
+    const file=this.files[0];
+
+    if(!file){
+        return;
+    }
+
+
+    const url=
+    URL.createObjectURL(file);
+
+
+    document
+    .getElementById(
+        "communityImagePreview"
+    )
+    .innerHTML=`
+
+    <img src="${url}">
+
+    `;
+
+});
 
 
 /* =====================================================
-   RENDER TREE
+   RENDER CLASSROOM TREE
 ===================================================== */
 
 function renderTree(){
 
-    const container =
+    const container=
     document.getElementById(
         "treeContainer"
     );
 
 
-    const roots =
+    const roots=
     items
     .filter(
         x=>!x.parentId
-    )
-    .sort(
-        (a,b)=>
-        (a.order||0)-
-        (b.order||0)
     );
 
 
@@ -3149,10 +3121,6 @@ function renderTree(){
 
         Click <b>+ Add Content</b>.
 
-        <br><br>
-
-        Phase → Week → Day
-
         </div>
 
         `;
@@ -3164,9 +3132,7 @@ function renderTree(){
 
     container.innerHTML=
     roots
-    .map(
-        item=>treeItem(item)
-    )
+    .map(item=>treeItem(item))
     .join("");
 
 }
@@ -3174,39 +3140,50 @@ function renderTree(){
 
 function treeItem(item){
 
-    const children =
-    items
-    .filter(
-        x=>
-        x.parentId===item.id
-    )
-    .sort(
-        (a,b)=>
-        (a.order||0)-
-        (b.order||0)
+    const children=
+    items.filter(
+        x=>x.parentId===item.id
     );
 
 
-    let icon;
+    const icon=
+    item.type==="lesson"
+    ?"📖"
+    :
+    item.type==="subsection"
+    ?"📅"
+    :"📁";
 
-    if(item.type==="lesson")
-        icon="📖";
-    else if(item.type==="subsection")
-        icon="📅";
-    else
-        icon="🌸";
 
-
-    const statusClass =
+    const statusBadge=
     item.status==="published"
-    ? "status-published"
-    : "status-draft";
+    ?
+
+    `<span class="badge badge-published">
+    Published
+    </span>`
+
+    :
+
+    `<span class="badge badge-draft">
+    Draft
+    </span>`;
 
 
-    const imageIcon =
+    const imageBadge=
     item.imageUrl
-    ? " 📷"
-    : "";
+    ?
+    " 📷"
+    :"";
+
+
+    const lockBadge=
+    item.status==="published"
+    ?
+    `<span class="badge badge-locked">
+    Unlock Day ${item.unlockDay||1}
+    </span>`
+    :"";
 
 
     return `
@@ -3216,79 +3193,70 @@ function treeItem(item){
         <div class="tree-row">
 
             <button
-                class="tree-toggle"
-                onclick="toggle('${item.id}')"
+            class="tree-toggle"
+            onclick="toggle('${item.id}')"
             >
-                ${children.length?"▶":""}
+            ${children.length?"▶":""}
             </button>
 
             <span>
-                ${icon}
+            ${icon}
             </span>
 
             <div class="tree-title">
 
-                ${safe(item.title)}
-                ${imageIcon}
+            ${safe(item.title)}
+            ${imageBadge}
 
             </div>
 
-            <div class="tree-meta">
+            ${statusBadge}
 
-                Day ${item.unlockDay||1}
-
-            </div>
-
-            <span
-                class="status-badge ${statusClass}"
-            >
-                ${safe(item.status||"draft")}
-            </span>
+            ${lockBadge}
 
             <div class="actions">
 
                 <button
-                    class="small"
-                    onclick="addChild('${item.id}')"
+                class="small"
+                onclick="addChild('${item.id}')"
                 >
-                    + Child
+                + Child
                 </button>
 
                 <button
-                    class="small"
-                    onclick="editItem('${item.id}')"
+                class="small"
+                onclick="editItem('${item.id}')"
                 >
-                    Edit
+                Edit
                 </button>
 
                 <button
-                    class="small"
-                    onclick="preview('${item.id}')"
+                class="small"
+                onclick="preview('${item.id}')"
                 >
-                    Preview
+                Preview
                 </button>
 
                 <button
-                    class="small"
-                    onclick="removeItem('${item.id}')"
+                class="small"
+                onclick="removeItem('${item.id}')"
                 >
-                    Delete
+                Delete
                 </button>
 
             </div>
 
         </div>
 
+
         <div
-            class="children"
-            id="child-${item.id}"
+        class="children"
+        id="child-${item.id}"
         >
 
-            ${children
-            .map(
-                child=>treeItem(child)
-            )
-            .join("")}
+        ${children
+        .map(child=>treeItem(child))
+        .join("")}
 
         </div>
 
@@ -3299,26 +3267,18 @@ function treeItem(item){
 }
 
 
-/* =====================================================
-   TREE TOGGLE
-===================================================== */
-
-window.toggle =
+window.toggle=
 function(id){
 
-    const box =
+    const box=
     document.getElementById(
         "child-"+id
     );
 
 
-    if(!box)
-        return;
-
-
-    box.classList.toggle(
-        "open"
-    );
+    if(box){
+        box.classList.toggle("open");
+    }
 
 };
 
@@ -3327,22 +3287,26 @@ function(id){
    ADD CHILD
 ===================================================== */
 
-window.addChild =
+window.addChild=
 function(parentId){
 
-    const parent =
+    const parent=
     items.find(
         x=>x.id===parentId
     );
 
 
-    if(
-        !parent ||
-        parent.hasChildren!==true
-    ){
+    if(!parent){
+
+        return;
+
+    }
+
+
+    if(parent.hasChildren!==true){
 
         alert(
-            "This item does not allow children."
+            "Edit this item and enable 'Allow content inside this item'."
         );
 
         return;
@@ -3350,9 +3314,9 @@ function(parentId){
     }
 
 
-    editingId=null;
-
     clearEditor();
+
+    editingId=null;
 
     populateParents();
 
@@ -3381,31 +3345,31 @@ function(parentId){
     "none";
 
 
-    openSection(
-        "itemEditor"
-    );
+    openSection("itemEditor");
 
 };
 
 
 /* =====================================================
-   EDIT ITEM
+   EDIT CLASSROOM ITEM
 ===================================================== */
 
-window.editItem =
+window.editItem=
 function(id){
 
-    const item =
+    const item=
     items.find(
         x=>x.id===id
     );
 
 
-    if(!item)
+    if(!item){
         return;
+    }
 
 
     editingId=id;
+
 
     populateParents();
 
@@ -3423,8 +3387,7 @@ function(id){
         "itemType"
     )
     .value=
-    item.type||
-    "module";
+    item.type||"module";
 
 
     document
@@ -3432,8 +3395,7 @@ function(id){
         "itemParent"
     )
     .value=
-    item.parentId||
-    "";
+    item.parentId||"";
 
 
     document
@@ -3441,8 +3403,7 @@ function(id){
         "itemTitle"
     )
     .value=
-    item.title||
-    "";
+    item.title||"";
 
 
     document
@@ -3450,8 +3411,7 @@ function(id){
         "itemDescription"
     )
     .innerHTML=
-    item.description||
-    "";
+    item.description||"";
 
 
     document
@@ -3459,8 +3419,15 @@ function(id){
         "unlockDay"
     )
     .value=
-    item.unlockDay||
-    1;
+    item.unlockDay||1;
+
+
+    document
+    .getElementById(
+        "itemStatus"
+    )
+    .value=
+    item.status||"published";
 
 
     document
@@ -3473,11 +3440,25 @@ function(id){
 
     document
     .getElementById(
-        "itemStatus"
+        "existingImageUrl"
     )
     .value=
-    item.status||
-    "published";
+    item.imageUrl||"";
+
+
+    if(item.imageUrl){
+
+        document
+        .getElementById(
+            "itemImagePreview"
+        )
+        .innerHTML=`
+
+        <img src="${safe(item.imageUrl)}">
+
+        `;
+
+    }
 
 
     document
@@ -3485,8 +3466,7 @@ function(id){
         "videoUrl"
     )
     .value=
-    item.videoUrl||
-    "";
+    item.videoUrl||"";
 
 
     document
@@ -3494,13 +3474,19 @@ function(id){
         "driveUrl"
     )
     .value=
-    item.driveUrl||
-    "";
+    item.driveUrl||"";
 
 
-    const d =
-    item.dayContent||
-    {};
+    document
+    .getElementById(
+        "resourceLabel"
+    )
+    .value=
+    item.resourceLabel||"";
+
+
+    const d=
+    item.dayContent||{};
 
 
     setValue(
@@ -3508,7 +3494,7 @@ function(id){
         d.movement
     );
 
-    setRichValue(
+    setValue(
         "movementInstructions",
         d.movementInstructions
     );
@@ -3518,7 +3504,7 @@ function(id){
         d.hydration
     );
 
-    setRichValue(
+    setValue(
         "hydrationInstructions",
         d.hydrationInstructions
     );
@@ -3528,7 +3514,7 @@ function(id){
         d.protein
     );
 
-    setRichValue(
+    setValue(
         "proteinInstructions",
         d.proteinInstructions
     );
@@ -3538,19 +3524,9 @@ function(id){
         d.sleep
     );
 
-    setRichValue(
+    setValue(
         "sleepInstructions",
         d.sleepInstructions
-    );
-
-    setRichValue(
-        "nutrition",
-        d.nutrition
-    );
-
-    setRichValue(
-        "mind",
-        d.mind
     );
 
     setValue(
@@ -3558,10 +3534,29 @@ function(id){
         d.sunlight
     );
 
-    setRichValue(
-        "recovery",
-        d.recovery
-    );
+
+    document
+    .getElementById(
+        "nutrition"
+    )
+    .innerHTML=
+    d.nutrition||"";
+
+
+    document
+    .getElementById(
+        "mind"
+    )
+    .innerHTML=
+    d.mind||"";
+
+
+    document
+    .getElementById(
+        "recovery"
+    )
+    .innerHTML=
+    d.recovery||"";
 
 
     document
@@ -3570,71 +3565,34 @@ function(id){
     )
     .style.display=
     item.type==="lesson"
-    ? "block"
-    : "none";
+    ?"block"
+    :"none";
 
 
-    document
-    .getElementById(
-        "currentImage"
-    )
-    .innerHTML=
-    item.imageUrl
-    ? `
-
-        <p>
-        <b>Current Image</b>
-        </p>
-
-        <img
-            src="${safe(item.imageUrl)}"
-            alt="Current classroom image"
-        >
-
-        `
-    : "";
-
-
-    document
-    .getElementById(
-        "imagePreview"
-    )
-    .style.display=
-    "none";
-
-
-    document
-    .getElementById(
-        "itemImage"
-    )
-    .value="";
-
-
-    openSection(
-        "itemEditor"
-    );
+    openSection("itemEditor");
 
 };
 
 
 /* =====================================================
-   DELETE
+   DELETE CLASSROOM
 ===================================================== */
 
-window.removeItem =
+window.removeItem=
 async function(id){
 
-    const item =
+    const item=
     items.find(
         x=>x.id===id
     );
 
 
-    if(!item)
+    if(!item){
         return;
+    }
 
 
-    const children =
+    const children=
     items.filter(
         x=>x.parentId===id
     );
@@ -3652,11 +3610,18 @@ async function(id){
     }
 
 
-    if(!confirm(message))
+    if(!confirm(message)){
         return;
+    }
 
 
     try{
+
+        /*
+         * Delete direct children.
+         * Your existing structure uses direct
+         * Phase → Week → Day nesting.
+         */
 
         for(
             const child
@@ -3686,9 +3651,7 @@ async function(id){
         await loadClassroom();
 
 
-        alert(
-            "Deleted."
-        );
+        alert("Deleted.");
 
     }
 
@@ -3697,6 +3660,7 @@ async function(id){
         console.error(error);
 
         alert(
+            "Delete failed:\n"+
             error.message
         );
 
@@ -3706,71 +3670,108 @@ async function(id){
 
 
 /* =====================================================
-   PREVIEW
+   CLASSROOM PREVIEW
 ===================================================== */
 
-window.preview =
+window.preview=
 function(id){
 
-    const item =
+    const item=
     items.find(
         x=>x.id===id
     );
 
 
-    if(!item)
+    if(!item){
         return;
+    }
 
 
-    const d =
-    item.dayContent||
-    {};
+    const d=
+    item.dayContent||{};
 
 
-    let html="";
+    let html=`
+
+    <h2>
+    ${safe(item.title)}
+    </h2>
+
+    ${
+        item.imageUrl
+        ?
+        `<img src="${safe(item.imageUrl)}">`
+        :""
+    }
 
 
-    if(item.imageUrl){
+    ${
+        item.description
+        ?
+        `<div>${safeHTML(item.description)}</div>`
+        :""
+    }
+
+
+    <p>
+
+    <b>Unlock Day:</b>
+    ${item.unlockDay||1}
+
+    &nbsp;
+
+    <b>Status:</b>
+    ${item.status||"published"}
+
+    </p>
+
+    `;
+
+
+    if(item.videoUrl){
 
         html+=`
 
-        <img
-            class="preview-image"
-            src="${safe(item.imageUrl)}"
-            alt="${safe(item.title)}"
+        <div class="link-card">
+
+        <strong>🎥 Video</strong>
+
+        <br>
+
+        <a
+        href="${safe(item.videoUrl)}"
+        target="_blank"
+        rel="noopener"
         >
+        ${safe(item.resourceLabel||"Watch Video")}
+        </a>
+
+        </div>
 
         `;
 
     }
 
 
-    html+=`
-
-    <h2>
-        ${safe(item.title)}
-    </h2>
-
-    <div>
-        ${item.description||""}
-    </div>
-
-    <p>
-        <b>Program Day:</b>
-        ${item.unlockDay||1}
-    </p>
-
-    `;
-
-
-    if(item.status){
+    if(item.driveUrl){
 
         html+=`
 
-        <p>
-            <b>Status:</b>
-            ${safe(item.status)}
-        </p>
+        <div class="link-card">
+
+        <strong>📁 Google Drive</strong>
+
+        <br>
+
+        <a
+        href="${safe(item.driveUrl)}"
+        target="_blank"
+        rel="noopener"
+        >
+        ${safe(item.resourceLabel||"Open Resource")}
+        </a>
+
+        </div>
 
         `;
 
@@ -3830,38 +3831,25 @@ function(id){
     ];
 
 
-    sections.forEach(
-    section=>{
+    sections.forEach(section=>{
 
-        if(
-            section[1] &&
-            String(section[1])
-            .trim()
-        ){
+        if(section[1]){
 
             html+=`
 
             <h3>
-                ${section[0]}
+            ${section[0]}
             </h3>
 
             <div>
-                ${
-                    String(section[1])
-                    .startsWith("<")
-                    ? section[1]
-                    : safe(section[1])
-                }
+            ${safeHTML(section[1])}
             </div>
 
             ${
                 section[2]
-                ? `
-                    <div>
-                        ${section[2]}
-                    </div>
-                `
-                : ""
+                ?
+                `<p>${safe(section[2])}</p>`
+                :""
             }
 
             `;
@@ -3869,44 +3857,6 @@ function(id){
         }
 
     });
-
-
-    if(item.videoUrl){
-
-        html+=`
-
-        <div class="preview-video">
-
-            <h3>
-                Video
-            </h3>
-
-            <div class="link-box">
-                ${safe(item.videoUrl)}
-            </div>
-
-        </div>
-
-        `;
-
-    }
-
-
-    if(item.driveUrl){
-
-        html+=`
-
-        <div class="link-box">
-
-            <b>Google Drive:</b><br>
-
-            ${safe(item.driveUrl)}
-
-        </div>
-
-        `;
-
-    }
 
 
     document
@@ -3917,176 +3867,20 @@ function(id){
     html;
 
 
-    openSection(
-        "preview"
-    );
+    openSection("preview");
 
 };
 
 
 /* =====================================================
-   CLEAR EDITOR
-===================================================== */
-
-function clearEditor(){
-
-    document
-    .getElementById(
-        "editorHeading"
-    )
-    .textContent=
-    "Add Classroom Content";
-
-
-    document
-    .getElementById(
-        "itemType"
-    )
-    .value=
-    "module";
-
-
-    document
-    .getElementById(
-        "itemParent"
-    )
-    .value="";
-
-
-    document
-    .getElementById(
-        "itemTitle"
-    )
-    .value="";
-
-
-    document
-    .getElementById(
-        "itemDescription"
-    )
-    .innerHTML="";
-
-
-    document
-    .getElementById(
-        "unlockDay"
-    )
-    .value=1;
-
-
-    document
-    .getElementById(
-        "itemStatus"
-    )
-    .value=
-    "published";
-
-
-    document
-    .getElementById(
-        "allowChildren"
-    )
-    .checked=false;
-
-
-    document
-    .getElementById(
-        "videoUrl"
-    )
-    .value="";
-
-
-    document
-    .getElementById(
-        "driveUrl"
-    )
-    .value="";
-
-
-    document
-    .getElementById(
-        "itemImage"
-    )
-    .value="";
-
-
-    document
-    .getElementById(
-        "currentImage"
-    )
-    .innerHTML="";
-
-
-    document
-    .getElementById(
-        "imagePreview"
-    )
-    .style.display=
-    "none";
-
-
-    document
-    .getElementById(
-        "imageStatus"
-    )
-    .textContent="";
-
-
-    [
-
-        "movement",
-        "hydration",
-        "protein",
-        "sleep",
-        "sunlight"
-
-    ]
-    .forEach(
-        id=>setValue(
-            id,
-            ""
-        )
-    );
-
-
-    [
-
-        "movementInstructions",
-        "hydrationInstructions",
-        "proteinInstructions",
-        "sleepInstructions",
-        "nutrition",
-        "mind",
-        "recovery"
-
-    ]
-    .forEach(
-        id=>setRichValue(
-            id,
-            ""
-        )
-    );
-
-
-    document
-    .getElementById(
-        "dayContent"
-    )
-    .style.display=
-    "none";
-
-}
-
-
-/* =====================================================
-   COMMUNITY
+   COMMUNITY LOAD
 ===================================================== */
 
 async function loadCommunity(){
 
     try{
 
-        const snap =
+        const snap=
         await getDocs(
             collection(
                 db,
@@ -4095,12 +3889,10 @@ async function loadCommunity(){
         );
 
 
-        const posts =
-        [];
+        const posts=[];
 
 
-        snap.forEach(
-        s=>{
+        snap.forEach(s=>{
 
             posts.push({
 
@@ -4113,9 +3905,33 @@ async function loadCommunity(){
 
 
         posts.sort(
-            (a,b)=>
-            getMillis(b.createdAt)-
-            getMillis(a.createdAt)
+            (a,b)=>{
+
+                if(
+                    a.pinned===true &&
+                    b.pinned!==true
+                ){
+                    return -1;
+                }
+
+                if(
+                    a.pinned!==true &&
+                    b.pinned===true
+                ){
+                    return 1;
+                }
+
+
+                const aTime=
+                getTime(a.createdAt);
+
+                const bTime=
+                getTime(b.createdAt);
+
+
+                return bTime-aTime;
+
+            }
         );
 
 
@@ -4127,18 +3943,35 @@ async function loadCommunity(){
         posts.length;
 
 
-        renderCommunity(
-            posts
-        );
+        renderCommunity(posts);
 
     }
 
     catch(error){
 
         console.error(
-            "COMMUNITY ERROR:",
+            "COMMUNITY ERROR",
             error
         );
+
+
+        document
+        .getElementById(
+            "communityList"
+        )
+        .innerHTML=`
+
+        <div class="empty">
+
+        Could not load community.
+
+        <br><br>
+
+        ${safe(error.message)}
+
+        </div>
+
+        `;
 
     }
 
@@ -4147,19 +3980,20 @@ async function loadCommunity(){
 
 function renderCommunity(posts){
 
-    const box =
-    document
-    .getElementById(
-        "communityPosts"
+    const container=
+    document.getElementById(
+        "communityList"
     );
 
 
     if(!posts.length){
 
-        box.innerHTML=`
+        container.innerHTML=`
 
         <div class="empty">
+
         No community posts yet.
+
         </div>
 
         `;
@@ -4169,262 +4003,237 @@ function renderCommunity(posts){
     }
 
 
-    box.innerHTML=
-    posts
-    .map(
-        post=>`
+    container.innerHTML=
+    posts.map(post=>{
 
-        <div class="post">
+        const date=
+        formatDate(post.createdAt);
 
-            <div class="post-header">
+
+        return `
+
+        <div
+        class="community-post
+        ${post.pinned===true?"pinned":""}"
+        >
+
+            <div class="post-top">
 
                 <div>
 
-                    <div class="post-name">
-                        ${safe(
-                            post.name||
-                            post.email||
-                            "Member"
-                        )}
+                    <div class="post-author">
+
+                    ${safe(
+                        post.name||
+                        post.email||
+                        "Member"
+                    )}
+
                     </div>
 
                     <div class="post-date">
-                        ${formatDate(
-                            post.createdAt
-                        )}
+
+                    ${date}
+
                     </div>
 
                 </div>
 
+
+                ${
+                    post.pinned===true
+                    ?
+                    `<span class="pin-label">
+                    📌 PINNED
+                    </span>`
+                    :""
+                }
+
             </div>
 
-            ${
-                post.title
-                ? `
-                    <h3>
-                        ${safe(post.title)}
-                    </h3>
-                `
-                : ""
-            }
 
             ${
-                post.content
-                ? `
-                    <div>
-                        ${post.content}
-                    </div>
-                `
-                : ""
+                post.text
+                ?
+                `<div style="margin-top:12px">
+                ${safeHTML(post.text)}
+                </div>`
+                :""
             }
+
 
             ${
                 post.imageUrl
-                ? `
-                    <div class="post-image">
-
-                        <img
-                            src="${safe(post.imageUrl)}"
-                            alt="Community image"
-                        >
-
-                    </div>
+                ?
+                `<img
+                class="post-image"
+                src="${safe(post.imageUrl)}"
+                >
                 `
-                : ""
+                :""
             }
 
-            ${
-                post.videoUrl
-                ? `
-                    <div class="link-box">
-                        🎥 ${safe(post.videoUrl)}
-                    </div>
-                `
-                : ""
-            }
-
-            ${
-                post.driveUrl
-                ? `
-                    <div class="link-box">
-                        📁 ${safe(post.driveUrl)}
-                    </div>
-                `
-                : ""
-            }
 
             <div class="post-actions">
 
                 <button
-                    class="small"
-                    onclick="deleteCommunityPost('${post.id}')"
+                class="btn btn-small"
+                onclick="editCommunityPost('${post.id}')"
                 >
-                    Delete
+                Edit
+                </button>
+
+
+                <button
+                class="btn btn-small"
+                onclick="togglePin('${post.id}',${post.pinned===true})"
+                >
+                ${
+                    post.pinned===true
+                    ?"Unpin"
+                    :"📌 Pin"
+                }
+                </button>
+
+
+                <button
+                class="btn btn-danger btn-small"
+                onclick="deleteCommunityPost('${post.id}')"
+                >
+                Delete
                 </button>
 
             </div>
 
         </div>
 
-        `
-    )
-    .join("");
+        `;
+
+    }).join("");
 
 }
 
 
 /* =====================================================
-   COMMUNITY IMAGE PREVIEW
+   COMMUNITY CREATE
 ===================================================== */
 
-window.previewCommunityImage =
-function(input){
-
-    const preview =
-    document.getElementById(
-        "communityImagePreview"
-    );
-
-    const image =
-    document.getElementById(
-        "communityPreviewImg"
-    );
-
-
-    const file =
-    input.files[0];
-
-
-    if(!file){
-
-        preview.style.display=
-        "none";
-
-        return;
-
-    }
-
-
-    image.src=
-    URL.createObjectURL(
-        file
-    );
-
-
-    preview.style.display=
-    "block";
-
-};
-
-
-/* =====================================================
-   SAVE COMMUNITY POST
-===================================================== */
-
-window.saveCommunityPost =
+window.saveCommunityPost=
 async function(){
 
-    const button =
+    const status=
     document.getElementById(
-        "communitySaveBtn"
+        "communitySaveStatus"
     );
 
 
-    button.disabled=true;
-
-    button.textContent=
+    status.textContent=
     "Saving...";
-
-
-    const title =
-    document
-    .getElementById(
-        "communityTitle"
-    )
-    .value
-    .trim();
-
-
-    const content =
-    richValue(
-        "communityContent"
-    );
-
-
-    const videoUrl =
-    document
-    .getElementById(
-        "communityVideo"
-    )
-    .value
-    .trim();
-
-
-    const driveUrl =
-    document
-    .getElementById(
-        "communityDrive"
-    )
-    .value
-    .trim();
-
-
-    if(
-        !title &&
-        !content
-    ){
-
-        alert(
-            "Please enter a title or post content."
-        );
-
-        button.disabled=false;
-        button.textContent=
-        "Post to Community";
-
-        return;
-
-    }
 
 
     try{
 
+        const text=
+        document
+        .getElementById(
+            "communityText"
+        )
+        .innerHTML;
+
+
+        const pinned=
+        document
+        .getElementById(
+            "communityPinned"
+        )
+        .checked;
+
+
+        const user=
+        auth.currentUser;
+
+
+        const data={
+
+            text,
+
+            pinned,
+
+            email:
+            user?.email||ADMIN,
+
+            name:
+            user?.email===ADMIN
+            ?"Freedom Women's Health Club"
+            :"Admin",
+
+            imageUrl:
+            value("communityExistingImage"),
+
+            createdAt:
+            serverTimestamp(),
+
+            updatedAt:
+            serverTimestamp()
+
+        };
+
+
+        let postId;
+
+
+        if(editingCommunityId){
+
+            await updateDoc(
+                doc(
+                    db,
+                    "community",
+                    editingCommunityId
+                ),
+                {
+
+                    text:data.text,
+
+                    pinned:data.pinned,
+
+                    imageUrl:data.imageUrl,
+
+                    updatedAt:
+                    serverTimestamp()
+
+                }
+            );
+
+
+            postId=
+            editingCommunityId;
+
+        }
+
+        else{
+
+            const newPost=
+            await addDoc(
+                collection(
+                    db,
+                    "community"
+                ),
+                data
+            );
+
+
+            postId=
+            newPost.id;
+
+        }
+
+
         /*
-         * SAVE POST FIRST.
+         * Firestore post saves immediately.
+         * Image uploads separately.
          */
 
-        const postRef =
-        await addDoc(
-            collection(
-                db,
-                "community"
-            ),
-            {
-
-                title,
-                content,
-
-                videoUrl,
-                driveUrl,
-
-                email:
-                auth.currentUser.email,
-
-                name:
-                "Admin",
-
-                createdAt:
-                serverTimestamp()
-
-            }
-        );
-
-
-        /*
-         * THEN IMAGE.
-         */
-
-        const file =
+        const file=
         document
         .getElementById(
             "communityImage"
@@ -4434,10 +4243,18 @@ async function(){
 
         if(file){
 
-            const imageUrl =
-            await uploadCommunityImage(
+            status.textContent=
+            "Post saved. Uploading image...";
+
+
+            const imageUrl=
+            await uploadImage(
                 file,
-                postRef.id
+                "community",
+                postId,
+                "communityUploadStatus",
+                "communityProgress",
+                "communityProgressBar"
             );
 
 
@@ -4445,22 +4262,230 @@ async function(){
                 doc(
                     db,
                     "community",
-                    postRef.id
+                    postId
                 ),
                 {
-                    imageUrl
+
+                    imageUrl,
+
+                    updatedAt:
+                    serverTimestamp()
+
                 }
             );
 
         }
 
 
-        alert(
-            "Community post published."
+        status.textContent=
+        "✓ Post saved successfully.";
+
+
+        editingCommunityId=null;
+
+
+        clearCommunityComposer();
+
+
+        await loadCommunity();
+
+
+        setTimeout(
+            ()=>{
+                openSection("community");
+            },
+            500
         );
 
+    }
 
-        clearCommunityForm();
+    catch(error){
+
+        console.error(error);
+
+        status.textContent=
+        "Error: "+error.message;
+
+        alert(
+            "Could not save post:\n\n"+
+            error.message
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   EDIT COMMUNITY
+===================================================== */
+
+window.editCommunityPost=
+async function(id){
+
+    const snap=
+    await getDocs(
+        collection(db,"community")
+    );
+
+
+    let post=null;
+
+
+    snap.forEach(s=>{
+
+        if(s.id===id){
+
+            post={
+                id:s.id,
+                ...s.data()
+            };
+
+        }
+
+    });
+
+
+    if(!post){
+        return;
+    }
+
+
+    editingCommunityId=id;
+
+
+    document
+    .getElementById(
+        "communityEditorHeading"
+    )
+    .textContent=
+    "Edit Community Post";
+
+
+    document
+    .getElementById(
+        "communityText"
+    )
+    .innerHTML=
+    post.text||"";
+
+
+    document
+    .getElementById(
+        "communityPinned"
+    )
+    .checked=
+    post.pinned===true;
+
+
+    document
+    .getElementById(
+        "communityExistingImage"
+    )
+    .value=
+    post.imageUrl||"";
+
+
+    if(post.imageUrl){
+
+        document
+        .getElementById(
+            "communityImagePreview"
+        )
+        .innerHTML=`
+
+        <img
+        src="${safe(post.imageUrl)}"
+        >
+
+        `;
+
+    }
+
+
+    openSection(
+        "communityComposer"
+    );
+
+};
+
+
+/* =====================================================
+   PIN COMMUNITY POST
+===================================================== */
+
+window.togglePin=
+async function(id,currentPinned){
+
+    try{
+
+        /*
+         * Only one post is pinned.
+         * Unpin all existing pinned posts first.
+         */
+
+        if(!currentPinned){
+
+            const snap=
+            await getDocs(
+                collection(
+                    db,
+                    "community"
+                )
+            );
+
+
+            const updates=[];
+
+
+            snap.forEach(s=>{
+
+                if(
+                    s.data().pinned===true
+                ){
+
+                    updates.push(
+                        updateDoc(
+                            doc(
+                                db,
+                                "community",
+                                s.id
+                            ),
+                            {
+                                pinned:false
+                            }
+                        )
+                    );
+
+                }
+
+            });
+
+
+            await Promise.all(
+                updates
+            );
+
+        }
+
+
+        await updateDoc(
+            doc(
+                db,
+                "community",
+                id
+            ),
+            {
+
+                pinned:
+                !currentPinned,
+
+                updatedAt:
+                serverTimestamp()
+
+            }
+        );
+
 
         await loadCommunity();
 
@@ -4471,102 +4496,29 @@ async function(){
         console.error(error);
 
         alert(
-            "Community error:\n\n"+
+            "Could not change pin:\n"+
             error.message
         );
-
-    }
-
-    finally{
-
-        button.disabled=false;
-
-        button.textContent=
-        "Post to Community";
 
     }
 
 };
 
 
-async function uploadCommunityImage(
-    file,
-    postId
-){
+/* =====================================================
+   DELETE COMMUNITY POST
+===================================================== */
 
-    if(
-        !file.type.startsWith(
-            "image/"
-        )
-    ){
-
-        throw new Error(
-            "Please select an image."
-        );
-
-    }
-
-
-    if(
-        file.size >
-        10 * 1024 * 1024
-    ){
-
-        throw new Error(
-            "Image must be smaller than 10 MB."
-        );
-
-    }
-
-
-    const extension =
-    file.name
-    .split(".")
-    .pop();
-
-
-    const filename =
-    "community_"+
-    postId+
-    "_"+
-    Date.now()+
-    "."+
-    extension;
-
-
-    const storageRef =
-    ref(
-        storage,
-        "community-images/"+
-        filename
-    );
-
-
-    await uploadBytes(
-        storageRef,
-        file,
-        {
-            contentType:file.type
-        }
-    );
-
-
-    return await getDownloadURL(
-        storageRef
-    );
-
-}
-
-
-window.deleteCommunityPost =
+window.deleteCommunityPost=
 async function(id){
 
     if(
         !confirm(
             "Delete this community post?"
         )
-    )
+    ){
         return;
+    }
 
 
     try{
@@ -4586,6 +4538,8 @@ async function(id){
 
     catch(error){
 
+        console.error(error);
+
         alert(
             error.message
         );
@@ -4595,34 +4549,35 @@ async function(id){
 };
 
 
-function clearCommunityForm(){
+/* =====================================================
+   CLEAR COMMUNITY
+===================================================== */
+
+function clearCommunityComposer(){
+
+    editingCommunityId=null;
+
 
     document
     .getElementById(
-        "communityTitle"
+        "communityEditorHeading"
     )
-    .value="";
+    .textContent=
+    "Create Community Post";
 
 
     document
     .getElementById(
-        "communityContent"
+        "communityText"
     )
     .innerHTML="";
 
 
     document
     .getElementById(
-        "communityVideo"
+        "communityPinned"
     )
-    .value="";
-
-
-    document
-    .getElementById(
-        "communityDrive"
-    )
-    .value="";
+    .checked=false;
 
 
     document
@@ -4634,19 +4589,49 @@ function clearCommunityForm(){
 
     document
     .getElementById(
+        "communityExistingImage"
+    )
+    .value="";
+
+
+    document
+    .getElementById(
         "communityImagePreview"
     )
-    .style.display=
-    "none";
+    .innerHTML="";
+
+
+    document
+    .getElementById(
+        "communityUploadStatus"
+    )
+    .textContent="";
 
 }
 
 
 /* =====================================================
-   RICH TEXT
+   OPEN COMMUNITY COMPOSER
 ===================================================== */
 
-window.formatText =
+document
+.querySelector(
+    '[onclick="openSection(\'communityComposer\')"]'
+)
+?.addEventListener(
+"click",
+()=>{
+
+    clearCommunityComposer();
+
+});
+
+
+/* =====================================================
+   BOLD / RICH TEXT
+===================================================== */
+
+window.formatText=
 function(command){
 
     document
@@ -4659,19 +4644,8 @@ function(command){
 };
 
 
-window.formatEditor =
-function(id,command){
-
-    const editor =
-    document.getElementById(id);
-
-
-    if(!editor)
-        return;
-
-
-    editor.focus();
-
+window.formatCommunity=
+function(command){
 
     document
     .execCommand(
@@ -4683,64 +4657,41 @@ function(id,command){
 };
 
 
-function richValue(id){
-
-    const el =
-    document.getElementById(id);
-
-    return el
-    ? el.innerHTML.trim()
-    : "";
-
-}
-
-
-function setRichValue(id,value){
-
-    const el =
-    document.getElementById(id);
-
-    if(el)
-        el.innerHTML=
-        value||
-        "";
-
-}
-
-
 /* =====================================================
    HELPERS
 ===================================================== */
 
 function value(id){
 
-    const el =
+    const el=
     document.getElementById(id);
 
     return el
-    ? el.value
-    : "";
+    ?el.value
+    :"";
 
 }
 
 
-function setValue(id,value){
+function setValue(id,val){
 
-    const el =
+    const el=
     document.getElementById(id);
 
-    if(el)
+    if(el){
+
         el.value=
-        value||
-        "";
+        val||"";
+
+    }
 
 }
 
 
-function safe(value){
+function safe(val){
 
     return String(
-        value??""
+        val??""
     )
     .replace(
         /&/g,
@@ -4766,23 +4717,99 @@ function safe(value){
 }
 
 
-function getMillis(timestamp){
+/*
+ * Rich text is entered by the admin.
+ * Only allow basic formatting tags.
+ */
 
-    if(!timestamp)
+function safeHTML(html){
+
+    if(!html){
+        return "";
+    }
+
+
+    const temp=
+    document.createElement("div");
+
+
+    temp.innerHTML=html;
+
+
+    const allowed=[
+        "B",
+        "STRONG",
+        "I",
+        "EM",
+        "U",
+        "BR",
+        "P",
+        "DIV",
+        "UL",
+        "OL",
+        "LI"
+    ];
+
+
+    temp
+    .querySelectorAll("*")
+    .forEach(el=>{
+
+        if(
+            !allowed.includes(
+                el.tagName
+            )
+        ){
+
+            el.replaceWith(
+                document.createTextNode(
+                    el.textContent
+                )
+            );
+
+        }
+
+
+        [...el.attributes]
+        .forEach(attr=>{
+
+            el.removeAttribute(
+                attr.name
+            );
+
+        });
+
+    });
+
+
+    return temp.innerHTML;
+
+}
+
+
+function getTime(timestamp){
+
+    if(!timestamp){
         return 0;
+    }
 
 
     if(
-        typeof timestamp.toMillis ===
-        "function"
-    )
+        typeof timestamp.toMillis==="function"
+    ){
+
         return timestamp.toMillis();
+
+    }
 
 
     if(
         timestamp.seconds
-    )
+    ){
+
         return timestamp.seconds*1000;
+
+    }
 
 
     return 0;
@@ -4792,19 +4819,59 @@ function getMillis(timestamp){
 
 function formatDate(timestamp){
 
-    const millis =
-    getMillis(timestamp);
+    const time=
+    getTime(timestamp);
 
 
-    if(!millis)
+    if(!time){
         return "";
+    }
 
 
-    return new Date(
-        millis
-    ).toLocaleString();
+    return new Date(time)
+    .toLocaleString();
 
 }
+
+
+/* =====================================================
+   KEYBOARD SHORTCUT
+===================================================== */
+
+document
+.addEventListener(
+"keydown",
+event=>{
+
+    if(
+        event.ctrlKey &&
+        event.key.toLowerCase()==="b"
+    ){
+
+        const active=
+        document.activeElement;
+
+
+        if(
+            active?.classList.contains(
+                "rich-editor"
+            )
+        ){
+
+            event.preventDefault();
+
+            document.execCommand(
+                "bold",
+                false,
+                null
+            );
+
+        }
+
+    }
+
+});
+
 
 </script>
 
