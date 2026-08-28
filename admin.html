@@ -9,667 +9,479 @@
 
 <title>FWHC Admin Panel</title>
 
-
 <style>
 
-/* =====================================================
-   FREEDOM WOMEN'S HEALTH CLUB
-   ADMIN PANEL
-===================================================== */
-
 :root {
-
-    --cream: #FBF8F3;
-    --plum: #6E4A7E;
-    --charcoal: #2D2D2D;
-    --champagne: #DCCBB3;
-    --taupe: #B7A89A;
-    --white: #FFFFFF;
-    --light-plum: #F1EAF3;
-    --border: #E7DED4;
-
+    --cream:#FBF8F3;
+    --plum:#6E4A7E;
+    --charcoal:#2D2D2D;
+    --champagne:#DCCBB3;
+    --taupe:#B7A89A;
+    --white:#FFFFFF;
+    --light-plum:#F1EAF3;
+    --border:#E7DED4;
+    --danger:#A44A4A;
 }
-
 
 * {
-
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
-
 
 body {
-
-    font-family: Arial, sans-serif;
-
-    background: var(--cream);
-
-    color: var(--charcoal);
-
+    font-family:Arial,sans-serif;
+    background:var(--cream);
+    color:var(--charcoal);
 }
 
-
-/* =====================================================
-   LOGIN
-===================================================== */
-
-.login-page {
-
-    min-height: 100vh;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    background: var(--cream);
-
-    padding: 20px;
-
+button,
+input,
+textarea,
+select {
+    font-family:inherit;
 }
 
-
-.login-box {
-
-    width: 100%;
-
-    max-width: 420px;
-
-    background: white;
-
-    border: 1px solid var(--border);
-
-    border-radius: 20px;
-
-    padding: 40px;
-
-    box-shadow: 0 15px 40px rgba(0,0,0,.06);
-
+button {
+    cursor:pointer;
 }
-
-
-.login-logo {
-
-    text-align: center;
-
-    margin-bottom: 30px;
-
-}
-
-
-.login-logo h1 {
-
-    color: var(--plum);
-
-    font-size: 23px;
-
-    line-height: 1.3;
-
-    margin-bottom: 8px;
-
-}
-
-
-.login-logo p {
-
-    color: #777;
-
-    font-size: 14px;
-
-}
-
-
-.form-group {
-
-    margin-bottom: 18px;
-
-}
-
-
-.form-group label {
-
-    display: block;
-
-    font-size: 13px;
-
-    font-weight: bold;
-
-    margin-bottom: 7px;
-
-}
-
 
 input,
 textarea,
 select {
-
-    width: 100%;
-
-    padding: 13px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 9px;
-
-    background: white;
-
-    color: var(--charcoal);
-
-    font-family: inherit;
-
-    font-size: 14px;
-
-    outline: none;
-
+    width:100%;
+    padding:13px;
+    border:1px solid var(--border);
+    border-radius:9px;
+    background:white;
+    color:var(--charcoal);
+    outline:none;
 }
 
+textarea {
+    min-height:140px;
+    resize:vertical;
+}
 
 input:focus,
 textarea:focus,
 select:focus {
-
-    border-color: var(--plum);
-
+    border-color:var(--plum);
 }
 
+/* LOGIN */
 
-textarea {
-
-    min-height: 150px;
-
-    resize: vertical;
-
+#loginPage {
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
 }
 
+.login-box {
+    width:100%;
+    max-width:420px;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 15px 40px rgba(0,0,0,.06);
+}
+
+.login-logo {
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.login-logo h1 {
+    color:var(--plum);
+    font-size:23px;
+    line-height:1.3;
+}
+
+.login-logo p {
+    color:#777;
+    margin-top:8px;
+}
+
+.form-group {
+    margin-bottom:18px;
+}
+
+.form-group label {
+    display:block;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:7px;
+}
 
 .btn {
-
-    border: none;
-
-    background: var(--plum);
-
-    color: white;
-
-    padding: 12px 18px;
-
-    border-radius: 9px;
-
-    cursor: pointer;
-
-    font-size: 14px;
-
+    border:none;
+    background:var(--plum);
+    color:white;
+    padding:12px 18px;
+    border-radius:9px;
+    font-size:14px;
 }
-
 
 .btn:hover {
-
-    opacity: .9;
-
+    opacity:.9;
 }
-
 
 .btn-secondary {
-
-    background: var(--champagne);
-
-    color: var(--charcoal);
-
+    background:var(--champagne);
+    color:var(--charcoal);
 }
 
+.btn-danger {
+    background:var(--danger);
+    color:white;
+}
 
 .login-error {
-
-    color: #B33;
-
-    text-align: center;
-
-    margin-top: 15px;
-
-    font-size: 13px;
-
+    color:#B33;
+    text-align:center;
+    margin-top:15px;
+    font-size:13px;
 }
 
-
-/* =====================================================
-   ADMIN LAYOUT
-===================================================== */
+/* ADMIN */
 
 #adminApp {
-
-    display: none;
-
+    display:none;
 }
-
 
 .sidebar {
-
-    position: fixed;
-
-    left: 0;
-
-    top: 0;
-
-    width: 245px;
-
-    height: 100vh;
-
-    background: var(--plum);
-
-    color: white;
-
-    padding: 28px 18px;
-
+    position:fixed;
+    left:0;
+    top:0;
+    width:245px;
+    height:100vh;
+    background:var(--plum);
+    color:white;
+    padding:28px 18px;
 }
-
 
 .logo {
-
-    padding: 0 12px 30px;
-
+    padding:0 12px 30px;
 }
-
 
 .logo h1 {
-
-    font-size: 19px;
-
-    line-height: 1.35;
-
+    font-size:19px;
+    line-height:1.35;
 }
-
 
 .logo span {
-
-    display: block;
-
-    font-size: 12px;
-
-    opacity: .75;
-
-    margin-top: 6px;
-
+    display:block;
+    font-size:12px;
+    opacity:.75;
+    margin-top:6px;
 }
-
 
 .nav {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 6px;
-
+    display:flex;
+    flex-direction:column;
+    gap:6px;
 }
-
 
 .nav button {
-
-    border: none;
-
-    background: transparent;
-
-    color: white;
-
-    text-align: left;
-
-    padding: 13px 14px;
-
-    border-radius: 10px;
-
-    font-size: 14px;
-
-    cursor: pointer;
-
+    border:none;
+    background:transparent;
+    color:white;
+    text-align:left;
+    padding:13px 14px;
+    border-radius:10px;
+    font-size:14px;
 }
-
 
 .nav button:hover,
 .nav button.active {
-
-    background: rgba(255,255,255,.15);
-
+    background:rgba(255,255,255,.15);
 }
-
-
-/* =====================================================
-   MAIN
-===================================================== */
 
 .main {
-
-    margin-left: 245px;
-
-    min-height: 100vh;
-
-    padding: 35px;
-
+    margin-left:245px;
+    min-height:100vh;
+    padding:35px;
 }
-
 
 .topbar {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    margin-bottom: 30px;
-
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
 }
-
 
 .topbar h2 {
-
-    font-size: 28px;
-
+    font-size:28px;
 }
-
 
 .admin-actions {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
+    display:flex;
+    align-items:center;
+    gap:10px;
 }
-
 
 .admin-label {
-
-    background: var(--light-plum);
-
-    color: var(--plum);
-
-    padding: 9px 15px;
-
-    border-radius: 30px;
-
-    font-size: 13px;
-
+    background:var(--light-plum);
+    color:var(--plum);
+    padding:9px 15px;
+    border-radius:30px;
+    font-size:13px;
 }
-
-
-/* =====================================================
-   SECTIONS
-===================================================== */
 
 .section {
-
-    display: none;
-
+    display:none;
 }
-
 
 .section.active {
-
-    display: block;
-
+    display:block;
 }
 
-
-/* =====================================================
-   DASHBOARD CARDS
-===================================================== */
+/* CARDS */
 
 .stats {
-
-    display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
-
-    gap: 18px;
-
-    margin-bottom: 30px;
-
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:25px;
 }
-
 
 .card {
-
-    background: var(--white);
-
-    border: 1px solid var(--border);
-
-    border-radius: 16px;
-
-    padding: 22px;
-
+    background:white;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:22px;
 }
-
 
 .stat-number {
-
-    font-size: 30px;
-
-    font-weight: bold;
-
-    color: var(--plum);
-
-    margin-top: 8px;
-
+    font-size:30px;
+    font-weight:bold;
+    color:var(--plum);
+    margin-top:8px;
 }
 
-
-/* =====================================================
-   TABLE
-===================================================== */
+/* TABLE */
 
 .table-card {
-
-    background: white;
-
-    border: 1px solid var(--border);
-
-    border-radius: 16px;
-
-    overflow: hidden;
-
+    background:white;
+    border:1px solid var(--border);
+    border-radius:16px;
+    overflow:hidden;
 }
-
 
 .table-header {
-
-    padding: 20px;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    border-bottom: 1px solid var(--border);
-
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--border);
 }
-
 
 table {
-
-    width: 100%;
-
-    border-collapse: collapse;
-
+    width:100%;
+    border-collapse:collapse;
 }
-
 
 th,
 td {
-
-    padding: 15px 20px;
-
-    text-align: left;
-
-    border-bottom: 1px solid var(--border);
-
-    font-size: 14px;
-
+    padding:15px 20px;
+    text-align:left;
+    border-bottom:1px solid var(--border);
+    font-size:14px;
 }
-
 
 th {
-
-    background: var(--cream);
-
+    background:var(--cream);
 }
 
-
-/* =====================================================
-   CLASSROOM
-===================================================== */
-
-.modules {
-
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 18px;
-
-}
-
-
-.module {
-
-    background: white;
-
-    border: 1px solid var(--border);
-
-    border-radius: 16px;
-
-    padding: 24px;
-
-}
-
-
-.module-icon {
-
-    font-size: 28px;
-
-    margin-bottom: 15px;
-
-}
-
-
-.module h3 {
-
-    color: var(--plum);
-
-    margin-bottom: 8px;
-
-}
-
-
-.module p {
-
-    font-size: 13px;
-
-    color: #777;
-
-}
-
-
-/* =====================================================
-   FORM CARD
-===================================================== */
+/* FORM */
 
 .form-card {
-
-    max-width: 800px;
-
-    background: white;
-
-    border: 1px solid var(--border);
-
-    border-radius: 16px;
-
-    padding: 25px;
-
+    max-width:850px;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:28px;
 }
-
 
 .form-actions {
-
-    margin-top: 20px;
-
+    margin-top:22px;
+    display:flex;
+    gap:8px;
 }
 
+/* CLASSROOM */
 
-/* =====================================================
-   EMPTY STATE
-===================================================== */
+.classroom-toolbar {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.tree {
+    background:white;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:20px;
+}
+
+.tree-item {
+    margin-bottom:8px;
+}
+
+.tree-row {
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:13px 12px;
+    border-radius:10px;
+    background:#FCFAF7;
+    border:1px solid var(--border);
+}
+
+.tree-row:hover {
+    background:var(--light-plum);
+}
+
+.tree-toggle {
+    width:28px;
+    height:28px;
+    border:none;
+    background:transparent;
+    color:var(--plum);
+    font-size:16px;
+}
+
+.tree-icon {
+    font-size:18px;
+}
+
+.tree-title {
+    flex:1;
+    font-weight:bold;
+}
+
+.tree-meta {
+    font-size:12px;
+    color:#777;
+}
+
+.tree-actions {
+    display:flex;
+    gap:5px;
+}
+
+.small-btn {
+    border:1px solid var(--border);
+    background:white;
+    padding:6px 9px;
+    border-radius:7px;
+    font-size:12px;
+}
+
+.small-btn:hover {
+    background:var(--light-plum);
+}
+
+.children {
+    margin-left:30px;
+    margin-top:8px;
+    display:none;
+}
+
+.children.open {
+    display:block;
+}
 
 .empty {
-
-    text-align: center;
-
-    color: #888;
-
-    padding: 30px;
-
+    text-align:center;
+    color:#888;
+    padding:40px;
 }
 
+/* CHECKBOX */
 
-/* =====================================================
-   MOBILE
-===================================================== */
+.checkbox-row {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:15px 0;
+}
 
-@media(max-width: 900px) {
+.checkbox-row input {
+    width:auto;
+}
+
+/* DAY EDITOR */
+
+.editor-title {
+    color:var(--plum);
+    margin-bottom:22px;
+}
+
+.editor-section {
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:20px;
+    margin-top:18px;
+}
+
+.editor-section h4 {
+    color:var(--plum);
+    margin-bottom:15px;
+}
+
+.preview-box {
+    background:var(--cream);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:25px;
+    line-height:1.7;
+}
+
+.preview-box h2 {
+    color:var(--plum);
+    margin-bottom:10px;
+}
+
+.preview-box h3 {
+    color:var(--plum);
+    margin-top:20px;
+    margin-bottom:7px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px) {
 
     .sidebar {
-
-        width: 75px;
-
-        padding: 20px 8px;
-
+        width:75px;
+        padding:20px 8px;
     }
-
 
     .logo h1,
     .logo span {
-
-        display: none;
-
+        display:none;
     }
-
 
     .nav button {
-
-        font-size: 0;
-
-        text-align: center;
-
+        font-size:0;
+        text-align:center;
     }
-
 
     .main {
-
-        margin-left: 75px;
-
-        padding: 20px;
-
+        margin-left:75px;
+        padding:20px;
     }
-
 
     .stats {
-
-        grid-template-columns: repeat(2, 1fr);
-
-    }
-
-
-    .modules {
-
-        grid-template-columns: 1fr;
-
+        grid-template-columns:repeat(2,1fr);
     }
 
 }
-
 
 </style>
 
@@ -680,10 +492,10 @@ th {
 
 
 <!-- =====================================================
-     LOGIN PAGE
+     LOGIN
 ===================================================== -->
 
-<div id="loginPage" class="login-page">
+<div id="loginPage">
 
     <div class="login-box">
 
@@ -703,9 +515,7 @@ th {
 
         <div class="form-group">
 
-            <label>
-                Email
-            </label>
+            <label>Email</label>
 
             <input
                 id="loginEmail"
@@ -718,9 +528,7 @@ th {
 
         <div class="form-group">
 
-            <label>
-                Password
-            </label>
+            <label>Password</label>
 
             <input
                 id="loginPassword"
@@ -758,8 +566,6 @@ th {
 <div id="adminApp">
 
 
-<!-- SIDEBAR -->
-
 <aside class="sidebar">
 
     <div class="logo">
@@ -780,42 +586,42 @@ th {
 
         <button
             class="active"
-            onclick="showSection('dashboard', this)"
+            onclick="showSection('dashboard',this)"
         >
             🏠 Dashboard
         </button>
 
 
         <button
-            onclick="showSection('members', this)"
+            onclick="showSection('members',this)"
         >
             👥 Members
         </button>
 
 
         <button
-            onclick="showSection('classroom', this)"
+            onclick="showSection('classroom',this)"
         >
             📚 Classroom
         </button>
 
 
         <button
-            onclick="showSection('community', this)"
+            onclick="showSection('community',this)"
         >
             💬 Community
         </button>
 
 
         <button
-            onclick="showSection('leaderboard', this)"
+            onclick="showSection('leaderboard',this)"
         >
             🏆 Leaderboard
         </button>
 
 
         <button
-            onclick="showSection('settings', this)"
+            onclick="showSection('settings',this)"
         >
             ⚙️ Settings
         </button>
@@ -826,839 +632,853 @@ th {
 
 
 
-<!-- MAIN -->
-
 <main class="main">
 
 
-    <!-- TOP BAR -->
+<div class="topbar">
 
-    <div class="topbar">
-
-        <h2 id="pageTitle">
-            Dashboard
-        </h2>
+    <h2 id="pageTitle">
+        Dashboard
+    </h2>
 
 
-        <div class="admin-actions">
+    <div class="admin-actions">
 
-            <div class="admin-label">
-                Administrator
+        <div class="admin-label">
+            Administrator
+        </div>
+
+
+        <button
+            class="btn btn-secondary"
+            onclick="logoutAdmin()"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<section
+    id="dashboard"
+    class="section active"
+>
+
+    <div class="stats">
+
+
+        <div class="card">
+
+            <p>Total Members</p>
+
+            <div
+                class="stat-number"
+                id="memberCount"
+            >
+                0
             </div>
 
-            <button
-                class="btn btn-secondary"
-                onclick="logoutAdmin()"
+        </div>
+
+
+        <div class="card">
+
+            <p>Active Members</p>
+
+            <div
+                class="stat-number"
+                id="activeMemberCount"
             >
-                Logout
-            </button>
+                0
+            </div>
 
         </div>
+
+
+        <div class="card">
+
+            <p>Classroom Items</p>
+
+            <div
+                class="stat-number"
+                id="contentCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <p>Community Posts</p>
+
+            <div class="stat-number">
+                0
+            </div>
+
+        </div>
+
 
     </div>
 
 
+    <div class="card">
 
-    <!-- =================================================
-         DASHBOARD
-    ================================================= -->
+        <h3 style="margin-bottom:10px;">
+            Freedom Women's Health Club
+        </h3>
 
-    <section
-        id="dashboard"
-        class="section active"
-    >
+        <p style="color:#777;line-height:1.7;">
 
-        <div class="stats">
+            Build your classroom, manage members
+            and control exactly when content becomes
+            available.
 
+        </p>
 
-            <div class="card">
+    </div>
 
-                <p>
-                    Total Members
-                </p>
+</section>
 
-                <div
-                    class="stat-number"
-                    id="memberCount"
-                >
-                    0
-                </div>
 
-            </div>
 
+<!-- =====================================================
+     MEMBERS
+===================================================== -->
 
-            <div class="card">
+<section
+    id="members"
+    class="section"
+>
 
-                <p>
-                    Active Members
-                </p>
+    <div class="table-card">
 
-                <div
-                    class="stat-number"
-                    id="activeMemberCount"
-                >
-                    0
-                </div>
-
-            </div>
-
-
-            <div class="card">
-
-                <p>
-                    Classroom Content
-                </p>
-
-                <div
-                    class="stat-number"
-                    id="contentCount"
-                >
-                    0
-                </div>
-
-            </div>
-
-
-            <div class="card">
-
-                <p>
-                    Community Posts
-                </p>
-
-                <div
-                    class="stat-number"
-                >
-                    0
-                </div>
-
-            </div>
-
-
-        </div>
-
-
-        <div class="card">
-
-            <h3 style="margin-bottom:10px;">
-
-                Welcome to your
-                Freedom Club Admin Panel
-
-            </h3>
-
-
-            <p
-                style="
-                    color:#777;
-                    line-height:1.7;
-                "
-            >
-
-                Manage members, classroom content,
-                unlock days, community and your
-                Freedom Women's Health Club
-                from one place.
-
-            </p>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         MEMBERS
-    ================================================= -->
-
-    <section
-        id="members"
-        class="section"
-    >
-
-        <div class="table-card">
-
-
-            <div class="table-header">
-
-                <h3>
-                    Members
-                </h3>
-
-
-                <button
-                    class="btn"
-                    onclick="showAddMember()"
-                >
-                    + Add Member
-                </button>
-
-            </div>
-
-
-            <table>
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            Name
-                        </th>
-
-                        <th>
-                            Email
-                        </th>
-
-                        <th>
-                            Start Date
-                        </th>
-
-                        <th>
-                            Access Until
-                        </th>
-
-                        <th>
-                            Status
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-
-                <tbody
-                    id="memberTable"
-                >
-
-                    <tr>
-
-                        <td
-                            colspan="5"
-                            class="empty"
-                        >
-                            Loading members...
-                        </td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         ADD MEMBER
-    ================================================= -->
-
-    <section
-        id="addMember"
-        class="section"
-    >
-
-        <div class="form-card">
-
-            <h3 style="margin-bottom:22px;">
-                Add Member
-            </h3>
-
-
-            <div class="form-group">
-
-                <label>
-                    Name
-                </label>
-
-                <input
-                    id="memberName"
-                    placeholder="Member name"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Email
-                </label>
-
-                <input
-                    id="memberEmail"
-                    type="email"
-                    placeholder="Email address"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Phone
-                </label>
-
-                <input
-                    id="memberPhone"
-                    placeholder="Phone number"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Start Date
-                </label>
-
-                <input
-                    id="memberStart"
-                    type="date"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Access Until Day
-                </label>
-
-                <select
-                    id="memberAccess"
-                >
-
-                    <option value="30">
-                        Day 30
-                    </option>
-
-                    <option value="60">
-                        Day 60
-                    </option>
-
-                    <option value="90">
-                        Day 90
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Status
-                </label>
-
-                <select
-                    id="memberStatus"
-                >
-
-                    <option value="Active">
-                        Active
-                    </option>
-
-                    <option value="Inactive">
-                        Inactive
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-actions">
-
-                <button
-                    class="btn"
-                    onclick="saveMember()"
-                >
-                    Save Member
-                </button>
-
-
-                <button
-                    class="btn btn-secondary"
-                    onclick="showSection('members')"
-                    style="margin-left:8px;"
-                >
-                    Cancel
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         CLASSROOM
-    ================================================= -->
-
-    <section
-        id="classroom"
-        class="section"
-    >
-
-
-        <div
-            style="
-                display:flex;
-                justify-content:space-between;
-                align-items:center;
-                margin-bottom:20px;
-            "
-        >
+        <div class="table-header">
 
             <h3>
-                Classroom
+                Members
             </h3>
-
 
             <button
                 class="btn"
-                onclick="showAddContent()"
+                onclick="showAddMember()"
             >
-                + Add Content
+                + Add Member
             </button>
 
         </div>
 
 
-        <div class="modules">
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Name</th>
+
+                    <th>Email</th>
+
+                    <th>Start Date</th>
+
+                    <th>Access Until</th>
+
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
 
 
-            <div class="module">
+            <tbody id="memberTable">
 
-                <div class="module-icon">
-                    👋
-                </div>
+                <tr>
 
-                <h3>
-                    Start Here
-                </h3>
+                    <td
+                        colspan="5"
+                        class="empty"
+                    >
+                        Loading...
+                    </td>
 
-                <p>
-                    Welcome and program orientation
-                </p>
+                </tr>
 
-            </div>
+            </tbody>
 
+        </table>
 
-            <div class="module">
+    </div>
 
-                <div class="module-icon">
-                    🌱
-                </div>
-
-                <h3>
-                    Phase 1 — Reset
-                </h3>
-
-                <p>
-                    Build your foundation
-                </p>
-
-            </div>
-
-
-            <div class="module">
-
-                <div class="module-icon">
-                    💪
-                </div>
-
-                <h3>
-                    Phase 2 — Build
-                </h3>
-
-                <p>
-                    Strengthen your habits
-                </p>
-
-            </div>
-
-
-            <div class="module">
-
-                <div class="module-icon">
-                    ✨
-                </div>
-
-                <h3>
-                    Phase 3 — Maintain
-                </h3>
-
-                <p>
-                    Make your habits sustainable
-                </p>
-
-            </div>
-
-
-            <div class="module">
-
-                <div class="module-icon">
-                    🏋️
-                </div>
-
-                <h3>
-                    Workout Plans
-                </h3>
-
-                <p>
-                    Movement and strength plans
-                </p>
-
-            </div>
-
-
-            <div class="module">
-
-                <div class="module-icon">
-                    🥗
-                </div>
-
-                <h3>
-                    Diet Plans
-                </h3>
-
-                <p>
-                    Nutrition resources and guides
-                </p>
-
-            </div>
-
-
-            <div class="module">
-
-                <div class="module-icon">
-                    🌿
-                </div>
-
-                <h3>
-                    Lifetime Habits
-                </h3>
-
-                <p>
-                    Habits beyond the 90 days
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </section>
+</section>
 
 
 
-    <!-- =================================================
-         ADD CONTENT
-    ================================================= -->
+<!-- =====================================================
+     ADD MEMBER
+===================================================== -->
 
-    <section
-        id="addContent"
-        class="section"
+<section
+    id="addMember"
+    class="section"
+>
+
+<div class="form-card">
+
+<h3 style="margin-bottom:22px;">
+    Add Member
+</h3>
+
+
+<div class="form-group">
+
+<label>Name</label>
+
+<input
+    id="memberName"
+    placeholder="Member name"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Email</label>
+
+<input
+    id="memberEmail"
+    type="email"
+    placeholder="Email address"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Phone</label>
+
+<input
+    id="memberPhone"
+    placeholder="Phone number"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Start Date</label>
+
+<input
+    id="memberStart"
+    type="date"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Access Until Day</label>
+
+<select id="memberAccess">
+
+<option value="30">Day 30</option>
+
+<option value="60">Day 60</option>
+
+<option value="90">Day 90</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Status</label>
+
+<select id="memberStatus">
+
+<option value="Active">
+Active
+</option>
+
+<option value="Inactive">
+Inactive
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-actions">
+
+<button
+    class="btn"
+    onclick="saveMember()"
+>
+    Save Member
+</button>
+
+
+<button
+    class="btn btn-secondary"
+    onclick="showSection('members')"
+>
+    Cancel
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CLASSROOM
+===================================================== -->
+
+<section
+    id="classroom"
+    class="section"
+>
+
+
+<div class="classroom-toolbar">
+
+    <div>
+
+        <h3>
+            Classroom
+        </h3>
+
+        <p
+            style="
+                color:#777;
+                margin-top:5px;
+                font-size:13px;
+            "
+        >
+            Build your program structure.
+        </p>
+
+    </div>
+
+
+    <button
+        class="btn"
+        onclick="openAddItem()"
+    >
+        + Add
+    </button>
+
+</div>
+
+
+<div class="tree">
+
+    <div
+        id="classroomTree"
     >
 
-        <div class="form-card">
-
-
-            <h3 style="margin-bottom:22px;">
-                Add Classroom Content
-            </h3>
-
-
-            <div class="form-group">
-
-                <label>
-                    Content Type
-                </label>
-
-                <select
-                    id="contentType"
-                >
-
-                    <option>
-                        Lesson
-                    </option>
-
-                    <option>
-                        Day
-                    </option>
-
-                    <option>
-                        Workout Plan
-                    </option>
-
-                    <option>
-                        Diet Plan
-                    </option>
-
-                    <option>
-                        Lifetime Habit
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Module
-                </label>
-
-                <select
-                    id="contentModule"
-                >
-
-                    <option>
-                        Start Here
-                    </option>
-
-                    <option>
-                        Phase 1 — Reset
-                    </option>
-
-                    <option>
-                        Phase 2 — Build
-                    </option>
-
-                    <option>
-                        Phase 3 — Maintain
-                    </option>
-
-                    <option>
-                        Workout Plans
-                    </option>
-
-                    <option>
-                        Diet Plans
-                    </option>
-
-                    <option>
-                        Lifetime Habits
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Title
-                </label>
-
-                <input
-                    id="contentTitle"
-                    placeholder="e.g. Day 1 — Rhythm Reset"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Description
-                </label>
-
-                <input
-                    id="contentDescription"
-                    placeholder="Short description"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Content
-                </label>
-
-                <textarea
-                    id="contentBody"
-                    placeholder="Write your lesson/content here..."
-                ></textarea>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Unlock Day
-                </label>
-
-                <input
-                    id="unlockDay"
-                    type="number"
-                    min="1"
-                    value="1"
-                >
-
-            </div>
-
-
-            <div class="form-actions">
-
-                <button
-                    class="btn"
-                    onclick="saveContent()"
-                >
-                    Save Content
-                </button>
-
-
-                <button
-                    class="btn btn-secondary"
-                    onclick="showSection('classroom')"
-                    style="margin-left:8px;"
-                >
-                    Cancel
-                </button>
-
-            </div>
-
+        <div class="empty">
+            Loading classroom...
         </div>
 
-    </section>
+    </div>
+
+</div>
+
+</section>
 
 
 
-    <!-- =================================================
-         COMMUNITY
-    ================================================= -->
+<!-- =====================================================
+     ADD / EDIT CLASSROOM ITEM
+===================================================== -->
 
-    <section
-        id="community"
-        class="section"
-    >
+<section
+    id="itemEditor"
+    class="section"
+>
 
-        <div class="card">
+<div class="form-card">
 
-            <h3 style="margin-bottom:10px;">
-                Community
-            </h3>
-
-            <p style="color:#777;line-height:1.7;">
-
-                Community posts, comments and
-                member posts will be managed here.
-
-            </p>
-
-        </div>
-
-    </section>
+<h3
+    id="itemEditorTitle"
+    class="editor-title"
+>
+    Add Classroom Item
+</h3>
 
 
+<div class="form-group">
 
-    <!-- =================================================
-         LEADERBOARD
-    ================================================= -->
+<label>
+What are you adding?
+</label>
 
-    <section
-        id="leaderboard"
-        class="section"
-    >
+<select id="itemType">
 
-        <div class="card">
+<option value="module">
+Module
+</option>
 
-            <h3 style="margin-bottom:20px;">
-                Leaderboard
-            </h3>
+<option value="subsection">
+Subsection
+</option>
 
+<option value="lesson">
+Day / Lesson
+</option>
 
-            <table>
+</select>
 
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            Rank
-                        </th>
-
-                        <th>
-                            Member
-                        </th>
-
-                        <th>
-                            Points
-                        </th>
-
-                    </tr>
-
-                </thead>
+</div>
 
 
-                <tbody>
+<div class="form-group">
 
-                    <tr>
+<label>
+Parent
+</label>
 
-                        <td>
-                            1
-                        </td>
+<select id="itemParent">
 
-                        <td>
-                            —
-                        </td>
+<option value="">
+No Parent — Top Level
+</option>
 
-                        <td>
-                            0
-                        </td>
+</select>
 
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </section>
+</div>
 
 
+<div class="form-group">
 
-    <!-- =================================================
-         SETTINGS
-    ================================================= -->
+<label>
+Title
+</label>
 
-    <section
-        id="settings"
-        class="section"
-    >
+<input
+    id="itemTitle"
+    placeholder="e.g. Phase 1 — Reset"
+>
 
-        <div class="card">
+</div>
 
-            <h3 style="margin-bottom:15px;">
-                Settings
-            </h3>
 
-            <p style="color:#777;">
-                Freedom Club settings will be added here.
-            </p>
+<div class="form-group">
 
-        </div>
+<label>
+Description
+</label>
 
-    </section>
+<textarea
+    id="itemDescription"
+    placeholder="Short description..."
+></textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Unlock Day
+</label>
+
+<input
+    id="itemUnlockDay"
+    type="number"
+    min="1"
+    value="1"
+>
+
+</div>
+
+
+<div class="checkbox-row">
+
+<input
+    id="itemHasChildren"
+    type="checkbox"
+>
+
+<label for="itemHasChildren">
+    Allow subsections inside this item
+</label>
+
+</div>
+
+
+<div
+    id="lessonFields"
+    style="display:none;"
+>
+
+
+<div class="editor-section">
+
+<h4>
+Movement
+</h4>
+
+<div class="form-group">
+
+<label>
+Target
+</label>
+
+<input
+    id="dayMovement"
+    placeholder="e.g. 2,500 steps"
+>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Instructions
+</label>
+
+<textarea
+    id="dayMovementInstructions"
+></textarea>
+
+</div>
+
+</div>
+
+
+
+<div class="editor-section">
+
+<h4>
+Hydration
+</h4>
+
+<div class="form-group">
+
+<label>
+Target
+</label>
+
+<input
+    id="dayHydration"
+    placeholder="e.g. 1.5 L"
+>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Instructions
+</label>
+
+<textarea
+    id="dayHydrationInstructions"
+></textarea>
+
+</div>
+
+</div>
+
+
+
+<div class="editor-section">
+
+<h4>
+Protein
+</h4>
+
+<div class="form-group">
+
+<label>
+Target
+</label>
+
+<input
+    id="dayProtein"
+    placeholder="e.g. 15–20 g"
+>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Instructions
+</label>
+
+<textarea
+    id="dayProteinInstructions"
+></textarea>
+
+</div>
+
+</div>
+
+
+
+<div class="editor-section">
+
+<h4>
+Sleep
+</h4>
+
+<div class="form-group">
+
+<label>
+Target
+</label>
+
+<input
+    id="daySleep"
+    placeholder="e.g. 6 hours"
+>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Instructions
+</label>
+
+<textarea
+    id="daySleepInstructions"
+></textarea>
+
+</div>
+
+</div>
+
+
+
+<div class="editor-section">
+
+<h4>
+Nutrition
+</h4>
+
+<textarea
+    id="dayNutrition"
+    placeholder="Nutrition focus for this day..."
+></textarea>
+
+</div>
+
+
+
+<div class="editor-section">
+
+<h4>
+Mind / Stress
+</h4>
+
+<textarea
+    id="dayMind"
+    placeholder="e.g. 5 minutes calm breathing"
+></textarea>
+
+</div>
+
+
+
+<div class="editor-section">
+
+<h4>
+Sunlight
+</h4>
+
+<input
+    id="daySunlight"
+    placeholder="e.g. 10 minutes"
+>
+
+</div>
+
+
+
+<div class="editor-section">
+
+<h4>
+Recovery
+</h4>
+
+<textarea
+    id="dayRecovery"
+></textarea>
+
+</div>
+
+
+</div>
+
+
+
+<div class="form-actions">
+
+<button
+    class="btn"
+    onclick="saveClassroomItem()"
+>
+    Save
+</button>
+
+
+<button
+    class="btn btn-secondary"
+    onclick="showSection('classroom')"
+>
+    Cancel
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PREVIEW
+===================================================== -->
+
+<section
+    id="preview"
+    class="section"
+>
+
+<div class="form-card">
+
+<button
+    class="btn btn-secondary"
+    onclick="showSection('classroom')"
+    style="margin-bottom:20px;"
+>
+    ← Back to Classroom
+</button>
+
+
+<div
+    id="previewContent"
+    class="preview-box"
+></div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     COMMUNITY
+===================================================== -->
+
+<section
+    id="community"
+    class="section"
+>
+
+<div class="card">
+
+<h3 style="margin-bottom:10px;">
+Community
+</h3>
+
+<p style="color:#777;line-height:1.7;">
+
+Community management will be connected
+to your Firebase community collection.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     LEADERBOARD
+===================================================== -->
+
+<section
+    id="leaderboard"
+    class="section"
+>
+
+<div class="card">
+
+<h3>
+Leaderboard
+</h3>
+
+<p
+    style="
+        color:#777;
+        margin-top:10px;
+    "
+>
+
+Leaderboard points will be connected
+to member progress.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SETTINGS
+===================================================== -->
+
+<section
+    id="settings"
+    class="section"
+>
+
+<div class="card">
+
+<h3>
+Settings
+</h3>
+
+<p
+    style="
+        color:#777;
+        margin-top:10px;
+    "
+>
+
+Freedom Club settings.
+
+</p>
+
+</div>
+
+</section>
 
 
 </main>
@@ -1668,83 +1488,73 @@ th {
 
 
 <!-- =====================================================
-     FIREBASE + JAVASCRIPT
+     FIREBASE
 ===================================================== -->
 
 <script type="module">
 
 
-/* =====================================================
-   FIREBASE IMPORTS
-===================================================== */
-
-import { initializeApp }
-
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 
 import {
-
     getAuth,
-
     signInWithEmailAndPassword,
-
     onAuthStateChanged,
-
     signOut
-
 }
-
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 
 import {
-
     getFirestore,
-
     collection,
-
     addDoc,
-
-    getDocs
-
+    getDocs,
+    doc,
+    updateDoc,
+    deleteDoc,
+    getDoc,
+    query,
+    orderBy
 }
-
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
 
 /* =====================================================
-   YOUR FIREBASE CONFIG
+   FIREBASE CONFIG
 ===================================================== */
 
 const firebaseConfig = {
 
     apiKey:
-        "AIzaSyB1ISMm_aVwsbSHByUI0F67tn-8GJo1pO0",
+    "AIzaSyB1ISMm_aVwsbSHByUI0F67tn-8GJo1pO0",
 
     authDomain:
-        "freedom-women-s-health-club.firebaseapp.com",
+    "freedom-women-s-health-club.firebaseapp.com",
 
     projectId:
-        "freedom-women-s-health-club",
+    "freedom-women-s-health-club",
 
     storageBucket:
-        "freedom-women-s-health-club.firebasestorage.app",
+    "freedom-women-s-health-club.firebasestorage.app",
 
     messagingSenderId:
-        "445440093665",
+    "445440093665",
 
     appId:
-        "1:445440093665:web:9c3a77f1f64776f63cb6a0"
+    "1:445440093665:web:9c3a77f1f64776f63cb6a0"
 
 };
 
 
-
-/* =====================================================
-   INITIALIZE FIREBASE
-===================================================== */
 
 const app =
     initializeApp(firebaseConfig);
@@ -1759,72 +1569,84 @@ const db =
 
 
 
-/* =====================================================
-   ADMIN EMAIL
-===================================================== */
-
 const ADMIN_EMAIL =
     "mahnoordietitian3@gmail.com";
 
 
 
 /* =====================================================
-   CHECK LOGIN
+   GLOBAL CLASSROOM DATA
 ===================================================== */
 
-onAuthStateChanged(auth, user => {
+let classroomItems = [];
+
+let editingItemId = null;
 
 
-    if (!user) {
+
+/* =====================================================
+   AUTH
+===================================================== */
+
+onAuthStateChanged(
+    auth,
+    user => {
+
+
+        if (!user) {
+
+            document
+                .getElementById("loginPage")
+                .style.display =
+                    "flex";
+
+
+            document
+                .getElementById("adminApp")
+                .style.display =
+                    "none";
+
+            return;
+
+        }
+
+
+
+        if (
+            user.email !==
+            ADMIN_EMAIL
+        ) {
+
+            alert(
+                "You are not authorized."
+            );
+
+            signOut(auth);
+
+            return;
+
+        }
+
+
 
         document
             .getElementById("loginPage")
-            .style.display = "flex";
+            .style.display =
+                "none";
 
 
         document
             .getElementById("adminApp")
-            .style.display = "none";
+            .style.display =
+                "block";
 
 
-        return;
+        loadMembers();
 
-    }
-
-
-
-    if (user.email !== ADMIN_EMAIL) {
-
-        alert(
-            "You are not authorized to access this Admin Panel."
-        );
-
-
-        signOut(auth);
-
-
-        return;
+        loadClassroom();
 
     }
-
-
-
-    document
-        .getElementById("loginPage")
-        .style.display = "none";
-
-
-    document
-        .getElementById("adminApp")
-        .style.display = "block";
-
-
-    loadMembers();
-
-
-    loadContent();
-
-});
+);
 
 
 
@@ -1866,43 +1688,24 @@ async function loginAdmin() {
 
 
 
-    if (!email || !password) {
-
-        error.textContent =
-            "Please enter your email and password.";
-
-        return;
-
-    }
-
-
-
     try {
 
-
         await signInWithEmailAndPassword(
-
             auth,
-
             email,
-
             password
-
         );
-
 
     }
 
-    catch (errorObject) {
-
+    catch(errorObject) {
 
         console.error(
             errorObject
         );
 
-
         error.textContent =
-            "Login failed. Please check your email and password.";
+            "Login failed. Check your email and password.";
 
     }
 
@@ -1914,7 +1717,8 @@ async function loginAdmin() {
    LOGOUT
 ===================================================== */
 
-window.logoutAdmin = async function() {
+window.logoutAdmin =
+async function() {
 
     await signOut(auth);
 
@@ -1926,10 +1730,8 @@ window.logoutAdmin = async function() {
    NAVIGATION
 ===================================================== */
 
-window.showSection = function(
-    sectionId,
-    button
-) {
+window.showSection =
+function(sectionId,button) {
 
 
     document
@@ -1950,7 +1752,7 @@ window.showSection = function(
         );
 
 
-    if (section) {
+    if(section) {
 
         section.classList.add(
             "active"
@@ -1972,7 +1774,7 @@ window.showSection = function(
 
 
 
-    if (button) {
+    if(button) {
 
         button.classList.add(
             "active"
@@ -1984,29 +1786,23 @@ window.showSection = function(
 
     const titles = {
 
-        dashboard:
-            "Dashboard",
+        dashboard:"Dashboard",
 
-        members:
-            "Members",
+        members:"Members",
 
-        addMember:
-            "Add Member",
+        classroom:"Classroom",
 
-        classroom:
-            "Classroom",
+        community:"Community",
 
-        addContent:
-            "Add Classroom Content",
+        leaderboard:"Leaderboard",
 
-        community:
-            "Community",
+        settings:"Settings",
 
-        leaderboard:
-            "Leaderboard",
+        addMember:"Add Member",
 
-        settings:
-            "Settings"
+        itemEditor:"Classroom Editor",
+
+        preview:"Preview"
 
     };
 
@@ -2022,10 +1818,11 @@ window.showSection = function(
 
 
 /* =====================================================
-   ADD MEMBER SCREEN
+   MEMBERS
 ===================================================== */
 
-window.showAddMember = function() {
+window.showAddMember =
+function() {
 
     showSection(
         "addMember"
@@ -2035,11 +1832,8 @@ window.showAddMember = function() {
 
 
 
-/* =====================================================
-   SAVE MEMBER TO FIRESTORE
-===================================================== */
-
-window.saveMember = async function() {
+window.saveMember =
+async function() {
 
 
     const name =
@@ -2084,7 +1878,7 @@ window.saveMember = async function() {
 
 
 
-    if (
+    if(
         !name ||
         !email ||
         !startDate
@@ -2112,23 +1906,12 @@ window.saveMember = async function() {
 
             {
 
-                name:
-                    name,
-
-                email:
-                    email,
-
-                phone:
-                    phone,
-
-                startDate:
-                    startDate,
-
-                accessUntilDay:
-                    accessUntilDay,
-
-                status:
-                    status,
+                name,
+                email,
+                phone,
+                startDate,
+                accessUntilDay,
+                status,
 
                 createdAt:
                     new Date()
@@ -2138,11 +1921,9 @@ window.saveMember = async function() {
         );
 
 
-
         alert(
-            "Member saved successfully in Firebase."
+            "Member saved successfully."
         );
-
 
 
         document
@@ -2165,9 +1946,7 @@ window.saveMember = async function() {
             .value = "";
 
 
-
         await loadMembers();
-
 
 
         showSection(
@@ -2177,16 +1956,14 @@ window.saveMember = async function() {
 
     }
 
-    catch (errorObject) {
-
+    catch(errorObject) {
 
         console.error(
             errorObject
         );
 
-
         alert(
-            "Could not save member. Please check your Firebase login and Firestore rules."
+            "Could not save member. Check Firebase."
         );
 
     }
@@ -2194,10 +1971,6 @@ window.saveMember = async function() {
 };
 
 
-
-/* =====================================================
-   LOAD MEMBERS FROM FIRESTORE
-===================================================== */
 
 async function loadMembers() {
 
@@ -2207,14 +1980,11 @@ async function loadMembers() {
 
         const snapshot =
             await getDocs(
-
                 collection(
                     db,
                     "members"
                 )
-
             );
-
 
 
         const table =
@@ -2224,80 +1994,35 @@ async function loadMembers() {
                 );
 
 
-        const memberCount =
-            document
-                .getElementById(
-                    "memberCount"
-                );
-
-
-        const activeCount =
-            document
-                .getElementById(
-                    "activeMemberCount"
-                );
+        document
+            .getElementById(
+                "memberCount"
+            )
+            .textContent =
+                snapshot.size;
 
 
 
-        memberCount.textContent =
-            snapshot.size;
-
-
-
-        let activeMembers = 0;
-
+        let active = 0;
 
         let html = "";
 
 
 
-        if (snapshot.empty) {
-
-
-            table.innerHTML = `
-
-                <tr>
-
-                    <td
-                        colspan="5"
-                        class="empty"
-                    >
-
-                        No members yet.
-                        Add your first member.
-
-                    </td>
-
-                </tr>
-
-            `;
-
-
-            activeCount.textContent =
-                "0";
-
-
-            return;
-
-        }
-
-
-
         snapshot.forEach(
-            documentSnapshot => {
+            snap => {
 
 
                 const member =
-                    documentSnapshot.data();
+                    snap.data();
 
 
-
-                if (
+                if(
                     member.status ===
                     "Active"
                 ) {
 
-                    activeMembers++;
+                    active++;
 
                 }
 
@@ -2344,18 +2069,42 @@ async function loadMembers() {
 
 
 
+        if(!html) {
+
+            html = `
+
+                <tr>
+
+                    <td
+                        colspan="5"
+                        class="empty"
+                    >
+                        No members yet.
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+
+
+
         table.innerHTML =
             html;
 
 
-        activeCount.textContent =
-            activeMembers;
+        document
+            .getElementById(
+                "activeMemberCount"
+            )
+            .textContent =
+                active;
 
 
     }
 
-    catch (errorObject) {
-
+    catch(errorObject) {
 
         console.error(
             errorObject
@@ -2368,13 +2117,44 @@ async function loadMembers() {
 
 
 /* =====================================================
-   ADD CONTENT SCREEN
+   OPEN ADD CLASSROOM ITEM
 ===================================================== */
 
-window.showAddContent = function() {
+window.openAddItem =
+function() {
+
+
+    editingItemId =
+        null;
+
+
+    document
+        .getElementById(
+            "itemEditorTitle"
+        )
+        .textContent =
+            "Add Classroom Item";
+
+
+    clearItemForm();
+
+
+    populateParentSelect();
+
+
+    document
+        .getElementById(
+            "itemType"
+        )
+        .value =
+            "module";
+
+
+    toggleLessonFields();
+
 
     showSection(
-        "addContent"
+        "itemEditor"
     );
 
 };
@@ -2382,24 +2162,188 @@ window.showAddContent = function() {
 
 
 /* =====================================================
-   SAVE CLASSROOM CONTENT
+   PARENT SELECT
 ===================================================== */
 
-window.saveContent = async function() {
+function populateParentSelect() {
+
+
+    const select =
+        document
+            .getElementById(
+                "itemParent"
+            );
+
+
+    select.innerHTML = `
+
+        <option value="">
+            No Parent — Top Level
+        </option>
+
+    `;
+
+
+
+    classroomItems
+        .filter(item =>
+            item.hasChildren === true
+        )
+        .sort(
+            (a,b) =>
+                (a.order || 0) -
+                (b.order || 0)
+        )
+        .forEach(item => {
+
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                item.id;
+
+
+            option.textContent =
+                buildParentName(
+                    item.id
+                );
+
+
+            select.appendChild(
+                option
+            );
+
+        });
+
+}
+
+
+
+/* =====================================================
+   BUILD PARENT NAME
+===================================================== */
+
+function buildParentName(id) {
+
+
+    const item =
+        classroomItems.find(
+            x => x.id === id
+        );
+
+
+    if(!item) {
+
+        return "";
+
+    }
+
+
+    const names = [
+        item.title
+    ];
+
+
+    let current =
+        item;
+
+
+    while(current.parentId) {
+
+
+        const parent =
+            classroomItems.find(
+                x =>
+                    x.id ===
+                    current.parentId
+            );
+
+
+        if(!parent) break;
+
+
+        names.unshift(
+            parent.title
+        );
+
+
+        current =
+            parent;
+
+    }
+
+
+    return names.join(
+        " → "
+    );
+
+}
+
+
+
+/* =====================================================
+   LESSON FIELDS
+===================================================== */
+
+document
+    .getElementById(
+        "itemType"
+    )
+    .addEventListener(
+        "change",
+        toggleLessonFields
+    );
+
+
+
+function toggleLessonFields() {
 
 
     const type =
         document
             .getElementById(
-                "contentType"
+                "itemType"
             )
             .value;
 
 
-    const module =
+    document
+        .getElementById(
+            "lessonFields"
+        )
+        .style.display =
+            type === "lesson"
+            ? "block"
+            : "none";
+
+}
+
+
+
+/* =====================================================
+   SAVE CLASSROOM ITEM
+===================================================== */
+
+window.saveClassroomItem =
+async function() {
+
+
+    const type =
         document
             .getElementById(
-                "contentModule"
+                "itemType"
+            )
+            .value;
+
+
+    const parentId =
+        document
+            .getElementById(
+                "itemParent"
             )
             .value;
 
@@ -2407,7 +2351,7 @@ window.saveContent = async function() {
     const title =
         document
             .getElementById(
-                "contentTitle"
+                "itemTitle"
             )
             .value
             .trim();
@@ -2416,16 +2360,7 @@ window.saveContent = async function() {
     const description =
         document
             .getElementById(
-                "contentDescription"
-            )
-            .value
-            .trim();
-
-
-    const content =
-        document
-            .getElementById(
-                "contentBody"
+                "itemDescription"
             )
             .value
             .trim();
@@ -2435,17 +2370,25 @@ window.saveContent = async function() {
         Number(
             document
                 .getElementById(
-                    "unlockDay"
+                    "itemUnlockDay"
                 )
                 .value
         );
 
 
+    const hasChildren =
+        document
+            .getElementById(
+                "itemHasChildren"
+            )
+            .checked;
 
-    if (!title) {
+
+
+    if(!title) {
 
         alert(
-            "Please enter a content title."
+            "Please enter a title."
         );
 
         return;
@@ -2454,78 +2397,187 @@ window.saveContent = async function() {
 
 
 
+    const dayContent = {
+
+        movement:
+            document
+                .getElementById(
+                    "dayMovement"
+                )
+                .value,
+
+        movementInstructions:
+            document
+                .getElementById(
+                    "dayMovementInstructions"
+                )
+                .value,
+
+        hydration:
+            document
+                .getElementById(
+                    "dayHydration"
+                )
+                .value,
+
+        hydrationInstructions:
+            document
+                .getElementById(
+                    "dayHydrationInstructions"
+                )
+                .value,
+
+        protein:
+            document
+                .getElementById(
+                    "dayProtein"
+                )
+                .value,
+
+        proteinInstructions:
+            document
+                .getElementById(
+                    "dayProteinInstructions"
+                )
+                .value,
+
+        sleep:
+            document
+                .getElementById(
+                    "daySleep"
+                )
+                .value,
+
+        sleepInstructions:
+            document
+                .getElementById(
+                    "daySleepInstructions"
+                )
+                .value,
+
+        nutrition:
+            document
+                .getElementById(
+                    "dayNutrition"
+                )
+                .value,
+
+        mind:
+            document
+                .getElementById(
+                    "dayMind"
+                )
+                .value,
+
+        sunlight:
+            document
+                .getElementById(
+                    "daySunlight"
+                )
+                .value,
+
+        recovery:
+            document
+                .getElementById(
+                    "dayRecovery"
+                )
+                .value
+
+    };
+
+
+
     try {
 
 
-        await addDoc(
+        const data = {
 
-            collection(
-                db,
-                "lessons"
-            ),
+            type,
 
-            {
+            parentId:
+                parentId || null,
 
-                type:
-                    type,
+            title,
 
-                module:
-                    module,
+            description,
 
-                title:
-                    title,
+            unlockDay,
 
-                description:
-                    description,
+            hasChildren,
 
-                content:
-                    content,
+            dayContent,
 
-                unlockDay:
-                    unlockDay,
+            status:
+                "published",
 
-                status:
-                    "published",
+            order:
+                Date.now(),
 
-                createdAt:
-                    new Date()
+            updatedAt:
+                new Date()
 
-            }
-
-        );
+        };
 
 
 
-        alert(
-            "Classroom content saved successfully in Firebase."
-        );
+        if(editingItemId) {
+
+
+            await updateDoc(
+
+                doc(
+                    db,
+                    "classroom",
+                    editingItemId
+                ),
+
+                data
+
+            );
+
+
+            alert(
+                "Classroom item updated."
+            );
+
+
+        }
+
+        else {
+
+
+            data.createdAt =
+                new Date();
+
+
+            await addDoc(
+
+                collection(
+                    db,
+                    "classroom"
+                ),
+
+                data
+
+            );
+
+
+            alert(
+                "Classroom item added."
+            );
+
+        }
 
 
 
-        document
-            .getElementById(
-                "contentTitle"
-            )
-            .value = "";
+        editingItemId =
+            null;
 
 
-        document
-            .getElementById(
-                "contentDescription"
-            )
-            .value = "";
+        clearItemForm();
 
 
-        document
-            .getElementById(
-                "contentBody"
-            )
-            .value = "";
-
-
-
-        await loadContent();
-
+        await loadClassroom();
 
 
         showSection(
@@ -2535,8 +2587,7 @@ window.saveContent = async function() {
 
     }
 
-    catch (errorObject) {
-
+    catch(errorObject) {
 
         console.error(
             errorObject
@@ -2544,7 +2595,7 @@ window.saveContent = async function() {
 
 
         alert(
-            "Could not save content. Please check Firebase rules."
+            "Could not save classroom item. Check Firebase rules."
         );
 
     }
@@ -2554,10 +2605,10 @@ window.saveContent = async function() {
 
 
 /* =====================================================
-   LOAD CLASSROOM CONTENT
+   LOAD CLASSROOM
 ===================================================== */
 
-async function loadContent() {
+async function loadClassroom() {
 
 
     try {
@@ -2568,10 +2619,30 @@ async function loadContent() {
 
                 collection(
                     db,
-                    "lessons"
+                    "classroom"
                 )
 
             );
+
+
+        classroomItems = [];
+
+
+        snapshot.forEach(
+            snap => {
+
+                classroomItems.push({
+
+                    id:
+                        snap.id,
+
+                    ...snap.data()
+
+                });
+
+            }
+        );
+
 
 
         document
@@ -2579,17 +2650,44 @@ async function loadContent() {
                 "contentCount"
             )
             .textContent =
-                snapshot.size;
+                classroomItems.length;
+
+
+
+        renderClassroom();
+
+        populateParentSelect();
 
 
     }
 
-    catch (errorObject) {
-
+    catch(errorObject) {
 
         console.error(
             errorObject
         );
+
+
+        document
+            .getElementById(
+                "classroomTree"
+            )
+            .innerHTML = `
+
+                <div class="empty">
+
+                    No classroom data loaded.
+
+                    <br><br>
+
+                    Make sure Firestore rules
+                    allow the admin account
+                    to access the classroom
+                    collection.
+
+                </div>
+
+            `;
 
     }
 
@@ -2598,11 +2696,1017 @@ async function loadContent() {
 
 
 /* =====================================================
-   SECURITY HELPER
+   RENDER TREE
+===================================================== */
+
+function renderClassroom() {
+
+
+    const container =
+        document
+            .getElementById(
+                "classroomTree"
+            );
+
+
+    const roots =
+        classroomItems
+            .filter(
+                item =>
+                    !item.parentId
+            )
+            .sort(
+                sortItems
+            );
+
+
+
+    if(!roots.length) {
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                Your classroom is empty.
+
+                <br><br>
+
+                Click <b>+ Add</b> to create
+                your first module.
+
+                <br><br>
+
+                Example:
+
+                <br>
+
+                Phase 1 → Week 1 → Day 1
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+
+    container.innerHTML =
+        roots
+            .map(
+                item =>
+                    renderTreeItem(
+                        item
+                    )
+            )
+            .join("");
+
+}
+
+
+
+/* =====================================================
+   TREE ITEM
+===================================================== */
+
+function renderTreeItem(item) {
+
+
+    const children =
+        classroomItems
+            .filter(
+                child =>
+                    child.parentId ===
+                    item.id
+            )
+            .sort(
+                sortItems
+            );
+
+
+    const hasChildren =
+        children.length > 0;
+
+
+
+    let icon =
+        "📁";
+
+
+    if(item.type === "lesson") {
+
+        icon = "📖";
+
+    }
+
+
+    if(item.type === "module") {
+
+        icon = "📚";
+
+    }
+
+
+    let html = `
+
+        <div
+            class="tree-item"
+        >
+
+            <div class="tree-row">
+
+                <button
+                    class="tree-toggle"
+                    onclick="toggleTree('${item.id}')"
+                >
+                    ${hasChildren ? "▶" : ""}
+                </button>
+
+
+                <span class="tree-icon">
+                    ${icon}
+                </span>
+
+
+                <div class="tree-title">
+
+                    ${escapeHTML(
+                        item.title
+                    )}
+
+                </div>
+
+
+                <div class="tree-meta">
+
+                    Unlock Day ${
+                        item.unlockDay || 1
+                    }
+
+                </div>
+
+
+                <div class="tree-actions">
+
+                    <button
+                        class="small-btn"
+                        onclick="addChild('${item.id}')"
+                    >
+                        + Child
+                    </button>
+
+
+                    <button
+                        class="small-btn"
+                        onclick="editItem('${item.id}')"
+                    >
+                        Edit
+                    </button>
+
+
+                    <button
+                        class="small-btn"
+                        onclick="previewItem('${item.id}')"
+                    >
+                        Preview
+                    </button>
+
+
+                    <button
+                        class="small-btn"
+                        onclick="deleteItem('${item.id}')"
+                    >
+                        Delete
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="children"
+                id="children-${item.id}"
+            >
+
+                ${
+                    children
+                        .map(
+                            child =>
+                                renderTreeItem(
+                                    child
+                                )
+                        )
+                        .join("")
+                }
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    return html;
+
+}
+
+
+
+/* =====================================================
+   TOGGLE TREE
+===================================================== */
+
+window.toggleTree =
+function(id) {
+
+
+    const element =
+        document
+            .getElementById(
+                "children-" + id
+            );
+
+
+    if(!element) return;
+
+
+    element.classList.toggle(
+        "open"
+    );
+
+
+    const button =
+        element
+            .parentElement
+            .querySelector(
+                ".tree-toggle"
+            );
+
+
+    if(
+        button
+    ) {
+
+        button.textContent =
+            element.classList.contains(
+                "open"
+            )
+            ? "▼"
+            : "▶";
+
+    }
+
+};
+
+
+
+/* =====================================================
+   ADD CHILD
+===================================================== */
+
+window.addChild =
+function(parentId) {
+
+
+    const parent =
+        classroomItems.find(
+            item =>
+                item.id ===
+                parentId
+        );
+
+
+    if(
+        parent &&
+        parent.hasChildren !== true
+    ) {
+
+        alert(
+            "This item does not allow subsections. Edit it and enable 'Allow subsections inside this item'."
+        );
+
+        return;
+
+    }
+
+
+
+    editingItemId =
+        null;
+
+
+    clearItemForm();
+
+
+    populateParentSelect();
+
+
+    document
+        .getElementById(
+            "itemParent"
+        )
+        .value =
+            parentId;
+
+
+    document
+        .getElementById(
+            "itemType"
+        )
+        .value =
+            "subsection";
+
+
+    toggleLessonFields();
+
+
+    showSection(
+        "itemEditor"
+    );
+
+};
+
+
+
+/* =====================================================
+   EDIT ITEM
+===================================================== */
+
+window.editItem =
+function(id) {
+
+
+    const item =
+        classroomItems.find(
+            x =>
+                x.id === id
+        );
+
+
+    if(!item) return;
+
+
+    editingItemId =
+        id;
+
+
+    populateParentSelect();
+
+
+    document
+        .getElementById(
+            "itemEditorTitle"
+        )
+        .textContent =
+            "Edit Classroom Item";
+
+
+    document
+        .getElementById(
+            "itemType"
+        )
+        .value =
+            item.type || "lesson";
+
+
+    document
+        .getElementById(
+            "itemParent"
+        )
+        .value =
+            item.parentId || "";
+
+
+    document
+        .getElementById(
+            "itemTitle"
+        )
+        .value =
+            item.title || "";
+
+
+    document
+        .getElementById(
+            "itemDescription"
+        )
+        .value =
+            item.description || "";
+
+
+    document
+        .getElementById(
+            "itemUnlockDay"
+        )
+        .value =
+            item.unlockDay || 1;
+
+
+    document
+        .getElementById(
+            "itemHasChildren"
+        )
+        .checked =
+            item.hasChildren === true;
+
+
+
+    const day =
+        item.dayContent || {};
+
+
+    document
+        .getElementById(
+            "dayMovement"
+        )
+        .value =
+            day.movement || "";
+
+
+    document
+        .getElementById(
+            "dayMovementInstructions"
+        )
+        .value =
+            day.movementInstructions || "";
+
+
+    document
+        .getElementById(
+            "dayHydration"
+        )
+        .value =
+            day.hydration || "";
+
+
+    document
+        .getElementById(
+            "dayHydrationInstructions"
+        )
+        .value =
+            day.hydrationInstructions || "";
+
+
+    document
+        .getElementById(
+            "dayProtein"
+        )
+        .value =
+            day.protein || "";
+
+
+    document
+        .getElementById(
+            "dayProteinInstructions"
+        )
+        .value =
+            day.proteinInstructions || "";
+
+
+    document
+        .getElementById(
+            "daySleep"
+        )
+        .value =
+            day.sleep || "";
+
+
+    document
+        .getElementById(
+            "daySleepInstructions"
+        )
+        .value =
+            day.sleepInstructions || "";
+
+
+    document
+        .getElementById(
+            "dayNutrition"
+        )
+        .value =
+            day.nutrition || "";
+
+
+    document
+        .getElementById(
+            "dayMind"
+        )
+        .value =
+            day.mind || "";
+
+
+    document
+        .getElementById(
+            "daySunlight"
+        )
+        .value =
+            day.sunlight || "";
+
+
+    document
+        .getElementById(
+            "dayRecovery"
+        )
+        .value =
+            day.recovery || "";
+
+
+    toggleLessonFields();
+
+
+    showSection(
+        "itemEditor"
+    );
+
+};
+
+
+
+/* =====================================================
+   DELETE ITEM
+===================================================== */
+
+window.deleteItem =
+async function(id) {
+
+
+    const item =
+        classroomItems.find(
+            x =>
+                x.id === id
+        );
+
+
+    if(!item) return;
+
+
+    const children =
+        classroomItems.filter(
+            x =>
+                x.parentId === id
+        );
+
+
+    let message =
+        `Delete "${item.title}"?`;
+
+
+    if(children.length) {
+
+        message +=
+            `\n\nThis item has ${children.length} child item(s). Delete those too?`;
+
+    }
+
+
+
+    if(
+        !confirm(message)
+    ) {
+
+        return;
+
+    }
+
+
+
+    try {
+
+
+        if(children.length) {
+
+
+            for(
+                const child
+                of children
+            ) {
+
+                await deleteDoc(
+
+                    doc(
+                        db,
+                        "classroom",
+                        child.id
+                    )
+
+                );
+
+            }
+
+        }
+
+
+
+        await deleteDoc(
+
+            doc(
+                db,
+                "classroom",
+                id
+            )
+
+        );
+
+
+        await loadClassroom();
+
+
+        alert(
+            "Deleted successfully."
+        );
+
+
+    }
+
+    catch(errorObject) {
+
+        console.error(
+            errorObject
+        );
+
+
+        alert(
+            "Could not delete item."
+        );
+
+    }
+
+};
+
+
+
+/* =====================================================
+   PREVIEW
+===================================================== */
+
+window.previewItem =
+function(id) {
+
+
+    const item =
+        classroomItems.find(
+            x =>
+                x.id === id
+        );
+
+
+    if(!item) return;
+
+
+    let html = `
+
+        <h2>
+            ${escapeHTML(
+                item.title || ""
+            )}
+        </h2>
+
+
+        <p>
+            ${escapeHTML(
+                item.description || ""
+            )}
+        </p>
+
+
+        <p style="
+            margin-top:10px;
+            font-size:13px;
+            color:#777;
+        ">
+
+            Unlock Day:
+            ${item.unlockDay || 1}
+
+        </p>
+
+    `;
+
+
+
+    if(
+        item.type ===
+        "lesson"
+    ) {
+
+
+        const day =
+            item.dayContent || {};
+
+
+        if(day.movement) {
+
+            html += `
+
+                <h3>
+                    Movement
+                </h3>
+
+                <p>
+                    ${escapeHTML(
+                        day.movement
+                    )}
+                </p>
+
+                <p>
+                    ${escapeHTML(
+                        day.movementInstructions || ""
+                    )}
+                </p>
+
+            `;
+
+        }
+
+
+
+        if(day.hydration) {
+
+            html += `
+
+                <h3>
+                    Hydration
+                </h3>
+
+                <p>
+                    ${escapeHTML(
+                        day.hydration
+                    )}
+                </p>
+
+                <p>
+                    ${escapeHTML(
+                        day.hydrationInstructions || ""
+                    )}
+                </p>
+
+            `;
+
+        }
+
+
+
+        if(day.protein) {
+
+            html += `
+
+                <h3>
+                    Protein
+                </h3>
+
+                <p>
+                    ${escapeHTML(
+                        day.protein
+                    )}
+                </p>
+
+                <p>
+                    ${escapeHTML(
+                        day.proteinInstructions || ""
+                    )}
+                </p>
+
+            `;
+
+        }
+
+
+
+        if(day.sleep) {
+
+            html += `
+
+                <h3>
+                    Sleep
+                </h3>
+
+                <p>
+                    ${escapeHTML(
+                        day.sleep
+                    )}
+                </p>
+
+                <p>
+                    ${escapeHTML(
+                        day.sleepInstructions || ""
+                    )}
+                </p>
+
+            `;
+
+        }
+
+
+
+        if(day.nutrition) {
+
+            html += `
+
+                <h3>
+                    Nutrition
+                </h3>
+
+                <p>
+                    ${escapeHTML(
+                        day.nutrition
+                    )}
+                </p>
+
+            `;
+
+        }
+
+
+
+        if(day.mind) {
+
+            html += `
+
+                <h3>
+                    Mind / Stress
+                </h3>
+
+                <p>
+                    ${escapeHTML(
+                        day.mind
+                    )}
+                </p>
+
+            `;
+
+        }
+
+
+
+        if(day.sunlight) {
+
+            html += `
+
+                <h3>
+                    Sunlight
+                </h3>
+
+                <p>
+                    ${escapeHTML(
+                        day.sunlight
+                    )}
+                </p>
+
+            `;
+
+        }
+
+
+
+        if(day.recovery) {
+
+            html += `
+
+                <h3>
+                    Recovery
+                </h3>
+
+                <p>
+                    ${escapeHTML(
+                        day.recovery
+                    )}
+                </p>
+
+            `;
+
+        }
+
+    }
+
+
+
+    document
+        .getElementById(
+            "previewContent"
+        )
+        .innerHTML =
+            html;
+
+
+    showSection(
+        "preview"
+    );
+
+};
+
+
+
+/* =====================================================
+   CLEAR FORM
+===================================================== */
+
+function clearItemForm() {
+
+
+    document
+        .getElementById(
+            "itemType"
+        )
+        .value =
+            "module";
+
+
+    document
+        .getElementById(
+            "itemParent"
+        )
+        .value =
+            "";
+
+
+    document
+        .getElementById(
+            "itemTitle"
+        )
+        .value =
+            "";
+
+
+    document
+        .getElementById(
+            "itemDescription"
+        )
+        .value =
+            "";
+
+
+    document
+        .getElementById(
+            "itemUnlockDay"
+        )
+        .value =
+            "1";
+
+
+    document
+        .getElementById(
+            "itemHasChildren"
+        )
+        .checked =
+            false;
+
+
+
+    [
+
+        "dayMovement",
+        "dayMovementInstructions",
+        "dayHydration",
+        "dayHydrationInstructions",
+        "dayProtein",
+        "dayProteinInstructions",
+        "daySleep",
+        "daySleepInstructions",
+        "dayNutrition",
+        "dayMind",
+        "daySunlight",
+        "dayRecovery"
+
+    ].forEach(id => {
+
+        const element =
+            document.getElementById(
+                id
+            );
+
+        if(element) {
+
+            element.value = "";
+
+        }
+
+    });
+
+}
+
+
+
+/* =====================================================
+   SORT
+===================================================== */
+
+function sortItems(a,b) {
+
+    return (
+        (a.order || 0) -
+        (b.order || 0)
+    );
+
+}
+
+
+
+/* =====================================================
+   ESCAPE HTML
 ===================================================== */
 
 function escapeHTML(value) {
-
 
     return String(value)
 
@@ -2635,7 +3739,6 @@ function escapeHTML(value) {
 
 
 </script>
-
 
 </body>
 
