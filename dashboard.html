@@ -1,5002 +1,843 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
-<meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0">
-
-<title>Freedom Women's Health Club</title>
-
-<style>
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #FBF8F3;
-    color: #2D2D2D;
-}
-
-button,
-input,
-textarea {
-    font: inherit;
-}
-
-button {
-    cursor: pointer;
-}
-
-.app {
-    min-height: 100vh;
-}
-
-/* =========================
-   SIDEBAR
-========================= */
-
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 250px;
-    height: 100vh;
-    background: #6E4A7E;
-    color: white;
-    padding: 28px 18px;
-    z-index: 1000;
-    overflow-y: auto;
-}
-
-.brand {
-    padding: 5px 12px 28px;
-}
-
-.brand-small {
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    opacity: .75;
-}
-
-.brand-name {
-    font-size: 24px;
-    font-weight: 600;
-    margin-top: 7px;
-}
-
-.brand-subtitle {
-    font-size: 12px;
-    opacity: .75;
-    margin-top: 4px;
-}
-
-.nav {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.nav-btn {
-    width: 100%;
-    border: 0;
-    background: transparent;
-    color: rgba(255,255,255,.82);
-    padding: 13px 14px;
-    border-radius: 10px;
-    text-align: left;
-    transition: .2s;
-}
-
-.nav-btn:hover,
-.nav-btn.active {
-    background: rgba(255,255,255,.14);
-    color: white;
-}
-
-.logout-btn {
-    margin-top: 25px;
-    width: 100%;
-    border: 1px solid rgba(255,255,255,.25);
-    background: transparent;
-    color: white;
-    padding: 11px;
-    border-radius: 9px;
-}
-
-/* =========================
-   MAIN
-========================= */
-
-.main {
-    margin-left: 250px;
-    min-height: 100vh;
-}
-
-.topbar {
-    height: 72px;
-    background: rgba(251,248,243,.96);
-    border-bottom: 1px solid #E7DED4;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 35px;
-    position: sticky;
-    top: 0;
-    z-index: 500;
-}
-
-.topbar-left {
-    font-size: 14px;
-    color: #6E4A7E;
-}
-
-.topbar-right {
-    font-size: 13px;
-    color: #777;
-}
-
-.mobile-menu {
-    display: none;
-    border: 0;
-    background: #6E4A7E;
-    color: white;
-    border-radius: 8px;
-    padding: 9px 12px;
-}
-
-.content {
-    max-width: 1250px;
-    margin: auto;
-    padding: 40px;
-}
-
-/* =========================
-   SECTIONS
-========================= */
-
-.page-section {
-    display: none;
-}
-
-.page-section.active {
-    display: block;
-}
-
-.page-header {
-    margin-bottom: 28px;
-}
-
-.small-title {
-    color: #6E4A7E;
-    text-transform: uppercase;
-    letter-spacing: 1.8px;
-    font-size: 11px;
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-
-.page-header h1 {
-    margin: 0 0 10px;
-    font-size: 34px;
-    font-weight: 600;
-}
-
-.page-header p {
-    margin: 0;
-    color: #777;
-    line-height: 1.7;
-}
-
-/* =========================
-   CARDS
-========================= */
-
-.card {
-    background: white;
-    border: 1px solid #E8E0D7;
-    border-radius: 18px;
-    padding: 28px;
-    margin-bottom: 22px;
-    box-shadow: 0 5px 20px rgba(50,30,20,.035);
-}
-
-.card h2 {
-    margin-top: 0;
-}
-
-.card h3 {
-    margin-top: 0;
-}
-
-.primary-btn {
-    display: inline-block;
-    border: 0;
-    background: #6E4A7E;
-    color: white;
-    padding: 13px 20px;
-    border-radius: 9px;
-    text-decoration: none;
-    transition: .2s;
-}
-
-.primary-btn:hover {
-    opacity: .9;
-}
-
-.secondary-btn {
-    border: 1px solid #DCCBB3;
-    background: #FBF8F3;
-    color: #6E4A7E;
-    padding: 11px 17px;
-    border-radius: 9px;
-}
-
-/* =========================
-   HOME
-========================= */
-
-.welcome-card {
-    background:
-        linear-gradient(
-            120deg,
-            rgba(110,74,126,.08),
-            rgba(220,203,179,.20)
-        );
-}
-
-.welcome-card h2 {
-    font-size: 29px;
-    margin-bottom: 12px;
-}
-
-.welcome-card p {
-    max-width: 700px;
-    line-height: 1.8;
-}
-
-.progress-box {
-    margin-top: 25px;
-}
-
-.progress-top {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-    font-size: 13px;
-}
-
-.progress-track {
-    width: 100%;
-    height: 9px;
-    background: #EEE8E2;
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.progress-fill {
-    height: 100%;
-    width: 0;
-    background: #6E4A7E;
-    border-radius: 20px;
-    transition: .3s;
-}
-
-.progress-note {
-    margin-top: 9px;
-    color: #777;
-    font-size: 13px;
-}
-
-/* =========================
-   PROFILE
-========================= */
-
-.profile-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 18px;
-}
-
-.field {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-}
-
-.field label {
-    font-size: 12px;
-    color: #666;
-}
-
-.field input {
-    width: 100%;
-    border: 1px solid #DDD4CC;
-    border-radius: 9px;
-    padding: 11px 12px;
-    background: #FFF;
-    outline: none;
-}
-
-.field input:focus {
-    border-color: #6E4A7E;
-}
-
-.profile-actions {
-    margin-top: 22px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.save-message {
-    font-size: 13px;
-    color: #6E4A7E;
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(5,1fr);
-    gap: 14px;
-}
-
-.stat {
-    background: #FBF8F3;
-    border: 1px solid #E7DED4;
-    padding: 19px;
-    border-radius: 14px;
-}
-
-.stat-label {
-    font-size: 11px;
-    color: #777;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.stat-value {
-    font-size: 24px;
-    color: #6E4A7E;
-    margin-top: 8px;
-    font-weight: 600;
-}
-
-.stat-help {
-    color: #888;
-    font-size: 11px;
-    margin-top: 7px;
-    line-height: 1.4;
-}
-
-/* =========================
-   JOURNEY
-========================= */
-
-.journey-intro {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    align-items: center;
-    margin-bottom: 25px;
-}
-
-.start-date-box {
-    background: #F4EEE7;
-    border-radius: 12px;
-    padding: 14px 18px;
-    font-size: 13px;
-}
-
-.start-date-box strong {
-    color: #6E4A7E;
-}
-
-/* PHASE */
-
-.phase-card {
-    background: white;
-    border: 1px solid #E8E0D7;
-    border-radius: 18px;
-    margin-bottom: 22px;
-    overflow: hidden;
-}
-
-.phase-header {
-    padding: 25px 28px;
-    background: #F5EFE9;
-    border-bottom: 1px solid #E8E0D7;
-}
-
-.phase-label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: #6E4A7E;
-}
-
-.phase-header h2 {
-    margin: 7px 0;
-    font-size: 23px;
-}
-
-.phase-header p {
-    margin: 0;
-    color: #777;
-    line-height: 1.6;
-}
-
-/* WEEK */
-
-.week-list {
-    padding: 12px;
-}
-
-.week-card {
-    border: 1px solid #E7DED4;
-    border-radius: 14px;
-    margin: 10px 0;
-    overflow: hidden;
-    background: white;
-}
-
-.week-button {
-    width: 100%;
-    border: 0;
-    background: white;
-    padding: 19px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: left;
-}
-
-.week-button:hover:not(:disabled) {
-    background: #FBF8F3;
-}
-
-.week-button:disabled {
-    cursor: not-allowed;
-}
-
-.week-left {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-}
-
-.week-number {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    background: #F0E8F2;
-    color: #6E4A7E;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-}
-
-.week-card.locked .week-number {
-    background: #EEEAE6;
-    color: #999;
-}
-
-.week-title h3 {
-    margin: 0 0 5px;
-    font-size: 16px;
-    color: #2D2D2D;
-}
-
-.week-title p {
-    margin: 0;
-    color: #888;
-    font-size: 12px;
-}
-
-.week-right {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-}
-
-.week-percent {
-    color: #6E4A7E;
-    font-size: 12px;
-}
-
-.lock-icon {
-    font-size: 17px;
-    color: #999;
-}
-
-/* =========================
-   WEEK DETAIL
-========================= */
-
-.week-detail {
-    display: none;
-}
-
-.back-btn {
-    border: 0;
-    background: transparent;
-    color: #6E4A7E;
-    padding: 0;
-    margin-bottom: 18px;
-}
-
-.week-detail-header {
-    margin-bottom: 25px;
-}
-
-.week-detail-header h1 {
-    font-size: 32px;
-    margin: 0 0 8px;
-}
-
-.week-detail-header p {
-    color: #777;
-    line-height: 1.7;
-}
-
-.goal-box {
-    background: #F2EAF4;
-    border-left: 4px solid #6E4A7E;
-    border-radius: 10px;
-    padding: 18px 20px;
-    margin-bottom: 25px;
-}
-
-.goal-label {
-    color: #6E4A7E;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1.3px;
-    margin-bottom: 7px;
-}
-
-.goal-text {
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-/* =========================
-   DAY CARDS
-========================= */
-
-.day-card {
-    background: white;
-    border: 1px solid #E7DED4;
-    border-radius: 17px;
-    margin-bottom: 18px;
-    overflow: hidden;
-}
-
-.day-card-header {
-    padding: 21px 23px;
-    background: #FCFAF7;
-    border-bottom: 1px solid #E7DED4;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-}
-
-.day-number {
-    color: #6E4A7E;
-    text-transform: uppercase;
-    font-size: 10px;
-    letter-spacing: 1.4px;
-}
-
-.day-title {
-    font-size: 20px;
-    font-weight: 600;
-    margin-top: 4px;
-}
-
-.day-description {
-    color: #777;
-    font-size: 13px;
-    margin-top: 5px;
-}
-
-.day-badge {
-    padding: 7px 10px;
-    background: #F0E8F2;
-    color: #6E4A7E;
-    border-radius: 20px;
-    font-size: 11px;
-    white-space: nowrap;
-}
-
-.day-body {
-    padding: 22px;
-}
-
-.daily-section {
-    margin-bottom: 20px;
-}
-
-.daily-section:last-child {
-    margin-bottom: 0;
-}
-
-.daily-section-title {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    color: #6E4A7E;
-    margin-bottom: 9px;
-}
-
-.daily-text {
-    color: #555;
-    line-height: 1.7;
-    white-space: pre-line;
-}
-
-.habit-list {
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-}
-
-.habit-item {
-    display: flex;
-    gap: 12px;
-    padding: 13px;
-    border: 1px solid #E7DED4;
-    border-radius: 10px;
-    background: white;
-}
-
-.habit-item input {
-    width: 19px;
-    height: 19px;
-    accent-color: #6E4A7E;
-    margin-top: 2px;
-}
-
-.habit-name {
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.habit-target {
-    color: #6E4A7E;
-    font-size: 12px;
-    margin-top: 3px;
-}
-
-.habit-details {
-    color: #777;
-    font-size: 12px;
-    margin-top: 5px;
-    line-height: 1.5;
-}
-
-.day-image {
-    width: 100%;
-    height: 190px;
-    object-fit: cover;
-    border-radius: 13px;
-    margin-bottom: 20px;
-}
-
-/* =========================
-   REFLECTION
-========================= */
-
-.reflection-field {
-    margin-bottom: 18px;
-}
-
-.reflection-field label {
-    display: block;
-    font-size: 13px;
-    margin-bottom: 7px;
-}
-
-.reflection-field textarea {
-    width: 100%;
-    min-height: 100px;
-    border: 1px solid #DDD4CC;
-    border-radius: 10px;
-    padding: 12px;
-    resize: vertical;
-}
-
-.save-reflection-btn {
-    border: 0;
-    background: #6E4A7E;
-    color: white;
-    padding: 11px 17px;
-    border-radius: 8px;
-}
-
-.reflection-message {
-    color: #6E4A7E;
-    font-size: 13px;
-    margin-left: 10px;
-}
-
-/* =========================
-   EDUCATION
-========================= */
-
-.education-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 18px;
-}
-
-.education-card {
-    background: #FBF8F3;
-    border: 1px solid #E7DED4;
-    border-radius: 14px;
-    padding: 22px;
-}
-
-.education-label {
-    color: #6E4A7E;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1.4px;
-}
-
-.education-card h3 {
-    margin: 9px 0;
-    font-size: 17px;
-}
-
-.education-card p {
-    color: #777;
-    font-size: 13px;
-    line-height: 1.6;
-}
-
-/* =========================
-   COMMUNITY
-========================= */
-
-.community-hero {
-    background:
-        linear-gradient(
-            120deg,
-            #F1E9F3,
-            #F8F1E8
-        );
-    border-radius: 18px;
-    padding: 30px;
-    margin-bottom: 20px;
-}
-
-.community-hero h2 {
-    margin-top: 0;
-}
-
-.community-hero p {
-    color: #666;
-    line-height: 1.7;
-}
-
-.community-actions {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.community-note {
-    margin-top: 18px;
-    color: #777;
-    font-size: 12px;
-}
-
-/* =========================
-   LIFETIME
-========================= */
-
-.lifetime-hero {
-    position: relative;
-    overflow: hidden;
-    min-height: 240px;
-    border-radius: 20px;
-    margin-bottom: 25px;
-    background:
-        linear-gradient(
-            90deg,
-            rgba(48,31,53,.82),
-            rgba(48,31,53,.25)
-        ),
-        url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80")
-        center/cover;
-    color: white;
-    padding: 40px;
-    display: flex;
-    align-items: center;
-}
-
-.lifetime-hero h2 {
-    font-size: 30px;
-    margin: 0 0 10px;
-}
-
-.lifetime-hero p {
-    max-width: 650px;
-    line-height: 1.7;
-    opacity: .9;
-}
-
-.lifetime-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 20px;
-}
-
-.lifetime-card {
-    background: white;
-    border: 1px solid #E7DED4;
-    border-radius: 17px;
-    overflow: hidden;
-    box-shadow: 0 5px 20px rgba(50,30,20,.04);
-}
-
-.lifetime-image {
-    width: 100%;
-    height: 170px;
-    object-fit: cover;
-}
-
-.lifetime-content {
-    padding: 21px;
-}
-
-.lifetime-content h3 {
-    margin: 0 0 8px;
-    color: #6E4A7E;
-}
-
-.lifetime-content p {
-    color: #777;
-    font-size: 13px;
-    line-height: 1.6;
-}
-
-.lifetime-habit {
-    padding: 10px 0;
-    border-top: 1px solid #EEE8E2;
-    font-size: 13px;
-}
-
-.lifetime-habit strong {
-    color: #444;
-}
-
-.loading-box,
-.empty-box,
-.error-box {
-    background: white;
-    border: 1px solid #E7DED4;
-    border-radius: 14px;
-    padding: 25px;
-    color: #777;
-    line-height: 1.6;
-}
-
-.error-box {
-    color: #8A4545;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width: 1000px) {
-
-    .stats-grid {
-        grid-template-columns: repeat(3,1fr);
-    }
-
-    .profile-grid {
-        grid-template-columns: repeat(2,1fr);
-    }
-
-    .lifetime-grid {
-        grid-template-columns: repeat(2,1fr);
-    }
-
-}
-
-@media(max-width: 750px) {
-
-    .sidebar {
-        transform: translateX(-100%);
-        transition: .25s;
-    }
-
-    .sidebar.open {
-        transform: translateX(0);
-    }
-
-    .main {
-        margin-left: 0;
-    }
-
-    .mobile-menu {
-        display: block;
-    }
-
-    .topbar {
-        padding: 0 18px;
-    }
-
-    .content {
-        padding: 25px 16px;
-    }
-
-    .page-header h1 {
-        font-size: 28px;
-    }
-
-    .profile-grid,
-    .education-grid,
-    .lifetime-grid,
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .journey-intro {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .week-right {
-        display: none;
-    }
-
-    .day-card-header {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-}
-
-</style>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Freedom Women's Health Club</title>
+
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #FBF8F3;
+            color: #2D2D2D;
+        }
+
+
+        button {
+            font-family: inherit;
+        }
+
+
+        /* =========================
+           DASHBOARD LAYOUT
+        ========================= */
+
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            width: 250px;
+            min-height: 100vh;
+            background: #6E4A7E;
+            color: white;
+            padding: 28px 18px;
+
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+
+        .brand {
+            padding: 0 12px 30px;
+        }
+
+
+        .brand h2 {
+            font-size: 21px;
+            line-height: 1.3;
+            margin-bottom: 5px;
+        }
+
+
+        .brand p {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+
+        .nav-btn {
+            width: 100%;
+            border: none;
+            background: transparent;
+            color: white;
+
+            padding: 13px 14px;
+
+            border-radius: 10px;
+
+            text-align: left;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+        }
+
+
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.10);
+        }
+
+
+        .nav-btn.active {
+            background: rgba(255,255,255,0.18);
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           MAIN CONTENT
+        ========================= */
+
+        .main-content {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            min-height: 100vh;
+
+            padding: 40px;
+        }
+
+
+        /* =========================
+           PAGE SECTIONS
+        ========================= */
+
+        .page-section {
+            display: none;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+
+        .page-section.active {
+            display: block;
+        }
+
+
+        /* =========================
+           PAGE HEADER
+        ========================= */
+
+        .page-header {
+            margin-bottom: 30px;
+        }
+
+
+        .page-header .small-title {
+            color: #6E4A7E;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+
+        .page-header h1 {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+
+        .page-header p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           PLACEHOLDER CARD
+        ========================= */
+
+        .placeholder-card {
+            background: white;
+            border-radius: 16px;
+            padding: 35px;
+
+            border: 1px solid #eee;
+
+            min-height: 180px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            color: #777;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        .mobile-header {
+            display: none;
+        }
+
+
+        @media (max-width: 768px) {
+
+            .sidebar {
+                width: 230px;
+                transform: translateX(-100%);
+                transition: 0.3s ease;
+                z-index: 1000;
+            }
+
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 80px 20px 30px;
+            }
+
+
+            .mobile-header {
+                display: flex;
+
+                position: fixed;
+
+                top: 0;
+                left: 0;
+                right: 0;
+
+                height: 60px;
+
+                background: white;
+
+                align-items: center;
+
+                padding: 0 18px;
+
+                border-bottom: 1px solid #eee;
+
+                z-index: 900;
+            }
+
+
+            .mobile-menu-btn {
+                border: none;
+                background: transparent;
+
+                font-size: 25px;
+
+                cursor: pointer;
+
+                margin-right: 15px;
+            }
+
+
+            .mobile-header h3 {
+                color: #6E4A7E;
+                font-size: 17px;
+            }
+
+
+            .page-header h1 {
+                font-size: 28px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
+
 <body>
 
-<div class="app">
 
-<!-- =========================
-     SIDEBAR
-========================= -->
+    <!-- =========================
+         DASHBOARD
+    ========================= -->
 
-<aside class="sidebar" id="sidebar">
-
-    <div class="brand">
-
-        <div class="brand-small">
-            Freedom Women's Health Club
-        </div>
-
-        <div class="brand-name">
-            FREEDOM
-        </div>
-
-        <div class="brand-subtitle">
-            Your 90-Day Journey
-        </div>
-
-    </div>
-
-    <nav class="nav">
-
-        <button
-            class="nav-btn active"
-            data-section="homeSection">
-            Home
-        </button>
-
-        <button
-            class="nav-btn"
-            data-section="profileSection">
-            Profile
-        </button>
-
-        <button
-            class="nav-btn"
-            data-section="journeySection">
-            90-Day Journey
-        </button>
-
-        <button
-            class="nav-btn"
-            data-section="educationSection">
-            Education
-        </button>
-
-        <button
-            class="nav-btn"
-            data-section="communitySection">
-            Community
-        </button>
-
-        <button
-            class="nav-btn"
-            data-section="lifetimeSection">
-            Lifetime Habits
-        </button>
-
-    </nav>
-
-    <button
-        class="logout-btn"
-        id="logoutBtn">
-        Log Out
-    </button>
-
-</aside>
+    <div class="dashboard">
 
 
-<!-- =========================
-     MAIN
-========================= -->
+        <!-- =========================
+             MOBILE HEADER
+        ========================= -->
 
-<main class="main">
-
-    <header class="topbar">
-
-        <div class="topbar-left">
+        <div class="mobile-header">
 
             <button
-                class="mobile-menu"
+                class="mobile-menu-btn"
                 id="mobileMenuBtn"
-                type="button">
+            >
                 ☰
             </button>
 
-            Freedom Women's Health Club
-
-        </div>
-
-        <div class="topbar-right">
-
-            <span id="memberEmail">
-                Loading...
-            </span>
-
-        </div>
-
-    </header>
-
-
-    <div class="content">
-
-
-<!-- =========================
-     HOME
-========================= -->
-
-<section
-    class="page-section active"
-    id="homeSection">
-
-    <div class="page-header">
-
-        <div class="small-title">
-            Welcome
-        </div>
-
-        <h1>
-            Your Freedom Journey
-        </h1>
-
-        <p>
-            Small daily actions. Consistent habits. Sustainable progress.
-        </p>
-
-    </div>
-
-
-    <div class="card welcome-card">
-
-        <div class="small-title">
-            Your 90-Day Journey
-        </div>
-
-        <h2>
-            Welcome, <span id="welcomeName">Member</span>
-        </h2>
-
-        <p>
-            Your program is organized week by week so you can focus on
-            what you need to do today instead of feeling overwhelmed
-            by all 90 days at once.
-        </p>
-
-        <button
-            class="primary-btn"
-            type="button"
-            onclick="openSection('journeySection')">
-
-            Start Your Journey
-
-        </button>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="progress-box">
-
-            <div class="progress-top">
-
-                <span>
-                    Overall Progress
-                </span>
-
-                <span id="homeProgressPercent">
-                    0%
-                </span>
-
-            </div>
-
-            <div class="progress-track">
-
-                <div
-                    class="progress-fill"
-                    id="homeProgressFill">
-                </div>
-
-            </div>
-
-            <div
-                class="progress-note"
-                id="homeProgressNote">
-
-                Your journey is ready to begin.
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     JOURNEY
-========================= -->
-
-<section
-    class="page-section"
-    id="journeySection">
-
-    <div id="journeyListView">
-
-        <div class="page-header">
-
-            <div class="small-title">
-                Your Program
-            </div>
-
-            <h1>
-                90-Day Journey
-            </h1>
-
-            <p>
-                Your program unlocks one week at a time based on your
-                personal start date.
-            </p>
-
-        </div>
-
-        <div class="journey-intro">
-
-            <div class="start-date-box">
-
-                Your journey started:
-                <strong id="journeyStartDate">
-                    Loading...
-                </strong>
-
-            </div>
-
-
-           
-
-                    }
-                );
-
-
-            if (!weeks.length) return;
-
-
-            const phase =
-                phases[
-                    phaseNumber
-                ];
-
-
-            html += `
-
-                <div class="phase-card">
-
-                    <div class="phase-header">
-
-                        <div class="phase-label">
-
-                            ${escapeHTML(
-                                phase.title
-                            )}
-
-                        </div>
-
-                        <h2>
-
-                            ${escapeHTML(
-                                phase.heading
-                            )}
-
-                        </h2>
-
-                        <p>
-
-                            ${escapeHTML(
-                                phase.description
-                            )}
-
-                        </p>
-
-                    </div>
-
-                    <div class="week-list">
-
-            `;
-
-
-            weeks.forEach(
-                week => {
-
-                    html +=
-                        renderWeekCard(
-                            week,
-                            unlockedWeek
-                        );
-
-                }
-            );
-
-
-            html += `
-
-                    </div>
-
-                </div>
-
-            `;
-
-        }
-    );
-
-
-    container.innerHTML =
-        html;
-
-}
-
-
-/* =========================
-   WEEK CARD
-========================= */
-
-function renderWeekCard(
-    week,
-    unlockedWeek
-) {
-
-    const number =
-        getWeekNumber(
-            week
-        );
-
-
-    const locked =
-        number >
-        unlockedWeek;
-
-
-    const title =
-        week.title ||
-        week.name ||
-        `Week ${number}`;
-
-
-    const days =
-        getDays(
-            week
-        );
-
-
-    const percent =
-        getWeekCompletion(
-            week
-        );
-
-
-    const startDay =
-        (
-            (number - 1) *
-            7
-        ) + 1;
-
-
-    const endDay =
-        Math.min(
-            90,
-            number * 7
-        );
-
-
-    return `
-
-        <div class="week-card ${locked ? "locked" : ""}">
-
-            <button
-                class="week-button"
-                ${locked ? "disabled" : ""}
-                onclick="${
-                    locked
-                        ? ""
-                        : `openWeek('${escapeHTML(
-                            week.id
-                        )}')`
-                }">
-
-                <div class="week-left">
-
-                    <div class="week-number">
-
-                        ${String(
-                            number
-                        ).padStart(
-                            2,
-                            "0"
-                        )}
-
-                    </div>
-
-                    <div class="week-title">
-
-                        <h3>
-
-                            ${escapeHTML(
-                                title
-                            )}
-
-                        </h3>
-
-                        <p>
-
-                            Days ${startDay}–${endDay}
-
-                            ${
-                                days.length
-                                    ? ` · ${days.length} days`
-                                    : ""
-                            }
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="week-right">
-
-                    ${
-                        locked
-                            ? `
-                                <span class="lock-icon">
-                                    🔒
-                                </span>
-                              `
-                            : `
-                                <span class="week-percent">
-                                    ${percent}% complete
-                                </span>
-
-                                <span>
-                                    →
-                                </span>
-                              `
-                    }
-
-                </div>
-
-            </button>
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================
-   OPEN WEEK
-========================= */
-
-window.openWeek =
-function(weekId) {
-
-    const week =
-        weeklyContent.find(
-            item =>
-                item.id === weekId
-        );
-
-
-    if (!week) return;
-
-
-    if (
-        getWeekNumber(week) >
-        getUnlockedWeek()
-    ) {
-
-        return;
-
-    }
-
-
-    selectedWeek =
-        week;
-
-
-    document.getElementById(
-        "journeyListView"
-    ).style.display =
-        "none";
-
-
-    document.getElementById(
-        "weekDetailView"
-    ).style.display =
-        "block";
-
-
-    renderSelectedWeek();
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-};
-
-
-/* =========================
-   RENDER SELECTED WEEK
-========================= */
-
-function renderSelectedWeek() {
-
-    if (!selectedWeek) return;
-
-
-    const number =
-        getWeekNumber(
-            selectedWeek
-        );
-
-
-    document.getElementById(
-        "detailWeekLabel"
-    ).textContent =
-        `Week ${number}`;
-
-
-    document.getElementById(
-        "detailWeekTitle"
-    ).textContent =
-        selectedWeek.title ||
-        selectedWeek.name ||
-        `Week ${number}`;
-
-
-    document.getElementById(
-        "detailWeekDescription"
-    ).textContent =
-        selectedWeek.description ||
-        selectedWeek.details ||
-        "";
-
-
-    document.getElementById(
-        "detailWeekGoal"
-    ).textContent =
-        selectedWeek.goal ||
-        selectedWeek.weekGoal ||
-        "Complete your habits consistently this week.";
-
-
-    const days =
-        getDays(
-            selectedWeek
-        );
-
-
-    const weeklyHabits =
-        getWeeklyHabits(
-            selectedWeek
-        );
-
-
-    let html = "";
-
-
-    if (days.length) {
-
-        days.forEach(
-            (
-                day,
-                index
-            ) => {
-
-                html +=
-                    renderDayCard(
-                        selectedWeek,
-                        day,
-                        index
-                    );
-
-            }
-        );
-
-    }
-
-
-    else if (
-        weeklyHabits.length
-    ) {
-
-        html += `
-
-            <div class="day-card">
-
-                <div class="day-card-header">
-
-                    <div>
-
-                        <div class="day-number">
-                            Weekly Focus
-                        </div>
-
-                        <div class="day-title">
-                            This Week
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="day-body">
-
-                    <div class="habit-list">
-
-                        ${weeklyHabits.map(
-                            (
-                                habit,
-                                index
-                            ) =>
-                                renderHabit(
-                                    selectedWeek.id,
-                                    "weekly",
-                                    index,
-                                    habit
-                                )
-                        ).join("")}
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        `;
-
-    }
-
-
-    else {
-
-        html = `
-
-            <div class="empty-box">
-
-                No daily content has been added to this week yet.
-
-            </div>
-
-        `;
-
-    }
-
-
-    document.getElementById(
-        "weekContentContainer"
-    ).innerHTML =
-        html;
-
-
-    renderReflection();
-
-}
-
-
-/* =========================
-   RENDER DAY
-========================= */
-
-function renderDayCard(
-    week,
-    day,
-    index
-) {
-
-    const weekNumber =
-        getWeekNumber(
-            week
-        );
-
-
-    const globalDay =
-        day.dayNumber ||
-        day.globalDay ||
-        (
-            (
-                weekNumber -
-                1
-            ) * 7
-        ) +
-        index +
-        1;
-
-
-    const title =
-        day.title ||
-        day.name ||
-        `Day ${globalDay}`;
-
-
-    const description =
-        day.description ||
-        day.details ||
-        "";
-
-
-    const habits =
-        getDayHabits(
-            day
-        );
-
-
-    const completed =
-        habits.filter(
-            (
-                _,
-                habitIndex
-            ) =>
-                isHabitComplete(
-                    week.id,
-                    index,
-                    habitIndex
-                )
-        ).length;
-
-
-    const percent =
-        habits.length
-            ? Math.round(
-                (
-                    completed /
-                    habits.length
-                ) * 100
-            )
-            : 0;
-
-
-    const image =
-        day.image ||
-        day.imageUrl ||
-        getDayImage(
-            globalDay
-        );
-
-
-    let html = `
-
-        <div class="day-card">
-
-            <div class="day-card-header">
-
-                <div>
-
-                    <div class="day-number">
-
-                        Day ${globalDay}
-
-                    </div>
-
-                    <div class="day-title">
-
-                        ${escapeHTML(
-                            title
-                        )}
-
-                    </div>
-
-                    ${
-                        description
-                            ? `
-                                <div class="day-description">
-
-                                    ${escapeHTML(
-                                        description
-                                    )}
-
-                                </div>
-                              `
-                            : ""
-                    }
-
-                </div>
-
-                <div class="day-badge">
-
-                    ${
-                        habits.length
-                            ? `${percent}% complete`
-                            : "Daily Focus"
-                    }
-
-                </div>
-
-            </div>
-
-
-            <div class="day-body">
-
-    `;
-
-
-    if (image) {
-
-        html += `
-
-            <img
-                class="day-image"
-                src="${escapeHTML(image)}"
-                alt="Day ${globalDay}"
-                loading="lazy">
-
-        `;
-
-    }
-
-
-    html += renderDailyContent(
-        day
-    );
-
-
-    if (habits.length) {
-
-        html += `
-
-            <div class="daily-section">
-
-                <div class="daily-section-title">
-                    Today's Habits
-                </div>
-
-                <div class="habit-list">
-
-                    ${habits.map(
-                        (
-                            habit,
-                            habitIndex
-                        ) =>
-                            renderHabit(
-                                week.id,
-                                index,
-                                habitIndex,
-                                habit
-                            )
-                    ).join("")}
-
-                </div>
-
-            </div>
-
-        `;
-
-    }
-
-
-    html += `
-
-            </div>
-
-        </div>
-
-    `;
-
-
-    return html;
-
-}
-
-
-/* =========================
-   DAILY CONTENT
-========================= */
-
-function renderDailyContent(day) {
-
-    const fields = [
-
-        [
-            "Movement",
-            day.movement ||
-            day.exercise ||
-            day.activity
-        ],
-
-        [
-            "Nutrition",
-            day.nutrition ||
-            day.food ||
-            day.meal
-        ],
-
-        [
-            "Hydration",
-            day.hydration ||
-            day.water
-        ],
-
-        [
-            "Sleep",
-            day.sleep
-        ],
-
-        [
-            "Mind & Stress",
-            day.mind ||
-            day.stress ||
-            day.mindset
-        ],
-
-        [
-            "Education",
-            day.education ||
-            day.lesson
-        ]
-
-    ];
-
-
-    return fields
-        .filter(
-            item =>
-                item[1]
-        )
-        .map(
-            item => `
-
-                <div class="daily-section">
-
-                    <div class="daily-section-title">
-
-                        ${escapeHTML(
-                            item[0]
-                        )}
-
-                    </div>
-
-                    <div class="daily-text">
-
-                        ${escapeHTML(
-                            item[1]
-                        )}
-
-                    </div>
-
-                </div>
-
-            `
-        )
-        .join("");
-
-}
-
-
-/* =========================
-   DAY IMAGES
-========================= */
-
-function getDayImage(day) {
-
-    const images = [
-
-        "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1000&q=80",
-
-        "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=80",
-
-        "https://images.unsplash.com/photo-1546484959-fb8a3e2f5f6d?auto=format&fit=crop&w=1000&q=80",
-
-        "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1000&q=80",
-
-        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1000&q=80",
-
-        "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1000&q=80",
-
-        "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80"
-
-    ];
-
-
-    return images[
-        (
-            day - 1
-        ) %
-        images.length
-    ];
-
-}
-
-
-/* =========================
-   HABIT
-========================= */
-
-function renderHabit(
-    weekId,
-    dayKey,
-    habitIndex,
-    habit
-) {
-
-    if (
-        typeof habit === "string"
-    ) {
-
-        habit = {
-            name: habit
-        };
-
-    }
-
-
-    habit =
-        habit || {};
-
-
-    const name =
-        habit.name ||
-        habit.habit ||
-        habit.title ||
-        "Habit";
-
-
-    const target =
-        habit.target ||
-        habit.value ||
-        habit.goal ||
-        "";
-
-
-    const details =
-        habit.details ||
-        habit.instructions ||
-        habit.description ||
-        "";
-
-
-    const checked =
-        isHabitComplete(
-            weekId,
-            dayKey,
-            habitIndex
-        );
-
-
-    return `
-
-        <label class="habit-item">
-
-            <input
-                type="checkbox"
-                ${checked ? "checked" : ""}
-                onchange="toggleHabit(
-                    '${escapeHTML(weekId)}',
-                    '${escapeHTML(dayKey)}',
-                    ${habitIndex},
-                    this.checked
-                )">
-
-            <div>
-
-                <div class="habit-name">
-
-                    ${escapeHTML(
-                        name
-                    )}
-
-                </div>
-
-                ${
-                    target
-                        ? `
-                            <div class="habit-target">
-
-                                ${escapeHTML(
-                                    target
-                                )}
-
-                            </div>
-                          `
-                        : ""
-                }
-
-                ${
-                    details
-                        ? `
-                            <div class="habit-details">
-
-                                ${escapeHTML(
-                                    details
-                                )}
-
-                            </div>
-                          `
-                        : ""
-                }
-
-            </div>
-
-        </label>
-
-    `;
-
-}
-
-
-/* =========================
-   HABIT CHECK
-========================= */
-
-function isHabitComplete(
-    weekId,
-    dayKey,
-    habitIndex
-) {
-
-    return !!(
-        memberProgress.weeks &&
-        memberProgress.weeks[weekId] &&
-        memberProgress.weeks[weekId].habits &&
-        memberProgress.weeks[weekId].habits[
-            `${dayKey}_${habitIndex}`
-        ]
-    );
-
-}
-
-
-/* =========================
-   TOGGLE HABIT
-========================= */
-
-window.toggleHabit =
-async function(
-    weekId,
-    dayKey,
-    habitIndex,
-    checked
-) {
-
-    if (!memberProgress.weeks) {
-
-        memberProgress.weeks = {};
-
-    }
-
-
-    if (
-        !memberProgress.weeks[
-            weekId
-        ]
-    ) {
-
-        memberProgress.weeks[
-            weekId
-        ] = {};
-
-    }
-
-
-    if (
-        !memberProgress.weeks[
-            weekId
-        ].habits
-    ) {
-
-        memberProgress.weeks[
-            weekId
-        ].habits = {};
-
-    }
-
-
-    memberProgress.weeks[
-        weekId
-    ].habits[
-        `${dayKey}_${habitIndex}`
-    ] =
-        checked;
-
-
-    await saveMemberProgress();
-
-
-    renderSelectedWeek();
-
-    renderWeeks();
-
-    updateOverallProgress();
-
-};
-
-
-/* =========================
-   WEEK COMPLETION
-========================= */
-
-function getWeekCompletion(week) {
-
-    const days =
-        getDays(
-            week
-        );
-
-
-    const weeklyHabits =
-        getWeeklyHabits(
-            week
-        );
-
-
-    let total = 0;
-
-    let completed = 0;
-
-
-    if (days.length) {
-
-        days.forEach(
-            (
-                day,
-                dayIndex
-            ) => {
-
-                const habits =
-                    getDayHabits(
-                        day
-                    );
-
-
-                habits.forEach(
-                    (
-                        _,
-                        habitIndex
-                    ) => {
-
-                        total++;
-
-
-                        if (
-                            isHabitComplete(
-                                week.id,
-                                dayIndex,
-                                habitIndex
-                            )
-                        ) {
-
-                            completed++;
-
-                        }
-
-                    }
-                );
-
-            }
-        );
-
-    }
-
-
-    else {
-
-        weeklyHabits.forEach(
-            (
-                _,
-                index
-            ) => {
-
-                total++;
-
-
-                if (
-                    isHabitComplete(
-                        week.id,
-                        "weekly",
-                        index
-                    )
-                ) {
-
-                    completed++;
-
-                }
-
-            }
-        );
-
-    }
-
-
-    return total
-        ? Math.round(
-            (
-                completed /
-                total
-            ) * 100
-        )
-        : 0;
-
-}
-
-
-/* =========================
-   COMPLETED DAYS
-========================= */
-
-function getCompletedDays() {
-
-    let completed = 0;
-
-
-    weeklyContent.forEach(
-        week => {
-
-            const days =
-                getDays(
-                    week
-                );
-
-
-            days.forEach(
-                (
-                    day,
-                    index
-                ) => {
-
-                    const habits =
-                        getDayHabits(
-                            day
-                        );
-
-
-                    if (
-                        habits.length &&
-                        habits.every(
-                            (
-                                _,
-                                habitIndex
-                            ) =>
-                                isHabitComplete(
-                                    week.id,
-                                    index,
-                                    habitIndex
-                                )
-                        )
-                    ) {
-
-                        completed++;
-
-                    }
-
-                }
-            );
-
-        }
-    );
-
-
-    return Math.min(
-        90,
-        completed
-    );
-
-}
-
-
-/* =========================
-   OVERALL PROGRESS
-========================= */
-
-function updateOverallProgress() {
-
-    const completed =
-        getCompletedDays();
-
-
-    const percentage =
-        Math.round(
-            (
-                completed /
-                90
-            ) * 100
-        );
-
-
-    document.getElementById(
-        "progressFill"
-    ).style.width =
-        percentage + "%";
-
-
-    document.getElementById(
-        "progressDays"
-    ).textContent =
-        completed;
-
-
-    const remaining =
-        90 -
-        completed;
-
-
-    document.getElementById(
-        "progressNote"
-    ).textContent =
-        completed >= 90
-            ? "You completed your 90-day journey. Your Lifetime Freedom Habits are now your foundation."
-            : `${remaining} day${remaining === 1 ? "" : "s"} remaining. Keep building consistency.`;
-
-}
-
-
-/* =========================
-   PROGRAM DAY DISPLAY
-========================= */
-
-function updateProgramDayDisplay() {
-
-    const day =
-        getProgramDay();
-
-
-    const week =
-        getUnlockedWeek();
-
-
-    document.getElementById(
-        "currentProgramDay"
-    ).textContent =
-        `Day ${day} · Week ${week}`;
-
-}
-
-
-/* =========================
-   REFLECTION
-========================= */
-
-function getReflectionQuestions() {
-
-    if (!selectedWeek) return [];
-
-
-    if (
-        Array.isArray(
-            selectedWeek.reflection
-        )
-    ) {
-
-        return selectedWeek.reflection;
-
-    }
-
-
-    if (
-        Array.isArray(
-            selectedWeek.reflectionQuestions
-        )
-    ) {
-
-        return selectedWeek.reflectionQuestions;
-
-    }
-
-
-    return [
-
-        "What was your biggest win this week?",
-
-        "What was your biggest challenge?",
-
-        "What habit do you want to improve next week?"
-
-    ];
-
-}
-
-
-function getSavedReflection(index) {
-
-    if (
-        !selectedWeek ||
-        !memberProgress.weeks ||
-        !memberProgress.weeks[
-            selectedWeek.id
-        ]
-    ) {
-
-        return "";
-
-    }
-
-
-    return (
-        memberProgress
-            .weeks[
-                selectedWeek.id
-            ]
-            .reflection?.[index]
-        || ""
-    );
-
-}
-
-
-function renderReflection() {
-
-    const questions =
-        getReflectionQuestions();
-
-
-    const container =
-        document.getElementById(
-            "reflectionFields"
-        );
-
-
-    container.innerHTML =
-        questions.map(
-            (
-                question,
-                index
-            ) => {
-
-                const text =
-                    typeof question === "string"
-                        ? question
-                        : question.question ||
-                          question.title ||
-                          `Reflection ${index + 1}`;
-
-
-                return `
-
-                    <div class="reflection-field">
-
-                        <label>
-
-                            ${escapeHTML(
-                                text
-                            )}
-
-                        </label>
-
-                        <textarea
-                            id="reflection_${index}"
-                            placeholder="Write your reflection here..."
-                        >${escapeHTML(
-                            getSavedReflection(
-                                index
-                            )
-                        )}</textarea>
-
-                    </div>
-
-                `;
-
-            }
-        ).join("");
-
-}
-
-
-async function saveReflection() {
-
-    if (!selectedWeek) return;
-
-
-    const questions =
-        getReflectionQuestions();
-
-
-    if (!memberProgress.weeks) {
-
-        memberProgress.weeks = {};
-
-    }
-
-
-    if (
-        !memberProgress.weeks[
-            selectedWeek.id
-        ]
-    ) {
-
-        memberProgress.weeks[
-            selectedWeek.id
-        ] = {};
-
-    }
-
-
-    const answers = {};
-
-
-    questions.forEach(
-        (
-            _,
-            index
-        ) => {
-
-            const field =
-                document.getElementById(
-                    `reflection_${index}`
-                );
-
-
-            answers[index] =
-                field
-                    ? field.value.trim()
-                    : "";
-
-        }
-    );
-
-
-    memberProgress.weeks[
-        selectedWeek.id
-    ].reflection =
-        answers;
-
-
-    memberProgress.weeks[
-        selectedWeek.id
-    ].reflectionUpdatedAt =
-        new Date().toISOString();
-
-
-    await saveMemberProgress();
-
-
-    document.getElementById(
-        "reflectionMessage"
-    ).textContent =
-        "Reflection saved.";
-
-
-    setTimeout(() => {
-
-        document.getElementById(
-            "reflectionMessage"
-        ).textContent = "";
-
-    },3000);
-
-}
-
-
-/* =========================
-   LIFETIME HABITS
-   UNLOCK AFTER DAY 90
-========================= */
-
-async function loadLifetimeHabits() {
-
-    const container =
-        document.getElementById(
-            "lifetimeHabitsContainer"
-        );
-
-    if (!container) return;
-
-    /* Check current program day */
-
-    const programDay =
-        getProgramDay();
-
-    /* =========================
-       LOCK UNTIL DAY 90
-    ========================= */
-
-    if (programDay < 90) {
-
-        container.innerHTML = `
-
-            <div class="lifetime-locked">
-
-                <div class="lifetime-lock-icon">
-                    🔒
-                </div>
-
-                <h3>
-                    Lifetime Freedom Habits
-                </h3>
-
-                <p>
-                    Complete your 90-Day Journey first.
-                    Your Lifetime Freedom Habits will unlock
-                    after Day 90.
-                </p>
-
-                <div class="lifetime-unlock-progress">
-
-                    <strong>
-                        Day ${programDay} of 90
-                    </strong>
-
-                    <div class="progress-track">
-
-                        <div
-                            class="progress-fill"
-                            style="width:${(
-                                programDay / 90
-                            ) * 100}%">
-                        </div>
-
-                    </div>
-
-                    <span>
-                        Keep going — you're building habits
-                        for life.
-                    </span>
-
-                </div>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-    /* =========================
-       DAY 90 COMPLETE
-       LOAD LIFETIME HABITS
-    ========================= */
-
-    try {
-
-        const snapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "lifetimeHabits"
-                )
-            );
-
-        lifetimeHabits = [];
-
-        snapshot.forEach(
-            docSnap => {
-
-                lifetimeHabits.push({
-
-                    id:
-                        docSnap.id,
-
-                    ...docSnap.data()
-
-                });
-
-            }
-        );
-
-        lifetimeHabits.sort(
-            (
-                a,
-                b
-            ) =>
-                Number(
-                    a.order ||
-                    a.number ||
-                    999
-                ) -
-                Number(
-                    b.order ||
-                    b.number ||
-                    999
-                )
-        );
-
-        renderLifetimeHabits();
-
-    } catch(error) {
-
-        console.error(
-            "LIFETIME ERROR",
-            error
-        );
-
-        renderLifetimeFallback();
-
-    }
-
-}
-
-
-/* =========================
-   LIFETIME RENDER
-========================= */
-
-function renderLifetimeHabits() {
-
-    const container =
-        document.getElementById(
-            "lifetimeHabitsContainer"
-        );
-
-    if (!lifetimeHabits.length) {
-
-        renderLifetimeFallback();
-
-        return;
-
-    }
-
-    container.innerHTML = `
-
-        <div class="lifetime-unlocked-message">
-
-            <div class="small-title">
-                Day 90 Complete
-            </div>
-
-            <h2>
-                Your Lifetime Freedom Starts Now
-            </h2>
-
-            <p>
-                You've completed your 90-Day Journey.
-                Now continue with the habits that helped
-                you create lasting change.
-            </p>
-
-        </div>
-
-        <div class="lifetime-grid">
-
-            ${lifetimeHabits.map(
-                (
-                    item,
-                    index
-                ) => {
-
-                    const title =
-                        item.title ||
-                        item.name ||
-                        item.category ||
-                        "Freedom Habit";
-
-                    const description =
-                        item.description ||
-                        item.details ||
-                        "";
-
-                    const habits =
-                        Array.isArray(
-                            item.habits
-                        )
-                            ? item.habits
-                            : [];
-
-                    const image =
-                        item.image ||
-                        item.imageUrl ||
-                        getLifetimeImage(
-                            index
-                        );
-
-                    return `
-
-                        <div class="lifetime-card">
-
-                            <img
-                                class="lifetime-image"
-                                src="${escapeHTML(
-                                    image
-                                )}"
-                                alt="${escapeHTML(
-                                    title
-                                )}"
-                                loading="lazy">
-
-                            <div class="lifetime-content">
-
-                                <h3>
-                                    ${escapeHTML(
-                                        title
-                                    )}
-                                </h3>
-
-                                ${
-                                    description
-                                        ? `
-                                            <p>
-                                                ${escapeHTML(
-                                                    description
-                                                )}
-                                            </p>
-                                          `
-                                        : ""
-                                }
-
-                                ${
-                                    habits.length
-                                        ? habits.map(
-                                            habit => {
-
-                                                const name =
-                                                    typeof habit === "string"
-                                                        ? habit
-                                                        : habit.name ||
-                                                          habit.habit ||
-                                                          habit.title ||
-                                                          "Habit";
-
-                                                const target =
-                                                    typeof habit === "object"
-                                                        ? habit.target ||
-                                                          habit.goal ||
-                                                          ""
-                                                        : "";
-
-                                                return `
-
-                                                    <div class="lifetime-habit">
-
-                                                        <strong>
-                                                            ${escapeHTML(
-                                                                name
-                                                            )}
-                                                        </strong>
-
-                                                        ${
-                                                            target
-                                                                ? `<br>${escapeHTML(target)}`
-                                                                : ""
-                                                        }
-
-                                                    </div>
-
-                                                `;
-
-                                            }
-                                        ).join("")
-                                        : ""
-                                }
-
-                            </div>
-
-                        </div>
-
-                    `;
-
-                }
-            ).join("")}
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================
-   FALLBACK LIFETIME
-========================= */
-
-function renderLifetimeFallback() {
-
-    const container =
-        document.getElementById(
-            "lifetimeHabitsContainer"
-        );
-
-    const items = [
-
-        {
-            title:
-                "Move Your Body",
-
-            description:
-                "Keep movement as part of your normal routine.",
-
-            habits:
-                [
-                    "Walk regularly",
-                    "Strength train consistently",
-                    "Choose movement you enjoy"
-                ]
-        },
-
-        {
-            title:
-                "Build Balanced Meals",
-
-            description:
-                "Continue using the balanced eating habits you learned during your 90 days.",
-
-            habits:
-                [
-                    "Include protein",
-                    "Add vegetables or fruit",
-                    "Enjoy your favourite foods mindfully"
-                ]
-        },
-
-        {
-            title:
-                "Protect Your Sleep",
-
-            description:
-                "Good sleep supports your energy, appetite and daily routine.",
-
-            habits:
-                [
-                    "Keep a consistent sleep routine",
-                    "Reduce screens before bed",
-                    "Prioritize rest"
-                ]
-        },
-
-        {
-            title:
-                "Stay Hydrated",
-
-            description:
-                "Make water your everyday default drink.",
-
-            habits:
-                [
-                    "Keep water nearby",
-                    "Drink regularly throughout the day"
-                ]
-        },
-
-        {
-            title:
-                "Manage Stress",
-
-            description:
-                "Create small moments of calm instead of waiting until you feel overwhelmed.",
-
-            habits:
-                [
-                    "Take mindful breaks",
-                    "Practice deep breathing",
-                    "Make time for yourself"
-                ]
-        },
-
-        {
-            title:
-                "Keep Checking In",
-
-            description:
-                "Progress is easier to maintain when you continue paying attention to your habits.",
-
-            habits:
-                [
-                    "Notice your eating patterns",
-                    "Track meaningful progress",
-                    "Adjust early instead of giving up"
-                ]
-        }
-
-    ];
-
-    container.innerHTML = `
-
-        <div class="lifetime-unlocked-message">
-
-            <div class="small-title">
-                Day 90 Complete
-            </div>
-
-            <h2>
-                Your Lifetime Freedom Starts Now
-            </h2>
-
-            <p>
-                You've completed your 90-Day Journey.
-                Keep these habits as your long-term foundation.
-            </p>
-
-        </div>
-
-        <div class="lifetime-grid">
-
-            ${items.map(
-                (
-                    item,
-                    index
-                ) => `
-
-                    <div class="lifetime-card">
-
-                        <img
-                            class="lifetime-image"
-                            src="${getLifetimeImage(index)}"
-                            alt="${escapeHTML(
-                                item.title
-                            )}"
-                            loading="lazy">
-
-                        <div class="lifetime-content">
-
-                            <h3>
-                                ${escapeHTML(
-                                    item.title
-                                )}
-                            </h3>
-
-                            <p>
-                                ${escapeHTML(
-                                    item.description
-                                )}
-                            </p>
-
-                            ${item.habits.map(
-                                habit => `
-
-                                    <div class="lifetime-habit">
-
-                                        ${escapeHTML(
-                                            habit
-                                        )}
-
-                                    </div>
-
-                                `
-                            ).join("")}
-
-                        </div>
-
-                    </div>
-
-                `
-            ).join("")}
-
-        </div>
-
-    `;
-
-}
-
-
-
-               }
-            );
-
-
-        if (!weeks.length) return;
-
-
-        const phase =
-            phases[
-                phaseNumber
-            ];
-
-
-        html += `
-
-            <div class="phase-card">
-
-                <div class="phase-header">
-
-                    <div class="phase-label">
-
-                        ${escapeHTML(
-                            phase.title
-                        )}
-
-                    </div>
-
-                    <h2>
-
-                        ${escapeHTML(
-                            phase.heading
-                        )}
-
-                    </h2>
-
-                    <p>
-
-                        ${escapeHTML(
-                            phase.description
-                        )}
-
-                    </p>
-
-                </div>
-
-                <div class="week-list">
-
-        `;
-
-
-        weeks.forEach(
-            week => {
-
-                html +=
-                    renderWeekCard(
-                        week,
-                        unlockedWeek
-                    );
-
-            }
-        );
-
-
-        html += `
-
-                </div>
-
-            </div>
-
-        `;
-
-    }
-);
-
-
-container.innerHTML =
-    html;
-
-}
-/* =========================
-WEEK CARD
-========================= */
-function renderWeekCard(
-week,
-unlockedWeek
-) {
-const number =
-    getWeekNumber(
-        week
-    );
-
-
-const locked =
-    number >
-    unlockedWeek;
-
-
-const title =
-    week.title ||
-    week.name ||
-    `Week ${number}`;
-
-
-const days =
-    getDays(
-        week
-    );
-
-
-const percent =
-    getWeekCompletion(
-        week
-    );
-
-
-const startDay =
-    (
-        (number - 1) *
-        7
-    ) + 1;
-
-
-const endDay =
-    Math.min(
-        90,
-        number * 7
-    );
-
-
-return `
-
-    <div class="week-card ${locked ? "locked" : ""}">
-
-        <button
-            class="week-button"
-            ${locked ? "disabled" : ""}
-            onclick="${
-                locked
-                    ? ""
-                    : `openWeek('${escapeHTML(
-                        week.id
-                    )}')`
-            }">
-
-            <div class="week-left">
-
-                <div class="week-number">
-
-                    ${String(
-                        number
-                    ).padStart(
-                        2,
-                        "0"
-                    )}
-
-                </div>
-
-                <div class="week-title">
-
-                    <h3>
-
-                        ${escapeHTML(
-                            title
-                        )}
-
-                    </h3>
-
-                    <p>
-
-                        Days ${startDay}–${endDay}
-
-                        ${
-                            days.length
-                                ? ` · ${days.length} days`
-                                : ""
-                        }
-
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="week-right">
-
-                ${
-                    locked
-                        ? `
-                            <span class="lock-icon">
-                                🔒
-                            </span>
-                          `
-                        : `
-                            <span class="week-percent">
-                                ${percent}% complete
-                            </span>
-
-                            <span>
-                                →
-                            </span>
-                          `
-                }
-
-            </div>
-
-        </button>
-
-    </div>
-
-`;
-
-}
-/* =========================
-OPEN WEEK
-========================= */
-window.openWeek =
-function(weekId) {
-const week =
-    weeklyContent.find(
-        item =>
-            item.id === weekId
-    );
-
-
-if (!week) return;
-
-
-if (
-    getWeekNumber(week) >
-    getUnlockedWeek()
-) {
-
-    return;
-
-}
-
-
-selectedWeek =
-    week;
-
-
-document.getElementById(
-    "journeyListView"
-).style.display =
-    "none";
-
-
-document.getElementById(
-    "weekDetailView"
-).style.display =
-    "block";
-
-
-renderSelectedWeek();
-
-
-window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-});
-
-};
-/* =========================
-RENDER SELECTED WEEK
-========================= */
-function renderSelectedWeek() {
-if (!selectedWeek) return;
-
-
-const number =
-    getWeekNumber(
-        selectedWeek
-    );
-
-
-document.getElementById(
-    "detailWeekLabel"
-).textContent =
-    `Week ${number}`;
-
-
-document.getElementById(
-    "detailWeekTitle"
-).textContent =
-    selectedWeek.title ||
-    selectedWeek.name ||
-    `Week ${number}`;
-
-
-document.getElementById(
-    "detailWeekDescription"
-).textContent =
-    selectedWeek.description ||
-    selectedWeek.details ||
-    "";
-
-
-document.getElementById(
-    "detailWeekGoal"
-).textContent =
-    selectedWeek.goal ||
-    selectedWeek.weekGoal ||
-    "Complete your habits consistently this week.";
-
-
-const days =
-    getDays(
-        selectedWeek
-    );
-
-
-const weeklyHabits =
-    getWeeklyHabits(
-        selectedWeek
-    );
-
-
-let html = "";
-
-
-if (days.length) {
-
-    days.forEach(
-        (
-            day,
-            index
-        ) => {
-
-            html +=
-                renderDayCard(
-                    selectedWeek,
-                    day,
-                    index
-                );
-
-        }
-    );
-
-}
-
-
-else if (
-    weeklyHabits.length
-) {
-
-    html += `
-
-        <div class="day-card">
-
-            <div class="day-card-header">
-
-                <div>
-
-                    <div class="day-number">
-                        Weekly Focus
-                    </div>
-
-                    <div class="day-title">
-                        This Week
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="day-body">
-
-                <div class="habit-list">
-
-                    ${weeklyHabits.map(
-                        (
-                            habit,
-                            index
-                        ) =>
-                            renderHabit(
-                                selectedWeek.id,
-                                "weekly",
-                                index,
-                                habit
-                            )
-                    ).join("")}
-
-                </div>
-
-            </div>
-
-        </div>
-
-    `;
-
-}
-
-
-else {
-
-    html = `
-
-        <div class="empty-box">
-
-            No daily content has been added to this week yet.
-
-        </div>
-
-    `;
-
-}
-
-
-document.getElementById(
-    "weekContentContainer"
-).innerHTML =
-    html;
-
-
-renderReflection();
-
-}
-/* =========================
-RENDER DAY
-========================= */
-function renderDayCard(
-week,
-day,
-index
-) {
-const weekNumber =
-    getWeekNumber(
-        week
-    );
-
-
-const globalDay =
-    day.dayNumber ||
-    day.globalDay ||
-    (
-        (
-            weekNumber -
-            1
-        ) * 7
-    ) +
-    index +
-    1;
-
-
-const title =
-    day.title ||
-    day.name ||
-    `Day ${globalDay}`;
-
-
-const description =
-    day.description ||
-    day.details ||
-    "";
-
-
-const habits =
-    getDayHabits(
-        day
-    );
-
-
-const completed =
-    habits.filter(
-        (
-            _,
-            habitIndex
-        ) =>
-            isHabitComplete(
-                week.id,
-                index,
-                habitIndex
-            )
-    ).length;
-
-
-const percent =
-    habits.length
-        ? Math.round(
-            (
-                completed /
-                habits.length
-            ) * 100
-        )
-        : 0;
-
-
-const image =
-    day.image ||
-    day.imageUrl ||
-    getDayImage(
-        globalDay
-    );
-
-
-let html = `
-
-    <div class="day-card">
-
-        <div class="day-card-header">
-
-            <div>
-
-                <div class="day-number">
-
-                    Day ${globalDay}
-
-                </div>
-
-                <div class="day-title">
-
-                    ${escapeHTML(
-                        title
-                    )}
-
-                </div>
-
-                ${
-                    description
-                        ? `
-                            <div class="day-description">
-
-                                ${escapeHTML(
-                                    description
-                                )}
-
-                            </div>
-                          `
-                        : ""
-                }
-
-            </div>
-
-            <div class="day-badge">
-
-                ${
-                    habits.length
-                        ? `${percent}% complete`
-                        : "Daily Focus"
-                }
-
-            </div>
-
-        </div>
-
-
-        <div class="day-body">
-
-`;
-
-
-if (image) {
-
-    html += `
-
-        <img
-            class="day-image"
-            src="${escapeHTML(image)}"
-            alt="Day ${globalDay}"
-            loading="lazy">
-
-    `;
-
-}
-
-
-html +=
-    renderDailyContent(
-        day
-    );
-
-
-if (habits.length) {
-
-    html += `
-
-        <div class="daily-section">
-
-            <div class="daily-section-title">
-                Today's Habits
-            </div>
-
-            <div class="habit-list">
-
-                ${habits.map(
-                    (
-                        habit,
-                        habitIndex
-                    ) =>
-                        renderHabit(
-                            week.id,
-                            index,
-                            habitIndex,
-                            habit
-                        )
-                ).join("")}
-
-            </div>
-
-        </div>
-
-    `;
-
-}
-
-
-html += `
-
-        </div>
-
-    </div>
-
-`;
-
-
-return html;
-
-}
-/* =========================
-DAILY CONTENT
-========================= */
-function renderDailyContent(day) {
-const fields = [
-
-    [
-        "Movement",
-        day.movement ||
-        day.exercise ||
-        day.activity
-    ],
-
-    [
-        "Nutrition",
-        day.nutrition ||
-        day.food ||
-        day.meal
-    ],
-
-    [
-        "Hydration",
-        day.hydration ||
-        day.water
-    ],
-
-    [
-        "Sleep",
-        day.sleep
-    ],
-
-    [
-        "Mind & Stress",
-        day.mind ||
-        day.stress ||
-        day.mindset
-    ],
-
-    [
-        "Education",
-        day.education ||
-        day.lesson
-    ]
-
-];
-
-
-return fields
-    .filter(
-        item =>
-            item[1]
-    )
-    .map(
-        item => `
-
-            <div class="daily-section">
-
-                <div class="daily-section-title">
-
-                    ${escapeHTML(
-                        item[0]
-                    )}
-
-                </div>
-
-                <div class="daily-text">
-
-                    ${escapeHTML(
-                        item[1]
-                    )}
-
-                </div>
-
-            </div>
-
-        `
-    )
-    .join("");
-
-}
-/* =========================
-DAY IMAGES
-========================= */
-function getDayImage(day) {
-const images = [
-
-    "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1000&q=80",
-
-    "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=80",
-
-    "https://images.unsplash.com/photo-1546484959-fb8a3e2f5f6d?auto=format&fit=crop&w=1000&q=80",
-
-    "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1000&q=80",
-
-    "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1000&q=80",
-
-    "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1000&q=80",
-
-    "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80"
-
-];
-
-
-return images[
-    (
-        day - 1
-    ) %
-    images.length
-];
-
-}
-/* =========================
-HABIT
-========================= */
-function renderHabit(
-weekId,
-dayKey,
-habitIndex,
-habit
-) {
-if (
-    typeof habit === "string"
-) {
-
-    habit = {
-        name: habit
-    };
-
-}
-
-
-habit =
-    habit || {};
-
-
-const name =
-    habit.name ||
-    habit.habit ||
-    habit.title ||
-    "Habit";
-
-
-const target =
-    habit.target ||
-    habit.value ||
-    habit.goal ||
-    "";
-
-
-const details =
-    habit.details ||
-    habit.instructions ||
-    habit.description ||
-    "";
-
-
-const checked =
-    isHabitComplete(
-        weekId,
-        dayKey,
-        habitIndex
-    );
-
-
-return `
-
-    <label class="habit-item">
-
-        <input
-            type="checkbox"
-            ${checked ? "checked" : ""}
-            onchange="toggleHabit(
-                '${escapeHTML(weekId)}',
-                '${escapeHTML(dayKey)}',
-                ${habitIndex},
-                this.checked
-            )">
-
-        <div>
-
-            <div class="habit-name">
-
-                ${escapeHTML(
-                    name
-                )}
-
-            </div>
-
-            ${
-                target
-                    ? `
-                        <div class="habit-target">
-
-                            ${escapeHTML(
-                                target
-                            )}
-
-                        </div>
-                      `
-                    : ""
-            }
-
-            ${
-                details
-                    ? `
-                        <div class="habit-details">
-
-                            ${escapeHTML(
-                                details
-                            )}
-
-                        </div>
-                      `
-                    : ""
-            }
-
-        </div>
-
-    </label>
-
-`;
-
-}
-/* =========================
-HABIT CHECK
-========================= */
-function isHabitComplete(
-weekId,
-dayKey,
-habitIndex
-) {
-return !!(
-    memberProgress.weeks &&
-    memberProgress.weeks[weekId] &&
-    memberProgress.weeks[weekId].habits &&
-    memberProgress.weeks[weekId].habits[
-        `${dayKey}_${habitIndex}`
-    ]
-);
-
-}
-/* =========================
-TOGGLE HABIT
-========================= */
-window.toggleHabit =
-async function(
-weekId,
-dayKey,
-habitIndex,
-checked
-) {
-if (!memberProgress.weeks) {
-
-    memberProgress.weeks = {};
-
-}
-
-
-if (
-    !memberProgress.weeks[
-        weekId
-    ]
-) {
-
-    memberProgress.weeks[
-        weekId
-    ] = {};
-
-}
-
-
-if (
-    !memberProgress.weeks[
-        weekId
-    ].habits
-) {
-
-    memberProgress.weeks[
-        weekId
-    ].habits = {};
-
-}
-
-
-memberProgress.weeks[
-    weekId
-].habits[
-    `${dayKey}_${habitIndex}`
-] =
-    checked;
-
-
-await saveMemberProgress();
-
-
-renderSelectedWeek();
-
-renderWeeks();
-
-updateOverallProgress();
-
-};
-/* =========================
-WEEK COMPLETION
-========================= */
-function getWeekCompletion(week) {
-const days =
-    getDays(
-        week
-    );
-
-
-const weeklyHabits =
-    getWeeklyHabits(
-        week
-    );
-
-
-let total = 0;
-
-let completed = 0;
-
-
-if (days.length) {
-
-    days.forEach(
-        (
-            day,
-            dayIndex
-        ) => {
-
-            const habits =
-                getDayHabits(
-                    day
-                );
-
-
-            habits.forEach(
-                (
-                    _,
-                    habitIndex
-                ) => {
-
-                    total++;
-
-
-                    if (
-                        isHabitComplete(
-                            week.id,
-                            dayIndex,
-                            habitIndex
-                        )
-                    ) {
-
-                        completed++;
-
-                    }
-
-                }
-            );
-
-        }
-    );
-
-}
-
-
-else {
-
-    weeklyHabits.forEach(
-        (
-            _,
-            index
-        ) => {
-
-            total++;
-
-
-            if (
-                isHabitComplete(
-                    week.id,
-                    "weekly",
-                    index
-                )
-            ) {
-
-                completed++;
-
-            }
-
-        }
-    );
-
-}
-
-
-return total
-    ? Math.round(
-        (
-            completed /
-            total
-        ) * 100
-    )
-    : 0;
-
-}
-/* =========================
-COMPLETED DAYS
-========================= */
-function getCompletedDays() {
-let completed = 0;
-
-
-weeklyContent.forEach(
-    week => {
-
-        const days =
-            getDays(
-                week
-            );
-
-
-        days.forEach(
-            (
-                day,
-                index
-            ) => {
-
-                const habits =
-                    getDayHabits(
-                        day
-                    );
-
-
-                if (
-                    habits.length &&
-                    habits.every(
-                        (
-                            _,
-                            habitIndex
-                        ) =>
-                            isHabitComplete(
-                                week.id,
-                                index,
-                                habitIndex
-                            )
-                    )
-                ) {
-
-                    completed++;
-
-                }
-
-            }
-        );
-
-    }
-);
-
-
-return Math.min(
-    90,
-    completed
-);
-
-}
-/* =========================
-OVERALL PROGRESS
-========================= */
-function updateOverallProgress() {
-const completed =
-    getCompletedDays();
-
-
-const percentage =
-    Math.round(
-        (
-            completed /
-            90
-        ) * 100
-    );
-
-
-const progressFill =
-    document.getElementById(
-        "progressFill"
-    );
-
-
-const progressDays =
-    document.getElementById(
-        "progressDays"
-    );
-
-
-const progressNote =
-    document.getElementById(
-        "progressNote"
-    );
-
-
-if (progressFill) {
-
-    progressFill.style.width =
-        percentage + "%";
-
-}
-
-
-if (progressDays) {
-
-    progressDays.textContent =
-        completed;
-
-}
-
-
-if (progressNote) {
-
-    const remaining =
-        90 -
-        completed;
-
-
-    progressNote.textContent =
-        completed >= 90
-            ? "You completed your 90-day journey. Your Lifetime Freedom Habits are now your foundation."
-            : `${remaining} day${remaining === 1 ? "" : "s"} remaining. Keep building consistency.`;
-
-}
-
-}
-/* =========================
-PROGRAM DAY DISPLAY
-========================= */
-function updateProgramDayDisplay() {
-const day =
-    getProgramDay();
-
-
-const week =
-    getUnlockedWeek();
-
-
-const element =
-    document.getElementById(
-        "currentProgramDay"
-    );
-
-
-if (element) {
-
-    element.textContent =
-        `Day ${day} · Week ${week}`;
-
-}
-
-}
-/* =========================
-REFLECTION
-========================= */
-function getReflectionQuestions() {
-if (!selectedWeek) return [];
-
-
-if (
-    Array.isArray(
-        selectedWeek.reflection
-    )
-) {
-
-    return selectedWeek.reflection;
-
-}
-
-
-if (
-    Array.isArray(
-        selectedWeek.reflectionQuestions
-    )
-) {
-
-    return selectedWeek.reflectionQuestions;
-
-}
-
-
-return [
-
-    "What was your biggest win this week?",
-
-    "What was your biggest challenge?",
-
-    "What habit do you want to improve next week?"
-
-];
-
-}
-function getSavedReflection(index) {
-if (
-    !selectedWeek ||
-    !memberProgress.weeks ||
-    !memberProgress.weeks[
-        selectedWeek.id
-    ]
-) {
-
-    return "";
-
-}
-
-
-return (
-    memberProgress
-        .weeks[
-            selectedWeek.id
-        ]
-        .reflection?.[index]
-    || ""
-);
-
-}
-function renderReflection() {
-const questions =
-    getReflectionQuestions();
-
-
-const container =
-    document.getElementById(
-        "reflectionFields"
-    );
-
-
-if (!container) return;
-
-
-container.innerHTML =
-    questions.map(
-        (
-            question,
-            index
-        ) => {
-
-            const text =
-                typeof question === "string"
-                    ? question
-                    : question.question ||
-                      question.title ||
-                      `Reflection ${index + 1}`;
-
-
-            return `
-
-                <div class="reflection-field">
-
-                    <label>
-
-                        ${escapeHTML(
-                            text
-                        )}
-
-                    </label>
-
-                    <textarea
-                        id="reflection_${index}"
-                        placeholder="Write your reflection here..."
-                    >${escapeHTML(
-                        getSavedReflection(
-                            index
-                        )
-                    )}</textarea>
-
-                </div>
-
-            `;
-
-        }
-    ).join("");
-
-}
-async function saveReflection() {
-if (!selectedWeek) return;
-
-
-const questions =
-    getReflectionQuestions();
-
-
-if (!memberProgress.weeks) {
-
-    memberProgress.weeks = {};
-
-}
-
-
-if (
-    !memberProgress.weeks[
-        selectedWeek.id
-    ]
-) {
-
-    memberProgress.weeks[
-        selectedWeek.id
-    ] = {};
-
-}
-
-
-const answers = {};
-
-
-questions.forEach(
-    (
-        _,
-        index
-    ) => {
-
-        const field =
-            document.getElementById(
-                `reflection_${index}`
-            );
-
-
-        answers[index] =
-            field
-                ? field.value.trim()
-                : "";
-
-    }
-);
-
-
-memberProgress.weeks[
-    selectedWeek.id
-].reflection =
-    answers;
-
-
-memberProgress.weeks[
-    selectedWeek.id
-].reflectionUpdatedAt =
-    new Date().toISOString();
-
-
-await saveMemberProgress();
-
-
-const message =
-    document.getElementById(
-        "reflectionMessage"
-    );
-
-
-if (message) {
-
-    message.textContent =
-        "Reflection saved.";
-
-
-    setTimeout(() => {
-
-        message.textContent = "";
-
-    }, 3000);
-
-}
-
-}
-/* =========================
-LIFETIME HABITS
-UNLOCK AFTER DAY 90
-========================= */
-async function loadLifetimeHabits() {
-const container =
-    document.getElementById(
-        "lifetimeHabitsContainer"
-    );
-
-
-if (!container) return;
-
-
-const programDay =
-    getProgramDay();
-
-
-if (programDay < 90) {
-
-    container.innerHTML = `
-
-        <div class="lifetime-locked">
-
-            <div class="lifetime-lock-icon">
-                🔒
-            </div>
-
             <h3>
-                Lifetime Freedom Habits
+                Freedom
             </h3>
 
-            <p>
-                Complete your 90-Day Journey first.
-                Your Lifetime Freedom Habits will unlock
-                after Day 90.
-            </p>
+        </div>
 
-            <div class="lifetime-unlock-progress">
 
-                <strong>
-                    Day ${programDay} of 90
-                </strong>
+        <!-- =========================
+             SIDEBAR
+        ========================= -->
 
-                <div class="progress-track">
+        <aside
+            class="sidebar"
+            id="sidebar"
+        >
 
-                    <div
-                        class="progress-fill"
-                        style="width:${(
-                            programDay / 90
-                        ) * 100}%">
-                    </div>
+            <div class="brand">
 
-                </div>
+                <h2>
+                    Freedom Women's
+                    <br>
+                    Health Club
+                </h2>
 
-                <span>
-                    Keep going — you're building habits
-                    for life.
-                </span>
+                <p>
+                    Your personal dashboard
+                </p>
 
             </div>
 
-        </div>
 
-    `;
-
-    return;
-
-}
+            <nav class="sidebar-nav">
 
 
-try {
+                <!-- HOME -->
 
-    const snapshot =
-        await getDocs(
-            collection(
-                db,
-                "lifetimeHabits"
-            )
-        );
-
-
-    lifetimeHabits = [];
+                <button
+                    class="nav-btn active"
+                    data-section="homeSection"
+                >
+                    Home
+                </button>
 
 
-    snapshot.forEach(
-        docSnap => {
+                <!-- PROFILE -->
 
-            lifetimeHabits.push({
+                <button
+                    class="nav-btn"
+                    data-section="profileSection"
+                >
+                    Profile
+                </button>
 
-                id:
-                    docSnap.id,
 
-                ...docSnap.data()
+                <!-- 90 DAY JOURNEY -->
 
+                <button
+                    class="nav-btn"
+                    data-section="journeySection"
+                >
+                    90-Day Journey
+                </button>
+
+
+                <!-- DIET PLANS -->
+
+                <button
+                    class="nav-btn"
+                    data-section="dietPlansSection"
+                >
+                    Diet Plans
+                </button>
+
+
+                <!-- RESOURCES -->
+
+                <button
+                    class="nav-btn"
+                    data-section="resourcesSection"
+                >
+                    Resources
+                </button>
+
+
+                <!-- COMMUNITY -->
+
+                <button
+                    class="nav-btn"
+                    data-section="communitySection"
+                >
+                    Community
+                </button>
+
+
+                <!-- LIFETIME HABITS -->
+
+                <button
+                    class="nav-btn"
+                    data-section="lifetimeSection"
+                >
+                    Lifetime Habits
+                </button>
+
+
+            </nav>
+
+        </aside>
+
+
+        <!-- =========================
+             MAIN CONTENT
+        ========================= -->
+
+        <main class="main-content">
+
+
+            <!-- =========================
+                 HOME
+            ========================= -->
+
+            <section
+                class="page-section active"
+                id="homeSection"
+            >
+
+                <div class="page-header">
+
+                    <div class="small-title">
+                        Welcome
+                    </div>
+
+                    <h1>
+                        Home
+                    </h1>
+
+                    <p>
+                        Welcome to your Freedom dashboard.
+                    </p>
+
+                </div>
+
+
+                <div class="placeholder-card">
+
+                    Home content will be added here.
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 PROFILE
+            ========================= -->
+
+            <section
+                class="page-section"
+                id="profileSection"
+            >
+
+                <div class="page-header">
+
+                    <div class="small-title">
+                        Your Information
+                    </div>
+
+                    <h1>
+                        Profile
+                    </h1>
+
+                    <p>
+                        Your personal information and progress.
+                    </p>
+
+                </div>
+
+
+                <div class="placeholder-card">
+
+                    Profile content will be added here.
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 90-DAY JOURNEY
+            ========================= -->
+
+            <section
+                class="page-section"
+                id="journeySection"
+            >
+
+                <div class="page-header">
+
+                    <div class="small-title">
+                        Your Program
+                    </div>
+
+                    <h1>
+                        90-Day Journey
+                    </h1>
+
+                    <p>
+                        Your 90-day program will appear here.
+                    </p>
+
+                </div>
+
+
+                <div class="placeholder-card">
+
+                    90-Day Journey content will be added here.
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 DIET PLANS
+            ========================= -->
+
+            <section
+                class="page-section"
+                id="dietPlansSection"
+            >
+
+                <div class="page-header">
+
+                    <div class="small-title">
+                        Nutrition
+                    </div>
+
+                    <h1>
+                        Diet Plans
+                    </h1>
+
+                    <p>
+                        Your personalized diet plans will appear here.
+                    </p>
+
+                </div>
+
+
+                <div class="placeholder-card">
+
+                    Diet Plans content will be added here.
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 RESOURCES
+            ========================= -->
+
+            <section
+                class="page-section"
+                id="resourcesSection"
+            >
+
+                <div class="page-header">
+
+                    <div class="small-title">
+                        Learn
+                    </div>
+
+                    <h1>
+                        Resources
+                    </h1>
+
+                    <p>
+                        Helpful resources and educational materials.
+                    </p>
+
+                </div>
+
+
+                <div class="placeholder-card">
+
+                    Resources content will be added here.
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 COMMUNITY
+            ========================= -->
+
+            <section
+                class="page-section"
+                id="communitySection"
+            >
+
+                <div class="page-header">
+
+                    <div class="small-title">
+                        Connect
+                    </div>
+
+                    <h1>
+                        Community
+                    </h1>
+
+                    <p>
+                        Connect, share and support each other.
+                    </p>
+
+                </div>
+
+
+                <div class="placeholder-card">
+
+                    Community content will be added here.
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 LIFETIME HABITS
+            ========================= -->
+
+            <section
+                class="page-section"
+                id="lifetimeSection"
+            >
+
+                <div class="page-header">
+
+                    <div class="small-title">
+                        After Day 90
+                    </div>
+
+                    <h1>
+                        Lifetime Habits
+                    </h1>
+
+                    <p>
+                        Habits to help you maintain your progress
+                        beyond the 90-day journey.
+                    </p>
+
+                </div>
+
+
+                <div class="placeholder-card">
+
+                    Lifetime Habits content will be added here.
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+
+        /* =========================
+           ELEMENTS
+        ========================= */
+
+        const navButtons =
+            document.querySelectorAll(
+                ".nav-btn"
+            );
+
+
+        const sections =
+            document.querySelectorAll(
+                ".page-section"
+            );
+
+
+        const sidebar =
+            document.getElementById(
+                "sidebar"
+            );
+
+
+        const mobileMenuBtn =
+            document.getElementById(
+                "mobileMenuBtn"
+            );
+
+
+        /* =========================
+           OPEN SECTION
+        ========================= */
+
+        function openSection(sectionId) {
+
+
+            /*
+             * Hide all sections
+             */
+
+            sections.forEach(
+                section => {
+
+                    section.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+
+            /*
+             * Show selected section
+             */
+
+            const selectedSection =
+                document.getElementById(
+                    sectionId
+                );
+
+
+            if (selectedSection) {
+
+                selectedSection.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            /*
+             * Update active sidebar button
+             */
+
+            navButtons.forEach(
+                button => {
+
+                    button.classList.toggle(
+                        "active",
+                        button.dataset.section ===
+                        sectionId
+                    );
+
+                }
+            );
+
+
+            /*
+             * Close mobile sidebar
+             */
+
+            sidebar.classList.remove(
+                "open"
+            );
+
+
+            /*
+             * Scroll to top
+             */
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
             });
 
         }
-    );
 
 
-    lifetimeHabits.sort(
-        (
-            a,
-            b
-        ) =>
-            Number(
-                a.order ||
-                a.number ||
-                999
-            ) -
-            Number(
-                b.order ||
-                b.number ||
-                999
-            )
-    );
+        /* =========================
+           SIDEBAR CLICK
+        ========================= */
 
+        navButtons.forEach(
+            button => {
 
-    renderLifetimeHabits();
+                button.addEventListener(
+                    "click",
+                    () => {
 
+                        openSection(
+                            button.dataset.section
+                        );
 
-} catch(error) {
-
-    console.error(
-        "LIFETIME ERROR",
-        error
-    );
-
-
-    renderLifetimeFallback();
-
-}
-
-}
-/* =========================
-LIFETIME RENDER
-========================= */
-function renderLifetimeHabits() {
-const container =
-    document.getElementById(
-        "lifetimeHabitsContainer"
-    );
-
-
-if (!container) return;
-
-
-if (!lifetimeHabits.length) {
-
-    renderLifetimeFallback();
-
-    return;
-
-}
-
-
-container.innerHTML = `
-
-    <div class="lifetime-unlocked-message">
-
-        <div class="small-title">
-            Day 90 Complete
-        </div>
-
-        <h2>
-            Your Lifetime Freedom Starts Now
-        </h2>
-
-        <p>
-            You've completed your 90-Day Journey.
-            Now continue with the habits that helped
-            you create lasting change.
-        </p>
-
-    </div>
-
-    <div class="lifetime-grid">
-
-        ${lifetimeHabits.map(
-            (
-                item,
-                index
-            ) => {
-
-                const title =
-                    item.title ||
-                    item.name ||
-                    item.category ||
-                    "Freedom Habit";
-
-
-                const description =
-                    item.description ||
-                    item.details ||
-                    "";
-
-
-                const habits =
-                    Array.isArray(
-                        item.habits
-                    )
-                        ? item.habits
-                        : [];
-
-
-                const image =
-                    item.image ||
-                    item.imageUrl ||
-                    getLifetimeImage(
-                        index
-                    );
-
-
-                return `
-
-                    <div class="lifetime-card">
-
-                        <img
-                            class="lifetime-image"
-                            src="${escapeHTML(
-                                image
-                            )}"
-                            alt="${escapeHTML(
-                                title
-                            )}"
-                            loading="lazy">
-
-                        <div class="lifetime-content">
-
-                            <h3>
-                                ${escapeHTML(
-                                    title
-                                )}
-                            </h3>
-
-                            ${
-                                description
-                                    ? `
-                                        <p>
-                                            ${escapeHTML(
-                                                description
-                                            )}
-                                        </p>
-                                      `
-                                    : ""
-                            }
-
-                            ${
-                                habits.length
-                                    ? habits.map(
-                                        habit => {
-
-                                            const name =
-                                                typeof habit === "string"
-                                                    ? habit
-                                                    : habit.name ||
-                                                      habit.habit ||
-                                                      habit.title ||
-                                                      "Habit";
-
-
-                                            const target =
-                                                typeof habit === "object"
-                                                    ? habit.target ||
-                                                      habit.goal ||
-                                                      ""
-                                                    : "";
-
-
-                                            return `
-
-                                                <div class="lifetime-habit">
-
-                                                    <strong>
-                                                        ${escapeHTML(
-                                                            name
-                                                        )}
-                                                    </strong>
-
-                                                    ${
-                                                        target
-                                                            ? `<br>${escapeHTML(target)}`
-                                                            : ""
-                                                    }
-
-                                                </div>
-
-                                            `;
-
-                                        }
-                                    ).join("")
-                                    : ""
-                            }
-
-                        </div>
-
-                    </div>
-
-                `;
+                    }
+                );
 
             }
-        ).join("")}
-
-    </div>
-
-`;
-
-}
-/* =========================
-FALLBACK LIFETIME
-========================= */
-function renderLifetimeFallback() {
-const container =
-    document.getElementById(
-        "lifetimeHabitsContainer"
-    );
+        );
 
 
-if (!container) return;
+        /* =========================
+           MOBILE MENU
+        ========================= */
+
+        mobileMenuBtn.addEventListener(
+            "click",
+            () => {
+
+                sidebar.classList.toggle(
+                    "open"
+                );
+
+            }
+        );
 
 
-const items = [
-
-    {
-        title:
-            "Move Your Body",
-
-        description:
-            "Keep movement as part of your normal routine.",
-
-        habits:
-            [
-                "Walk regularly",
-                "Strength train consistently",
-                "Choose movement you enjoy"
-            ]
-    },
-
-    {
-        title:
-            "Build Balanced Meals",
-
-        description:
-            "Continue using the balanced eating habits you learned during your 90 days.",
-
-        habits:
-            [
-                "Include protein",
-                "Add vegetables or fruit",
-                "Enjoy your favourite foods mindfully"
-            ]
-    },
-
-    {
-        title:
-            "Protect Your Sleep",
-
-        description:
-            "Good sleep supports your energy, appetite and daily routine.",
-
-        habits:
-            [
-                "Keep a consistent sleep routine",
-                "Reduce screens before bed",
-                "Prioritize rest"
-            ]
-    },
-
-    {
-        title:
-            "Stay Hydrated",
-
-        description:
-            "Make water your everyday default drink.",
-
-        habits:
-            [
-                "Keep water nearby",
-                "Drink regularly throughout the day"
-            ]
-    },
-
-    {
-        title:
-            "Manage Stress",
-
-        description:
-            "Create small moments of calm instead of waiting until you feel overwhelmed.",
-
-        habits:
-            [
-                "Take mindful breaks",
-                "Practice deep breathing",
-                "Make time for yourself"
-            ]
-    },
-
-    {
-        title:
-            "Keep Checking In",
-
-        description:
-            "Progress is easier to maintain when you continue paying attention to your habits.",
-
-        habits:
-            [
-                "Notice your eating patterns",
-                "Track meaningful progress",
-                "Adjust early instead of giving up"
-            ]
-    }
-
-];
+    </script>
 
 
-container.innerHTML = `
-
-    <div class="lifetime-unlocked-message">
-
-        <div class="small-title">
-            Day 90 Complete
-        </div>
-
-        <h2>
-            Your Lifetime Freedom Starts Now
-        </h2>
-
-        <p>
-            You've completed your 90-Day Journey.
-            Keep these habits as your long-term foundation.
-        </p>
-
-    </div>
-
-    <div class="lifetime-grid">
-
-        ${items.map(
-            (
-                item,
-                index
-            ) => `
-
-                <div class="lifetime-card">
-
-                    <img
-                        class="lifetime-image"
-                        src="${getLifetimeImage(index)}"
-                        alt="${escapeHTML(
-                            item.title
-                        )}"
-                        loading="lazy">
-
-                    <div class="lifetime-content">
-
-                        <h3>
-                            ${escapeHTML(
-                                item.title
-                            )}
-                        </h3>
-
-                        <p>
-                            ${escapeHTML(
-                                item.description
-                            )}
-                        </p>
-
-                        ${item.habits.map(
-                            habit => `
-
-                                <div class="lifetime-habit">
-
-                                    ${escapeHTML(
-                                        habit
-                                    )}
-
-                                </div>
-
-                            `
-                        ).join("")}
-
-                    </div>
-
-                </div>
-
-            `
-        ).join("")}
-
-    </div>
-
-`;
-
-}
-
+</body>
+</html>
+```
