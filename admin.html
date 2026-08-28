@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>FWHC Admin Panel</title>
 
+
 <style>
+
+/* =====================================================
+   FREEDOM WOMEN'S HEALTH CLUB
+   ADMIN PANEL
+===================================================== */
+
 :root {
+
     --cream: #FBF8F3;
     --plum: #6E4A7E;
     --charcoal: #2D2D2D;
@@ -16,332 +27,796 @@
     --white: #FFFFFF;
     --light-plum: #F1EAF3;
     --border: #E7DED4;
+
 }
 
+
 * {
+
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+
 }
+
 
 body {
+
     font-family: Arial, sans-serif;
+
     background: var(--cream);
+
     color: var(--charcoal);
+
 }
 
-/* SIDEBAR */
 
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 245px;
-    height: 100vh;
-    background: var(--plum);
-    color: white;
-    padding: 28px 18px;
-}
+/* =====================================================
+   LOGIN
+===================================================== */
 
-.logo {
-    padding: 0 12px 30px;
-}
+.login-page {
 
-.logo h1 {
-    font-size: 20px;
-    line-height: 1.3;
-}
-
-.logo span {
-    font-size: 12px;
-    opacity: .75;
-}
-
-.nav {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.nav button {
-    border: none;
-    background: transparent;
-    color: white;
-    text-align: left;
-    padding: 13px 14px;
-    border-radius: 10px;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.nav button:hover,
-.nav button.active {
-    background: rgba(255,255,255,.15);
-}
-
-/* MAIN */
-
-.main {
-    margin-left: 245px;
     min-height: 100vh;
-    padding: 35px;
-}
 
-.topbar {
     display: flex;
-    justify-content: space-between;
+
     align-items: center;
-    margin-bottom: 30px;
-}
 
-.topbar h2 {
-    font-size: 28px;
-}
+    justify-content: center;
 
-.admin-label {
-    background: var(--light-plum);
-    color: var(--plum);
-    padding: 9px 15px;
-    border-radius: 30px;
-    font-size: 13px;
-}
-
-/* SECTIONS */
-
-.section {
-    display: none;
-}
-
-.section.active {
-    display: block;
-}
-
-/* CARDS */
-
-.stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-    margin-bottom: 30px;
-}
-
-.card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 22px;
-}
-
-.stat-number {
-    font-size: 30px;
-    font-weight: bold;
-    color: var(--plum);
-    margin-top: 8px;
-}
-
-/* BUTTON */
-
-.btn {
-    border: none;
-    background: var(--plum);
-    color: white;
-    padding: 12px 18px;
-    border-radius: 9px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.btn:hover {
-    opacity: .9;
-}
-
-.btn-secondary {
-    background: var(--champagne);
-    color: var(--charcoal);
-}
-
-/* TABLE */
-
-.table-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-}
-
-.table-header {
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--border);
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th,
-td {
-    padding: 15px 20px;
-    text-align: left;
-    border-bottom: 1px solid var(--border);
-    font-size: 14px;
-}
-
-th {
     background: var(--cream);
+
+    padding: 20px;
+
 }
 
-/* CLASSROOM */
 
-.modules {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-}
+.login-box {
 
-.module {
+    width: 100%;
+
+    max-width: 420px;
+
     background: white;
+
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 24px;
-    cursor: pointer;
+
+    border-radius: 20px;
+
+    padding: 40px;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,.06);
+
 }
 
-.module:hover {
-    border-color: var(--plum);
-    transform: translateY(-2px);
-    transition: .2s;
+
+.login-logo {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+
 }
 
-.module-icon {
-    font-size: 28px;
-    margin-bottom: 15px;
-}
 
-.module h3 {
+.login-logo h1 {
+
     color: var(--plum);
+
+    font-size: 23px;
+
+    line-height: 1.3;
+
     margin-bottom: 8px;
+
 }
 
-.module p {
-    font-size: 13px;
+
+.login-logo p {
+
     color: #777;
+
+    font-size: 14px;
+
 }
 
-/* FORM */
-
-.form-card {
-    max-width: 800px;
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 25px;
-}
 
 .form-group {
+
     margin-bottom: 18px;
+
 }
 
+
 .form-group label {
+
     display: block;
+
     font-size: 13px;
+
     font-weight: bold;
+
     margin-bottom: 7px;
+
 }
+
 
 input,
 textarea,
 select {
+
     width: 100%;
-    padding: 12px;
+
+    padding: 13px;
+
     border: 1px solid var(--border);
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 14px;
+
+    border-radius: 9px;
+
     background: white;
+
+    color: var(--charcoal);
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
 }
+
+
+input:focus,
+textarea:focus,
+select:focus {
+
+    border-color: var(--plum);
+
+}
+
 
 textarea {
-    min-height: 130px;
+
+    min-height: 150px;
+
     resize: vertical;
+
 }
 
-/* MOBILE */
 
-@media(max-width: 800px) {
+.btn {
+
+    border: none;
+
+    background: var(--plum);
+
+    color: white;
+
+    padding: 12px 18px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+}
+
+
+.btn:hover {
+
+    opacity: .9;
+
+}
+
+
+.btn-secondary {
+
+    background: var(--champagne);
+
+    color: var(--charcoal);
+
+}
+
+
+.login-error {
+
+    color: #B33;
+
+    text-align: center;
+
+    margin-top: 15px;
+
+    font-size: 13px;
+
+}
+
+
+/* =====================================================
+   ADMIN LAYOUT
+===================================================== */
+
+#adminApp {
+
+    display: none;
+
+}
+
+
+.sidebar {
+
+    position: fixed;
+
+    left: 0;
+
+    top: 0;
+
+    width: 245px;
+
+    height: 100vh;
+
+    background: var(--plum);
+
+    color: white;
+
+    padding: 28px 18px;
+
+}
+
+
+.logo {
+
+    padding: 0 12px 30px;
+
+}
+
+
+.logo h1 {
+
+    font-size: 19px;
+
+    line-height: 1.35;
+
+}
+
+
+.logo span {
+
+    display: block;
+
+    font-size: 12px;
+
+    opacity: .75;
+
+    margin-top: 6px;
+
+}
+
+
+.nav {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+}
+
+
+.nav button {
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    text-align: left;
+
+    padding: 13px 14px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+}
+
+
+.nav button:hover,
+.nav button.active {
+
+    background: rgba(255,255,255,.15);
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main {
+
+    margin-left: 245px;
+
+    min-height: 100vh;
+
+    padding: 35px;
+
+}
+
+
+.topbar {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 30px;
+
+}
+
+
+.topbar h2 {
+
+    font-size: 28px;
+
+}
+
+
+.admin-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.admin-label {
+
+    background: var(--light-plum);
+
+    color: var(--plum);
+
+    padding: 9px 15px;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+
+}
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.section {
+
+    display: none;
+
+}
+
+
+.section.active {
+
+    display: block;
+
+}
+
+
+/* =====================================================
+   DASHBOARD CARDS
+===================================================== */
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.card {
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    padding: 22px;
+
+}
+
+
+.stat-number {
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+    color: var(--plum);
+
+    margin-top: 8px;
+
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-card {
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+}
+
+
+.table-header {
+
+    padding: 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+}
+
+
+th,
+td {
+
+    padding: 15px 20px;
+
+    text-align: left;
+
+    border-bottom: 1px solid var(--border);
+
+    font-size: 14px;
+
+}
+
+
+th {
+
+    background: var(--cream);
+
+}
+
+
+/* =====================================================
+   CLASSROOM
+===================================================== */
+
+.modules {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+
+}
+
+
+.module {
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    padding: 24px;
+
+}
+
+
+.module-icon {
+
+    font-size: 28px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.module h3 {
+
+    color: var(--plum);
+
+    margin-bottom: 8px;
+
+}
+
+
+.module p {
+
+    font-size: 13px;
+
+    color: #777;
+
+}
+
+
+/* =====================================================
+   FORM CARD
+===================================================== */
+
+.form-card {
+
+    max-width: 800px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    padding: 25px;
+
+}
+
+
+.form-actions {
+
+    margin-top: 20px;
+
+}
+
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
+.empty {
+
+    text-align: center;
+
+    color: #888;
+
+    padding: 30px;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width: 900px) {
 
     .sidebar {
-        width: 70px;
+
+        width: 75px;
+
         padding: 20px 8px;
+
     }
+
 
     .logo h1,
     .logo span {
+
         display: none;
+
     }
+
 
     .nav button {
+
         font-size: 0;
+
         text-align: center;
+
     }
 
-    .nav button:first-letter {
-        font-size: 20px;
-    }
 
     .main {
-        margin-left: 70px;
+
+        margin-left: 75px;
+
         padding: 20px;
+
     }
+
 
     .stats {
+
         grid-template-columns: repeat(2, 1fr);
+
     }
+
 
     .modules {
+
         grid-template-columns: 1fr;
+
     }
+
 }
+
+
 </style>
+
 </head>
 
+
 <body>
+
+
+<!-- =====================================================
+     LOGIN PAGE
+===================================================== -->
+
+<div id="loginPage" class="login-page">
+
+    <div class="login-box">
+
+        <div class="login-logo">
+
+            <h1>
+                FREEDOM WOMEN'S<br>
+                HEALTH CLUB
+            </h1>
+
+            <p>
+                Admin Panel
+            </p>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Email
+            </label>
+
+            <input
+                id="loginEmail"
+                type="email"
+                placeholder="Admin email"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Password
+            </label>
+
+            <input
+                id="loginPassword"
+                type="password"
+                placeholder="Password"
+            >
+
+        </div>
+
+
+        <button
+            class="btn"
+            id="loginButton"
+            style="width:100%;"
+        >
+            Login
+        </button>
+
+
+        <p
+            id="loginError"
+            class="login-error"
+        ></p>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     ADMIN APP
+===================================================== -->
+
+<div id="adminApp">
+
 
 <!-- SIDEBAR -->
 
 <aside class="sidebar">
 
     <div class="logo">
-        <h1>FREEDOM<br>WOMEN'S HEALTH CLUB</h1>
-        <span>Admin Panel</span>
+
+        <h1>
+            FREEDOM<br>
+            WOMEN'S HEALTH CLUB
+        </h1>
+
+        <span>
+            Admin Panel
+        </span>
+
     </div>
+
 
     <nav class="nav">
 
-        <button class="active" onclick="showSection('dashboard', this)">
+        <button
+            class="active"
+            onclick="showSection('dashboard', this)"
+        >
             🏠 Dashboard
         </button>
 
-        <button onclick="showSection('members', this)">
+
+        <button
+            onclick="showSection('members', this)"
+        >
             👥 Members
         </button>
 
-        <button onclick="showSection('classroom', this)">
+
+        <button
+            onclick="showSection('classroom', this)"
+        >
             📚 Classroom
         </button>
 
-        <button onclick="showSection('community', this)">
+
+        <button
+            onclick="showSection('community', this)"
+        >
             💬 Community
         </button>
 
-        <button onclick="showSection('leaderboard', this)">
+
+        <button
+            onclick="showSection('leaderboard', this)"
+        >
             🏆 Leaderboard
         </button>
 
-        <button onclick="showSection('settings', this)">
+
+        <button
+            onclick="showSection('settings', this)"
+        >
             ⚙️ Settings
         </button>
 
@@ -350,54 +825,140 @@ textarea {
 </aside>
 
 
+
 <!-- MAIN -->
 
 <main class="main">
 
+
+    <!-- TOP BAR -->
+
     <div class="topbar">
-        <h2 id="pageTitle">Dashboard</h2>
-        <div class="admin-label">Administrator</div>
+
+        <h2 id="pageTitle">
+            Dashboard
+        </h2>
+
+
+        <div class="admin-actions">
+
+            <div class="admin-label">
+                Administrator
+            </div>
+
+            <button
+                class="btn btn-secondary"
+                onclick="logoutAdmin()"
+            >
+                Logout
+            </button>
+
+        </div>
+
     </div>
 
 
-    <!-- DASHBOARD -->
 
-    <section id="dashboard" class="section active">
+    <!-- =================================================
+         DASHBOARD
+    ================================================= -->
+
+    <section
+        id="dashboard"
+        class="section active"
+    >
 
         <div class="stats">
 
-            <div class="card">
-                <p>Total Members</p>
-                <div class="stat-number" id="memberCount">0</div>
-            </div>
 
             <div class="card">
-                <p>Active Members</p>
-                <div class="stat-number">0</div>
+
+                <p>
+                    Total Members
+                </p>
+
+                <div
+                    class="stat-number"
+                    id="memberCount"
+                >
+                    0
+                </div>
+
             </div>
 
-            <div class="card">
-                <p>Classroom Content</p>
-                <div class="stat-number" id="contentCount">0</div>
-            </div>
 
             <div class="card">
-                <p>Community Posts</p>
-                <div class="stat-number">0</div>
+
+                <p>
+                    Active Members
+                </p>
+
+                <div
+                    class="stat-number"
+                    id="activeMemberCount"
+                >
+                    0
+                </div>
+
             </div>
+
+
+            <div class="card">
+
+                <p>
+                    Classroom Content
+                </p>
+
+                <div
+                    class="stat-number"
+                    id="contentCount"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <p>
+                    Community Posts
+                </p>
+
+                <div
+                    class="stat-number"
+                >
+                    0
+                </div>
+
+            </div>
+
 
         </div>
+
 
         <div class="card">
 
             <h3 style="margin-bottom:10px;">
-                Welcome to your Freedom Club Admin Panel
+
+                Welcome to your
+                Freedom Club Admin Panel
+
             </h3>
 
-            <p style="color:#777; line-height:1.7;">
-                Manage members, classroom content, unlock days,
-                community and your Freedom Women's Health Club
+
+            <p
+                style="
+                    color:#777;
+                    line-height:1.7;
+                "
+            >
+
+                Manage members, classroom content,
+                unlock days, community and your
+                Freedom Women's Health Club
                 from one place.
+
             </p>
 
         </div>
@@ -405,40 +966,80 @@ textarea {
     </section>
 
 
-    <!-- MEMBERS -->
 
-    <section id="members" class="section">
+    <!-- =================================================
+         MEMBERS
+    ================================================= -->
+
+    <section
+        id="members"
+        class="section"
+    >
 
         <div class="table-card">
 
+
             <div class="table-header">
 
-                <h3>Members</h3>
+                <h3>
+                    Members
+                </h3>
 
-                <button class="btn" onclick="showAddMember()">
+
+                <button
+                    class="btn"
+                    onclick="showAddMember()"
+                >
                     + Add Member
                 </button>
 
             </div>
 
+
             <table>
 
                 <thead>
+
                     <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Start Date</th>
-                        <th>Access Until</th>
-                        <th>Status</th>
+
+                        <th>
+                            Name
+                        </th>
+
+                        <th>
+                            Email
+                        </th>
+
+                        <th>
+                            Start Date
+                        </th>
+
+                        <th>
+                            Access Until
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
                     </tr>
+
                 </thead>
 
-                <tbody id="memberTable">
+
+                <tbody
+                    id="memberTable"
+                >
 
                     <tr>
-                        <td colspan="5" style="text-align:center;color:#888;">
-                            No members yet. Add your first member.
+
+                        <td
+                            colspan="5"
+                            class="empty"
+                        >
+                            Loading members...
                         </td>
+
                     </tr>
 
                 </tbody>
@@ -450,9 +1051,15 @@ textarea {
     </section>
 
 
-    <!-- ADD MEMBER -->
 
-    <section id="addMember" class="section">
+    <!-- =================================================
+         ADD MEMBER
+    ================================================= -->
+
+    <section
+        id="addMember"
+        class="section"
+    >
 
         <div class="form-card">
 
@@ -460,232 +1067,489 @@ textarea {
                 Add Member
             </h3>
 
+
             <div class="form-group">
-                <label>Name</label>
-                <input id="memberName" placeholder="Member name">
+
+                <label>
+                    Name
+                </label>
+
+                <input
+                    id="memberName"
+                    placeholder="Member name"
+                >
+
             </div>
 
+
             <div class="form-group">
-                <label>Email</label>
-                <input id="memberEmail" type="email" placeholder="Email address">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    id="memberEmail"
+                    type="email"
+                    placeholder="Email address"
+                >
+
             </div>
 
+
             <div class="form-group">
-                <label>Phone</label>
-                <input id="memberPhone" placeholder="Phone number">
+
+                <label>
+                    Phone
+                </label>
+
+                <input
+                    id="memberPhone"
+                    placeholder="Phone number"
+                >
+
             </div>
 
+
             <div class="form-group">
-                <label>Start Date</label>
-                <input id="memberStart" type="date">
+
+                <label>
+                    Start Date
+                </label>
+
+                <input
+                    id="memberStart"
+                    type="date"
+                >
+
             </div>
 
-            <div class="form-group">
-                <label>Access Until Day</label>
 
-                <select id="memberAccess">
-                    <option value="30">Day 30</option>
-                    <option value="60">Day 60</option>
-                    <option value="90">Day 90</option>
+            <div class="form-group">
+
+                <label>
+                    Access Until Day
+                </label>
+
+                <select
+                    id="memberAccess"
+                >
+
+                    <option value="30">
+                        Day 30
+                    </option>
+
+                    <option value="60">
+                        Day 60
+                    </option>
+
+                    <option value="90">
+                        Day 90
+                    </option>
+
                 </select>
 
             </div>
 
+
             <div class="form-group">
 
-                <label>Status</label>
+                <label>
+                    Status
+                </label>
 
-                <select id="memberStatus">
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
+                <select
+                    id="memberStatus"
+                >
+
+                    <option value="Active">
+                        Active
+                    </option>
+
+                    <option value="Inactive">
+                        Inactive
+                    </option>
+
                 </select>
 
             </div>
 
-            <button class="btn" onclick="saveMember()">
-                Save Member
-            </button>
 
-            <button
-                class="btn btn-secondary"
-                onclick="showSection('members')"
-                style="margin-left:8px;">
-                Cancel
-            </button>
+            <div class="form-actions">
+
+                <button
+                    class="btn"
+                    onclick="saveMember()"
+                >
+                    Save Member
+                </button>
+
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="showSection('members')"
+                    style="margin-left:8px;"
+                >
+                    Cancel
+                </button>
+
+            </div>
 
         </div>
 
     </section>
 
 
-    <!-- CLASSROOM -->
 
-    <section id="classroom" class="section">
+    <!-- =================================================
+         CLASSROOM
+    ================================================= -->
 
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+    <section
+        id="classroom"
+        class="section"
+    >
 
-            <h3>Classroom</h3>
 
-            <button class="btn" onclick="showAddContent()">
+        <div
+            style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                margin-bottom:20px;
+            "
+        >
+
+            <h3>
+                Classroom
+            </h3>
+
+
+            <button
+                class="btn"
+                onclick="showAddContent()"
+            >
                 + Add Content
             </button>
 
         </div>
 
+
         <div class="modules">
 
-            <div class="module">
-                <div class="module-icon">👋</div>
-                <h3>Start Here</h3>
-                <p>Welcome and program orientation</p>
-            </div>
 
             <div class="module">
-                <div class="module-icon">🌱</div>
-                <h3>Phase 1 — Reset</h3>
-                <p>Build your foundation</p>
+
+                <div class="module-icon">
+                    👋
+                </div>
+
+                <h3>
+                    Start Here
+                </h3>
+
+                <p>
+                    Welcome and program orientation
+                </p>
+
             </div>
 
-            <div class="module">
-                <div class="module-icon">💪</div>
-                <h3>Phase 2 — Build</h3>
-                <p>Strengthen your habits</p>
-            </div>
 
             <div class="module">
-                <div class="module-icon">✨</div>
-                <h3>Phase 3 — Maintain</h3>
-                <p>Make your habits sustainable</p>
+
+                <div class="module-icon">
+                    🌱
+                </div>
+
+                <h3>
+                    Phase 1 — Reset
+                </h3>
+
+                <p>
+                    Build your foundation
+                </p>
+
             </div>
 
-            <div class="module">
-                <div class="module-icon">🏋️</div>
-                <h3>Workout Plans</h3>
-                <p>Movement and strength plans</p>
-            </div>
 
             <div class="module">
-                <div class="module-icon">🥗</div>
-                <h3>Diet Plans</h3>
-                <p>Nutrition resources and guides</p>
+
+                <div class="module-icon">
+                    💪
+                </div>
+
+                <h3>
+                    Phase 2 — Build
+                </h3>
+
+                <p>
+                    Strengthen your habits
+                </p>
+
             </div>
 
+
             <div class="module">
-                <div class="module-icon">🌿</div>
-                <h3>Lifetime Habits</h3>
-                <p>Habits beyond the 90 days</p>
+
+                <div class="module-icon">
+                    ✨
+                </div>
+
+                <h3>
+                    Phase 3 — Maintain
+                </h3>
+
+                <p>
+                    Make your habits sustainable
+                </p>
+
             </div>
+
+
+            <div class="module">
+
+                <div class="module-icon">
+                    🏋️
+                </div>
+
+                <h3>
+                    Workout Plans
+                </h3>
+
+                <p>
+                    Movement and strength plans
+                </p>
+
+            </div>
+
+
+            <div class="module">
+
+                <div class="module-icon">
+                    🥗
+                </div>
+
+                <h3>
+                    Diet Plans
+                </h3>
+
+                <p>
+                    Nutrition resources and guides
+                </p>
+
+            </div>
+
+
+            <div class="module">
+
+                <div class="module-icon">
+                    🌿
+                </div>
+
+                <h3>
+                    Lifetime Habits
+                </h3>
+
+                <p>
+                    Habits beyond the 90 days
+                </p>
+
+            </div>
+
 
         </div>
 
     </section>
 
 
-    <!-- ADD CONTENT -->
 
-    <section id="addContent" class="section">
+    <!-- =================================================
+         ADD CONTENT
+    ================================================= -->
+
+    <section
+        id="addContent"
+        class="section"
+    >
 
         <div class="form-card">
+
 
             <h3 style="margin-bottom:22px;">
                 Add Classroom Content
             </h3>
 
+
             <div class="form-group">
 
-                <label>Content Type</label>
+                <label>
+                    Content Type
+                </label>
 
-                <select id="contentType">
+                <select
+                    id="contentType"
+                >
 
-                    <option>Lesson</option>
-                    <option>Day</option>
-                    <option>Workout Plan</option>
-                    <option>Diet Plan</option>
-                    <option>Lifetime Habit</option>
+                    <option>
+                        Lesson
+                    </option>
+
+                    <option>
+                        Day
+                    </option>
+
+                    <option>
+                        Workout Plan
+                    </option>
+
+                    <option>
+                        Diet Plan
+                    </option>
+
+                    <option>
+                        Lifetime Habit
+                    </option>
 
                 </select>
 
             </div>
 
+
             <div class="form-group">
 
-                <label>Module</label>
+                <label>
+                    Module
+                </label>
 
-                <select id="contentModule">
+                <select
+                    id="contentModule"
+                >
 
-                    <option>Start Here</option>
-                    <option>Phase 1 — Reset</option>
-                    <option>Phase 2 — Build</option>
-                    <option>Phase 3 — Maintain</option>
-                    <option>Workout Plans</option>
-                    <option>Diet Plans</option>
-                    <option>Lifetime Habits</option>
+                    <option>
+                        Start Here
+                    </option>
+
+                    <option>
+                        Phase 1 — Reset
+                    </option>
+
+                    <option>
+                        Phase 2 — Build
+                    </option>
+
+                    <option>
+                        Phase 3 — Maintain
+                    </option>
+
+                    <option>
+                        Workout Plans
+                    </option>
+
+                    <option>
+                        Diet Plans
+                    </option>
+
+                    <option>
+                        Lifetime Habits
+                    </option>
 
                 </select>
 
             </div>
 
+
             <div class="form-group">
 
-                <label>Title</label>
+                <label>
+                    Title
+                </label>
 
                 <input
                     id="contentTitle"
-                    placeholder="e.g. Day 1 — Rhythm Reset">
+                    placeholder="e.g. Day 1 — Rhythm Reset"
+                >
 
             </div>
 
+
             <div class="form-group">
 
-                <label>Description</label>
+                <label>
+                    Description
+                </label>
 
                 <input
                     id="contentDescription"
-                    placeholder="Short description">
+                    placeholder="Short description"
+                >
 
             </div>
 
+
             <div class="form-group">
 
-                <label>Content</label>
+                <label>
+                    Content
+                </label>
 
                 <textarea
                     id="contentBody"
-                    placeholder="Write your lesson/content here..."></textarea>
+                    placeholder="Write your lesson/content here..."
+                ></textarea>
 
             </div>
 
+
             <div class="form-group">
 
-                <label>Unlock Day</label>
+                <label>
+                    Unlock Day
+                </label>
 
                 <input
                     id="unlockDay"
                     type="number"
                     min="1"
-                    value="1">
+                    value="1"
+                >
 
             </div>
 
-            <button class="btn" onclick="saveContent()">
-                Save Content
-            </button>
 
-            <button
-                class="btn btn-secondary"
-                onclick="showSection('classroom')"
-                style="margin-left:8px;">
-                Cancel
-            </button>
+            <div class="form-actions">
+
+                <button
+                    class="btn"
+                    onclick="saveContent()"
+                >
+                    Save Content
+                </button>
+
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="showSection('classroom')"
+                    style="margin-left:8px;"
+                >
+                    Cancel
+                </button>
+
+            </div>
 
         </div>
 
     </section>
 
 
-    <!-- COMMUNITY -->
 
-    <section id="community" class="section">
+    <!-- =================================================
+         COMMUNITY
+    ================================================= -->
+
+    <section
+        id="community"
+        class="section"
+    >
 
         <div class="card">
 
@@ -693,9 +1557,11 @@ textarea {
                 Community
             </h3>
 
-            <p style="color:#777;">
-                Community posts, comments and member posts
-                will be managed here.
+            <p style="color:#777;line-height:1.7;">
+
+                Community posts, comments and
+                member posts will be managed here.
+
             </p>
 
         </div>
@@ -703,9 +1569,15 @@ textarea {
     </section>
 
 
-    <!-- LEADERBOARD -->
 
-    <section id="leaderboard" class="section">
+    <!-- =================================================
+         LEADERBOARD
+    ================================================= -->
+
+    <section
+        id="leaderboard"
+        class="section"
+    >
 
         <div class="card">
 
@@ -713,19 +1585,49 @@ textarea {
                 Leaderboard
             </h3>
 
+
             <table>
 
-                <tr>
-                    <th>Rank</th>
-                    <th>Member</th>
-                    <th>Points</th>
-                </tr>
+                <thead>
 
-                <tr>
-                    <td>1</td>
-                    <td>—</td>
-                    <td>0</td>
-                </tr>
+                    <tr>
+
+                        <th>
+                            Rank
+                        </th>
+
+                        <th>
+                            Member
+                        </th>
+
+                        <th>
+                            Points
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            1
+                        </td>
+
+                        <td>
+                            —
+                        </td>
+
+                        <td>
+                            0
+                        </td>
+
+                    </tr>
+
+                </tbody>
 
             </table>
 
@@ -734,9 +1636,15 @@ textarea {
     </section>
 
 
-    <!-- SETTINGS -->
 
-    <section id="settings" class="section">
+    <!-- =================================================
+         SETTINGS
+    ================================================= -->
+
+    <section
+        id="settings"
+        class="section"
+    >
 
         <div class="card">
 
@@ -752,292 +1660,983 @@ textarea {
 
     </section>
 
+
 </main>
 
+</div>
 
-<script>
 
-/* -------------------------
-   NAVIGATION
-------------------------- */
 
-function showSection(sectionId, button) {
+<!-- =====================================================
+     FIREBASE + JAVASCRIPT
+===================================================== -->
 
-    document.querySelectorAll(".section")
-        .forEach(section => section.classList.remove("active"));
+<script type="module">
 
-    const section = document.getElementById(sectionId);
 
-    if (section) {
-        section.classList.add("active");
-    }
+/* =====================================================
+   FIREBASE IMPORTS
+===================================================== */
 
-    document.querySelectorAll(".nav button")
-        .forEach(btn => btn.classList.remove("active"));
+import { initializeApp }
 
-    if (button) {
-        button.classList.add("active");
-    }
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
-    const titles = {
-        dashboard: "Dashboard",
-        members: "Members",
-        addMember: "Add Member",
-        classroom: "Classroom",
-        addContent: "Add Classroom Content",
-        community: "Community",
-        leaderboard: "Leaderboard",
-        settings: "Settings"
-    };
 
-    document.getElementById("pageTitle").textContent =
-        titles[sectionId] || "Admin Panel";
+import {
+
+    getAuth,
+
+    signInWithEmailAndPassword,
+
+    onAuthStateChanged,
+
+    signOut
+
 }
 
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-/* -------------------------
-   MEMBER FORM
-------------------------- */
 
-function showAddMember() {
-    showSection("addMember");
+import {
+
+    getFirestore,
+
+    collection,
+
+    addDoc,
+
+    getDocs
+
 }
 
-
-/* -------------------------
-   SAVE MEMBER
-------------------------- */
-
-function saveMember() {
-
-    const name =
-        document.getElementById("memberName").value.trim();
-
-    const email =
-        document.getElementById("memberEmail").value.trim();
-
-    const phone =
-        document.getElementById("memberPhone").value.trim();
-
-    const start =
-        document.getElementById("memberStart").value;
-
-    const access =
-        document.getElementById("memberAccess").value;
-
-    const status =
-        document.getElementById("memberStatus").value;
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-    if (!name || !email || !start) {
 
-        alert("Please enter Name, Email and Start Date.");
+/* =====================================================
+   YOUR FIREBASE CONFIG
+===================================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyB1ISMm_aVwsbSHByUI0F67tn-8GJo1pO0",
+
+    authDomain:
+        "freedom-women-s-health-club.firebaseapp.com",
+
+    projectId:
+        "freedom-women-s-health-club",
+
+    storageBucket:
+        "freedom-women-s-health-club.firebasestorage.app",
+
+    messagingSenderId:
+        "445440093665",
+
+    appId:
+        "1:445440093665:web:9c3a77f1f64776f63cb6a0"
+
+};
+
+
+
+/* =====================================================
+   INITIALIZE FIREBASE
+===================================================== */
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+
+/* =====================================================
+   ADMIN EMAIL
+===================================================== */
+
+const ADMIN_EMAIL =
+    "mahnoordietitian3@gmail.com";
+
+
+
+/* =====================================================
+   CHECK LOGIN
+===================================================== */
+
+onAuthStateChanged(auth, user => {
+
+
+    if (!user) {
+
+        document
+            .getElementById("loginPage")
+            .style.display = "flex";
+
+
+        document
+            .getElementById("adminApp")
+            .style.display = "none";
+
 
         return;
+
     }
 
 
-    const members =
-        JSON.parse(localStorage.getItem("fwhc_members") || "[]");
+
+    if (user.email !== ADMIN_EMAIL) {
+
+        alert(
+            "You are not authorized to access this Admin Panel."
+        );
 
 
-    members.push({
-
-        id: Date.now(),
-
-        name,
-        email,
-        phone,
-        start,
-        access,
-        status
-
-    });
+        signOut(auth);
 
 
-    localStorage.setItem(
-        "fwhc_members",
-        JSON.stringify(members)
-    );
+        return;
+
+    }
 
 
-    alert("Member saved successfully.");
+
+    document
+        .getElementById("loginPage")
+        .style.display = "none";
 
 
-    document.getElementById("memberName").value = "";
-    document.getElementById("memberEmail").value = "";
-    document.getElementById("memberPhone").value = "";
-    document.getElementById("memberStart").value = "";
+    document
+        .getElementById("adminApp")
+        .style.display = "block";
 
 
     loadMembers();
 
-    showSection("members");
-}
+
+    loadContent();
+
+});
 
 
-/* -------------------------
-   LOAD MEMBERS
-------------------------- */
 
-function loadMembers() {
+/* =====================================================
+   LOGIN
+===================================================== */
 
-    const members =
-        JSON.parse(localStorage.getItem("fwhc_members") || "[]");
-
-    const table =
-        document.getElementById("memberTable");
-
-    document.getElementById("memberCount")
-        .textContent = members.length;
+document
+    .getElementById("loginButton")
+    .addEventListener(
+        "click",
+        loginAdmin
+    );
 
 
-    if (!members.length) {
 
-        table.innerHTML = `
-            <tr>
-                <td colspan="5"
-                    style="text-align:center;color:#888;">
-                    No members yet. Add your first member.
-                </td>
-            </tr>
-        `;
+async function loginAdmin() {
+
+
+    const email =
+        document
+            .getElementById("loginEmail")
+            .value
+            .trim();
+
+
+    const password =
+        document
+            .getElementById("loginPassword")
+            .value;
+
+
+    const error =
+        document
+            .getElementById("loginError");
+
+
+    error.textContent = "";
+
+
+
+    if (!email || !password) {
+
+        error.textContent =
+            "Please enter your email and password.";
 
         return;
+
     }
 
 
-    table.innerHTML = members.map(member => `
 
-        <tr>
+    try {
 
-            <td>${escapeHTML(member.name)}</td>
 
-            <td>${escapeHTML(member.email)}</td>
+        await signInWithEmailAndPassword(
 
-            <td>${member.start}</td>
+            auth,
 
-            <td>Day ${member.access}</td>
+            email,
 
-            <td>${member.status}</td>
+            password
 
-        </tr>
+        );
 
-    `).join("");
+
+    }
+
+    catch (errorObject) {
+
+
+        console.error(
+            errorObject
+        );
+
+
+        error.textContent =
+            "Login failed. Please check your email and password.";
+
+    }
+
 }
 
 
-/* -------------------------
-   CLASSROOM
-------------------------- */
 
-function showAddContent() {
+/* =====================================================
+   LOGOUT
+===================================================== */
 
-    showSection("addContent");
+window.logoutAdmin = async function() {
+
+    await signOut(auth);
+
+};
+
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+window.showSection = function(
+    sectionId,
+    button
+) {
+
+
+    document
+        .querySelectorAll(".section")
+        .forEach(section => {
+
+            section.classList.remove(
+                "active"
+            );
+
+        });
+
+
+
+    const section =
+        document.getElementById(
+            sectionId
+        );
+
+
+    if (section) {
+
+        section.classList.add(
+            "active"
+        );
+
+    }
+
+
+
+    document
+        .querySelectorAll(".nav button")
+        .forEach(btn => {
+
+            btn.classList.remove(
+                "active"
+            );
+
+        });
+
+
+
+    if (button) {
+
+        button.classList.add(
+            "active"
+        );
+
+    }
+
+
+
+    const titles = {
+
+        dashboard:
+            "Dashboard",
+
+        members:
+            "Members",
+
+        addMember:
+            "Add Member",
+
+        classroom:
+            "Classroom",
+
+        addContent:
+            "Add Classroom Content",
+
+        community:
+            "Community",
+
+        leaderboard:
+            "Leaderboard",
+
+        settings:
+            "Settings"
+
+    };
+
+
+    document
+        .getElementById("pageTitle")
+        .textContent =
+            titles[sectionId] ||
+            "Admin Panel";
+
+};
+
+
+
+/* =====================================================
+   ADD MEMBER SCREEN
+===================================================== */
+
+window.showAddMember = function() {
+
+    showSection(
+        "addMember"
+    );
+
+};
+
+
+
+/* =====================================================
+   SAVE MEMBER TO FIRESTORE
+===================================================== */
+
+window.saveMember = async function() {
+
+
+    const name =
+        document
+            .getElementById("memberName")
+            .value
+            .trim();
+
+
+    const email =
+        document
+            .getElementById("memberEmail")
+            .value
+            .trim();
+
+
+    const phone =
+        document
+            .getElementById("memberPhone")
+            .value
+            .trim();
+
+
+    const startDate =
+        document
+            .getElementById("memberStart")
+            .value;
+
+
+    const accessUntilDay =
+        Number(
+            document
+                .getElementById("memberAccess")
+                .value
+        );
+
+
+    const status =
+        document
+            .getElementById("memberStatus")
+            .value;
+
+
+
+    if (
+        !name ||
+        !email ||
+        !startDate
+    ) {
+
+        alert(
+            "Please enter Name, Email and Start Date."
+        );
+
+        return;
+
+    }
+
+
+
+    try {
+
+
+        await addDoc(
+
+            collection(
+                db,
+                "members"
+            ),
+
+            {
+
+                name:
+                    name,
+
+                email:
+                    email,
+
+                phone:
+                    phone,
+
+                startDate:
+                    startDate,
+
+                accessUntilDay:
+                    accessUntilDay,
+
+                status:
+                    status,
+
+                createdAt:
+                    new Date()
+
+            }
+
+        );
+
+
+
+        alert(
+            "Member saved successfully in Firebase."
+        );
+
+
+
+        document
+            .getElementById("memberName")
+            .value = "";
+
+
+        document
+            .getElementById("memberEmail")
+            .value = "";
+
+
+        document
+            .getElementById("memberPhone")
+            .value = "";
+
+
+        document
+            .getElementById("memberStart")
+            .value = "";
+
+
+
+        await loadMembers();
+
+
+
+        showSection(
+            "members"
+        );
+
+
+    }
+
+    catch (errorObject) {
+
+
+        console.error(
+            errorObject
+        );
+
+
+        alert(
+            "Could not save member. Please check your Firebase login and Firestore rules."
+        );
+
+    }
+
+};
+
+
+
+/* =====================================================
+   LOAD MEMBERS FROM FIRESTORE
+===================================================== */
+
+async function loadMembers() {
+
+
+    try {
+
+
+        const snapshot =
+            await getDocs(
+
+                collection(
+                    db,
+                    "members"
+                )
+
+            );
+
+
+
+        const table =
+            document
+                .getElementById(
+                    "memberTable"
+                );
+
+
+        const memberCount =
+            document
+                .getElementById(
+                    "memberCount"
+                );
+
+
+        const activeCount =
+            document
+                .getElementById(
+                    "activeMemberCount"
+                );
+
+
+
+        memberCount.textContent =
+            snapshot.size;
+
+
+
+        let activeMembers = 0;
+
+
+        let html = "";
+
+
+
+        if (snapshot.empty) {
+
+
+            table.innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="5"
+                        class="empty"
+                    >
+
+                        No members yet.
+                        Add your first member.
+
+                    </td>
+
+                </tr>
+
+            `;
+
+
+            activeCount.textContent =
+                "0";
+
+
+            return;
+
+        }
+
+
+
+        snapshot.forEach(
+            documentSnapshot => {
+
+
+                const member =
+                    documentSnapshot.data();
+
+
+
+                if (
+                    member.status ===
+                    "Active"
+                ) {
+
+                    activeMembers++;
+
+                }
+
+
+
+                html += `
+
+                    <tr>
+
+                        <td>
+                            ${escapeHTML(
+                                member.name || ""
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHTML(
+                                member.email || ""
+                            )}
+                        </td>
+
+                        <td>
+                            ${member.startDate || ""}
+                        </td>
+
+                        <td>
+                            Day ${
+                                member.accessUntilDay || ""
+                            }
+                        </td>
+
+                        <td>
+                            ${escapeHTML(
+                                member.status || ""
+                            )}
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+        );
+
+
+
+        table.innerHTML =
+            html;
+
+
+        activeCount.textContent =
+            activeMembers;
+
+
+    }
+
+    catch (errorObject) {
+
+
+        console.error(
+            errorObject
+        );
+
+    }
 
 }
 
 
-/* -------------------------
-   SAVE CONTENT
-------------------------- */
 
-function saveContent() {
+/* =====================================================
+   ADD CONTENT SCREEN
+===================================================== */
+
+window.showAddContent = function() {
+
+    showSection(
+        "addContent"
+    );
+
+};
+
+
+
+/* =====================================================
+   SAVE CLASSROOM CONTENT
+===================================================== */
+
+window.saveContent = async function() {
+
 
     const type =
-        document.getElementById("contentType").value;
+        document
+            .getElementById(
+                "contentType"
+            )
+            .value;
+
 
     const module =
-        document.getElementById("contentModule").value;
+        document
+            .getElementById(
+                "contentModule"
+            )
+            .value;
+
 
     const title =
-        document.getElementById("contentTitle").value.trim();
+        document
+            .getElementById(
+                "contentTitle"
+            )
+            .value
+            .trim();
+
 
     const description =
-        document.getElementById("contentDescription").value.trim();
+        document
+            .getElementById(
+                "contentDescription"
+            )
+            .value
+            .trim();
 
-    const body =
-        document.getElementById("contentBody").value.trim();
+
+    const content =
+        document
+            .getElementById(
+                "contentBody"
+            )
+            .value
+            .trim();
+
 
     const unlockDay =
-        Number(document.getElementById("unlockDay").value);
+        Number(
+            document
+                .getElementById(
+                    "unlockDay"
+                )
+                .value
+        );
+
 
 
     if (!title) {
 
-        alert("Please enter a content title.");
+        alert(
+            "Please enter a content title."
+        );
 
         return;
+
     }
 
 
-    const content =
-        JSON.parse(localStorage.getItem("fwhc_content") || "[]");
+
+    try {
 
 
-    content.push({
+        await addDoc(
 
-        id: Date.now(),
+            collection(
+                db,
+                "lessons"
+            ),
 
-        type,
-        module,
-        title,
-        description,
-        body,
-        unlockDay
+            {
 
-    });
+                type:
+                    type,
+
+                module:
+                    module,
+
+                title:
+                    title,
+
+                description:
+                    description,
+
+                content:
+                    content,
+
+                unlockDay:
+                    unlockDay,
+
+                status:
+                    "published",
+
+                createdAt:
+                    new Date()
+
+            }
+
+        );
 
 
-    localStorage.setItem(
-        "fwhc_content",
-        JSON.stringify(content)
-    );
+
+        alert(
+            "Classroom content saved successfully in Firebase."
+        );
 
 
-    document.getElementById("contentTitle").value = "";
-    document.getElementById("contentDescription").value = "";
-    document.getElementById("contentBody").value = "";
+
+        document
+            .getElementById(
+                "contentTitle"
+            )
+            .value = "";
 
 
-    document.getElementById("contentCount")
-        .textContent = content.length;
+        document
+            .getElementById(
+                "contentDescription"
+            )
+            .value = "";
 
 
-    alert("Content saved successfully.");
+        document
+            .getElementById(
+                "contentBody"
+            )
+            .value = "";
 
-    showSection("classroom");
+
+
+        await loadContent();
+
+
+
+        showSection(
+            "classroom"
+        );
+
+
+    }
+
+    catch (errorObject) {
+
+
+        console.error(
+            errorObject
+        );
+
+
+        alert(
+            "Could not save content. Please check Firebase rules."
+        );
+
+    }
+
+};
+
+
+
+/* =====================================================
+   LOAD CLASSROOM CONTENT
+===================================================== */
+
+async function loadContent() {
+
+
+    try {
+
+
+        const snapshot =
+            await getDocs(
+
+                collection(
+                    db,
+                    "lessons"
+                )
+
+            );
+
+
+        document
+            .getElementById(
+                "contentCount"
+            )
+            .textContent =
+                snapshot.size;
+
+
+    }
+
+    catch (errorObject) {
+
+
+        console.error(
+            errorObject
+        );
+
+    }
+
 }
 
 
-/* -------------------------
-   SECURITY
-------------------------- */
+
+/* =====================================================
+   SECURITY HELPER
+===================================================== */
 
 function escapeHTML(value) {
 
+
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
 }
 
 
-/* -------------------------
-   INITIALIZE
-------------------------- */
-
-loadMembers();
-
-const existingContent =
-    JSON.parse(localStorage.getItem("fwhc_content") || "[]");
-
-document.getElementById("contentCount")
-    .textContent = existingContent.length;
-
 </script>
 
+
 </body>
+
 </html>
