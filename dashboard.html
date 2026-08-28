@@ -1,1987 +1,3283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-    <title>Freedom Women's Health Club</title>
-
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: #FBF8F3;
-            color: #2D2D2D;
-        }
-
-        button,
-        input {
-            font-family: inherit;
-        }
-
-
-        /* =========================
-           DASHBOARD
-        ========================= */
-
-        .dashboard {
-            display: flex;
-            min-height: 100vh;
-        }
-
-
-        /* =========================
-           SIDEBAR
-        ========================= */
-
-        .sidebar {
-            width: 250px;
-            min-height: 100vh;
-            background: #6E4A7E;
-            color: white;
-
-            padding: 28px 18px;
-
-            position: fixed;
-            left: 0;
-            top: 0;
-            bottom: 0;
-        }
-
-
-        .brand {
-            padding: 0 12px 30px;
-        }
-
-
-        .brand h2 {
-            font-size: 21px;
-            line-height: 1.3;
-            margin-bottom: 5px;
-        }
-
-
-        .brand p {
-            font-size: 13px;
-            opacity: 0.8;
-        }
-
-
-        /* =========================
-           SIDEBAR NAVIGATION
-        ========================= */
-
-        .sidebar-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-
-        .nav-btn {
-            width: 100%;
-
-            border: none;
-            background: transparent;
-
-            color: white;
-
-            padding: 13px 14px;
-
-            border-radius: 10px;
-
-            text-align: left;
-
-            font-size: 15px;
-
-            cursor: pointer;
-
-            transition: 0.2s ease;
-        }
-
-
-        .nav-btn:hover {
-            background: rgba(255,255,255,0.10);
-        }
-
-
-        .nav-btn.active {
-            background: rgba(255,255,255,0.18);
-            font-weight: 600;
-        }
-
-
-        /* =========================
-           MAIN CONTENT
-        ========================= */
-
-        .main-content {
-            margin-left: 250px;
-
-            width: calc(100% - 250px);
-
-            min-height: 100vh;
-
-            padding: 40px;
-        }
-
-
-        /* =========================
-           PAGE SECTIONS
-        ========================= */
-
-        .page-section {
-            display: none;
-
-            max-width: 1100px;
-
-            margin: 0 auto;
-        }
-
-
-        .page-section.active {
-            display: block;
-        }
-
-
-        /* =========================
-           PAGE HEADER
-        ========================= */
-
-        .page-header {
-            margin-bottom: 30px;
-        }
-
-
-        .small-title {
-            color: #6E4A7E;
-
-            font-size: 13px;
-
-            font-weight: 700;
-
-            text-transform: uppercase;
-
-            letter-spacing: 1px;
-
-            margin-bottom: 8px;
-        }
-
-
-        .page-header h1 {
-            font-size: 34px;
-
-            margin-bottom: 10px;
-        }
-
-
-        .page-header p {
-            color: #666;
-
-            font-size: 16px;
-
-            line-height: 1.6;
-        }
-
-
-        /* =========================
-           CARDS
-        ========================= */
-
-        .card {
-            background: white;
-
-            border-radius: 16px;
-
-            padding: 30px;
-
-            border: 1px solid #eee;
-
-            margin-bottom: 25px;
-        }
-
-
-        .card h2 {
-            font-size: 24px;
-
-            margin-bottom: 22px;
-        }
-
-
-        .card p {
-            color: #666;
-
-            line-height: 1.6;
-
-            margin-bottom: 20px;
-        }
-
-
-        /* =========================
-           PROFILE GRID
-        ========================= */
-
-        .profile-grid {
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, minmax(0, 1fr));
-
-            gap: 20px;
-        }
-
-
-        .field {
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 8px;
-        }
-
-
-        .field label {
-            font-size: 14px;
-
-            font-weight: 600;
-
-            color: #444;
-        }
-
-
-        .field input {
-            width: 100%;
-
-            padding: 12px 14px;
-
-            border: 1px solid #ddd;
-
-            border-radius: 9px;
-
-            font-size: 15px;
-
-            background: #fff;
-        }
-
-
-        .field input:focus {
-            outline: none;
-
-            border-color: #6E4A7E;
-        }
-
-
-        /* =========================
-           STATS
-        ========================= */
-
-        .stats-grid {
-            display: grid;
-
-            grid-template-columns:
-                repeat(5, minmax(0, 1fr));
-
-            gap: 15px;
-        }
-
-
-        .stat {
-            background: #FBF8F3;
-
-            border-radius: 12px;
-
-            padding: 18px;
-        }
-
-
-        .stat-label {
-            font-size: 13px;
-
-            color: #777;
-
-            margin-bottom: 8px;
-        }
-
-
-        .stat-value {
-            font-size: 22px;
-
-            font-weight: 700;
-
-            color: #6E4A7E;
-        }
-
-
-        /* =========================
-           PROFILE ACTIONS
-        ========================= */
-
-        .profile-actions {
-            display: flex;
-
-            align-items: center;
-
-            gap: 15px;
-        }
-
-
-        .primary-btn {
-            border: none;
-
-            background: #6E4A7E;
-
-            color: white;
-
-            padding: 13px 22px;
-
-            border-radius: 9px;
-
-            cursor: pointer;
-
-            font-size: 15px;
-
-            font-weight: 600;
-        }
-
-
-        .primary-btn:hover {
-            opacity: 0.9;
-        }
-
-
-        .secondary-btn {
-            border: 1px solid #ddd;
-
-            background: white;
-
-            padding: 9px 13px;
-
-            border-radius: 7px;
-
-            cursor: pointer;
-        }
-
-
-        .save-message {
-            color: #6E4A7E;
-
-            font-size: 14px;
-        }
-
-
-        /* =========================
-           PROGRESS CHART
-        ========================= */
-
-        .progress-chart-wrapper {
-            width: 100%;
-
-            height: 320px;
-
-            position: relative;
-
-            margin-top: 20px;
-        }
-
-
-        /* =========================
-           TRACKING TABLE
-        ========================= */
-
-        .tracking-table-wrapper {
-            width: 100%;
-
-            overflow-x: auto;
-
-            margin-top: 20px;
-        }
-
-
-        .tracking-table {
-            width: 100%;
-
-            border-collapse: collapse;
-
-            min-width: 850px;
-        }
-
-
-        .tracking-table th,
-        .tracking-table td {
-            padding: 14px 12px;
-
-            border-bottom: 1px solid #eee;
-
-            text-align: left;
-
-            font-size: 14px;
-        }
-
-
-        .tracking-table th {
-            background: #FBF8F3;
-
-            font-weight: 700;
-
-            color: #444;
-        }
-
-
-        .tracking-status {
-            display: inline-block;
-
-            padding: 6px 9px;
-
-            border-radius: 20px;
-
-            font-size: 12px;
-
-            font-weight: 600;
-        }
-
-
-        .tracking-status.completed {
-            background: #eee7f1;
-
-            color: #6E4A7E;
-        }
-
-
-        .tracking-status.locked {
-            background: #f1f1f1;
-
-            color: #888;
-        }
-
-
-        .tracking-status.available {
-            background: #e9f2e9;
-
-            color: #557255;
-        }
-
-
-        /* =========================
-           PLACEHOLDER
-        ========================= */
-
-        .placeholder-card {
-            background: white;
-
-            border-radius: 16px;
-
-            padding: 35px;
-
-            border: 1px solid #eee;
-
-            min-height: 180px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            text-align: center;
-
-            color: #777;
-        }
-
-
-        /* =========================
-           MOBILE HEADER
-        ========================= */
-
-        .mobile-header {
-            display: none;
-        }
-
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 900px) {
-
-            .stats-grid {
-                grid-template-columns:
-                    repeat(2, minmax(0, 1fr));
-            }
-
-        }
-
-
-        @media (max-width: 768px) {
-
-            .sidebar {
-                width: 230px;
-
-                transform: translateX(-100%);
-
-                transition: 0.3s ease;
-
-                z-index: 1000;
-            }
-
-
-            .sidebar.open {
-                transform: translateX(0);
-            }
-
-
-            .main-content {
-                margin-left: 0;
-
-                width: 100%;
-
-                padding: 80px 20px 30px;
-            }
-
-
-            .mobile-header {
-                display: flex;
-
-                position: fixed;
-
-                top: 0;
-                left: 0;
-                right: 0;
-
-                height: 60px;
-
-                background: white;
-
-                align-items: center;
-
-                padding: 0 18px;
-
-                border-bottom: 1px solid #eee;
-
-                z-index: 900;
-            }
-
-
-            .mobile-menu-btn {
-                border: none;
-
-                background: transparent;
-
-                font-size: 25px;
-
-                cursor: pointer;
-
-                margin-right: 15px;
-            }
-
-
-            .mobile-header h3 {
-                color: #6E4A7E;
-
-                font-size: 17px;
-            }
-
-
-            .profile-grid {
-                grid-template-columns: 1fr;
-            }
-
-
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-
-            .page-header h1 {
-                font-size: 28px;
-            }
-
-
-            .card {
-                padding: 22px;
-            }
-
-        }
-
-
-        @media (max-width: 480px) {
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Freedom Women's Health Club</title>
+
+<style>
+
+:root {
+    --cream: #FBF8F3;
+    --plum: #6E4A7E;
+    --charcoal: #2D2D2D;
+    --champagne: #DCCBB3;
+    --taupe: #B7A89A;
+    --white: #ffffff;
+    --light-plum: #F3EDF5;
+    --border: #E8E0D8;
+    --success: #6B8E70;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background: var(--white);
+    border-right: 1px solid var(--border);
+    padding: 28px 18px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+}
+
+.logo {
+    padding: 0 12px 30px;
+}
+
+.logo h2 {
+    margin: 0;
+    color: var(--plum);
+    font-size: 21px;
+}
+
+.logo p {
+    margin: 6px 0 0;
+    font-size: 12px;
+    color: var(--taupe);
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.nav-btn {
+    width: 100%;
+    border: 0;
+    background: transparent;
+    padding: 13px 14px;
+    text-align: left;
+    border-radius: 10px;
+    color: var(--charcoal);
+    font-size: 14px;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    background: var(--light-plum);
+    color: var(--plum);
+}
+
+.logout-btn {
+    margin-top: 30px;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    background: transparent;
+    border-radius: 10px;
+}
+
+.main {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    min-height: 100vh;
+}
+
+.topbar {
+    height: 70px;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 35px;
+}
+
+.member-email {
+    font-size: 13px;
+    color: #777;
+}
+
+.mobile-menu {
+    display: none;
+}
+
+.content {
+    padding: 40px;
+    max-width: 1400px;
+    margin: auto;
+}
+
+.page-section {
+    display: none;
+}
+
+.page-section.active {
+    display: block;
+}
+
+/* =========================
+   GENERAL
+========================= */
+
+.page-header {
+    margin-bottom: 28px;
+}
+
+.small-title {
+    color: var(--plum);
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: 34px;
+}
+
+.page-header p {
+    color: #777;
+    max-width: 700px;
+    line-height: 1.7;
+}
+
+.card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px;
+    margin-bottom: 24px;
+}
+
+.primary-btn {
+    display: inline-block;
+    border: 0;
+    background: var(--plum);
+    color: white;
+    padding: 13px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.secondary-btn {
+    border: 1px solid var(--plum);
+    color: var(--plum);
+    background: white;
+    padding: 11px 18px;
+    border-radius: 10px;
+}
+
+/* =========================
+   HOME
+========================= */
+
+.home-hero {
+    background: var(--plum);
+    color: white;
+    padding: 40px;
+    border-radius: 20px;
+    margin-bottom: 25px;
+}
+
+.home-hero h1 {
+    margin: 0 0 10px;
+    font-size: 34px;
+}
+
+.home-hero p {
+    margin: 0 0 25px;
+    line-height: 1.7;
+    opacity: .9;
+}
+
+.home-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.home-stat {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.home-stat-label {
+    font-size: 12px;
+    color: var(--taupe);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.home-stat-value {
+    font-size: 27px;
+    font-weight: bold;
+    color: var(--plum);
+    margin-top: 8px;
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.field label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.field input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    outline: none;
+}
+
+.field input:focus {
+    border-color: var(--plum);
+}
+
+.profile-actions {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.save-message {
+    color: var(--success);
+    font-size: 13px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.stat {
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 14px;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #777;
+}
+
+.stat-value {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--plum);
+    margin-top: 8px;
+}
+
+.stat-help {
+    font-size: 11px;
+    color: #999;
+    margin-top: 7px;
+}
+
+/* =========================
+   TRACKING
+========================= */
+
+.tracking-table-wrapper {
+    overflow-x: auto;
+}
+
+.tracking-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.tracking-table th,
+.tracking-table td {
+    padding: 13px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    font-size: 13px;
+}
+
+.tracking-table th {
+    background: var(--light-plum);
+    color: var(--plum);
+}
+
+.tracking-table input {
+    width: 100px;
+    padding: 8px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+}
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-box {
+    margin-top: 25px;
+}
+
+.progress-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.progress-track {
+    width: 100%;
+    height: 10px;
+    background: #eee;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0;
+    background: var(--plum);
+    transition: width .3s ease;
+}
+
+/* =========================
+   JOURNEY
+========================= */
+
+.journey-intro {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.start-date-box {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 15px 20px;
+}
+
+.start-date-box strong {
+    color: var(--plum);
+    margin-left: 5px;
+}
+
+.weeks-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.week-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 23px;
+}
+
+.week-card.locked {
+    opacity: .55;
+}
+
+.week-card.completed {
+    border-color: var(--success);
+}
+
+.week-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.week-number {
+    color: var(--plum);
+    font-weight: bold;
+}
+
+.status {
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 20px;
+    background: #eee;
+}
+
+.status.open {
+    background: var(--light-plum);
+    color: var(--plum);
+}
+
+.status.done {
+    background: #EAF2EA;
+    color: var(--success);
+}
+
+.week-card h2 {
+    margin: 15px 0 8px;
+}
+
+.week-card p {
+    color: #777;
+    line-height: 1.6;
+}
+
+.week-btn {
+    margin-top: 15px;
+}
+
+.week-detail {
+    display: none;
+}
+
+.back-btn {
+    background: transparent;
+    border: 0;
+    color: var(--plum);
+    margin-bottom: 25px;
+    padding: 0;
+}
+
+.day-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.day-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.day-card.completed {
+    border-color: var(--success);
+    background: #fbfdfb;
+}
+
+.day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.day-header h3 {
+    margin: 0;
+}
+
+.day-phase {
+    color: var(--plum);
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.day-habits {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.habit-box {
+    background: var(--cream);
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.habit-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: var(--taupe);
+    margin-bottom: 5px;
+}
+
+.habit-value {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.complete-day {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 17px;
+    font-size: 13px;
+}
+
+.complete-day input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--plum);
+}
+
+/* =========================
+   SIMPLE PAGES
+========================= */
+
+.placeholder-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.placeholder-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 25px;
+}
+
+.placeholder-card h3 {
+    color: var(--plum);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width: 900px) {
+
+    .sidebar {
+        transform: translateX(-100%);
+        transition: .3s;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .main {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .mobile-menu {
+        display: block;
+        border: 0;
+        background: transparent;
+        font-size: 22px;
+    }
+
+    .content {
+        padding: 25px 18px;
+    }
+
+    .profile-grid,
+    .stats-grid,
+    .home-grid,
+    .placeholder-grid,
+    .weeks-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .day-habits {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+</style>
 </head>
 
 
 <body>
 
-
 <div class="dashboard">
 
+<!-- =========================
+     SIDEBAR
+========================= -->
 
-    <!-- =========================
-         MOBILE HEADER
-    ========================= -->
+<aside class="sidebar" id="sidebar">
 
-    <div class="mobile-header">
+    <div class="logo">
+        <h2>Freedom</h2>
+        <p>Women's Health Club</p>
+    </div>
 
-        <button
-            class="mobile-menu-btn"
-            id="mobileMenuBtn">
+    <nav class="nav">
 
-            ☰
-
+        <button class="nav-btn active" data-section="homeSection">
+            Home
         </button>
 
-        <h3>
-            Freedom
-        </h3>
+        <button class="nav-btn" data-section="profileSection">
+            Profile
+        </button>
+
+        <button class="nav-btn" data-section="journeySection">
+            90-Day Journey
+        </button>
+
+        <button class="nav-btn" data-section="dietPlansSection">
+            Diet Plans
+        </button>
+
+        <button class="nav-btn" data-section="resourcesSection">
+            Resources
+        </button>
+
+        <button class="nav-btn" data-section="communitySection">
+            Community
+        </button>
+
+        <button class="nav-btn" data-section="lifetimeSection">
+            Lifetime Habits
+        </button>
+
+    </nav>
+
+    <button class="logout-btn" id="logoutBtn">
+        Log Out
+    </button>
+
+</aside>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="main">
+
+    <header class="topbar">
+
+        <button
+            class="mobile-menu"
+            id="mobileMenuBtn">
+            ☰
+        </button>
+
+        <div></div>
+
+        <div
+            class="member-email"
+            id="memberEmail">
+            Member
+        </div>
+
+    </header>
+
+
+    <div class="content">
+
+
+<!-- =========================
+     HOME
+========================= -->
+
+<section
+    class="page-section active"
+    id="homeSection">
+
+    <div class="home-hero">
+
+        <div class="small-title">
+            Welcome to Freedom
+        </div>
+
+        <h1>
+            Welcome, <span id="homeMemberName">Member</span>
+        </h1>
+
+        <p>
+            Your health journey is built one day at a time.
+            Stay consistent, follow your plan and focus on progress,
+            not perfection.
+        </p>
+
+        <button
+            class="primary-btn"
+            id="continueJourneyBtn">
+
+            Continue My Journey →
+
+        </button>
 
     </div>
 
 
-    <!-- =========================
-         SIDEBAR
-    ========================= -->
+    <div class="home-grid">
 
-    <aside
-        class="sidebar"
-        id="sidebar">
+        <div class="home-stat">
+
+            <div class="home-stat-label">
+                Current Day
+            </div>
+
+            <div
+                class="home-stat-value"
+                id="homeDay">
+                Day 1
+            </div>
+
+        </div>
 
 
-        <div class="brand">
+        <div class="home-stat">
 
-            <h2>
-                Freedom Women's
-                <br>
-                Health Club
-            </h2>
+            <div class="home-stat-label">
+                Current Week
+            </div>
+
+            <div
+                class="home-stat-value"
+                id="homeWeek">
+                Week 1
+            </div>
+
+        </div>
+
+
+        <div class="home-stat">
+
+            <div class="home-stat-label">
+                Journey Progress
+            </div>
+
+            <div
+                class="home-stat-value"
+                id="homeProgress">
+                0%
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="small-title">
+            Your Progress
+        </div>
+
+        <h2>
+            90-Day Journey
+        </h2>
+
+        <div class="progress-box">
+
+            <div class="progress-top">
+
+                <span>
+                    Overall Progress
+                </span>
+
+                <span>
+                    <strong id="progressDays">
+                        0
+                    </strong>
+                    / 90 days
+                </span>
+
+            </div>
+
+            <div class="progress-track">
+
+                <div
+                    class="progress-fill"
+                    id="progressFill">
+                </div>
+
+            </div>
+
+            <div
+                id="progressNote"
+                style="margin-top:10px;color:#777;font-size:13px;">
+                Your journey is ready to begin.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="small-title">
+            Start Here
+        </div>
+
+        <h2>
+            Your Freedom Journey
+        </h2>
+
+        <p style="line-height:1.7;color:#777;">
+            Complete your daily habits, keep your profile updated
+            and review your progress every week.
+        </p>
+
+        <button
+            class="primary-btn"
+            onclick="openSection('profileSection')">
+
+            Update My Profile
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROFILE
+========================= -->
+
+<section
+    class="page-section"
+    id="profileSection">
+
+    <div class="page-header">
+
+        <div class="small-title">
+            Your Information
+        </div>
+
+        <h1>
+            Welcome,
+            <span id="profileMemberName">
+                Member
+            </span>
+        </h1>
+
+        <p>
+            Keep your personal information, health details,
+            measurements and weekly progress updated.
+        </p>
+
+    </div>
+
+
+    <!-- CLIENT DETAILS -->
+
+    <div class="card">
+
+        <div class="small-title">
+            Personal Details
+        </div>
+
+        <h2>
+            Your Information
+        </h2>
+
+        <div class="profile-grid">
+
+            <div class="field">
+                <label>Name</label>
+                <input id="name" type="text">
+            </div>
+
+            <div class="field">
+                <label>Age</label>
+                <input id="age" type="number">
+            </div>
+
+            <div class="field">
+                <label>Height (cm)</label>
+                <input id="height" type="number">
+            </div>
+
+            <div class="field">
+                <label>Starting Weight (kg)</label>
+                <input id="startingWeight" type="number" step="0.1">
+            </div>
+
+            <div class="field">
+                <label>Current Weight (kg)</label>
+                <input id="currentWeight" type="number" step="0.1">
+            </div>
+
+            <div class="field">
+                <label>Starting Waist (cm)</label>
+                <input id="startingWaist" type="number" step="0.1">
+            </div>
+
+            <div class="field">
+                <label>Current Waist (cm)</label>
+                <input id="currentWaist" type="number" step="0.1">
+            </div>
+
+            <div class="field">
+                <label>Starting Hip (cm)</label>
+                <input id="startingHip" type="number" step="0.1">
+            </div>
+
+            <div class="field">
+                <label>Current Hip (cm)</label>
+                <input id="currentHip" type="number" step="0.1">
+            </div>
+
+            <div class="field">
+                <label>Diabetes / Prediabetes</label>
+                <input id="diabetes" type="text">
+            </div>
+
+            <div class="field">
+                <label>PCOS</label>
+                <input id="pcos" type="text">
+            </div>
+
+            <div class="field">
+                <label>Thyroid</label>
+                <input id="thyroid" type="text">
+            </div>
+
+            <div class="field">
+                <label>Blood Pressure</label>
+                <input id="bloodPressure" type="text">
+            </div>
+
+            <div class="field">
+                <label>Cholesterol</label>
+                <input id="cholesterol" type="text">
+            </div>
+
+            <div class="field">
+                <label>Medications</label>
+                <input id="medications" type="text">
+            </div>
+
+            <div class="field">
+                <label>Sleep Hours</label>
+                <input id="sleepHours" type="number" step="0.5">
+            </div>
+
+            <div class="field">
+                <label>Activity Level</label>
+                <input id="activityLevel" type="text">
+            </div>
+
+            <div class="field">
+                <label>Water Intake</label>
+                <input id="waterIntake" type="text">
+            </div>
+
+        </div>
+
+
+        <div class="profile-actions">
+
+            <button
+                class="primary-btn"
+                id="saveProfile">
+
+                Save Profile
+
+            </button>
+
+            <span
+                class="save-message"
+                id="saveMessage">
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- CALCULATED PROGRESS -->
+
+    <div class="card">
+
+        <div class="small-title">
+            Progress
+        </div>
+
+        <h2>
+            Your Measurements
+        </h2>
+
+        <div class="stats-grid">
+
+            <div class="stat">
+                <div class="stat-label">
+                    Weight Lost
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="weightLost">
+                    —
+                </div>
+
+                <div class="stat-help">
+                    Starting weight minus current weight.
+                </div>
+            </div>
+
+
+            <div class="stat">
+                <div class="stat-label">
+                    Waist Change
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="waistChange">
+                    —
+                </div>
+
+                <div class="stat-help">
+                    Starting waist minus current waist.
+                </div>
+            </div>
+
+
+            <div class="stat">
+                <div class="stat-label">
+                    BMI
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="bmi">
+                    —
+                </div>
+
+                <div class="stat-help">
+                    Calculated from height and current weight.
+                </div>
+            </div>
+
+
+            <div class="stat">
+                <div class="stat-label">
+                    Waist-to-Hip Ratio
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="currentWhr">
+                    —
+                </div>
+
+                <div class="stat-help">
+                    Current waist ÷ current hip.
+                </div>
+            </div>
+
+
+            <div class="stat">
+                <div class="stat-label">
+                    Starting WHR
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="startingWhr">
+                    —
+                </div>
+
+                <div class="stat-help">
+                    Starting waist ÷ starting hip.
+                </div>
+            </div>
+
+
+            <div class="stat">
+                <div class="stat-label">
+                    IBW Range
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="ibw">
+                    —
+                </div>
+
+                <div class="stat-help">
+                    Reference range based on height.
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- WEEKLY TRACKING -->
+
+    <div class="card">
+
+        <div class="small-title">
+            Weekly Tracking
+        </div>
+
+        <h2>
+            Your Progress Updates
+        </h2>
+
+        <p style="color:#777;line-height:1.6;">
+            Your next tracking row becomes available when that week
+            of your program is reached.
+        </p>
+
+        <div class="tracking-table-wrapper">
+
+            <table class="tracking-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Check-In</th>
+                        <th>Day</th>
+                        <th>Weight (kg)</th>
+                        <th>Waist (cm)</th>
+                        <th>Hip (cm)</th>
+                        <th>Notes</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="trackingTableBody">
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     90 DAY JOURNEY
+========================= -->
+
+<section
+    class="page-section"
+    id="journeySection">
+
+    <div id="journeyListView">
+
+        <div class="page-header">
+
+            <div class="small-title">
+                Your Program
+            </div>
+
+            <h1>
+                90-Day Journey
+            </h1>
 
             <p>
-                Your personal dashboard
+                Your program unlocks one week at a time based on
+                your personal start date.
             </p>
 
         </div>
 
 
-        <nav class="sidebar-nav">
+        <div class="journey-intro">
 
+            <div class="start-date-box">
 
-            <button
-                class="nav-btn active"
-                data-section="homeSection">
+                Your journey started:
 
-                Home
-
-            </button>
-
-
-            <button
-                class="nav-btn"
-                data-section="profileSection">
-
-                Profile
-
-            </button>
-
-
-            <button
-                class="nav-btn"
-                data-section="journeySection">
-
-                90-Day Journey
-
-            </button>
-
-
-            <button
-                class="nav-btn"
-                data-section="dietPlansSection">
-
-                Diet Plans
-
-            </button>
-
-
-            <button
-                class="nav-btn"
-                data-section="resourcesSection">
-
-                Resources
-
-            </button>
-
-
-            <button
-                class="nav-btn"
-                data-section="communitySection">
-
-                Community
-
-            </button>
-
-
-            <button
-                class="nav-btn"
-                data-section="lifetimeSection">
-
-                Lifetime Habits
-
-            </button>
-
-
-        </nav>
-
-    </aside>
-
-
-    <!-- =========================
-         MAIN CONTENT
-    ========================= -->
-
-    <main class="main-content">
-
-
-        <!-- =========================
-             HOME
-        ========================= -->
-
-        <section
-            class="page-section active"
-            id="homeSection">
-
-            <div class="page-header">
-
-                <div class="small-title">
-                    Welcome
-                </div>
-
-                <h1>
-                    Home
-                </h1>
-
-                <p>
-                    Welcome to your Freedom dashboard.
-                </p>
+                <strong id="journeyStartDate">
+                    Today
+                </strong>
 
             </div>
 
+            <div class="start-date-box">
+
+                Current:
+
+                <strong id="currentProgramDay">
+                    Day 1
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div id="weeksContainer"></div>
+
+    </div>
+
+
+    <!-- WEEK DETAIL -->
+
+    <div
+        class="week-detail"
+        id="weekDetailView">
+
+        <button
+            class="back-btn"
+            id="backToWeeks">
+
+            ← Back to 90-Day Journey
+
+        </button>
+
+
+        <div class="week-detail-header">
+
+            <div
+                class="small-title"
+                id="detailWeekLabel">
+                Week 1
+            </div>
+
+            <h1 id="detailWeekTitle">
+                Loading...
+            </h1>
+
+            <p id="detailWeekDescription">
+            </p>
+
+        </div>
+
+
+        <div id="weekContentContainer"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DIET PLANS
+========================= -->
+
+<section
+    class="page-section"
+    id="dietPlansSection">
+
+    <div class="page-header">
+
+        <div class="small-title">
+            Nutrition
+        </div>
+
+        <h1>
+            Diet Plans
+        </h1>
+
+        <p>
+            Your personalized nutrition plans will appear here.
+        </p>
+
+    </div>
+
+    <div class="placeholder-grid">
+
+        <div class="placeholder-card">
+            <h3>Current Diet Plan</h3>
+            <p>
+                Your current meal plan will be added here.
+            </p>
+        </div>
+
+        <div class="placeholder-card">
+            <h3>Meal Options</h3>
+            <p>
+                Your breakfast, lunch, dinner and snack options
+                will appear here.
+            </p>
+        </div>
+
+        <div class="placeholder-card">
+            <h3>Food Guide</h3>
+            <p>
+                Your personalized food guidance will appear here.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     RESOURCES
+========================= -->
+
+<section
+    class="page-section"
+    id="resourcesSection">
+
+    <div class="page-header">
+
+        <div class="small-title">
+            Learn
+        </div>
+
+        <h1>
+            Resources
+        </h1>
+
+        <p>
+            Educational resources and helpful materials for your journey.
+        </p>
+
+    </div>
+
+    <div class="placeholder-grid">
+
+        <div class="placeholder-card">
+            <h3>Education</h3>
+            <p>
+                Your educational lessons will appear here.
+            </p>
+        </div>
+
+        <div class="placeholder-card">
+            <h3>Videos</h3>
+            <p>
+                Your coaching videos will appear here.
+            </p>
+        </div>
+
+        <div class="placeholder-card">
+            <h3>Guides</h3>
+            <p>
+                Your downloadable guides will appear here.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     COMMUNITY
+========================= -->
+
+<section
+    class="page-section"
+    id="communitySection">
+
+    <div class="page-header">
+
+        <div class="small-title">
+            Connect
+        </div>
+
+        <h1>
+            Freedom Community
+        </h1>
+
+        <p>
+            Share your journey, ask questions and celebrate your wins.
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <h2>
+            You're not doing this alone.
+        </h2>
+
+        <p style="line-height:1.7;color:#777;">
+            Your community space will be connected here.
+            You will be able to share check-ins, meals, wins
+            and questions with other members.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     LIFETIME HABITS
+========================= -->
+
+<section
+    class="page-section"
+    id="lifetimeSection">
+
+    <div class="page-header">
+
+        <div class="small-title">
+            After Day 90
+        </div>
+
+        <h1>
+            Lifetime Freedom Habits
+        </h1>
+
+        <p>
+            Your 90 days are not the finish line.
+            These habits become your long-term foundation.
+        </p>
+
+    </div>
+
+
+    <div
+        class="card"
+        id="lifetimeLocked">
+
+        <h2>
+            Lifetime Habits unlock after Day 90
+        </h2>
+
+        <p style="color:#777;line-height:1.7;">
+            Complete your 90-day journey first.
+            Your Lifetime Freedom Habits will become available
+            after Day 90.
+        </p>
+
+    </div>
+
+
+    <div
+        id="lifetimeContent"
+        style="display:none;">
+
+        <div class="placeholder-grid">
 
             <div class="placeholder-card">
-
-                Home content will be added here.
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             PROFILE
-        ========================= -->
-
-        <section
-            class="page-section"
-            id="profileSection">
-
-
-            <div class="page-header">
-
-                <div class="small-title">
-                    YOUR INFORMATION
-                </div>
-
-                <h1>
-                    Welcome,
-                    <span id="profileMemberName">
-                        Member
-                    </span>
-                </h1>
-
+                <h3>Move Your Body</h3>
                 <p>
-                    Your personal information,
-                    health details and progress tracking.
+                    Keep movement as part of your normal routine.
                 </p>
-
             </div>
-
-
-            <!-- PERSONAL DETAILS -->
-
-            <div class="card">
-
-                <div class="small-title">
-                    Personal Details
-                </div>
-
-                <h2>
-                    About You
-                </h2>
-
-
-                <div class="profile-grid">
-
-
-                    <div class="field">
-
-                        <label>
-                            Full Name
-                        </label>
-
-                        <input
-                            id="name"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Age
-                        </label>
-
-                        <input
-                            id="age"
-                            type="number">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Gender
-                        </label>
-
-                        <input
-                            id="gender"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Phone Number
-                        </label>
-
-                        <input
-                            id="phone"
-                            type="tel">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Email
-                        </label>
-
-                        <input
-                            id="email"
-                            type="email"
-                            readonly>
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Occupation
-                        </label>
-
-                        <input
-                            id="occupation"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Height (cm)
-                        </label>
-
-                        <input
-                            id="height"
-                            type="number">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Starting Weight (kg)
-                        </label>
-
-                        <input
-                            id="startingWeight"
-                            type="number"
-                            step="0.1">
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-            <!-- HEALTH INFORMATION -->
-
-            <div class="card">
-
-                <div class="small-title">
-                    Health Information
-                </div>
-
-                <h2>
-                    Your Health Profile
-                </h2>
-
-
-                <div class="profile-grid">
-
-
-                    <div class="field">
-
-                        <label>
-                            Primary Health Concern
-                        </label>
-
-                        <input
-                            id="primaryConcern"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Diabetes
-                        </label>
-
-                        <input
-                            id="diabetes"
-                            type="text"
-                            placeholder="Type 1 / Type 2 / Prediabetes / No">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            PCOS
-                        </label>
-
-                        <input
-                            id="pcos"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Thyroid
-                        </label>
-
-                        <input
-                            id="thyroid"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Blood Pressure
-                        </label>
-
-                        <input
-                            id="bloodPressure"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Cholesterol
-                        </label>
-
-                        <input
-                            id="cholesterol"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Insulin Resistance
-                        </label>
-
-                        <input
-                            id="insulinResistance"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Other Health Conditions
-                        </label>
-
-                        <input
-                            id="otherConditions"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Current Medications
-                        </label>
-
-                        <input
-                            id="medications"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Supplements
-                        </label>
-
-                        <input
-                            id="supplements"
-                            type="text">
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-            <!-- LIFESTYLE -->
-
-            <div class="card">
-
-                <div class="small-title">
-                    Lifestyle
-                </div>
-
-                <h2>
-                    Your Daily Routine
-                </h2>
-
-
-                <div class="profile-grid">
-
-
-                    <div class="field">
-
-                        <label>
-                            Sleep Time
-                        </label>
-
-                        <input
-                            id="sleepTime"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Wake-Up Time
-                        </label>
-
-                        <input
-                            id="wakeTime"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Sleep Duration
-                        </label>
-
-                        <input
-                            id="sleepDuration"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Daily Water Intake
-                        </label>
-
-                        <input
-                            id="waterIntake"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Daily Activity
-                        </label>
-
-                        <input
-                            id="activityLevel"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Exercise Routine
-                        </label>
-
-                        <input
-                            id="exerciseRoutine"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Stress Level
-                        </label>
-
-                        <input
-                            id="stressLevel"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Typical Meal Timing
-                        </label>
-
-                        <input
-                            id="mealTiming"
-                            type="text">
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-            <!-- NUTRITION -->
-
-            <div class="card">
-
-                <div class="small-title">
-                    Nutrition
-                </div>
-
-                <h2>
-                    Your Eating Pattern
-                </h2>
-
-
-                <div class="profile-grid">
-
-
-                    <div class="field">
-
-                        <label>
-                            Breakfast Pattern
-                        </label>
-
-                        <input
-                            id="breakfastPattern"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Lunch Pattern
-                        </label>
-
-                        <input
-                            id="lunchPattern"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Dinner Pattern
-                        </label>
-
-                        <input
-                            id="dinnerPattern"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Snacking Pattern
-                        </label>
-
-                        <input
-                            id="snackingPattern"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Food Preferences
-                        </label>
-
-                        <input
-                            id="foodPreferences"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Foods You Avoid
-                        </label>
-
-                        <input
-                            id="foodsAvoid"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Cravings
-                        </label>
-
-                        <input
-                            id="cravings"
-                            type="text">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Eating Challenges
-                        </label>
-
-                        <input
-                            id="eatingChallenges"
-                            type="text">
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-            <!-- MEASUREMENTS -->
-
-            <div class="card">
-
-                <div class="small-title">
-                    Measurements
-                </div>
-
-                <h2>
-                    Body Measurements
-                </h2>
-
-
-                <div class="profile-grid">
-
-
-                    <div class="field">
-
-                        <label>
-                            Starting Waist (cm)
-                        </label>
-
-                        <input
-                            id="startingWaist"
-                            type="number"
-                            step="0.1">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Current Waist (cm)
-                        </label>
-
-                        <input
-                            id="currentWaist"
-                            type="number"
-                            step="0.1">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Starting Hip (cm)
-                        </label>
-
-                        <input
-                            id="startingHip"
-                            type="number"
-                            step="0.1">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Current Hip (cm)
-                        </label>
-
-                        <input
-                            id="currentHip"
-                            type="number"
-                            step="0.1">
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-            <!-- PROGRESS SUMMARY -->
-
-            <div class="card">
-
-                <div class="small-title">
-                    Progress
-                </div>
-
-                <h2>
-                    Your Progress
-                </h2>
-
-
-                <div class="stats-grid">
-
-
-                    <div class="stat">
-
-                        <div class="stat-label">
-                            Starting Weight
-                        </div>
-
-                        <div
-                            class="stat-value"
-                            id="progressStartingWeight">
-
-                            —
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat">
-
-                        <div class="stat-label">
-                            Current Weight
-                        </div>
-
-                        <div
-                            class="stat-value"
-                            id="progressCurrentWeight">
-
-                            —
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat">
-
-                        <div class="stat-label">
-                            Weight Lost
-                        </div>
-
-                        <div
-                            class="stat-value"
-                            id="weightLost">
-
-                            —
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat">
-
-                        <div class="stat-label">
-                            Waist Change
-                        </div>
-
-                        <div
-                            class="stat-value"
-                            id="waistChange">
-
-                            —
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat">
-
-                        <div class="stat-label">
-                            BMI
-                        </div>
-
-                        <div
-                            class="stat-value"
-                            id="bmi">
-
-                            —
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-            <!-- WEIGHT GRAPH -->
-
-            <div class="card">
-
-                <div class="small-title">
-                    Progress Graph
-                </div>
-
-                <h2>
-                    Weight Progress
-                </h2>
-
-                <p>
-                    Your weight changes will appear here
-                    as you complete your weekly check-ins.
-                </p>
-
-
-                <div class="progress-chart-wrapper">
-
-                    <canvas
-                        id="weightProgressChart">
-                    </canvas>
-
-                </div>
-
-            </div>
-
-
-            <!-- WEEKLY TRACKING -->
-
-            <div class="card">
-
-                <div class="small-title">
-                    Weekly Tracking
-                </div>
-
-                <h2>
-                    Your Weekly Updates
-                </h2>
-
-                <p>
-                    A new check-in becomes available
-                    when you reach each tracking day.
-                </p>
-
-
-                <div class="tracking-table-wrapper">
-
-                    <table
-                        class="tracking-table">
-
-
-                        <thead>
-
-                            <tr>
-
-                                <th>
-                                    Check-In
-                                </th>
-
-                                <th>
-                                    Day
-                                </th>
-
-                                <th>
-                                    Date
-                                </th>
-
-                                <th>
-                                    Weight
-                                </th>
-
-                                <th>
-                                    Waist
-                                </th>
-
-                                <th>
-                                    Hip
-                                </th>
-
-                                <th>
-                                    Status
-                                </th>
-
-                                <th>
-                                    Action
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-
-                        <tbody
-                            id="weeklyTrackingBody">
-
-
-                            <tr>
-
-                                <td>
-                                    Starting
-                                </td>
-
-                                <td>
-                                    Day 1
-                                </td>
-
-                                <td>
-                                    —
-                                </td>
-
-                                <td>
-                                    —
-                                </td>
-
-                                <td>
-                                    —
-                                </td>
-
-                                <td>
-                                    —
-                                </td>
-
-                                <td>
-
-                                    <span
-                                        class="tracking-status completed">
-
-                                        Starting Point
-
-                                    </span>
-
-                                </td>
-
-                                <td>
-
-                                    <button
-                                        class="secondary-btn"
-                                        disabled>
-
-                                        Recorded
-
-                                    </button>
-
-                                </td>
-
-                            </tr>
-
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-
-            <!-- SAVE PROFILE -->
-
-            <div class="card">
-
-                <div class="profile-actions">
-
-                    <button
-                        class="primary-btn"
-                        id="saveProfile">
-
-                        Save Profile
-
-                    </button>
-
-
-                    <span
-                        class="save-message"
-                        id="saveMessage">
-                    </span>
-
-                </div>
-
-            </div>
-
-
-        </section>
-
-
-        <!-- =========================
-             90-DAY JOURNEY
-        ========================= -->
-
-        <section
-            class="page-section"
-            id="journeySection">
-
-            <div class="page-header">
-
-                <div class="small-title">
-                    Your Program
-                </div>
-
-                <h1>
-                    90-Day Journey
-                </h1>
-
-                <p>
-                    Your 90-day program will appear here.
-                </p>
-
-            </div>
-
 
             <div class="placeholder-card">
-
-                90-Day Journey content will be added here.
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             DIET PLANS
-        ========================= -->
-
-        <section
-            class="page-section"
-            id="dietPlansSection">
-
-            <div class="page-header">
-
-                <div class="small-title">
-                    Nutrition
-                </div>
-
-                <h1>
-                    Diet Plans
-                </h1>
-
+                <h3>Build Balanced Meals</h3>
                 <p>
-                    Your personalized diet plans will appear here.
+                    Continue the balanced eating habits you learned.
                 </p>
-
             </div>
-
 
             <div class="placeholder-card">
-
-                Diet Plans content will be added here.
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             RESOURCES
-        ========================= -->
-
-        <section
-            class="page-section"
-            id="resourcesSection">
-
-            <div class="page-header">
-
-                <div class="small-title">
-                    Learn
-                </div>
-
-                <h1>
-                    Resources
-                </h1>
-
+                <h3>Protect Your Sleep</h3>
                 <p>
-                    Helpful resources and educational materials.
+                    Maintain a consistent sleep routine.
                 </p>
-
             </div>
-
 
             <div class="placeholder-card">
-
-                Resources content will be added here.
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             COMMUNITY
-        ========================= -->
-
-        <section
-            class="page-section"
-            id="communitySection">
-
-            <div class="page-header">
-
-                <div class="small-title">
-                    Connect
-                </div>
-
-                <h1>
-                    Community
-                </h1>
-
+                <h3>Stay Hydrated</h3>
                 <p>
-                    Connect, share and support each other.
+                    Make water part of your everyday routine.
                 </p>
-
             </div>
-
 
             <div class="placeholder-card">
-
-                Community content will be added here.
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             LIFETIME HABITS
-        ========================= -->
-
-        <section
-            class="page-section"
-            id="lifetimeSection">
-
-            <div class="page-header">
-
-                <div class="small-title">
-                    After Day 90
-                </div>
-
-                <h1>
-                    Lifetime Habits
-                </h1>
-
+                <h3>Manage Stress</h3>
                 <p>
-                    Habits to help you maintain your progress
-                    beyond the 90-day journey.
+                    Continue creating small moments of calm.
                 </p>
-
             </div>
-
 
             <div class="placeholder-card">
-
-                Lifetime Habits content will be added here.
-
+                <h3>Keep Checking In</h3>
+                <p>
+                    Continue paying attention to your habits and progress.
+                </p>
             </div>
 
-        </section>
+        </div>
+
+    </div>
+
+</section>
 
 
-    </main>
+    </div>
+</main>
 
 </div>
 
 
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
 <script>
 
+/* =========================
+   BASIC SETTINGS
+========================= */
 
-    /* =========================
-       NAVIGATION
-    ========================= */
+const PROGRAM_START_DATE =
+    localStorage.getItem("freedomStartDate") ||
+    new Date().toISOString().split("T")[0];
 
-    const navButtons =
-        document.querySelectorAll(
-            ".nav-btn"
+localStorage.setItem(
+    "freedomStartDate",
+    PROGRAM_START_DATE
+);
+
+
+/* =========================
+   GLOBAL VARIABLES
+========================= */
+
+let selectedWeek = null;
+
+let completedDays =
+    JSON.parse(
+        localStorage.getItem("freedomCompletedDays") || "[]"
+    );
+
+let profileData =
+    JSON.parse(
+        localStorage.getItem("freedomProfile") || "{}"
+    );
+
+let trackingData =
+    JSON.parse(
+        localStorage.getItem("freedomTracking") || "{}"
+    );
+
+
+/* =========================
+   HELPERS
+========================= */
+
+function getValue(id) {
+
+    const element =
+        document.getElementById(id);
+
+    return element
+        ? String(element.value || "").trim()
+        : "";
+
+}
+
+
+function getNumber(id) {
+
+    const value =
+        parseFloat(
+            getValue(id)
         );
 
+    return Number.isFinite(value)
+        ? value
+        : null;
 
-    const sections =
-        document.querySelectorAll(
-            ".page-section"
-        );
-
-
-    const sidebar =
-        document.getElementById(
-            "sidebar"
-        );
+}
 
 
-    const mobileMenuBtn =
-        document.getElementById(
-            "mobileMenuBtn"
-        );
+function escapeHTML(value) {
+
+    if (
+        value === undefined ||
+        value === null
+    ) {
+        return "";
+    }
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
 
 
-    function openSection(sectionId) {
+/* =========================
+   START DATE
+========================= */
+
+function getStartDate() {
+
+    const date =
+        new Date(PROGRAM_START_DATE + "T00:00:00");
+
+    return date;
+
+}
 
 
-        sections.forEach(
-            section => {
+function formatDate(date) {
 
-                section.classList.remove(
-                    "active"
-                );
+    return new Intl.DateTimeFormat(
+        "en-PK",
+        {
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+        }
+    ).format(date);
+
+}
+
+
+/* =========================
+   PROGRAM DAY
+========================= */
+
+function getProgramDay() {
+
+    const start =
+        getStartDate();
+
+    const now =
+        new Date();
+
+    start.setHours(0,0,0,0);
+    now.setHours(0,0,0,0);
+
+    const difference =
+        now - start;
+
+    const day =
+        Math.floor(
+            difference / 86400000
+        ) + 1;
+
+    return Math.max(
+        1,
+        Math.min(
+            90,
+            day
+        )
+    );
+
+}
+
+
+/* =========================
+   UNLOCKED WEEK
+========================= */
+
+function getUnlockedWeek() {
+
+    return Math.min(
+        13,
+        Math.ceil(
+            getProgramDay() / 7
+        )
+    );
+
+}
+
+
+/* =========================
+   PROFILE
+========================= */
+
+const profileFields = [
+
+    "name",
+    "age",
+    "height",
+    "startingWeight",
+    "currentWeight",
+    "startingWaist",
+    "currentWaist",
+    "startingHip",
+    "currentHip",
+    "diabetes",
+    "pcos",
+    "thyroid",
+    "bloodPressure",
+    "cholesterol",
+    "medications",
+    "sleepHours",
+    "activityLevel",
+    "waterIntake"
+
+];
+
+
+function loadProfile() {
+
+    profileFields.forEach(
+        field => {
+
+            const element =
+                document.getElementById(field);
+
+            if (
+                element &&
+                profileData[field] !== undefined
+            ) {
+
+                element.value =
+                    profileData[field];
 
             }
+
+        }
+    );
+
+    updateProfileName();
+
+    calculateProgress();
+
+    renderTrackingTable();
+
+}
+
+
+function saveProfile() {
+
+    profileFields.forEach(
+        field => {
+
+            profileData[field] =
+                getValue(field);
+
+        }
+    );
+
+    localStorage.setItem(
+        "freedomProfile",
+        JSON.stringify(profileData)
+    );
+
+    updateProfileName();
+
+    calculateProgress();
+
+    renderTrackingTable();
+
+    document.getElementById(
+        "saveMessage"
+    ).textContent =
+        "Profile saved successfully.";
+
+    setTimeout(
+        () => {
+
+            document.getElementById(
+                "saveMessage"
+            ).textContent = "";
+
+        },
+        2500
+    );
+
+}
+
+
+function updateProfileName() {
+
+    const name =
+        profileData.name ||
+        "Member";
+
+    document.getElementById(
+        "profileMemberName"
+    ).textContent =
+        name;
+
+    document.getElementById(
+        "homeMemberName"
+    ).textContent =
+        name;
+
+}
+
+
+/* =========================
+   CALCULATIONS
+========================= */
+
+function calculateProgress() {
+
+    const height =
+        getNumber("height");
+
+    const startingWeight =
+        getNumber("startingWeight");
+
+    const currentWeight =
+        getNumber("currentWeight");
+
+    const startingWaist =
+        getNumber("startingWaist");
+
+    const currentWaist =
+        getNumber("currentWaist");
+
+    const startingHip =
+        getNumber("startingHip");
+
+    const currentHip =
+        getNumber("currentHip");
+
+
+    document.getElementById(
+        "weightLost"
+    ).textContent =
+        startingWeight !== null &&
+        currentWeight !== null
+            ? (
+                startingWeight -
+                currentWeight
+            ).toFixed(1) + " kg"
+            : "—";
+
+
+    document.getElementById(
+        "waistChange"
+    ).textContent =
+        startingWaist !== null &&
+        currentWaist !== null
+            ? (
+                startingWaist -
+                currentWaist
+            ).toFixed(1) + " cm"
+            : "—";
+
+
+    const weightForBMI =
+        currentWeight !== null
+            ? currentWeight
+            : startingWeight;
+
+
+    if (
+        height &&
+        weightForBMI !== null
+    ) {
+
+        const heightM =
+            height / 100;
+
+        const bmi =
+            weightForBMI /
+            (heightM * heightM);
+
+        document.getElementById(
+            "bmi"
+        ).textContent =
+            bmi.toFixed(1);
+
+    } else {
+
+        document.getElementById(
+            "bmi"
+        ).textContent = "—";
+
+    }
+
+
+    if (height) {
+
+        const heightM =
+            height / 100;
+
+        const lower =
+            18.5 *
+            heightM *
+            heightM;
+
+        const upper =
+            24.9 *
+            heightM *
+            heightM;
+
+        document.getElementById(
+            "ibw"
+        ).textContent =
+            lower.toFixed(1) +
+            "–" +
+            upper.toFixed(1) +
+            " kg";
+
+    } else {
+
+        document.getElementById(
+            "ibw"
+        ).textContent = "—";
+
+    }
+
+
+    document.getElementById(
+        "startingWhr"
+    ).textContent =
+        startingWaist !== null &&
+        startingHip !== null &&
+        startingHip > 0
+            ? (
+                startingWaist /
+                startingHip
+            ).toFixed(2)
+            : "—";
+
+
+    document.getElementById(
+        "currentWhr"
+    ).textContent =
+        currentWaist !== null &&
+        currentHip !== null &&
+        currentHip > 0
+            ? (
+                currentWaist /
+                currentHip
+            ).toFixed(2)
+            : "—";
+
+}
+
+
+/* =========================
+   WEEKLY TRACKING
+========================= */
+
+function renderTrackingTable() {
+
+    const tbody =
+        document.getElementById(
+            "trackingTableBody"
+        );
+
+    const unlockedWeek =
+        getUnlockedWeek();
+
+    let html = "";
+
+    for (
+        let week = 1;
+        week <= 13;
+        week++
+    ) {
+
+        const day =
+            week === 13
+                ? 90
+                : week * 7;
+
+        const saved =
+            trackingData[day] || {};
+
+        const unlocked =
+            week <= unlockedWeek;
+
+        html += `
+
+            <tr>
+
+                <td>
+                    Week ${week}
+                </td>
+
+                <td>
+                    Day ${day}
+                </td>
+
+                <td>
+
+                    ${
+                        unlocked
+                            ? `
+                                <input
+                                    type="number"
+                                    step="0.1"
+                                    value="${escapeHTML(
+                                        saved.weight || ""
+                                    )}"
+                                    onchange="
+                                        saveTracking(
+                                            ${day},
+                                            'weight',
+                                            this.value
+                                        )
+                                    ">
+                              `
+                            : "Locked"
+                    }
+
+                </td>
+
+                <td>
+
+                    ${
+                        unlocked
+                            ? `
+                                <input
+                                    type="number"
+                                    step="0.1"
+                                    value="${escapeHTML(
+                                        saved.waist || ""
+                                    )}"
+                                    onchange="
+                                        saveTracking(
+                                            ${day},
+                                            'waist',
+                                            this.value
+                                        )
+                                    ">
+                              `
+                            : "Locked"
+                    }
+
+                </td>
+
+                <td>
+
+                    ${
+                        unlocked
+                            ? `
+                                <input
+                                    type="number"
+                                    step="0.1"
+                                    value="${escapeHTML(
+                                        saved.hip || ""
+                                    )}"
+                                    onchange="
+                                        saveTracking(
+                                            ${day},
+                                            'hip',
+                                            this.value
+                                        )
+                                    ">
+                              `
+                            : "Locked"
+                    }
+
+                </td>
+
+                <td>
+
+                    ${
+                        unlocked
+                            ? `
+                                <input
+                                    type="text"
+                                    value="${escapeHTML(
+                                        saved.notes || ""
+                                    )}"
+                                    onchange="
+                                        saveTracking(
+                                            ${day},
+                                            'notes',
+                                            this.value
+                                        )
+                                    ">
+                              `
+                            : "Locked"
+                    }
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+    tbody.innerHTML = html;
+
+}
+
+
+function saveTracking(
+    day,
+    field,
+    value
+) {
+
+    if (!trackingData[day]) {
+        trackingData[day] = {};
+    }
+
+    trackingData[day][field] =
+        value;
+
+    localStorage.setItem(
+        "freedomTracking",
+        JSON.stringify(trackingData)
+    );
+
+}
+
+
+/* =========================
+   90-DAY DATA
+========================= */
+
+const phases = [
+
+    "Foundation",
+    "Balanced Eating",
+    "Protein Focus",
+    "Fiber Focus",
+    "Carb Balance",
+    "Post-Meal Movement",
+    "Smart Snacking",
+    "Week Review",
+    "Stress Reset",
+    "Calm Building",
+    "Craving Control",
+    "Hormone Support",
+    "Balance",
+    "Strong Foundation",
+    "Habit Lock-In",
+    "Portion Awareness",
+    "Meal Planning",
+    "Desi Food Balance",
+    "Hunger Awareness",
+    "Eating Slowly",
+    "Sugar Awareness",
+    "Consistency",
+    "Flexible Eating",
+    "Month 1 Review",
+    "Strength Foundation",
+    "Strength + Routine",
+    "Strength Focus",
+    "Energy",
+    "Mind + Body",
+    "Strength Consistency",
+    "Strength Progression",
+    "Progressive Strength",
+    "Energy Focus",
+    "Legs & Glutes",
+    "Shoulders & Arms",
+    "Active Recovery",
+    "Back & Core",
+    "Chest + Full Body",
+    "Full Body + HIIT",
+    "Fat-Loss Nutrition",
+    "Blood Sugar-Friendly Meals",
+    "Craving Control",
+    "Weekend Skills",
+    "Social Eating",
+    "Weekend Eating",
+    "Flexible Lifestyle",
+    "Sustainable Eating",
+    "Maintenance Skills",
+    "90-Day Review",
+    "Future Planning",
+    "Lifestyle Lock-In",
+    "90-Day Completion"
+
+];
+
+
+const focusByDay = [
+
+    1,1,1,1,1,1,1,
+    2,3,4,5,6,7,8,
+    9,10,11,12,13,14,15,
+    16,17,18,19,20,21,22,
+    23,24,25,26,27,28,29,
+    30,31,32,33,34,35,36,
+    37,38,39,40,41,42,43,
+    44,45,46,47,48,49,50,
+    51,52,53,54,55,56,57,
+    58,59,60,61,62,63,64,
+    65,66,67,68,69,70,71,
+    72,73,74,75,76,77,78,
+    79,80,81,82,83,84,85,
+    86,87,88,89,90
+];
+
+
+const customNutrition = {
+
+    1: "Don't skip meals",
+    2: "Don't skip meals",
+    3: "Don't skip meals",
+    4: "Regular meals",
+    5: "Reduce added sugar",
+    6: "Healthy snacks if hungry",
+    7: "Balanced meals",
+
+    8: "Balanced plate",
+    9: "Protein every meal",
+    10: "Add vegetables/legumes",
+    11: "Moderate roti/rice",
+    12: "Balanced meals",
+    13: "Snack only when hungry",
+    14: "Review portions",
+
+    15: "Limit processed foods",
+    16: "Whole foods",
+    17: "Protein + fiber",
+    18: "Whole foods + seeds",
+    19: "Balanced meals",
+    20: "Protein + fiber",
+    21: "Consistent meals",
+
+    22: "Learn portions",
+    23: "Plan meals ahead",
+    24: "Roti/rice + protein + vegetables",
+    25: "Eat according to hunger",
+    26: "Slow, mindful eating",
+    27: "Reduce sugary foods/drinks",
+    28: "Follow routine",
+    29: "Flexible portions",
+    30: "Review eating habits",
+
+    31: "Balanced plate",
+    32: "Follow plan",
+    33: "Follow plan",
+    34: "Balanced meals",
+    35: "Follow plan",
+    36: "Follow plan",
+    37: "Review routine",
+
+    38: "Balanced meals",
+    39: "Follow plan",
+    40: "Follow plan",
+    41: "Balanced meals",
+    42: "Follow plan",
+    43: "Follow plan",
+    44: "Review progress",
+
+    45: "Protein + fiber",
+    46: "Balanced meals",
+    47: "Follow plan",
+    48: "Protein + fiber",
+    49: "Balanced meals",
+    50: "Follow plan",
+    51: "Balanced meals",
+    52: "Protein + vegetables",
+    53: "Balanced meals",
+    54: "Follow plan",
+    55: "Protein + fiber",
+    56: "Balanced meals",
+    57: "Follow plan",
+    58: "Balanced meals",
+
+    59: "Portion awareness",
+    60: "Protein + fiber",
+    61: "Balanced desi meals",
+    62: "Limit liquid calories",
+    63: "Smart snacks",
+    64: "Portion control",
+    65: "Review consistency",
+
+    66: "Protein + fiber + carbs",
+    67: "Consistent meal timing",
+    68: "Balanced breakfast",
+    69: "Balanced lunch",
+    70: "Balanced dinner",
+    71: "Limit sugary drinks",
+    72: "Review meal patterns",
+
+    73: "Identify triggers",
+    74: "Protein-rich meals",
+    75: "Plan treats intentionally",
+    76: "Balanced plate",
+    77: "Portion awareness",
+    78: "Don't compensate by starving",
+    79: "Review cravings/social meals",
+
+    80: "80/20 approach",
+    81: "Enjoy desi foods mindfully",
+    82: "Portion flexibility",
+    83: "Eat without guilt",
+    84: "Review flexibility",
+    85: "Maintain balanced meals",
+    86: "Continue protein + fiber",
+
+    87: "Review eating habits",
+    88: "Create sustainable routine",
+    89: "Follow your sustainable routine",
+    90: "Maintain your lifestyle"
+
+};
+
+
+/* =========================
+   BUILD 90 DAYS
+========================= */
+
+const journeyDays =
+    Array.from(
+        { length: 90 },
+        (_, index) => {
+
+            const day =
+                index + 1;
+
+            let steps =
+                day <= 1
+                    ? "2,500 steps"
+                    : day === 2
+                        ? "3,500 steps"
+                        : day === 3
+                            ? "4,500 steps"
+                            : day === 4
+                                ? "5,500 steps"
+                                : day === 5
+                                    ? "6,500 steps"
+                                    : day === 6
+                                        ? "8,000 steps"
+                                        : "10,000 steps*";
+
+
+            let sleep =
+                day === 1
+                    ? "5 hr"
+                    : day === 2
+                        ? "5.5 hr"
+                        : day === 3
+                            ? "6 hr"
+                            : day === 4
+                                ? "6.5 hr"
+                                : "7–8 hr";
+
+
+            let water =
+                day === 1
+                    ? "1.5 L"
+                    : day === 2
+                        ? "1.7 L"
+                        : day === 3
+                            ? "1.8 L"
+                            : day === 4
+                                ? "1.9 L"
+                                : "2 L";
+
+
+            let protein =
+                day <= 2
+                    ? "15–20 g/meal"
+                    : day === 3
+                        ? "20 g/meal"
+                        : day <= 5
+                            ? "20 g/meal"
+                            : day === 6
+                                ? "25 g/meal"
+                                : "25–30 g/meal";
+
+
+            if (
+                day >= 15 &&
+                day <= 17
+            ) {
+                protein = "20 g/meal";
+            }
+
+
+            if (
+                day >= 31 &&
+                day <= 44
+            ) {
+                protein = "20–30 g/meal";
+            }
+
+
+            const mind =
+                day === 7
+                    ? "Gratitude + breathing"
+                    : day === 14
+                        ? "Gratitude"
+                        : day === 21
+                            ? "Gratitude + stress check"
+                            : day === 28
+                                ? "Gratitude"
+                                : day === 30
+                                    ? "Stress + gratitude"
+                                    : day === 37
+                                        ? "Stress + gratitude"
+                                        : day === 44
+                                            ? "Stress + gratitude"
+                                            : day === 51
+                                                ? "Stress check"
+                                                : day === 65
+                                                    ? "Stress check"
+                                                    : day === 72
+                                                        ? "Stress + gratitude"
+                                                        : day === 79
+                                                            ? "Gratitude"
+                                                            : day === 84
+                                                                ? "Gratitude"
+                                                                : day === 87
+                                                                    ? "Reflect on progress"
+                                                                    : day === 90
+                                                                        ? "Final reflection"
+                                                                        : "5 min breathing";
+
+
+            const sunlight =
+                day === 7 ||
+                day === 14 ||
+                day >= 8
+                    ? "10–15 min"
+                    : "10 min";
+
+
+            let recovery =
+                day === 5
+                    ? "Avoid late-night eating"
+                    : day === 6
+                        ? "Fixed sleep routine"
+                        : day === 7
+                            ? "Week review"
+                            : "Digital sunset";
+
+
+            if (
+                day >= 31 &&
+                day <= 36
+            ) {
+                recovery =
+                    "20 min strength";
+            }
+
+
+            if (
+                day >= 38 &&
+                day <= 43
+            ) {
+                recovery =
+                    "25 min strength";
+            }
+
+
+            if (
+                day >= 45 &&
+                day <= 46
+            ) {
+                recovery =
+                    "25–30 min strength";
+            }
+
+
+            if (
+                day >= 48 &&
+                day <= 49
+            ) {
+                recovery =
+                    "25–30 min strength";
+            }
+
+
+            if (
+                day >= 51 &&
+                day <= 53
+            ) {
+                recovery =
+                    "25–30 min strength";
+            }
+
+
+            if (day === 58) {
+                recovery =
+                    "25–30 min full body + HIIT";
+            }
+
+
+            if (
+                day >= 66 &&
+                day <= 67
+            ) {
+                recovery =
+                    "Post-meal walk";
+            }
+
+
+            if (day === 76) {
+                recovery =
+                    "Post-meal walk";
+            }
+
+
+            if (day === 82) {
+                recovery =
+                    "Post-meal walk";
+            }
+
+
+            if (day === 87) {
+                recovery =
+                    "Recovery";
+            }
+
+
+            if (day === 88) {
+                recovery =
+                    "Strength/recovery";
+            }
+
+
+            if (day === 89) {
+                recovery =
+                    "Digital sunset";
+            }
+
+
+            if (day === 90) {
+                recovery =
+                    "90-day review";
+            }
+
+
+            return {
+
+                day,
+
+                week:
+                    Math.ceil(day / 7),
+
+                phase:
+                    phases[
+                        Math.min(
+                            phases.length - 1,
+                            Math.floor((day - 1) / 2)
+                        )
+                    ],
+
+                steps,
+
+                sleep,
+
+                water,
+
+                protein,
+
+                nutrition:
+                    customNutrition[day] ||
+                    "Follow your balanced nutrition plan",
+
+                mind,
+
+                sunlight,
+
+                recovery
+
+            };
+
+        }
+    );
+
+
+/* =========================
+   WEEK TITLES
+========================= */
+
+const weekTitles = [
+
+    "Foundation & Reset",
+    "Balanced Eating",
+    "Stress & Craving Awareness",
+    "Consistency & Food Skills",
+    "Strength Foundation",
+    "Progressive Strength",
+    "Strength & Recovery",
+    "Fat-Loss Nutrition",
+    "Blood Sugar-Friendly Nutrition",
+    "Craving & Social Eating",
+    "Flexible Lifestyle",
+    "Maintenance Skills",
+    "90-Day Completion"
+
+];
+
+
+const weekDescriptions = [
+
+    "Build your basic movement, sleep, hydration and nutrition habits.",
+
+    "Learn how to create balanced meals and improve everyday food choices.",
+
+    "Build awareness around stress, cravings and eating patterns.",
+
+    "Strengthen your nutrition habits and create consistency.",
+
+    "Introduce structured strength training while maintaining your nutrition routine.",
+
+    "Progress your strength and continue building consistency.",
+
+    "Build a stronger routine with recovery and targeted strength work.",
+
+    "Focus on sustainable fat-loss nutrition and portion awareness.",
+
+    "Build blood-sugar-friendly meal habits and consistent routines.",
+
+    "Learn how to manage cravings, weekends and social eating.",
+
+    "Practice flexible eating without all-or-nothing thinking.",
+
+    "Strengthen your maintenance habits and prepare for life after the program.",
+
+    "Review your progress, lock in your habits and prepare for your next chapter."
+
+];
+
+
+/* =========================
+   RENDER WEEKS
+========================= */
+
+function renderWeeks() {
+
+    const container =
+        document.getElementById(
+            "weeksContainer"
+        );
+
+    const unlockedWeek =
+        getUnlockedWeek();
+
+    let html = "";
+
+    for (
+        let week = 1;
+        week <= 13;
+        week++
+    ) {
+
+        const firstDay =
+            ((week - 1) * 7) + 1;
+
+        const lastDay =
+            week === 13
+                ? 90
+                : week * 7;
+
+        const weekDays =
+            journeyDays.filter(
+                item =>
+                    item.day >= firstDay &&
+                    item.day <= lastDay
+            );
+
+        const allComplete =
+            weekDays.every(
+                item =>
+                    completedDays.includes(
+                        item.day
+                    )
+            );
+
+        const unlocked =
+            week <= unlockedWeek;
+
+
+        html += `
+
+            <div class="week-card
+                ${!unlocked ? "locked" : ""}
+                ${allComplete ? "completed" : ""}">
+
+                <div class="week-top">
+
+                    <div class="week-number">
+                        Week ${week}
+                    </div>
+
+                    <div class="status
+                        ${
+                            allComplete
+                                ? "done"
+                                : unlocked
+                                    ? "open"
+                                    : ""
+                        }">
+
+                        ${
+                            allComplete
+                                ? "Completed"
+                                : unlocked
+                                    ? "Open"
+                                    : "Locked"
+                        }
+
+                    </div>
+
+                </div>
+
+
+                <h2>
+                    ${escapeHTML(
+                        weekTitles[week - 1]
+                    )}
+                </h2>
+
+
+                <p>
+                    ${escapeHTML(
+                        weekDescriptions[week - 1]
+                    )}
+                </p>
+
+
+                <div style="
+                    font-size:12px;
+                    color:#999;
+                    margin-top:10px;
+                ">
+
+                    Days ${firstDay}–${lastDay}
+
+                </div>
+
+
+                ${
+                    unlocked
+                        ? `
+                            <button
+                                class="primary-btn week-btn"
+                                onclick="openWeek(${week})">
+
+                                Open Week →
+
+                            </button>
+                          `
+                        : `
+                            <div style="
+                                margin-top:15px;
+                                color:#999;
+                                font-size:13px;
+                            ">
+
+                                🔒 Opens when you reach
+                                Week ${week}
+
+                            </div>
+                          `
+                }
+
+            </div>
+
+        `;
+
+    }
+
+    container.innerHTML =
+        `<div class="weeks-grid">${html}</div>`;
+
+}
+
+
+/* =========================
+   OPEN WEEK
+========================= */
+
+function openWeek(week) {
+
+    if (
+        week >
+        getUnlockedWeek()
+    ) {
+        return;
+    }
+
+    selectedWeek =
+        week;
+
+    document.getElementById(
+        "journeyListView"
+    ).style.display =
+        "none";
+
+    document.getElementById(
+        "weekDetailView"
+    ).style.display =
+        "block";
+
+    document.getElementById(
+        "detailWeekLabel"
+    ).textContent =
+        `Week ${week}`;
+
+    document.getElementById(
+        "detailWeekTitle"
+    ).textContent =
+        weekTitles[week - 1];
+
+    document.getElementById(
+        "detailWeekDescription"
+    ).textContent =
+        weekDescriptions[week - 1];
+
+    renderWeekDays();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+function renderWeekDays() {
+
+    const firstDay =
+        ((selectedWeek - 1) * 7) + 1;
+
+    const lastDay =
+        selectedWeek === 13
+            ? 90
+            : selectedWeek * 7;
+
+    const days =
+        journeyDays.filter(
+            item =>
+                item.day >= firstDay &&
+                item.day <= lastDay
         );
 
 
-        const selectedSection =
-            document.getElementById(
-                sectionId
+    const container =
+        document.getElementById(
+            "weekContentContainer"
+        );
+
+
+    let html =
+        `<div class="day-list">`;
+
+
+    days.forEach(
+        day => {
+
+            const completed =
+                completedDays.includes(
+                    day.day
+                );
+
+
+            html += `
+
+                <div class="day-card
+                    ${completed ? "completed" : ""}">
+
+                    <div class="day-header">
+
+                        <div>
+
+                            <h3>
+                                Day ${day.day}
+                            </h3>
+
+                            <div class="day-phase">
+                                ${escapeHTML(
+                                    day.phase
+                                )}
+                            </div>
+
+                        </div>
+
+                        ${
+                            completed
+                                ? `
+                                    <div class="status done">
+                                        Completed
+                                    </div>
+                                  `
+                                : `
+                                    <div class="status open">
+                                        Open
+                                    </div>
+                                  `
+                        }
+
+                    </div>
+
+
+                    <div class="day-habits">
+
+
+                        <div class="habit-box">
+
+                            <div class="habit-label">
+                                Movement
+                            </div>
+
+                            <div class="habit-value">
+                                ${escapeHTML(
+                                    day.steps
+                                )}
+                            </div>
+
+                        </div>
+
+
+                        <div class="habit-box">
+
+                            <div class="habit-label">
+                                Sleep
+                            </div>
+
+                            <div class="habit-value">
+                                ${escapeHTML(
+                                    day.sleep
+                                )}
+                            </div>
+
+                        </div>
+
+
+                        <div class="habit-box">
+
+                            <div class="habit-label">
+                                Hydration
+                            </div>
+
+                            <div class="habit-value">
+                                ${escapeHTML(
+                                    day.water
+                                )}
+                            </div>
+
+                        </div>
+
+
+                        <div class="habit-box">
+
+                            <div class="habit-label">
+                                Protein
+                            </div>
+
+                            <div class="habit-value">
+                                ${escapeHTML(
+                                    day.protein
+                                )}
+                            </div>
+
+                        </div>
+
+
+                        <div class="habit-box">
+
+                            <div class="habit-label">
+                                Nutrition
+                            </div>
+
+                            <div class="habit-value">
+                                ${escapeHTML(
+                                    day.nutrition
+                                )}
+                            </div>
+
+                        </div>
+
+
+                        <div class="habit-box">
+
+                            <div class="habit-label">
+                                Mind / Stress
+                            </div>
+
+                            <div class="habit-value">
+                                ${escapeHTML(
+                                    day.mind
+                                )}
+                            </div>
+
+                        </div>
+
+
+                        <div class="habit-box">
+
+                            <div class="habit-label">
+                                Sunlight
+                            </div>
+
+                            <div class="habit-value">
+                                ${escapeHTML(
+                                    day.sunlight
+                                )}
+                            </div>
+
+                        </div>
+
+
+                        <div class="habit-box">
+
+                            <div class="habit-label">
+                                Recovery
+                            </div>
+
+                            <div class="habit-value">
+                                ${escapeHTML(
+                                    day.recovery
+                                )}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <label class="complete-day">
+
+                        <input
+                            type="checkbox"
+                            ${
+                                completed
+                                    ? "checked"
+                                    : ""
+                            }
+                            onchange="
+                                toggleDayComplete(
+                                    ${day.day},
+                                    this.checked
+                                )
+                            ">
+
+                        Mark Day ${day.day} as completed
+
+                    </label>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    html += `</div>`;
+
+    container.innerHTML =
+        html;
+
+}
+
+
+/* =========================
+   COMPLETE DAY
+========================= */
+
+function toggleDayComplete(
+    day,
+    completed
+) {
+
+    if (completed) {
+
+        if (
+            !completedDays.includes(day)
+        ) {
+
+            completedDays.push(day);
+
+        }
+
+    } else {
+
+        completedDays =
+            completedDays.filter(
+                item =>
+                    item !== day
             );
 
+    }
 
-        if (selectedSection) {
 
-            selectedSection.classList.add(
+    completedDays.sort(
+        (a,b) => a-b
+    );
+
+
+    localStorage.setItem(
+        "freedomCompletedDays",
+        JSON.stringify(
+            completedDays
+        )
+    );
+
+
+    renderWeekDays();
+
+    updateOverallProgress();
+
+    renderWeeks();
+
+}
+
+
+/* =========================
+   OVERALL PROGRESS
+========================= */
+
+function updateOverallProgress() {
+
+    const completed =
+        completedDays.filter(
+            day =>
+                day >= 1 &&
+                day <= 90
+        ).length;
+
+
+    const percentage =
+        Math.round(
+            (completed / 90) * 100
+        );
+
+
+    document.getElementById(
+        "progressDays"
+    ).textContent =
+        completed;
+
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+        percentage + "%";
+
+
+    document.getElementById(
+        "homeProgress"
+    ).textContent =
+        percentage + "%";
+
+
+    document.getElementById(
+        "homeDay"
+    ).textContent =
+        `Day ${getProgramDay()}`;
+
+
+    document.getElementById(
+        "homeWeek"
+    ).textContent =
+        `Week ${getUnlockedWeek()}`;
+
+
+    document.getElementById(
+        "currentProgramDay"
+    ).textContent =
+        `Day ${getProgramDay()}`;
+
+
+    document.getElementById(
+        "journeyStartDate"
+    ).textContent =
+        formatDate(
+            getStartDate()
+        );
+
+
+    document.getElementById(
+        "progressNote"
+    ).textContent =
+        completed === 0
+            ? "Your journey is ready to begin."
+            : completed === 90
+                ? "Congratulations! You completed your 90-day journey."
+                : `${completed} of 90 days completed. Keep going.`;
+
+}
+
+
+/* =========================
+   LIFETIME HABITS
+========================= */
+
+function updateLifetimeAccess() {
+
+    const completed90 =
+        completedDays.includes(90);
+
+
+    const unlocked =
+        getProgramDay() >= 90 &&
+        completed90;
+
+
+    document.getElementById(
+        "lifetimeLocked"
+    ).style.display =
+        unlocked
+            ? "none"
+            : "block";
+
+
+    document.getElementById(
+        "lifetimeContent"
+    ).style.display =
+        unlocked
+            ? "block"
+            : "none";
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+const navButtons =
+    document.querySelectorAll(
+        ".nav-btn"
+    );
+
+const sections =
+    document.querySelectorAll(
+        ".page-section"
+    );
+
+
+function openSection(
+    sectionId
+) {
+
+    sections.forEach(
+        section => {
+
+            section.classList.remove(
                 "active"
             );
 
         }
+    );
 
 
-        navButtons.forEach(
-            button => {
-
-                button.classList.toggle(
-                    "active",
-
-                    button.dataset.section ===
-                    sectionId
-                );
-
-            }
+    const selected =
+        document.getElementById(
+            sectionId
         );
 
 
-        sidebar.classList.remove(
-            "open"
+    if (selected) {
+
+        selected.classList.add(
+            "active"
         );
-
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
 
     }
 
@@ -1989,240 +3285,196 @@
     navButtons.forEach(
         button => {
 
-            button.addEventListener(
-                "click",
+            button.classList.toggle(
+                "active",
+                button.dataset.section ===
+                sectionId
+            );
+
+        }
+    );
+
+
+    document.getElementById(
+        "sidebar"
+    ).classList.remove(
+        "open"
+    );
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+window.openSection =
+    openSection;
+
+
+navButtons.forEach(
+    button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                openSection(
+                    button.dataset.section
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================
+   CONTINUE JOURNEY
+========================= */
+
+document.getElementById(
+    "continueJourneyBtn"
+).addEventListener(
+    "click",
+    () => {
+
+        openSection(
+            "journeySection"
+        );
+
+    }
+);
+
+
+/* =========================
+   BACK TO WEEKS
+========================= */
+
+document.getElementById(
+    "backToWeeks"
+).addEventListener(
+    "click",
+    () => {
+
+        document.getElementById(
+            "weekDetailView"
+        ).style.display =
+            "none";
+
+        document.getElementById(
+            "journeyListView"
+        ).style.display =
+            "block";
+
+        renderWeeks();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+);
+
+
+/* =========================
+   PROFILE SAVE
+========================= */
+
+document.getElementById(
+    "saveProfile"
+).addEventListener(
+    "click",
+    saveProfile
+);
+
+
+/* =========================
+   LIVE CALCULATIONS
+========================= */
+
+profileFields.forEach(
+    field => {
+
+        const element =
+            document.getElementById(
+                field
+            );
+
+        if (element) {
+
+            element.addEventListener(
+                "input",
                 () => {
 
-                    openSection(
-                        button.dataset.section
-                    );
+                    calculateProgress();
+
+                    if (
+                        field === "name"
+                    ) {
+
+                        const name =
+                            getValue("name") ||
+                            "Member";
+
+                        document.getElementById(
+                            "profileMemberName"
+                        ).textContent =
+                            name;
+
+                        document.getElementById(
+                            "homeMemberName"
+                        ).textContent =
+                            name;
+
+                    }
 
                 }
             );
 
         }
-    );
-
-
-    /* =========================
-       MOBILE MENU
-    ========================= */
-
-    mobileMenuBtn.addEventListener(
-        "click",
-        () => {
-
-            sidebar.classList.toggle(
-                "open"
-            );
-
-        }
-    );
-
-
-    /* =========================
-       PROFILE CALCULATIONS
-    ========================= */
-
-    function getNumber(id) {
-
-        const element =
-            document.getElementById(id);
-
-        if (!element) {
-            return null;
-        }
-
-        const value =
-            parseFloat(
-                element.value
-            );
-
-        return Number.isFinite(value)
-            ? value
-            : null;
 
     }
+);
 
 
-    function calculateProfileProgress() {
+/* =========================
+   MOBILE MENU
+========================= */
 
-
-        const startingWeight =
-            getNumber(
-                "startingWeight"
-            );
-
-
-        const currentWeight =
-            getNumber(
-                "currentWeight"
-            );
-
-
-        const startingWaist =
-            getNumber(
-                "startingWaist"
-            );
-
-
-        const currentWaist =
-            getNumber(
-                "currentWaist"
-            );
-
-
-        const height =
-            getNumber(
-                "height"
-            );
-
+document.getElementById(
+    "mobileMenuBtn"
+).addEventListener(
+    "click",
+    () => {
 
         document.getElementById(
-            "progressStartingWeight"
-        ).textContent =
-            startingWeight !== null
-                ? startingWeight.toFixed(1) + " kg"
-                : "—";
-
-
-        document.getElementById(
-            "progressCurrentWeight"
-        ).textContent =
-            currentWeight !== null
-                ? currentWeight.toFixed(1) + " kg"
-                : "—";
-
-
-        document.getElementById(
-            "weightLost"
-        ).textContent =
-            startingWeight !== null &&
-            currentWeight !== null
-                ? (
-                    startingWeight -
-                    currentWeight
-                ).toFixed(1) + " kg"
-                : "—";
-
-
-        document.getElementById(
-            "waistChange"
-        ).textContent =
-            startingWaist !== null &&
-            currentWaist !== null
-                ? (
-                    startingWaist -
-                    currentWaist
-                ).toFixed(1) + " cm"
-                : "—";
-
-
-        if (
-            height &&
-            currentWeight !== null
-        ) {
-
-            const heightM =
-                height / 100;
-
-
-            const bmi =
-                currentWeight /
-                (heightM * heightM);
-
-
-            document.getElementById(
-                "bmi"
-            ).textContent =
-                bmi.toFixed(1);
-
-        } else {
-
-            document.getElementById(
-                "bmi"
-            ).textContent =
-                "—";
-
-        }
+            "sidebar"
+        ).classList.toggle(
+            "open"
+        );
 
     }
+);
 
 
-    /* =========================
-       LIVE PROFILE CALCULATIONS
-    ========================= */
+/* =========================
+   INITIALIZE DASHBOARD
+========================= */
 
-    const calculationFields = [
+loadProfile();
 
-        "height",
-        "startingWeight",
-        "currentWeight",
-        "startingWaist",
-        "currentWaist"
+renderWeeks();
 
-    ];
+updateOverallProgress();
 
-
-    calculationFields.forEach(
-        fieldId => {
-
-            const element =
-                document.getElementById(
-                    fieldId
-                );
-
-
-            if (element) {
-
-                element.addEventListener(
-                    "input",
-                    calculateProfileProgress
-                );
-
-            }
-
-        }
-    );
-
-
-    /* =========================
-       SAVE PROFILE BUTTON
-    ========================= */
-
-    document.getElementById(
-        "saveProfile"
-    ).addEventListener(
-        "click",
-        () => {
-
-            const name =
-                document.getElementById(
-                    "name"
-                ).value.trim();
-
-
-            if (name) {
-
-                document.getElementById(
-                    "profileMemberName"
-                ).textContent =
-                    name;
-
-            }
-
-
-            document.getElementById(
-                "saveMessage"
-            ).textContent =
-                "Profile saved.";
-
-        }
-    );
-
+updateLifetimeAccess();
 
 </script>
-
 
 </body>
 </html>
