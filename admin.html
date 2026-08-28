@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -20,7 +20,7 @@
     --light:#F1EAF3;
     --border:#E6DDD3;
     --danger:#A44A4A;
-    --success:#5C8066;
+    --success:#557A61;
 }
 
 *{
@@ -57,7 +57,7 @@ select{
 }
 
 textarea{
-    min-height:130px;
+    min-height:120px;
     resize:vertical;
 }
 
@@ -79,7 +79,9 @@ label{
     line-height:1.5;
 }
 
-/* LOGIN */
+/* =====================================================
+   LOGIN
+===================================================== */
 
 #loginPage{
     min-height:100vh;
@@ -115,7 +117,9 @@ label{
     color:var(--danger)!important;
 }
 
-/* ADMIN */
+/* =====================================================
+   ADMIN
+===================================================== */
 
 #adminApp{
     display:none;
@@ -183,6 +187,7 @@ label{
 
 .topbar h1{
     margin:0;
+    color:var(--plum);
 }
 
 .admin-pill{
@@ -226,7 +231,9 @@ label{
     display:block;
 }
 
-/* CARDS */
+/* =====================================================
+   DASHBOARD CARDS
+===================================================== */
 
 .stats{
     display:grid;
@@ -248,15 +255,30 @@ label{
     margin-top:8px;
 }
 
-/* CLASSROOM */
+/* =====================================================
+   TOOLBAR
+===================================================== */
 
 .toolbar{
     display:flex;
     justify-content:space-between;
     align-items:center;
     margin-bottom:20px;
-    gap:15px;
+    gap:20px;
 }
+
+.toolbar h2{
+    margin-bottom:5px;
+}
+
+.toolbar p{
+    margin-top:0;
+    color:#777;
+}
+
+/* =====================================================
+   CLASSROOM TREE
+===================================================== */
 
 .tree{
     background:white;
@@ -320,7 +342,9 @@ label{
     font-size:12px;
 }
 
-/* FORMS */
+/* =====================================================
+   FORMS
+===================================================== */
 
 .form-card{
     max-width:1000px;
@@ -333,7 +357,7 @@ label{
 .form-actions{
     display:flex;
     gap:8px;
-    margin-top:20px;
+    margin-top:25px;
     flex-wrap:wrap;
 }
 
@@ -349,60 +373,81 @@ label{
     margin-top:0;
 }
 
-.resource-box{
+/* =====================================================
+   IMAGE UPLOAD
+===================================================== */
+
+.media-box{
+    border:1px dashed var(--taupe);
     background:#FCFAF7;
-    border:1px solid var(--border);
     border-radius:12px;
-    padding:18px;
-    margin-top:18px;
+    padding:20px;
+    margin-top:10px;
 }
 
-.resource-box h3{
-    color:var(--plum);
-    margin-top:0;
-}
-
-.resource-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:18px;
-}
-
-.file-preview{
-    margin-top:12px;
+.media-preview{
+    margin-top:15px;
     display:none;
 }
 
-.file-preview img{
+.media-preview img{
     max-width:100%;
-    max-height:250px;
-    border-radius:12px;
-    border:1px solid var(--border);
+    width:100%;
+    max-height:320px;
     object-fit:cover;
-}
-
-.current-image{
-    margin-top:12px;
-}
-
-.current-image img{
-    max-width:300px;
-    max-height:200px;
     border-radius:12px;
     border:1px solid var(--border);
 }
 
 .upload-status{
-    display:none;
-    padding:12px;
-    background:var(--light);
-    color:var(--plum);
-    border-radius:9px;
-    margin-top:15px;
+    margin-top:10px;
     font-size:13px;
+    color:var(--plum);
 }
 
-/* TABLE */
+.upload-progress{
+    height:8px;
+    background:#eee;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:10px;
+    display:none;
+}
+
+.upload-progress-fill{
+    height:100%;
+    width:0%;
+    background:var(--plum);
+    transition:width .2s;
+}
+
+.image-actions{
+    margin-top:10px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+/* =====================================================
+   MEDIA PREVIEW
+===================================================== */
+
+.link-preview{
+    background:#FCFAF7;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:12px;
+    margin-top:8px;
+}
+
+.link-preview a{
+    color:var(--plum);
+    word-break:break-all;
+}
+
+/* =====================================================
+   TABLE
+===================================================== */
 
 .table{
     width:100%;
@@ -425,7 +470,7 @@ label{
     background:white;
     border:1px solid var(--border);
     border-radius:15px;
-    overflow:auto;
+    overflow:hidden;
 }
 
 .table-head{
@@ -436,7 +481,9 @@ label{
     gap:15px;
 }
 
-/* PREVIEW */
+/* =====================================================
+   PREVIEW
+===================================================== */
 
 .preview{
     background:white;
@@ -453,29 +500,62 @@ label{
 
 .preview-image{
     width:100%;
-    max-height:400px;
+    max-height:420px;
     object-fit:cover;
     border-radius:15px;
-    margin:15px 0;
+    margin:15px 0 25px;
 }
 
-.video-link,
-.drive-link{
-    display:block;
-    padding:14px;
+.preview-video{
+    margin-top:20px;
+}
+
+.preview-video a{
+    display:inline-block;
     background:var(--light);
     color:var(--plum);
+    padding:12px 16px;
+    border-radius:9px;
     text-decoration:none;
-    border-radius:10px;
-    margin:10px 0;
     font-weight:bold;
 }
 
-.empty{
-    text-align:center;
-    padding:40px;
-    color:#888;
+/* =====================================================
+   COMMUNITY
+===================================================== */
+
+.community-post{
+    padding:18px 0;
+    border-bottom:1px solid var(--border);
 }
+
+.community-post:last-child{
+    border-bottom:0;
+}
+
+.post-author{
+    font-weight:bold;
+    color:var(--plum);
+}
+
+.post-date{
+    font-size:12px;
+    color:#888;
+    margin:5px 0 10px;
+}
+
+.community-image{
+    width:100%;
+    max-width:500px;
+    max-height:400px;
+    object-fit:cover;
+    border-radius:12px;
+    margin-top:12px;
+}
+
+/* =====================================================
+   CHECKBOX
+===================================================== */
 
 .checkbox{
     display:flex;
@@ -488,50 +568,19 @@ label{
     width:auto;
 }
 
-.badge{
-    display:inline-block;
-    padding:5px 9px;
-    border-radius:20px;
-    background:var(--light);
-    color:var(--plum);
-    font-size:11px;
-}
+/* =====================================================
+   EMPTY
+===================================================== */
 
-.community-image{
-    max-width:300px;
-    max-height:250px;
-    object-fit:cover;
-    border-radius:12px;
-    margin-top:10px;
-}
-
-/* COMMUNITY */
-
-.community-post{
-    padding:20px 0;
-    border-bottom:1px solid var(--border);
-}
-
-.community-post:last-child{
-    border-bottom:0;
-}
-
-.post-author{
-    color:var(--plum);
-    font-weight:bold;
-}
-
-.post-date{
+.empty{
+    text-align:center;
+    padding:40px;
     color:#888;
-    font-size:12px;
-    margin:5px 0 10px;
 }
 
-.post-actions{
-    margin-top:12px;
-}
-
-/* MOBILE */
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:900px){
 
@@ -559,8 +608,17 @@ label{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .resource-grid{
-        grid-template-columns:1fr;
+    .tree-row{
+        align-items:flex-start;
+        flex-wrap:wrap;
+    }
+
+    .tree-title{
+        min-width:150px;
+    }
+
+    .actions{
+        width:100%;
     }
 
 }
@@ -571,12 +629,17 @@ label{
         grid-template-columns:1fr;
     }
 
-    .tree-row{
-        flex-wrap:wrap;
+    .topbar{
+        align-items:flex-start;
+        flex-direction:column;
     }
 
-    .tree-title{
-        min-width:150px;
+    .table-card{
+        overflow-x:auto;
+    }
+
+    .form-card{
+        padding:20px;
     }
 
 }
@@ -586,6 +649,7 @@ label{
 </head>
 
 <body>
+
 
 <!-- =====================================================
      LOGIN
@@ -610,7 +674,6 @@ HEALTH CLUB
 id="email"
 type="email"
 placeholder="Admin email"
-
 >
 
 </div>
@@ -623,7 +686,6 @@ placeholder="Admin email"
 id="password"
 type="password"
 placeholder="Password"
-
 >
 
 </div>
@@ -632,10 +694,9 @@ placeholder="Password"
 id="loginBtn"
 class="btn"
 style="width:100%"
-
 >
-
-Login </button>
+Login
+</button>
 
 <p
 id="loginError"
@@ -646,11 +707,14 @@ class="login-error"
 
 </div>
 
+
+
 <!-- =====================================================
      ADMIN APP
 ===================================================== -->
 
 <div id="adminApp">
+
 
 <aside class="sidebar">
 
@@ -665,56 +729,54 @@ WOMEN'S HEALTH CLUB
 
 </div>
 
+
 <nav class="nav">
 
 <button
 class="active"
 onclick="openSection('dashboard',this)"
-
 >
-
-🏠 Dashboard </button>
+🏠 Dashboard
+</button>
 
 <button
 onclick="openSection('members',this)"
-
 >
-
-👥 Members </button>
+👥 Members
+</button>
 
 <button
 onclick="openSection('classroom',this)"
-
 >
-
-📚 Classroom </button>
+📚 Classroom
+</button>
 
 <button
 onclick="openSection('community',this)"
-
 >
-
-💬 Community </button>
+💬 Community
+</button>
 
 <button
 onclick="openSection('leaderboard',this)"
-
 >
-
-🏆 Leaderboard </button>
+🏆 Leaderboard
+</button>
 
 <button
 onclick="openSection('settings',this)"
-
 >
-
-⚙️ Settings </button>
+⚙️ Settings
+</button>
 
 </nav>
 
 </aside>
 
+
+
 <main class="main">
+
 
 <div class="topbar">
 
@@ -731,14 +793,15 @@ Admin
 <button
 class="btn btn-secondary"
 onclick="logout()"
-
 >
+Logout
+</button>
 
-Logout </button>
+</div>
 
 </div>
 
-</div>
+
 
 <!-- =====================================================
      DASHBOARD
@@ -802,21 +865,29 @@ Welcome to your Freedom Club Admin Panel
 </h3>
 
 <p>
-Create your entire program here.
+Create and manage your complete 90-day program here.
+</p>
+
+<p>
 You can create:
 </p>
 
-<p>
-<strong>Phase → Week → Day</strong>
-</p>
-
-<p>
-Each day can contain text, images, videos and Google Drive resources.
-</p>
+<ul>
+<li>Phases</li>
+<li>Weeks</li>
+<li>Days</li>
+<li>Day content</li>
+<li>Images</li>
+<li>Video links</li>
+<li>Google Drive links</li>
+<li>Community posts</li>
+</ul>
 
 </div>
 
 </section>
+
+
 
 <!-- =====================================================
      MEMBERS
@@ -836,12 +907,9 @@ class="section"
 <button
 class="btn"
 onclick="openSection('addMember')"
-
 >
-
-* Add Member
-
-  </button>
++ Add Member
+</button>
 
 </div>
 
@@ -876,6 +944,8 @@ Loading...
 
 </section>
 
+
+
 <!-- =====================================================
      ADD MEMBER
 ===================================================== -->
@@ -890,62 +960,36 @@ class="section"
 <h2>Add Member</h2>
 
 <div class="form-group">
-
 <label>Name</label>
-
 <input id="mName">
-
 </div>
 
 <div class="form-group">
-
 <label>Email</label>
-
-<input
-id="mEmail"
-type="email"
-
->
-
+<input id="mEmail" type="email">
 </div>
 
 <div class="form-group">
-
 <label>Phone</label>
-
 <input id="mPhone">
-
 </div>
 
 <div class="form-group">
-
 <label>Start Date</label>
-
-<input
-id="mStart"
-type="date"
-
->
-
+<input id="mStart" type="date">
 </div>
 
 <div class="form-group">
 
-<label>Access Until Day</label>
+<label>
+Access Until Day
+</label>
 
 <select id="mAccess">
 
-<option value="30">
-Day 30
-</option>
-
-<option value="60">
-Day 60
-</option>
-
-<option value="90" selected>
-Day 90
-</option>
+<option value="30">Day 30</option>
+<option value="60">Day 60</option>
+<option value="90">Day 90</option>
 
 </select>
 
@@ -957,8 +1001,8 @@ Day 90
 
 <select id="mStatus">
 
-<option>Active</option>
-<option>Inactive</option>
+<option value="Active">Active</option>
+<option value="Inactive">Inactive</option>
 
 </select>
 
@@ -969,24 +1013,24 @@ Day 90
 <button
 class="btn"
 onclick="saveMember()"
-
 >
-
-Save Member </button>
+Save Member
+</button>
 
 <button
 class="btn btn-secondary"
 onclick="openSection('members')"
-
 >
-
-Cancel </button>
+Cancel
+</button>
 
 </div>
 
 </div>
 
 </section>
+
+
 
 <!-- =====================================================
      CLASSROOM
@@ -1013,14 +1057,12 @@ Build your program like:
 <button
 class="btn"
 onclick="newItem()"
-
 >
-
-* Add
-
-  </button>
++ Add
+</button>
 
 </div>
+
 
 <div class="tree">
 
@@ -1036,8 +1078,10 @@ No classroom content yet.
 
 </section>
 
+
+
 <!-- =====================================================
-     CLASSROOM EDITOR
+     ITEM EDITOR
 ===================================================== -->
 
 <section
@@ -1051,6 +1095,9 @@ class="section"
 Add Classroom Item
 </h2>
 
+
+<!-- TYPE -->
+
 <div class="form-group">
 
 <label>Type</label>
@@ -1058,11 +1105,11 @@ Add Classroom Item
 <select id="itemType">
 
 <option value="module">
-Phase
+Phase / Module
 </option>
 
 <option value="subsection">
-Week
+Week / Subsection
 </option>
 
 <option value="lesson">
@@ -1072,6 +1119,10 @@ Day / Lesson
 </select>
 
 </div>
+
+
+
+<!-- PARENT -->
 
 <div class="form-group">
 
@@ -1086,10 +1137,15 @@ Top Level
 </select>
 
 <div class="help">
-Phase = top level. Week goes inside a Phase. Day goes inside a Week.
+Example: Phase 1 can be the parent of Week 1,
+and Week 1 can be the parent of Day 1.
 </div>
 
 </div>
+
+
+
+<!-- TITLE -->
 
 <div class="form-group">
 
@@ -1097,11 +1153,14 @@ Phase = top level. Week goes inside a Phase. Day goes inside a Week.
 
 <input
 id="itemTitle"
-placeholder="Example: Phase 1 — Reset"
-
+placeholder="Example: Phase 1 — Reset & Foundation"
 >
 
 </div>
+
+
+
+<!-- DESCRIPTION -->
 
 <div class="form-group">
 
@@ -1109,10 +1168,14 @@ placeholder="Example: Phase 1 — Reset"
 
 <textarea
 id="itemDescription"
-placeholder="Describe this phase, week or day..."
+placeholder="Write a short description..."
 ></textarea>
 
 </div>
+
+
+
+<!-- UNLOCK -->
 
 <div class="form-group">
 
@@ -1124,88 +1187,113 @@ type="number"
 min="1"
 max="90"
 value="1"
-
 >
 
 <div class="help">
-Example: Phase 1 = Day 1, Day 2 = Day 2, etc.
+Members will see this item when they reach this program day.
 </div>
 
 </div>
+
+
+
+<!-- CHILDREN -->
 
 <div class="checkbox">
 
 <input
 id="allowChildren"
 type="checkbox"
-
 >
 
 <label
 for="allowChildren"
 style="margin:0"
-
 >
-
-Allow children inside this item </label>
+Allow children inside this item
+</label>
 
 </div>
 
+
+
 <!-- =====================================================
-     IMAGE
+     FEATURED IMAGE
 ===================================================== -->
 
-<div class="resource-box">
+<div class="editor-section">
 
 <h3>
-🖼️ Image
+🖼️ Featured Image
 </h3>
 
-<div class="form-group">
+<p class="help">
+Add an attractive image for this phase, week or day.
+The image will automatically be compressed before uploading.
+</p>
 
-<label>
-Upload Image
-</label>
+
+<div class="media-box">
 
 <input
 id="itemImage"
 type="file"
 accept="image/*"
-
 >
-
-<div class="help">
-Upload an actual image file. Members will see this image inside the lesson.
-</div>
 
 <div
-id="imagePreview"
-class="file-preview"
->
-
-<img
-id="imagePreviewImg"
-src=""
-alt="Image preview"
-
->
-
-</div>
+id="imageStatus"
+class="upload-status"
+></div>
 
 <div
-id="currentImage"
-class="current-image"
+id="imageProgress"
+class="upload-progress"
+>
+
+<div
+id="imageProgressFill"
+class="upload-progress-fill"
 ></div>
 
 </div>
 
+<div
+id="imagePreview"
+class="media-preview"
+>
+
+<img
+id="previewImage"
+src=""
+alt="Preview"
+>
+
+<div class="image-actions">
+
+<button
+type="button"
+class="btn btn-danger"
+onclick="removeSelectedImage()"
+>
+Remove Image
+</button>
+
 </div>
 
+</div>
+
+</div>
+
+</div>
+
+
+
 <!-- =====================================================
-     VIDEO
+     VIDEO URL
 ===================================================== -->
 
-<div class="resource-box">
+<div class="editor-section">
 
 <h3>
 🎥 Video
@@ -1220,62 +1308,64 @@ Video URL
 <input
 id="videoUrl"
 type="url"
-placeholder="https://www.youtube.com/watch?v=..."
-
+placeholder="Paste YouTube, Vimeo or other video link"
 >
 
 <div class="help">
-Paste your YouTube or other video link here.
+Paste the video link. You do not need to upload the video.
 </div>
 
 </div>
 
+<div
+id="videoLinkPreview"
+class="link-preview"
+style="display:none"
+>
 </div>
+
+</div>
+
+
 
 <!-- =====================================================
      GOOGLE DRIVE
 ===================================================== -->
 
-<div class="resource-box">
+<div class="editor-section">
 
 <h3>
-📄 Google Drive Resource
+📁 Google Drive
 </h3>
 
 <div class="form-group">
 
 <label>
-Google Drive URL
+Google Drive Link
 </label>
 
 <input
 id="driveUrl"
 type="url"
-placeholder="https://drive.google.com/..."
-
+placeholder="Paste Google Drive sharing link"
 >
 
 <div class="help">
-Paste the Google Drive sharing link for a worksheet, PDF, meal plan, guide, etc.
+Use this for PDFs, worksheets, meal plans, documents or other resources.
 </div>
 
 </div>
 
-<div class="form-group">
-
-<label>
-Resource Name
-</label>
-
-<input
-id="driveName"
-placeholder="Example: Week 1 Meal Guide"
-
+<div
+id="driveLinkPreview"
+class="link-preview"
+style="display:none"
 >
-
 </div>
 
 </div>
+
+
 
 <!-- =====================================================
      DAY CONTENT
@@ -1286,17 +1376,16 @@ id="dayContent"
 style="display:none"
 >
 
+
 <div class="editor-section">
 
 <h3>
-Movement
+🚶 Movement
 </h3>
 
 <div class="form-group">
 
-<label>
-Target
-</label>
+<label>Target</label>
 
 <input id="movement">
 
@@ -1304,9 +1393,7 @@ Target
 
 <div class="form-group">
 
-<label>
-Instructions
-</label>
+<label>Instructions</label>
 
 <textarea id="movementInstructions"></textarea>
 
@@ -1314,17 +1401,17 @@ Instructions
 
 </div>
 
+
+
 <div class="editor-section">
 
 <h3>
-Hydration
+💧 Hydration
 </h3>
 
 <div class="form-group">
 
-<label>
-Target
-</label>
+<label>Target</label>
 
 <input id="hydration">
 
@@ -1332,9 +1419,7 @@ Target
 
 <div class="form-group">
 
-<label>
-Instructions
-</label>
+<label>Instructions</label>
 
 <textarea id="hydrationInstructions"></textarea>
 
@@ -1342,17 +1427,17 @@ Instructions
 
 </div>
 
+
+
 <div class="editor-section">
 
 <h3>
-Protein
+🥚 Protein
 </h3>
 
 <div class="form-group">
 
-<label>
-Target
-</label>
+<label>Target</label>
 
 <input id="protein">
 
@@ -1360,9 +1445,7 @@ Target
 
 <div class="form-group">
 
-<label>
-Instructions
-</label>
+<label>Instructions</label>
 
 <textarea id="proteinInstructions"></textarea>
 
@@ -1370,17 +1453,17 @@ Instructions
 
 </div>
 
+
+
 <div class="editor-section">
 
 <h3>
-Sleep
+😴 Sleep
 </h3>
 
 <div class="form-group">
 
-<label>
-Target
-</label>
+<label>Target</label>
 
 <input id="sleep">
 
@@ -1388,9 +1471,7 @@ Target
 
 <div class="form-group">
 
-<label>
-Instructions
-</label>
+<label>Instructions</label>
 
 <textarea id="sleepInstructions"></textarea>
 
@@ -1398,91 +1479,118 @@ Instructions
 
 </div>
 
+
+
 <div class="editor-section">
 
 <h3>
-Nutrition
+🥗 Nutrition
 </h3>
 
 <textarea
 id="nutrition"
-placeholder="Nutrition task for this day..."
+placeholder="Write today's nutrition habit or lesson..."
 ></textarea>
 
 </div>
 
+
+
 <div class="editor-section">
 
 <h3>
-Mind / Stress
+🧘 Mind / Stress
 </h3>
 
 <textarea
 id="mind"
-placeholder="Mind or stress task..."
+placeholder="Write today's stress-management habit..."
 ></textarea>
 
 </div>
 
+
+
 <div class="editor-section">
 
 <h3>
-Sunlight
+☀️ Sunlight
 </h3>
 
 <input
 id="sunlight"
 placeholder="Example: 10 minutes morning sunlight"
-
 >
 
 </div>
+
+
 
 <div class="editor-section">
 
 <h3>
-Recovery
+🌿 Recovery
 </h3>
 
 <textarea
 id="recovery"
-placeholder="Recovery task..."
+placeholder="Write today's recovery habit..."
 ></textarea>
 
 </div>
 
+
 </div>
 
-<div
-id="uploadStatus"
-class="upload-status"
->
-Uploading image...
+
+
+<!-- STATUS -->
+
+<div class="form-group">
+
+<label>
+Publishing Status
+</label>
+
+<select id="itemStatus">
+
+<option value="published">
+Published — visible to members
+</option>
+
+<option value="draft">
+Draft — hidden from members
+</option>
+
+</select>
+
 </div>
+
+
 
 <div class="form-actions">
 
 <button
 class="btn"
 onclick="saveItem()"
-
 >
-
-Save </button>
+Save Classroom Item
+</button>
 
 <button
 class="btn btn-secondary"
 onclick="openSection('classroom')"
-
 >
-
-Cancel </button>
+Cancel
+</button>
 
 </div>
 
 </div>
 
 </section>
+
+
 
 <!-- =====================================================
      PREVIEW
@@ -1496,10 +1604,9 @@ class="section"
 <button
 class="btn btn-secondary"
 onclick="openSection('classroom')"
-
 >
-
-← Back </button>
+← Back to Classroom
+</button>
 
 <br><br>
 
@@ -1510,6 +1617,8 @@ class="preview"
 
 </section>
 
+
+
 <!-- =====================================================
      COMMUNITY
 ===================================================== -->
@@ -1519,27 +1628,197 @@ id="community"
 class="section"
 >
 
-<div class="card">
+<div class="toolbar">
+
+<div>
 
 <h2>
 Community
 </h2>
 
 <p>
-View and manage member community posts.
+View posts and create admin announcements.
 </p>
+
+</div>
+
+<button
+class="btn"
+onclick="openSection('communityComposer')"
+>
++ Create Post
+</button>
+
+</div>
+
+
+<div class="card">
 
 <div id="communityPosts">
 
-<div class="empty">
 Loading community...
-</div>
 
 </div>
 
 </div>
 
 </section>
+
+
+
+<!-- =====================================================
+     COMMUNITY COMPOSER
+===================================================== -->
+
+<section
+id="communityComposer"
+class="section"
+>
+
+<div class="form-card">
+
+<h2>
+Create Community Post
+</h2>
+
+
+<div class="form-group">
+
+<label>
+Post
+</label>
+
+<textarea
+id="communityText"
+placeholder="Write your announcement or community message..."
+></textarea>
+
+</div>
+
+
+
+<div class="editor-section">
+
+<h3>
+📷 Add Image
+</h3>
+
+<p class="help">
+You can upload an image such as a meal, workout,
+challenge announcement or progress graphic.
+</p>
+
+<div class="media-box">
+
+<input
+id="communityImage"
+type="file"
+accept="image/*"
+>
+
+<div
+id="communityImageStatus"
+class="upload-status"
+></div>
+
+<div
+id="communityImageProgress"
+class="upload-progress"
+>
+
+<div
+id="communityImageProgressFill"
+class="upload-progress-fill"
+></div>
+
+</div>
+
+<div
+id="communityImagePreview"
+class="media-preview"
+>
+
+<img
+id="communityPreviewImage"
+src=""
+alt="Community image preview"
+>
+
+<div class="image-actions">
+
+<button
+type="button"
+class="btn btn-danger"
+onclick="removeCommunityImage()"
+>
+Remove Image
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="editor-section">
+
+<h3>
+🎥 Video Link
+</h3>
+
+<input
+id="communityVideo"
+type="url"
+placeholder="Paste video URL"
+>
+
+</div>
+
+
+
+<div class="editor-section">
+
+<h3>
+📁 Google Drive
+</h3>
+
+<input
+id="communityDrive"
+type="url"
+placeholder="Paste Google Drive link"
+>
+
+</div>
+
+
+
+<div class="form-actions">
+
+<button
+class="btn"
+onclick="saveCommunityPost()"
+>
+Publish Post
+</button>
+
+<button
+class="btn btn-secondary"
+onclick="openSection('community')"
+>
+Cancel
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
 
 <!-- =====================================================
      LEADERBOARD
@@ -1564,6 +1843,8 @@ Member points will be connected to completed days and habits.
 
 </section>
 
+
+
 <!-- =====================================================
      SETTINGS
 ===================================================== -->
@@ -1583,8 +1864,10 @@ Settings
 Freedom Women's Health Club settings.
 </p>
 
+<hr>
+
 <p>
-<strong>Admin:</strong>
+<strong>Admin account:</strong>
 mahnoordietitian3@gmail.com
 </p>
 
@@ -1592,15 +1875,18 @@ mahnoordietitian3@gmail.com
 
 </section>
 
+
 </main>
 
 </div>
+
+
 
 <script type="module">
 
 
 /* =====================================================
-   FIREBASE
+   FIREBASE IMPORTS
 ===================================================== */
 
 import {
@@ -1637,12 +1923,15 @@ import {
     getStorage,
     ref,
     uploadBytes,
-    getDownloadURL,
-    deleteObject
+    getDownloadURL
 }
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
 
+
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
 
 const firebaseConfig = {
 
@@ -1687,10 +1976,13 @@ const ADMIN =
 "mahnoordietitian3@gmail.com";
 
 
-let items = [];
+let items=[];
 
-let editingId = null;
+let editingId=null;
 
+let selectedItemImage=null;
+
+let selectedCommunityImage=null;
 
 
 /* =====================================================
@@ -1699,7 +1991,7 @@ let editingId = null;
 
 onAuthStateChanged(
 auth,
-user => {
+user=>{
 
     if(!user){
 
@@ -1751,7 +2043,6 @@ user => {
 });
 
 
-
 /* =====================================================
    LOGIN
 ===================================================== */
@@ -1762,20 +2053,20 @@ document
 "click",
 async()=>{
 
-    const email =
+    const email=
     document
     .getElementById("email")
     .value
     .trim();
 
 
-    const password =
+    const password=
     document
     .getElementById("password")
     .value;
 
 
-    const errorBox =
+    const errorBox=
     document
     .getElementById("loginError");
 
@@ -1808,19 +2099,18 @@ async()=>{
         console.error(error);
 
         errorBox.textContent=
-        "Login failed. Please check your email and password.";
+        error.message;
 
     }
 
 });
 
 
-
 /* =====================================================
    LOGOUT
 ===================================================== */
 
-window.logout =
+window.logout=
 async function(){
 
     await signOut(auth);
@@ -1828,12 +2118,11 @@ async function(){
 };
 
 
-
 /* =====================================================
    NAVIGATION
 ===================================================== */
 
-window.openSection =
+window.openSection=
 function(id,button){
 
     document
@@ -1843,7 +2132,7 @@ function(id,button){
     );
 
 
-    const section =
+    const section=
     document.getElementById(id);
 
 
@@ -1871,22 +2160,15 @@ function(id,button){
     const names={
 
         dashboard:"Dashboard",
-
         members:"Members",
-
         classroom:"Classroom",
-
         community:"Community",
-
         leaderboard:"Leaderboard",
-
         settings:"Settings",
-
         addMember:"Add Member",
-
         itemEditor:"Classroom Editor",
-
-        preview:"Preview"
+        preview:"Preview",
+        communityComposer:"Community Post"
 
     };
 
@@ -1899,7 +2181,6 @@ function(id,button){
 };
 
 
-
 /* =====================================================
    MEMBERS
 ===================================================== */
@@ -1908,7 +2189,7 @@ async function loadMembers(){
 
     try{
 
-        const snap =
+        const snap=
         await getDocs(
             collection(
                 db,
@@ -1917,7 +2198,7 @@ async function loadMembers(){
         );
 
 
-        const table =
+        const table=
         document
         .getElementById(
             "membersTable"
@@ -1939,7 +2220,7 @@ async function loadMembers(){
                 active++;
 
 
-            html += `
+            html+=`
 
             <tr>
 
@@ -2020,50 +2301,30 @@ async function loadMembers(){
 }
 
 
-
 /* =====================================================
    SAVE MEMBER
 ===================================================== */
 
-window.saveMember =
+window.saveMember=
 async function(){
 
-    const name =
-    document
-    .getElementById("mName")
-    .value.trim();
+    const name=
+    value("mName").trim();
 
+    const email=
+    value("mEmail").trim();
 
-    const email =
-    document
-    .getElementById("mEmail")
-    .value.trim();
+    const phone=
+    value("mPhone").trim();
 
+    const startDate=
+    value("mStart");
 
-    const phone =
-    document
-    .getElementById("mPhone")
-    .value.trim();
+    const accessUntilDay=
+    Number(value("mAccess"));
 
-
-    const startDate =
-    document
-    .getElementById("mStart")
-    .value;
-
-
-    const accessUntilDay =
-    Number(
-        document
-        .getElementById("mAccess")
-        .value
-    );
-
-
-    const status =
-    document
-    .getElementById("mStatus")
-    .value;
+    const status=
+    value("mStatus");
 
 
     if(!name || !email || !startDate){
@@ -2101,28 +2362,19 @@ async function(){
 
 
         alert(
-            "Member saved to Firebase."
+            "Member saved successfully."
         );
 
 
-        document
-        .getElementById("mName")
-        .value="";
-
-
-        document
-        .getElementById("mEmail")
-        .value="";
-
-
-        document
-        .getElementById("mPhone")
-        .value="";
-
-
-        document
-        .getElementById("mStart")
-        .value="";
+        [
+            "mName",
+            "mEmail",
+            "mPhone",
+            "mStart"
+        ]
+        .forEach(
+            id=>setValue(id,"")
+        );
 
 
         await loadMembers();
@@ -2136,7 +2388,7 @@ async function(){
         console.error(error);
 
         alert(
-            "Firebase error: " +
+            "Firebase error:\n\n"+
             error.message
         );
 
@@ -2145,16 +2397,15 @@ async function(){
 };
 
 
-
 /* =====================================================
-   CLASSROOM LOAD
+   LOAD CLASSROOM
 ===================================================== */
 
 async function loadClassroom(){
 
     try{
 
-        const snap =
+        const snap=
         await getDocs(
             collection(
                 db,
@@ -2172,7 +2423,6 @@ async function loadClassroom(){
             items.push({
 
                 id:s.id,
-
                 ...s.data()
 
             });
@@ -2223,12 +2473,11 @@ async function loadClassroom(){
 }
 
 
-
 /* =====================================================
    NEW ITEM
 ===================================================== */
 
-window.newItem =
+window.newItem=
 function(){
 
     editingId=null;
@@ -2242,24 +2491,27 @@ function(){
 };
 
 
-
 /* =====================================================
-   PARENTS
+   PARENT LIST
 ===================================================== */
 
 function populateParents(){
 
-    const select =
+    const select=
     document
     .getElementById(
         "itemParent"
     );
 
 
+    if(!select)
+        return;
+
+
     select.innerHTML=`
 
     <option value="">
-    Top Level — Phase
+    Top Level
     </option>
 
     `;
@@ -2272,14 +2524,13 @@ function populateParents(){
     .forEach(
     item=>{
 
-        const option =
+        const option=
         document.createElement(
             "option"
         );
 
 
-        option.value=
-        item.id;
+        option.value=item.id;
 
 
         option.textContent=
@@ -2295,10 +2546,9 @@ function populateParents(){
 }
 
 
-
 function getFullPath(id){
 
-    const current =
+    const current=
     items.find(
         x=>x.id===id
     );
@@ -2340,16 +2590,13 @@ function getFullPath(id){
     }
 
 
-    return result.join(
-        " → "
-    );
+    return result.join(" → ");
 
 }
 
 
-
 /* =====================================================
-   TYPE CHANGE
+   ITEM TYPE
 ===================================================== */
 
 document
@@ -2368,165 +2615,547 @@ function(){
 });
 
 
-
 /* =====================================================
-   IMAGE PREVIEW
+   ITEM IMAGE SELECT
 ===================================================== */
 
 document
 .getElementById("itemImage")
 .addEventListener(
 "change",
-function(){
+async function(){
 
     const file=
     this.files[0];
 
 
-    const preview=
-    document
-    .getElementById(
-        "imagePreview"
-    );
+    if(!file)
+        return;
 
 
-    const image=
-    document
-    .getElementById(
-        "imagePreviewImg"
-    );
+    if(!file.type.startsWith("image/")){
 
+        alert(
+            "Please select an image."
+        );
 
-    if(!file){
-
-        preview.style.display="none";
+        this.value="";
 
         return;
 
     }
 
 
-    const reader=
-    new FileReader();
+    try{
+
+        selectedItemImage=
+        await compressImage(file);
 
 
-    reader.onload=
-    function(e){
-
-        image.src=
-        e.target.result;
-
-        preview.style.display=
-        "block";
-
-    };
+        const previewURL=
+        URL.createObjectURL(
+            selectedItemImage
+        );
 
 
-    reader.readAsDataURL(file);
+        document
+        .getElementById("previewImage")
+        .src=previewURL;
+
+
+        document
+        .getElementById("imagePreview")
+        .style.display="block";
+
+
+        document
+        .getElementById("imageStatus")
+        .textContent=
+        "Image ready. It will be compressed before upload.";
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "Could not prepare image."
+        );
+
+    }
 
 });
 
+
+/* =====================================================
+   COMMUNITY IMAGE SELECT
+===================================================== */
+
+document
+.getElementById("communityImage")
+.addEventListener(
+"change",
+async function(){
+
+    const file=
+    this.files[0];
+
+
+    if(!file)
+        return;
+
+
+    if(!file.type.startsWith("image/")){
+
+        alert(
+            "Please select an image."
+        );
+
+        this.value="";
+
+        return;
+
+    }
+
+
+    try{
+
+        selectedCommunityImage=
+        await compressImage(file);
+
+
+        const previewURL=
+        URL.createObjectURL(
+            selectedCommunityImage
+        );
+
+
+        document
+        .getElementById("communityPreviewImage")
+        .src=previewURL;
+
+
+        document
+        .getElementById("communityImagePreview")
+        .style.display="block";
+
+
+        document
+        .getElementById(
+            "communityImageStatus"
+        )
+        .textContent=
+        "Image ready for upload.";
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "Could not prepare image."
+        );
+
+    }
+
+});
+
+
+/* =====================================================
+   IMAGE COMPRESSION
+===================================================== */
+
+function compressImage(file){
+
+    return new Promise(
+    (resolve,reject)=>{
+
+        const reader=
+        new FileReader();
+
+
+        reader.onload=
+        event=>{
+
+            const img=
+            new Image();
+
+
+            img.onload=
+            ()=>{
+
+                const MAX_SIZE=1400;
+
+
+                let width=
+                img.width;
+
+                let height=
+                img.height;
+
+
+                if(width>MAX_SIZE || height>MAX_SIZE){
+
+                    if(width>height){
+
+                        height=
+                        Math.round(
+                            height*
+                            MAX_SIZE/
+                            width
+                        );
+
+                        width=
+                        MAX_SIZE;
+
+                    }
+                    else{
+
+                        width=
+                        Math.round(
+                            width*
+                            MAX_SIZE/
+                            height
+                        );
+
+                        height=
+                        MAX_SIZE;
+
+                    }
+
+                }
+
+
+                const canvas=
+                document.createElement(
+                    "canvas"
+                );
+
+
+                canvas.width=width;
+
+                canvas.height=height;
+
+
+                const ctx=
+                canvas.getContext(
+                    "2d"
+                );
+
+
+                ctx.drawImage(
+                    img,
+                    0,
+                    0,
+                    width,
+                    height
+                );
+
+
+                canvas.toBlob(
+                blob=>{
+
+                    if(!blob){
+
+                        reject(
+                            new Error(
+                                "Image compression failed."
+                            )
+                        );
+
+                        return;
+
+                    }
+
+
+                    const compressed=
+                    new File(
+                        [blob],
+                        "image.jpg",
+                        {
+                            type:"image/jpeg",
+                            lastModified:Date.now()
+                        }
+                    );
+
+
+                    resolve(
+                        compressed
+                    );
+
+                },
+                "image/jpeg",
+                0.78
+                );
+
+            };
+
+
+            img.onerror=
+            ()=>reject(
+                new Error(
+                    "Could not read image."
+                )
+            );
+
+
+            img.src=
+            event.target.result;
+
+        };
+
+
+        reader.onerror=
+        ()=>reject(
+            new Error(
+                "Could not read file."
+            )
+        );
+
+
+        reader.readAsDataURL(file);
+
+    });
+
+}
+
+
+/* =====================================================
+   REMOVE ITEM IMAGE
+===================================================== */
+
+window.removeSelectedImage=
+function(){
+
+    selectedItemImage=null;
+
+
+    document
+    .getElementById("itemImage")
+    .value="";
+
+
+    document
+    .getElementById("previewImage")
+    .src="";
+
+
+    document
+    .getElementById("imagePreview")
+    .style.display="none";
+
+
+    document
+    .getElementById("imageStatus")
+    .textContent="";
+
+};
+
+
+/* =====================================================
+   REMOVE COMMUNITY IMAGE
+===================================================== */
+
+window.removeCommunityImage=
+function(){
+
+    selectedCommunityImage=null;
+
+
+    document
+    .getElementById("communityImage")
+    .value="";
+
+
+    document
+    .getElementById(
+        "communityPreviewImage"
+    )
+    .src="";
+
+
+    document
+    .getElementById(
+        "communityImagePreview"
+    )
+    .style.display="none";
+
+
+    document
+    .getElementById(
+        "communityImageStatus"
+    )
+    .textContent="";
+
+};
 
 
 /* =====================================================
    UPLOAD IMAGE
 ===================================================== */
 
-async function uploadImage(file){
+async function uploadImage(
+    file,
+    folder,
+    progressElementId,
+    statusElementId
+){
 
     if(!file)
-        return null;
+        return "";
 
 
-    const safeName=
-    file.name
-    .replace(
-        /[^a-zA-Z0-9._-]/g,
-        "_"
+    const status=
+    document.getElementById(
+        statusElementId
     );
 
 
-    const path=
-    "classroom/" +
-    Date.now() +
+    const progress=
+    document.getElementById(
+        progressElementId
+    );
+
+
+    if(status)
+        status.textContent=
+        "Uploading compressed image...";
+
+
+    if(progress)
+        progress.style.display="block";
+
+
+    /*
+      uploadBytes does not expose detailed progress,
+      so we show a fast visual progress indicator.
+    */
+
+    if(progress){
+
+        progress
+        .querySelector(
+            ".upload-progress-fill"
+        )
+        .style.width="35%";
+
+    }
+
+
+    const fileName=
+    Date.now()+
     "_" +
-    safeName;
+    Math.random()
+    .toString(36)
+    .substring(2,9)+
+    ".jpg";
 
 
     const storageRef=
     ref(
         storage,
-        path
+        folder+"/"+fileName
     );
 
 
-    await uploadBytes(
-        storageRef,
-        file
-    );
+    try{
+
+        await uploadBytes(
+            storageRef,
+            file,
+            {
+                contentType:"image/jpeg"
+            }
+        );
 
 
-    const url=
-    await getDownloadURL(
-        storageRef
-    );
+        if(progress){
+
+            progress
+            .querySelector(
+                ".upload-progress-fill"
+            )
+            .style.width="80%";
+
+        }
 
 
-    return {
+        const url=
+        await getDownloadURL(
+            storageRef
+        );
 
-        url,
-        path
 
-    };
+        if(progress){
+
+            progress
+            .querySelector(
+                ".upload-progress-fill"
+            )
+            .style.width="100%";
+
+        }
+
+
+        if(status)
+            status.textContent=
+            "Image uploaded successfully.";
+
+
+        return url;
+
+    }
+
+    catch(error){
+
+        if(status)
+            status.textContent=
+            "Image upload failed.";
+
+
+        throw error;
+
+    }
 
 }
-
 
 
 /* =====================================================
    SAVE CLASSROOM ITEM
 ===================================================== */
 
-window.saveItem =
+window.saveItem=
 async function(){
 
-    const type =
-    document
-    .getElementById("itemType")
-    .value;
+    const type=
+    value("itemType");
 
+    const parentId=
+    value("itemParent") || null;
 
-    const parentId =
-    document
-    .getElementById("itemParent")
-    .value ||
-    null;
+    const title=
+    value("itemTitle").trim();
 
+    const description=
+    value("itemDescription").trim();
 
-    const title =
-    document
-    .getElementById("itemTitle")
-    .value.trim();
-
-
-    const description =
-    document
-    .getElementById("itemDescription")
-    .value.trim();
-
-
-    const unlockDay =
+    const unlockDay=
     Number(
-        document
-        .getElementById("unlockDay")
-        .value
+        value("unlockDay")
     );
 
-
-    const hasChildren =
+    const hasChildren=
     document
-    .getElementById("allowChildren")
+    .getElementById(
+        "allowChildren"
+    )
     .checked;
+
+
+    const status=
+    value("itemStatus");
 
 
     if(!title){
@@ -2540,25 +3169,19 @@ async function(){
     }
 
 
-    const videoUrl =
-    document
-    .getElementById("videoUrl")
-    .value
-    .trim();
+    if(
+        !unlockDay ||
+        unlockDay<1 ||
+        unlockDay>90
+    ){
 
+        alert(
+            "Unlock Day must be between 1 and 90."
+        );
 
-    const driveUrl =
-    document
-    .getElementById("driveUrl")
-    .value
-    .trim();
+        return;
 
-
-    const driveName =
-    document
-    .getElementById("driveName")
-    .value
-    .trim();
+    }
 
 
     const dayContent={
@@ -2602,116 +3225,67 @@ async function(){
     };
 
 
-    const data={
-
-        type,
-
-        parentId,
-
-        title,
-
-        description,
-
-        unlockDay,
-
-        hasChildren,
-
-        dayContent,
-
-        videoUrl,
-
-        driveUrl,
-
-        driveName,
-
-        status:"published",
-
-        updatedAt:
-        new Date()
-
-    };
-
-
     try{
 
-        const uploadStatus=
-        document
-        .getElementById(
-            "uploadStatus"
-        );
-
-
-        const imageFile=
-        document
-        .getElementById(
-            "itemImage"
-        )
-        .files[0];
-
-
-        uploadStatus.style.display=
-        "block";
+        let imageUrl=
+        value("existingImageUrl");
 
 
         /*
-        Upload a NEW image only if
-        the admin selected one.
+        Upload only when a NEW image was selected.
         */
 
+        if(selectedItemImage){
 
-        if(imageFile){
-
-            uploadStatus.textContent=
-            "Uploading image...";
-
-
-            const uploaded=
+            imageUrl=
             await uploadImage(
-                imageFile
+                selectedItemImage,
+                "classroom",
+                "imageProgress",
+                "imageStatus"
             );
-
-
-            if(uploaded){
-
-                data.imageUrl=
-                uploaded.url;
-
-                data.imagePath=
-                uploaded.path;
-
-            }
-
-        }
-        else if(editingId){
-
-            /*
-            Keep existing image
-            if no new image was selected.
-            */
-
-            const oldItem=
-            items.find(
-                x=>x.id===editingId
-            );
-
-
-            if(oldItem){
-
-                data.imageUrl=
-                oldItem.imageUrl ||
-                "";
-
-                data.imagePath=
-                oldItem.imagePath ||
-                "";
-
-            }
 
         }
 
 
-        uploadStatus.textContent=
-        "Saving classroom item...";
+        const data={
+
+            type,
+
+            parentId,
+
+            title,
+
+            description,
+
+            unlockDay,
+
+            hasChildren,
+
+            status,
+
+            imageUrl:
+            imageUrl || "",
+
+            videoUrl:
+            value("videoUrl").trim(),
+
+            driveUrl:
+            value("driveUrl").trim(),
+
+            dayContent,
+
+            order:
+            editingId
+            ?
+            getExistingOrder(editingId)
+            :
+            Date.now(),
+
+            updatedAt:
+            new Date()
+
+        };
 
 
         if(editingId){
@@ -2727,18 +3301,15 @@ async function(){
 
 
             alert(
-                "Updated successfully."
+                "Classroom item updated successfully."
             );
 
         }
+
         else{
 
             data.createdAt=
             new Date();
-
-
-            data.order=
-            Date.now();
 
 
             await addDoc(
@@ -2751,21 +3322,20 @@ async function(){
 
 
             alert(
-                "Saved successfully."
+                "Classroom item saved successfully."
             );
 
         }
 
 
-        uploadStatus.style.display=
-        "none";
-
-
         editingId=null;
+
+        selectedItemImage=null;
 
 
         await loadClassroom();
 
+        clearEditor();
 
         openSection("classroom");
 
@@ -2774,27 +3344,38 @@ async function(){
     catch(error){
 
         console.error(
-            "SAVE ERROR:",
+            "CLASSROOM SAVE ERROR:",
             error
         );
 
 
-        document
-        .getElementById(
-            "uploadStatus"
-        )
-        .style.display="none";
-
-
         alert(
-            "Firebase error:\n\n" +
-            error.message
+            "Firebase error:\n\n"+
+            error.message+
+            "\n\nIf this is an image error, we may need to update Firebase Storage rules."
         );
 
     }
 
 };
 
+
+/* =====================================================
+   GET EXISTING ORDER
+===================================================== */
+
+function getExistingOrder(id){
+
+    const item=
+    items.find(
+        x=>x.id===id
+    );
+
+
+    return item?.order ||
+    Date.now();
+
+}
 
 
 /* =====================================================
@@ -2803,14 +3384,14 @@ async function(){
 
 function renderTree(){
 
-    const container =
+    const container=
     document
     .getElementById(
         "treeContainer"
     );
 
 
-    const roots =
+    const roots=
     items
     .filter(
         x=>!x.parentId
@@ -2857,15 +3438,16 @@ function renderTree(){
 }
 
 
+/* =====================================================
+   TREE ITEM
+===================================================== */
 
 function treeItem(item){
 
-    const children =
+    const children=
     items
     .filter(
-        x=>
-        x.parentId===
-        item.id
+        x=>x.parentId===item.id
     )
     .sort(
         (a,b)=>
@@ -2874,7 +3456,8 @@ function treeItem(item){
     );
 
 
-    let icon="📁";
+    let icon=
+    "📁";
 
 
     if(item.type==="lesson")
@@ -2882,22 +3465,25 @@ function treeItem(item){
 
 
     if(item.type==="subsection")
-        icon="📂";
+        icon="🗂️";
 
 
-    let resources="";
+    const media=
+    item.imageUrl
+    ? " 🖼️"
+    : "";
 
 
-    if(item.imageUrl)
-        resources+=" 🖼️";
+    const video=
+    item.videoUrl
+    ? " 🎥"
+    : "";
 
 
-    if(item.videoUrl)
-        resources+=" 🎥";
-
-
-    if(item.driveUrl)
-        resources+=" 📄";
+    const drive=
+    item.driveUrl
+    ? " 📁"
+    : "";
 
 
     return `
@@ -2913,36 +3499,49 @@ function treeItem(item){
             ${children.length?"▶":""}
             </button>
 
+
             <span>
             ${icon}
             </span>
+
 
             <div class="tree-title">
 
             ${safe(item.title)}
 
-            <span class="badge">
-            ${safe(item.type)}
-            </span>
-
-            ${resources}
+            ${media}
+            ${video}
+            ${drive}
 
             </div>
+
 
             <div class="tree-meta">
 
-            Unlock Day ${item.unlockDay||1}
+            Day ${item.unlockDay||1}
+
+            ${item.status==="draft"
+            ? " • Draft"
+            : ""}
 
             </div>
 
+
             <div class="actions">
 
-            <button
-            class="small"
-            onclick="addChild('${item.id}')"
-            >
-            + Child
-            </button>
+            ${
+                item.hasChildren===true
+                ?
+                `<button
+                class="small"
+                onclick="addChild('${item.id}')"
+                >
+                + Child
+                </button>`
+                :
+                ""
+            }
+
 
             <button
             class="small"
@@ -2951,12 +3550,14 @@ function treeItem(item){
             Edit
             </button>
 
+
             <button
             class="small"
             onclick="preview('${item.id}')"
             >
             Preview
             </button>
+
 
             <button
             class="small"
@@ -2990,12 +3591,11 @@ function treeItem(item){
 }
 
 
-
 /* =====================================================
    TREE TOGGLE
 ===================================================== */
 
-window.toggle =
+window.toggle=
 function(id){
 
     const box=
@@ -3016,12 +3616,11 @@ function(id){
 };
 
 
-
 /* =====================================================
    ADD CHILD
 ===================================================== */
 
-window.addChild =
+window.addChild=
 function(parentId){
 
     const parent=
@@ -3036,7 +3635,7 @@ function(parentId){
     ){
 
         alert(
-            "This item does not allow children. Edit it and enable 'Allow children inside this item'."
+            "This item does not allow children."
         );
 
         return;
@@ -3046,9 +3645,7 @@ function(parentId){
 
     editingId=null;
 
-
     clearEditor();
-
 
     populateParents();
 
@@ -3061,32 +3658,12 @@ function(parentId){
     parentId;
 
 
-    /*
-    Automatically choose the
-    next logical level.
-    */
-
-
-    if(parent.type==="module"){
-
-        document
-        .getElementById(
-            "itemType"
-        )
-        .value=
-        "subsection";
-
-    }
-    else if(parent.type==="subsection"){
-
-        document
-        .getElementById(
-            "itemType"
-        )
-        .value=
-        "lesson";
-
-    }
+    document
+    .getElementById(
+        "itemType"
+    )
+    .value=
+    "subsection";
 
 
     document
@@ -3094,13 +3671,7 @@ function(parentId){
         "dayContent"
     )
     .style.display=
-    document
-    .getElementById(
-        "itemType"
-    )
-    .value==="lesson"
-    ?"block"
-    :"none";
+    "none";
 
 
     openSection(
@@ -3110,12 +3681,11 @@ function(parentId){
 };
 
 
-
 /* =====================================================
-   EDIT
+   EDIT ITEM
 ===================================================== */
 
-window.editItem =
+window.editItem=
 function(id){
 
     const item=
@@ -3142,49 +3712,34 @@ function(id){
     "Edit Classroom Item";
 
 
-    document
-    .getElementById(
-        "itemType"
-    )
-    .value=
-    item.type||
-    "module";
+    setValue(
+        "itemType",
+        item.type || "module"
+    );
 
 
-    document
-    .getElementById(
-        "itemParent"
-    )
-    .value=
-    item.parentId||
-    "";
+    setValue(
+        "itemParent",
+        item.parentId || ""
+    );
 
 
-    document
-    .getElementById(
-        "itemTitle"
-    )
-    .value=
-    item.title||
-    "";
+    setValue(
+        "itemTitle",
+        item.title || ""
+    );
 
 
-    document
-    .getElementById(
-        "itemDescription"
-    )
-    .value=
-    item.description||
-    "";
+    setValue(
+        "itemDescription",
+        item.description || ""
+    );
 
 
-    document
-    .getElementById(
-        "unlockDay"
-    )
-    .value=
-    item.unlockDay||
-    1;
+    setValue(
+        "unlockDay",
+        item.unlockDay || 1
+    );
 
 
     document
@@ -3195,81 +3750,69 @@ function(id){
     item.hasChildren===true;
 
 
-    document
-    .getElementById(
-        "videoUrl"
-    )
-    .value=
-    item.videoUrl||
-    "";
+    setValue(
+        "itemStatus",
+        item.status || "published"
+    );
 
 
-    document
-    .getElementById(
-        "driveUrl"
-    )
-    .value=
-    item.driveUrl||
-    "";
+    setValue(
+        "videoUrl",
+        item.videoUrl || ""
+    );
 
 
-    document
-    .getElementById(
-        "driveName"
-    )
-    .value=
-    item.driveName||
-    "";
+    setValue(
+        "driveUrl",
+        item.driveUrl || ""
+    );
 
 
-    const currentImage=
-    document
-    .getElementById(
-        "currentImage"
+    /*
+    Hidden existing image URL.
+    */
+
+    setValue(
+        "existingImageUrl",
+        item.imageUrl || ""
     );
 
 
     if(item.imageUrl){
 
-        currentImage.innerHTML=`
+        document
+        .getElementById(
+            "previewImage"
+        )
+        .src=
+        item.imageUrl;
 
-        <p>
-        <strong>Current Image</strong>
-        </p>
 
-        <img
-        src="${safe(item.imageUrl)}"
-        alt="Current image"
-        >
+        document
+        .getElementById(
+            "imagePreview"
+        )
+        .style.display=
+        "block";
 
-        `;
+
+        document
+        .getElementById(
+            "imageStatus"
+        )
+        .textContent=
+        "Current image. Choose another image to replace it.";
 
     }
     else{
 
-        currentImage.innerHTML="";
+        removeSelectedImage();
 
     }
 
 
-    document
-    .getElementById(
-        "imagePreview"
-    )
-    .style.display=
-    "none";
-
-
-    document
-    .getElementById(
-        "itemImage"
-    )
-    .value="";
-
-
     const d=
-    item.dayContent||
-    {};
+    item.dayContent || {};
 
 
     setValue(
@@ -3277,66 +3820,55 @@ function(id){
         d.movement
     );
 
-
     setValue(
         "movementInstructions",
         d.movementInstructions
     );
-
 
     setValue(
         "hydration",
         d.hydration
     );
 
-
     setValue(
         "hydrationInstructions",
         d.hydrationInstructions
     );
-
 
     setValue(
         "protein",
         d.protein
     );
 
-
     setValue(
         "proteinInstructions",
         d.proteinInstructions
     );
-
 
     setValue(
         "sleep",
         d.sleep
     );
 
-
     setValue(
         "sleepInstructions",
         d.sleepInstructions
     );
-
 
     setValue(
         "nutrition",
         d.nutrition
     );
 
-
     setValue(
         "mind",
         d.mind
     );
 
-
     setValue(
         "sunlight",
         d.sunlight
     );
-
 
     setValue(
         "recovery",
@@ -3361,12 +3893,11 @@ function(id){
 };
 
 
-
 /* =====================================================
-   DELETE CLASSROOM ITEM
+   DELETE ITEM
 ===================================================== */
 
-window.removeItem =
+window.removeItem=
 async function(id){
 
     const item=
@@ -3403,64 +3934,10 @@ async function(id){
 
     try{
 
-        /*
-        Delete image from
-        Firebase Storage too.
-        */
-
-        if(item.imagePath){
-
-            try{
-
-                await deleteObject(
-                    ref(
-                        storage,
-                        item.imagePath
-                    )
-                );
-
-            }
-            catch(storageError){
-
-                console.warn(
-                    "Could not delete image:",
-                    storageError
-                );
-
-            }
-
-        }
-
-
-        /*
-        Delete direct children.
-        */
-
         for(
             const child
             of children
         ){
-
-            if(child.imagePath){
-
-                try{
-
-                    await deleteObject(
-                        ref(
-                            storage,
-                            child.imagePath
-                        )
-                    );
-
-                }
-                catch(e){
-
-                    console.warn(e);
-
-                }
-
-            }
-
 
             await deleteDoc(
                 doc(
@@ -3486,7 +3963,7 @@ async function(id){
 
 
         alert(
-            "Deleted."
+            "Deleted successfully."
         );
 
     }
@@ -3504,12 +3981,11 @@ async function(id){
 };
 
 
-
 /* =====================================================
    PREVIEW
 ===================================================== */
 
-window.preview =
+window.preview=
 function(id){
 
     const item=
@@ -3523,8 +3999,7 @@ function(id){
 
 
     const d=
-    item.dayContent||
-    {};
+    item.dayContent || {};
 
 
     let html=`
@@ -3536,16 +4011,15 @@ function(id){
     ${
         item.imageUrl
         ?
-        `
-        <img
+        `<img
         class="preview-image"
         src="${safe(item.imageUrl)}"
         alt="${safe(item.title)}"
-        >
-        `
+        >`
         :
         ""
     }
+
 
     ${
         item.description
@@ -3554,6 +4028,7 @@ function(id){
         :
         ""
     }
+
 
     <p>
     <b>Unlock Day:</b>
@@ -3567,18 +4042,17 @@ function(id){
 
         html+=`
 
-        <h3>
-        🎥 Video
-        </h3>
+        <div class="preview-video">
 
         <a
-        class="video-link"
         href="${safe(item.videoUrl)}"
         target="_blank"
         rel="noopener"
         >
-        ▶ Open Video
+        🎥 Open Video
         </a>
+
+        </div>
 
         `;
 
@@ -3589,18 +4063,17 @@ function(id){
 
         html+=`
 
-        <h3>
-        📄 Resource
-        </h3>
+        <div class="preview-video">
 
         <a
-        class="drive-link"
         href="${safe(item.driveUrl)}"
         target="_blank"
         rel="noopener"
         >
-        📄 ${safe(item.driveName || "Open Google Drive Resource")}
+        📁 Open Google Drive Resource
         </a>
+
+        </div>
 
         `;
 
@@ -3667,6 +4140,10 @@ function(id){
 
             html+=`
 
+            <div
+            class="content-section"
+            >
+
             <h3>
             ${s[0]}
             </h3>
@@ -3682,6 +4159,8 @@ function(id){
                 :
                 ""
             }
+
+            </div>
 
             `;
 
@@ -3704,6 +4183,255 @@ function(id){
 
 };
 
+
+/* =====================================================
+   CLEAR EDITOR
+===================================================== */
+
+function clearEditor(){
+
+    setValue(
+        "editorHeading",
+        "Add Classroom Item"
+    );
+
+
+    document
+    .getElementById(
+        "editorHeading"
+    )
+    .textContent=
+    "Add Classroom Item";
+
+
+    setValue(
+        "itemType",
+        "module"
+    );
+
+
+    setValue(
+        "itemParent",
+        ""
+    );
+
+
+    setValue(
+        "itemTitle",
+        ""
+    );
+
+
+    setValue(
+        "itemDescription",
+        ""
+    );
+
+
+    setValue(
+        "unlockDay",
+        1
+    );
+
+
+    document
+    .getElementById(
+        "allowChildren"
+    )
+    .checked=false;
+
+
+    setValue(
+        "itemStatus",
+        "published"
+    );
+
+
+    setValue(
+        "videoUrl",
+        ""
+    );
+
+
+    setValue(
+        "driveUrl",
+        ""
+    );
+
+
+    setValue(
+        "existingImageUrl",
+        ""
+    );
+
+
+    [
+
+        "movement",
+        "movementInstructions",
+        "hydration",
+        "hydrationInstructions",
+        "protein",
+        "proteinInstructions",
+        "sleep",
+        "sleepInstructions",
+        "nutrition",
+        "mind",
+        "sunlight",
+        "recovery"
+
+    ]
+    .forEach(
+        id=>setValue(id,"")
+    );
+
+
+    selectedItemImage=null;
+
+
+    document
+    .getElementById(
+        "itemImage"
+    )
+    .value="";
+
+
+    document
+    .getElementById(
+        "imagePreview"
+    )
+    .style.display="none";
+
+
+    document
+    .getElementById(
+        "imageStatus"
+    )
+    .textContent="";
+
+
+    document
+    .getElementById(
+        "imageProgress"
+    )
+    .style.display="none";
+
+
+    document
+    .getElementById(
+        "dayContent"
+    )
+    .style.display="none";
+
+}
+
+
+/* =====================================================
+   VIDEO PREVIEW
+===================================================== */
+
+document
+.getElementById("videoUrl")
+.addEventListener(
+"input",
+function(){
+
+    const url=
+    this.value.trim();
+
+
+    const box=
+    document
+    .getElementById(
+        "videoLinkPreview"
+    );
+
+
+    if(!url){
+
+        box.style.display="none";
+
+        box.innerHTML="";
+
+        return;
+
+    }
+
+
+    box.style.display="block";
+
+
+    box.innerHTML=`
+
+    🎥 Video link added:
+
+    <br>
+
+    <a
+    href="${safe(url)}"
+    target="_blank"
+    rel="noopener"
+    >
+    ${safe(url)}
+    </a>
+
+    `;
+
+});
+
+
+/* =====================================================
+   DRIVE PREVIEW
+===================================================== */
+
+document
+.getElementById("driveUrl")
+.addEventListener(
+"input",
+function(){
+
+    const url=
+    this.value.trim();
+
+
+    const box=
+    document
+    .getElementById(
+        "driveLinkPreview"
+    );
+
+
+    if(!url){
+
+        box.style.display="none";
+
+        box.innerHTML="";
+
+        return;
+
+    }
+
+
+    box.style.display="block";
+
+
+    box.innerHTML=`
+
+    📁 Google Drive resource added:
+
+    <br>
+
+    <a
+    href="${safe(url)}"
+    target="_blank"
+    rel="noopener"
+    >
+    ${safe(url)}
+    </a>
+
+    `;
+
+});
 
 
 /* =====================================================
@@ -3732,7 +4460,6 @@ async function loadCommunity(){
             posts.push({
 
                 id:s.id,
-
                 ...s.data()
 
             });
@@ -3744,14 +4471,10 @@ async function loadCommunity(){
         (a,b)=>{
 
             const aTime=
-            a.createdAt?.seconds||
-            0;
-
+            a.createdAt?.seconds || 0;
 
             const bTime=
-            b.createdAt?.seconds||
-            0;
-
+            b.createdAt?.seconds || 0;
 
             return bTime-aTime;
 
@@ -3799,62 +4522,83 @@ async function loadCommunity(){
             class="community-post"
             >
 
-                <div
-                class="post-author"
+            <div class="post-author">
+
+            ${safe(
+                post.name ||
+                post.email ||
+                "Member"
+            )}
+
+            </div>
+
+
+            <div class="post-date">
+
+            ${formatDate(
+                post.createdAt
+            )}
+
+            </div>
+
+
+            <div>
+
+            ${safe(
+                post.content ||
+                post.text ||
+                ""
+            )}
+
+            </div>
+
+
+            ${
+                post.imageUrl
+                ?
+                `<img
+                class="community-image"
+                src="${safe(post.imageUrl)}"
+                alt="Community image"
+                >`
+                :
+                ""
+            }
+
+
+            ${
+                post.videoUrl
+                ?
+                `<p>
+                <a
+                href="${safe(post.videoUrl)}"
+                target="_blank"
+                rel="noopener"
                 >
-                ${safe(
-                    post.name||
-                    post.email||
-                    "Member"
-                )}
-                </div>
+                🎥 Open Video
+                </a>
+                </p>`
+                :
+                ""
+            }
 
-                <div
-                class="post-date"
+
+            ${
+                post.driveUrl
+                ?
+                `<p>
+                <a
+                href="${safe(post.driveUrl)}"
+                target="_blank"
+                rel="noopener"
                 >
-                ${formatDate(
-                    post.createdAt
-                )}
-                </div>
+                📁 Open Google Drive
+                </a>
+                </p>`
+                :
+                ""
+            }
 
-                <div>
-
-                ${safe(
-                    post.content||
-                    post.text||
-                    ""
-                )}
-
-                </div>
-
-                ${
-                    post.imageUrl
-                    ?
-                    `
-                    <div>
-
-                    <img
-                    class="community-image"
-                    src="${safe(post.imageUrl)}"
-                    alt="Community image"
-                    >
-
-                    </div>
-                    `
-                    :
-                    ""
-                }
-
-                <div class="post-actions">
-
-                <button
-                class="btn btn-danger"
-                onclick="deleteCommunityPost('${post.id}')"
-                >
-                Delete Post
-                </button>
-
-                </div>
 
             </div>
 
@@ -3880,7 +4624,7 @@ async function loadCommunity(){
 
         <div class="empty">
 
-        Unable to load community.
+        Community could not be loaded.
 
         <br><br>
 
@@ -3895,200 +4639,136 @@ async function loadCommunity(){
 }
 
 
-
 /* =====================================================
-   DELETE COMMUNITY POST
+   SAVE COMMUNITY POST
 ===================================================== */
 
-window.deleteCommunityPost =
-async function(id){
+window.saveCommunityPost=
+async function(){
+
+    const content=
+    value("communityText").trim();
+
+
+    const videoUrl=
+    value("communityVideo").trim();
+
+
+    const driveUrl=
+    value("communityDrive").trim();
+
 
     if(
-        !confirm(
-            "Delete this community post?"
-        )
-    )
+        !content &&
+        !selectedCommunityImage &&
+        !videoUrl &&
+        !driveUrl
+    ){
+
+        alert(
+            "Please add some content, an image, video or Drive link."
+        );
+
         return;
+
+    }
 
 
     try{
 
-        await deleteDoc(
-            doc(
-                db,
+        let imageUrl="";
+
+
+        if(selectedCommunityImage){
+
+            imageUrl=
+            await uploadImage(
+                selectedCommunityImage,
                 "community",
-                id
-            )
+                "communityImageProgress",
+                "communityImageStatus"
+            );
+
+        }
+
+
+        await addDoc(
+            collection(
+                db,
+                "community"
+            ),
+            {
+
+                name:"Mahnoor Dietitian",
+
+                email:ADMIN,
+
+                content,
+
+                imageUrl,
+
+                videoUrl,
+
+                driveUrl,
+
+                createdAt:
+                new Date()
+
+            }
         );
+
+
+        alert(
+            "Community post published."
+        );
+
+
+        setValue(
+            "communityText",
+            ""
+        );
+
+
+        setValue(
+            "communityVideo",
+            ""
+        );
+
+
+        setValue(
+            "communityDrive",
+            ""
+        );
+
+
+        removeCommunityImage();
 
 
         await loadCommunity();
 
 
-        alert(
-            "Post deleted."
+        openSection(
+            "community"
         );
 
     }
 
     catch(error){
 
-        console.error(error);
+        console.error(
+            "COMMUNITY ERROR:",
+            error
+        );
+
 
         alert(
+            "Could not publish post:\n\n"+
             error.message
         );
 
     }
 
 };
-
-
-
-/* =====================================================
-   CLEAR EDITOR
-===================================================== */
-
-function clearEditor(){
-
-    document
-    .getElementById(
-        "editorHeading"
-    )
-    .textContent=
-    "Add Classroom Item";
-
-
-    document
-    .getElementById(
-        "itemType"
-    )
-    .value=
-    "module";
-
-
-    document
-    .getElementById(
-        "itemParent"
-    )
-    .value="";
-
-
-    document
-    .getElementById(
-        "itemTitle"
-    )
-    .value="";
-
-
-    document
-    .getElementById(
-        "itemDescription"
-    )
-    .value="";
-
-
-    document
-    .getElementById(
-        "unlockDay"
-    )
-    .value=1;
-
-
-    document
-    .getElementById(
-        "allowChildren"
-    )
-    .checked=false;
-
-
-    document
-    .getElementById(
-        "itemImage"
-    )
-    .value="";
-
-
-    document
-    .getElementById(
-        "videoUrl"
-    )
-    .value="";
-
-
-    document
-    .getElementById(
-        "driveUrl"
-    )
-    .value="";
-
-
-    document
-    .getElementById(
-        "driveName"
-    )
-    .value="";
-
-
-    document
-    .getElementById(
-        "currentImage"
-    )
-    .innerHTML="";
-
-
-    document
-    .getElementById(
-        "imagePreview"
-    )
-    .style.display=
-    "none";
-
-
-    [
-
-        "movement",
-
-        "movementInstructions",
-
-        "hydration",
-
-        "hydrationInstructions",
-
-        "protein",
-
-        "proteinInstructions",
-
-        "sleep",
-
-        "sleepInstructions",
-
-        "nutrition",
-
-        "mind",
-
-        "sunlight",
-
-        "recovery"
-
-    ]
-    .forEach(
-        id=>setValue(
-            id,
-            ""
-        )
-    );
-
-
-    document
-    .getElementById(
-        "dayContent"
-    )
-    .style.display=
-    "none";
-
-}
-
 
 
 /* =====================================================
@@ -4098,8 +4778,7 @@ function clearEditor(){
 function value(id){
 
     const el=
-    document
-    .getElementById(id);
+    document.getElementById(id);
 
 
     return el
@@ -4111,59 +4790,49 @@ function value(id){
 }
 
 
-
-function setValue(
-    id,
-    value
-){
+function setValue(id,val){
 
     const el=
-    document
-    .getElementById(id);
+    document.getElementById(id);
 
 
-    if(el)
+    if(el){
+
         el.value=
-        value||
-        "";
+        val ?? "";
+
+    }
 
 }
-
 
 
 function safe(value){
 
     return String(
-        value??""
+        value ?? ""
     )
-
     .replace(
         /&/g,
         "&amp;"
     )
-
     .replace(
         /</g,
         "&lt;"
     )
-
     .replace(
         />/g,
         "&gt;"
     )
-
     .replace(
         /"/g,
         "&quot;"
     )
-
     .replace(
         /'/g,
         "&#039;"
     );
 
 }
-
 
 
 function formatDate(timestamp){
@@ -4182,7 +4851,14 @@ function formatDate(timestamp){
         new Date(timestamp);
 
 
-        return date.toLocaleDateString();
+        return date.toLocaleDateString(
+            "en-GB",
+            {
+                day:"numeric",
+                month:"short",
+                year:"numeric"
+            }
+        );
 
     }
 
