@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
 
+<html lang="en">
 <head>
 
 <meta charset="UTF-8">
@@ -20,7 +20,8 @@
     --light:#F1EAF3;
     --border:#E6DDD3;
     --danger:#A44A4A;
-    --success:#557A61;
+    --success:#5C8064;
+    --gold:#B28A4A;
 }
 
 *{
@@ -57,7 +58,7 @@ select{
 }
 
 textarea{
-    min-height:120px;
+    min-height:130px;
     resize:vertical;
 }
 
@@ -72,11 +73,8 @@ label{
     margin-bottom:18px;
 }
 
-.help{
-    font-size:12px;
+small{
     color:#777;
-    margin-top:6px;
-    line-height:1.5;
 }
 
 /* =====================================================
@@ -118,7 +116,7 @@ label{
 }
 
 /* =====================================================
-   ADMIN
+   ADMIN APP
 ===================================================== */
 
 #adminApp{
@@ -148,6 +146,7 @@ label{
 }
 
 .logo small{
+    color:white;
     opacity:.7;
 }
 
@@ -181,13 +180,12 @@ label{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:30px;
     gap:15px;
+    margin-bottom:30px;
 }
 
 .topbar h1{
     margin:0;
-    color:var(--plum);
 }
 
 .admin-pill{
@@ -197,6 +195,10 @@ label{
     border-radius:30px;
     font-size:13px;
 }
+
+/* =====================================================
+   BUTTONS
+===================================================== */
 
 .btn{
     border:0;
@@ -223,6 +225,15 @@ label{
     background:var(--success);
 }
 
+.btn-small{
+    padding:7px 10px;
+    font-size:12px;
+}
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
 .section{
     display:none;
 }
@@ -232,7 +243,7 @@ label{
 }
 
 /* =====================================================
-   DASHBOARD CARDS
+   DASHBOARD
 ===================================================== */
 
 .stats{
@@ -255,30 +266,26 @@ label{
     margin-top:8px;
 }
 
+.dashboard-note{
+    margin-top:20px;
+    line-height:1.7;
+}
+
 /* =====================================================
-   TOOLBAR
+   CLASSROOM
 ===================================================== */
 
 .toolbar{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:20px;
     gap:20px;
+    margin-bottom:20px;
 }
 
 .toolbar h2{
     margin-bottom:5px;
 }
-
-.toolbar p{
-    margin-top:0;
-    color:#777;
-}
-
-/* =====================================================
-   CLASSROOM TREE
-===================================================== */
 
 .tree{
     background:white;
@@ -288,7 +295,7 @@ label{
 }
 
 .tree-item{
-    margin-bottom:7px;
+    margin-bottom:8px;
 }
 
 .tree-row{
@@ -309,6 +316,7 @@ label{
 .tree-meta{
     font-size:12px;
     color:#777;
+    white-space:nowrap;
 }
 
 .tree-toggle{
@@ -342,6 +350,37 @@ label{
     font-size:12px;
 }
 
+.small:hover{
+    border-color:var(--plum);
+}
+
+/* =====================================================
+   STATUS BADGES
+===================================================== */
+
+.badge{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.badge-published{
+    background:#E8F1E9;
+    color:var(--success);
+}
+
+.badge-draft{
+    background:#F4E8E8;
+    color:var(--danger);
+}
+
+.badge-lock{
+    background:#F1EAF3;
+    color:var(--plum);
+}
+
 /* =====================================================
    FORMS
 ===================================================== */
@@ -366,6 +405,7 @@ label{
     padding:20px;
     border-radius:12px;
     margin-top:18px;
+    background:#FCFAF7;
 }
 
 .editor-section h3{
@@ -373,27 +413,47 @@ label{
     margin-top:0;
 }
 
+.two-column{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.help{
+    background:var(--light);
+    padding:14px;
+    border-radius:10px;
+    margin-bottom:20px;
+    line-height:1.6;
+    font-size:13px;
+}
+
 /* =====================================================
    IMAGE UPLOAD
 ===================================================== */
 
-.media-box{
-    border:1px dashed var(--taupe);
-    background:#FCFAF7;
+.image-upload-box{
+    border:2px dashed var(--border);
     border-radius:12px;
     padding:20px;
-    margin-top:10px;
+    background:#FCFAF7;
 }
 
-.media-preview{
+.image-upload-box input{
+    border:0;
+    padding:5px 0;
+    background:transparent;
+}
+
+.image-preview{
     margin-top:15px;
     display:none;
 }
 
-.media-preview img{
-    max-width:100%;
+.image-preview img{
     width:100%;
-    max-height:320px;
+    max-width:420px;
+    max-height:280px;
     object-fit:cover;
     border-radius:12px;
     border:1px solid var(--border);
@@ -401,48 +461,59 @@ label{
 
 .upload-status{
     margin-top:10px;
-    font-size:13px;
     color:var(--plum);
+    font-size:13px;
 }
 
-.upload-progress{
-    height:8px;
-    background:#eee;
-    border-radius:20px;
-    overflow:hidden;
-    margin-top:10px;
-    display:none;
+.current-image{
+    margin-top:12px;
 }
 
-.upload-progress-fill{
-    height:100%;
-    width:0%;
-    background:var(--plum);
-    transition:width .2s;
-}
-
-.image-actions{
-    margin-top:10px;
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
+.current-image img{
+    width:180px;
+    max-height:130px;
+    object-fit:cover;
+    border-radius:9px;
+    border:1px solid var(--border);
 }
 
 /* =====================================================
-   MEDIA PREVIEW
+   LINK BOXES
 ===================================================== */
 
-.link-preview{
-    background:#FCFAF7;
+.link-box{
     border:1px solid var(--border);
     border-radius:10px;
-    padding:12px;
-    margin-top:8px;
+    padding:15px;
+    background:white;
+    margin-bottom:10px;
 }
 
-.link-preview a{
+.link-row{
+    display:grid;
+    grid-template-columns:1fr 2fr auto;
+    gap:8px;
+    align-items:center;
+}
+
+/* =====================================================
+   DAY CONTENT
+===================================================== */
+
+.day-content{
+    display:none;
+}
+
+.content-field{
+    margin-bottom:15px;
+}
+
+.content-field label{
     color:var(--plum);
-    word-break:break-all;
+}
+
+textarea.short{
+    min-height:80px;
 }
 
 /* =====================================================
@@ -470,7 +541,7 @@ label{
     background:white;
     border:1px solid var(--border);
     border-radius:15px;
-    overflow:hidden;
+    overflow:auto;
 }
 
 .table-head{
@@ -479,6 +550,47 @@ label{
     justify-content:space-between;
     align-items:center;
     gap:15px;
+}
+
+/* =====================================================
+   COMMUNITY
+===================================================== */
+
+.community-create{
+    max-width:900px;
+    margin-bottom:25px;
+}
+
+.community-post{
+    padding:20px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.community-post:last-child{
+    border-bottom:0;
+}
+
+.post-author{
+    color:var(--plum);
+    font-weight:bold;
+}
+
+.post-date{
+    font-size:12px;
+    color:#888;
+    margin:5px 0 12px;
+}
+
+.post-image{
+    margin-top:15px;
+}
+
+.post-image img{
+    width:100%;
+    max-width:500px;
+    max-height:350px;
+    object-fit:cover;
+    border-radius:12px;
 }
 
 /* =====================================================
@@ -498,74 +610,21 @@ label{
     color:var(--plum);
 }
 
-.preview-image{
+.preview-hero{
     width:100%;
-    max-height:420px;
+    max-height:400px;
     object-fit:cover;
     border-radius:15px;
     margin:15px 0 25px;
 }
 
-.preview-video{
-    margin-top:20px;
-}
-
-.preview-video a{
-    display:inline-block;
-    background:var(--light);
-    color:var(--plum);
-    padding:12px 16px;
+.preview-link{
+    display:block;
+    padding:12px;
+    border:1px solid var(--border);
     border-radius:9px;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-/* =====================================================
-   COMMUNITY
-===================================================== */
-
-.community-post{
-    padding:18px 0;
-    border-bottom:1px solid var(--border);
-}
-
-.community-post:last-child{
-    border-bottom:0;
-}
-
-.post-author{
-    font-weight:bold;
-    color:var(--plum);
-}
-
-.post-date{
-    font-size:12px;
-    color:#888;
-    margin:5px 0 10px;
-}
-
-.community-image{
-    width:100%;
-    max-width:500px;
-    max-height:400px;
-    object-fit:cover;
-    border-radius:12px;
-    margin-top:12px;
-}
-
-/* =====================================================
-   CHECKBOX
-===================================================== */
-
-.checkbox{
-    display:flex;
-    gap:8px;
-    align-items:center;
-    margin:15px 0;
-}
-
-.checkbox input{
-    width:auto;
+    margin-top:8px;
+    background:#FCFAF7;
 }
 
 /* =====================================================
@@ -579,8 +638,58 @@ label{
 }
 
 /* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+    position:fixed;
+    inset:0;
+    background:rgba(251,248,243,.9);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+}
+
+.loading-box{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    border:1px solid var(--border);
+    text-align:center;
+}
+
+.spinner{
+    width:35px;
+    height:35px;
+    border:4px solid var(--border);
+    border-top-color:var(--plum);
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+    margin:0 auto 15px;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* =====================================================
    MOBILE
 ===================================================== */
+
+@media(max-width:1000px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .two-column{
+        grid-template-columns:1fr;
+    }
+
+}
 
 @media(max-width:900px){
 
@@ -604,12 +713,7 @@ label{
         padding:20px;
     }
 
-    .stats{
-        grid-template-columns:repeat(2,1fr);
-    }
-
     .tree-row{
-        align-items:flex-start;
         flex-wrap:wrap;
     }
 
@@ -617,8 +721,12 @@ label{
         min-width:150px;
     }
 
-    .actions{
+    .tree-meta{
         width:100%;
+    }
+
+    .link-row{
+        grid-template-columns:1fr;
     }
 
 }
@@ -630,16 +738,13 @@ label{
     }
 
     .topbar{
-        align-items:flex-start;
         flex-direction:column;
+        align-items:flex-start;
     }
 
-    .table-card{
-        overflow-x:auto;
-    }
-
-    .form-card{
-        padding:20px;
+    .toolbar{
+        flex-direction:column;
+        align-items:flex-start;
     }
 
 }
@@ -650,6 +755,25 @@ label{
 
 <body>
 
+<!-- =====================================================
+     LOADING
+===================================================== -->
+
+<div id="loading" class="loading">
+
+```
+<div class="loading-box">
+
+    <div class="spinner"></div>
+
+    <div id="loadingText">
+        Please wait...
+    </div>
+
+</div>
+```
+
+</div>
 
 <!-- =====================================================
      LOGIN
@@ -657,57 +781,59 @@ label{
 
 <div id="loginPage">
 
+```
 <div class="login-box">
 
-<h1>
-FREEDOM WOMEN'S<br>
-HEALTH CLUB
-</h1>
+    <h1>
+        FREEDOM WOMEN'S<br>
+        HEALTH CLUB
+    </h1>
 
-<p>Admin Panel</p>
+    <p>
+        Admin Panel
+    </p>
 
-<div class="form-group">
+    <div class="form-group">
 
-<label>Email</label>
+        <label>Email</label>
 
-<input
-id="email"
-type="email"
-placeholder="Admin email"
->
+        <input
+            id="email"
+            type="email"
+            placeholder="Admin email"
+        >
+
+    </div>
+
+    <div class="form-group">
+
+        <label>Password</label>
+
+        <input
+            id="password"
+            type="password"
+            placeholder="Password"
+        >
+
+    </div>
+
+    <button
+        id="loginBtn"
+        class="btn"
+        style="width:100%"
+    >
+        Login
+    </button>
+
+    <p
+        id="loginError"
+        class="login-error"
+    ></p>
 
 </div>
-
-<div class="form-group">
-
-<label>Password</label>
-
-<input
-id="password"
-type="password"
-placeholder="Password"
->
+```
 
 </div>
-
-<button
-id="loginBtn"
-class="btn"
-style="width:100%"
->
-Login
-</button>
-
-<p
-id="loginError"
-class="login-error"
-></p>
-
-</div>
-
-</div>
-
-
 
 <!-- =====================================================
      ADMIN APP
@@ -715,93 +841,93 @@ class="login-error"
 
 <div id="adminApp">
 
-
 <aside class="sidebar">
 
+```
 <div class="logo">
 
-<h2>
-FREEDOM<br>
-WOMEN'S HEALTH CLUB
-</h2>
+    <h2>
+        FREEDOM<br>
+        WOMEN'S HEALTH CLUB
+    </h2>
 
-<small>Admin Panel</small>
+    <small>
+        Admin Panel
+    </small>
 
 </div>
 
 
 <nav class="nav">
 
-<button
-class="active"
-onclick="openSection('dashboard',this)"
->
-🏠 Dashboard
-</button>
+    <button
+        class="active"
+        onclick="openSection('dashboard',this)"
+    >
+        🏠 Dashboard
+    </button>
 
-<button
-onclick="openSection('members',this)"
->
-👥 Members
-</button>
+    <button
+        onclick="openSection('members',this)"
+    >
+        👥 Members
+    </button>
 
-<button
-onclick="openSection('classroom',this)"
->
-📚 Classroom
-</button>
+    <button
+        onclick="openSection('classroom',this)"
+    >
+        📚 Classroom
+    </button>
 
-<button
-onclick="openSection('community',this)"
->
-💬 Community
-</button>
+    <button
+        onclick="openSection('community',this)"
+    >
+        💬 Community
+    </button>
 
-<button
-onclick="openSection('leaderboard',this)"
->
-🏆 Leaderboard
-</button>
+    <button
+        onclick="openSection('leaderboard',this)"
+    >
+        🏆 Leaderboard
+    </button>
 
-<button
-onclick="openSection('settings',this)"
->
-⚙️ Settings
-</button>
+    <button
+        onclick="openSection('settings',this)"
+    >
+        ⚙️ Settings
+    </button>
 
 </nav>
+```
 
 </aside>
 
-
-
 <main class="main">
-
 
 <div class="topbar">
 
+```
 <h1 id="pageTitle">
-Dashboard
+    Dashboard
 </h1>
 
 <div>
 
-<span class="admin-pill">
-Admin
-</span>
+    <span class="admin-pill">
+        Admin
+    </span>
 
-<button
-class="btn btn-secondary"
-onclick="logout()"
->
-Logout
-</button>
-
-</div>
+    <button
+        class="btn btn-secondary"
+        onclick="logout()"
+    >
+        Logout
+    </button>
 
 </div>
+```
 
-
+</div>
 
 <!-- =====================================================
      DASHBOARD
@@ -812,82 +938,103 @@ id="dashboard"
 class="section active"
 >
 
+```
 <div class="stats">
 
-<div class="card">
-Members
-<div
-class="stat"
-id="memberCount"
->
-0
-</div>
-</div>
+    <div class="card">
 
-<div class="card">
-Active Members
-<div
-class="stat"
-id="activeCount"
->
-0
-</div>
-</div>
+        Members
 
-<div class="card">
-Classroom Items
-<div
-class="stat"
-id="classroomCount"
->
-0
-</div>
-</div>
+        <div
+            class="stat"
+            id="memberCount"
+        >
+            0
+        </div>
 
-<div class="card">
-Community Posts
-<div
-class="stat"
-id="communityCount"
->
-0
-</div>
-</div>
+    </div>
 
-</div>
 
-<br>
+    <div class="card">
 
-<div class="card">
+        Active Members
 
-<h3>
-Welcome to your Freedom Club Admin Panel
-</h3>
+        <div
+            class="stat"
+            id="activeCount"
+        >
+            0
+        </div>
 
-<p>
-Create and manage your complete 90-day program here.
-</p>
+    </div>
 
-<p>
-You can create:
-</p>
 
-<ul>
-<li>Phases</li>
-<li>Weeks</li>
-<li>Days</li>
-<li>Day content</li>
-<li>Images</li>
-<li>Video links</li>
-<li>Google Drive links</li>
-<li>Community posts</li>
-</ul>
+    <div class="card">
+
+        Classroom Items
+
+        <div
+            class="stat"
+            id="classroomCount"
+        >
+            0
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        Community Posts
+
+        <div
+            class="stat"
+            id="communityCount"
+        >
+            0
+        </div>
+
+    </div>
 
 </div>
+
+
+<div class="card dashboard-note">
+
+    <h3>
+        Freedom Women's Health Club
+    </h3>
+
+    <p>
+        Build your complete 90-day member journey here.
+    </p>
+
+    <p>
+        You can create:
+    </p>
+
+    <ul>
+
+        <li>Phase → Week → Day</li>
+
+        <li>Day-by-day habits and lessons</li>
+
+        <li>Images for your program</li>
+
+        <li>Video links</li>
+
+        <li>Google Drive resources</li>
+
+        <li>Published and locked content</li>
+
+        <li>Community posts and images</li>
+
+    </ul>
+
+</div>
+```
 
 </section>
-
-
 
 <!-- =====================================================
      MEMBERS
@@ -900,51 +1047,62 @@ class="section"
 
 <div class="table-card">
 
+```
 <div class="table-head">
 
-<h2>Members</h2>
+    <h2>
+        Members
+    </h2>
 
-<button
-class="btn"
-onclick="openSection('addMember')"
->
-+ Add Member
-</button>
+    <button
+        class="btn"
+        onclick="openSection('addMember')"
+    >
+        + Add Member
+    </button>
 
 </div>
 
+
 <table class="table">
 
-<thead>
+    <thead>
 
-<tr>
-<th>Name</th>
-<th>Email</th>
-<th>Phone</th>
-<th>Start Date</th>
-<th>Access</th>
-<th>Status</th>
-</tr>
+        <tr>
 
-</thead>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Start Date</th>
+            <th>Access</th>
+            <th>Status</th>
 
-<tbody id="membersTable">
+        </tr>
 
-<tr>
-<td colspan="6" class="empty">
-Loading...
-</td>
-</tr>
+    </thead>
 
-</tbody>
+
+    <tbody id="membersTable">
+
+        <tr>
+
+            <td
+                colspan="6"
+                class="empty"
+            >
+                Loading...
+            </td>
+
+        </tr>
+
+    </tbody>
 
 </table>
+```
 
 </div>
 
 </section>
-
-
 
 <!-- =====================================================
      ADD MEMBER
@@ -957,80 +1115,151 @@ class="section"
 
 <div class="form-card">
 
-<h2>Add Member</h2>
+```
+<h2>
+    Add Member
+</h2>
 
-<div class="form-group">
-<label>Name</label>
-<input id="mName">
-</div>
+<div class="help">
 
-<div class="form-group">
-<label>Email</label>
-<input id="mEmail" type="email">
-</div>
-
-<div class="form-group">
-<label>Phone</label>
-<input id="mPhone">
-</div>
-
-<div class="form-group">
-<label>Start Date</label>
-<input id="mStart" type="date">
-</div>
-
-<div class="form-group">
-
-<label>
-Access Until Day
-</label>
-
-<select id="mAccess">
-
-<option value="30">Day 30</option>
-<option value="60">Day 60</option>
-<option value="90">Day 90</option>
-
-</select>
+    <strong>Important:</strong>
+    Adding a member here creates their member profile
+    in Firestore. The member must also have a Firebase
+    Authentication account using the same email before
+    they can log in.
 
 </div>
 
+
 <div class="form-group">
 
-<label>Status</label>
+    <label>
+        Name
+    </label>
 
-<select id="mStatus">
-
-<option value="Active">Active</option>
-<option value="Inactive">Inactive</option>
-
-</select>
+    <input
+        id="mName"
+        placeholder="Member name"
+    >
 
 </div>
+
+
+<div class="form-group">
+
+    <label>
+        Email
+    </label>
+
+    <input
+        id="mEmail"
+        type="email"
+        placeholder="member@email.com"
+    >
+
+</div>
+
+
+<div class="form-group">
+
+    <label>
+        Phone
+    </label>
+
+    <input
+        id="mPhone"
+        placeholder="03XXXXXXXXX"
+    >
+
+</div>
+
+
+<div class="two-column">
+
+    <div class="form-group">
+
+        <label>
+            Start Date
+        </label>
+
+        <input
+            id="mStart"
+            type="date"
+        >
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            Access Until Day
+        </label>
+
+        <select id="mAccess">
+
+            <option value="30">
+                Day 30
+            </option>
+
+            <option value="60">
+                Day 60
+            </option>
+
+            <option value="90">
+                Day 90
+            </option>
+
+        </select>
+
+    </div>
+
+</div>
+
+
+<div class="form-group">
+
+    <label>
+        Status
+    </label>
+
+    <select id="mStatus">
+
+        <option>
+            Active
+        </option>
+
+        <option>
+            Inactive
+        </option>
+
+    </select>
+
+</div>
+
 
 <div class="form-actions">
 
-<button
-class="btn"
-onclick="saveMember()"
->
-Save Member
-</button>
+    <button
+        class="btn"
+        onclick="saveMember()"
+    >
+        Save Member
+    </button>
 
-<button
-class="btn btn-secondary"
-onclick="openSection('members')"
->
-Cancel
-</button>
+    <button
+        class="btn btn-secondary"
+        onclick="openSection('members')"
+    >
+        Cancel
+    </button>
 
 </div>
+```
 
 </div>
 
 </section>
-
-
 
 <!-- =====================================================
      CLASSROOM
@@ -1043,42 +1272,62 @@ class="section"
 
 <div class="toolbar">
 
+```
 <div>
 
-<h2>Classroom</h2>
+    <h2>
+        Classroom
+    </h2>
 
-<p>
-Build your program like:
-<strong>Phase → Week → Day</strong>
-</p>
+    <p>
+        Build your program as Phase → Week → Day.
+    </p>
 
 </div>
+
 
 <button
-class="btn"
-onclick="newItem()"
+    class="btn"
+    onclick="newItem()"
 >
-+ Add
+    + Add
 </button>
+```
 
 </div>
 
+<div class="help">
+
+```
+<strong>How it works:</strong>
+
+Create a Phase first.
+Then create Weeks inside the Phase.
+Then create Days inside the Week.
+
+Every Day can have its own content,
+image, video and Google Drive resources.
+
+Set the Unlock Day to control when members can open it.
+```
+
+</div>
 
 <div class="tree">
 
+```
 <div id="treeContainer">
 
-<div class="empty">
-No classroom content yet.
-</div>
+    <div class="empty">
+        No classroom content yet.
+    </div>
 
 </div>
+```
 
 </div>
 
 </section>
-
-
 
 <!-- =====================================================
      ITEM EDITOR
@@ -1091,506 +1340,576 @@ class="section"
 
 <div class="form-card">
 
+```
 <h2 id="editorHeading">
-Add Classroom Item
+    Add Classroom Item
 </h2>
 
 
-<!-- TYPE -->
-
-<div class="form-group">
-
-<label>Type</label>
-
-<select id="itemType">
-
-<option value="module">
-Phase / Module
-</option>
-
-<option value="subsection">
-Week / Subsection
-</option>
-
-<option value="lesson">
-Day / Lesson
-</option>
-
-</select>
-
-</div>
-
-
-
-<!-- PARENT -->
-
-<div class="form-group">
-
-<label>Parent</label>
-
-<select id="itemParent">
-
-<option value="">
-Top Level
-</option>
-
-</select>
-
 <div class="help">
-Example: Phase 1 can be the parent of Week 1,
-and Week 1 can be the parent of Day 1.
-</div>
+
+    <strong>Member view:</strong>
+
+    You can publish all 90 days in advance.
+    Members will see future content as locked until
+    their program day reaches the selected Unlock Day.
 
 </div>
 
 
-
-<!-- TITLE -->
-
-<div class="form-group">
-
-<label>Title</label>
-
-<input
-id="itemTitle"
-placeholder="Example: Phase 1 — Reset & Foundation"
->
-
-</div>
-
-
-
-<!-- DESCRIPTION -->
-
-<div class="form-group">
-
-<label>Description</label>
-
-<textarea
-id="itemDescription"
-placeholder="Write a short description..."
-></textarea>
-
-</div>
-
-
-
-<!-- UNLOCK -->
-
-<div class="form-group">
-
-<label>Unlock Day</label>
-
-<input
-id="unlockDay"
-type="number"
-min="1"
-max="90"
-value="1"
->
-
-<div class="help">
-Members will see this item when they reach this program day.
-</div>
-
-</div>
-
-
-
-<!-- CHILDREN -->
-
-<div class="checkbox">
-
-<input
-id="allowChildren"
-type="checkbox"
->
-
-<label
-for="allowChildren"
-style="margin:0"
->
-Allow children inside this item
-</label>
-
-</div>
-
-
-
-<!-- =====================================================
-     FEATURED IMAGE
-===================================================== -->
+<!-- BASIC -->
 
 <div class="editor-section">
 
-<h3>
-🖼️ Featured Image
-</h3>
-
-<p class="help">
-Add an attractive image for this phase, week or day.
-The image will automatically be compressed before uploading.
-</p>
+    <h3>
+        Basic Information
+    </h3>
 
 
-<div class="media-box">
+    <div class="two-column">
 
-<input
-id="itemImage"
-type="file"
-accept="image/*"
->
+        <div class="form-group">
+
+            <label>
+                Type
+            </label>
+
+            <select id="itemType">
+
+                <option value="module">
+                    Phase
+                </option>
+
+                <option value="subsection">
+                    Week
+                </option>
+
+                <option value="lesson">
+                    Day / Lesson
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Parent
+            </label>
+
+            <select id="itemParent">
+
+                <option value="">
+                    Top Level
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            Title
+        </label>
+
+        <input
+            id="itemTitle"
+            placeholder="Example: Phase 1 — Reset"
+        >
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            Description
+        </label>
+
+        <textarea
+            id="itemDescription"
+            placeholder="Describe this phase, week or day..."
+        ></textarea>
+
+    </div>
+
+
+    <div class="two-column">
+
+        <div class="form-group">
+
+            <label>
+                Unlock Day
+            </label>
+
+            <input
+                id="unlockDay"
+                type="number"
+                min="1"
+                max="90"
+                value="1"
+            >
+
+            <small>
+                Example: Day 5 means members can open it
+                from Day 5 onward.
+            </small>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Status
+            </label>
+
+            <select id="itemStatus">
+
+                <option value="published">
+                    Published
+                </option>
+
+                <option value="draft">
+                    Draft
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            Order
+        </label>
+
+        <input
+            id="itemOrder"
+            type="number"
+            value="1"
+        >
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            Allow Children
+        </label>
+
+        <select id="allowChildren">
+
+            <option value="false">
+                No
+            </option>
+
+            <option value="true">
+                Yes
+            </option>
+
+        </select>
+
+    </div>
+
+</div>
+
+
+<!-- IMAGE -->
+
+<div class="editor-section">
+
+    <h3>
+        🖼️ Image
+    </h3>
+
+    <p>
+        Add an image to make your Phase, Week or Day
+        look more attractive for members.
+    </p>
+
+
+    <div class="image-upload-box">
+
+        <label>
+            Choose Image
+        </label>
+
+        <input
+            id="itemImage"
+            type="file"
+            accept="image/*"
+        >
+
+
+        <div
+            id="itemImagePreview"
+            class="image-preview"
+        >
+
+            <img
+                id="itemImagePreviewImg"
+                alt="Image preview"
+            >
+
+        </div>
+
+
+        <div
+            id="currentItemImage"
+            class="current-image"
+        ></div>
+
+
+        <div
+            id="itemImageStatus"
+            class="upload-status"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<!-- DAY CONTENT -->
 
 <div
-id="imageStatus"
-class="upload-status"
-></div>
-
-<div
-id="imageProgress"
-class="upload-progress"
->
-
-<div
-id="imageProgressFill"
-class="upload-progress-fill"
-></div>
-
-</div>
-
-<div
-id="imagePreview"
-class="media-preview"
->
-
-<img
-id="previewImage"
-src=""
-alt="Preview"
->
-
-<div class="image-actions">
-
-<button
-type="button"
-class="btn btn-danger"
-onclick="removeSelectedImage()"
->
-Remove Image
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-
-<!-- =====================================================
-     VIDEO URL
-===================================================== -->
-
-<div class="editor-section">
-
-<h3>
-🎥 Video
-</h3>
-
-<div class="form-group">
-
-<label>
-Video URL
-</label>
-
-<input
-id="videoUrl"
-type="url"
-placeholder="Paste YouTube, Vimeo or other video link"
->
-
-<div class="help">
-Paste the video link. You do not need to upload the video.
-</div>
-
-</div>
-
-<div
-id="videoLinkPreview"
-class="link-preview"
-style="display:none"
->
-</div>
-
-</div>
-
-
-
-<!-- =====================================================
-     GOOGLE DRIVE
-===================================================== -->
-
-<div class="editor-section">
-
-<h3>
-📁 Google Drive
-</h3>
-
-<div class="form-group">
-
-<label>
-Google Drive Link
-</label>
-
-<input
-id="driveUrl"
-type="url"
-placeholder="Paste Google Drive sharing link"
->
-
-<div class="help">
-Use this for PDFs, worksheets, meal plans, documents or other resources.
-</div>
-
-</div>
-
-<div
-id="driveLinkPreview"
-class="link-preview"
-style="display:none"
->
-</div>
-
-</div>
-
-
-
-<!-- =====================================================
-     DAY CONTENT
-===================================================== -->
-
-<div
-id="dayContent"
-style="display:none"
+    id="dayContent"
+    class="day-content"
 >
 
 
-<div class="editor-section">
+    <!-- MOVEMENT -->
 
-<h3>
-🚶 Movement
-</h3>
+    <div class="editor-section">
 
-<div class="form-group">
+        <h3>
+            🚶 Movement
+        </h3>
 
-<label>Target</label>
 
-<input id="movement">
+        <div class="content-field">
+
+            <label>
+                Target
+            </label>
+
+            <input
+                id="movement"
+                placeholder="Example: 5,000 steps"
+            >
+
+        </div>
+
+
+        <div class="content-field">
+
+            <label>
+                Instructions
+            </label>
+
+            <textarea
+                id="movementInstructions"
+                class="short"
+                placeholder="Explain what the member should do..."
+            ></textarea>
+
+        </div>
+
+    </div>
+
+
+    <!-- HYDRATION -->
+
+    <div class="editor-section">
+
+        <h3>
+            💧 Hydration
+        </h3>
+
+
+        <div class="content-field">
+
+            <label>
+                Target
+            </label>
+
+            <input
+                id="hydration"
+                placeholder="Example: 2 litres water"
+            >
+
+        </div>
+
+
+        <div class="content-field">
+
+            <label>
+                Instructions
+            </label>
+
+            <textarea
+                id="hydrationInstructions"
+                class="short"
+            ></textarea>
+
+        </div>
+
+    </div>
+
+
+    <!-- PROTEIN -->
+
+    <div class="editor-section">
+
+        <h3>
+            🍳 Protein
+        </h3>
+
+
+        <div class="content-field">
+
+            <label>
+                Target
+            </label>
+
+            <input
+                id="protein"
+                placeholder="Example: 20–25g per meal"
+            >
+
+        </div>
+
+
+        <div class="content-field">
+
+            <label>
+                Instructions
+            </label>
+
+            <textarea
+                id="proteinInstructions"
+                class="short"
+            ></textarea>
+
+        </div>
+
+    </div>
+
+
+    <!-- SLEEP -->
+
+    <div class="editor-section">
+
+        <h3>
+            😴 Sleep
+        </h3>
+
+
+        <div class="content-field">
+
+            <label>
+                Target
+            </label>
+
+            <input
+                id="sleep"
+                placeholder="Example: 7 hours"
+            >
+
+        </div>
+
+
+        <div class="content-field">
+
+            <label>
+                Instructions
+            </label>
+
+            <textarea
+                id="sleepInstructions"
+                class="short"
+            ></textarea>
+
+        </div>
+
+    </div>
+
+
+    <!-- NUTRITION -->
+
+    <div class="editor-section">
+
+        <h3>
+            🍽️ Nutrition
+        </h3>
+
+        <textarea
+            id="nutrition"
+            placeholder="Day's nutrition focus..."
+        ></textarea>
+
+    </div>
+
+
+    <!-- MIND -->
+
+    <div class="editor-section">
+
+        <h3>
+            🧘 Mind / Stress
+        </h3>
+
+        <textarea
+            id="mind"
+            placeholder="Stress management or mindset task..."
+        ></textarea>
+
+    </div>
+
+
+    <!-- SUNLIGHT -->
+
+    <div class="editor-section">
+
+        <h3>
+            ☀️ Sunlight
+        </h3>
+
+        <input
+            id="sunlight"
+            placeholder="Example: 10 minutes morning sunlight"
+        >
+
+    </div>
+
+
+    <!-- RECOVERY -->
+
+    <div class="editor-section">
+
+        <h3>
+            🌿 Recovery
+        </h3>
+
+        <textarea
+            id="recovery"
+            placeholder="Recovery / relaxation task..."
+        ></textarea>
+
+    </div>
+
+
+    <!-- EXTRA NOTES -->
+
+    <div class="editor-section">
+
+        <h3>
+            📝 Extra Notes
+        </h3>
+
+        <textarea
+            id="extraNotes"
+            placeholder="Any additional guidance for this day..."
+        ></textarea>
+
+    </div>
+
+
+    <!-- VIDEO LINKS -->
+
+    <div class="editor-section">
+
+        <h3>
+            🎥 Videos
+        </h3>
+
+        <p>
+            Paste video URLs here.
+            YouTube, Vimeo or any other video page can be used.
+        </p>
+
+
+        <div id="videoLinks"></div>
+
+
+        <button
+            type="button"
+            class="btn btn-secondary btn-small"
+            onclick="addVideoLink()"
+        >
+            + Add Video
+        </button>
+
+    </div>
+
+
+    <!-- DRIVE LINKS -->
+
+    <div class="editor-section">
+
+        <h3>
+            📂 Google Drive Resources
+        </h3>
+
+        <p>
+            Paste Google Drive links here.
+            These are links to resources, PDFs, files or documents.
+        </p>
+
+
+        <div id="driveLinks"></div>
+
+
+        <button
+            type="button"
+            class="btn btn-secondary btn-small"
+            onclick="addDriveLink()"
+        >
+            + Add Google Drive Resource
+        </button>
+
+    </div>
+
 
 </div>
 
-<div class="form-group">
 
-<label>Instructions</label>
-
-<textarea id="movementInstructions"></textarea>
-
-</div>
-
-</div>
-
-
-
-<div class="editor-section">
-
-<h3>
-💧 Hydration
-</h3>
-
-<div class="form-group">
-
-<label>Target</label>
-
-<input id="hydration">
-
-</div>
-
-<div class="form-group">
-
-<label>Instructions</label>
-
-<textarea id="hydrationInstructions"></textarea>
-
-</div>
-
-</div>
-
-
-
-<div class="editor-section">
-
-<h3>
-🥚 Protein
-</h3>
-
-<div class="form-group">
-
-<label>Target</label>
-
-<input id="protein">
-
-</div>
-
-<div class="form-group">
-
-<label>Instructions</label>
-
-<textarea id="proteinInstructions"></textarea>
-
-</div>
-
-</div>
-
-
-
-<div class="editor-section">
-
-<h3>
-😴 Sleep
-</h3>
-
-<div class="form-group">
-
-<label>Target</label>
-
-<input id="sleep">
-
-</div>
-
-<div class="form-group">
-
-<label>Instructions</label>
-
-<textarea id="sleepInstructions"></textarea>
-
-</div>
-
-</div>
-
-
-
-<div class="editor-section">
-
-<h3>
-🥗 Nutrition
-</h3>
-
-<textarea
-id="nutrition"
-placeholder="Write today's nutrition habit or lesson..."
-></textarea>
-
-</div>
-
-
-
-<div class="editor-section">
-
-<h3>
-🧘 Mind / Stress
-</h3>
-
-<textarea
-id="mind"
-placeholder="Write today's stress-management habit..."
-></textarea>
-
-</div>
-
-
-
-<div class="editor-section">
-
-<h3>
-☀️ Sunlight
-</h3>
-
-<input
-id="sunlight"
-placeholder="Example: 10 minutes morning sunlight"
->
-
-</div>
-
-
-
-<div class="editor-section">
-
-<h3>
-🌿 Recovery
-</h3>
-
-<textarea
-id="recovery"
-placeholder="Write today's recovery habit..."
-></textarea>
-
-</div>
-
-
-</div>
-
-
-
-<!-- STATUS -->
-
-<div class="form-group">
-
-<label>
-Publishing Status
-</label>
-
-<select id="itemStatus">
-
-<option value="published">
-Published — visible to members
-</option>
-
-<option value="draft">
-Draft — hidden from members
-</option>
-
-</select>
-
-</div>
-
-
+<!-- SAVE -->
 
 <div class="form-actions">
 
-<button
-class="btn"
-onclick="saveItem()"
->
-Save Classroom Item
-</button>
+    <button
+        class="btn"
+        onclick="saveItem()"
+    >
+        Save Classroom Item
+    </button>
 
-<button
-class="btn btn-secondary"
-onclick="openSection('classroom')"
->
-Cancel
-</button>
+
+    <button
+        class="btn btn-secondary"
+        onclick="openSection('classroom')"
+    >
+        Cancel
+    </button>
 
 </div>
+```
 
 </div>
 
 </section>
-
-
 
 <!-- =====================================================
      PREVIEW
@@ -1604,20 +1923,23 @@ class="section"
 <button
 class="btn btn-secondary"
 onclick="openSection('classroom')"
+
 >
+
+```
 ← Back to Classroom
+```
+
 </button>
 
 <br><br>
 
 <div
-id="previewContent"
-class="preview"
+    id="previewContent"
+    class="preview"
 ></div>
 
 </section>
-
-
 
 <!-- =====================================================
      COMMUNITY
@@ -1628,197 +1950,96 @@ id="community"
 class="section"
 >
 
-<div class="toolbar">
+<div class="card community-create">
 
-<div>
-
+```
 <h2>
-Community
+    Community
 </h2>
 
 <p>
-View posts and create admin announcements.
+    Create announcements, motivation posts,
+    meal ideas, workout posts and other community content.
 </p>
-
-</div>
-
-<button
-class="btn"
-onclick="openSection('communityComposer')"
->
-+ Create Post
-</button>
-
-</div>
-
-
-<div class="card">
-
-<div id="communityPosts">
-
-Loading community...
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- =====================================================
-     COMMUNITY COMPOSER
-===================================================== -->
-
-<section
-id="communityComposer"
-class="section"
->
-
-<div class="form-card">
-
-<h2>
-Create Community Post
-</h2>
 
 
 <div class="form-group">
 
-<label>
-Post
-</label>
+    <label>
+        Post Content
+    </label>
 
-<textarea
-id="communityText"
-placeholder="Write your announcement or community message..."
-></textarea>
+    <textarea
+        id="communityText"
+        placeholder="Write your community post..."
+    ></textarea>
+
+</div>
+
+
+<div class="image-upload-box">
+
+    <label>
+        Add Image
+    </label>
+
+    <input
+        id="communityImage"
+        type="file"
+        accept="image/*"
+    >
+
+
+    <div
+        id="communityImagePreview"
+        class="image-preview"
+    >
+
+        <img
+            id="communityImagePreviewImg"
+            alt="Community image preview"
+        >
+
+    </div>
+
+
+    <div
+        id="communityImageStatus"
+        class="upload-status"
+    ></div>
 
 </div>
 
 
-
-<div class="editor-section">
-
-<h3>
-📷 Add Image
-</h3>
-
-<p class="help">
-You can upload an image such as a meal, workout,
-challenge announcement or progress graphic.
-</p>
-
-<div class="media-box">
-
-<input
-id="communityImage"
-type="file"
-accept="image/*"
->
-
-<div
-id="communityImageStatus"
-class="upload-status"
-></div>
-
-<div
-id="communityImageProgress"
-class="upload-progress"
->
-
-<div
-id="communityImageProgressFill"
-class="upload-progress-fill"
-></div>
-
-</div>
-
-<div
-id="communityImagePreview"
-class="media-preview"
->
-
-<img
-id="communityPreviewImage"
-src=""
-alt="Community image preview"
->
-
-<div class="image-actions">
+<br>
 
 <button
-type="button"
-class="btn btn-danger"
-onclick="removeCommunityImage()"
+    class="btn"
+    onclick="createCommunityPost()"
 >
-Remove Image
+    Publish Community Post
 </button>
+```
 
 </div>
 
-</div>
+<div class="card">
 
-</div>
-
-</div>
-
-
-
-<div class="editor-section">
-
+```
 <h3>
-🎥 Video Link
+    Community Posts
 </h3>
 
-<input
-id="communityVideo"
-type="url"
-placeholder="Paste video URL"
->
+<div id="communityPosts">
+
+    Loading posts...
 
 </div>
-
-
-
-<div class="editor-section">
-
-<h3>
-📁 Google Drive
-</h3>
-
-<input
-id="communityDrive"
-type="url"
-placeholder="Paste Google Drive link"
->
-
-</div>
-
-
-
-<div class="form-actions">
-
-<button
-class="btn"
-onclick="saveCommunityPost()"
->
-Publish Post
-</button>
-
-<button
-class="btn btn-secondary"
-onclick="openSection('community')"
->
-Cancel
-</button>
-
-</div>
+```
 
 </div>
 
 </section>
-
-
 
 <!-- =====================================================
      LEADERBOARD
@@ -1831,19 +2052,20 @@ class="section"
 
 <div class="card">
 
+```
 <h2>
-Leaderboard
+    Leaderboard
 </h2>
 
 <p>
-Member points will be connected to completed days and habits.
+    Member points and ranking can be connected
+    to completed days and habits.
 </p>
+```
 
 </div>
 
 </section>
-
-
 
 <!-- =====================================================
      SETTINGS
@@ -1856,37 +2078,47 @@ class="section"
 
 <div class="card">
 
+```
 <h2>
-Settings
+    Settings
 </h2>
 
 <p>
-Freedom Women's Health Club settings.
+    Freedom Women's Health Club settings.
 </p>
 
 <hr>
 
+<h3>
+    Admin Account
+</h3>
+
 <p>
-<strong>Admin account:</strong>
-mahnoordietitian3@gmail.com
+    Admin email:
+    <strong>
+        mahnoordietitian3@gmail.com
+    </strong>
 </p>
+
+<p>
+    The admin account can create and manage
+    classroom content, members and community posts.
+</p>
+```
 
 </div>
 
 </section>
 
-
 </main>
 
 </div>
-
-
 
 <script type="module">
 
 
 /* =====================================================
-   FIREBASE IMPORTS
+   FIREBASE
 ===================================================== */
 
 import {
@@ -1913,7 +2145,8 @@ import {
     getDocs,
     doc,
     updateDoc,
-    deleteDoc
+    deleteDoc,
+    serverTimestamp
 }
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
@@ -1972,17 +2205,19 @@ const storage =
 getStorage(app);
 
 
+/* =====================================================
+   ADMIN
+===================================================== */
+
 const ADMIN =
 "mahnoordietitian3@gmail.com";
 
 
-let items=[];
+let items = [];
 
-let editingId=null;
+let editingId = null;
 
-let selectedItemImage=null;
-
-let selectedCommunityImage=null;
+let editingExistingImage = "";
 
 
 /* =====================================================
@@ -1990,57 +2225,58 @@ let selectedCommunityImage=null;
 ===================================================== */
 
 onAuthStateChanged(
-auth,
-user=>{
+    auth,
+    user => {
 
-    if(!user){
+        if(!user){
+
+            document
+            .getElementById("loginPage")
+            .style.display="flex";
+
+            document
+            .getElementById("adminApp")
+            .style.display="none";
+
+            return;
+
+        }
+
+
+        if(
+            user.email.toLowerCase() !==
+            ADMIN.toLowerCase()
+        ){
+
+            alert(
+                "This account is not the admin account."
+            );
+
+            signOut(auth);
+
+            return;
+
+        }
+
 
         document
         .getElementById("loginPage")
-        .style.display="flex";
+        .style.display="none";
+
 
         document
         .getElementById("adminApp")
-        .style.display="none";
-
-        return;
-
-    }
+        .style.display="block";
 
 
-    if(
-        user.email.toLowerCase() !==
-        ADMIN.toLowerCase()
-    ){
+        loadMembers();
 
-        alert(
-            "This account is not the admin account."
-        );
+        loadClassroom();
 
-        signOut(auth);
-
-        return;
+        loadCommunity();
 
     }
-
-
-    document
-    .getElementById("loginPage")
-    .style.display="none";
-
-
-    document
-    .getElementById("adminApp")
-    .style.display="block";
-
-
-    loadMembers();
-
-    loadClassroom();
-
-    loadCommunity();
-
-});
+);
 
 
 /* =====================================================
@@ -2050,67 +2286,68 @@ user=>{
 document
 .getElementById("loginBtn")
 .addEventListener(
-"click",
-async()=>{
+    "click",
+    async()=>{
 
-    const email=
-    document
-    .getElementById("email")
-    .value
-    .trim();
-
-
-    const password=
-    document
-    .getElementById("password")
-    .value;
+        const email =
+        document
+        .getElementById("email")
+        .value
+        .trim();
 
 
-    const errorBox=
-    document
-    .getElementById("loginError");
+        const password =
+        document
+        .getElementById("password")
+        .value;
 
 
-    errorBox.textContent="";
+        const error =
+        document
+        .getElementById("loginError");
 
 
-    if(!email || !password){
+        error.textContent="";
 
-        errorBox.textContent=
-        "Please enter email and password.";
 
-        return;
+        if(!email || !password){
+
+            error.textContent =
+            "Please enter email and password.";
+
+            return;
+
+        }
+
+
+        try{
+
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+        }
+
+        catch(errorObject){
+
+            console.error(errorObject);
+
+            error.textContent =
+            "Login failed. Please check your email and password.";
+
+        }
 
     }
-
-
-    try{
-
-        await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-        errorBox.textContent=
-        error.message;
-
-    }
-
-});
+);
 
 
 /* =====================================================
    LOGOUT
 ===================================================== */
 
-window.logout=
+window.logout =
 async function(){
 
     await signOut(auth);
@@ -2122,7 +2359,7 @@ async function(){
    NAVIGATION
 ===================================================== */
 
-window.openSection=
+window.openSection =
 function(id,button){
 
     document
@@ -2132,13 +2369,13 @@ function(id,button){
     );
 
 
-    const section=
+    const target =
     document.getElementById(id);
 
 
-    if(section){
+    if(target){
 
-        section.classList.add("active");
+        target.classList.add("active");
 
     }
 
@@ -2160,25 +2397,61 @@ function(id,button){
     const names={
 
         dashboard:"Dashboard",
+
         members:"Members",
+
         classroom:"Classroom",
+
         community:"Community",
+
         leaderboard:"Leaderboard",
+
         settings:"Settings",
+
         addMember:"Add Member",
+
         itemEditor:"Classroom Editor",
-        preview:"Preview",
-        communityComposer:"Community Post"
+
+        preview:"Preview"
 
     };
 
 
     document
     .getElementById("pageTitle")
-    .textContent=
-    names[id] || "Admin Panel";
+    .textContent =
+    names[id] ||
+    "Admin Panel";
 
 };
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+function showLoading(text){
+
+    document
+    .getElementById("loadingText")
+    .textContent =
+    text || "Please wait...";
+
+
+    document
+    .getElementById("loading")
+    .style.display="flex";
+
+}
+
+
+function hideLoading(){
+
+    document
+    .getElementById("loading")
+    .style.display="none";
+
+}
 
 
 /* =====================================================
@@ -2189,7 +2462,7 @@ async function loadMembers(){
 
     try{
 
-        const snap=
+        const snap =
         await getDocs(
             collection(
                 db,
@@ -2198,7 +2471,7 @@ async function loadMembers(){
         );
 
 
-        const table=
+        const table =
         document
         .getElementById(
             "membersTable"
@@ -2211,48 +2484,63 @@ async function loadMembers(){
 
 
         snap.forEach(
-        s=>{
+            s=>{
 
-            const m=s.data();
-
-
-            if(m.status==="Active")
-                active++;
+                const m=s.data();
 
 
-            html+=`
+                if(
+                    m.status ===
+                    "Active"
+                ){
 
-            <tr>
+                    active++;
 
-            <td>
-            ${safe(m.name)}
-            </td>
+                }
 
-            <td>
-            ${safe(m.email)}
-            </td>
 
-            <td>
-            ${safe(m.phone)}
-            </td>
+                html += `
 
-            <td>
-            ${safe(m.startDate)}
-            </td>
+                <tr>
 
-            <td>
-            Day ${safe(m.accessUntilDay || 90)}
-            </td>
+                    <td>
+                        ${safe(m.name)}
+                    </td>
 
-            <td>
-            ${safe(m.status || "Active")}
-            </td>
+                    <td>
+                        ${safe(m.email)}
+                    </td>
 
-            </tr>
+                    <td>
+                        ${safe(m.phone)}
+                    </td>
 
-            `;
+                    <td>
+                        ${safe(m.startDate)}
+                    </td>
 
-        });
+                    <td>
+                        Day ${safe(m.accessUntilDay || 90)}
+                    </td>
+
+                    <td>
+
+                        ${
+                            m.status === "Active"
+                            ?
+                            `<span class="badge badge-published">Active</span>`
+                            :
+                            `<span class="badge badge-draft">Inactive</span>`
+                        }
+
+                    </td>
+
+                </tr>
+
+                `;
+
+            }
+        );
 
 
         if(!html){
@@ -2261,12 +2549,12 @@ async function loadMembers(){
 
             <tr>
 
-            <td
-            colspan="6"
-            class="empty"
-            >
-            No members yet.
-            </td>
+                <td
+                    colspan="6"
+                    class="empty"
+                >
+                    No members yet.
+                </td>
 
             </tr>
 
@@ -2305,29 +2593,52 @@ async function loadMembers(){
    SAVE MEMBER
 ===================================================== */
 
-window.saveMember=
+window.saveMember =
 async function(){
 
-    const name=
-    value("mName").trim();
-
-    const email=
-    value("mEmail").trim();
-
-    const phone=
-    value("mPhone").trim();
-
-    const startDate=
-    value("mStart");
-
-    const accessUntilDay=
-    Number(value("mAccess"));
-
-    const status=
-    value("mStatus");
+    const name =
+    document
+    .getElementById("mName")
+    .value.trim();
 
 
-    if(!name || !email || !startDate){
+    const email =
+    document
+    .getElementById("mEmail")
+    .value.trim();
+
+
+    const phone =
+    document
+    .getElementById("mPhone")
+    .value.trim();
+
+
+    const startDate =
+    document
+    .getElementById("mStart")
+    .value;
+
+
+    const accessUntilDay =
+    Number(
+        document
+        .getElementById("mAccess")
+        .value
+    );
+
+
+    const status =
+    document
+    .getElementById("mStatus")
+    .value;
+
+
+    if(
+        !name ||
+        !email ||
+        !startDate
+    ){
 
         alert(
             "Please enter name, email and start date."
@@ -2339,6 +2650,11 @@ async function(){
 
 
     try{
+
+        showLoading(
+            "Saving member..."
+        );
+
 
         await addDoc(
             collection(
@@ -2355,7 +2671,7 @@ async function(){
                 status,
 
                 createdAt:
-                new Date()
+                serverTimestamp()
 
             }
         );
@@ -2366,24 +2682,39 @@ async function(){
         );
 
 
-        [
-            "mName",
-            "mEmail",
-            "mPhone",
-            "mStart"
-        ]
-        .forEach(
-            id=>setValue(id,"")
-        );
+        document
+        .getElementById("mName")
+        .value="";
+
+
+        document
+        .getElementById("mEmail")
+        .value="";
+
+
+        document
+        .getElementById("mPhone")
+        .value="";
+
+
+        document
+        .getElementById("mStart")
+        .value="";
 
 
         await loadMembers();
+
+
+        hideLoading();
+
 
         openSection("members");
 
     }
 
     catch(error){
+
+        hideLoading();
 
         console.error(error);
 
@@ -2398,14 +2729,14 @@ async function(){
 
 
 /* =====================================================
-   LOAD CLASSROOM
+   CLASSROOM
 ===================================================== */
 
 async function loadClassroom(){
 
     try{
 
-        const snap=
+        const snap =
         await getDocs(
             collection(
                 db,
@@ -2418,16 +2749,17 @@ async function loadClassroom(){
 
 
         snap.forEach(
-        s=>{
+            s=>{
 
-            items.push({
+                items.push({
 
-                id:s.id,
-                ...s.data()
+                    id:s.id,
+                    ...s.data()
 
-            });
+                });
 
-        });
+            }
+        );
 
 
         document
@@ -2437,6 +2769,7 @@ async function loadClassroom(){
 
 
         renderTree();
+
 
         populateParents();
 
@@ -2458,11 +2791,11 @@ async function loadClassroom(){
 
         <div class="empty">
 
-        Firebase could not load Classroom.
+            Firebase could not load Classroom.
 
-        <br><br>
+            <br><br>
 
-        ${safe(error.message)}
+            ${safe(error.message)}
 
         </div>
 
@@ -2477,10 +2810,12 @@ async function loadClassroom(){
    NEW ITEM
 ===================================================== */
 
-window.newItem=
+window.newItem =
 function(){
 
     editingId=null;
+
+    editingExistingImage="";
 
     clearEditor();
 
@@ -2492,12 +2827,12 @@ function(){
 
 
 /* =====================================================
-   PARENT LIST
+   PARENTS
 ===================================================== */
 
 function populateParents(){
 
-    const select=
+    const select =
     document
     .getElementById(
         "itemParent"
@@ -2510,9 +2845,9 @@ function populateParents(){
 
     select.innerHTML=`
 
-    <option value="">
-    Top Level
-    </option>
+        <option value="">
+            Top Level — Phase
+        </option>
 
     `;
 
@@ -2521,34 +2856,41 @@ function populateParents(){
     .filter(
         x=>x.hasChildren===true
     )
+    .sort(
+        (a,b)=>
+        (a.order||0)-
+        (b.order||0)
+    )
     .forEach(
-    item=>{
+        item=>{
 
-        const option=
-        document.createElement(
-            "option"
-        );
-
-
-        option.value=item.id;
+            const option =
+            document.createElement(
+                "option"
+            );
 
 
-        option.textContent=
-        getFullPath(item.id);
+            option.value=
+            item.id;
 
 
-        select.appendChild(
-            option
-        );
+            option.textContent=
+            getFullPath(item.id);
 
-    });
+
+            select.appendChild(
+                option
+            );
+
+        }
+    );
 
 }
 
 
 function getFullPath(id){
 
-    const current=
+    const current =
     items.find(
         x=>x.id===id
     );
@@ -2590,7 +2932,9 @@ function getFullPath(id){
     }
 
 
-    return result.join(" → ");
+    return result.join(
+        " → "
+    );
 
 }
 
@@ -2602,105 +2946,74 @@ function getFullPath(id){
 document
 .getElementById("itemType")
 .addEventListener(
-"change",
-function(){
+    "change",
+    function(){
+
+        updateDayContentVisibility();
+
+    }
+);
+
+
+function updateDayContentVisibility(){
+
+    const type =
+    document
+    .getElementById("itemType")
+    .value;
+
 
     document
     .getElementById("dayContent")
-    .style.display=
-    this.value==="lesson"
-    ?"block"
-    :"none";
+    .style.display =
+    type === "lesson"
+    ? "block"
+    : "none";
 
-});
+}
 
 
 /* =====================================================
-   ITEM IMAGE SELECT
+   IMAGE PREVIEW
 ===================================================== */
 
 document
 .getElementById("itemImage")
 .addEventListener(
-"change",
-async function(){
+    "change",
+    function(){
 
-    const file=
-    this.files[0];
-
-
-    if(!file)
-        return;
-
-
-    if(!file.type.startsWith("image/")){
-
-        alert(
-            "Please select an image."
-        );
-
-        this.value="";
-
-        return;
-
-    }
-
-
-    try{
-
-        selectedItemImage=
-        await compressImage(file);
-
-
-        const previewURL=
-        URL.createObjectURL(
-            selectedItemImage
-        );
-
-
-        document
-        .getElementById("previewImage")
-        .src=previewURL;
-
-
-        document
-        .getElementById("imagePreview")
-        .style.display="block";
-
-
-        document
-        .getElementById("imageStatus")
-        .textContent=
-        "Image ready. It will be compressed before upload.";
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-        alert(
-            "Could not prepare image."
+        previewSelectedImage(
+            this.files[0],
+            "itemImagePreview",
+            "itemImagePreviewImg"
         );
 
     }
+);
 
-});
-
-
-/* =====================================================
-   COMMUNITY IMAGE SELECT
-===================================================== */
 
 document
 .getElementById("communityImage")
 .addEventListener(
-"change",
-async function(){
+    "change",
+    function(){
 
-    const file=
-    this.files[0];
+        previewSelectedImage(
+            this.files[0],
+            "communityImagePreview",
+            "communityImagePreviewImg"
+        );
 
+    }
+);
+
+
+function previewSelectedImage(
+    file,
+    boxId,
+    imgId
+){
 
     if(!file)
         return;
@@ -2709,287 +3022,194 @@ async function(){
     if(!file.type.startsWith("image/")){
 
         alert(
-            "Please select an image."
+            "Please select an image file."
         );
-
-        this.value="";
 
         return;
 
     }
 
 
-    try{
-
-        selectedCommunityImage=
-        await compressImage(file);
+    const reader =
+    new FileReader();
 
 
-        const previewURL=
-        URL.createObjectURL(
-            selectedCommunityImage
+    reader.onload =
+    event=>{
+
+        const box =
+        document.getElementById(
+            boxId
         );
 
 
-        document
-        .getElementById("communityPreviewImage")
-        .src=previewURL;
-
-
-        document
-        .getElementById("communityImagePreview")
-        .style.display="block";
-
-
-        document
-        .getElementById(
-            "communityImageStatus"
-        )
-        .textContent=
-        "Image ready for upload.";
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-        alert(
-            "Could not prepare image."
+        const img =
+        document.getElementById(
+            imgId
         );
 
-    }
 
-});
+        img.src =
+        event.target.result;
+
+
+        box.style.display="block";
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+}
 
 
 /* =====================================================
    IMAGE COMPRESSION
 ===================================================== */
 
-function compressImage(file){
+async function compressImage(file){
 
     return new Promise(
-    (resolve,reject)=>{
+        (resolve,reject)=>{
 
-        const reader=
-        new FileReader();
-
-
-        reader.onload=
-        event=>{
-
-            const img=
-            new Image();
+            const reader =
+            new FileReader();
 
 
-            img.onload=
-            ()=>{
+            reader.onload =
+            event=>{
 
-                const MAX_SIZE=1400;
-
-
-                let width=
-                img.width;
-
-                let height=
-                img.height;
+                const img =
+                new Image();
 
 
-                if(width>MAX_SIZE || height>MAX_SIZE){
+                img.onload =
+                ()=>{
 
-                    if(width>height){
-
-                        height=
-                        Math.round(
-                            height*
-                            MAX_SIZE/
-                            width
-                        );
-
-                        width=
-                        MAX_SIZE;
-
-                    }
-                    else{
-
-                        width=
-                        Math.round(
-                            width*
-                            MAX_SIZE/
-                            height
-                        );
-
-                        height=
-                        MAX_SIZE;
-
-                    }
-
-                }
+                    const maxSize =
+                    1400;
 
 
-                const canvas=
-                document.createElement(
-                    "canvas"
-                );
+                    let width =
+                    img.width;
 
 
-                canvas.width=width;
-
-                canvas.height=height;
-
-
-                const ctx=
-                canvas.getContext(
-                    "2d"
-                );
+                    let height =
+                    img.height;
 
 
-                ctx.drawImage(
-                    img,
-                    0,
-                    0,
-                    width,
-                    height
-                );
+                    if(
+                        width >
+                        maxSize ||
+                        height >
+                        maxSize
+                    ){
 
+                        if(width > height){
 
-                canvas.toBlob(
-                blob=>{
+                            height =
+                            Math.round(
+                                height *
+                                maxSize /
+                                width
+                            );
 
-                    if(!blob){
+                            width =
+                            maxSize;
 
-                        reject(
-                            new Error(
-                                "Image compression failed."
-                            )
-                        );
-
-                        return;
-
-                    }
-
-
-                    const compressed=
-                    new File(
-                        [blob],
-                        "image.jpg",
-                        {
-                            type:"image/jpeg",
-                            lastModified:Date.now()
                         }
+                        else{
+
+                            width =
+                            Math.round(
+                                width *
+                                maxSize /
+                                height
+                            );
+
+                            height =
+                            maxSize;
+
+                        }
+
+                    }
+
+
+                    const canvas =
+                    document.createElement(
+                        "canvas"
                     );
 
 
-                    resolve(
-                        compressed
+                    canvas.width=
+                    width;
+
+
+                    canvas.height=
+                    height;
+
+
+                    const ctx =
+                    canvas.getContext(
+                        "2d"
                     );
 
-                },
-                "image/jpeg",
-                0.78
-                );
+
+                    ctx.drawImage(
+                        img,
+                        0,
+                        0,
+                        width,
+                        height
+                    );
+
+
+                    canvas.toBlob(
+                        blob=>{
+
+                            if(!blob){
+
+                                reject(
+                                    new Error(
+                                        "Image compression failed."
+                                    )
+                                );
+
+                                return;
+
+                            }
+
+
+                            resolve(blob);
+
+                        },
+                        "image/jpeg",
+                        0.82
+                    );
+
+                };
+
+
+                img.onerror =
+                reject;
+
+
+                img.src =
+                event.target.result;
 
             };
 
 
-            img.onerror=
-            ()=>reject(
-                new Error(
-                    "Could not read image."
-                )
-            );
+            reader.onerror =
+            reject;
 
 
-            img.src=
-            event.target.result;
+            reader.readAsDataURL(file);
 
-        };
-
-
-        reader.onerror=
-        ()=>reject(
-            new Error(
-                "Could not read file."
-            )
-        );
-
-
-        reader.readAsDataURL(file);
-
-    });
+        }
+    );
 
 }
-
-
-/* =====================================================
-   REMOVE ITEM IMAGE
-===================================================== */
-
-window.removeSelectedImage=
-function(){
-
-    selectedItemImage=null;
-
-
-    document
-    .getElementById("itemImage")
-    .value="";
-
-
-    document
-    .getElementById("previewImage")
-    .src="";
-
-
-    document
-    .getElementById("imagePreview")
-    .style.display="none";
-
-
-    document
-    .getElementById("imageStatus")
-    .textContent="";
-
-};
-
-
-/* =====================================================
-   REMOVE COMMUNITY IMAGE
-===================================================== */
-
-window.removeCommunityImage=
-function(){
-
-    selectedCommunityImage=null;
-
-
-    document
-    .getElementById("communityImage")
-    .value="";
-
-
-    document
-    .getElementById(
-        "communityPreviewImage"
-    )
-    .src="";
-
-
-    document
-    .getElementById(
-        "communityImagePreview"
-    )
-    .style.display="none";
-
-
-    document
-    .getElementById(
-        "communityImageStatus"
-    )
-    .textContent="";
-
-};
 
 
 /* =====================================================
@@ -2998,126 +3218,260 @@ function(){
 
 async function uploadImage(
     file,
-    folder,
-    progressElementId,
-    statusElementId
+    folder
 ){
 
     if(!file)
         return "";
 
 
-    const status=
-    document.getElementById(
-        statusElementId
-    );
+    const compressed =
+    await compressImage(file);
 
 
-    const progress=
-    document.getElementById(
-        progressElementId
-    );
-
-
-    if(status)
-        status.textContent=
-        "Uploading compressed image...";
-
-
-    if(progress)
-        progress.style.display="block";
-
-
-    /*
-      uploadBytes does not expose detailed progress,
-      so we show a fast visual progress indicator.
-    */
-
-    if(progress){
-
-        progress
-        .querySelector(
-            ".upload-progress-fill"
-        )
-        .style.width="35%";
-
-    }
-
-
-    const fileName=
-    Date.now()+
+    const fileName =
+    Date.now() +
     "_" +
     Math.random()
     .toString(36)
-    .substring(2,9)+
+    .substring(2,8) +
     ".jpg";
 
 
-    const storageRef=
+    const storageRef =
     ref(
         storage,
-        folder+"/"+fileName
+        folder +
+        "/" +
+        fileName
     );
 
 
-    try{
-
-        await uploadBytes(
-            storageRef,
-            file,
-            {
-                contentType:"image/jpeg"
-            }
-        );
-
-
-        if(progress){
-
-            progress
-            .querySelector(
-                ".upload-progress-fill"
-            )
-            .style.width="80%";
-
+    await uploadBytes(
+        storageRef,
+        compressed,
+        {
+            contentType:
+            "image/jpeg"
         }
+    );
 
 
-        const url=
-        await getDownloadURL(
-            storageRef
-        );
+    return await getDownloadURL(
+        storageRef
+    );
+
+}
 
 
-        if(progress){
+/* =====================================================
+   VIDEO LINKS
+===================================================== */
 
-            progress
-            .querySelector(
-                ".upload-progress-fill"
-            )
-            .style.width="100%";
+window.addVideoLink =
+function(
+    title="",
+    url=""
+){
 
-        }
-
-
-        if(status)
-            status.textContent=
-            "Image uploaded successfully.";
-
-
-        return url;
-
-    }
-
-    catch(error){
-
-        if(status)
-            status.textContent=
-            "Image upload failed.";
+    const container =
+    document
+    .getElementById(
+        "videoLinks"
+    );
 
 
-        throw error;
+    const div =
+    document.createElement(
+        "div"
+    );
 
-    }
+
+    div.className=
+    "link-box";
+
+
+    div.innerHTML=`
+
+        <div class="link-row">
+
+            <input
+                class="video-title"
+                placeholder="Video title"
+                value="${safeAttribute(title)}"
+            >
+
+            <input
+                class="video-url"
+                type="url"
+                placeholder="https://..."
+                value="${safeAttribute(url)}"
+            >
+
+            <button
+                type="button"
+                class="btn btn-danger btn-small"
+            >
+                Remove
+            </button>
+
+        </div>
+
+    `;
+
+
+    div
+    .querySelector("button")
+    .onclick=
+    ()=>div.remove();
+
+
+    container.appendChild(
+        div
+    );
+
+};
+
+
+function getVideoLinks(){
+
+    const boxes =
+    document
+    .querySelectorAll(
+        "#videoLinks .link-box"
+    );
+
+
+    return Array
+    .from(boxes)
+    .map(
+        box=>({
+
+            title:
+            box
+            .querySelector(".video-title")
+            ?.value
+            .trim() ||
+            "Video",
+
+            url:
+            box
+            .querySelector(".video-url")
+            ?.value
+            .trim() ||
+            ""
+
+        })
+    )
+    .filter(
+        x=>x.url
+    );
+
+}
+
+
+/* =====================================================
+   DRIVE LINKS
+===================================================== */
+
+window.addDriveLink =
+function(
+    title="",
+    url=""
+){
+
+    const container =
+    document
+    .getElementById(
+        "driveLinks"
+    );
+
+
+    const div =
+    document.createElement(
+        "div"
+    );
+
+
+    div.className=
+    "link-box";
+
+
+    div.innerHTML=`
+
+        <div class="link-row">
+
+            <input
+                class="drive-title"
+                placeholder="Resource title"
+                value="${safeAttribute(title)}"
+            >
+
+            <input
+                class="drive-url"
+                type="url"
+                placeholder="Google Drive link"
+                value="${safeAttribute(url)}"
+            >
+
+            <button
+                type="button"
+                class="btn btn-danger btn-small"
+            >
+                Remove
+            </button>
+
+        </div>
+
+    `;
+
+
+    div
+    .querySelector("button")
+    .onclick=
+    ()=>div.remove();
+
+
+    container.appendChild(
+        div
+    );
+
+};
+
+
+function getDriveLinks(){
+
+    const boxes =
+    document
+    .querySelectorAll(
+        "#driveLinks .link-box"
+    );
+
+
+    return Array
+    .from(boxes)
+    .map(
+        box=>({
+
+            title:
+            box
+            .querySelector(".drive-title")
+            ?.value
+            .trim() ||
+            "Resource",
+
+            url:
+            box
+            .querySelector(".drive-url")
+            ?.value
+            .trim() ||
+            ""
+
+        })
+    )
+    .filter(
+        x=>x.url
+    );
 
 }
 
@@ -3126,36 +3480,63 @@ async function uploadImage(
    SAVE CLASSROOM ITEM
 ===================================================== */
 
-window.saveItem=
+window.saveItem =
 async function(){
 
-    const type=
-    value("itemType");
+    const type =
+    document
+    .getElementById("itemType")
+    .value;
 
-    const parentId=
-    value("itemParent") || null;
 
-    const title=
-    value("itemTitle").trim();
+    const parentId =
+    document
+    .getElementById("itemParent")
+    .value ||
+    null;
 
-    const description=
-    value("itemDescription").trim();
 
-    const unlockDay=
+    const title =
+    document
+    .getElementById("itemTitle")
+    .value
+    .trim();
+
+
+    const description =
+    document
+    .getElementById("itemDescription")
+    .value
+    .trim();
+
+
+    const unlockDay =
     Number(
-        value("unlockDay")
+        document
+        .getElementById("unlockDay")
+        .value
     );
 
-    const hasChildren=
+
+    const status =
     document
-    .getElementById(
-        "allowChildren"
-    )
-    .checked;
+    .getElementById("itemStatus")
+    .value;
 
 
-    const status=
-    value("itemStatus");
+    const order =
+    Number(
+        document
+        .getElementById("itemOrder")
+        .value
+    ) || 1;
+
+
+    const hasChildren =
+    document
+    .getElementById("allowChildren")
+    .value ===
+    "true";
 
 
     if(!title){
@@ -3170,9 +3551,8 @@ async function(){
 
 
     if(
-        !unlockDay ||
-        unlockDay<1 ||
-        unlockDay>90
+        unlockDay < 1 ||
+        unlockDay > 90
     ){
 
         alert(
@@ -3184,68 +3564,85 @@ async function(){
     }
 
 
-    const dayContent={
-
-        movement:
-        value("movement"),
-
-        movementInstructions:
-        value("movementInstructions"),
-
-        hydration:
-        value("hydration"),
-
-        hydrationInstructions:
-        value("hydrationInstructions"),
-
-        protein:
-        value("protein"),
-
-        proteinInstructions:
-        value("proteinInstructions"),
-
-        sleep:
-        value("sleep"),
-
-        sleepInstructions:
-        value("sleepInstructions"),
-
-        nutrition:
-        value("nutrition"),
-
-        mind:
-        value("mind"),
-
-        sunlight:
-        value("sunlight"),
-
-        recovery:
-        value("recovery")
-
-    };
-
-
     try{
 
-        let imageUrl=
-        value("existingImageUrl");
+        showLoading(
+            "Saving classroom content..."
+        );
 
 
-        /*
-        Upload only when a NEW image was selected.
-        */
+        let imageUrl =
+        editingExistingImage ||
+        "";
 
-        if(selectedItemImage){
 
-            imageUrl=
+        const imageFile =
+        document
+        .getElementById("itemImage")
+        .files[0];
+
+
+        if(imageFile){
+
+            document
+            .getElementById(
+                "itemImageStatus"
+            )
+            .textContent =
+            "Compressing and uploading image...";
+
+
+            imageUrl =
             await uploadImage(
-                selectedItemImage,
-                "classroom",
-                "imageProgress",
-                "imageStatus"
+                imageFile,
+                "classroom"
             );
 
         }
+
+
+        const dayContent={
+
+            movement:
+            value("movement"),
+
+            movementInstructions:
+            value("movementInstructions"),
+
+            hydration:
+            value("hydration"),
+
+            hydrationInstructions:
+            value("hydrationInstructions"),
+
+            protein:
+            value("protein"),
+
+            proteinInstructions:
+            value("proteinInstructions"),
+
+            sleep:
+            value("sleep"),
+
+            sleepInstructions:
+            value("sleepInstructions"),
+
+            nutrition:
+            value("nutrition"),
+
+            mind:
+            value("mind"),
+
+            sunlight:
+            value("sunlight"),
+
+            recovery:
+            value("recovery"),
+
+            extraNotes:
+            value("extraNotes")
+
+        };
 
 
         const data={
@@ -3260,30 +3657,24 @@ async function(){
 
             unlockDay,
 
-            hasChildren,
-
             status,
 
-            imageUrl:
-            imageUrl || "",
+            hasChildren,
 
-            videoUrl:
-            value("videoUrl").trim(),
+            order,
 
-            driveUrl:
-            value("driveUrl").trim(),
+            imageUrl,
 
             dayContent,
 
-            order:
-            editingId
-            ?
-            getExistingOrder(editingId)
-            :
-            Date.now(),
+            videos:
+            getVideoLinks(),
+
+            driveLinks:
+            getDriveLinks(),
 
             updatedAt:
-            new Date()
+            serverTimestamp()
 
         };
 
@@ -3299,17 +3690,12 @@ async function(){
                 data
             );
 
-
-            alert(
-                "Classroom item updated successfully."
-            );
-
         }
 
         else{
 
-            data.createdAt=
-            new Date();
+            data.createdAt =
+            serverTimestamp();
 
 
             await addDoc(
@@ -3320,22 +3706,29 @@ async function(){
                 data
             );
 
-
-            alert(
-                "Classroom item saved successfully."
-            );
-
         }
+
+
+        alert(
+            editingId
+            ?
+            "Classroom item updated successfully."
+            :
+            "Classroom item created successfully."
+        );
 
 
         editingId=null;
 
-        selectedItemImage=null;
+
+        editingExistingImage="";
 
 
         await loadClassroom();
 
-        clearEditor();
+
+        hideLoading();
+
 
         openSection("classroom");
 
@@ -3343,16 +3736,17 @@ async function(){
 
     catch(error){
 
+        hideLoading();
+
         console.error(
-            "CLASSROOM SAVE ERROR:",
+            "SAVE CLASSROOM ERROR:",
             error
         );
 
 
         alert(
-            "Firebase error:\n\n"+
-            error.message+
-            "\n\nIf this is an image error, we may need to update Firebase Storage rules."
+            "Could not save classroom item:\n\n" +
+            error.message
         );
 
     }
@@ -3361,37 +3755,19 @@ async function(){
 
 
 /* =====================================================
-   GET EXISTING ORDER
-===================================================== */
-
-function getExistingOrder(id){
-
-    const item=
-    items.find(
-        x=>x.id===id
-    );
-
-
-    return item?.order ||
-    Date.now();
-
-}
-
-
-/* =====================================================
    RENDER TREE
 ===================================================== */
 
 function renderTree(){
 
-    const container=
+    const container =
     document
     .getElementById(
         "treeContainer"
     );
 
 
-    const roots=
+    const roots =
     items
     .filter(
         x=>!x.parentId
@@ -3407,19 +3783,19 @@ function renderTree(){
 
         container.innerHTML=`
 
-        <div class="empty">
+            <div class="empty">
 
-        No classroom content yet.
+                No classroom content yet.
 
-        <br><br>
+                <br><br>
 
-        Click <b>+ Add</b> to create:
+                Click <b>+ Add</b> to create:
 
-        <br><br>
+                <br><br>
 
-        Phase → Week → Day
+                Phase → Week → Day
 
-        </div>
+            </div>
 
         `;
 
@@ -3444,10 +3820,12 @@ function renderTree(){
 
 function treeItem(item){
 
-    const children=
+    const children =
     items
     .filter(
-        x=>x.parentId===item.id
+        x=>
+        x.parentId===
+        item.id
     )
     .sort(
         (a,b)=>
@@ -3456,7 +3834,7 @@ function treeItem(item){
     );
 
 
-    let icon=
+    let icon =
     "📁";
 
 
@@ -3468,22 +3846,20 @@ function treeItem(item){
         icon="🗂️";
 
 
-    const media=
+    const statusBadge =
+    item.status==="published"
+    ?
+    `<span class="badge badge-published">Published</span>`
+    :
+    `<span class="badge badge-draft">Draft</span>`;
+
+
+    const imageBadge =
     item.imageUrl
-    ? " 🖼️"
-    : "";
-
-
-    const video=
-    item.videoUrl
-    ? " 🎥"
-    : "";
-
-
-    const drive=
-    item.driveUrl
-    ? " 📁"
-    : "";
+    ?
+    " 🖼️"
+    :
+    "";
 
 
     return `
@@ -3493,78 +3869,76 @@ function treeItem(item){
         <div class="tree-row">
 
             <button
-            class="tree-toggle"
-            onclick="toggle('${item.id}')"
+                class="tree-toggle"
+                onclick="toggle('${item.id}')"
             >
-            ${children.length?"▶":""}
+                ${children.length?"▶":""}
             </button>
 
 
             <span>
-            ${icon}
+                ${icon}
             </span>
 
 
             <div class="tree-title">
 
-            ${safe(item.title)}
-
-            ${media}
-            ${video}
-            ${drive}
+                ${safe(item.title)}
+                ${imageBadge}
 
             </div>
 
 
             <div class="tree-meta">
 
-            Day ${item.unlockDay||1}
-
-            ${item.status==="draft"
-            ? " • Draft"
-            : ""}
+                Unlock Day ${item.unlockDay||1}
 
             </div>
 
 
+            ${statusBadge}
+
+
             <div class="actions">
 
-            ${
-                item.hasChildren===true
-                ?
-                `<button
-                class="small"
-                onclick="addChild('${item.id}')"
+                ${
+                    item.type !== "lesson"
+                    ?
+                    `
+                    <button
+                        class="small"
+                        onclick="addChild('${item.id}')"
+                    >
+                        + Child
+                    </button>
+                    `
+                    :
+                    ""
+                }
+
+
+                <button
+                    class="small"
+                    onclick="editItem('${item.id}')"
                 >
-                + Child
-                </button>`
-                :
-                ""
-            }
+                    Edit
+                </button>
 
 
-            <button
-            class="small"
-            onclick="editItem('${item.id}')"
-            >
-            Edit
-            </button>
+                <button
+                    class="small"
+                    onclick="preview('${item.id}')"
+                >
+                    Preview
+                </button>
 
 
-            <button
-            class="small"
-            onclick="preview('${item.id}')"
-            >
-            Preview
-            </button>
-
-
-            <button
-            class="small"
-            onclick="removeItem('${item.id}')"
-            >
-            Delete
-            </button>
+                <button
+                    class="small"
+                    onclick="removeItem('${item.id}')"
+                >
+                    Delete
+                </button>
 
             </div>
 
@@ -3572,15 +3946,15 @@ function treeItem(item){
 
 
         <div
-        class="children"
-        id="child-${item.id}"
+            class="children"
+            id="child-${item.id}"
         >
 
-        ${children
-        .map(
-            child=>treeItem(child)
-        )
-        .join("")}
+            ${children
+            .map(
+                child=>treeItem(child)
+            )
+            .join("")}
 
         </div>
 
@@ -3595,10 +3969,10 @@ function treeItem(item){
    TREE TOGGLE
 ===================================================== */
 
-window.toggle=
+window.toggle =
 function(id){
 
-    const box=
+    const box =
     document
     .getElementById(
         "child-"+id
@@ -3620,22 +3994,19 @@ function(id){
    ADD CHILD
 ===================================================== */
 
-window.addChild=
+window.addChild =
 function(parentId){
 
-    const parent=
+    const parent =
     items.find(
         x=>x.id===parentId
     );
 
 
-    if(
-        !parent ||
-        parent.hasChildren!==true
-    ){
+    if(!parent){
 
         alert(
-            "This item does not allow children."
+            "Parent not found."
         );
 
         return;
@@ -3645,38 +4016,35 @@ function(parentId){
 
     editingId=null;
 
+    editingExistingImage="";
+
+
     clearEditor();
+
 
     populateParents();
 
 
     document
-    .getElementById(
-        "itemParent"
-    )
+    .getElementById("itemParent")
     .value=
     parentId;
 
 
     document
-    .getElementById(
-        "itemType"
-    )
+    .getElementById("itemType")
     .value=
-    "subsection";
+    parent.type==="module"
+    ?
+    "subsection"
+    :
+    "lesson";
 
 
-    document
-    .getElementById(
-        "dayContent"
-    )
-    .style.display=
-    "none";
+    updateDayContentVisibility();
 
 
-    openSection(
-        "itemEditor"
-    );
+    openSection("itemEditor");
 
 };
 
@@ -3685,10 +4053,10 @@ function(parentId){
    EDIT ITEM
 ===================================================== */
 
-window.editItem=
+window.editItem =
 function(id){
 
-    const item=
+    const item =
     items.find(
         x=>x.id===id
     );
@@ -3701,118 +4069,82 @@ function(id){
     editingId=id;
 
 
+    editingExistingImage =
+    item.imageUrl ||
+    "";
+
+
     populateParents();
 
 
     document
-    .getElementById(
-        "editorHeading"
-    )
+    .getElementById("editorHeading")
     .textContent=
     "Edit Classroom Item";
 
 
-    setValue(
-        "itemType",
-        item.type || "module"
-    );
-
-
-    setValue(
-        "itemParent",
-        item.parentId || ""
-    );
-
-
-    setValue(
-        "itemTitle",
-        item.title || ""
-    );
-
-
-    setValue(
-        "itemDescription",
-        item.description || ""
-    );
-
-
-    setValue(
-        "unlockDay",
-        item.unlockDay || 1
-    );
+    document
+    .getElementById("itemType")
+    .value=
+    item.type ||
+    "module";
 
 
     document
-    .getElementById(
-        "allowChildren"
-    )
-    .checked=
-    item.hasChildren===true;
+    .getElementById("itemParent")
+    .value=
+    item.parentId ||
+    "";
 
 
-    setValue(
-        "itemStatus",
-        item.status || "published"
-    );
+    document
+    .getElementById("itemTitle")
+    .value=
+    item.title ||
+    "";
 
 
-    setValue(
-        "videoUrl",
-        item.videoUrl || ""
-    );
+    document
+    .getElementById("itemDescription")
+    .value=
+    item.description ||
+    "";
 
 
-    setValue(
-        "driveUrl",
-        item.driveUrl || ""
-    );
+    document
+    .getElementById("unlockDay")
+    .value=
+    item.unlockDay ||
+    1;
 
 
-    /*
-    Hidden existing image URL.
-    */
-
-    setValue(
-        "existingImageUrl",
-        item.imageUrl || ""
-    );
+    document
+    .getElementById("itemStatus")
+    .value=
+    item.status ||
+    "published";
 
 
-    if(item.imageUrl){
-
-        document
-        .getElementById(
-            "previewImage"
-        )
-        .src=
-        item.imageUrl;
+    document
+    .getElementById("itemOrder")
+    .value=
+    item.order ||
+    1;
 
 
-        document
-        .getElementById(
-            "imagePreview"
-        )
-        .style.display=
-        "block";
+    document
+    .getElementById("allowChildren")
+    .value=
+    item.hasChildren===true
+    ?
+    "true"
+    :
+    "false";
 
 
-        document
-        .getElementById(
-            "imageStatus"
-        )
-        .textContent=
-        "Current image. Choose another image to replace it.";
-
-    }
-    else{
-
-        removeSelectedImage();
-
-    }
-
-
-    const d=
-    item.dayContent || {};
+    const d =
+    item.dayContent ||
+    {};
 
 
     setValue(
@@ -3820,55 +4152,66 @@ function(id){
         d.movement
     );
 
+
     setValue(
         "movementInstructions",
         d.movementInstructions
     );
+
 
     setValue(
         "hydration",
         d.hydration
     );
 
+
     setValue(
         "hydrationInstructions",
         d.hydrationInstructions
     );
+
 
     setValue(
         "protein",
         d.protein
     );
 
+
     setValue(
         "proteinInstructions",
         d.proteinInstructions
     );
+
 
     setValue(
         "sleep",
         d.sleep
     );
 
+
     setValue(
         "sleepInstructions",
         d.sleepInstructions
     );
+
 
     setValue(
         "nutrition",
         d.nutrition
     );
 
+
     setValue(
         "mind",
         d.mind
     );
 
+
     setValue(
         "sunlight",
         d.sunlight
     );
+
 
     setValue(
         "recovery",
@@ -3876,19 +4219,112 @@ function(id){
     );
 
 
+    setValue(
+        "extraNotes",
+        d.extraNotes
+    );
+
+
     document
     .getElementById(
-        "dayContent"
+        "videoLinks"
+    )
+    .innerHTML="";
+
+
+    document
+    .getElementById(
+        "driveLinks"
+    )
+    .innerHTML="";
+
+
+    if(
+        Array.isArray(item.videos)
+    ){
+
+        item.videos.forEach(
+            video=>{
+
+                addVideoLink(
+                    video.title,
+                    video.url
+                );
+
+            }
+        );
+
+    }
+
+
+    if(
+        Array.isArray(item.driveLinks)
+    ){
+
+        item.driveLinks.forEach(
+            resource=>{
+
+                addDriveLink(
+                    resource.title,
+                    resource.url
+                );
+
+            }
+        );
+
+    }
+
+
+    const currentImage =
+    document
+    .getElementById(
+        "currentItemImage"
+    );
+
+
+    if(item.imageUrl){
+
+        currentImage.innerHTML=`
+
+            <p>
+                Current image:
+            </p>
+
+            <img
+                src="${safeAttribute(item.imageUrl)}"
+                alt="Current image"
+            >
+
+        `;
+
+    }
+
+    else{
+
+        currentImage.innerHTML="";
+
+    }
+
+
+    document
+    .getElementById(
+        "itemImagePreview"
     )
     .style.display=
-    item.type==="lesson"
-    ?"block"
-    :"none";
+    "none";
 
 
-    openSection(
-        "itemEditor"
-    );
+    document
+    .getElementById(
+        "itemImage"
+    )
+    .value="";
+
+
+    updateDayContentVisibility();
+
+
+    openSection("itemEditor");
 
 };
 
@@ -3897,10 +4333,10 @@ function(id){
    DELETE ITEM
 ===================================================== */
 
-window.removeItem=
+window.removeItem =
 async function(id){
 
-    const item=
+    const item =
     items.find(
         x=>x.id===id
     );
@@ -3910,19 +4346,19 @@ async function(id){
         return;
 
 
-    const children=
+    const children =
     items.filter(
         x=>x.parentId===id
     );
 
 
-    let message=
+    let message =
     `Delete "${item.title}"?`;
 
 
     if(children.length){
 
-        message+=
+        message +=
         `\n\nThis item has ${children.length} child item(s).`;
 
     }
@@ -3933,6 +4369,15 @@ async function(id){
 
 
     try{
+
+        showLoading(
+            "Deleting..."
+        );
+
+
+        /*
+        Delete direct children first.
+        */
 
         for(
             const child
@@ -3962,6 +4407,9 @@ async function(id){
         await loadClassroom();
 
 
+        hideLoading();
+
+
         alert(
             "Deleted successfully."
         );
@@ -3969,6 +4417,8 @@ async function(id){
     }
 
     catch(error){
+
+        hideLoading();
 
         console.error(error);
 
@@ -3985,10 +4435,10 @@ async function(id){
    PREVIEW
 ===================================================== */
 
-window.preview=
+window.preview =
 function(id){
 
-    const item=
+    const item =
     items.find(
         x=>x.id===id
     );
@@ -3998,86 +4448,69 @@ function(id){
         return;
 
 
-    const d=
-    item.dayContent || {};
+    const d =
+    item.dayContent ||
+    {};
 
 
     let html=`
 
-    <h2>
-    ${safe(item.title)}
-    </h2>
+        <div>
 
-    ${
-        item.imageUrl
-        ?
-        `<img
-        class="preview-image"
-        src="${safe(item.imageUrl)}"
-        alt="${safe(item.title)}"
-        >`
-        :
-        ""
-    }
+            <span class="badge badge-published">
+                Admin Preview
+            </span>
 
+        </div>
 
-    ${
-        item.description
-        ?
-        `<p>${safe(item.description)}</p>`
-        :
-        ""
-    }
-
-
-    <p>
-    <b>Unlock Day:</b>
-    ${item.unlockDay||1}
-    </p>
+        <h2>
+            ${safe(item.title)}
+        </h2>
 
     `;
 
 
-    if(item.videoUrl){
+    if(item.imageUrl){
 
-        html+=`
+        html += `
 
-        <div class="preview-video">
-
-        <a
-        href="${safe(item.videoUrl)}"
-        target="_blank"
-        rel="noopener"
-        >
-        🎥 Open Video
-        </a>
-
-        </div>
+            <img
+                class="preview-hero"
+                src="${safeAttribute(item.imageUrl)}"
+                alt=""
+            >
 
         `;
 
     }
 
 
-    if(item.driveUrl){
+    if(item.description){
 
-        html+=`
+        html += `
 
-        <div class="preview-video">
-
-        <a
-        href="${safe(item.driveUrl)}"
-        target="_blank"
-        rel="noopener"
-        >
-        📁 Open Google Drive Resource
-        </a>
-
-        </div>
+            <p>
+                ${safe(item.description)}
+            </p>
 
         `;
 
     }
+
+
+    html += `
+
+        <p>
+
+            <strong>
+                Unlock Day:
+            </strong>
+
+            Day ${item.unlockDay || 1}
+
+        </p>
+
+    `;
 
 
     const sections=[
@@ -4128,45 +4561,140 @@ function(id){
             "Recovery",
             d.recovery,
             ""
+        ],
+
+        [
+            "Extra Notes",
+            d.extraNotes,
+            ""
         ]
 
     ];
 
 
     sections.forEach(
-    s=>{
+        s=>{
 
-        if(s[1]){
+            if(s[1]){
 
-            html+=`
+                html += `
 
-            <div
-            class="content-section"
-            >
+                    <div
+                        class="editor-section"
+                    >
 
-            <h3>
-            ${s[0]}
-            </h3>
+                        <h3>
+                            ${safe(s[0])}
+                        </h3>
 
-            <p>
-            ${safe(s[1])}
-            </p>
+                        <p>
+                            ${safe(s[1])}
+                        </p>
 
-            ${
-                s[2]
-                ?
-                `<p>${safe(s[2])}</p>`
-                :
-                ""
+                        ${
+                            s[2]
+                            ?
+                            `<p>${safe(s[2])}</p>`
+                            :
+                            ""
+                        }
+
+                    </div>
+
+                `;
+
             }
 
-            </div>
-
-            `;
-
         }
+    );
 
-    });
+
+    if(
+        Array.isArray(item.videos) &&
+        item.videos.length
+    ){
+
+        html += `
+
+            <div class="editor-section">
+
+                <h3>
+                    🎥 Videos
+                </h3>
+
+        `;
+
+
+        item.videos.forEach(
+            video=>{
+
+                html += `
+
+                    <a
+                        class="preview-link"
+                        href="${safeAttribute(video.url)}"
+                        target="_blank"
+                        rel="noopener"
+                    >
+
+                        🎥
+                        ${safe(video.title || "Watch Video")}
+
+                    </a>
+
+                `;
+
+            }
+        );
+
+
+        html += `</div>`;
+
+    }
+
+
+    if(
+        Array.isArray(item.driveLinks) &&
+        item.driveLinks.length
+    ){
+
+        html += `
+
+            <div class="editor-section">
+
+                <h3>
+                    📂 Resources
+                </h3>
+
+        `;
+
+
+        item.driveLinks.forEach(
+            resource=>{
+
+                html += `
+
+                    <a
+                        class="preview-link"
+                        href="${safeAttribute(resource.url)}"
+                        target="_blank"
+                        rel="noopener"
+                    >
+
+                        📂
+                        ${safe(resource.title || "Open Resource")}
+
+                    </a>
+
+                `;
+
+            }
+        );
+
+
+        html += `</div>`;
+
+    }
 
 
     document
@@ -4177,261 +4705,9 @@ function(id){
     html;
 
 
-    openSection(
-        "preview"
-    );
+    openSection("preview");
 
 };
-
-
-/* =====================================================
-   CLEAR EDITOR
-===================================================== */
-
-function clearEditor(){
-
-    setValue(
-        "editorHeading",
-        "Add Classroom Item"
-    );
-
-
-    document
-    .getElementById(
-        "editorHeading"
-    )
-    .textContent=
-    "Add Classroom Item";
-
-
-    setValue(
-        "itemType",
-        "module"
-    );
-
-
-    setValue(
-        "itemParent",
-        ""
-    );
-
-
-    setValue(
-        "itemTitle",
-        ""
-    );
-
-
-    setValue(
-        "itemDescription",
-        ""
-    );
-
-
-    setValue(
-        "unlockDay",
-        1
-    );
-
-
-    document
-    .getElementById(
-        "allowChildren"
-    )
-    .checked=false;
-
-
-    setValue(
-        "itemStatus",
-        "published"
-    );
-
-
-    setValue(
-        "videoUrl",
-        ""
-    );
-
-
-    setValue(
-        "driveUrl",
-        ""
-    );
-
-
-    setValue(
-        "existingImageUrl",
-        ""
-    );
-
-
-    [
-
-        "movement",
-        "movementInstructions",
-        "hydration",
-        "hydrationInstructions",
-        "protein",
-        "proteinInstructions",
-        "sleep",
-        "sleepInstructions",
-        "nutrition",
-        "mind",
-        "sunlight",
-        "recovery"
-
-    ]
-    .forEach(
-        id=>setValue(id,"")
-    );
-
-
-    selectedItemImage=null;
-
-
-    document
-    .getElementById(
-        "itemImage"
-    )
-    .value="";
-
-
-    document
-    .getElementById(
-        "imagePreview"
-    )
-    .style.display="none";
-
-
-    document
-    .getElementById(
-        "imageStatus"
-    )
-    .textContent="";
-
-
-    document
-    .getElementById(
-        "imageProgress"
-    )
-    .style.display="none";
-
-
-    document
-    .getElementById(
-        "dayContent"
-    )
-    .style.display="none";
-
-}
-
-
-/* =====================================================
-   VIDEO PREVIEW
-===================================================== */
-
-document
-.getElementById("videoUrl")
-.addEventListener(
-"input",
-function(){
-
-    const url=
-    this.value.trim();
-
-
-    const box=
-    document
-    .getElementById(
-        "videoLinkPreview"
-    );
-
-
-    if(!url){
-
-        box.style.display="none";
-
-        box.innerHTML="";
-
-        return;
-
-    }
-
-
-    box.style.display="block";
-
-
-    box.innerHTML=`
-
-    🎥 Video link added:
-
-    <br>
-
-    <a
-    href="${safe(url)}"
-    target="_blank"
-    rel="noopener"
-    >
-    ${safe(url)}
-    </a>
-
-    `;
-
-});
-
-
-/* =====================================================
-   DRIVE PREVIEW
-===================================================== */
-
-document
-.getElementById("driveUrl")
-.addEventListener(
-"input",
-function(){
-
-    const url=
-    this.value.trim();
-
-
-    const box=
-    document
-    .getElementById(
-        "driveLinkPreview"
-    );
-
-
-    if(!url){
-
-        box.style.display="none";
-
-        box.innerHTML="";
-
-        return;
-
-    }
-
-
-    box.style.display="block";
-
-
-    box.innerHTML=`
-
-    📁 Google Drive resource added:
-
-    <br>
-
-    <a
-    href="${safe(url)}"
-    target="_blank"
-    rel="noopener"
-    >
-    ${safe(url)}
-    </a>
-
-    `;
-
-});
 
 
 /* =====================================================
@@ -4442,7 +4718,7 @@ async function loadCommunity(){
 
     try{
 
-        const snap=
+        const snap =
         await getDocs(
             collection(
                 db,
@@ -4455,30 +4731,36 @@ async function loadCommunity(){
 
 
         snap.forEach(
-        s=>{
+            s=>{
 
-            posts.push({
+                posts.push({
 
-                id:s.id,
-                ...s.data()
+                    id:s.id,
+                    ...s.data()
 
-            });
+                });
 
-        });
+            }
+        );
 
 
         posts.sort(
-        (a,b)=>{
+            (a,b)=>{
 
-            const aTime=
-            a.createdAt?.seconds || 0;
+                const aTime =
+                a.createdAt?.seconds ||
+                0;
 
-            const bTime=
-            b.createdAt?.seconds || 0;
 
-            return bTime-aTime;
+                const bTime =
+                b.createdAt?.seconds ||
+                0;
 
-        });
+
+                return bTime-aTime;
+
+            }
+        );
 
 
         document
@@ -4489,122 +4771,9 @@ async function loadCommunity(){
         posts.length;
 
 
-        const container=
-        document
-        .getElementById(
-            "communityPosts"
+        renderCommunity(
+            posts
         );
-
-
-        if(!posts.length){
-
-            container.innerHTML=`
-
-            <div class="empty">
-
-            No community posts yet.
-
-            </div>
-
-            `;
-
-            return;
-
-        }
-
-
-        container.innerHTML=
-        posts
-        .map(
-            post=>`
-
-            <div
-            class="community-post"
-            >
-
-            <div class="post-author">
-
-            ${safe(
-                post.name ||
-                post.email ||
-                "Member"
-            )}
-
-            </div>
-
-
-            <div class="post-date">
-
-            ${formatDate(
-                post.createdAt
-            )}
-
-            </div>
-
-
-            <div>
-
-            ${safe(
-                post.content ||
-                post.text ||
-                ""
-            )}
-
-            </div>
-
-
-            ${
-                post.imageUrl
-                ?
-                `<img
-                class="community-image"
-                src="${safe(post.imageUrl)}"
-                alt="Community image"
-                >`
-                :
-                ""
-            }
-
-
-            ${
-                post.videoUrl
-                ?
-                `<p>
-                <a
-                href="${safe(post.videoUrl)}"
-                target="_blank"
-                rel="noopener"
-                >
-                🎥 Open Video
-                </a>
-                </p>`
-                :
-                ""
-            }
-
-
-            ${
-                post.driveUrl
-                ?
-                `<p>
-                <a
-                href="${safe(post.driveUrl)}"
-                target="_blank"
-                rel="noopener"
-                >
-                📁 Open Google Drive
-                </a>
-                </p>`
-                :
-                ""
-            }
-
-
-            </div>
-
-            `
-        )
-        .join("");
 
     }
 
@@ -4622,15 +4791,9 @@ async function loadCommunity(){
         )
         .innerHTML=`
 
-        <div class="empty">
-
-        Community could not be loaded.
-
-        <br><br>
-
-        ${safe(error.message)}
-
-        </div>
+            <p>
+                Community is currently unavailable.
+            </p>
 
         `;
 
@@ -4640,33 +4803,36 @@ async function loadCommunity(){
 
 
 /* =====================================================
-   SAVE COMMUNITY POST
+   CREATE COMMUNITY POST
 ===================================================== */
 
-window.saveCommunityPost=
+window.createCommunityPost =
 async function(){
 
-    const content=
-    value("communityText").trim();
+    const content =
+    document
+    .getElementById(
+        "communityText"
+    )
+    .value
+    .trim();
 
 
-    const videoUrl=
-    value("communityVideo").trim();
-
-
-    const driveUrl=
-    value("communityDrive").trim();
+    const imageFile =
+    document
+    .getElementById(
+        "communityImage"
+    )
+    .files[0];
 
 
     if(
         !content &&
-        !selectedCommunityImage &&
-        !videoUrl &&
-        !driveUrl
+        !imageFile
     ){
 
         alert(
-            "Please add some content, an image, video or Drive link."
+            "Please write something or select an image."
         );
 
         return;
@@ -4676,17 +4842,28 @@ async function(){
 
     try{
 
+        showLoading(
+            "Publishing community post..."
+        );
+
+
         let imageUrl="";
 
 
-        if(selectedCommunityImage){
+        if(imageFile){
 
-            imageUrl=
-            await uploadImage(
-                selectedCommunityImage,
-                "community",
-                "communityImageProgress",
+            document
+            .getElementById(
                 "communityImageStatus"
+            )
+            .textContent =
+            "Compressing and uploading image...";
+
+
+            imageUrl =
+            await uploadImage(
+                imageFile,
+                "community"
             );
 
         }
@@ -4699,67 +4876,68 @@ async function(){
             ),
             {
 
-                name:"Mahnoor Dietitian",
+                name:
+                "Freedom Women's Health Club",
 
-                email:ADMIN,
+                email:
+                ADMIN,
 
                 content,
 
                 imageUrl,
 
-                videoUrl,
-
-                driveUrl,
-
                 createdAt:
-                new Date()
+                serverTimestamp()
 
             }
         );
+
+
+        document
+        .getElementById(
+            "communityText"
+        )
+        .value="";
+
+
+        document
+        .getElementById(
+            "communityImage"
+        )
+        .value="";
+
+
+        document
+        .getElementById(
+            "communityImagePreview"
+        )
+        .style.display="none";
+
+
+        document
+        .getElementById(
+            "communityImageStatus"
+        )
+        .textContent="";
+
+
+        await loadCommunity();
+
+
+        hideLoading();
 
 
         alert(
             "Community post published."
         );
 
-
-        setValue(
-            "communityText",
-            ""
-        );
-
-
-        setValue(
-            "communityVideo",
-            ""
-        );
-
-
-        setValue(
-            "communityDrive",
-            ""
-        );
-
-
-        removeCommunityImage();
-
-
-        await loadCommunity();
-
-
-        openSection(
-            "community"
-        );
-
     }
 
     catch(error){
 
-        console.error(
-            "COMMUNITY ERROR:",
-            error
-        );
+        hideLoading();
 
+        console.error(error);
 
         alert(
             "Could not publish post:\n\n"+
@@ -4772,44 +4950,351 @@ async function(){
 
 
 /* =====================================================
-   HELPERS
+   RENDER COMMUNITY
+===================================================== */
+
+function renderCommunity(posts){
+
+    const container =
+    document
+    .getElementById(
+        "communityPosts"
+    );
+
+
+    if(!posts.length){
+
+        container.innerHTML=`
+
+            <div class="empty">
+
+                No community posts yet.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+    posts
+    .map(
+        post=>`
+
+            <div class="community-post">
+
+                <div class="post-author">
+
+                    ${safe(
+                        post.name ||
+                        "Freedom Women's Health Club"
+                    )}
+
+                </div>
+
+
+                <div class="post-date">
+
+                    ${formatDate(post.createdAt)}
+
+                </div>
+
+
+                ${
+                    post.content
+                    ?
+                    `
+                    <div>
+
+                        ${safe(post.content)}
+
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+
+                ${
+                    post.imageUrl
+                    ?
+                    `
+                    <div class="post-image">
+
+                        <img
+                            src="${safeAttribute(post.imageUrl)}"
+                            alt="Community image"
+                        >
+
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+
+                <br>
+
+
+                <button
+                    class="btn btn-danger btn-small"
+                    onclick="deleteCommunityPost('${post.id}')"
+                >
+                    Delete Post
+                </button>
+
+            </div>
+
+        `
+    )
+    .join("");
+
+}
+
+
+/* =====================================================
+   DELETE COMMUNITY POST
+===================================================== */
+
+window.deleteCommunityPost =
+async function(id){
+
+    if(
+        !confirm(
+            "Delete this community post?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    try{
+
+        showLoading(
+            "Deleting post..."
+        );
+
+
+        await deleteDoc(
+            doc(
+                db,
+                "community",
+                id
+            )
+        );
+
+
+        await loadCommunity();
+
+
+        hideLoading();
+
+    }
+
+    catch(error){
+
+        hideLoading();
+
+        console.error(error);
+
+        alert(
+            error.message
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   CLEAR EDITOR
+===================================================== */
+
+function clearEditor(){
+
+    document
+    .getElementById(
+        "editorHeading"
+    )
+    .textContent=
+    "Add Classroom Item";
+
+
+    document
+    .getElementById("itemType")
+    .value=
+    "module";
+
+
+    document
+    .getElementById("itemParent")
+    .value="";
+
+
+    document
+    .getElementById("itemTitle")
+    .value="";
+
+
+    document
+    .getElementById("itemDescription")
+    .value="";
+
+
+    document
+    .getElementById("unlockDay")
+    .value=1;
+
+
+    document
+    .getElementById("itemStatus")
+    .value=
+    "published";
+
+
+    document
+    .getElementById("itemOrder")
+    .value=1;
+
+
+    document
+    .getElementById("allowChildren")
+    .value=
+    "false";
+
+
+    document
+    .getElementById(
+        "itemImage"
+    )
+    .value="";
+
+
+    document
+    .getElementById(
+        "itemImagePreview"
+    )
+    .style.display=
+    "none";
+
+
+    document
+    .getElementById(
+        "currentItemImage"
+    )
+    .innerHTML="";
+
+
+    document
+    .getElementById(
+        "itemImageStatus"
+    )
+    .textContent="";
+
+
+    [
+
+        "movement",
+        "movementInstructions",
+
+        "hydration",
+        "hydrationInstructions",
+
+        "protein",
+        "proteinInstructions",
+
+        "sleep",
+        "sleepInstructions",
+
+        "nutrition",
+
+        "mind",
+
+        "sunlight",
+
+        "recovery",
+
+        "extraNotes"
+
+    ]
+    .forEach(
+        id=>setValue(id,"")
+    );
+
+
+    document
+    .getElementById(
+        "videoLinks"
+    )
+    .innerHTML="";
+
+
+    document
+    .getElementById(
+        "driveLinks"
+    )
+    .innerHTML="";
+
+
+    updateDayContentVisibility();
+
+}
+
+
+/* =====================================================
+   VALUE HELPERS
 ===================================================== */
 
 function value(id){
 
-    const el=
-    document.getElementById(id);
+    const el =
+    document
+    .getElementById(id);
 
 
     return el
     ?
-    el.value
+    el.value.trim()
     :
     "";
 
 }
 
 
-function setValue(id,val){
+function setValue(
+    id,
+    val
+){
 
-    const el=
-    document.getElementById(id);
+    const el =
+    document
+    .getElementById(id);
 
 
     if(el){
 
-        el.value=
-        val ?? "";
+        el.value =
+        val || "";
 
     }
 
 }
 
 
+/* =====================================================
+   SAFE HTML
+===================================================== */
+
 function safe(value){
 
     return String(
-        value ?? ""
+        value ??
+        ""
     )
     .replace(
         /&/g,
@@ -4835,6 +5320,17 @@ function safe(value){
 }
 
 
+function safeAttribute(value){
+
+    return safe(value);
+
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
 function formatDate(timestamp){
 
     if(!timestamp)
@@ -4843,7 +5339,7 @@ function formatDate(timestamp){
 
     try{
 
-        const date=
+        const date =
         timestamp.toDate
         ?
         timestamp.toDate()
@@ -4851,14 +5347,7 @@ function formatDate(timestamp){
         new Date(timestamp);
 
 
-        return date.toLocaleDateString(
-            "en-GB",
-            {
-                day:"numeric",
-                month:"short",
-                year:"numeric"
-            }
-        );
+        return date.toLocaleString();
 
     }
 
@@ -4869,7 +5358,6 @@ function formatDate(timestamp){
     }
 
 }
-
 
 </script>
 
