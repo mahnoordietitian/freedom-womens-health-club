@@ -27,6 +27,11 @@
     --border:#e8e0d8;
     --success:#54785c;
     --danger:#a34d4d;
+    --warning:#a97832;
+    --light-green:#edf5ef;
+    --light-yellow:#faf2df;
+    --light-red:#faeded;
+    --light-plum:#f0e8f2;
 }
 
 *{
@@ -55,9 +60,10 @@ button{
     display:none !important;
 }
 
-/* =========================
+
+/* =====================================================
    LOGIN
-========================= */
+===================================================== */
 
 #adminLogin{
     min-height:100vh;
@@ -103,9 +109,10 @@ button{
     margin-top:15px;
 }
 
-/* =========================
+
+/* =====================================================
    APP
-========================= */
+===================================================== */
 
 #adminApp{
     display:none;
@@ -198,9 +205,10 @@ button{
     margin-top:7px;
 }
 
-/* =========================
+
+/* =====================================================
    CARDS
-========================= */
+===================================================== */
 
 .card{
     background:white;
@@ -242,9 +250,10 @@ button{
     margin-top:5px;
 }
 
-/* =========================
+
+/* =====================================================
    FORMS
-========================= */
+===================================================== */
 
 .form-grid{
     display:grid;
@@ -286,7 +295,8 @@ button{
 .primary-btn,
 .secondary-btn,
 .danger-btn,
-.preview-btn{
+.preview-btn,
+.warning-btn{
     border:0;
     border-radius:10px;
     padding:11px 16px;
@@ -309,8 +319,13 @@ button{
 }
 
 .preview-btn{
-    background:#54785c;
+    background:var(--success);
     color:white;
+}
+
+.warning-btn{
+    background:#f4e8cc;
+    color:#76551e;
 }
 
 .message{
@@ -319,9 +334,10 @@ button{
     font-size:14px;
 }
 
-/* =========================
+
+/* =====================================================
    MEMBER LIST
-========================= */
+===================================================== */
 
 .member-list{
     display:grid;
@@ -354,9 +370,10 @@ button{
     flex-wrap:wrap;
 }
 
-/* =========================
+
+/* =====================================================
    WEEK EDITOR
-========================= */
+===================================================== */
 
 .week-selector{
     display:flex;
@@ -375,6 +392,15 @@ button{
 .week-tab.active{
     background:var(--plum);
     color:white;
+}
+
+.week-tab.missing{
+    border-color:#e5b4b4;
+    background:#fff7f7;
+}
+
+.week-tab.has-content{
+    border-color:#b7d0bc;
 }
 
 .day-editor{
@@ -419,9 +445,10 @@ button{
     margin-top:18px;
 }
 
-/* =========================
+
+/* =====================================================
    CONTENT LIST
-========================= */
+===================================================== */
 
 .content-row{
     border:1px solid var(--border);
@@ -444,9 +471,10 @@ button{
     font-size:13px;
 }
 
-/* =========================
+
+/* =====================================================
    COMMUNITY
-========================= */
+===================================================== */
 
 .community-post{
     border:1px solid var(--border);
@@ -474,9 +502,10 @@ button{
     line-height:1.6;
 }
 
-/* =========================
+
+/* =====================================================
    PREVIEW
-========================= */
+===================================================== */
 
 #previewOverlay{
     display:none;
@@ -489,7 +518,7 @@ button{
 
 .preview-window{
     width:100%;
-    max-width:1100px;
+    max-width:1200px;
     height:100%;
     margin:auto;
     background:var(--cream);
@@ -506,11 +535,18 @@ button{
     display:flex;
     justify-content:space-between;
     align-items:center;
+    gap:15px;
 }
 
-.preview-body{
-    overflow:auto;
-    padding:25px;
+.preview-header-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.preview-header-title{
+    color:var(--plum);
+    font-weight:800;
 }
 
 .preview-close{
@@ -520,9 +556,52 @@ button{
     padding:9px 14px;
 }
 
+.preview-body{
+    overflow:auto;
+    padding:25px;
+}
+
 .client-preview{
-    max-width:900px;
+    max-width:1000px;
     margin:auto;
+}
+
+.preview-controls{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.preview-controls-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+    gap:15px;
+}
+
+.preview-control label{
+    display:block;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:6px;
+    color:#635b56;
+}
+
+.preview-control select{
+    width:100%;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:11px;
+    background:white;
+}
+
+.preview-control-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:15px;
 }
 
 .preview-hero{
@@ -530,10 +609,12 @@ button{
     border-radius:20px;
     padding:28px;
     margin-bottom:20px;
+    border:1px solid var(--border);
 }
 
 .preview-hero h1{
     color:var(--plum);
+    margin-bottom:8px;
 }
 
 .preview-progress{
@@ -548,6 +629,32 @@ button{
     background:var(--plum);
 }
 
+.preview-summary{
+    display:grid;
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+    gap:10px;
+    margin-top:20px;
+}
+
+.preview-summary-card{
+    background:#faf7f3;
+    border-radius:12px;
+    padding:14px;
+}
+
+.preview-summary-number{
+    font-size:22px;
+    font-weight:800;
+    color:var(--plum);
+}
+
+.preview-summary-label{
+    font-size:12px;
+    color:#756d67;
+    margin-top:3px;
+}
+
 .preview-week{
     background:white;
     border:1px solid var(--border);
@@ -556,9 +663,107 @@ button{
     margin-bottom:14px;
 }
 
+.preview-week-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:15px;
+    margin-bottom:15px;
+}
+
+.preview-week-header h2{
+    margin:0 0 5px;
+    color:var(--plum);
+}
+
+.preview-week-header p{
+    margin:0;
+    color:#756d67;
+    line-height:1.5;
+}
+
+.preview-status{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    border-radius:20px;
+    padding:6px 10px;
+    font-size:12px;
+    font-weight:700;
+    white-space:nowrap;
+}
+
+.status-unlocked{
+    background:var(--light-green);
+    color:var(--success);
+}
+
+.status-locked{
+    background:#eee8e2;
+    color:#706862;
+}
+
+.status-missing{
+    background:var(--light-red);
+    color:var(--danger);
+}
+
+.status-draft{
+    background:var(--light-yellow);
+    color:var(--warning);
+}
+
+.status-complete{
+    background:var(--light-green);
+    color:var(--success);
+}
+
+.status-partial{
+    background:var(--light-yellow);
+    color:var(--warning);
+}
+
+.preview-week-meta{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:15px;
+}
+
+.preview-meta-pill{
+    background:#faf7f3;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:6px 10px;
+    font-size:12px;
+    color:#625b56;
+}
+
 .preview-day{
     border-top:1px solid var(--border);
     padding:16px 0;
+}
+
+.preview-day:first-child{
+    border-top:0;
+}
+
+.preview-day-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:10px;
+}
+
+.preview-day-header h3{
+    margin:0;
+    color:var(--plum);
+}
+
+.preview-day-status{
+    font-size:11px;
+    font-weight:700;
 }
 
 .preview-habit{
@@ -568,16 +773,114 @@ button{
     margin-top:8px;
 }
 
+.preview-habit strong{
+    color:var(--plum);
+}
+
+.preview-habit p{
+    line-height:1.6;
+    margin:8px 0 0;
+}
+
+.preview-empty-day{
+    background:#fff7f7;
+    border:1px dashed #e5b4b4;
+    color:var(--danger);
+    padding:12px;
+    border-radius:10px;
+    font-size:13px;
+}
+
 .preview-locked{
     background:#eee8e2;
     border-radius:14px;
-    padding:20px;
+    padding:25px;
     text-align:center;
+    color:#68615c;
 }
 
-/* =========================
+.preview-missing{
+    background:#fff7f7;
+    border:1px dashed #e5b4b4;
+    border-radius:14px;
+    padding:20px;
+    color:var(--danger);
+}
+
+.preview-draft{
+    background:#fffaf0;
+    border:1px dashed #d9b66e;
+    border-radius:14px;
+    padding:20px;
+    color:#76551e;
+}
+
+.preview-check-list{
+    margin:10px 0 0;
+    padding-left:20px;
+    color:#6c645e;
+    line-height:1.7;
+}
+
+.preview-mode-note{
+    background:#f0e8f2;
+    border-radius:12px;
+    padding:12px 15px;
+    margin-bottom:20px;
+    color:#5e466b;
+    font-size:13px;
+    line-height:1.5;
+}
+
+
+/* =====================================================
+   JOURNEY HEALTH CHECK
+===================================================== */
+
+.journey-health{
+    display:grid;
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.health-card{
+    border-radius:12px;
+    padding:14px;
+    border:1px solid var(--border);
+}
+
+.health-card.good{
+    background:var(--light-green);
+    border-color:#c8ddcc;
+}
+
+.health-card.warning{
+    background:var(--light-yellow);
+    border-color:#ead7a9;
+}
+
+.health-card.bad{
+    background:var(--light-red);
+    border-color:#e8c1c1;
+}
+
+.health-number{
+    font-size:22px;
+    font-weight:800;
+}
+
+.health-label{
+    font-size:12px;
+    color:#6d6661;
+    margin-top:3px;
+}
+
+
+/* =====================================================
    RESPONSIVE
-========================= */
+===================================================== */
 
 .mobile-menu{
     display:none;
@@ -624,6 +927,20 @@ button{
         padding:20px 14px;
     }
 
+    .preview-controls-grid{
+        grid-template-columns:1fr;
+    }
+
+    .preview-summary{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .journey-health{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
 }
 
 @media(max-width:550px){
@@ -634,6 +951,18 @@ button{
 
     .admin-email{
         display:none;
+    }
+
+    .preview-summary{
+        grid-template-columns:1fr;
+    }
+
+    .journey-health{
+        grid-template-columns:1fr;
+    }
+
+    .preview-week-header{
+        flex-direction:column;
     }
 
 }
@@ -931,6 +1260,27 @@ button{
     <div class="card">
 
         <h2>
+            90-Day Content Check
+        </h2>
+
+        <div
+            class="journey-health"
+            id="dashboardJourneyHealth"
+        >
+            Loading...
+        </div>
+
+        <p>
+            Use Client Preview to inspect all 13 weeks,
+            including weeks that are currently locked for members.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>
             Important
         </h2>
 
@@ -940,7 +1290,6 @@ button{
         </p>
 
         <p>
-            You do not need to rewrite your 90-day content here.
             Existing weeks and days are loaded from
             <strong>weeklyContent</strong>.
         </p>
@@ -1026,9 +1375,31 @@ button{
     </h1>
 
     <p class="page-subtitle">
-        Edit the existing weekly and day-wise content that
-        members see on dashboard.html.
+        Edit and inspect the existing weekly and day-wise
+        content that members see on dashboard.html.
     </p>
+
+
+    <div class="card">
+
+        <h2>
+            Content Status
+        </h2>
+
+        <div
+            class="journey-health"
+            id="journeyHealth"
+        >
+            Loading...
+        </div>
+
+        <p>
+            A week can exist in Firestore while some of its
+            individual days are still empty. Use Client Preview
+            to inspect everything.
+        </p>
+
+    </div>
 
 
     <div class="card">
@@ -1409,41 +1780,15 @@ button{
 
         <ul>
 
-            <li>
-                Weight Loss
-            </li>
-
-            <li>
-                Prediabetes
-            </li>
-
-            <li>
-                Type 2 Diabetes
-            </li>
-
-            <li>
-                Postpartum Weight Loss
-            </li>
-
-            <li>
-                Cholesterol
-            </li>
-
-            <li>
-                Blood Pressure
-            </li>
-
-            <li>
-                PCOS
-            </li>
-
-            <li>
-                Thyroid
-            </li>
-
-            <li>
-                Other common conditions
-            </li>
+            <li>Weight Loss</li>
+            <li>Prediabetes</li>
+            <li>Type 2 Diabetes</li>
+            <li>Postpartum Weight Loss</li>
+            <li>Cholesterol</li>
+            <li>Blood Pressure</li>
+            <li>PCOS</li>
+            <li>Thyroid</li>
+            <li>Other common conditions</li>
 
         </ul>
 
@@ -1463,7 +1808,7 @@ button{
 
 
 <!-- =====================================================
-     CLIENT PREVIEW
+     CLIENT PREVIEW PAGE
 ===================================================== -->
 
 <section
@@ -1476,23 +1821,70 @@ button{
     </h1>
 
     <p class="page-subtitle">
-        See the member-facing content without logging out.
+        Inspect your complete 90-day member journey without
+        changing any member's real progress.
     </p>
 
 
     <div class="card">
 
+        <h2>
+            Full Content Preview
+        </h2>
+
         <p>
-            This preview uses your existing Firestore content and
-            applies the same unlock logic used by dashboard.html.
+            You can now preview Day 1 through Day 90.
+            You can also show every week regardless of whether
+            it is currently locked for members.
         </p>
 
-        <button
-            class="preview-btn"
-            id="openPreview"
-        >
-            Open Full Client Preview
-        </button>
+        <div class="editor-actions">
+
+            <button
+                class="preview-btn"
+                id="openPreview"
+            >
+                Open Full Client Preview
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>
+            What this preview checks
+        </h2>
+
+        <ul>
+
+            <li>
+                Whether each week exists in Firestore
+            </li>
+
+            <li>
+                Whether all 7 days exist
+            </li>
+
+            <li>
+                Whether individual habits have content
+            </li>
+
+            <li>
+                Whether a week is published or draft
+            </li>
+
+            <li>
+                Whether a week is locked for a selected program day
+            </li>
+
+            <li>
+                Which weeks are completely empty
+            </li>
+
+        </ul>
 
     </div>
 
@@ -1516,9 +1908,13 @@ button{
 
         <div class="preview-header">
 
-            <strong>
-                Client View Preview
-            </strong>
+            <div class="preview-header-left">
+
+                <div class="preview-header-title">
+                    Client View Preview
+                </div>
+
+            </div>
 
             <button
                 class="preview-close"
@@ -1650,6 +2046,12 @@ let lifetimeHabits = [];
 
 let selectedWeek = 1;
 
+let previewProgramDay = 1;
+
+let previewShowAllWeeks = true;
+
+let previewSelectedWeek = "all";
+
 
 /* =====================================================
    HELPERS
@@ -1696,6 +2098,280 @@ function escapeHTML(value){
 }
 
 
+/* =====================================================
+   CONTENT CHECK HELPERS
+===================================================== */
+
+function getWeekByNumber(weekNumber){
+
+    return weeklyContent.find(
+        item =>
+            Number(item.week) ===
+            Number(weekNumber)
+    );
+
+}
+
+
+function getDayByNumber(
+    weekData,
+    dayNumber
+){
+
+    if(
+        !weekData ||
+        !Array.isArray(
+            weekData.days
+        )
+    ){
+
+        return null;
+
+    }
+
+
+    return weekData.days.find(
+        item =>
+            Number(item.day) ===
+            Number(dayNumber)
+    ) || null;
+
+}
+
+
+function getDayContentCount(dayData){
+
+    if(!dayData){
+
+        return 0;
+
+    }
+
+
+    const fields = [
+
+        "movement",
+        "movementInstruction",
+
+        "sleep",
+        "sleepInstruction",
+
+        "hydration",
+        "hydrationInstruction",
+
+        "protein",
+        "proteinInstruction",
+
+        "nutrition",
+        "nutritionInstruction",
+
+        "mind",
+        "mindInstruction",
+
+        "sunlight",
+        "sunlightInstruction",
+
+        "recovery",
+        "recoveryInstruction"
+
+    ];
+
+
+    return fields.filter(
+        field =>
+            dayData[field] !== undefined &&
+            dayData[field] !== null &&
+            String(dayData[field]).trim() !== ""
+    ).length;
+
+}
+
+
+function getWeekContentStats(
+    weekNumber
+){
+
+    const weekData =
+        getWeekByNumber(
+            weekNumber
+        );
+
+
+    if(!weekData){
+
+        return {
+
+            exists:false,
+
+            daysTotal:7,
+
+            daysWithContent:0,
+
+            totalFields:0,
+
+            filledFields:0,
+
+            percentage:0
+
+        };
+
+    }
+
+
+    const days =
+        Array.isArray(
+            weekData.days
+        )
+            ? weekData.days
+            : [];
+
+
+    let daysWithContent = 0;
+
+    let filledFields = 0;
+
+    const totalFields =
+        7 * 16;
+
+
+    for(
+        let day = 1;
+        day <= 7;
+        day++
+    ){
+
+        const actualDay =
+            (
+                weekNumber - 1
+            ) * 7 + day;
+
+
+        const dayData =
+            getDayByNumber(
+                weekData,
+                actualDay
+            );
+
+
+        const count =
+            getDayContentCount(
+                dayData
+            );
+
+
+        filledFields += count;
+
+
+        if(count > 0){
+
+            daysWithContent++;
+
+        }
+
+    }
+
+
+    return {
+
+        exists:true,
+
+        daysTotal:7,
+
+        daysWithContent,
+
+        totalFields,
+
+        filledFields,
+
+        percentage:
+            Math.round(
+                filledFields /
+                totalFields *
+                100
+            )
+
+    };
+
+}
+
+
+function getOverallJourneyStats(){
+
+    let existingWeeks = 0;
+
+    let completeWeeks = 0;
+
+    let partialWeeks = 0;
+
+    let missingWeeks = 0;
+
+    let totalDaysWithContent = 0;
+
+    for(
+        let week = 1;
+        week <= 13;
+        week++
+    ){
+
+        const stats =
+            getWeekContentStats(
+                week
+            );
+
+
+        if(!stats.exists){
+
+            missingWeeks++;
+
+            continue;
+
+        }
+
+
+        existingWeeks++;
+
+        totalDaysWithContent +=
+            stats.daysWithContent;
+
+
+        if(
+            stats.daysWithContent ===
+            7 &&
+            stats.percentage >= 100
+        ){
+
+            completeWeeks++;
+
+        }else{
+
+            partialWeeks++;
+
+        }
+
+    }
+
+
+    return {
+
+        existingWeeks,
+
+        completeWeeks,
+
+        partialWeeks,
+
+        missingWeeks,
+
+        totalDaysWithContent
+
+    };
+
+}
+
+
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
+
 function showPage(id){
 
     document
@@ -1709,7 +2385,9 @@ function showPage(id){
 
 
     const page =
-        document.getElementById(id);
+        document.getElementById(
+            id
+        );
 
 
     if(page){
@@ -1736,7 +2414,9 @@ function showPage(id){
 
 
     document
-        .getElementById("sidebar")
+        .getElementById(
+            "sidebar"
+        )
         .classList.remove(
             "open"
         );
@@ -1789,14 +2469,20 @@ document
 
 
 document
-    .getElementById("mobileMenu")
+    .getElementById(
+        "mobileMenu"
+    )
     .addEventListener(
         "click",
         () => {
 
             document
-                .getElementById("sidebar")
-                .classList.toggle("open");
+                .getElementById(
+                    "sidebar"
+                )
+                .classList.toggle(
+                    "open"
+                );
 
         }
     );
@@ -1807,7 +2493,9 @@ document
 ===================================================== */
 
 document
-    .getElementById("loginButton")
+    .getElementById(
+        "loginButton"
+    )
     .addEventListener(
         "click",
         async () => {
@@ -1817,8 +2505,10 @@ document
                     "loginError"
                 );
 
+
             errorBox.textContent =
                 "";
+
 
             try{
 
@@ -1856,12 +2546,14 @@ onAuthStateChanged(
             currentUser =
                 null;
 
+
             document
                 .getElementById(
                     "adminLogin"
                 )
                 .style.display =
                     "flex";
+
 
             document
                 .getElementById(
@@ -1870,22 +2562,21 @@ onAuthStateChanged(
                 .style.display =
                     "none";
 
+
             return;
 
         }
 
-
-        /*
-         * IMPORTANT:
-         * Only your admin email can enter admin panel.
-         */
 
         if(
             user.email !==
             ADMIN_EMAIL
         ){
 
-            await signOut(auth);
+            await signOut(
+                auth
+            );
+
 
             document
                 .getElementById(
@@ -1893,6 +2584,7 @@ onAuthStateChanged(
                 )
                 .textContent =
                     "This account does not have admin access.";
+
 
             return;
 
@@ -1940,11 +2632,17 @@ onAuthStateChanged(
 async function loadEverything(){
 
     await Promise.all([
+
         loadMembers(),
+
         loadWeeklyContent(),
+
         loadLessons(),
+
         loadCommunity(),
+
         loadLifetimeHabits()
+
     ]);
 
 
@@ -1957,6 +2655,10 @@ async function loadEverything(){
     renderCommunityAdmin();
 
     renderLifetimeList();
+
+    renderJourneyHealth();
+
+    renderDashboardJourneyHealth();
 
 }
 
@@ -1979,6 +2681,7 @@ async function loadMembers(){
 
 
         members = [];
+
 
         snapshot.forEach(
             item => {
@@ -2004,6 +2707,7 @@ async function loadMembers(){
             "MEMBERS ERROR",
             error
         );
+
 
         document
             .getElementById(
@@ -2067,9 +2771,6 @@ function renderMembers(){
 
                         <button
                             class="secondary-btn"
-                            data-member-id="${escapeHTML(
-                                member.id
-                            )}"
                             onclick="window.viewMember('${escapeHTML(
                                 member.id
                             )}')"
@@ -2093,7 +2794,8 @@ async function(memberId){
     const member =
         members.find(
             item =>
-                item.id === memberId
+                item.id ===
+                memberId
         );
 
 
@@ -2150,7 +2852,9 @@ async function(memberId){
 
     const percentage =
         Math.round(
-            completed / 90 * 100
+            completed /
+            90 *
+            100
         );
 
 
@@ -2353,6 +3057,29 @@ function renderWeekSelector(){
         week++
     ){
 
+        const stats =
+            getWeekContentStats(
+                week
+            );
+
+
+        let extraClass =
+            "";
+
+
+        if(!stats.exists){
+
+            extraClass =
+                "missing";
+
+        }else{
+
+            extraClass =
+                "has-content";
+
+        }
+
+
         html += `
 
             <button
@@ -2360,8 +3087,13 @@ function renderWeekSelector(){
                     week === selectedWeek
                         ? "active"
                         : ""
-                }"
+                } ${extraClass}"
                 data-select-week="${week}"
+                title="${
+                    stats.exists
+                        ? `${stats.daysWithContent}/7 days contain content`
+                        : "Week does not exist in Firestore"
+                }"
             >
                 Week ${week}
             </button>
@@ -2409,10 +3141,8 @@ function renderWeekSelector(){
 
 function getWeek(){
 
-    return weeklyContent.find(
-        item =>
-            Number(item.week) ===
-            selectedWeek
+    return getWeekByNumber(
+        selectedWeek
     );
 
 }
@@ -2434,7 +3164,7 @@ function getDay(
             week.days.find(
                 item =>
                     Number(item.day) ===
-                    day
+                    Number(day)
             );
 
 
@@ -2498,27 +3228,31 @@ function renderWeekEditor(){
 
         container.innerHTML = `
 
-            <div class="card">
+            <div>
 
                 <h2>
                     Week ${selectedWeek}
                 </h2>
 
-                <p>
-                    This week does not exist in Firestore yet.
-                </p>
+                <div class="preview-missing">
 
-                <p>
-                    Your existing dashboard will continue using
-                    its fallback content until you create this week.
-                </p>
+                    <strong>
+                        ⚠️ Week ${selectedWeek} does not exist in Firestore.
+                    </strong>
 
-                <button
-                    class="primary-btn"
-                    id="createWeekButton"
-                >
-                    Create Week ${selectedWeek}
-                </button>
+                    <p>
+                        This means there is currently no
+                        weeklyContent document for this week.
+                    </p>
+
+                    <button
+                        class="primary-btn"
+                        id="createWeekButton"
+                    >
+                        Create Week ${selectedWeek}
+                    </button>
+
+                </div>
 
             </div>
 
@@ -2540,6 +3274,12 @@ function renderWeekEditor(){
     }
 
 
+    const weekStats =
+        getWeekContentStats(
+            selectedWeek
+        );
+
+
     const days =
         Array.isArray(
             week.days
@@ -2554,6 +3294,73 @@ function renderWeekEditor(){
             Week ${selectedWeek}
         </h2>
 
+        <div class="journey-health">
+
+            <div class="health-card ${
+                weekStats.daysWithContent === 7
+                    ? "good"
+                    : "warning"
+            }">
+
+                <div class="health-number">
+                    ${weekStats.daysWithContent}/7
+                </div>
+
+                <div class="health-label">
+                    Days with content
+                </div>
+
+            </div>
+
+            <div class="health-card ${
+                weekStats.percentage >= 100
+                    ? "good"
+                    : "warning"
+            }">
+
+                <div class="health-number">
+                    ${weekStats.percentage}%
+                </div>
+
+                <div class="health-label">
+                    Content filled
+                </div>
+
+            </div>
+
+            <div class="health-card ${
+                week.status === "published"
+                    ? "good"
+                    : "warning"
+            }">
+
+                <div class="health-number">
+                    ${escapeHTML(
+                        week.status ||
+                        "published"
+                    )}
+                </div>
+
+                <div class="health-label">
+                    Week status
+                </div>
+
+            </div>
+
+            <div class="health-card good">
+
+                <div class="health-number">
+                    Firestore
+                </div>
+
+                <div class="health-label">
+                    Week exists
+                </div>
+
+            </div>
+
+        </div>
+
         <div class="form-grid">
 
             <div class="field">
@@ -2565,7 +3372,8 @@ function renderWeekEditor(){
                 <input
                     id="weekTitle"
                     value="${escapeHTML(
-                        week.title || ""
+                        week.title ||
+                        ""
                     )}"
                 >
 
@@ -2612,7 +3420,8 @@ function renderWeekEditor(){
                 </label>
 
                 <textarea id="weekDescription">${escapeHTML(
-                    week.description || ""
+                    week.description ||
+                    ""
                 )}</textarea>
 
             </div>
@@ -2624,7 +3433,8 @@ function renderWeekEditor(){
                 </label>
 
                 <textarea id="weekGoal">${escapeHTML(
-                    week.goal || ""
+                    week.goal ||
+                    ""
                 )}</textarea>
 
             </div>
@@ -2640,12 +3450,22 @@ function renderWeekEditor(){
         day++
     ){
 
+        const actualDay =
+            (
+                selectedWeek - 1
+            ) * 7 + day;
+
+
         const dayData =
             getDay(
                 week,
-                (
-                    selectedWeek - 1
-                ) * 7 + day
+                actualDay
+            );
+
+
+        const dayContentCount =
+            getDayContentCount(
+                dayData
             );
 
 
@@ -2656,12 +3476,22 @@ function renderWeekEditor(){
                 <div class="day-editor-header">
 
                     <strong>
-                        Day ${
-                            (
-                                selectedWeek - 1
-                            ) * 7 + day
-                        }
+                        Day ${actualDay}
                     </strong>
+
+                    <span
+                        class="preview-status ${
+                            dayContentCount > 0
+                                ? "status-complete"
+                                : "status-missing"
+                        }"
+                    >
+                        ${
+                            dayContentCount > 0
+                                ? "✓ Content added"
+                                : "⚠ Empty"
+                        }
+                    </span>
 
                 </div>
 
@@ -2675,13 +3505,10 @@ function renderWeekEditor(){
 
                         <input
                             data-day-field="phase"
-                            data-day-number="${
-                                (
-                                    selectedWeek - 1
-                                ) * 7 + day
-                            }"
+                            data-day-number="${actualDay}"
                             value="${escapeHTML(
-                                dayData.phase || ""
+                                dayData.phase ||
+                                ""
                             )}"
                         >
 
@@ -2795,8 +3622,37 @@ function renderWeekEditor(){
             "click",
             () => {
 
-                openPreview(
-                    selectedWeek
+                openPreview();
+
+                setTimeout(
+                    () => {
+
+                        const select =
+                            document.getElementById(
+                                "previewWeekSelect"
+                            );
+
+
+                        if(select){
+
+                            select.value =
+                                String(
+                                    selectedWeek
+                                );
+
+
+                            previewSelectedWeek =
+                                String(
+                                    selectedWeek
+                                );
+
+
+                            renderClientPreview();
+
+                        }
+
+                    },
+                    50
                 );
 
             }
@@ -2821,7 +3677,9 @@ function renderDayHabitEditor(
         <div class="habit-editor">
 
             <h4>
-                ${escapeHTML(label)}
+                ${escapeHTML(
+                    label
+                )}
             </h4>
 
             <div class="field">
@@ -2833,7 +3691,8 @@ function renderDayHabitEditor(
                 <input
                     data-habit-field="${field}"
                     value="${escapeHTML(
-                        dayData[field] || ""
+                        dayData[field] ||
+                        ""
                     )}"
                 >
 
@@ -2849,7 +3708,8 @@ function renderDayHabitEditor(
                     data-habit-field="${instructionField}"
                     placeholder="Add detailed instructions that the member will see..."
                 >${escapeHTML(
-                    dayData[instructionField] || ""
+                    dayData[instructionField] ||
+                    ""
                 )}</textarea>
 
             </div>
@@ -2942,6 +3802,11 @@ async function createWeek(){
 
         renderWeekSelector();
 
+        renderJourneyHealth();
+
+        renderDashboardJourneyHealth();
+
+
         alert(
             `Week ${selectedWeek} created.`
         );
@@ -2974,8 +3839,7 @@ async function saveWeek(){
     }
 
 
-    const updatedDays =
-        [];
+    const updatedDays = [];
 
 
     for(
@@ -3007,7 +3871,8 @@ async function saveWeek(){
             phase:
                 document.querySelector(
                     `[data-day-field="phase"][data-day-number="${actualDay}"]`
-                )?.value || ""
+                )?.value ||
+                ""
 
         };
 
@@ -3018,12 +3883,6 @@ async function saveWeek(){
             )
             .forEach(
                 input => {
-
-                    /*
-                     * Inputs are repeated for each day.
-                     * We identify the correct day using
-                     * the editor card containing the input.
-                     */
 
                     const dayEditor =
                         input.closest(
@@ -3043,7 +3902,8 @@ async function saveWeek(){
                             .querySelector(
                                 ".day-editor-header"
                             )
-                            ?.textContent || "";
+                            ?.textContent ||
+                            "";
 
 
                     if(
@@ -3078,24 +3938,35 @@ async function saveWeek(){
         ...week,
 
         title:
-            document.getElementById(
-                "weekTitle"
-            ).value.trim(),
+            document
+                .getElementById(
+                    "weekTitle"
+                )
+                .value
+                .trim(),
 
         description:
-            document.getElementById(
-                "weekDescription"
-            ).value.trim(),
+            document
+                .getElementById(
+                    "weekDescription"
+                )
+                .value
+                .trim(),
 
         goal:
-            document.getElementById(
-                "weekGoal"
-            ).value.trim(),
+            document
+                .getElementById(
+                    "weekGoal"
+                )
+                .value
+                .trim(),
 
         status:
-            document.getElementById(
-                "weekStatus"
-            ).value,
+            document
+                .getElementById(
+                    "weekStatus"
+                )
+                .value,
 
         days:
             updatedDays
@@ -3123,10 +3994,26 @@ async function saveWeek(){
 
         await loadWeeklyContent();
 
-        document.getElementById(
-            "weekMessage"
-        ).textContent =
-            "Week saved successfully.";
+
+        renderWeekSelector();
+
+        renderJourneyHealth();
+
+        renderDashboardJourneyHealth();
+
+
+        const message =
+            document.getElementById(
+                "weekMessage"
+            );
+
+
+        if(message){
+
+            message.textContent =
+                "Week saved successfully.";
+
+        }
 
     }catch(error){
 
@@ -3135,12 +4022,197 @@ async function saveWeek(){
             error
         );
 
-        document.getElementById(
-            "weekMessage"
-        ).textContent =
-            "Unable to save week.";
+
+        const message =
+            document.getElementById(
+                "weekMessage"
+            );
+
+
+        if(message){
+
+            message.textContent =
+                "Unable to save week.";
+
+        }
 
     }
+
+}
+
+
+/* =====================================================
+   JOURNEY HEALTH
+===================================================== */
+
+function renderJourneyHealth(){
+
+    const container =
+        document.getElementById(
+            "journeyHealth"
+        );
+
+
+    if(!container){
+
+        return;
+
+    }
+
+
+    const stats =
+        getOverallJourneyStats();
+
+
+    container.innerHTML = `
+
+        <div class="health-card good">
+
+            <div class="health-number">
+                ${stats.existingWeeks}/13
+            </div>
+
+            <div class="health-label">
+                Weeks uploaded
+            </div>
+
+        </div>
+
+        <div class="health-card ${
+            stats.completeWeeks === 13
+                ? "good"
+                : "warning"
+        }">
+
+            <div class="health-number">
+                ${stats.completeWeeks}
+            </div>
+
+            <div class="health-label">
+                Complete weeks
+            </div>
+
+        </div>
+
+        <div class="health-card ${
+            stats.partialWeeks === 0
+                ? "good"
+                : "warning"
+        }">
+
+            <div class="health-number">
+                ${stats.partialWeeks}
+            </div>
+
+            <div class="health-label">
+                Partial weeks
+            </div>
+
+        </div>
+
+        <div class="health-card ${
+            stats.missingWeeks === 0
+                ? "good"
+                : "bad"
+        }">
+
+            <div class="health-number">
+                ${stats.missingWeeks}
+            </div>
+
+            <div class="health-label">
+                Missing weeks
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+function renderDashboardJourneyHealth(){
+
+    const container =
+        document.getElementById(
+            "dashboardJourneyHealth"
+        );
+
+
+    if(!container){
+
+        return;
+
+    }
+
+
+    const stats =
+        getOverallJourneyStats();
+
+
+    container.innerHTML = `
+
+        <div class="health-card good">
+
+            <div class="health-number">
+                ${stats.existingWeeks}/13
+            </div>
+
+            <div class="health-label">
+                Weeks uploaded
+            </div>
+
+        </div>
+
+        <div class="health-card ${
+            stats.completeWeeks === 13
+                ? "good"
+                : "warning"
+        }">
+
+            <div class="health-number">
+                ${stats.completeWeeks}
+            </div>
+
+            <div class="health-label">
+                Complete weeks
+            </div>
+
+        </div>
+
+        <div class="health-card ${
+            stats.partialWeeks === 0
+                ? "good"
+                : "warning"
+        }">
+
+            <div class="health-number">
+                ${stats.partialWeeks}
+            </div>
+
+            <div class="health-label">
+                Partial weeks
+            </div>
+
+        </div>
+
+        <div class="health-card ${
+            stats.missingWeeks === 0
+                ? "good"
+                : "bad"
+        }">
+
+            <div class="health-number">
+                ${stats.missingWeeks}
+            </div>
+
+            <div class="health-label">
+                Missing weeks
+            </div>
+
+        </div>
+
+    `;
 
 }
 
@@ -3234,6 +4306,7 @@ function renderResources(){
                     <div class="content-info">
 
                         <h3>
+
                             Lesson ${
                                 escapeHTML(
                                     lesson.lesson ||
@@ -3241,10 +4314,12 @@ function renderResources(){
                                     ""
                                 )
                             } —
+
                             ${escapeHTML(
                                 lesson.title ||
                                 "Untitled"
                             )}
+
                         </h3>
 
                         <p>
@@ -3434,6 +4509,7 @@ document
                     "resourceTitle"
                 ).value = "";
 
+
                 document.getElementById(
                     "resourceContent"
                 ).value = "";
@@ -3457,6 +4533,7 @@ document
                     "RESOURCE ERROR",
                     error
                 );
+
 
                 document.getElementById(
                     "resourceMessage"
@@ -3894,6 +4971,7 @@ function(id){
                 .join("\n")
             : "";
 
+
     showPage(
         "lifetimePage"
     );
@@ -4068,6 +5146,7 @@ document
                     error
                 );
 
+
                 document.getElementById(
                     "lifetimeMessage"
                 ).textContent =
@@ -4085,21 +5164,26 @@ function clearLifetimeForm(){
         "lifetimeId"
     ).value = "";
 
+
     document.getElementById(
         "lifetimeOrder"
     ).value = "";
+
 
     document.getElementById(
         "lifetimeTitle"
     ).value = "";
 
+
     document.getElementById(
         "lifetimeDescription"
     ).value = "";
 
+
     document.getElementById(
         "lifetimeImage"
     ).value = "";
+
 
     document.getElementById(
         "lifetimeHabits"
@@ -4154,23 +5238,22 @@ function updateStats(){
    CLIENT PREVIEW
 ===================================================== */
 
-function getPreviewProgramDay(){
+/*
+ * IMPORTANT:
+ *
+ * This preview is completely separate from real member progress.
+ *
+ * previewProgramDay controls which day the fake member is on.
+ *
+ * previewShowAllWeeks = true
+ * means every week is displayed even if locked.
+ *
+ * Therefore you can inspect Week 13 even when the fake member
+ * is currently on Day 1.
+ */
 
-    /*
-     * Admin preview intentionally starts at Day 1.
-     *
-     * This lets you see the locked/unlocked structure
-     * without changing any real member's progress.
-     */
 
-    return 1;
-
-}
-
-
-function openPreview(
-    selectedPreviewWeek = null
-){
+function openPreview(){
 
     const overlay =
         document.getElementById(
@@ -4182,9 +5265,7 @@ function openPreview(
         "block";
 
 
-    renderClientPreview(
-        selectedPreviewWeek
-    );
+    renderClientPreview();
 
 }
 
@@ -4205,11 +5286,7 @@ document
     )
     .addEventListener(
         "click",
-        () => {
-
-            openPreview();
-
-        }
+        openPreview
     );
 
 
@@ -4219,11 +5296,7 @@ document
     )
     .addEventListener(
         "click",
-        () => {
-
-            openPreview();
-
-        }
+        openPreview
     );
 
 
@@ -4237,9 +5310,202 @@ document
     );
 
 
-function renderClientPreview(
-    selectedPreviewWeek
-){
+function renderPreviewControls(){
+
+    return `
+
+        <div class="preview-controls">
+
+            <div class="preview-controls-grid">
+
+                <div class="preview-control">
+
+                    <label>
+                        Pretend Member Is On
+                    </label>
+
+                    <select
+                        id="previewDaySelect"
+                    >
+
+                        ${Array.from(
+                            {
+                                length:90
+                            },
+                            (_,index) => {
+
+                                const day =
+                                    index + 1;
+
+
+                                return `
+
+                                    <option
+                                        value="${day}"
+                                        ${
+                                            day ===
+                                            previewProgramDay
+                                                ? "selected"
+                                                : ""
+                                        }
+                                    >
+                                        Day ${day}
+                                    </option>
+
+                                `;
+
+                            }
+                        ).join("")}
+
+                    </select>
+
+                </div>
+
+
+                <div class="preview-control">
+
+                    <label>
+                        Weeks To Display
+                    </label>
+
+                    <select
+                        id="previewWeekSelect"
+                    >
+
+                        <option
+                            value="all"
+                            ${
+                                previewSelectedWeek ===
+                                "all"
+                                    ? "selected"
+                                    : ""
+                            }
+                        >
+                            All 13 Weeks
+                        </option>
+
+                        ${Array.from(
+                            {
+                                length:13
+                            },
+                            (_,index) => {
+
+                                const week =
+                                    index + 1;
+
+
+                                return `
+
+                                    <option
+                                        value="${week}"
+                                        ${
+                                            String(week) ===
+                                            String(
+                                                previewSelectedWeek
+                                            )
+                                                ? "selected"
+                                                : ""
+                                        }
+                                    >
+                                        Week ${week}
+                                    </option>
+
+                                `;
+
+                            }
+                        ).join("")}
+
+                    </select>
+
+                </div>
+
+
+                <div class="preview-control">
+
+                    <label>
+                        Preview Mode
+                    </label>
+
+                    <select
+                        id="previewLockMode"
+                    >
+
+                        <option
+                            value="all"
+                            ${
+                                previewShowAllWeeks
+                                    ? "selected"
+                                    : ""
+                            }
+                        >
+                            Show All Weeks
+                        </option>
+
+                        <option
+                            value="member"
+                            ${
+                                !previewShowAllWeeks
+                                    ? "selected"
+                                    : ""
+                            }
+                        >
+                            Member View — Lock Future Weeks
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="preview-control-actions">
+
+                <button
+                    class="preview-btn"
+                    id="previewDay1"
+                >
+                    Preview Day 1
+                </button>
+
+                <button
+                    class="secondary-btn"
+                    id="previewDay30"
+                >
+                    Preview Day 30
+                </button>
+
+                <button
+                    class="secondary-btn"
+                    id="previewDay60"
+                >
+                    Preview Day 60
+                </button>
+
+                <button
+                    class="secondary-btn"
+                    id="previewDay90"
+                >
+                    Preview Day 90
+                </button>
+
+                <button
+                    class="warning-btn"
+                    id="previewAllWeeks"
+                >
+                    Show All Weeks
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+function renderClientPreview(){
 
     const container =
         document.getElementById(
@@ -4247,19 +5513,53 @@ function renderClientPreview(
         );
 
 
-    const previewDay =
-        getPreviewProgramDay();
-
-
     const unlockedWeek =
         Math.ceil(
-            previewDay / 7
+            previewProgramDay /
+            7
         );
+
+
+    const overall =
+        getOverallJourneyStats();
 
 
     let html = `
 
         <div class="client-preview">
+
+            ${renderPreviewControls()}
+
+
+            <div class="preview-mode-note">
+
+                <strong>
+                    Admin preview only:
+                </strong>
+
+                You are pretending the member is on
+                <strong>
+                    Day ${previewProgramDay}
+                </strong>.
+
+                This does not change any real member's
+                progress.
+
+                ${
+                    previewShowAllWeeks
+                        ? `
+                            All weeks are being displayed so
+                            you can check whether your content
+                            is actually uploaded.
+                        `
+                        : `
+                            Future weeks are locked exactly like
+                            they are for a normal member.
+                        `
+                }
+
+            </div>
+
 
             <div class="preview-hero">
 
@@ -4272,12 +5572,12 @@ function renderClientPreview(
                 </h1>
 
                 <p>
-                    This is how your dashboard
-                    appears to a member.
+                    This is how your dashboard would look
+                    for a member on Day ${previewProgramDay}.
                 </p>
 
                 <p>
-                    Day ${previewDay}
+                    Day ${previewProgramDay}
                     ·
                     Week ${unlockedWeek}
                 </p>
@@ -4286,12 +5586,73 @@ function renderClientPreview(
 
                     <div
                         class="preview-progress-fill"
-                        style="width:0%"
+                        style="width:${Math.round(
+                            previewProgramDay /
+                            90 *
+                            100
+                        )}%"
                     ></div>
 
                 </div>
 
+
+                <div class="preview-summary">
+
+                    <div class="preview-summary-card">
+
+                        <div class="preview-summary-number">
+                            ${overall.existingWeeks}
+                        </div>
+
+                        <div class="preview-summary-label">
+                            Weeks uploaded
+                        </div>
+
+                    </div>
+
+
+                    <div class="preview-summary-card">
+
+                        <div class="preview-summary-number">
+                            ${overall.completeWeeks}
+                        </div>
+
+                        <div class="preview-summary-label">
+                            Complete weeks
+                        </div>
+
+                    </div>
+
+
+                    <div class="preview-summary-card">
+
+                        <div class="preview-summary-number">
+                            ${overall.partialWeeks}
+                        </div>
+
+                        <div class="preview-summary-label">
+                            Partial weeks
+                        </div>
+
+                    </div>
+
+
+                    <div class="preview-summary-card">
+
+                        <div class="preview-summary-number">
+                            ${overall.missingWeeks}
+                        </div>
+
+                        <div class="preview-summary-label">
+                            Missing weeks
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
+
 
             <div class="preview-hero">
 
@@ -4300,8 +5661,11 @@ function renderClientPreview(
                 </h2>
 
                 <p>
-                    Members only see the content that
-                    their program day allows.
+                    ${
+                        previewShowAllWeeks
+                            ? "All 13 weeks are visible for admin inspection."
+                            : `Only content available to a member on Day ${previewProgramDay} is unlocked.`
+                    }
                 </p>
 
             </div>
@@ -4315,11 +5679,29 @@ function renderClientPreview(
         week++
     ){
 
+        if(
+            previewSelectedWeek !==
+            "all" &&
+            String(week) !==
+            String(
+                previewSelectedWeek
+            )
+        ){
+
+            continue;
+
+        }
+
+
         const weekData =
-            weeklyContent.find(
-                item =>
-                    Number(item.week) ===
-                    week
+            getWeekByNumber(
+                week
+            );
+
+
+        const weekStats =
+            getWeekContentStats(
+                week
             );
 
 
@@ -4328,58 +5710,13 @@ function renderClientPreview(
             unlockedWeek;
 
 
-        if(
-            selectedPreviewWeek &&
-            week !== selectedPreviewWeek
-        ){
-
-            continue;
-
-        }
-
-
-        html += `
-
-            <div class="preview-week">
-
-                <h2>
-                    Week ${week}
-                </h2>
-
-                <h3>
-                    ${escapeHTML(
-                        weekData?.title ||
-                        `Week ${week}`
-                    )}
-                </h3>
-
-                <p>
-                    ${escapeHTML(
-                        weekData?.description ||
-                        ""
-                    )}
-                </p>
-
-                ${
-                    locked
-                        ? `
-                            <div class="preview-locked">
-
-                                🔒
-                                This week is locked
-                                for the member.
-
-                            </div>
-                        `
-                        : renderPreviewWeekDays(
-                            weekData,
-                            week
-                        )
-                }
-
-            </div>
-
-        `;
+        html +=
+            renderPreviewWeek(
+                week,
+                weekData,
+                weekStats,
+                locked
+            );
 
     }
 
@@ -4394,6 +5731,449 @@ function renderClientPreview(
     container.innerHTML =
         html;
 
+
+    bindPreviewControls();
+
+}
+
+
+function bindPreviewControls(){
+
+    const daySelect =
+        document.getElementById(
+            "previewDaySelect"
+        );
+
+
+    if(daySelect){
+
+        daySelect.addEventListener(
+            "change",
+            () => {
+
+                previewProgramDay =
+                    Number(
+                        daySelect.value
+                    );
+
+
+                renderClientPreview();
+
+            }
+        );
+
+    }
+
+
+    const weekSelect =
+        document.getElementById(
+            "previewWeekSelect"
+        );
+
+
+    if(weekSelect){
+
+        weekSelect.addEventListener(
+            "change",
+            () => {
+
+                previewSelectedWeek =
+                    weekSelect.value;
+
+
+                renderClientPreview();
+
+            }
+        );
+
+    }
+
+
+    const modeSelect =
+        document.getElementById(
+            "previewLockMode"
+        );
+
+
+    if(modeSelect){
+
+        modeSelect.addEventListener(
+            "change",
+            () => {
+
+                previewShowAllWeeks =
+                    modeSelect.value ===
+                    "all";
+
+
+                renderClientPreview();
+
+            }
+        );
+
+    }
+
+
+    document
+        .getElementById(
+            "previewDay1"
+        )
+        ?.addEventListener(
+            "click",
+            () => {
+
+                previewProgramDay =
+                    1;
+
+                previewShowAllWeeks =
+                    true;
+
+                renderClientPreview();
+
+            }
+        );
+
+
+    document
+        .getElementById(
+            "previewDay30"
+        )
+        ?.addEventListener(
+            "click",
+            () => {
+
+                previewProgramDay =
+                    30;
+
+                renderClientPreview();
+
+            }
+        );
+
+
+    document
+        .getElementById(
+            "previewDay60"
+        )
+        ?.addEventListener(
+            "click",
+            () => {
+
+                previewProgramDay =
+                    60;
+
+                renderClientPreview();
+
+            }
+        );
+
+
+    document
+        .getElementById(
+            "previewDay90"
+        )
+        ?.addEventListener(
+            "click",
+            () => {
+
+                previewProgramDay =
+                    90;
+
+                renderClientPreview();
+
+            }
+        );
+
+
+    document
+        .getElementById(
+            "previewAllWeeks"
+        )
+        ?.addEventListener(
+            "click",
+            () => {
+
+                previewShowAllWeeks =
+                    true;
+
+                previewSelectedWeek =
+                    "all";
+
+                renderClientPreview();
+
+            }
+        );
+
+}
+
+
+function renderPreviewWeek(
+    week,
+    weekData,
+    weekStats,
+    locked
+){
+
+    const weekTitle =
+        weekData?.title ||
+        `Week ${week}`;
+
+
+    const weekDescription =
+        weekData?.description ||
+        "";
+
+
+    if(!weekData){
+
+        return `
+
+            <div class="preview-week">
+
+                <div class="preview-week-header">
+
+                    <div>
+
+                        <h2>
+                            Week ${week}
+                        </h2>
+
+                        <p>
+                            No weeklyContent document found.
+                        </p>
+
+                    </div>
+
+                    <span class="preview-status status-missing">
+
+                        ⚠ Missing
+
+                    </span>
+
+                </div>
+
+
+                <div class="preview-missing">
+
+                    <strong>
+                        Week ${week} has not been uploaded.
+                    </strong>
+
+                    <p>
+                        There is no Week ${week} document
+                        in the <strong>weeklyContent</strong>
+                        Firestore collection.
+                    </p>
+
+                    <p>
+                        If you expect content here,
+                        go to 90-Day Journey → Week ${week}
+                        and create/upload it.
+                    </p>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    const complete =
+        weekStats.daysWithContent ===
+        7 &&
+        weekStats.percentage >=
+        100;
+
+
+    const statusClass =
+        locked
+            ? "status-locked"
+            : complete
+                ? "status-complete"
+                : "status-partial";
+
+
+    const statusText =
+        locked
+            ? "🔒 Locked"
+            : complete
+                ? "✓ Complete"
+                : "⚠ Partial";
+
+
+    let html = `
+
+        <div class="preview-week">
+
+            <div class="preview-week-header">
+
+                <div>
+
+                    <h2>
+                        Week ${week}
+                    </h2>
+
+                    <p>
+                        ${escapeHTML(
+                            weekTitle
+                        )}
+                    </p>
+
+                    ${
+                        weekDescription
+                            ? `
+                                <p>
+                                    ${escapeHTML(
+                                        weekDescription
+                                    )}
+                                </p>
+                            `
+                            : ""
+                    }
+
+                </div>
+
+
+                <span class="preview-status ${statusClass}">
+
+                    ${statusText}
+
+                </span>
+
+            </div>
+
+
+            <div class="preview-week-meta">
+
+                <span class="preview-meta-pill">
+
+                    Days with content:
+                    ${weekStats.daysWithContent}/7
+
+                </span>
+
+
+                <span class="preview-meta-pill">
+
+                    Content filled:
+                    ${weekStats.percentage}%
+
+                </span>
+
+
+                <span class="preview-meta-pill">
+
+                    Status:
+                    ${escapeHTML(
+                        weekData.status ||
+                        "published"
+                    )}
+
+                </span>
+
+
+                <span class="preview-meta-pill">
+
+                    Program Days:
+                    ${(week - 1) * 7 + 1}–${week * 7}
+
+                </span>
+
+            </div>
+
+    `;
+
+
+    if(
+        locked &&
+        !previewShowAllWeeks
+    ){
+
+        html += `
+
+            <div class="preview-locked">
+
+                <div style="font-size:28px;">
+                    🔒
+                </div>
+
+                <strong>
+                    Week ${week} is locked for this member.
+                </strong>
+
+                <p>
+                    The member is currently on Day
+                    ${previewProgramDay}.
+                </p>
+
+                <p>
+                    Switch Preview Mode to
+                    <strong>
+                        Show All Weeks
+                    </strong>
+                    to inspect this content.
+                </p>
+
+            </div>
+
+        `;
+
+
+        html += `
+
+            </div>
+
+        `;
+
+
+        return html;
+
+    }
+
+
+    if(
+        weekData.status ===
+        "draft"
+    ){
+
+        html += `
+
+            <div class="preview-draft">
+
+                <strong>
+                    📝 Draft
+                </strong>
+
+                <p>
+                    This week exists in Firestore,
+                    but its status is currently Draft.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+
+    html +=
+        renderPreviewWeekDays(
+            weekData,
+            week
+        );
+
+
+    html += `
+
+        </div>
+
+    `;
+
+
+    return html;
+
 }
 
 
@@ -4402,13 +6182,21 @@ function renderPreviewWeekDays(
     week
 ){
 
-    if(!weekData){
+    if(
+        !weekData ||
+        !Array.isArray(
+            weekData.days
+        )
+    ){
 
         return `
-            <p>
-                No Firestore content has been added
-                for this week yet.
-            </p>
+
+            <div class="preview-missing">
+
+                No days array exists for this week.
+
+            </div>
+
         `;
 
     }
@@ -4417,99 +6205,153 @@ function renderPreviewWeekDays(
     let html = "";
 
 
-    const days =
-        Array.isArray(
-            weekData.days
-        )
-            ? weekData.days
-            : [];
+    for(
+        let day = 1;
+        day <= 7;
+        day++
+    ){
+
+        const actualDay =
+            (
+                week - 1
+            ) * 7 + day;
 
 
-    days.forEach(
-        day => {
+        const dayData =
+            getDayByNumber(
+                weekData,
+                actualDay
+            );
+
+
+        const contentCount =
+            getDayContentCount(
+                dayData
+            );
+
+
+        html += `
+
+            <div class="preview-day">
+
+                <div class="preview-day-header">
+
+                    <h3>
+                        Day ${actualDay}
+                    </h3>
+
+                    <span class="preview-day-status">
+
+                        ${
+                            contentCount > 0
+                                ? `✓ ${contentCount}/16 fields`
+                                : `⚠ No content`
+                        }
+
+                    </span>
+
+                </div>
+
+        `;
+
+
+        if(
+            !dayData ||
+            contentCount === 0
+        ){
 
             html += `
 
-                <div class="preview-day">
+                <div class="preview-empty-day">
 
-                    <h3>
-                        Day ${
-                            escapeHTML(
-                                day.day
-                            )
-                        }
-                    </h3>
+                    <strong>
+                        Day ${actualDay} has no content.
+                    </strong>
 
-                    ${
-                        renderPreviewHabit(
-                            "Movement",
-                            day.movement,
-                            day.movementInstruction
-                        )
-                    }
-
-                    ${
-                        renderPreviewHabit(
-                            "Sleep",
-                            day.sleep,
-                            day.sleepInstruction
-                        )
-                    }
-
-                    ${
-                        renderPreviewHabit(
-                            "Hydration",
-                            day.hydration,
-                            day.hydrationInstruction
-                        )
-                    }
-
-                    ${
-                        renderPreviewHabit(
-                            "Protein",
-                            day.protein,
-                            day.proteinInstruction
-                        )
-                    }
-
-                    ${
-                        renderPreviewHabit(
-                            "Nutrition",
-                            day.nutrition,
-                            day.nutritionInstruction
-                        )
-                    }
-
-                    ${
-                        renderPreviewHabit(
-                            "Mind / Stress",
-                            day.mind,
-                            day.mindInstruction
-                        )
-                    }
-
-                    ${
-                        renderPreviewHabit(
-                            "Sunlight",
-                            day.sunlight,
-                            day.sunlightInstruction
-                        )
-                    }
-
-                    ${
-                        renderPreviewHabit(
-                            "Recovery",
-                            day.recovery,
-                            day.recoveryInstruction
-                        )
-                    }
+                    <p>
+                        This day exists only as an empty
+                        placeholder or is missing completely.
+                    </p>
 
                 </div>
 
             `;
 
+        }else{
+
+            html +=
+                renderPreviewHabit(
+                    "Movement",
+                    dayData.movement,
+                    dayData.movementInstruction
+                );
+
+
+            html +=
+                renderPreviewHabit(
+                    "Sleep",
+                    dayData.sleep,
+                    dayData.sleepInstruction
+                );
+
+
+            html +=
+                renderPreviewHabit(
+                    "Hydration",
+                    dayData.hydration,
+                    dayData.hydrationInstruction
+                );
+
+
+            html +=
+                renderPreviewHabit(
+                    "Protein",
+                    dayData.protein,
+                    dayData.proteinInstruction
+                );
+
+
+            html +=
+                renderPreviewHabit(
+                    "Nutrition",
+                    dayData.nutrition,
+                    dayData.nutritionInstruction
+                );
+
+
+            html +=
+                renderPreviewHabit(
+                    "Mind / Stress",
+                    dayData.mind,
+                    dayData.mindInstruction
+                );
+
+
+            html +=
+                renderPreviewHabit(
+                    "Sunlight",
+                    dayData.sunlight,
+                    dayData.sunlightInstruction
+                );
+
+
+            html +=
+                renderPreviewHabit(
+                    "Recovery",
+                    dayData.recovery,
+                    dayData.recoveryInstruction
+                );
+
         }
-    );
+
+
+        html += `
+
+            </div>
+
+        `;
+
+    }
 
 
     return html;
@@ -4538,26 +6380,36 @@ function renderPreviewHabit(
         <div class="preview-habit">
 
             <strong>
-                ${escapeHTML(label)}
+                ${escapeHTML(
+                    label
+                )}
             </strong>
 
-            <div>
-                ${escapeHTML(
-                    target ||
-                    "Habit"
-                )}
-            </div>
+            ${
+                target
+                    ? `
+                        <div>
+                            ${escapeHTML(
+                                target
+                            )}
+                        </div>
+                    `
+                    : ""
+            }
 
             ${
                 instruction
                     ? `
                         <p>
+
                             <strong>
                                 How to do it:
                             </strong>
+
                             ${escapeHTML(
                                 instruction
                             )}
+
                         </p>
                     `
                     : ""
@@ -4568,14 +6420,6 @@ function renderPreviewHabit(
     `;
 
 }
-
-
-/* =====================================================
-   OPEN PREVIEW WHEN CLICKING JOURNEY PREVIEW
-===================================================== */
-
-window.openPreview =
-openPreview;
 
 
 /* =====================================================
@@ -4596,6 +6440,7 @@ document
 
         }
     );
+
 
 </script>
 
