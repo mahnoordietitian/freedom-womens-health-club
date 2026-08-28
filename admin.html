@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,23 +11,22 @@
 >
 
 <title>
-Freedom Women's Health Club — Admin
+    Freedom Women's Health Club — Admin
 </title>
 
 <style>
 
 :root{
-
     --cream:#FBF8F3;
     --plum:#6E4A7E;
-    --dark:#2D2D2D;
+    --plum-dark:#573666;
+    --charcoal:#2D2D2D;
     --taupe:#B7A89A;
     --champagne:#DCCBB3;
-    --white:#FFFFFF;
-    --green:#66856B;
-    --red:#A85C5C;
-    --border:#E6DED5;
-
+    --white:#ffffff;
+    --border:#e8e0d8;
+    --success:#54785c;
+    --danger:#a34d4d;
 }
 
 *{
@@ -36,1016 +34,607 @@ Freedom Women's Health Club — Admin
 }
 
 body{
-
     margin:0;
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    background:
-        var(--cream);
-
-    color:
-        var(--dark);
-
+    font-family:Arial, sans-serif;
+    background:var(--cream);
+    color:var(--charcoal);
 }
 
 button,
 input,
 textarea,
 select{
-
     font:inherit;
-
 }
 
 button{
-
     cursor:pointer;
-
 }
 
 .hidden{
     display:none !important;
 }
 
-
-/* =====================================================
+/* =========================
    LOGIN
-===================================================== */
+========================= */
 
-#loginScreen{
-
+#adminLogin{
     min-height:100vh;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
-    padding:30px;
-
+    padding:25px;
 }
 
 .login-card{
-
     width:100%;
     max-width:430px;
-
-    background:var(--white);
-
-    padding:40px;
-
+    background:white;
+    border:1px solid var(--border);
     border-radius:22px;
-
-    box-shadow:
-        0 15px 50px rgba(45,45,45,.10);
-
+    padding:35px;
+    box-shadow:0 12px 40px rgba(0,0,0,.06);
+    text-align:center;
 }
 
 .login-card h1{
-
-    margin-top:0;
-
+    margin:0 0 8px;
     color:var(--plum);
-
 }
 
 .login-card p{
-
-    color:#706A66;
-
+    color:#6d6661;
     line-height:1.6;
-
 }
 
-.login-card input{
-
+.login-btn{
     width:100%;
-
+    border:0;
+    border-radius:12px;
     padding:14px;
-
-    border:1px solid var(--border);
-
-    border-radius:10px;
-
-    margin:8px 0 15px;
-
-}
-
-.primary-btn{
-
-    border:0;
-
     background:var(--plum);
-
     color:white;
-
-    padding:12px 18px;
-
-    border-radius:10px;
-
-    font-weight:600;
-
+    font-weight:700;
 }
 
-.primary-btn:hover{
-
-    opacity:.9;
-
+.login-error{
+    color:var(--danger);
+    margin-top:15px;
 }
 
-.secondary-btn{
-
-    border:1px solid var(--border);
-
-    background:white;
-
-    color:var(--dark);
-
-    padding:10px 15px;
-
-    border-radius:9px;
-
-}
-
-.danger-btn{
-
-    border:0;
-
-    background:#A85C5C;
-
-    color:white;
-
-    padding:9px 13px;
-
-    border-radius:8px;
-
-}
-
-.success-btn{
-
-    border:0;
-
-    background:var(--green);
-
-    color:white;
-
-    padding:9px 13px;
-
-    border-radius:8px;
-
-}
-
-
-/* =====================================================
+/* =========================
    APP
-===================================================== */
+========================= */
 
 #adminApp{
-
     display:none;
-
-    min-height:100vh;
-
 }
 
-.layout{
-
+.topbar{
+    height:70px;
+    background:white;
+    border-bottom:1px solid var(--border);
     display:flex;
-
-    min-height:100vh;
-
-}
-
-
-/* =====================================================
-   SIDEBAR
-===================================================== */
-
-.sidebar{
-
-    width:250px;
-
-    background:
-        var(--plum);
-
-    color:white;
-
-    padding:25px 18px;
-
-    position:fixed;
-
-    left:0;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 25px;
+    position:sticky;
     top:0;
-    bottom:0;
-
-    overflow-y:auto;
-
+    z-index:20;
 }
 
 .brand{
-
-    padding:5px 10px 25px;
-
+    font-weight:800;
+    color:var(--plum);
+    font-size:19px;
 }
 
-.brand h2{
-
-    margin:0;
-
-    font-size:21px;
-
+.admin-email{
+    font-size:13px;
+    color:#756d67;
 }
 
-.brand p{
-
-    margin:7px 0 0;
-
-    opacity:.75;
-
-    font-size:12px;
-
-}
-
-.nav{
-
+.layout{
     display:flex;
+    min-height:calc(100vh - 70px);
+}
 
-    flex-direction:column;
-
-    gap:5px;
-
+.sidebar{
+    width:245px;
+    background:white;
+    border-right:1px solid var(--border);
+    padding:20px 14px;
+    position:sticky;
+    top:70px;
+    height:calc(100vh - 70px);
+    overflow:auto;
 }
 
 .nav-btn{
-
     width:100%;
-
     border:0;
-
     background:transparent;
-
-    color:white;
-
     text-align:left;
-
-    padding:12px 13px;
-
-    border-radius:9px;
-
-    opacity:.85;
-
+    padding:12px 14px;
+    border-radius:10px;
+    margin-bottom:5px;
+    color:#554e49;
 }
 
 .nav-btn:hover,
 .nav-btn.active{
-
-    background:rgba(255,255,255,.14);
-
-    opacity:1;
-
+    background:#f0e8f2;
+    color:var(--plum);
+    font-weight:700;
 }
 
-.sidebar-bottom{
-
-    margin-top:30px;
-
-    border-top:
-        1px solid rgba(255,255,255,.15);
-
-    padding-top:20px;
-
+.logout-btn{
+    margin-top:20px;
+    color:var(--danger);
 }
-
-.admin-email{
-
-    font-size:11px;
-
-    opacity:.7;
-
-    word-break:break-word;
-
-    margin-bottom:12px;
-
-}
-
-
-/* =====================================================
-   MAIN
-===================================================== */
 
 .main{
-
-    margin-left:250px;
-
-    width:calc(100% - 250px);
-
+    flex:1;
     padding:30px;
-
+    max-width:1500px;
 }
 
-.topbar{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:20px;
-
-    margin-bottom:25px;
-
-}
-
-.topbar h1{
-
-    margin:0;
-
-    color:var(--plum);
-
-}
-
-.page-section{
-
+.page{
     display:none;
-
 }
 
-.page-section.active{
-
+.page.active{
     display:block;
-
 }
 
+.page-title{
+    margin:0;
+    color:var(--plum);
+}
 
-/* =====================================================
+.page-subtitle{
+    color:#756d67;
+    margin-top:7px;
+}
+
+/* =========================
    CARDS
-===================================================== */
+========================= */
 
 .card{
-
     background:white;
-
     border:1px solid var(--border);
-
-    border-radius:16px;
-
+    border-radius:18px;
     padding:22px;
-
     margin-bottom:20px;
-
 }
 
 .card h2,
 .card h3{
-
     margin-top:0;
-
-}
-
-.stats-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:15px;
-
-    margin-bottom:25px;
-
-}
-
-.stat-card{
-
-    background:white;
-
-    border:1px solid var(--border);
-
-    border-radius:15px;
-
-    padding:20px;
-
-}
-
-.stat-card span{
-
-    display:block;
-
-    color:#777;
-
-    font-size:13px;
-
-    margin-bottom:8px;
-
-}
-
-.stat-card strong{
-
-    font-size:28px;
-
     color:var(--plum);
-
 }
 
+.stats{
+    display:grid;
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+    gap:15px;
+    margin:25px 0;
+}
 
-/* =====================================================
+.stat{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:20px;
+}
+
+.stat-number{
+    font-size:30px;
+    font-weight:800;
+    color:var(--plum);
+}
+
+.stat-label{
+    color:#766f69;
+    margin-top:5px;
+}
+
+/* =========================
    FORMS
-===================================================== */
+========================= */
 
 .form-grid{
-
     display:grid;
-
     grid-template-columns:
-        repeat(2,1fr);
-
+        repeat(2,minmax(0,1fr));
     gap:15px;
-
 }
 
-.form-group{
-
-    margin-bottom:14px;
-
+.field{
+    margin-bottom:15px;
 }
 
-.form-group.full{
-
-    grid-column:1 / -1;
-
+.field.full{
+    grid-column:1/-1;
 }
 
-.form-group label{
-
+.field label{
     display:block;
-
     font-size:13px;
-
-    font-weight:600;
-
+    font-weight:700;
     margin-bottom:6px;
-
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select{
-
+.field input,
+.field textarea,
+.field select{
     width:100%;
-
+    border:1px solid var(--border);
+    border-radius:10px;
     padding:11px;
-
-    border:1px solid var(--border);
-
-    border-radius:9px;
-
-    background:white;
-
+    background:#fff;
 }
 
-.form-group textarea{
-
+.field textarea{
     min-height:110px;
-
     resize:vertical;
-
 }
 
-.actions{
-
-    display:flex;
-
-    gap:8px;
-
-    flex-wrap:wrap;
-
-    margin-top:15px;
-
+.primary-btn,
+.secondary-btn,
+.danger-btn,
+.preview-btn{
+    border:0;
+    border-radius:10px;
+    padding:11px 16px;
+    font-weight:700;
 }
 
+.primary-btn{
+    background:var(--plum);
+    color:white;
+}
 
-/* =====================================================
-   MEMBER CARDS
-===================================================== */
+.secondary-btn{
+    background:#eee8e2;
+    color:#4d4743;
+}
 
-.member-card{
+.danger-btn{
+    background:#f5dddd;
+    color:var(--danger);
+}
 
-    background:white;
+.preview-btn{
+    background:#54785c;
+    color:white;
+}
 
+.message{
+    margin-top:10px;
+    color:var(--success);
+    font-size:14px;
+}
+
+/* =========================
+   MEMBER LIST
+========================= */
+
+.member-list{
+    display:grid;
+    gap:12px;
+}
+
+.member-row{
     border:1px solid var(--border);
-
     border-radius:14px;
-
-    padding:18px;
-
-    margin-bottom:12px;
-
-}
-
-.member-header{
-
+    padding:16px;
     display:flex;
-
+    align-items:center;
     justify-content:space-between;
-
     gap:15px;
-
-    align-items:flex-start;
-
 }
 
 .member-name{
-
-    color:var(--plum);
-
-    font-weight:700;
-
-    font-size:18px;
-
+    font-weight:800;
 }
 
 .member-meta{
-
+    color:#756d67;
     font-size:13px;
-
-    color:#777;
-
     margin-top:4px;
-
 }
 
-.member-stats{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:10px;
-
-    margin-top:15px;
-
-}
-
-.mini-stat{
-
-    background:#FAF7F3;
-
-    padding:10px;
-
-    border-radius:8px;
-
-}
-
-.mini-stat small{
-
-    display:block;
-
-    color:#777;
-
-    font-size:11px;
-
-}
-
-.mini-stat strong{
-
-    font-size:16px;
-
-}
-
-
-/* =====================================================
-   WEEK EDITOR
-===================================================== */
-
-.week-tabs{
-
+.member-actions{
     display:flex;
-
-    gap:7px;
-
+    gap:8px;
     flex-wrap:wrap;
+}
 
+/* =========================
+   WEEK EDITOR
+========================= */
+
+.week-selector{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
     margin-bottom:20px;
-
 }
 
 .week-tab{
-
     border:1px solid var(--border);
-
     background:white;
-
-    padding:9px 12px;
-
-    border-radius:8px;
-
+    border-radius:9px;
+    padding:9px 13px;
 }
 
 .week-tab.active{
-
     background:var(--plum);
-
     color:white;
-
-}
-
-.day-list{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:12px;
-
 }
 
 .day-editor{
-
     border:1px solid var(--border);
-
-    border-radius:12px;
-
+    border-radius:15px;
+    margin-top:18px;
     overflow:hidden;
-
 }
 
 .day-editor-header{
-
-    background:#F8F4EF;
-
-    padding:13px 15px;
-
+    background:#f4eee9;
+    padding:15px 18px;
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
+}
 
+.day-editor-header strong{
+    color:var(--plum);
 }
 
 .day-editor-body{
-
     padding:18px;
-
 }
 
 .habit-editor{
-
     border:1px solid var(--border);
-
-    border-radius:10px;
-
-    padding:14px;
-
+    border-radius:12px;
+    padding:15px;
     margin-bottom:12px;
-
 }
 
 .habit-editor h4{
-
-    margin:0 0 10px;
-
+    margin:0 0 12px;
     color:var(--plum);
-
 }
 
-.habit-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
+.editor-actions{
+    display:flex;
     gap:10px;
-
+    flex-wrap:wrap;
+    margin-top:18px;
 }
 
-
-/* =====================================================
+/* =========================
    CONTENT LIST
-===================================================== */
+========================= */
 
-.item-list{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:12px;
-
-}
-
-.content-item{
-
-    background:white;
-
+.content-row{
     border:1px solid var(--border);
-
-    border-radius:12px;
-
+    border-radius:14px;
     padding:16px;
-
-}
-
-.content-item-header{
-
+    margin-bottom:10px;
     display:flex;
-
     justify-content:space-between;
-
     gap:15px;
-
     align-items:center;
-
 }
 
-.content-item h3{
+.content-info h3{
+    margin:0 0 5px;
+}
 
+.content-info p{
     margin:0;
-
-    color:var(--plum);
-
+    color:#756d67;
+    font-size:13px;
 }
 
-.badge{
-
-    display:inline-block;
-
-    padding:5px 8px;
-
-    border-radius:20px;
-
-    background:#F0E9F2;
-
-    color:var(--plum);
-
-    font-size:11px;
-
-}
-
-.badge.green{
-
-    background:#EAF2EB;
-
-    color:#527258;
-
-}
-
-
-/* =====================================================
+/* =========================
    COMMUNITY
-===================================================== */
+========================= */
 
 .community-post{
-
-    background:white;
-
     border:1px solid var(--border);
-
-    border-radius:12px;
-
-    padding:17px;
-
-    margin-bottom:12px;
-
-}
-
-.community-post-header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:15px;
-
-}
-
-.community-post-name{
-
-    font-weight:700;
-
-    color:var(--plum);
-
-}
-
-.community-post-date{
-
-    font-size:12px;
-
-    color:#888;
-
-}
-
-.community-post-message{
-
-    margin:14px 0;
-
-    line-height:1.6;
-
-}
-
-.reply-box{
-
-    background:#F8F4EF;
-
-    padding:10px;
-
-    margin-top:7px;
-
-    border-radius:8px;
-
-    font-size:13px;
-
-}
-
-
-/* =====================================================
-   PREVIEW
-===================================================== */
-
-.preview-frame{
-
-    width:100%;
-
-    min-height:800px;
-
-    border:1px solid var(--border);
-
     border-radius:14px;
-
-    background:white;
-
+    padding:16px;
+    margin-bottom:12px;
 }
 
-.preview-note{
-
-    background:#F1EBF3;
-
-    border-left:4px solid var(--plum);
-
-    padding:14px;
-
-    border-radius:8px;
-
-    margin-bottom:15px;
-
+.community-post-top{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
 }
 
+.post-category{
+    font-size:12px;
+    background:#eee6f1;
+    color:var(--plum);
+    padding:5px 8px;
+    border-radius:20px;
+}
 
-/* =====================================================
-   SEARCH
-===================================================== */
+.post-message{
+    margin:12px 0;
+    line-height:1.6;
+}
 
-.search{
+/* =========================
+   PREVIEW
+========================= */
 
+#previewOverlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    z-index:100;
+    padding:20px;
+}
+
+.preview-window{
     width:100%;
-
-    max-width:500px;
-
-    padding:12px;
-
-    border:1px solid var(--border);
-
-    border-radius:9px;
-
-    margin-bottom:18px;
-
+    max-width:1100px;
+    height:100%;
+    margin:auto;
+    background:var(--cream);
+    border-radius:20px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
 }
 
+.preview-header{
+    background:white;
+    padding:15px 20px;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
 
-/* =====================================================
+.preview-body{
+    overflow:auto;
+    padding:25px;
+}
+
+.preview-close{
+    border:0;
+    background:#eee;
+    border-radius:9px;
+    padding:9px 14px;
+}
+
+.client-preview{
+    max-width:900px;
+    margin:auto;
+}
+
+.preview-hero{
+    background:white;
+    border-radius:20px;
+    padding:28px;
+    margin-bottom:20px;
+}
+
+.preview-hero h1{
+    color:var(--plum);
+}
+
+.preview-progress{
+    background:#eee;
+    height:10px;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.preview-progress-fill{
+    height:100%;
+    background:var(--plum);
+}
+
+.preview-week{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:20px;
+    margin-bottom:14px;
+}
+
+.preview-day{
+    border-top:1px solid var(--border);
+    padding:16px 0;
+}
+
+.preview-habit{
+    background:#faf7f3;
+    border-radius:10px;
+    padding:12px;
+    margin-top:8px;
+}
+
+.preview-locked{
+    background:#eee8e2;
+    border-radius:14px;
+    padding:20px;
+    text-align:center;
+}
+
+/* =========================
    RESPONSIVE
-===================================================== */
+========================= */
 
 .mobile-menu{
-
     display:none;
-
 }
 
 @media(max-width:900px){
 
     .sidebar{
-
-        transform:translateX(-100%);
-
-        z-index:20;
-
-        transition:.25s;
-
+        position:fixed;
+        left:-260px;
+        top:70px;
+        z-index:50;
+        transition:.2s;
     }
 
     .sidebar.open{
-
-        transform:translateX(0);
-
-    }
-
-    .main{
-
-        margin-left:0;
-
-        width:100%;
-
-        padding:18px;
-
+        left:0;
     }
 
     .mobile-menu{
-
         display:block;
-
+        border:0;
+        background:#eee8e2;
+        border-radius:8px;
+        padding:8px 10px;
+        margin-right:10px;
     }
 
-    .stats-grid{
+    .top-left{
+        display:flex;
+        align-items:center;
+    }
 
+    .stats{
         grid-template-columns:
             repeat(2,1fr);
-
     }
 
-    .member-stats{
-
-        grid-template-columns:
-            repeat(2,1fr);
-
-    }
-
-}
-
-@media(max-width:650px){
-
-    .form-grid,
-    .habit-grid{
-
+    .form-grid{
         grid-template-columns:1fr;
-
     }
 
-    .stats-grid{
+    .main{
+        padding:20px 14px;
+    }
 
+}
+
+@media(max-width:550px){
+
+    .stats{
         grid-template-columns:1fr;
-
     }
 
-    .topbar{
-
-        align-items:flex-start;
-
-        flex-direction:column;
-
+    .admin-email{
+        display:none;
     }
-
-}
-
-
-/* =====================================================
-   LOADING
-===================================================== */
-
-.loading{
-
-    padding:30px;
-
-    text-align:center;
-
-    color:#777;
-
-}
-
-.empty{
-
-    padding:30px;
-
-    text-align:center;
-
-    color:#777;
-
-}
-
-.success-message{
-
-    color:var(--green);
-
-    margin-top:10px;
-
-    font-size:13px;
-
-}
-
-.error-message{
-
-    color:var(--red);
-
-    margin-top:10px;
-
-    font-size:13px;
 
 }
 
@@ -1061,7 +650,7 @@ button{
      ADMIN LOGIN
 ===================================================== -->
 
-<div id="loginScreen">
+<div id="adminLogin">
 
     <div class="login-card">
 
@@ -1070,33 +659,20 @@ button{
         </h1>
 
         <p>
-            Sign in with your administrator
-            Firebase account to manage the
-            Freedom Women's Health Club.
+            Sign in with your authorized admin account
+            to manage the Freedom Women's Health Club.
         </p>
 
-        <input
-            type="email"
-            id="adminEmail"
-            placeholder="Admin email"
-        >
-
-        <input
-            type="password"
-            id="adminPassword"
-            placeholder="Password"
-        >
-
         <button
-            class="primary-btn"
+            class="login-btn"
             id="loginButton"
         >
-            Login
+            Sign in with Google
         </button>
 
         <div
-            id="loginMessage"
-            class="error-message"
+            class="login-error"
+            id="loginError"
         ></div>
 
     </div>
@@ -1104,12 +680,37 @@ button{
 </div>
 
 
-
 <!-- =====================================================
      ADMIN APP
 ===================================================== -->
 
 <div id="adminApp">
+
+
+<header class="topbar">
+
+    <div class="top-left">
+
+        <button
+            class="mobile-menu"
+            id="mobileMenu"
+        >
+            ☰
+        </button>
+
+        <div class="brand">
+            Freedom Women's Health Club
+        </div>
+
+    </div>
+
+    <div
+        class="admin-email"
+        id="adminEmail"
+    ></div>
+
+</header>
+
 
 <div class="layout">
 
@@ -1123,195 +724,156 @@ button{
     id="sidebar"
 >
 
-    <div class="brand">
+    <button
+        class="nav-btn active"
+        data-page="dashboardPage"
+    >
+        Dashboard
+    </button>
 
-        <h2>
-            Freedom Admin
-        </h2>
+    <button
+        class="nav-btn"
+        data-page="membersPage"
+    >
+        Members
+    </button>
 
-        <p>
-            Women's Health Club
-        </p>
+    <button
+        class="nav-btn"
+        data-page="journeyPage"
+    >
+        90-Day Journey
+    </button>
 
-    </div>
+    <button
+        class="nav-btn"
+        data-page="resourcesPage"
+    >
+        Resources
+    </button>
 
+    <button
+        class="nav-btn"
+        data-page="communityPage"
+    >
+        Community
+    </button>
 
-    <nav class="nav">
+    <button
+        class="nav-btn"
+        data-page="lifetimePage"
+    >
+        Lifetime Habits
+    </button>
 
-        <button
-            class="nav-btn active"
-            data-section="home"
-        >
-            Dashboard
-        </button>
+    <button
+        class="nav-btn"
+        data-page="dietPlansPage"
+    >
+        Diet Plans
+    </button>
 
-        <button
-            class="nav-btn"
-            data-section="members"
-        >
-            Members
-        </button>
+    <button
+        class="nav-btn"
+        data-page="previewPage"
+    >
+        Client Preview
+    </button>
 
-        <button
-            class="nav-btn"
-            data-section="journey"
-        >
-            90-Day Journey
-        </button>
-
-        <button
-            class="nav-btn"
-            data-section="resources"
-        >
-            Resources
-        </button>
-
-        <button
-            class="nav-btn"
-            data-section="dietPlans"
-        >
-            Diet Plans
-        </button>
-
-        <button
-            class="nav-btn"
-            data-section="community"
-        >
-            Community
-        </button>
-
-        <button
-            class="nav-btn"
-            data-section="lifetime"
-        >
-            Lifetime Habits
-        </button>
-
-        <button
-            class="nav-btn"
-            data-section="preview"
-        >
-            Client Preview
-        </button>
-
-        <button
-            class="nav-btn"
-            data-section="settings"
-        >
-            Settings
-        </button>
-
-    </nav>
-
-
-    <div class="sidebar-bottom">
-
-        <div
-            class="admin-email"
-            id="adminEmailDisplay"
-        ></div>
-
-        <button
-            class="secondary-btn"
-            id="logoutButton"
-            style="width:100%;"
-        >
-            Logout
-        </button>
-
-    </div>
+    <button
+        class="nav-btn logout-btn"
+        id="logoutButton"
+    >
+        Log out
+    </button>
 
 </aside>
 
 
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
 <main class="main">
 
 
-<div class="topbar">
-
-    <div>
-
-        <button
-            class="secondary-btn mobile-menu"
-            id="mobileMenuButton"
-        >
-            ☰
-        </button>
-
-        <h1 id="pageTitle">
-            Dashboard
-        </h1>
-
-    </div>
-
-</div>
-
-
-
 <!-- =====================================================
-     HOME
+     DASHBOARD
 ===================================================== -->
 
 <section
-    id="home"
-    class="page-section active"
+    class="page active"
+    id="dashboardPage"
 >
 
-    <div class="stats-grid">
+    <h1 class="page-title">
+        Admin Dashboard
+    </h1>
 
-        <div class="stat-card">
+    <p class="page-subtitle">
+        Manage your existing Freedom Women's Health Club content
+        from one place.
+    </p>
 
-            <span>
-                Total Members
-            </span>
 
-            <strong id="totalMembers">
+    <div class="stats">
+
+        <div class="stat">
+
+            <div
+                class="stat-number"
+                id="statMembers"
+            >
                 0
-            </strong>
+            </div>
+
+            <div class="stat-label">
+                Members
+            </div>
 
         </div>
 
 
-        <div class="stat-card">
+        <div class="stat">
 
-            <span>
-                Active Members
-            </span>
-
-            <strong id="activeMembers">
+            <div
+                class="stat-number"
+                id="statWeeks"
+            >
                 0
-            </strong>
+            </div>
+
+            <div class="stat-label">
+                Weeks
+            </div>
 
         </div>
 
 
-        <div class="stat-card">
+        <div class="stat">
 
-            <span>
+            <div
+                class="stat-number"
+                id="statLessons"
+            >
+                0
+            </div>
+
+            <div class="stat-label">
+                Resources
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div
+                class="stat-number"
+                id="statCommunity"
+            >
+                0
+            </div>
+
+            <div class="stat-label">
                 Community Posts
-            </span>
-
-            <strong id="totalPosts">
-                0
-            </strong>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <span>
-                Journey Weeks
-            </span>
-
-            <strong>
-                13
-            </strong>
+            </div>
 
         </div>
 
@@ -1321,49 +883,44 @@ button{
     <div class="card">
 
         <h2>
-            Admin Control Center
+            Quick Actions
         </h2>
 
-        <p>
-            Everything your members see can be
-            managed from this panel.
-        </p>
-
-        <div class="actions">
+        <div class="editor-actions">
 
             <button
                 class="primary-btn"
-                data-go="members"
-            >
-                Manage Members
-            </button>
-
-            <button
-                class="primary-btn"
-                data-go="journey"
+                data-open="journeyPage"
             >
                 Edit 90-Day Journey
             </button>
 
             <button
-                class="primary-btn"
-                data-go="resources"
+                class="secondary-btn"
+                data-open="resourcesPage"
             >
                 Manage Resources
             </button>
 
             <button
-                class="primary-btn"
-                data-go="community"
+                class="secondary-btn"
+                data-open="communityPage"
             >
                 Manage Community
             </button>
 
             <button
-                class="primary-btn"
-                data-go="preview"
+                class="secondary-btn"
+                data-open="lifetimePage"
             >
-                Open Client Preview
+                Edit Lifetime Habits
+            </button>
+
+            <button
+                class="preview-btn"
+                id="quickPreview"
+            >
+                Preview as Member
             </button>
 
         </div>
@@ -1374,45 +931,28 @@ button{
     <div class="card">
 
         <h2>
-            How your system works
+            Important
         </h2>
 
-        <ul>
+        <p>
+            This admin panel edits the same Firestore collections
+            used by your member dashboard.
+        </p>
 
-            <li>
-                Member joins and receives a program start date.
-            </li>
+        <p>
+            You do not need to rewrite your 90-day content here.
+            Existing weeks and days are loaded from
+            <strong>weeklyContent</strong>.
+        </p>
 
-            <li>
-                Dashboard calculates the member's current day.
-            </li>
-
-            <li>
-                90-day content unlocks according to the member's day.
-            </li>
-
-            <li>
-                Resources can be prepared in advance and assigned an unlock day.
-            </li>
-
-            <li>
-                Diet plans can also have their own unlock day.
-            </li>
-
-            <li>
-                Lifetime Habits remain locked until the 90-day journey is complete.
-            </li>
-
-            <li>
-                Community posts can be moderated here.
-            </li>
-
-        </ul>
+        <p>
+            Changes saved here will be reflected in
+            <strong>dashboard.html</strong>.
+        </p>
 
     </div>
 
 </section>
-
 
 
 <!-- =====================================================
@@ -1420,104 +960,102 @@ button{
 ===================================================== -->
 
 <section
-    id="members"
-    class="page-section"
+    class="page"
+    id="membersPage"
 >
+
+    <h1 class="page-title">
+        Members
+    </h1>
+
+    <p class="page-subtitle">
+        View member profiles and progress.
+    </p>
+
 
     <div class="card">
 
-        <div class="content-item-header">
-
-            <div>
-
-                <h2>
-                    Members
-                </h2>
-
-                <p>
-                    View members and their progress.
-                </p>
-
-            </div>
+        <div class="editor-actions">
 
             <button
                 class="secondary-btn"
                 id="refreshMembers"
             >
-                Refresh
+                Refresh Members
             </button>
 
         </div>
 
-        <input
-            class="search"
-            id="memberSearch"
-            placeholder="Search by name or email..."
-        >
-
         <div
+            class="member-list"
             id="memberList"
-            class="item-list"
         >
-            <div class="loading">
-                Loading members...
-            </div>
+            Loading members...
         </div>
 
     </div>
 
 
     <div
-        id="memberDetail"
         class="card hidden"
-    ></div>
+        id="memberDetails"
+    >
+
+        <h2>
+            Member Details
+        </h2>
+
+        <div id="memberDetailsContent"></div>
+
+    </div>
 
 </section>
 
 
-
 <!-- =====================================================
-     JOURNEY
+     90 DAY JOURNEY
 ===================================================== -->
 
 <section
-    id="journey"
-    class="page-section"
+    class="page"
+    id="journeyPage"
 >
+
+    <h1 class="page-title">
+        90-Day Journey
+    </h1>
+
+    <p class="page-subtitle">
+        Edit the existing weekly and day-wise content that
+        members see on dashboard.html.
+    </p>
+
 
     <div class="card">
 
         <h2>
-            90-Day Journey Editor
+            Select Week
         </h2>
 
-        <p>
-            Edit your existing weekly content.
-            You can prepare all content in advance
-            and update it whenever you want.
-        </p>
-
         <div
-            class="week-tabs"
-            id="weekTabs"
-        ></div>
+            class="week-selector"
+            id="weekSelector"
+        >
+        </div>
 
     </div>
 
 
     <div
-        id="weekEditor"
         class="card"
+        id="weekEditor"
     >
 
-        <div class="loading">
-            Select a week.
-        </div>
+        Select a week to edit.
 
     </div>
 
 </section>
-
 
 
 <!-- =====================================================
@@ -1525,117 +1063,138 @@ button{
 ===================================================== -->
 
 <section
-    id="resources"
-    class="page-section"
+    class="page"
+    id="resourcesPage"
 >
+
+    <h1 class="page-title">
+        Resources
+    </h1>
+
+    <p class="page-subtitle">
+        Add lessons/resources now and choose when they unlock
+        for members.
+    </p>
+
 
     <div class="card">
 
-        <div class="content-item-header">
+        <h2>
+            Existing Resources
+        </h2>
 
-            <div>
-
-                <h2>
-                    Resources & Lessons
-                </h2>
-
-                <p>
-                    Add lessons now and decide when
-                    each one becomes available.
-                </p>
-
-            </div>
-
-            <button
-                class="primary-btn"
-                id="newResource"
-            >
-                + Add Resource
-            </button>
-
+        <div id="resourceList">
+            Loading...
         </div>
 
     </div>
 
 
-    <div
-        id="resourceEditor"
-        class="card hidden"
-    ></div>
+    <div class="card">
+
+        <h2>
+            Add Resource
+        </h2>
+
+        <div class="form-grid">
+
+            <div class="field">
+
+                <label>
+                    Lesson Number
+                </label>
+
+                <input
+                    id="resourceLesson"
+                    type="number"
+                    min="1"
+                >
+
+            </div>
 
 
-    <div
-        id="resourceList"
-        class="item-list"
-    >
+            <div class="field">
 
-        <div class="loading">
-            Loading resources...
+                <label>
+                    Open After Program Day
+                </label>
+
+                <input
+                    id="resourceOpenDay"
+                    type="number"
+                    min="1"
+                    max="90"
+                    value="1"
+                >
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>
+                    Resource Title
+                </label>
+
+                <input
+                    id="resourceTitle"
+                    type="text"
+                >
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>
+                    Content / Instructions
+                </label>
+
+                <textarea
+                    id="resourceContent"
+                ></textarea>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Status
+                </label>
+
+                <select id="resourceStatus">
+
+                    <option value="published">
+                        Published
+                    </option>
+
+                    <option value="draft">
+                        Draft
+                    </option>
+
+                </select>
+
+            </div>
+
         </div>
+
+
+        <button
+            class="primary-btn"
+            id="saveResource"
+        >
+            Add Resource
+        </button>
+
+        <div
+            class="message"
+            id="resourceMessage"
+        ></div>
 
     </div>
 
 </section>
-
-
-
-<!-- =====================================================
-     DIET PLANS
-===================================================== -->
-
-<section
-    id="dietPlans"
-    class="page-section"
->
-
-    <div class="card">
-
-        <div class="content-item-header">
-
-            <div>
-
-                <h2>
-                    Diet Plans
-                </h2>
-
-                <p>
-                    Add and schedule diet plans later.
-                    Each plan can have its own unlock day.
-                </p>
-
-            </div>
-
-            <button
-                class="primary-btn"
-                id="newDietPlan"
-            >
-                + Add Diet Plan
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div
-        id="dietEditor"
-        class="card hidden"
-    ></div>
-
-
-    <div
-        id="dietList"
-        class="item-list"
-    >
-
-        <div class="empty">
-            No diet plans added yet.
-        </div>
-
-    </div>
-
-</section>
-
 
 
 <!-- =====================================================
@@ -1643,87 +1202,38 @@ button{
 ===================================================== -->
 
 <section
-    id="community"
-    class="page-section"
+    class="page"
+    id="communityPage"
 >
+
+    <h1 class="page-title">
+        Community Management
+    </h1>
+
+    <p class="page-subtitle">
+        View and remove irrelevant community posts.
+    </p>
+
 
     <div class="card">
 
-        <div class="content-item-header">
-
-            <div>
-
-                <h2>
-                    Community Management
-                </h2>
-
-                <p>
-                    View and moderate member posts.
-                </p>
-
-            </div>
-
-            <button
-                class="secondary-btn"
-                id="refreshCommunity"
-            >
-                Refresh
-            </button>
-
-        </div>
-
-
-        <select
-            id="communityFilter"
-            style="
-                padding:10px;
-                border:1px solid var(--border);
-                border-radius:8px;
-                margin-top:15px;
-            "
+        <button
+            class="secondary-btn"
+            id="refreshCommunity"
         >
-
-            <option value="all">
-                All
-            </option>
-
-            <option value="checkin">
-                Daily Check-in
-            </option>
-
-            <option value="workout">
-                Workout & Exercise
-            </option>
-
-            <option value="wins">
-                Wins
-            </option>
-
-            <option value="question">
-                Questions
-            </option>
-
-            <option value="discussion">
-                Discussion
-            </option>
-
-        </select>
+            Refresh Community
+        </button>
 
     </div>
 
 
     <div
-        id="communityList"
+        id="communityAdminList"
     >
-
-        <div class="loading">
-            Loading community...
-        </div>
-
+        Loading...
     </div>
 
 </section>
-
 
 
 <!-- =====================================================
@@ -1731,195 +1241,262 @@ button{
 ===================================================== -->
 
 <section
-    id="lifetime"
-    class="page-section"
+    class="page"
+    id="lifetimePage"
 >
+
+    <h1 class="page-title">
+        Lifetime Habits
+    </h1>
+
+    <p class="page-subtitle">
+        Edit the habits members receive after their 90-day journey.
+    </p>
+
 
     <div class="card">
 
-        <div class="content-item-header">
+        <h2>
+            Existing Lifetime Habits
+        </h2>
 
-            <div>
+        <div id="lifetimeList">
+            Loading...
+        </div>
 
-                <h2>
-                    Lifetime Habits
-                </h2>
+    </div>
 
-                <p>
-                    These become available after Day 90.
-                </p>
+
+    <div class="card">
+
+        <h2>
+            Add / Edit Lifetime Habit
+        </h2>
+
+        <input
+            type="hidden"
+            id="lifetimeId"
+        >
+
+        <div class="form-grid">
+
+            <div class="field">
+
+                <label>
+                    Order
+                </label>
+
+                <input
+                    id="lifetimeOrder"
+                    type="number"
+                >
 
             </div>
 
+
+            <div class="field">
+
+                <label>
+                    Title
+                </label>
+
+                <input
+                    id="lifetimeTitle"
+                    type="text"
+                >
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    id="lifetimeDescription"
+                ></textarea>
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>
+                    Image URL
+                </label>
+
+                <input
+                    id="lifetimeImage"
+                    type="text"
+                >
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>
+                    Habits — one per line
+                </label>
+
+                <textarea
+                    id="lifetimeHabits"
+                    placeholder="Walk regularly&#10;Strength train&#10;Drink enough water"
+                ></textarea>
+
+            </div>
+
+        </div>
+
+
+        <div class="editor-actions">
+
             <button
                 class="primary-btn"
-                id="newLifetime"
+                id="saveLifetime"
             >
-                + Add Habit Section
+                Save Lifetime Habit
+            </button>
+
+            <button
+                class="secondary-btn"
+                id="clearLifetime"
+            >
+                Clear
             </button>
 
         </div>
 
-    </div>
-
-
-    <div
-        id="lifetimeEditor"
-        class="card hidden"
-    ></div>
-
-
-    <div
-        id="lifetimeList"
-        class="item-list"
-    >
-
-        <div class="loading">
-            Loading lifetime habits...
-        </div>
+        <div
+            class="message"
+            id="lifetimeMessage"
+        ></div>
 
     </div>
 
 </section>
 
 
-
 <!-- =====================================================
-     PREVIEW
+     DIET PLANS
 ===================================================== -->
 
 <section
-    id="preview"
-    class="page-section"
+    class="page"
+    id="dietPlansPage"
 >
+
+    <h1 class="page-title">
+        Diet Plans
+    </h1>
+
+    <p class="page-subtitle">
+        This section is ready for your future diet-plan system.
+    </p>
+
 
     <div class="card">
 
         <h2>
-            Client Preview
-        </h2>
-
-        <div class="preview-note">
-
-            <strong>
-                Preview mode
-            </strong>
-
-            <br>
-
-            This opens the actual
-            <strong>dashboard.html</strong>
-            used by your members.
-
-            <br><br>
-
-            Use it to check navigation,
-            locked sections, buttons,
-            weeks, days, resources,
-            community and lifetime habits.
-
-        </div>
-
-        <button
-            class="primary-btn"
-            id="openClientPreview"
-        >
-            Open Actual Client Dashboard
-        </button>
-
-    </div>
-
-
-    <div class="card">
-
-        <h3>
-            Client Dashboard
-        </h3>
-
-        <iframe
-            id="previewFrame"
-            class="preview-frame"
-            src="about:blank"
-        ></iframe>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     SETTINGS
-===================================================== -->
-
-<section
-    id="settings"
-    class="page-section"
->
-
-    <div class="card">
-
-        <h2>
-            Admin Settings
+            Planned Structure
         </h2>
 
         <p>
-            Current administrator:
-        </p>
-
-        <strong
-            id="settingsAdminEmail"
-        ></strong>
-
-    </div>
-
-
-    <div class="card">
-
-        <h2>
-            Firebase Collections
-        </h2>
-
-        <p>
-            This admin panel is connected to:
+            You can later add diet plans for:
         </p>
 
         <ul>
 
             <li>
-                members
+                Weight Loss
             </li>
 
             <li>
-                memberProgress
+                Prediabetes
             </li>
 
             <li>
-                weeklyContent
+                Type 2 Diabetes
             </li>
 
             <li>
-                community
+                Postpartum Weight Loss
             </li>
 
             <li>
-                resources
+                Cholesterol
             </li>
 
             <li>
-                dietPlans
+                Blood Pressure
             </li>
 
             <li>
-                lifetimeHabits
+                PCOS
+            </li>
+
+            <li>
+                Thyroid
+            </li>
+
+            <li>
+                Other common conditions
             </li>
 
         </ul>
+
+        <p>
+            Each category can contain 6 plans, with a new plan
+            unlocking every 15 days.
+        </p>
+
+        <p>
+            No diet plans are being created automatically here.
+            We will connect this to Firestore when you are ready.
+        </p>
 
     </div>
 
 </section>
 
+
+<!-- =====================================================
+     CLIENT PREVIEW
+===================================================== -->
+
+<section
+    class="page"
+    id="previewPage"
+>
+
+    <h1 class="page-title">
+        Client Preview
+    </h1>
+
+    <p class="page-subtitle">
+        See the member-facing content without logging out.
+    </p>
+
+
+    <div class="card">
+
+        <p>
+            This preview uses your existing Firestore content and
+            applies the same unlock logic used by dashboard.html.
+        </p>
+
+        <button
+            class="preview-btn"
+            id="openPreview"
+        >
+            Open Full Client Preview
+        </button>
+
+    </div>
+
+</section>
 
 
 </main>
@@ -1929,42 +1506,70 @@ button{
 </div>
 
 
+<!-- =====================================================
+     PREVIEW OVERLAY
+===================================================== -->
+
+<div id="previewOverlay">
+
+    <div class="preview-window">
+
+        <div class="preview-header">
+
+            <strong>
+                Client View Preview
+            </strong>
+
+            <button
+                class="preview-close"
+                id="closePreview"
+            >
+                Close Preview
+            </button>
+
+        </div>
+
+        <div
+            class="preview-body"
+            id="previewBody"
+        >
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
 
 <script type="module">
 
-
-/* =====================================================
-   FIREBASE IMPORTS
-===================================================== */
-
 import {
-
     initializeApp
-
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 
 import {
-
     getAuth,
     onAuthStateChanged,
-    signInWithEmailAndPassword,
+    GoogleAuthProvider,
+    signInWithPopup,
     signOut
-
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
 import {
-
     getFirestore,
     collection,
-    doc,
-    getDoc,
     getDocs,
+    getDoc,
+    doc,
     setDoc,
     addDoc,
     updateDoc,
@@ -1972,7 +1577,6 @@ import {
     query,
     orderBy,
     serverTimestamp
-
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
@@ -2005,51 +1609,46 @@ const firebaseConfig = {
 };
 
 
+const ADMIN_EMAIL =
+    "mahnoordietitian3@gmail.com";
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
 const app =
     initializeApp(
         firebaseConfig
     );
 
-
 const auth =
     getAuth(app);
-
 
 const db =
     getFirestore(app);
 
+const provider =
+    new GoogleAuthProvider();
+
 
 /* =====================================================
-   ADMIN
+   VARIABLES
 ===================================================== */
 
-const ADMIN_EMAIL =
-    "mahnoordietitian3@gmail.com";
+let currentUser = null;
 
+let members = [];
 
-let currentUser =
-    null;
+let weeklyContent = [];
 
-let members =
-    [];
+let lessons = [];
 
-let weeklyContent =
-    [];
+let communityPosts = [];
 
-let resources =
-    [];
+let lifetimeHabits = [];
 
-let dietPlans =
-    [];
-
-let communityPosts =
-    [];
-
-let lifetimeHabits =
-    [];
-
-let selectedWeek =
-    1;
+let selectedWeek = 1;
 
 
 /* =====================================================
@@ -2058,133 +1657,89 @@ let selectedWeek =
 
 function escapeHTML(value){
 
-    return String(
-        value ?? ""
-    )
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+    if(
+        value === undefined ||
+        value === null
+    ){
+
+        return "";
+
+    }
+
+    return String(value)
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
 
 }
 
 
-function formatDate(value){
+function showPage(id){
 
-    if(!value)
-        return "Not set";
+    document
+        .querySelectorAll(".page")
+        .forEach(
+            page =>
+                page.classList.remove(
+                    "active"
+                )
+        );
 
-    try{
 
-        const date =
-            typeof value.toDate === "function"
-                ? value.toDate()
-                : new Date(value);
+    const page =
+        document.getElementById(id);
 
-        return date.toLocaleDateString(
-            "en-PK",
-            {
-                day:"numeric",
-                month:"short",
-                year:"numeric"
+
+    if(page){
+
+        page.classList.add(
+            "active"
+        );
+
+    }
+
+
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(
+            button => {
+
+                button.classList.toggle(
+                    "active",
+                    button.dataset.page === id
+                );
+
             }
         );
 
-    }catch{
 
-        return "Unknown";
-
-    }
-
-}
-
-
-function getProgramDay(member){
-
-    const possible = [
-
-        member.startDate,
-        member.joiningDate,
-        member.joinDate,
-        member.programStartDate,
-        member.membershipStartDate
-
-    ];
-
-    let start =
-        null;
-
-    for(
-        const value of possible
-    ){
-
-        if(!value)
-            continue;
-
-        if(
-            typeof value.toDate ===
-            "function"
-        ){
-
-            start =
-                value.toDate();
-
-            break;
-
-        }
-
-        const parsed =
-            new Date(value);
-
-        if(!isNaN(parsed)){
-
-            start =
-                parsed;
-
-            break;
-
-        }
-
-    }
-
-    if(!start)
-        return 1;
-
-    start.setHours(
-        0,0,0,0
-    );
-
-    const now =
-        new Date();
-
-    now.setHours(
-        0,0,0,0
-    );
-
-    return Math.max(
-        1,
-        Math.min(
-            90,
-            Math.floor(
-                (
-                    now - start
-                ) / 86400000
-            ) + 1
-        )
-    );
-
-}
-
-
-function getWeekFromDay(day){
-
-    return Math.min(
-        13,
-        Math.ceil(
-            day / 7
-        )
-    );
+    document
+        .getElementById("sidebar")
+        .classList.remove(
+            "open"
+        );
 
 }
 
@@ -2193,247 +1748,103 @@ function getWeekFromDay(day){
    NAVIGATION
 ===================================================== */
 
-const sectionTitles = {
-
-    home:
-        "Dashboard",
-
-    members:
-        "Members",
-
-    journey:
-        "90-Day Journey",
-
-    resources:
-        "Resources",
-
-    dietPlans:
-        "Diet Plans",
-
-    community:
-        "Community",
-
-    lifetime:
-        "Lifetime Habits",
-
-    preview:
-        "Client Preview",
-
-    settings:
-        "Settings"
-
-};
-
-
 document
-.querySelectorAll(".nav-btn")
-.forEach(
-    button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                openSection(
-                    button.dataset.section
-                );
-
-            }
-        );
-
-    }
-);
-
-
-document
-.querySelectorAll("[data-go]")
-.forEach(
-    button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                openSection(
-                    button.dataset.go
-                );
-
-            }
-        );
-
-    }
-);
-
-
-function openSection(id){
-
-    document
-    .querySelectorAll(".page-section")
-    .forEach(
-        section => {
-
-            section.classList.remove(
-                "active"
-            );
-
-        }
-    );
-
-
-    const section =
-        document.getElementById(id);
-
-    if(section){
-
-        section.classList.add(
-            "active"
-        );
-
-    }
-
-
-    document
     .querySelectorAll(".nav-btn")
     .forEach(
         button => {
 
-            button.classList.toggle(
-                "active",
-                button.dataset.section === id
+            button.addEventListener(
+                "click",
+                () => {
+
+                    showPage(
+                        button.dataset.page
+                    );
+
+                }
             );
 
         }
     );
 
 
-    document.getElementById(
-        "pageTitle"
-    ).textContent =
-        sectionTitles[id] ||
-        "Admin";
-
-
-    document
-        .getElementById("sidebar")
-        .classList.remove("open");
-
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
 document
-.getElementById(
-    "mobileMenuButton"
-)
-.addEventListener(
-    "click",
-    () => {
+    .querySelectorAll("[data-open]")
+    .forEach(
+        button => {
 
-        document
-        .getElementById("sidebar")
-        .classList.toggle("open");
+            button.addEventListener(
+                "click",
+                () => {
 
-    }
-);
+                    showPage(
+                        button.dataset.open
+                    );
 
-
-/* =====================================================
-   LOGIN
-===================================================== */
-
-document
-.getElementById(
-    "loginButton"
-)
-.addEventListener(
-    "click",
-    async () => {
-
-        const email =
-            document
-            .getElementById("adminEmail")
-            .value
-            .trim();
-
-        const password =
-            document
-            .getElementById("adminPassword")
-            .value;
-
-
-        if(!email || !password){
-
-            document
-            .getElementById("loginMessage")
-            .textContent =
-                "Enter your email and password.";
-
-            return;
-
-        }
-
-
-        if(
-            email.toLowerCase() !==
-            ADMIN_EMAIL.toLowerCase()
-        ){
-
-            document
-            .getElementById("loginMessage")
-            .textContent =
-                "This account is not authorized as administrator.";
-
-            return;
-
-        }
-
-
-        try{
-
-            await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
+                }
             );
 
-        }catch(error){
+        }
+    );
 
-            console.error(error);
+
+document
+    .getElementById("mobileMenu")
+    .addEventListener(
+        "click",
+        () => {
 
             document
-            .getElementById("loginMessage")
-            .textContent =
-                "Login failed. Check your email and password.";
+                .getElementById("sidebar")
+                .classList.toggle("open");
 
         }
-
-    }
-);
+    );
 
 
 /* =====================================================
-   LOGOUT
+   GOOGLE LOGIN
 ===================================================== */
 
 document
-.getElementById(
-    "logoutButton"
-)
-.addEventListener(
-    "click",
-    async () => {
+    .getElementById("loginButton")
+    .addEventListener(
+        "click",
+        async () => {
 
-        await signOut(auth);
+            const errorBox =
+                document.getElementById(
+                    "loginError"
+                );
 
-    }
-);
+            errorBox.textContent =
+                "";
+
+            try{
+
+                await signInWithPopup(
+                    auth,
+                    provider
+                );
+
+            }catch(error){
+
+                console.error(
+                    "LOGIN ERROR",
+                    error
+                );
+
+                errorBox.textContent =
+                    "Unable to sign in. Please try again.";
+
+            }
+
+        }
+    );
 
 
 /* =====================================================
-   AUTH STATE
+   AUTH
 ===================================================== */
 
 onAuthStateChanged(
@@ -2446,31 +1857,42 @@ onAuthStateChanged(
                 null;
 
             document
-            .getElementById("loginScreen")
-            .style.display =
-                "flex";
+                .getElementById(
+                    "adminLogin"
+                )
+                .style.display =
+                    "flex";
 
             document
-            .getElementById("adminApp")
-            .style.display =
-                "none";
+                .getElementById(
+                    "adminApp"
+                )
+                .style.display =
+                    "none";
 
             return;
 
         }
 
 
+        /*
+         * IMPORTANT:
+         * Only your admin email can enter admin panel.
+         */
+
         if(
-            user.email.toLowerCase() !==
-            ADMIN_EMAIL.toLowerCase()
+            user.email !==
+            ADMIN_EMAIL
         ){
 
             await signOut(auth);
 
             document
-            .getElementById("loginMessage")
-            .textContent =
-                "This account does not have admin access.";
+                .getElementById(
+                    "loginError"
+                )
+                .textContent =
+                    "This account does not have admin access.";
 
             return;
 
@@ -2482,30 +1904,30 @@ onAuthStateChanged(
 
 
         document
-        .getElementById("loginScreen")
-        .style.display =
-            "none";
+            .getElementById(
+                "adminLogin"
+            )
+            .style.display =
+                "none";
 
 
         document
-        .getElementById("adminApp")
-        .style.display =
-            "block";
+            .getElementById(
+                "adminApp"
+            )
+            .style.display =
+                "block";
 
 
         document
-        .getElementById("adminEmailDisplay")
-        .textContent =
-            user.email;
+            .getElementById(
+                "adminEmail"
+            )
+            .textContent =
+                user.email;
 
 
-        document
-        .getElementById("settingsAdminEmail")
-        .textContent =
-            user.email;
-
-
-        await loadAll();
+        await loadEverything();
 
     }
 );
@@ -2515,27 +1937,26 @@ onAuthStateChanged(
    LOAD EVERYTHING
 ===================================================== */
 
-async function loadAll(){
+async function loadEverything(){
 
     await Promise.all([
-
         loadMembers(),
-
         loadWeeklyContent(),
-
-        loadResources(),
-
-        loadDietPlans(),
-
+        loadLessons(),
         loadCommunity(),
-
         loadLifetimeHabits()
-
     ]);
 
-    updateDashboardStats();
 
-    renderWeekTabs();
+    updateStats();
+
+    renderWeekSelector();
+
+    renderResources();
+
+    renderCommunityAdmin();
+
+    renderLifetimeList();
 
 }
 
@@ -2545,18 +1966,6 @@ async function loadAll(){
 ===================================================== */
 
 async function loadMembers(){
-
-    const container =
-        document.getElementById(
-            "memberList"
-        );
-
-
-    container.innerHTML =
-        `<div class="loading">
-            Loading members...
-        </div>`;
-
 
     try{
 
@@ -2570,7 +1979,6 @@ async function loadMembers(){
 
 
         members = [];
-
 
         snapshot.forEach(
             item => {
@@ -2590,8 +1998,6 @@ async function loadMembers(){
 
         renderMembers();
 
-        updateDashboardStats();
-
     }catch(error){
 
         console.error(
@@ -2599,11 +2005,12 @@ async function loadMembers(){
             error
         );
 
-
-        container.innerHTML =
-            `<div class="empty">
-                Unable to load members.
-            </div>`;
+        document
+            .getElementById(
+                "memberList"
+            )
+            .innerHTML =
+                "<p>Unable to load members.</p>";
 
     }
 
@@ -2618,44 +2025,10 @@ function renderMembers(){
         );
 
 
-    const search =
-        document
-        .getElementById("memberSearch")
-        .value
-        .toLowerCase()
-        .trim();
-
-
-    const filtered =
-        members.filter(
-            member => {
-
-                const text =
-                    (
-                        member.name ||
-                        ""
-                    ) +
-                    " " +
-                    (
-                        member.email ||
-                        member.id ||
-                        ""
-                    );
-
-                return text
-                    .toLowerCase()
-                    .includes(search);
-
-            }
-        );
-
-
-    if(!filtered.length){
+    if(!members.length){
 
         container.innerHTML =
-            `<div class="empty">
-                No members found.
-            </div>`;
+            "<p>No members found.</p>";
 
         return;
 
@@ -2663,332 +2036,72 @@ function renderMembers(){
 
 
     container.innerHTML =
-        filtered
-        .map(
-            member =>
-                renderMemberCard(
-                    member
-                )
-        )
-        .join("");
+        members.map(
+            member => `
 
-}
+                <div class="member-row">
 
+                    <div>
 
-function renderMemberCard(member){
+                        <div class="member-name">
 
-    const day =
-        getProgramDay(member);
+                            ${escapeHTML(
+                                member.name ||
+                                "Member"
+                            )}
 
-    const week =
-        getWeekFromDay(day);
+                        </div>
 
+                        <div class="member-meta">
 
-    return `
+                            ${escapeHTML(
+                                member.email ||
+                                member.id
+                            )}
 
-        <div class="member-card">
-
-            <div class="member-header">
-
-                <div>
-
-                    <div class="member-name">
-
-                        ${escapeHTML(
-                            member.name ||
-                            "Member"
-                        )}
+                        </div>
 
                     </div>
 
-                    <div class="member-meta">
+                    <div class="member-actions">
 
-                        ${escapeHTML(
-                            member.email ||
-                            member.id
-                        )}
+                        <button
+                            class="secondary-btn"
+                            data-member-id="${escapeHTML(
+                                member.id
+                            )}"
+                            onclick="window.viewMember('${escapeHTML(
+                                member.id
+                            )}')"
+                        >
+                            View Progress
+                        </button>
 
                     </div>
 
                 </div>
 
-                <span class="badge green">
-
-                    ${escapeHTML(
-                        member.status ||
-                        "Active"
-                    )}
-
-                </span>
-
-            </div>
-
-
-            <div class="member-stats">
-
-                <div class="mini-stat">
-
-                    <small>
-                        Program Day
-                    </small>
-
-                    <strong>
-                        ${day}
-                    </strong>
-
-                </div>
-
-
-                <div class="mini-stat">
-
-                    <small>
-                        Week
-                    </small>
-
-                    <strong>
-                        ${week}
-                    </strong>
-
-                </div>
-
-
-                <div class="mini-stat">
-
-                    <small>
-                        Current Weight
-                    </small>
-
-                    <strong>
-                        ${
-                            member.currentWeight ??
-                            "—"
-                        }
-                        ${
-                            member.currentWeight
-                                ? "kg"
-                                : ""
-                        }
-                    </strong>
-
-                </div>
-
-
-                <div class="mini-stat">
-
-                    <small>
-                        Waist
-                    </small>
-
-                    <strong>
-                        ${
-                            member.currentWaist ??
-                            "—"
-                        }
-                        ${
-                            member.currentWaist
-                                ? "cm"
-                                : ""
-                        }
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            <div class="actions">
-
-                <button
-                    class="secondary-btn view-member"
-                    data-id="${escapeHTML(member.id)}"
-                >
-                    View Progress
-                </button>
-
-                <button
-                    class="secondary-btn preview-member"
-                    data-id="${escapeHTML(member.id)}"
-                >
-                    Client Dashboard
-                </button>
-
-            </div>
-
-        </div>
-
-    `;
+            `
+        ).join("");
 
 }
 
 
-document
-.getElementById(
-    "memberSearch"
-)
-.addEventListener(
-    "input",
-    renderMembers
-);
-
-
-document
-.getElementById(
-    "refreshMembers"
-)
-.addEventListener(
-    "click",
-    loadMembers
-);
-
-
-/* =====================================================
-   MEMBER DETAILS
-===================================================== */
-
-document.addEventListener(
-    "click",
-    async event => {
-
-        if(
-            event.target.classList.contains(
-                "view-member"
-            )
-        ){
-
-            await openMemberDetails(
-                event.target.dataset.id
-            );
-
-        }
-
-
-        if(
-            event.target.classList.contains(
-                "preview-member"
-            )
-        ){
-
-            openSection("preview");
-
-            document
-            .getElementById(
-                "previewFrame"
-            )
-            .src =
-                `dashboard.html?previewMember=${
-                    encodeURIComponent(
-                        event.target.dataset.id
-                    )
-                }`;
-
-        }
-
-
-        if(
-            event.target.classList.contains(
-                "delete-community"
-            )
-        ){
-
-            await deleteCommunityPost(
-                event.target.dataset.id
-            );
-
-        }
-
-
-        if(
-            event.target.classList.contains(
-                "edit-resource"
-            )
-        ){
-
-            openResourceEditor(
-                event.target.dataset.id
-            );
-
-        }
-
-
-        if(
-            event.target.classList.contains(
-                "delete-resource"
-            )
-        ){
-
-            await deleteResource(
-                event.target.dataset.id
-            );
-
-        }
-
-
-        if(
-            event.target.classList.contains(
-                "edit-diet"
-            )
-        ){
-
-            openDietEditor(
-                event.target.dataset.id
-            );
-
-        }
-
-
-        if(
-            event.target.classList.contains(
-                "delete-diet"
-            )
-        ){
-
-            await deleteDietPlan(
-                event.target.dataset.id
-            );
-
-        }
-
-
-        if(
-            event.target.classList.contains(
-                "edit-lifetime"
-            )
-        ){
-
-            openLifetimeEditor(
-                event.target.dataset.id
-            );
-
-        }
-
-
-        if(
-            event.target.classList.contains(
-                "delete-lifetime"
-            )
-        ){
-
-            await deleteLifetimeHabit(
-                event.target.dataset.id
-            );
-
-        }
-
-    }
-);
-
-
-async function openMemberDetails(id){
+window.viewMember =
+async function(memberId){
 
     const member =
         members.find(
             item =>
-                item.id === id
+                item.id === memberId
         );
 
 
-    if(!member)
+    if(!member){
+
         return;
+
+    }
 
 
     let progress = {};
@@ -3001,7 +2114,7 @@ async function openMemberDetails(id){
                 doc(
                     db,
                     "memberProgress",
-                    id
+                    memberId
                 )
             );
 
@@ -3015,7 +2128,9 @@ async function openMemberDetails(id){
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            error
+        );
 
     }
 
@@ -3035,318 +2150,136 @@ async function openMemberDetails(id){
 
     const percentage =
         Math.round(
-            completed /
-            90 *
-            100
+            completed / 90 * 100
         );
 
 
-    const height =
-        Number(
-            member.height
-        );
-
-
-    const weight =
-        Number(
-            member.currentWeight ||
-            member.startingWeight
-        );
-
-
-    let bmi =
-        "—";
-
-
-    if(
-        height > 0 &&
-        weight > 0
-    ){
-
-        bmi =
-            (
-                weight /
-                Math.pow(
-                    height / 100,
-                    2
-                )
-            )
-            .toFixed(1);
-
-    }
-
-
-    let whr =
-        "—";
-
-
-    if(
-        Number(member.currentWaist) > 0 &&
-        Number(member.currentHip) > 0
-    ){
-
-        whr =
-            (
-                Number(member.currentWaist) /
-                Number(member.currentHip)
-            )
-            .toFixed(2);
-
-    }
-
-
-    const detail =
+    const details =
         document.getElementById(
-            "memberDetail"
+            "memberDetails"
         );
 
 
-    detail.classList.remove(
+    details.classList.remove(
         "hidden"
     );
 
 
-    detail.innerHTML = `
+    document.getElementById(
+        "memberDetailsContent"
+    ).innerHTML = `
 
-        <div class="content-item-header">
+        <h3>
+            ${escapeHTML(
+                member.name ||
+                "Member"
+            )}
+        </h3>
 
-            <div>
+        <p>
+            Email:
+            ${escapeHTML(
+                member.email ||
+                memberId
+            )}
+        </p>
 
-                <h2>
-                    ${escapeHTML(
-                        member.name ||
-                        "Member"
-                    )}
-                </h2>
+        <p>
+            Starting Weight:
+            ${escapeHTML(
+                member.startingWeight ||
+                "—"
+            )} kg
+        </p>
 
-                <p>
-                    ${escapeHTML(
-                        member.email ||
-                        member.id
-                    )}
-                </p>
+        <p>
+            Current Weight:
+            ${escapeHTML(
+                member.currentWeight ||
+                "—"
+            )} kg
+        </p>
 
-            </div>
+        <p>
+            Starting Waist:
+            ${escapeHTML(
+                member.startingWaist ||
+                "—"
+            )} cm
+        </p>
 
-            <button
-                class="secondary-btn"
-                id="closeMemberDetail"
-            >
-                Close
-            </button>
+        <p>
+            Current Waist:
+            ${escapeHTML(
+                member.currentWaist ||
+                "—"
+            )} cm
+        </p>
 
-        </div>
+        <p>
+            Completed:
+            <strong>
+                ${completed}/90 days
+            </strong>
+        </p>
 
+        <div class="preview-progress">
 
-        <div class="member-stats">
-
-            <div class="mini-stat">
-
-                <small>
-                    Program Day
-                </small>
-
-                <strong>
-                    ${getProgramDay(member)}
-                </strong>
-
-            </div>
-
-
-            <div class="mini-stat">
-
-                <small>
-                    Completed Days
-                </small>
-
-                <strong>
-                    ${completed}/90
-                </strong>
-
-            </div>
-
-
-            <div class="mini-stat">
-
-                <small>
-                    Progress
-                </small>
-
-                <strong>
-                    ${percentage}%
-                </strong>
-
-            </div>
-
-
-            <div class="mini-stat">
-
-                <small>
-                    BMI
-                </small>
-
-                <strong>
-                    ${bmi}
-                </strong>
-
-            </div>
-
-
-            <div class="mini-stat">
-
-                <small>
-                    Waist-to-Hip Ratio
-                </small>
-
-                <strong>
-                    ${whr}
-                </strong>
-
-            </div>
-
-
-            <div class="mini-stat">
-
-                <small>
-                    Starting Weight
-                </small>
-
-                <strong>
-                    ${
-                        member.startingWeight ??
-                        "—"
-                    }
-                </strong>
-
-            </div>
-
-
-            <div class="mini-stat">
-
-                <small>
-                    Current Weight
-                </small>
-
-                <strong>
-                    ${
-                        member.currentWeight ??
-                        "—"
-                    }
-                </strong>
-
-            </div>
-
-
-            <div class="mini-stat">
-
-                <small>
-                    Start Date
-                </small>
-
-                <strong>
-                    ${formatDate(
-                        member.startDate ||
-                        member.joiningDate ||
-                        member.joinDate ||
-                        member.programStartDate
-                    )}
-                </strong>
-
-            </div>
+            <div
+                class="preview-progress-fill"
+                style="width:${percentage}%"
+            ></div>
 
         </div>
 
+        <p>
+            Progress:
+            ${percentage}%
+        </p>
 
-        <div class="actions">
+        <h3>
+            Completed Days
+        </h3>
 
-            <button
-                class="primary-btn"
-                id="openMemberDashboard"
-            >
-                Open Client Dashboard
-            </button>
-
-        </div>
+        <p>
+            ${
+                completed
+                    ? Object.keys(
+                        completedDays
+                    )
+                    .filter(
+                        day =>
+                            completedDays[day]
+                    )
+                    .sort(
+                        (a,b) =>
+                            Number(a) -
+                            Number(b)
+                    )
+                    .join(", ")
+                    : "No completed days yet."
+            }
+        </p>
 
     `;
 
+};
 
-    document
+
+document
     .getElementById(
-        "closeMemberDetail"
+        "refreshMembers"
     )
     .addEventListener(
         "click",
-        () => {
+        async () => {
 
-            detail.classList.add(
-                "hidden"
-            );
+            await loadMembers();
 
-        }
-    );
-
-
-    document
-    .getElementById(
-        "openMemberDashboard"
-    )
-    .addEventListener(
-        "click",
-        () => {
-
-            openSection("preview");
-
-            document
-            .getElementById(
-                "previewFrame"
-            )
-            .src =
-                `dashboard.html?previewMember=${
-                    encodeURIComponent(id)
-                }`;
+            updateStats();
 
         }
     );
-
-}
-
-
-/* =====================================================
-   DASHBOARD STATS
-===================================================== */
-
-function updateDashboardStats(){
-
-    document.getElementById(
-        "totalMembers"
-    ).textContent =
-        members.length;
-
-
-    const active =
-        members.filter(
-            member =>
-                (
-                    member.status ||
-                    "Active"
-                ).toLowerCase() ===
-                "active"
-        ).length;
-
-
-    document.getElementById(
-        "activeMembers"
-    ).textContent =
-        active;
-
-
-    document.getElementById(
-        "totalPosts"
-    ).textContent =
-        communityPosts.length;
-
-}
 
 
 /* =====================================================
@@ -3391,9 +2324,6 @@ async function loadWeeklyContent(){
                 Number(b.week || 0)
         );
 
-
-        renderWeekTabs();
-
     }catch(error){
 
         console.error(
@@ -3406,15 +2336,11 @@ async function loadWeeklyContent(){
 }
 
 
-/* =====================================================
-   WEEK TABS
-===================================================== */
-
-function renderWeekTabs(){
+function renderWeekSelector(){
 
     const container =
         document.getElementById(
-            "weekTabs"
+            "weekSelector"
         );
 
 
@@ -3435,7 +2361,7 @@ function renderWeekTabs(){
                         ? "active"
                         : ""
                 }"
-                data-week-tab="${week}"
+                data-select-week="${week}"
             >
                 Week ${week}
             </button>
@@ -3450,30 +2376,30 @@ function renderWeekTabs(){
 
 
     container
-    .querySelectorAll(
-        "[data-week-tab]"
-    )
-    .forEach(
-        button => {
+        .querySelectorAll(
+            "[data-select-week]"
+        )
+        .forEach(
+            button => {
 
-            button.addEventListener(
-                "click",
-                () => {
+                button.addEventListener(
+                    "click",
+                    () => {
 
-                    selectedWeek =
-                        Number(
-                            button.dataset.weekTab
-                        );
+                        selectedWeek =
+                            Number(
+                                button.dataset.selectWeek
+                            );
 
-                    renderWeekTabs();
+                        renderWeekSelector();
 
-                    renderWeekEditor();
+                        renderWeekEditor();
 
-                }
-            );
+                    }
+                );
 
-        }
-    );
+            }
+        );
 
 
     renderWeekEditor();
@@ -3481,9 +2407,80 @@ function renderWeekTabs(){
 }
 
 
-/* =====================================================
-   WEEK EDITOR
-===================================================== */
+function getWeek(){
+
+    return weeklyContent.find(
+        item =>
+            Number(item.week) ===
+            selectedWeek
+    );
+
+}
+
+
+function getDay(
+    week,
+    day
+){
+
+    if(
+        week &&
+        Array.isArray(
+            week.days
+        )
+    ){
+
+        const found =
+            week.days.find(
+                item =>
+                    Number(item.day) ===
+                    day
+            );
+
+
+        if(found){
+
+            return found;
+
+        }
+
+    }
+
+
+    return {
+
+        day,
+
+        phase:"",
+
+        movement:"",
+        movementInstruction:"",
+
+        sleep:"",
+        sleepInstruction:"",
+
+        hydration:"",
+        hydrationInstruction:"",
+
+        protein:"",
+        proteinInstruction:"",
+
+        nutrition:"",
+        nutritionInstruction:"",
+
+        mind:"",
+        mindInstruction:"",
+
+        sunlight:"",
+        sunlightInstruction:"",
+
+        recovery:"",
+        recoveryInstruction:""
+
+    };
+
+}
+
 
 function renderWeekEditor(){
 
@@ -3493,56 +2490,65 @@ function renderWeekEditor(){
         );
 
 
-    const existing =
-        weeklyContent.find(
-            item =>
-                Number(item.week) ===
-                selectedWeek
-        );
+    const week =
+        getWeek();
 
 
-    const days =
-        existing &&
-        Array.isArray(existing.days)
-            ? existing.days
-            : [];
+    if(!week){
+
+        container.innerHTML = `
+
+            <div class="card">
+
+                <h2>
+                    Week ${selectedWeek}
+                </h2>
+
+                <p>
+                    This week does not exist in Firestore yet.
+                </p>
+
+                <p>
+                    Your existing dashboard will continue using
+                    its fallback content until you create this week.
+                </p>
+
+                <button
+                    class="primary-btn"
+                    id="createWeekButton"
+                >
+                    Create Week ${selectedWeek}
+                </button>
+
+            </div>
+
+        `;
 
 
-    let dayHtml = "";
-
-
-    for(
-        let day = (
-            selectedWeek - 1
-        ) * 7 + 1;
-
-        day <=
-            Math.min(
-                selectedWeek * 7,
-                90
+        document
+            .getElementById(
+                "createWeekButton"
+            )
+            .addEventListener(
+                "click",
+                createWeek
             );
 
-        day++
-    ){
 
-        const dayData =
-            days.find(
-                item =>
-                    Number(item.day) ===
-                    day
-            ) || {};
-
-
-        dayHtml +=
-            renderDayEditor(
-                day,
-                dayData
-            );
+        return;
 
     }
 
 
-    container.innerHTML = `
+    const days =
+        Array.isArray(
+            week.days
+        )
+            ? week.days
+            : [];
+
+
+    let html = `
 
         <h2>
             Week ${selectedWeek}
@@ -3550,7 +2556,7 @@ function renderWeekEditor(){
 
         <div class="form-grid">
 
-            <div class="form-group">
+            <div class="field">
 
                 <label>
                     Week Title
@@ -3559,15 +2565,13 @@ function renderWeekEditor(){
                 <input
                     id="weekTitle"
                     value="${escapeHTML(
-                        existing?.title ||
-                        ""
+                        week.title || ""
                     )}"
                 >
 
             </div>
 
-
-            <div class="form-group">
+            <div class="field">
 
                 <label>
                     Status
@@ -3578,8 +2582,7 @@ function renderWeekEditor(){
                     <option
                         value="published"
                         ${
-                            existing?.status !==
-                            "draft"
+                            week.status === "published"
                                 ? "selected"
                                 : ""
                         }
@@ -3590,8 +2593,7 @@ function renderWeekEditor(){
                     <option
                         value="draft"
                         ${
-                            existing?.status ===
-                            "draft"
+                            week.status === "draft"
                                 ? "selected"
                                 : ""
                         }
@@ -3603,275 +2605,252 @@ function renderWeekEditor(){
 
             </div>
 
-
-            <div class="form-group full">
+            <div class="field full">
 
                 <label>
-                    Week Description
+                    Description
                 </label>
 
                 <textarea id="weekDescription">${escapeHTML(
-                    existing?.description ||
-                    ""
+                    week.description || ""
                 )}</textarea>
 
             </div>
 
-
-            <div class="form-group full">
+            <div class="field full">
 
                 <label>
                     Week Goal
                 </label>
 
                 <textarea id="weekGoal">${escapeHTML(
-                    existing?.goal ||
-                    ""
+                    week.goal || ""
                 )}</textarea>
 
             </div>
 
         </div>
 
-
-        <h3>
-            Daily Content
-        </h3>
-
-        <div class="day-list">
-
-            ${dayHtml}
-
-        </div>
+    `;
 
 
-        <div class="actions">
+    for(
+        let day = 1;
+        day <= 7;
+        day++
+    ){
+
+        const dayData =
+            getDay(
+                week,
+                (
+                    selectedWeek - 1
+                ) * 7 + day
+            );
+
+
+        html += `
+
+            <div class="day-editor">
+
+                <div class="day-editor-header">
+
+                    <strong>
+                        Day ${
+                            (
+                                selectedWeek - 1
+                            ) * 7 + day
+                        }
+                    </strong>
+
+                </div>
+
+                <div class="day-editor-body">
+
+                    <div class="field">
+
+                        <label>
+                            Phase
+                        </label>
+
+                        <input
+                            data-day-field="phase"
+                            data-day-number="${
+                                (
+                                    selectedWeek - 1
+                                ) * 7 + day
+                            }"
+                            value="${escapeHTML(
+                                dayData.phase || ""
+                            )}"
+                        >
+
+                    </div>
+
+
+                    ${renderDayHabitEditor(
+                        dayData,
+                        "movement",
+                        "Movement"
+                    )}
+
+                    ${renderDayHabitEditor(
+                        dayData,
+                        "sleep",
+                        "Sleep"
+                    )}
+
+                    ${renderDayHabitEditor(
+                        dayData,
+                        "hydration",
+                        "Hydration"
+                    )}
+
+                    ${renderDayHabitEditor(
+                        dayData,
+                        "protein",
+                        "Protein"
+                    )}
+
+                    ${renderDayHabitEditor(
+                        dayData,
+                        "nutrition",
+                        "Nutrition"
+                    )}
+
+                    ${renderDayHabitEditor(
+                        dayData,
+                        "mind",
+                        "Mind / Stress"
+                    )}
+
+                    ${renderDayHabitEditor(
+                        dayData,
+                        "sunlight",
+                        "Sunlight"
+                    )}
+
+                    ${renderDayHabitEditor(
+                        dayData,
+                        "recovery",
+                        "Recovery"
+                    )}
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    html += `
+
+        <div class="editor-actions">
 
             <button
                 class="primary-btn"
-                id="saveWeek"
+                id="saveWeekButton"
             >
                 Save Week ${selectedWeek}
             </button>
 
             <button
-                class="secondary-btn"
-                id="loadDefaults"
+                class="preview-btn"
+                id="previewWeekButton"
             >
-                Load Default Structure
+                Preview This Week
             </button>
 
         </div>
 
-        <div id="weekSaveMessage"></div>
+        <div
+            class="message"
+            id="weekMessage"
+        ></div>
 
     `;
 
 
-    document
-    .getElementById(
-        "saveWeek"
-    )
-    .addEventListener(
-        "click",
-        saveCurrentWeek
-    );
+    container.innerHTML =
+        html;
 
 
     document
-    .getElementById(
-        "loadDefaults"
-    )
-    .addEventListener(
-        "click",
-        () => {
+        .getElementById(
+            "saveWeekButton"
+        )
+        .addEventListener(
+            "click",
+            saveWeek
+        );
 
-            if(
-                !confirm(
-                    "Load the default content structure for this week? Existing editor values will be replaced."
-                )
-            )
-                return;
 
-            const fallback =
-                createDefaultWeek(
+    document
+        .getElementById(
+            "previewWeekButton"
+        )
+        .addEventListener(
+            "click",
+            () => {
+
+                openPreview(
                     selectedWeek
                 );
 
-            weeklyContent =
-                weeklyContent.filter(
-                    item =>
-                        Number(item.week) !==
-                        selectedWeek
-                );
-
-
-            weeklyContent.push(
-                fallback
-            );
-
-            renderWeekEditor();
-
-        }
-    );
+            }
+        );
 
 }
 
 
-/* =====================================================
-   DAY EDITOR
-===================================================== */
-
-function renderDayEditor(
-    day,
-    data
+function renderDayHabitEditor(
+    dayData,
+    field,
+    label
 ){
 
-    const habits = [
-
-        [
-            "Movement",
-            "movement",
-            "movementInstruction"
-        ],
-
-        [
-            "Sleep",
-            "sleep",
-            "sleepInstruction"
-        ],
-
-        [
-            "Hydration",
-            "hydration",
-            "hydrationInstruction"
-        ],
-
-        [
-            "Protein",
-            "protein",
-            "proteinInstruction"
-        ],
-
-        [
-            "Nutrition",
-            "nutrition",
-            "nutritionInstruction"
-        ],
-
-        [
-            "Mind / Stress",
-            "mind",
-            "mindInstruction"
-        ],
-
-        [
-            "Sunlight",
-            "sunlight",
-            "sunlightInstruction"
-        ],
-
-        [
-            "Recovery",
-            "recovery",
-            "recoveryInstruction"
-        ]
-
-    ];
+    const instructionField =
+        field +
+        "Instruction";
 
 
     return `
 
-        <div class="day-editor">
+        <div class="habit-editor">
 
-            <div class="day-editor-header">
+            <h4>
+                ${escapeHTML(label)}
+            </h4>
 
-                <strong>
-                    Day ${day}
-                </strong>
+            <div class="field">
 
-                <span class="badge">
-                    ${escapeHTML(
-                        data.phase ||
-                        ""
-                    )}
-                </span>
+                <label>
+                    Habit / Target
+                </label>
+
+                <input
+                    data-habit-field="${field}"
+                    value="${escapeHTML(
+                        dayData[field] || ""
+                    )}"
+                >
 
             </div>
 
+            <div class="field">
 
-            <div class="day-editor-body">
+                <label>
+                    Instructions — How to do it
+                </label>
 
-                <div class="form-group">
-
-                    <label>
-                        Phase
-                    </label>
-
-                    <input
-                        data-day="${day}"
-                        data-field="phase"
-                        value="${escapeHTML(
-                            data.phase ||
-                            ""
-                        )}"
-                    >
-
-                </div>
-
-
-                <div class="habit-grid">
-
-                    ${habits.map(
-                        habit =>
-                            `
-
-                            <div class="habit-editor">
-
-                                <h4>
-                                    ${habit[0]}
-                                </h4>
-
-                                <div class="form-group">
-
-                                    <label>
-                                        Target / Habit
-                                    </label>
-
-                                    <input
-                                        data-day="${day}"
-                                        data-field="${habit[1]}"
-                                        value="${escapeHTML(
-                                            data[habit[1]] ||
-                                            ""
-                                        )}"
-                                    >
-
-                                </div>
-
-
-                                <div class="form-group">
-
-                                    <label>
-                                        Instructions
-                                    </label>
-
-                                    <textarea
-                                        data-day="${day}"
-                                        data-field="${habit[2]}"
-                                    >${escapeHTML(
-                                        data[habit[2]] ||
-                                        ""
-                                    )}</textarea>
-
-                                </div>
-
-                            </div>
-
-                        `
-                    ).join("")}
-
-                </div>
+                <textarea
+                    data-habit-field="${instructionField}"
+                    placeholder="Add detailed instructions that the member will see..."
+                >${escapeHTML(
+                    dayData[instructionField] || ""
+                )}</textarea>
 
             </div>
 
@@ -3882,191 +2861,272 @@ function renderDayEditor(
 }
 
 
-/* =====================================================
-   SAVE WEEK
-===================================================== */
-
-async function saveCurrentWeek(){
-
-    const title =
-        document.getElementById(
-            "weekTitle"
-        ).value.trim();
-
-
-    const description =
-        document.getElementById(
-            "weekDescription"
-        ).value.trim();
-
-
-    const goal =
-        document.getElementById(
-            "weekGoal"
-        ).value.trim();
-
-
-    const status =
-        document.getElementById(
-            "weekStatus"
-        ).value;
-
+async function createWeek(){
 
     const days = [];
 
 
     for(
-        let day = (
-            selectedWeek - 1
-        ) * 7 + 1;
-
-        day <=
-            Math.min(
-                selectedWeek * 7,
-                90
-            );
-
+        let day = 1;
+        day <= 7;
         day++
     ){
 
-        const dayObject = {
+        days.push({
 
-            day
+            day:
+                (
+                    selectedWeek - 1
+                ) * 7 + day,
 
-        };
+            phase:"",
+
+            movement:"",
+            movementInstruction:"",
+
+            sleep:"",
+            sleepInstruction:"",
+
+            hydration:"",
+            hydrationInstruction:"",
+
+            protein:"",
+            proteinInstruction:"",
+
+            nutrition:"",
+            nutritionInstruction:"",
+
+            mind:"",
+            mindInstruction:"",
+
+            sunlight:"",
+            sunlightInstruction:"",
+
+            recovery:"",
+            recoveryInstruction:""
+
+        });
+
+    }
 
 
-        document
-        .querySelectorAll(
-            `[data-day="${day}"]`
-        )
-        .forEach(
-            element => {
+    try{
 
-                dayObject[
-                    element.dataset.field
-                ] =
-                    element.value.trim();
+        await setDoc(
+            doc(
+                db,
+                "weeklyContent",
+                `week${selectedWeek}`
+            ),
+            {
+
+                week:
+                    selectedWeek,
+
+                title:
+                    `Week ${selectedWeek}`,
+
+                description:"",
+                goal:"",
+
+                status:
+                    "published",
+
+                days
 
             }
         );
 
 
-        days.push(
-            dayObject
+        await loadWeeklyContent();
+
+        renderWeekSelector();
+
+        alert(
+            `Week ${selectedWeek} created.`
+        );
+
+    }catch(error){
+
+        console.error(
+            error
+        );
+
+        alert(
+            "Unable to create week."
+        );
+
+    }
+
+}
+
+
+async function saveWeek(){
+
+    const week =
+        getWeek();
+
+
+    if(!week){
+
+        return;
+
+    }
+
+
+    const updatedDays =
+        [];
+
+
+    for(
+        let day = 1;
+        day <= 7;
+        day++
+    ){
+
+        const actualDay =
+            (
+                selectedWeek - 1
+            ) * 7 + day;
+
+
+        const oldDay =
+            getDay(
+                week,
+                actualDay
+            );
+
+
+        const newDay = {
+
+            ...oldDay,
+
+            day:
+                actualDay,
+
+            phase:
+                document.querySelector(
+                    `[data-day-field="phase"][data-day-number="${actualDay}"]`
+                )?.value || ""
+
+        };
+
+
+        document
+            .querySelectorAll(
+                "[data-habit-field]"
+            )
+            .forEach(
+                input => {
+
+                    /*
+                     * Inputs are repeated for each day.
+                     * We identify the correct day using
+                     * the editor card containing the input.
+                     */
+
+                    const dayEditor =
+                        input.closest(
+                            ".day-editor"
+                        );
+
+
+                    if(!dayEditor){
+
+                        return;
+
+                    }
+
+
+                    const header =
+                        dayEditor
+                            .querySelector(
+                                ".day-editor-header"
+                            )
+                            ?.textContent || "";
+
+
+                    if(
+                        !header.includes(
+                            `Day ${actualDay}`
+                        )
+                    ){
+
+                        return;
+
+                    }
+
+
+                    newDay[
+                        input.dataset.habitField
+                    ] =
+                        input.value.trim();
+
+                }
+            );
+
+
+        updatedDays.push(
+            newDay
         );
 
     }
 
 
-    const existing =
-        weeklyContent.find(
-            item =>
-                Number(item.week) ===
-                selectedWeek
-        );
+    const data = {
+
+        ...week,
+
+        title:
+            document.getElementById(
+                "weekTitle"
+            ).value.trim(),
+
+        description:
+            document.getElementById(
+                "weekDescription"
+            ).value.trim(),
+
+        goal:
+            document.getElementById(
+                "weekGoal"
+            ).value.trim(),
+
+        status:
+            document.getElementById(
+                "weekStatus"
+            ).value,
+
+        days:
+            updatedDays
+
+    };
+
+
+    delete data.id;
 
 
     try{
 
-        if(existing?.id){
+        await setDoc(
+            doc(
+                db,
+                "weeklyContent",
+                week.id
+            ),
+            data,
+            {
+                merge:true
+            }
+        );
 
-            await updateDoc(
-                doc(
-                    db,
-                    "weeklyContent",
-                    existing.id
-                ),
-                {
-
-                    week:
-                        selectedWeek,
-
-                    title,
-
-                    description,
-
-                    goal,
-
-                    status,
-
-                    days,
-
-                    updatedAt:
-                        serverTimestamp()
-
-                }
-            );
-
-        }else{
-
-            const newDoc =
-                await addDoc(
-                    collection(
-                        db,
-                        "weeklyContent"
-                    ),
-                    {
-
-                        week:
-                            selectedWeek,
-
-                        title,
-
-                        description,
-
-                        goal,
-
-                        status,
-
-                        days,
-
-                        createdAt:
-                            serverTimestamp(),
-
-                        updatedAt:
-                            serverTimestamp()
-
-                    }
-                );
-
-
-            weeklyContent.push({
-
-                id:
-                    newDoc.id,
-
-                week:
-                    selectedWeek,
-
-                title,
-
-                description,
-
-                goal,
-
-                status,
-
-                days
-
-            });
-
-        }
-
-
-        const message =
-            document.getElementById(
-                "weekSaveMessage"
-            );
-
-
-        message.className =
-            "success-message";
-
-        message.textContent =
-            "Week saved successfully.";
 
         await loadWeeklyContent();
+
+        document.getElementById(
+            "weekMessage"
+        ).textContent =
+            "Week saved successfully.";
 
     }catch(error){
 
@@ -4075,18 +3135,10 @@ async function saveCurrentWeek(){
             error
         );
 
-
-        const message =
-            document.getElementById(
-                "weekSaveMessage"
-            );
-
-
-        message.className =
-            "error-message";
-
-        message.textContent =
-            "Unable to save week. Check Firestore rules.";
+        document.getElementById(
+            "weekMessage"
+        ).textContent =
+            "Unable to save week.";
 
     }
 
@@ -4094,131 +3146,10 @@ async function saveCurrentWeek(){
 
 
 /* =====================================================
-   DEFAULT WEEK
+   RESOURCES / LESSONS
 ===================================================== */
 
-function createDefaultWeek(
-    week
-){
-
-    const days = [];
-
-
-    const start =
-        (
-            week - 1
-        ) * 7 + 1;
-
-
-    const end =
-        Math.min(
-            week * 7,
-            90
-        );
-
-
-    for(
-        let day = start;
-        day <= end;
-        day++
-    ){
-
-        days.push({
-
-            day,
-
-            phase:
-                "Foundation",
-
-            movement:
-                day <= 7
-                    ? `${2500 + ((day - 1) * 1000)} steps`
-                    : "10,000 steps",
-
-            movementInstruction:
-                "",
-
-            sleep:
-                day <= 2
-                    ? "5–6 hr"
-                    : "7–8 hr",
-
-            sleepInstruction:
-                "",
-
-            hydration:
-                day <= 2
-                    ? "1.5–1.7 L"
-                    : "2 L",
-
-            hydrationInstruction:
-                "",
-
-            protein:
-                day <= 2
-                    ? "15–20 g/meal"
-                    : "20–30 g/meal",
-
-            proteinInstruction:
-                "",
-
-            nutrition:
-                "Follow today's nutrition focus",
-
-            nutritionInstruction:
-                "",
-
-            mind:
-                "5 min breathing",
-
-            mindInstruction:
-                "",
-
-            sunlight:
-                "10–15 min",
-
-            sunlightInstruction:
-                "",
-
-            recovery:
-                "Recovery routine",
-
-            recoveryInstruction:
-                ""
-
-        });
-
-    }
-
-
-    return {
-
-        week,
-
-        title:
-            `Week ${week}`,
-
-        description:
-            "",
-
-        goal:
-            "",
-
-        status:
-            "draft",
-
-        days
-
-    };
-
-}
-
-
-/* =====================================================
-   RESOURCES
-===================================================== */
-
-async function loadResources(){
+async function loadLessons(){
 
     try{
 
@@ -4226,18 +3157,18 @@ async function loadResources(){
             await getDocs(
                 collection(
                     db,
-                    "resources"
+                    "lessons"
                 )
             );
 
 
-        resources = [];
+        lessons = [];
 
 
         snapshot.forEach(
             item => {
 
-                resources.push({
+                lessons.push({
 
                     id:
                         item.id,
@@ -4250,32 +3181,26 @@ async function loadResources(){
         );
 
 
-        resources.sort(
+        lessons.sort(
             (a,b) =>
                 Number(
-                    a.unlockDay || 0
+                    a.lesson ||
+                    a.number ||
+                    999
                 ) -
                 Number(
-                    b.unlockDay || 0
+                    b.lesson ||
+                    b.number ||
+                    999
                 )
         );
-
-
-        renderResources();
 
     }catch(error){
 
         console.error(
-            "RESOURCE ERROR",
+            "LESSONS ERROR",
             error
         );
-
-        document.getElementById(
-            "resourceList"
-        ).innerHTML =
-            `<div class="empty">
-                No resources available or Firestore permission is missing.
-            </div>`;
 
     }
 
@@ -4290,12 +3215,10 @@ function renderResources(){
         );
 
 
-    if(!resources.length){
+    if(!lessons.length){
 
         container.innerHTML =
-            `<div class="empty">
-                No resources added yet.
-            </div>`;
+            "<p>No resources added yet.</p>";
 
         return;
 
@@ -4303,58 +3226,59 @@ function renderResources(){
 
 
     container.innerHTML =
-        resources
-        .map(
-            item =>
-                `
+        lessons.map(
+            lesson => `
 
-                <div class="content-item">
+                <div class="content-row">
 
-                    <div class="content-item-header">
+                    <div class="content-info">
 
-                        <div>
-
-                            <h3>
-                                ${escapeHTML(
-                                    item.title ||
-                                    "Untitled Lesson"
-                                )}
-                            </h3>
-
-                            <p>
-                                ${escapeHTML(
-                                    item.description ||
+                        <h3>
+                            Lesson ${
+                                escapeHTML(
+                                    lesson.lesson ||
+                                    lesson.number ||
                                     ""
-                                )}
-                            </p>
-
-                        </div>
-
-                        <span class="badge">
-
-                            Opens Day
+                                )
+                            } —
                             ${escapeHTML(
-                                item.unlockDay ||
-                                1
+                                lesson.title ||
+                                "Untitled"
                             )}
+                        </h3>
 
-                        </span>
+                        <p>
+
+                            Opens after Day
+                            ${
+                                escapeHTML(
+                                    lesson.openAfterDay ??
+                                    lesson.unlockDay ??
+                                    1
+                                )
+                            }
+
+                            ·
+
+                            ${
+                                escapeHTML(
+                                    lesson.status ||
+                                    "published"
+                                )
+                            }
+
+                        </p>
 
                     </div>
 
 
-                    <div class="actions">
+                    <div>
 
                         <button
-                            class="secondary-btn edit-resource"
-                            data-id="${escapeHTML(item.id)}"
-                        >
-                            Edit
-                        </button>
-
-                        <button
-                            class="danger-btn delete-resource"
-                            data-id="${escapeHTML(item.id)}"
+                            class="danger-btn"
+                            onclick="window.deleteLesson('${escapeHTML(
+                                lesson.id
+                            )}')"
                         >
                             Delete
                         </button>
@@ -4364,399 +3288,23 @@ function renderResources(){
                 </div>
 
             `
-        )
-        .join("");
+        ).join("");
 
 }
 
 
-/* =====================================================
-   RESOURCE EDITOR
-===================================================== */
-
-document
-.getElementById(
-    "newResource"
-)
-.addEventListener(
-    "click",
-    () => {
-
-        openResourceEditor();
-
-    }
-);
-
-
-function openResourceEditor(id){
-
-    const item =
-        resources.find(
-            resource =>
-                resource.id === id
-        ) || {};
-
-
-    const editor =
-        document.getElementById(
-            "resourceEditor"
-        );
-
-
-    editor.classList.remove(
-        "hidden"
-    );
-
-
-    editor.innerHTML = `
-
-        <h2>
-            ${
-                id
-                    ? "Edit Resource"
-                    : "Add Resource"
-            }
-        </h2>
-
-        <div class="form-grid">
-
-            <div class="form-group">
-
-                <label>
-                    Lesson / Resource Name
-                </label>
-
-                <input
-                    id="resourceTitle"
-                    value="${escapeHTML(
-                        item.title ||
-                        ""
-                    )}"
-                    placeholder="Lesson 1"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Unlock on Day
-                </label>
-
-                <input
-                    type="number"
-                    id="resourceUnlockDay"
-                    min="1"
-                    max="90"
-                    value="${escapeHTML(
-                        item.unlockDay ??
-                        1
-                    )}"
-                >
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>
-                    Short Description
-                </label>
-
-                <textarea
-                    id="resourceDescription"
-                >${escapeHTML(
-                    item.description ||
-                    ""
-                )}</textarea>
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>
-                    Instructions
-                </label>
-
-                <textarea
-                    id="resourceInstructions"
-                >${escapeHTML(
-                    item.instructions ||
-                    ""
-                )}</textarea>
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>
-                    Lesson Content
-                </label>
-
-                <textarea
-                    id="resourceContent"
-                    style="min-height:220px;"
-                >${escapeHTML(
-                    item.content ||
-                    ""
-                )}</textarea>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Image URL
-                </label>
-
-                <input
-                    id="resourceImage"
-                    value="${escapeHTML(
-                        item.image ||
-                        item.imageUrl ||
-                        ""
-                    )}"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Status
-                </label>
-
-                <select
-                    id="resourceStatus"
-                >
-
-                    <option
-                        value="published"
-                        ${
-                            item.status !==
-                            "draft"
-                                ? "selected"
-                                : ""
-                        }
-                    >
-                        Published
-                    </option>
-
-                    <option
-                        value="draft"
-                        ${
-                            item.status ===
-                            "draft"
-                                ? "selected"
-                                : ""
-                        }
-                    >
-                        Draft
-                    </option>
-
-                </select>
-
-            </div>
-
-        </div>
-
-
-        <div class="actions">
-
-            <button
-                class="primary-btn"
-                id="saveResource"
-            >
-                Save Resource
-            </button>
-
-            <button
-                class="secondary-btn"
-                id="cancelResource"
-            >
-                Cancel
-            </button>
-
-        </div>
-
-        <div id="resourceMessage"></div>
-
-    `;
-
-
-    document
-    .getElementById(
-        "cancelResource"
-    )
-    .addEventListener(
-        "click",
-        () => {
-
-            editor.classList.add(
-                "hidden"
-            );
-
-        }
-    );
-
-
-    document
-    .getElementById(
-        "saveResource"
-    )
-    .addEventListener(
-        "click",
-        async () => {
-
-            const data = {
-
-                title:
-                    document
-                    .getElementById(
-                        "resourceTitle"
-                    )
-                    .value
-                    .trim(),
-
-                unlockDay:
-                    Number(
-                        document
-                        .getElementById(
-                            "resourceUnlockDay"
-                        )
-                        .value
-                    ) || 1,
-
-                description:
-                    document
-                    .getElementById(
-                        "resourceDescription"
-                    )
-                    .value
-                    .trim(),
-
-                instructions:
-                    document
-                    .getElementById(
-                        "resourceInstructions"
-                    )
-                    .value
-                    .trim(),
-
-                content:
-                    document
-                    .getElementById(
-                        "resourceContent"
-                    )
-                    .value
-                    .trim(),
-
-                image:
-                    document
-                    .getElementById(
-                        "resourceImage"
-                    )
-                    .value
-                    .trim(),
-
-                status:
-                    document
-                    .getElementById(
-                        "resourceStatus"
-                    )
-                    .value,
-
-                updatedAt:
-                    serverTimestamp()
-
-            };
-
-
-            try{
-
-                if(id){
-
-                    await updateDoc(
-                        doc(
-                            db,
-                            "resources",
-                            id
-                        ),
-                        data
-                    );
-
-                }else{
-
-                    await addDoc(
-                        collection(
-                            db,
-                            "resources"
-                        ),
-                        {
-
-                            ...data,
-
-                            createdAt:
-                                serverTimestamp()
-
-                        }
-                    );
-
-                }
-
-
-                document
-                .getElementById(
-                    "resourceMessage"
-                )
-                .textContent =
-                    "Resource saved successfully.";
-
-                await loadResources();
-
-                setTimeout(
-                    () => {
-
-                        editor.classList.add(
-                            "hidden"
-                        );
-
-                    },
-                    700
-                );
-
-            }catch(error){
-
-                console.error(error);
-
-                document
-                .getElementById(
-                    "resourceMessage"
-                )
-                .textContent =
-                    "Unable to save resource. Check Firestore rules.";
-
-            }
-
-        }
-    );
-
-}
-
-
-async function deleteResource(id){
+window.deleteLesson =
+async function(id){
 
     if(
         !confirm(
             "Delete this resource?"
         )
-    )
+    ){
+
         return;
+
+    }
 
 
     try{
@@ -4764,17 +3312,23 @@ async function deleteResource(id){
         await deleteDoc(
             doc(
                 db,
-                "resources",
+                "lessons",
                 id
             )
         );
 
 
-        await loadResources();
+        await loadLessons();
+
+        renderResources();
+
+        updateStats();
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            error
+        );
 
         alert(
             "Unable to delete resource."
@@ -4782,624 +3336,137 @@ async function deleteResource(id){
 
     }
 
-}
+};
 
-
-/* =====================================================
-   DIET PLANS
-===================================================== */
-
-async function loadDietPlans(){
-
-    try{
-
-        const snapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "dietPlans"
-                )
-            );
-
-
-        dietPlans = [];
-
-
-        snapshot.forEach(
-            item => {
-
-                dietPlans.push({
-
-                    id:
-                        item.id,
-
-                    ...item.data()
-
-                });
-
-            }
-        );
-
-
-        renderDietPlans();
-
-    }catch(error){
-
-        console.error(
-            "DIET PLAN ERROR",
-            error
-        );
-
-
-        document.getElementById(
-            "dietList"
-        ).innerHTML =
-            `<div class="empty">
-                No diet plans yet.
-            </div>`;
-
-    }
-
-}
-
-
-function renderDietPlans(){
-
-    const container =
-        document.getElementById(
-            "dietList"
-        );
-
-
-    if(!dietPlans.length){
-
-        container.innerHTML =
-            `<div class="empty">
-                No diet plans added yet.
-            </div>`;
-
-        return;
-
-    }
-
-
-    container.innerHTML =
-        dietPlans
-        .map(
-            item =>
-                `
-
-                <div class="content-item">
-
-                    <div class="content-item-header">
-
-                        <div>
-
-                            <h3>
-                                ${escapeHTML(
-                                    item.title ||
-                                    "Diet Plan"
-                                )}
-                            </h3>
-
-                            <p>
-                                ${escapeHTML(
-                                    item.category ||
-                                    ""
-                                )}
-                            </p>
-
-                        </div>
-
-                        <span class="badge">
-
-                            Opens Day
-                            ${escapeHTML(
-                                item.unlockDay ||
-                                1
-                            )}
-
-                        </span>
-
-                    </div>
-
-
-                    <div class="actions">
-
-                        <button
-                            class="secondary-btn edit-diet"
-                            data-id="${escapeHTML(item.id)}"
-                        >
-                            Edit
-                        </button>
-
-                        <button
-                            class="danger-btn delete-diet"
-                            data-id="${escapeHTML(item.id)}"
-                        >
-                            Delete
-                        </button>
-
-                    </div>
-
-                </div>
-
-            `
-        )
-        .join("");
-
-}
-
-
-/* =====================================================
-   DIET EDITOR
-===================================================== */
 
 document
-.getElementById(
-    "newDietPlan"
-)
-.addEventListener(
-    "click",
-    () => {
-
-        openDietEditor();
-
-    }
-);
-
-
-function openDietEditor(id){
-
-    const item =
-        dietPlans.find(
-            plan =>
-                plan.id === id
-        ) || {};
-
-
-    const editor =
-        document.getElementById(
-            "dietEditor"
-        );
-
-
-    editor.classList.remove(
-        "hidden"
-    );
-
-
-    editor.innerHTML = `
-
-        <h2>
-            ${
-                id
-                    ? "Edit Diet Plan"
-                    : "Add Diet Plan"
-            }
-        </h2>
-
-
-        <div class="form-grid">
-
-            <div class="form-group">
-
-                <label>
-                    Plan Name
-                </label>
-
-                <input
-                    id="dietTitle"
-                    value="${escapeHTML(
-                        item.title ||
-                        ""
-                    )}"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Category
-                </label>
-
-                <select
-                    id="dietCategory"
-                >
-
-                    ${[
-                        "Weight Loss",
-                        "Prediabetes",
-                        "Type 2 Diabetes",
-                        "PCOS",
-                        "PCOS / Insulin Resistance",
-                        "Thyroid",
-                        "Cholesterol",
-                        "Blood Pressure",
-                        "Postpartum Weight Loss",
-                        "Healthy Eating",
-                        "Other"
-                    ]
-                    .map(
-                        category =>
-                            `<option
-                                ${
-                                    item.category ===
-                                    category
-                                        ? "selected"
-                                        : ""
-                                }
-                            >
-                                ${category}
-                            </option>`
-                    )
-                    .join("")}
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Plan Number
-                </label>
-
-                <input
-                    type="number"
-                    id="dietNumber"
-                    min="1"
-                    max="6"
-                    value="${escapeHTML(
-                        item.planNumber ||
-                        1
-                    )}"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Unlock on Day
-                </label>
-
-                <input
-                    type="number"
-                    id="dietUnlockDay"
-                    min="1"
-                    max="90"
-                    value="${escapeHTML(
-                        item.unlockDay ||
-                        16
-                    )}"
-                >
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>
-                    Description
-                </label>
-
-                <textarea
-                    id="dietDescription"
-                >${escapeHTML(
-                    item.description ||
-                    ""
-                )}</textarea>
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>
-                    Diet Plan Content
-                </label>
-
-                <textarea
-                    id="dietContent"
-                    style="min-height:250px;"
-                >${escapeHTML(
-                    item.content ||
-                    ""
-                )}</textarea>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Image URL
-                </label>
-
-                <input
-                    id="dietImage"
-                    value="${escapeHTML(
-                        item.image ||
-                        ""
-                    )}"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Status
-                </label>
-
-                <select
-                    id="dietStatus"
-                >
-
-                    <option
-                        value="published"
-                        ${
-                            item.status !==
-                            "draft"
-                                ? "selected"
-                                : ""
-                        }
-                    >
-                        Published
-                    </option>
-
-                    <option
-                        value="draft"
-                        ${
-                            item.status ===
-                            "draft"
-                                ? "selected"
-                                : ""
-                        }
-                    >
-                        Draft
-                    </option>
-
-                </select>
-
-            </div>
-
-        </div>
-
-
-        <div class="actions">
-
-            <button
-                class="primary-btn"
-                id="saveDiet"
-            >
-                Save Diet Plan
-            </button>
-
-            <button
-                class="secondary-btn"
-                id="cancelDiet"
-            >
-                Cancel
-            </button>
-
-        </div>
-
-        <div id="dietMessage"></div>
-
-    `;
-
-
-    document
     .getElementById(
-        "cancelDiet"
-    )
-    .addEventListener(
-        "click",
-        () => {
-
-            editor.classList.add(
-                "hidden"
-            );
-
-        }
-    );
-
-
-    document
-    .getElementById(
-        "saveDiet"
+        "saveResource"
     )
     .addEventListener(
         "click",
         async () => {
 
-            const data = {
+            const lesson =
+                Number(
+                    document.getElementById(
+                        "resourceLesson"
+                    ).value
+                );
 
-                title:
-                    document
-                    .getElementById(
-                        "dietTitle"
-                    )
-                    .value
-                    .trim(),
 
-                category:
-                    document
-                    .getElementById(
-                        "dietCategory"
-                    )
-                    .value,
+            const openAfterDay =
+                Number(
+                    document.getElementById(
+                        "resourceOpenDay"
+                    ).value
+                );
 
-                planNumber:
-                    Number(
-                        document
-                        .getElementById(
-                            "dietNumber"
-                        )
-                        .value
-                    ) || 1,
 
-                unlockDay:
-                    Number(
-                        document
-                        .getElementById(
-                            "dietUnlockDay"
-                        )
-                        .value
-                    ) || 16,
+            const title =
+                document.getElementById(
+                    "resourceTitle"
+                ).value.trim();
 
-                description:
-                    document
-                    .getElementById(
-                        "dietDescription"
-                    )
-                    .value
-                    .trim(),
 
-                content:
-                    document
-                    .getElementById(
-                        "dietContent"
-                    )
-                    .value
-                    .trim(),
+            const content =
+                document.getElementById(
+                    "resourceContent"
+                ).value.trim();
 
-                image:
-                    document
-                    .getElementById(
-                        "dietImage"
-                    )
-                    .value
-                    .trim(),
 
-                status:
-                    document
-                    .getElementById(
-                        "dietStatus"
-                    )
-                    .value,
+            const status =
+                document.getElementById(
+                    "resourceStatus"
+                ).value;
 
-                updatedAt:
-                    serverTimestamp()
 
-            };
+            if(
+                !lesson ||
+                !title
+            ){
+
+                alert(
+                    "Please add lesson number and title."
+                );
+
+                return;
+
+            }
 
 
             try{
 
-                if(id){
+                await addDoc(
+                    collection(
+                        db,
+                        "lessons"
+                    ),
+                    {
 
-                    await updateDoc(
-                        doc(
-                            db,
-                            "dietPlans",
-                            id
-                        ),
-                        data
-                    );
+                        lesson,
 
-                }else{
+                        number:
+                            lesson,
 
-                    await addDoc(
-                        collection(
-                            db,
-                            "dietPlans"
-                        ),
-                        {
+                        title,
 
-                            ...data,
+                        content,
 
-                            createdAt:
-                                serverTimestamp()
+                        instructions:
+                            content,
 
-                        }
-                    );
+                        openAfterDay,
 
-                }
+                        unlockDay:
+                            openAfterDay,
 
+                        status,
 
-                document
-                .getElementById(
-                    "dietMessage"
-                )
-                .textContent =
-                    "Diet plan saved.";
+                        createdAt:
+                            serverTimestamp()
 
-
-                await loadDietPlans();
-
-
-                setTimeout(
-                    () => {
-
-                        editor.classList.add(
-                            "hidden"
-                        );
-
-                    },
-                    700
+                    }
                 );
+
+
+                document.getElementById(
+                    "resourceTitle"
+                ).value = "";
+
+                document.getElementById(
+                    "resourceContent"
+                ).value = "";
+
+
+                await loadLessons();
+
+                renderResources();
+
+                updateStats();
+
+
+                document.getElementById(
+                    "resourceMessage"
+                ).textContent =
+                    "Resource added.";
 
             }catch(error){
 
-                console.error(error);
+                console.error(
+                    "RESOURCE ERROR",
+                    error
+                );
 
-                document
-                .getElementById(
-                    "dietMessage"
-                )
-                .textContent =
-                    "Unable to save diet plan. Check Firestore rules.";
+                document.getElementById(
+                    "resourceMessage"
+                ).textContent =
+                    "Unable to add resource.";
 
             }
 
         }
     );
-
-}
-
-
-async function deleteDietPlan(id){
-
-    if(
-        !confirm(
-            "Delete this diet plan?"
-        )
-    )
-        return;
-
-
-    try{
-
-        await deleteDoc(
-            doc(
-                db,
-                "dietPlans",
-                id
-            )
-        );
-
-
-        await loadDietPlans();
-
-    }catch(error){
-
-        console.error(error);
-
-        alert(
-            "Unable to delete diet plan."
-        );
-
-    }
-
-}
 
 
 /* =====================================================
@@ -5407,12 +3474,6 @@ async function deleteDietPlan(id){
 ===================================================== */
 
 async function loadCommunity(){
-
-    const container =
-        document.getElementById(
-            "communityList"
-        );
-
 
     try{
 
@@ -5449,11 +3510,6 @@ async function loadCommunity(){
             }
         );
 
-
-        renderCommunity();
-
-        updateDashboardStats();
-
     }catch(error){
 
         console.error(
@@ -5461,55 +3517,30 @@ async function loadCommunity(){
             error
         );
 
-
-        container.innerHTML =
-            `<div class="empty">
-                Unable to load community.
-            </div>`;
-
     }
 
 }
 
 
-function renderCommunity(){
+function renderCommunityAdmin(){
 
     const container =
         document.getElementById(
-            "communityList"
+            "communityAdminList"
         );
 
 
-    const filter =
-        document.getElementById(
-            "communityFilter"
-        ).value;
+    if(!communityPosts.length){
 
+        container.innerHTML = `
 
-    let posts =
-        communityPosts;
+            <div class="card">
 
+                No community posts.
 
-    if(
-        filter !== "all"
-    ){
+            </div>
 
-        posts =
-            posts.filter(
-                post =>
-                    post.category ===
-                    filter
-            );
-
-    }
-
-
-    if(!posts.length){
-
-        container.innerHTML =
-            `<div class="empty">
-                No community posts found.
-            </div>`;
+        `;
 
         return;
 
@@ -5517,165 +3548,84 @@ function renderCommunity(){
 
 
     container.innerHTML =
-        posts
-        .map(
-            post => {
+        communityPosts.map(
+            post => `
 
-                const replies =
-                    Array.isArray(
-                        post.replies
-                    )
-                        ? post.replies
-                        : [];
+                <div class="community-post">
 
+                    <div class="community-post-top">
 
-                return `
+                        <div>
 
-                    <div class="community-post">
+                            <strong>
+                                ${escapeHTML(
+                                    post.name ||
+                                    "Member"
+                                )}
+                            </strong>
 
-                        <div class="community-post-header">
+                            <div class="member-meta">
 
-                            <div>
-
-                                <div class="community-post-name">
-
-                                    ${escapeHTML(
-                                        post.name ||
-                                        "Member"
-                                    )}
-
-                                </div>
-
-                                <div class="community-post-date">
-
-                                    ${escapeHTML(
-                                        post.email ||
-                                        ""
-                                    )}
-
-                                    ·
-
-                                    ${escapeHTML(
-                                        formatDate(
-                                            post.createdAt
-                                        )
-                                    )}
-
-                                </div>
+                                ${escapeHTML(
+                                    post.email ||
+                                    ""
+                                )}
 
                             </div>
 
-
-                            <span class="badge">
-
-                                ${escapeHTML(
-                                    post.category ||
-                                    "Community"
-                                )}
-
-                            </span>
-
                         </div>
 
-
-                        <div class="community-post-message">
+                        <span class="post-category">
 
                             ${escapeHTML(
-                                post.message ||
-                                ""
+                                post.category ||
+                                "Community"
                             )}
 
-                        </div>
-
-
-                        ${
-                            replies.length
-                                ? `
-
-                                    <strong>
-                                        Replies
-                                    </strong>
-
-                                    ${replies.map(
-                                        reply =>
-                                            `
-
-                                            <div class="reply-box">
-
-                                                <strong>
-                                                    ${escapeHTML(
-                                                        reply.name ||
-                                                        "Member"
-                                                    )}
-                                                </strong>
-
-                                                <br>
-
-                                                ${escapeHTML(
-                                                    reply.message ||
-                                                    ""
-                                                )}
-
-                                            </div>
-
-                                        `
-                                    ).join("")}
-
-                                `
-                                : ""
-                        }
-
-
-                        <div class="actions">
-
-                            <button
-                                class="danger-btn delete-community"
-                                data-id="${escapeHTML(post.id)}"
-                            >
-                                Delete Post
-                            </button>
-
-                        </div>
+                        </span>
 
                     </div>
 
-                `;
 
-            }
-        )
-        .join("");
+                    <div class="post-message">
+
+                        ${escapeHTML(
+                            post.message ||
+                            ""
+                        )}
+
+                    </div>
+
+
+                    <button
+                        class="danger-btn"
+                        onclick="window.deleteCommunityPost('${escapeHTML(
+                            post.id
+                        )}')"
+                    >
+                        Delete Post
+                    </button>
+
+                </div>
+
+            `
+        ).join("");
 
 }
 
 
-document
-.getElementById(
-    "communityFilter"
-)
-.addEventListener(
-    "change",
-    renderCommunity
-);
-
-
-document
-.getElementById(
-    "refreshCommunity"
-)
-.addEventListener(
-    "click",
-    loadCommunity
-);
-
-
-async function deleteCommunityPost(id){
+window.deleteCommunityPost =
+async function(id){
 
     if(
         !confirm(
             "Delete this community post?"
         )
-    )
+    ){
+
         return;
+
+    }
 
 
     try{
@@ -5691,9 +3641,15 @@ async function deleteCommunityPost(id){
 
         await loadCommunity();
 
+        renderCommunityAdmin();
+
+        updateStats();
+
     }catch(error){
 
-        console.error(error);
+        console.error(
+            error
+        );
 
         alert(
             "Unable to delete post."
@@ -5701,7 +3657,25 @@ async function deleteCommunityPost(id){
 
     }
 
-}
+};
+
+
+document
+    .getElementById(
+        "refreshCommunity"
+    )
+    .addEventListener(
+        "click",
+        async () => {
+
+            await loadCommunity();
+
+            renderCommunityAdmin();
+
+            updateStats();
+
+        }
+    );
 
 
 /* =====================================================
@@ -5754,9 +3728,6 @@ async function loadLifetimeHabits(){
                 )
         );
 
-
-        renderLifetimeHabits();
-
     }catch(error){
 
         console.error(
@@ -5764,20 +3735,12 @@ async function loadLifetimeHabits(){
             error
         );
 
-
-        document.getElementById(
-            "lifetimeList"
-        ).innerHTML =
-            `<div class="empty">
-                No lifetime habits yet.
-            </div>`;
-
     }
 
 }
 
 
-function renderLifetimeHabits(){
+function renderLifetimeList(){
 
     const container =
         document.getElementById(
@@ -5788,9 +3751,7 @@ function renderLifetimeHabits(){
     if(!lifetimeHabits.length){
 
         container.innerHTML =
-            `<div class="empty">
-                No lifetime habit sections added yet.
-            </div>`;
+            "<p>No lifetime habits yet.</p>";
 
         return;
 
@@ -5798,82 +3759,53 @@ function renderLifetimeHabits(){
 
 
     container.innerHTML =
-        lifetimeHabits
-        .map(
-            item =>
-                `
+        lifetimeHabits.map(
+            item => `
 
-                <div class="content-item">
+                <div class="content-row">
 
-                    <div class="content-item-header">
+                    <div class="content-info">
 
-                        <div>
+                        <h3>
 
-                            <h3>
-                                ${escapeHTML(
-                                    item.title ||
-                                    item.name ||
-                                    "Lifetime Habit"
-                                )}
-                            </h3>
+                            ${escapeHTML(
+                                item.title ||
+                                item.name ||
+                                "Habit"
+                            )}
 
-                            <p>
-                                ${escapeHTML(
-                                    item.description ||
-                                    ""
-                                )}
-                            </p>
+                        </h3>
 
-                        </div>
+                        <p>
 
-                        <span class="badge">
-
-                            Order
+                            Order:
                             ${escapeHTML(
                                 item.order ||
                                 item.number ||
                                 ""
                             )}
 
-                        </span>
+                        </p>
 
                     </div>
 
 
-                    ${
-                        item.image ||
-                        item.imageUrl
-                            ? `
-                                <img
-                                    src="${escapeHTML(
-                                        item.image ||
-                                        item.imageUrl
-                                    )}"
-                                    style="
-                                        width:160px;
-                                        height:100px;
-                                        object-fit:cover;
-                                        border-radius:10px;
-                                        margin-top:10px;
-                                    "
-                                >
-                            `
-                            : ""
-                    }
-
-
-                    <div class="actions">
+                    <div class="member-actions">
 
                         <button
-                            class="secondary-btn edit-lifetime"
-                            data-id="${escapeHTML(item.id)}"
+                            class="secondary-btn"
+                            onclick="window.editLifetime('${escapeHTML(
+                                item.id
+                            )}')"
                         >
                             Edit
                         </button>
 
                         <button
-                            class="danger-btn delete-lifetime"
-                            data-id="${escapeHTML(item.id)}"
+                            class="danger-btn"
+                            onclick="window.deleteLifetime('${escapeHTML(
+                                item.id
+                            )}')"
                         >
                             Delete
                         </button>
@@ -5883,210 +3815,137 @@ function renderLifetimeHabits(){
                 </div>
 
             `
-        )
-        .join("");
+        ).join("");
 
 }
 
 
-/* =====================================================
-   LIFETIME EDITOR
-===================================================== */
-
-document
-.getElementById(
-    "newLifetime"
-)
-.addEventListener(
-    "click",
-    () => {
-
-        openLifetimeEditor();
-
-    }
-);
-
-
-function openLifetimeEditor(id){
+window.editLifetime =
+function(id){
 
     const item =
         lifetimeHabits.find(
             habit =>
                 habit.id === id
-        ) || {};
+        );
 
 
-    const existingHabits =
+    if(!item){
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "lifetimeId"
+    ).value =
+        item.id;
+
+
+    document.getElementById(
+        "lifetimeOrder"
+    ).value =
+        item.order ||
+        item.number ||
+        "";
+
+
+    document.getElementById(
+        "lifetimeTitle"
+    ).value =
+        item.title ||
+        item.name ||
+        "";
+
+
+    document.getElementById(
+        "lifetimeDescription"
+    ).value =
+        item.description ||
+        item.details ||
+        "";
+
+
+    document.getElementById(
+        "lifetimeImage"
+    ).value =
+        item.image ||
+        item.imageUrl ||
+        "";
+
+
+    document.getElementById(
+        "lifetimeHabits"
+    ).value =
         Array.isArray(
             item.habits
         )
             ? item.habits
-            : [];
+                .map(
+                    habit =>
+                        typeof habit === "string"
+                            ? habit
+                            : habit.name ||
+                              habit.habit ||
+                              habit.title ||
+                              ""
+                )
+                .join("\n")
+            : "";
+
+    showPage(
+        "lifetimePage"
+    );
+
+};
 
 
-    const editor =
-        document.getElementById(
-            "lifetimeEditor"
+window.deleteLifetime =
+async function(id){
+
+    if(
+        !confirm(
+            "Delete this lifetime habit?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    try{
+
+        await deleteDoc(
+            doc(
+                db,
+                "lifetimeHabits",
+                id
+            )
         );
 
 
-    editor.classList.remove(
-        "hidden"
-    );
+        await loadLifetimeHabits();
+
+        renderLifetimeList();
+
+    }catch(error){
+
+        console.error(
+            error
+        );
+
+        alert(
+            "Unable to delete lifetime habit."
+        );
+
+    }
+
+};
 
 
-    editor.innerHTML = `
-
-        <h2>
-            ${
-                id
-                    ? "Edit Lifetime Habit"
-                    : "Add Lifetime Habit"
-            }
-        </h2>
-
-
-        <div class="form-grid">
-
-            <div class="form-group">
-
-                <label>
-                    Title
-                </label>
-
-                <input
-                    id="lifetimeTitle"
-                    value="${escapeHTML(
-                        item.title ||
-                        item.name ||
-                        ""
-                    )}"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Order
-                </label>
-
-                <input
-                    type="number"
-                    id="lifetimeOrder"
-                    value="${escapeHTML(
-                        item.order ||
-                        item.number ||
-                        1
-                    )}"
-                >
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>
-                    Description
-                </label>
-
-                <textarea
-                    id="lifetimeDescription"
-                >${escapeHTML(
-                    item.description ||
-                    ""
-                )}</textarea>
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>
-                    Image URL
-                </label>
-
-                <input
-                    id="lifetimeImage"
-                    value="${escapeHTML(
-                        item.image ||
-                        item.imageUrl ||
-                        ""
-                    )}"
-                >
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>
-                    Habits
-                </label>
-
-                <textarea
-                    id="lifetimeHabits"
-                    placeholder="One habit per line"
-                >${escapeHTML(
-                    existingHabits
-                    .map(
-                        habit =>
-                            typeof habit === "string"
-                                ? habit
-                                : habit.name ||
-                                  habit.habit ||
-                                  habit.title ||
-                                  ""
-                    )
-                    .join("\n")
-                )}</textarea>
-
-            </div>
-
-        </div>
-
-
-        <div class="actions">
-
-            <button
-                class="primary-btn"
-                id="saveLifetime"
-            >
-                Save
-            </button>
-
-            <button
-                class="secondary-btn"
-                id="cancelLifetime"
-            >
-                Cancel
-            </button>
-
-        </div>
-
-        <div id="lifetimeMessage"></div>
-
-    `;
-
-
-    document
-    .getElementById(
-        "cancelLifetime"
-    )
-    .addEventListener(
-        "click",
-        () => {
-
-            editor.classList.add(
-                "hidden"
-            );
-
-        }
-    );
-
-
-    document
+document
     .getElementById(
         "saveLifetime"
     )
@@ -6094,12 +3953,42 @@ function openLifetimeEditor(id){
         "click",
         async () => {
 
+            const id =
+                document.getElementById(
+                    "lifetimeId"
+                ).value.trim();
+
+
+            const order =
+                Number(
+                    document.getElementById(
+                        "lifetimeOrder"
+                    ).value
+                ) || 999;
+
+
+            const title =
+                document.getElementById(
+                    "lifetimeTitle"
+                ).value.trim();
+
+
+            const description =
+                document.getElementById(
+                    "lifetimeDescription"
+                ).value.trim();
+
+
+            const image =
+                document.getElementById(
+                    "lifetimeImage"
+                ).value.trim();
+
+
             const habits =
-                document
-                .getElementById(
+                document.getElementById(
                     "lifetimeHabits"
-                )
-                .value
+                ).value
                 .split("\n")
                 .map(
                     item =>
@@ -6108,45 +3997,28 @@ function openLifetimeEditor(id){
                 .filter(Boolean);
 
 
+            if(!title){
+
+                alert(
+                    "Please add a title."
+                );
+
+                return;
+
+            }
+
+
             const data = {
 
-                title:
-                    document
-                    .getElementById(
-                        "lifetimeTitle"
-                    )
-                    .value
-                    .trim(),
+                order,
 
-                description:
-                    document
-                    .getElementById(
-                        "lifetimeDescription"
-                    )
-                    .value
-                    .trim(),
+                title,
 
-                order:
-                    Number(
-                        document
-                        .getElementById(
-                            "lifetimeOrder"
-                        )
-                        .value
-                    ) || 1,
+                description,
 
-                image:
-                    document
-                    .getElementById(
-                        "lifetimeImage"
-                    )
-                    .value
-                    .trim(),
+                image,
 
-                habits,
-
-                updatedAt:
-                    serverTimestamp()
+                habits
 
             };
 
@@ -6171,92 +4043,109 @@ function openLifetimeEditor(id){
                             db,
                             "lifetimeHabits"
                         ),
-                        {
-
-                            ...data,
-
-                            createdAt:
-                                serverTimestamp()
-
-                        }
+                        data
                     );
 
                 }
 
 
-                document
-                .getElementById(
-                    "lifetimeMessage"
-                )
-                .textContent =
-                    "Lifetime habits saved.";
-
+                clearLifetimeForm();
 
                 await loadLifetimeHabits();
 
+                renderLifetimeList();
 
-                setTimeout(
-                    () => {
 
-                        editor.classList.add(
-                            "hidden"
-                        );
-
-                    },
-                    700
-                );
+                document.getElementById(
+                    "lifetimeMessage"
+                ).textContent =
+                    "Lifetime habit saved.";
 
             }catch(error){
 
-                console.error(error);
+                console.error(
+                    "LIFETIME SAVE ERROR",
+                    error
+                );
 
-                document
-                .getElementById(
+                document.getElementById(
                     "lifetimeMessage"
-                )
-                .textContent =
-                    "Unable to save. Check Firestore rules.";
+                ).textContent =
+                    "Unable to save.";
 
             }
 
         }
     );
 
+
+function clearLifetimeForm(){
+
+    document.getElementById(
+        "lifetimeId"
+    ).value = "";
+
+    document.getElementById(
+        "lifetimeOrder"
+    ).value = "";
+
+    document.getElementById(
+        "lifetimeTitle"
+    ).value = "";
+
+    document.getElementById(
+        "lifetimeDescription"
+    ).value = "";
+
+    document.getElementById(
+        "lifetimeImage"
+    ).value = "";
+
+    document.getElementById(
+        "lifetimeHabits"
+    ).value = "";
+
 }
 
 
-async function deleteLifetimeHabit(id){
-
-    if(
-        !confirm(
-            "Delete this lifetime habit section?"
-        )
+document
+    .getElementById(
+        "clearLifetime"
     )
-        return;
+    .addEventListener(
+        "click",
+        clearLifetimeForm
+    );
 
 
-    try{
+/* =====================================================
+   STATS
+===================================================== */
 
-        await deleteDoc(
-            doc(
-                db,
-                "lifetimeHabits",
-                id
-            )
-        );
+function updateStats(){
+
+    document.getElementById(
+        "statMembers"
+    ).textContent =
+        members.length;
 
 
-        await loadLifetimeHabits();
+    document.getElementById(
+        "statWeeks"
+    ).textContent =
+        weeklyContent.length;
 
-    }catch(error){
 
-        console.error(error);
+    document.getElementById(
+        "statLessons"
+    ).textContent =
+        lessons.length;
 
-        alert(
-            "Unable to delete lifetime habit."
-        );
 
-    }
+    document.getElementById(
+        "statCommunity"
+    ).textContent =
+        communityPosts.length;
 
 }
 
@@ -6265,28 +4154,452 @@ async function deleteLifetimeHabit(id){
    CLIENT PREVIEW
 ===================================================== */
 
-document
-.getElementById(
-    "openClientPreview"
-)
-.addEventListener(
-    "click",
-    () => {
+function getPreviewProgramDay(){
 
-        document
-        .getElementById(
-            "previewFrame"
-        )
-        .src =
-            "dashboard.html";
+    /*
+     * Admin preview intentionally starts at Day 1.
+     *
+     * This lets you see the locked/unlocked structure
+     * without changing any real member's progress.
+     */
+
+    return 1;
+
+}
+
+
+function openPreview(
+    selectedPreviewWeek = null
+){
+
+    const overlay =
+        document.getElementById(
+            "previewOverlay"
+        );
+
+
+    overlay.style.display =
+        "block";
+
+
+    renderClientPreview(
+        selectedPreviewWeek
+    );
+
+}
+
+
+function closePreview(){
+
+    document.getElementById(
+        "previewOverlay"
+    ).style.display =
+        "none";
+
+}
+
+
+document
+    .getElementById(
+        "openPreview"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            openPreview();
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "quickPreview"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            openPreview();
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "closePreview"
+    )
+    .addEventListener(
+        "click",
+        closePreview
+    );
+
+
+function renderClientPreview(
+    selectedPreviewWeek
+){
+
+    const container =
+        document.getElementById(
+            "previewBody"
+        );
+
+
+    const previewDay =
+        getPreviewProgramDay();
+
+
+    const unlockedWeek =
+        Math.ceil(
+            previewDay / 7
+        );
+
+
+    let html = `
+
+        <div class="client-preview">
+
+            <div class="preview-hero">
+
+                <p>
+                    Client Preview
+                </p>
+
+                <h1>
+                    Hello, Member
+                </h1>
+
+                <p>
+                    This is how your dashboard
+                    appears to a member.
+                </p>
+
+                <p>
+                    Day ${previewDay}
+                    ·
+                    Week ${unlockedWeek}
+                </p>
+
+                <div class="preview-progress">
+
+                    <div
+                        class="preview-progress-fill"
+                        style="width:0%"
+                    ></div>
+
+                </div>
+
+            </div>
+
+            <div class="preview-hero">
+
+                <h2>
+                    90-Day Journey
+                </h2>
+
+                <p>
+                    Members only see the content that
+                    their program day allows.
+                </p>
+
+            </div>
+
+    `;
+
+
+    for(
+        let week = 1;
+        week <= 13;
+        week++
+    ){
+
+        const weekData =
+            weeklyContent.find(
+                item =>
+                    Number(item.week) ===
+                    week
+            );
+
+
+        const locked =
+            week >
+            unlockedWeek;
+
+
+        if(
+            selectedPreviewWeek &&
+            week !== selectedPreviewWeek
+        ){
+
+            continue;
+
+        }
+
+
+        html += `
+
+            <div class="preview-week">
+
+                <h2>
+                    Week ${week}
+                </h2>
+
+                <h3>
+                    ${escapeHTML(
+                        weekData?.title ||
+                        `Week ${week}`
+                    )}
+                </h3>
+
+                <p>
+                    ${escapeHTML(
+                        weekData?.description ||
+                        ""
+                    )}
+                </p>
+
+                ${
+                    locked
+                        ? `
+                            <div class="preview-locked">
+
+                                🔒
+                                This week is locked
+                                for the member.
+
+                            </div>
+                        `
+                        : renderPreviewWeekDays(
+                            weekData,
+                            week
+                        )
+                }
+
+            </div>
+
+        `;
 
     }
-);
 
+
+    html += `
+
+        </div>
+
+    `;
+
+
+    container.innerHTML =
+        html;
+
+}
+
+
+function renderPreviewWeekDays(
+    weekData,
+    week
+){
+
+    if(!weekData){
+
+        return `
+            <p>
+                No Firestore content has been added
+                for this week yet.
+            </p>
+        `;
+
+    }
+
+
+    let html = "";
+
+
+    const days =
+        Array.isArray(
+            weekData.days
+        )
+            ? weekData.days
+            : [];
+
+
+    days.forEach(
+        day => {
+
+            html += `
+
+                <div class="preview-day">
+
+                    <h3>
+                        Day ${
+                            escapeHTML(
+                                day.day
+                            )
+                        }
+                    </h3>
+
+                    ${
+                        renderPreviewHabit(
+                            "Movement",
+                            day.movement,
+                            day.movementInstruction
+                        )
+                    }
+
+                    ${
+                        renderPreviewHabit(
+                            "Sleep",
+                            day.sleep,
+                            day.sleepInstruction
+                        )
+                    }
+
+                    ${
+                        renderPreviewHabit(
+                            "Hydration",
+                            day.hydration,
+                            day.hydrationInstruction
+                        )
+                    }
+
+                    ${
+                        renderPreviewHabit(
+                            "Protein",
+                            day.protein,
+                            day.proteinInstruction
+                        )
+                    }
+
+                    ${
+                        renderPreviewHabit(
+                            "Nutrition",
+                            day.nutrition,
+                            day.nutritionInstruction
+                        )
+                    }
+
+                    ${
+                        renderPreviewHabit(
+                            "Mind / Stress",
+                            day.mind,
+                            day.mindInstruction
+                        )
+                    }
+
+                    ${
+                        renderPreviewHabit(
+                            "Sunlight",
+                            day.sunlight,
+                            day.sunlightInstruction
+                        )
+                    }
+
+                    ${
+                        renderPreviewHabit(
+                            "Recovery",
+                            day.recovery,
+                            day.recoveryInstruction
+                        )
+                    }
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    return html;
+
+}
+
+
+function renderPreviewHabit(
+    label,
+    target,
+    instruction
+){
+
+    if(
+        !target &&
+        !instruction
+    ){
+
+        return "";
+
+    }
+
+
+    return `
+
+        <div class="preview-habit">
+
+            <strong>
+                ${escapeHTML(label)}
+            </strong>
+
+            <div>
+                ${escapeHTML(
+                    target ||
+                    "Habit"
+                )}
+            </div>
+
+            ${
+                instruction
+                    ? `
+                        <p>
+                            <strong>
+                                How to do it:
+                            </strong>
+                            ${escapeHTML(
+                                instruction
+                            )}
+                        </p>
+                    `
+                    : ""
+            }
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   OPEN PREVIEW WHEN CLICKING JOURNEY PREVIEW
+===================================================== */
+
+window.openPreview =
+openPreview;
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+document
+    .getElementById(
+        "logoutButton"
+    )
+    .addEventListener(
+        "click",
+        async () => {
+
+            await signOut(
+                auth
+            );
+
+        }
+    );
 
 </script>
+
 
 </body>
 
 </html>
-```
