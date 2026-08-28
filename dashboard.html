@@ -5339,29 +5339,48 @@ onAuthStateChanged(
 
         }
 
-        currentUser =
-            user;
+       currentUser =
+    user;
 
-        document.getElementById(
-            "email"
-        ).value =
-            user.email || "";
+document.getElementById(
+    "email"
+).value =
+    user.email || "";
 
-        await loadProfile(
-            user
-        );
+await loadProfile(
+    user
+);
 
-        await loadMemberProgress();
 
-        await loadWeeklyContent();
+/* SHOW MEMBER NAME ON HOME */
 
-        await loadLifetimeHabits();
+const homeName =
+    document.getElementById(
+        "homeMemberName"
+    );
 
-        updateOverallProgress();
+if (homeName) {
 
-        renderTrackingTable();
+    homeName.textContent =
+        memberData.name ||
+        user.displayName ||
+        user.email.split("@")[0] ||
+        "Member";
 
-        renderWeightChart();
+}
+
+
+await loadMemberProgress();
+
+await loadWeeklyContent();
+
+await loadLifetimeHabits();
+
+updateOverallProgress();
+
+renderTrackingTable();
+
+renderWeightChart();
 
     }
 );
