@@ -1,711 +1,605 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>Freedom Women's Health Club — Admin</title>
 
 <style>
-
 :root{
-    --cream:#FBF8F3;
-    --plum:#6E4A7E;
-    --charcoal:#2D2D2D;
-    --champagne:#DCCBB3;
-    --taupe:#B7A89A;
-    --white:#FFFFFF;
-    --light:#F1EAF3;
-    --border:#E6DDD3;
-    --danger:#A44A4A;
-    --success:#527A5A;
+  --cream:#FBF8F3;
+  --plum:#6E4A7E;
+  --charcoal:#2D2D2D;
+  --champagne:#DCCBB3;
+  --taupe:#B7A89A;
+  --white:#fff;
+  --light:#F1EAF3;
+  --border:#E6DDD3;
+  --danger:#A44A4A;
+  --success:#5C8068;
 }
 
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:var(--cream);
-    color:var(--charcoal);
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:var(--cream);
+  color:var(--charcoal);
 }
 
-button,
-input,
-textarea,
-select{
-    font:inherit;
+button,input,textarea,select{
+  font:inherit;
 }
 
-button{
-    cursor:pointer;
-}
+button{cursor:pointer}
 
-input,
-textarea,
-select{
-    width:100%;
-    padding:12px;
-    border:1px solid var(--border);
-    border-radius:9px;
-    background:white;
-    color:var(--charcoal);
+input,textarea,select{
+  width:100%;
+  padding:12px;
+  border:1px solid var(--border);
+  border-radius:9px;
+  background:#fff;
+  color:var(--charcoal);
 }
 
 textarea{
-    min-height:120px;
-    resize:vertical;
+  min-height:120px;
+  resize:vertical;
 }
 
 label{
-    display:block;
-    font-size:13px;
-    font-weight:bold;
-    margin-bottom:7px;
+  display:block;
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:7px;
 }
 
-.form-group{
-    margin-bottom:18px;
+.form-group{margin-bottom:18px}
+
+.btn{
+  border:0;
+  background:var(--plum);
+  color:white;
+  padding:11px 17px;
+  border-radius:9px;
+  font-weight:bold;
 }
 
-/* =====================================================
-LOGIN
-===================================================== */
+.btn-secondary{
+  background:var(--champagne);
+  color:var(--charcoal);
+}
+
+.btn-danger{background:var(--danger)}
+.btn-success{background:var(--success)}
+
+.small{
+  border:1px solid var(--border);
+  background:#fff;
+  padding:6px 9px;
+  border-radius:6px;
+  font-size:12px;
+}
 
 #loginPage{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
 }
 
 .login-box{
-    width:100%;
-    max-width:420px;
-    background:white;
-    padding:40px;
-    border-radius:20px;
-    border:1px solid var(--border);
-    box-shadow:0 15px 40px rgba(0,0,0,.07);
+  width:100%;
+  max-width:420px;
+  background:white;
+  padding:40px;
+  border-radius:20px;
+  border:1px solid var(--border);
+  box-shadow:0 15px 40px rgba(0,0,0,.07);
 }
 
 .login-box h1{
-    color:var(--plum);
-    text-align:center;
-    font-size:23px;
-    line-height:1.3;
+  text-align:center;
+  color:var(--plum);
+  line-height:1.3;
 }
 
 .login-box p{
-    text-align:center;
-    color:#777;
+  text-align:center;
+  color:#777;
 }
 
 .login-error{
-    color:var(--danger)!important;
+  color:var(--danger)!important;
 }
 
-/* =====================================================
-ADMIN
-===================================================== */
-
-#adminApp{
-    display:none;
-}
+#adminApp{display:none}
 
 .sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    bottom:0;
-    width:245px;
-    background:var(--plum);
-    color:white;
-    padding:28px 18px;
-    overflow-y:auto;
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  width:245px;
+  background:var(--plum);
+  color:#fff;
+  padding:28px 18px;
+  overflow-y:auto;
 }
 
 .logo{
-    padding:0 10px 30px;
+  padding:0 10px 30px;
 }
 
 .logo h2{
-    font-size:19px;
-    line-height:1.4;
-    margin:0;
+  margin:0;
+  font-size:19px;
+  line-height:1.4;
 }
 
-.logo small{
-    opacity:.7;
-}
+.logo small{opacity:.7}
 
 .nav{
-    display:flex;
-    flex-direction:column;
-    gap:5px;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
 }
 
 .nav button{
-    border:0;
-    background:transparent;
-    color:white;
-    padding:13px;
-    border-radius:9px;
-    text-align:left;
+  border:0;
+  background:transparent;
+  color:#fff;
+  padding:13px;
+  border-radius:9px;
+  text-align:left;
 }
 
 .nav button:hover,
 .nav button.active{
-    background:rgba(255,255,255,.15);
+  background:rgba(255,255,255,.15);
 }
 
 .main{
-    margin-left:245px;
-    padding:30px;
-    min-height:100vh;
+  margin-left:245px;
+  padding:30px;
+  min-height:100vh;
 }
 
 .topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:30px;
-    gap:15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+  gap:15px;
 }
 
 .topbar h1{
-    margin:0;
-    color:var(--plum);
+  margin:0;
+  color:var(--plum);
 }
 
 .admin-pill{
-    background:var(--light);
-    color:var(--plum);
-    padding:9px 14px;
-    border-radius:30px;
-    font-size:13px;
+  background:var(--light);
+  color:var(--plum);
+  padding:9px 14px;
+  border-radius:30px;
+  font-size:13px;
 }
 
-.btn{
-    border:0;
-    background:var(--plum);
-    color:white;
-    padding:11px 17px;
-    border-radius:9px;
-}
-
-.btn:hover{
-    opacity:.9;
-}
-
-.btn-secondary{
-    background:var(--champagne);
-    color:var(--charcoal);
-}
-
-.btn-danger{
-    background:var(--danger);
-}
-
-.btn-success{
-    background:var(--success);
-}
-
-.section{
-    display:none;
-}
-
-.section.active{
-    display:block;
-}
-
-/* =====================================================
-CARDS
-===================================================== */
+.section{display:none}
+.section.active{display:block}
 
 .stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.card,
+.form-card,
+.table-card,
+.tree,
+.preview{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:15px;
 }
 
 .card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:15px;
-    padding:22px;
+  padding:22px;
 }
 
 .stat{
-    font-size:30px;
-    color:var(--plum);
-    font-weight:bold;
-    margin-top:8px;
+  font-size:30px;
+  color:var(--plum);
+  font-weight:bold;
+  margin-top:8px;
 }
-
-/* =====================================================
-CLASSROOM
-===================================================== */
 
 .toolbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-    gap:15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:20px;
 }
-
-.tree{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:15px;
-    padding:20px;
-}
-
-.tree-item{
-    margin-bottom:7px;
-}
-
-.tree-row{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    padding:12px;
-    border:1px solid var(--border);
-    background:#FCFAF7;
-    border-radius:9px;
-}
-
-.tree-title{
-    flex:1;
-    font-weight:bold;
-}
-
-.tree-meta{
-    font-size:12px;
-    color:#777;
-}
-
-.tree-toggle{
-    border:0;
-    background:none;
-    color:var(--plum);
-    width:25px;
-}
-
-.children{
-    display:none;
-    margin-left:30px;
-    margin-top:7px;
-}
-
-.children.open{
-    display:block;
-}
-
-.actions{
-    display:flex;
-    gap:5px;
-    flex-wrap:wrap;
-}
-
-.small{
-    border:1px solid var(--border);
-    background:white;
-    padding:6px 8px;
-    border-radius:6px;
-    font-size:12px;
-}
-
-.status{
-    padding:4px 8px;
-    border-radius:20px;
-    font-size:11px;
-}
-
-.status-published{
-    background:#E8F3E9;
-    color:var(--success);
-}
-
-.status-draft{
-    background:#F3EDE3;
-    color:#8A6A3D;
-}
-
-/* =====================================================
-FORMS
-===================================================== */
 
 .form-card{
-    max-width:1000px;
-    background:white;
-    border:1px solid var(--border);
-    border-radius:15px;
-    padding:28px;
+  max-width:1000px;
+  padding:28px;
 }
 
 .form-actions{
-    display:flex;
-    gap:8px;
-    margin-top:20px;
-    flex-wrap:wrap;
+  display:flex;
+  gap:8px;
+  margin-top:20px;
+  flex-wrap:wrap;
+}
+
+.tree{
+  padding:20px;
+}
+
+.tree-item{
+  margin-bottom:8px;
+}
+
+.tree-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:12px;
+  border:1px solid var(--border);
+  background:#FCFAF7;
+  border-radius:9px;
+}
+
+.tree-title{
+  flex:1;
+  font-weight:bold;
+}
+
+.tree-meta{
+  font-size:12px;
+  color:#777;
+}
+
+.tree-toggle{
+  border:0;
+  background:none;
+  color:var(--plum);
+  width:25px;
+}
+
+.children{
+  display:none;
+  margin-left:30px;
+  margin-top:7px;
+}
+
+.children.open{display:block}
+
+.actions{
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
 }
 
 .editor-section{
-    border:1px solid var(--border);
-    padding:20px;
-    border-radius:12px;
-    margin-top:18px;
+  border:1px solid var(--border);
+  padding:20px;
+  border-radius:12px;
+  margin-top:18px;
 }
 
 .editor-section h3{
-    color:var(--plum);
-    margin-top:0;
+  color:var(--plum);
+  margin-top:0;
 }
 
-.grid-2{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:18px;
+/* RICH TEXT */
+
+.rich-editor{
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  background:#fff;
 }
 
-.grid-3{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
+.rich-toolbar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px;
+  padding:8px;
+  background:#FCFAF7;
+  border-bottom:1px solid var(--border);
 }
 
-/* =====================================================
-MEDIA
-===================================================== */
+.rich-toolbar button{
+  border:1px solid var(--border);
+  background:white;
+  color:var(--charcoal);
+  border-radius:6px;
+  padding:6px 9px;
+  min-width:34px;
+}
+
+.rich-toolbar button:hover{
+  background:var(--light);
+  color:var(--plum);
+}
+
+.rich-content{
+  min-height:140px;
+  padding:14px;
+  outline:none;
+  line-height:1.7;
+}
+
+.rich-content:focus{
+  box-shadow:inset 0 0 0 1px var(--plum);
+}
+
+.rich-content ul,
+.rich-content ol{
+  padding-left:25px;
+}
 
 .media-box{
-    border:1px dashed var(--taupe);
-    padding:18px;
-    border-radius:12px;
-    background:#FCFAF7;
+  background:#FCFAF7;
+  border:1px solid var(--border);
+  padding:15px;
+  border-radius:10px;
+  margin-top:10px;
 }
 
-.media-preview{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
-    gap:12px;
-    margin-top:15px;
+.media-box h4{
+  margin-top:0;
+  color:var(--plum);
 }
 
-.media-preview-item{
-    position:relative;
-    border:1px solid var(--border);
-    border-radius:10px;
-    overflow:hidden;
-    background:white;
+.checkbox{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  margin:15px 0;
 }
 
-.media-preview-item img{
-    width:100%;
-    height:130px;
-    object-fit:cover;
-    display:block;
+.checkbox input{
+  width:auto;
 }
 
-.remove-image{
-    position:absolute;
-    right:5px;
-    top:5px;
-    border:0;
-    background:rgba(0,0,0,.65);
-    color:white;
-    border-radius:50%;
-    width:25px;
-    height:25px;
+.status-badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
 }
 
-.saved-images{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
-    gap:12px;
-    margin-top:15px;
+.status-published{
+  background:#E6F1E8;
+  color:var(--success);
 }
 
-.saved-image{
-    border:1px solid var(--border);
-    border-radius:10px;
-    overflow:hidden;
+.status-draft{
+  background:#F1EAF3;
+  color:var(--plum);
 }
 
-.saved-image img{
-    width:100%;
-    height:130px;
-    object-fit:cover;
+.table-card{
+  overflow:hidden;
 }
 
-/* =====================================================
-COMMUNITY
-===================================================== */
-
-.community-form{
-    max-width:800px;
-    margin-bottom:25px;
+.table-head{
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
 }
-
-.community-post{
-    padding:18px 0;
-    border-bottom:1px solid var(--border);
-}
-
-.post-image{
-    max-width:300px;
-    max-height:300px;
-    object-fit:cover;
-    border-radius:10px;
-    margin-top:12px;
-}
-
-/* =====================================================
-TABLE
-===================================================== */
 
 .table{
-    width:100%;
-    border-collapse:collapse;
+  width:100%;
+  border-collapse:collapse;
 }
 
 .table th,
 .table td{
-    padding:14px;
-    border-bottom:1px solid var(--border);
-    text-align:left;
-    font-size:14px;
+  padding:14px;
+  border-bottom:1px solid var(--border);
+  text-align:left;
+  font-size:14px;
 }
 
 .table th{
-    background:var(--cream);
+  background:var(--cream);
 }
-
-.table-card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:15px;
-    overflow:hidden;
-}
-
-.table-head{
-    padding:20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-/* =====================================================
-PREVIEW
-===================================================== */
 
 .preview{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:15px;
-    padding:30px;
-    line-height:1.7;
+  padding:30px;
+  line-height:1.7;
 }
 
 .preview h2,
 .preview h3{
-    color:var(--plum);
+  color:var(--plum);
 }
 
 .preview img{
-    max-width:100%;
-    border-radius:12px;
-    margin:10px 0;
+  max-width:100%;
+  border-radius:12px;
+  margin:10px 0;
 }
 
-.preview-video{
-    margin:15px 0;
+.preview iframe,
+.preview video{
+  max-width:100%;
+  width:100%;
+  min-height:350px;
+  border:0;
+  border-radius:12px;
 }
 
 .empty{
-    text-align:center;
-    padding:40px;
-    color:#888;
+  text-align:center;
+  padding:40px;
+  color:#888;
 }
 
-.saving{
+.notice{
+  padding:12px 15px;
+  background:var(--light);
+  border-radius:9px;
+  color:var(--plum);
+  margin-bottom:18px;
+}
+
+.save-status{
+  font-size:13px;
+  color:var(--success);
+  margin-left:8px;
+}
+
+.media-preview{
+  margin-top:12px;
+}
+
+.media-preview img{
+  max-width:250px;
+  max-height:180px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+@media(max-width:1000px){
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .tree-row{
+    flex-wrap:wrap;
+  }
+}
+
+@media(max-width:800px){
+  .sidebar{
+    width:70px;
+    padding:20px 7px;
+  }
+
+  .logo h2,
+  .logo small{
     display:none;
-    color:var(--plum);
-    font-size:13px;
-    margin-left:8px;
+  }
+
+  .nav button{
+    font-size:0;
+    text-align:center;
+  }
+
+  .main{
+    margin-left:70px;
+    padding:18px;
+  }
+
+  .topbar{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+  }
 }
-
-/* =====================================================
-MOBILE
-===================================================== */
-
-@media(max-width:900px){
-
-    .sidebar{
-        width:70px;
-        padding:20px 7px;
-    }
-
-    .logo h2,
-    .logo small{
-        display:none;
-    }
-
-    .nav button{
-        font-size:0;
-        text-align:center;
-    }
-
-    .nav button:first-letter{
-        font-size:20px;
-    }
-
-    .main{
-        margin-left:70px;
-        padding:20px;
-    }
-
-    .stats{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .grid-2,
-    .grid-3{
-        grid-template-columns:1fr;
-    }
-
-    .tree-row{
-        flex-wrap:wrap;
-    }
-
-}
-
 </style>
-
 </head>
 
 <body>
 
-
 <!-- =====================================================
-LOGIN
+     LOGIN
 ===================================================== -->
 
 <div id="loginPage">
 
-<div class="login-box">
+  <div class="login-box">
 
-<h1>
-FREEDOM WOMEN'S<br>
-HEALTH CLUB
-</h1>
+    <h1>
+      FREEDOM WOMEN'S<br>
+      HEALTH CLUB
+    </h1>
 
-<p>Admin Panel</p>
+    <p>Admin Panel</p>
 
-<div class="form-group">
+    <div class="form-group">
+      <label>Email</label>
+      <input id="email" type="email" placeholder="Admin email">
+    </div>
 
-<label>Email</label>
+    <div class="form-group">
+      <label>Password</label>
+      <input id="password" type="password" placeholder="Password">
+    </div>
 
-<input
-id="email"
-type="email"
-placeholder="Admin email"
->
+    <button id="loginBtn" class="btn" style="width:100%">
+      Login
+    </button>
 
-</div>
+    <p id="loginError" class="login-error"></p>
 
-<div class="form-group">
-
-<label>Password</label>
-
-<input
-id="password"
-type="password"
-placeholder="Password"
->
-
-</div>
-
-<button
-id="loginBtn"
-class="btn"
-style="width:100%"
->
-Login
-</button>
-
-<p id="loginError" class="login-error"></p>
-
-</div>
-
+  </div>
 </div>
 
 
 <!-- =====================================================
-ADMIN APP
+     ADMIN APP
 ===================================================== -->
 
 <div id="adminApp">
 
 <aside class="sidebar">
 
-<div class="logo">
+  <div class="logo">
+    <h2>
+      FREEDOM<br>
+      WOMEN'S HEALTH CLUB
+    </h2>
+    <small>Admin Panel</small>
+  </div>
 
-<h2>
-FREEDOM<br>
-WOMEN'S HEALTH CLUB
-</h2>
+  <nav class="nav">
 
-<small>Admin Panel</small>
+    <button class="active"
+      onclick="openSection('dashboard',this)">
+      🏠 Dashboard
+    </button>
 
-</div>
+    <button onclick="openSection('members',this)">
+      👥 Members
+    </button>
 
-<nav class="nav">
+    <button onclick="openSection('classroom',this)">
+      📚 Classroom
+    </button>
 
-<button
-class="active"
-onclick="openSection('dashboard',this)"
->
-🏠 Dashboard
-</button>
+    <button onclick="openSection('community',this)">
+      💬 Community
+    </button>
 
-<button
-onclick="openSection('members',this)"
->
-👥 Members
-</button>
+    <button onclick="openSection('leaderboard',this)">
+      🏆 Leaderboard
+    </button>
 
-<button
-onclick="openSection('classroom',this)"
->
-📚 Classroom
-</button>
+    <button onclick="openSection('settings',this)">
+      ⚙️ Settings
+    </button>
 
-<button
-onclick="openSection('community',this)"
->
-💬 Community
-</button>
-
-<button
-onclick="openSection('leaderboard',this)"
->
-🏆 Leaderboard
-</button>
-
-<button
-onclick="openSection('settings',this)"
->
-⚙️ Settings
-</button>
-
-</nav>
+  </nav>
 
 </aside>
 
@@ -714,280 +608,242 @@ onclick="openSection('settings',this)"
 
 <div class="topbar">
 
-<h1 id="pageTitle">
-Dashboard
-</h1>
+  <h1 id="pageTitle">Dashboard</h1>
 
-<div>
+  <div>
+    <span class="admin-pill">Admin</span>
 
-<span class="admin-pill">
-Admin
-</span>
-
-<button
-class="btn btn-secondary"
-onclick="logout()"
->
-Logout
-</button>
-
-</div>
+    <button class="btn btn-secondary" onclick="logout()">
+      Logout
+    </button>
+  </div>
 
 </div>
 
 
 <!-- =====================================================
-DASHBOARD
+     DASHBOARD
 ===================================================== -->
 
-<section
-id="dashboard"
-class="section active"
->
+<section id="dashboard" class="section active">
 
-<div class="stats">
+  <div class="stats">
 
-<div class="card">
-Members
-<div class="stat" id="memberCount">0</div>
-</div>
+    <div class="card">
+      Members
+      <div class="stat" id="memberCount">0</div>
+    </div>
 
-<div class="card">
-Active Members
-<div class="stat" id="activeCount">0</div>
-</div>
+    <div class="card">
+      Active Members
+      <div class="stat" id="activeCount">0</div>
+    </div>
 
-<div class="card">
-Classroom Items
-<div class="stat" id="classroomCount">0</div>
-</div>
+    <div class="card">
+      Classroom Items
+      <div class="stat" id="classroomCount">0</div>
+    </div>
 
-<div class="card">
-Community Posts
-<div class="stat" id="communityCount">0</div>
-</div>
+    <div class="card">
+      Community Posts
+      <div class="stat" id="communityCount">0</div>
+    </div>
 
-</div>
+  </div>
 
-<br>
+  <br>
 
-<div class="card">
+  <div class="card">
 
-<h3>
-Freedom Women's Health Club
-</h3>
+    <h3>Freedom Women's Health Club</h3>
 
-<p>
-Create and manage your 90-day program from the Classroom.
-Each Phase, Week and Day is saved independently for faster performance.
-</p>
+    <p>
+      Build and publish your 90-day program from the Classroom.
+    </p>
 
-</div>
+    <p>
+      Structure:
+      <strong>Phase → Week → Day</strong>
+    </p>
+
+    <p>
+      Future days can remain visible to members as locked content.
+    </p>
+
+  </div>
 
 </section>
 
 
 <!-- =====================================================
-MEMBERS
+     MEMBERS
 ===================================================== -->
 
-<section
-id="members"
-class="section"
->
+<section id="members" class="section">
 
-<div class="table-card">
+  <div class="table-card">
 
-<div class="table-head">
+    <div class="table-head">
 
-<h2>Members</h2>
+      <h2>Members</h2>
 
-<button
-class="btn"
-onclick="openSection('addMember')"
->
-+ Add Member
-</button>
+      <button class="btn"
+        onclick="openSection('addMember')">
+        + Add Member
+      </button>
 
-</div>
+    </div>
 
-<table class="table">
+    <table class="table">
 
-<thead>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Start Date</th>
+          <th>Access</th>
+          <th>Status</th>
+        </tr>
+      </thead>
 
-<tr>
-<th>Name</th>
-<th>Email</th>
-<th>Phone</th>
-<th>Start Date</th>
-<th>Access</th>
-<th>Status</th>
-</tr>
+      <tbody id="membersTable">
+        <tr>
+          <td colspan="6" class="empty">
+            Loading...
+          </td>
+        </tr>
+      </tbody>
 
-</thead>
+    </table>
 
-<tbody id="membersTable">
-
-<tr>
-<td colspan="6" class="empty">
-Loading...
-</td>
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
+  </div>
 
 </section>
 
 
 <!-- =====================================================
-ADD MEMBER
+     ADD MEMBER
 ===================================================== -->
 
-<section
-id="addMember"
-class="section"
->
+<section id="addMember" class="section">
 
-<div class="form-card">
+  <div class="form-card">
 
-<h2>Add Member</h2>
+    <h2>Add Member</h2>
 
-<div class="grid-2">
+    <div class="form-group">
+      <label>Name</label>
+      <input id="mName">
+    </div>
 
-<div class="form-group">
-<label>Name</label>
-<input id="mName">
-</div>
+    <div class="form-group">
+      <label>Email</label>
+      <input id="mEmail" type="email">
+    </div>
 
-<div class="form-group">
-<label>Email</label>
-<input id="mEmail" type="email">
-</div>
+    <div class="form-group">
+      <label>Phone</label>
+      <input id="mPhone">
+    </div>
 
-<div class="form-group">
-<label>Phone</label>
-<input id="mPhone">
-</div>
+    <div class="form-group">
+      <label>Start Date</label>
+      <input id="mStart" type="date">
+    </div>
 
-<div class="form-group">
-<label>Start Date</label>
-<input id="mStart" type="date">
-</div>
+    <div class="form-group">
+      <label>Access Until Day</label>
 
-<div class="form-group">
+      <select id="mAccess">
+        <option value="30">Day 30</option>
+        <option value="60">Day 60</option>
+        <option value="90">Day 90</option>
+      </select>
 
-<label>Access Until Day</label>
+    </div>
 
-<select id="mAccess">
-<option value="30">Day 30</option>
-<option value="60">Day 60</option>
-<option value="90">Day 90</option>
-</select>
+    <div class="form-group">
 
-</div>
+      <label>Status</label>
 
-<div class="form-group">
+      <select id="mStatus">
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+      </select>
 
-<label>Status</label>
+    </div>
 
-<select id="mStatus">
-<option value="Active">Active</option>
-<option value="Inactive">Inactive</option>
-</select>
+    <div class="form-actions">
 
-</div>
+      <button class="btn" onclick="saveMember()">
+        Save Member
+      </button>
 
-</div>
+      <button class="btn btn-secondary"
+        onclick="openSection('members')">
+        Cancel
+      </button>
 
-<div class="form-actions">
+    </div>
 
-<button
-class="btn"
-onclick="saveMember()"
->
-Save Member
-</button>
-
-<button
-class="btn btn-secondary"
-onclick="openSection('members')"
->
-Cancel
-</button>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
 <!-- =====================================================
-CLASSROOM
+     CLASSROOM
 ===================================================== -->
 
-<section
-id="classroom"
-class="section"
->
+<section id="classroom" class="section">
 
-<div class="toolbar">
+  <div class="toolbar">
 
-<div>
+    <div>
+      <h2>90-Day Classroom</h2>
 
-<h2>90-Day Classroom</h2>
+      <p>
+        Phase → Week → Day
+      </p>
+    </div>
 
-<p>
-Phase → Week → Day
-</p>
+    <button class="btn" onclick="newItem()">
+      + Add
+    </button>
 
-</div>
+  </div>
 
-<button
-class="btn"
-onclick="newItem()"
->
-+ Add
-</button>
+  <div class="notice">
+    Create your complete program here. Future days can be
+    published but remain locked for members until their program day.
+  </div>
 
-</div>
+  <div class="tree">
 
-<div class="tree">
+    <div id="treeContainer">
+      <div class="empty">
+        Loading classroom...
+      </div>
+    </div>
 
-<div id="treeContainer">
-
-<div class="empty">
-Loading classroom...
-</div>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
 <!-- =====================================================
-ITEM EDITOR
+     ITEM EDITOR
 ===================================================== -->
 
-<section
-id="itemEditor"
-class="section"
->
+<section id="itemEditor" class="section">
 
 <div class="form-card">
 
 <h2 id="editorHeading">
-Add Classroom Item
+  Add Classroom Item
 </h2>
 
-
-<div class="grid-2">
 
 <div class="form-group">
 
@@ -1017,19 +873,11 @@ Day / Lesson
 <label>Parent</label>
 
 <select id="itemParent">
-
-<option value="">
-Top Level
-</option>
-
+<option value="">Top Level</option>
 </select>
 
 </div>
 
-</div>
-
-
-<div class="grid-2">
 
 <div class="form-group">
 
@@ -1037,7 +885,7 @@ Top Level
 
 <input
 id="itemTitle"
-placeholder="Example: Phase 1 — Reset"
+placeholder="Example: Day 1 — Rhythm Reset"
 >
 
 </div>
@@ -1045,7 +893,63 @@ placeholder="Example: Phase 1 — Reset"
 
 <div class="form-group">
 
-<label>Unlock Day</label>
+<label>Description</label>
+
+<div class="rich-editor">
+
+  <div class="rich-toolbar">
+
+    <button type="button"
+      onclick="formatEditor('itemDescription','bold')">
+      <b>B</b>
+    </button>
+
+    <button type="button"
+      onclick="formatEditor('itemDescription','italic')">
+      <i>I</i>
+    </button>
+
+    <button type="button"
+      onclick="formatEditor('itemDescription','underline')">
+      <u>U</u>
+    </button>
+
+    <button type="button"
+      onclick="formatEditor('itemDescription','insertUnorderedList')">
+      • List
+    </button>
+
+    <button type="button"
+      onclick="formatEditor('itemDescription','insertOrderedList')">
+      1. List
+    </button>
+
+    <button type="button"
+      onclick="formatBlock('itemDescription','h3')">
+      H3
+    </button>
+
+    <button type="button"
+      onclick="formatBlock('itemDescription','p')">
+      P
+    </button>
+
+  </div>
+
+  <div
+    id="itemDescription"
+    class="rich-content"
+    contenteditable="true">
+  </div>
+
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Program / Unlock Day</label>
 
 <input
 id="unlockDay"
@@ -1057,53 +961,22 @@ value="1"
 
 </div>
 
-</div>
-
 
 <div class="form-group">
 
-<label>Description</label>
-
-<textarea
-id="itemDescription"
-placeholder="Description shown to members..."
-></textarea>
-
-</div>
-
-
-<div class="grid-2">
-
-<div class="form-group">
-
-<label>Status</label>
+<label>Publishing</label>
 
 <select id="itemStatus">
 
 <option value="published">
-Published
+Published — visible to members
 </option>
 
 <option value="draft">
-Draft
+Draft — hidden from members
 </option>
 
 </select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>Order</label>
-
-<input
-id="itemOrder"
-type="number"
-value="1"
->
-
-</div>
 
 </div>
 
@@ -1115,10 +988,7 @@ id="allowChildren"
 type="checkbox"
 >
 
-<label
-for="allowChildren"
-style="margin:0"
->
+<label for="allowChildren" style="margin:0">
 Allow children inside this item
 </label>
 
@@ -1126,88 +996,18 @@ Allow children inside this item
 
 
 <!-- =====================================================
-IMAGES
+     DAY CONTENT
 ===================================================== -->
 
-<div class="editor-section">
+<div id="dayContent" style="display:none">
 
-<h3>
-🖼 Images
-</h3>
-
-<p>
-Add images to make your Phase, Week or Day look better.
-</p>
-
-<div class="media-box">
-
-<input
-id="imageFiles"
-type="file"
-accept="image/*"
-multiple
->
-
-<div
-id="imagePreview"
-class="media-preview"
-></div>
-
-<div
-id="savedImages"
-class="saved-images"
-></div>
-
-</div>
-
+<div class="notice">
+Use the formatting buttons to make important words or
+instructions bold, italic, lists, or headings.
 </div>
 
 
-<!-- =====================================================
-VIDEOS / DRIVE
-===================================================== -->
-
-<div class="editor-section">
-
-<h3>
-🎥 Videos & Google Drive
-</h3>
-
-<div class="form-group">
-
-<label>Video URL</label>
-
-<input
-id="videoUrl"
-type="url"
-placeholder="YouTube / Vimeo video link"
->
-
-</div>
-
-<div class="form-group">
-
-<label>Google Drive Link</label>
-
-<input
-id="driveUrl"
-type="url"
-placeholder="Google Drive file or video link"
->
-
-</div>
-
-</div>
-
-
-<!-- =====================================================
-DAY CONTENT
-===================================================== -->
-
-<div
-id="dayContent"
-style="display:none"
->
+<!-- MOVEMENT -->
 
 <div class="editor-section">
 
@@ -1225,12 +1025,14 @@ style="display:none"
 
 <label>Instructions</label>
 
-<textarea id="movementInstructions"></textarea>
+<rich-text id="movementInstructions"></rich-text>
 
 </div>
 
 </div>
 
+
+<!-- HYDRATION -->
 
 <div class="editor-section">
 
@@ -1248,12 +1050,14 @@ style="display:none"
 
 <label>Instructions</label>
 
-<textarea id="hydrationInstructions"></textarea>
+<rich-text id="hydrationInstructions"></rich-text>
 
 </div>
 
 </div>
 
+
+<!-- PROTEIN -->
 
 <div class="editor-section">
 
@@ -1271,12 +1075,14 @@ style="display:none"
 
 <label>Instructions</label>
 
-<textarea id="proteinInstructions"></textarea>
+<rich-text id="proteinInstructions"></rich-text>
 
 </div>
 
 </div>
 
+
+<!-- SLEEP -->
 
 <div class="editor-section">
 
@@ -1294,74 +1100,141 @@ style="display:none"
 
 <label>Instructions</label>
 
-<textarea id="sleepInstructions"></textarea>
+<rich-text id="sleepInstructions"></rich-text>
 
 </div>
 
 </div>
 
+
+<!-- NUTRITION -->
 
 <div class="editor-section">
 
 <h3>Nutrition</h3>
 
-<textarea id="nutrition"></textarea>
+<rich-text id="nutrition"></rich-text>
 
 </div>
 
+
+<!-- MIND -->
 
 <div class="editor-section">
 
 <h3>Mind / Stress</h3>
 
-<textarea id="mind"></textarea>
+<rich-text id="mind"></rich-text>
 
 </div>
 
+
+<!-- SUNLIGHT -->
 
 <div class="editor-section">
 
 <h3>Sunlight</h3>
 
-<input id="sunlight">
+<rich-text id="sunlight"></rich-text>
 
 </div>
 
+
+<!-- RECOVERY -->
 
 <div class="editor-section">
 
 <h3>Recovery</h3>
 
-<textarea id="recovery"></textarea>
+<rich-text id="recovery"></rich-text>
 
 </div>
+
+
+<!-- =====================================================
+     MEDIA
+===================================================== -->
+
+<div class="editor-section">
+
+<h3>Day Media</h3>
+
+<p>
+Add an image URL if you want an image displayed inside the lesson.
+</p>
+
+<div class="form-group">
+
+<label>Image URL</label>
+
+<input
+id="imageUrl"
+placeholder="https://..."
+>
+
+</div>
+
+<div id="imagePreview" class="media-preview"></div>
+
+</div>
+
+
+<!-- VIDEO -->
+
+<div class="editor-section">
+
+<h3>Video</h3>
+
+<div class="form-group">
+
+<label>Video URL</label>
+
+<input
+id="videoUrl"
+placeholder="YouTube / Vimeo / video URL"
+>
+
+</div>
+
+</div>
+
+
+<!-- GOOGLE DRIVE -->
+
+<div class="editor-section">
+
+<h3>Google Drive</h3>
+
+<div class="form-group">
+
+<label>Google Drive Link</label>
+
+<input
+id="driveUrl"
+placeholder="Paste Google Drive sharing link"
+>
+
+</div>
+
+</div>
+
 
 </div>
 
 
 <div class="form-actions">
 
-<button
-class="btn"
-id="saveItemBtn"
-onclick="saveItem()"
->
+<button class="btn"
+onclick="saveItem()">
 Save
 </button>
 
-<span
-id="savingText"
-class="saving"
->
-Saving...
-</span>
-
-<button
-class="btn btn-secondary"
-onclick="openSection('classroom')"
->
+<button class="btn btn-secondary"
+onclick="openSection('classroom')">
 Cancel
 </button>
+
+<span id="saveStatus" class="save-status"></span>
 
 </div>
 
@@ -1371,122 +1244,152 @@ Cancel
 
 
 <!-- =====================================================
-PREVIEW
+     PREVIEW
 ===================================================== -->
 
-<section
-id="preview"
-class="section"
->
+<section id="preview" class="section">
 
-<button
-class="btn btn-secondary"
-onclick="openSection('classroom')"
->
+<button class="btn btn-secondary"
+onclick="openSection('classroom')">
 ← Back
 </button>
 
 <br><br>
 
-<div
-id="previewContent"
-class="preview"
-></div>
+<div id="previewContent" class="preview"></div>
 
 </section>
 
 
 <!-- =====================================================
-COMMUNITY
+     COMMUNITY
 ===================================================== -->
 
-<section
-id="community"
-class="section"
->
+<section id="community" class="section">
 
-<div class="card community-form">
+<div class="card">
 
-<h2>Create Community Post</h2>
+<h2>Community</h2>
 
-<div class="form-group">
-
-<label>Post</label>
-
-<textarea
-id="communityText"
-placeholder="Write an announcement, encouragement, reminder..."
-></textarea>
+<p>
+Members can share updates, meal pictures, workout pictures,
+stickers/images and progress posts.
+</p>
 
 </div>
 
+<br>
+
+<div class="card">
+
+<h3>Create Community Post</h3>
 
 <div class="form-group">
 
-<label>Add Image</label>
+<label>Post Text</label>
 
-<input
-id="communityImage"
-type="file"
-accept="image/*"
->
+<div class="rich-editor">
 
-</div>
+<div class="rich-toolbar">
 
-<img
-id="communityImagePreview"
-style="
-display:none;
-max-width:250px;
-max-height:250px;
-border-radius:10px;
-margin-bottom:15px;
-"
->
+<button type="button"
+onclick="formatEditor('communityText','bold')">
+<b>B</b>
+</button>
 
+<button type="button"
+onclick="formatEditor('communityText','italic')">
+<i>I</i>
+</button>
 
-<button
-class="btn"
-onclick="saveCommunityPost()"
->
-Publish Post
+<button type="button"
+onclick="formatEditor('communityText','insertUnorderedList')">
+• List
 </button>
 
 </div>
 
+<div id="communityText"
+class="rich-content"
+contenteditable="true">
+</div>
+
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Image URL</label>
+
+<input
+id="communityImage"
+placeholder="Paste image link"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Video URL</label>
+
+<input
+id="communityVideo"
+placeholder="Paste video link"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Google Drive Link</label>
+
+<input
+id="communityDrive"
+placeholder="Paste Google Drive link"
+>
+
+</div>
+
+
+<button class="btn"
+onclick="saveCommunityPost()">
+Post to Community
+</button>
+
+</div>
+
+<br>
 
 <div class="card">
 
-<h2>Community Posts</h2>
+<h3>Recent Posts</h3>
 
-<div id="communityPosts">
-
-<div class="empty">
+<div id="adminCommunityPosts">
 Loading...
 </div>
 
 </div>
 
-</div>
-
 </section>
 
 
 <!-- =====================================================
-LEADERBOARD
+     LEADERBOARD
 ===================================================== -->
 
-<section
-id="leaderboard"
-class="section"
->
+<section id="leaderboard" class="section">
 
 <div class="card">
 
 <h2>Leaderboard</h2>
 
 <p>
-Member points and rankings will appear here.
+Member points and rankings can be connected to completed
+days and habits.
 </p>
 
 </div>
@@ -1495,13 +1398,10 @@ Member points and rankings will appear here.
 
 
 <!-- =====================================================
-SETTINGS
+     SETTINGS
 ===================================================== -->
 
-<section
-id="settings"
-class="section"
->
+<section id="settings" class="section">
 
 <div class="card">
 
@@ -1517,608 +1417,668 @@ Freedom Women's Health Club settings.
 
 
 </main>
-
 </div>
 
 
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
 <script type="module">
 
-
-/* =====================================================
-FIREBASE
-===================================================== */
-
 import {
-    initializeApp
+  initializeApp
 }
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
-
 import {
-    getAuth,
-    signInWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
 }
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-
 import {
-    getFirestore,
-    collection,
-    addDoc,
-    getDocs,
-    doc,
-    getDoc,
-    setDoc,
-    updateDoc,
-    deleteDoc,
-    query,
-    orderBy,
-    serverTimestamp
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  getDoc,
+  doc,
+  updateDoc,
+  deleteDoc,
+  serverTimestamp,
+  query,
+  orderBy,
+  limit
 }
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-import {
-    getStorage,
-    ref,
-    uploadBytes,
-    getDownloadURL,
-    deleteObject
-}
-from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
+const firebaseConfig = {
 
+  apiKey:
+  "AIzaSyB1ISMm_aVwsbSHByUI0F67tn-8GJo1pO0",
 
-/* =====================================================
-CONFIG
-===================================================== */
+  authDomain:
+  "freedom-women-s-health-club.firebaseapp.com",
 
-const firebaseConfig={
+  projectId:
+  "freedom-women-s-health-club",
 
-    apiKey:
-    "AIzaSyB1ISMm_aVwsbSHByUI0F67tn-8GJo1pO0",
+  storageBucket:
+  "freedom-women-s-health-club.firebasestorage.app",
 
-    authDomain:
-    "freedom-women-s-health-club.firebaseapp.com",
+  messagingSenderId:
+  "445440093665",
 
-    projectId:
-    "freedom-women-s-health-club",
-
-    storageBucket:
-    "freedom-women-s-health-club.firebasestorage.app",
-
-    messagingSenderId:
-    "445440093665",
-
-    appId:
-    "1:445440093665:web:9c3a77f1f64776f63cb6a0"
+  appId:
+  "1:445440093665:web:9c3a77f1f64776f63cb6a0"
 
 };
 
 
 const app=initializeApp(firebaseConfig);
-
 const auth=getAuth(app);
-
 const db=getFirestore(app);
 
-const storage=getStorage(app);
-
-
-const ADMIN=
-"mahnoordietitian3@gmail.com";
-
+const ADMIN="mahnoordietitian3@gmail.com";
 
 let items=[];
-
 let editingId=null;
-
-let selectedImages=[];
-
-let existingImages=[];
 
 
 /* =====================================================
-AUTH
+   RICH TEXT
+===================================================== */
+
+class RichText extends HTMLElement{
+
+  connectedCallback(){
+
+    const id=this.id;
+
+    this.innerHTML=`
+
+      <div class="rich-editor">
+
+        <div class="rich-toolbar">
+
+          <button type="button"
+            onclick="formatEditor('${id}','bold')">
+            <b>B</b>
+          </button>
+
+          <button type="button"
+            onclick="formatEditor('${id}','italic')">
+            <i>I</i>
+          </button>
+
+          <button type="button"
+            onclick="formatEditor('${id}','underline')">
+            <u>U</u>
+          </button>
+
+          <button type="button"
+            onclick="formatEditor('${id}','insertUnorderedList')">
+            • List
+          </button>
+
+          <button type="button"
+            onclick="formatEditor('${id}','insertOrderedList')">
+            1. List
+          </button>
+
+          <button type="button"
+            onclick="formatBlock('${id}','h3')">
+            H3
+          </button>
+
+          <button type="button"
+            onclick="formatBlock('${id}','p')">
+            P
+          </button>
+
+        </div>
+
+        <div
+          id="${id}-editor"
+          class="rich-content"
+          contenteditable="true">
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+customElements.define("rich-text",RichText);
+
+
+/* =====================================================
+   FORMAT FUNCTIONS
+===================================================== */
+
+window.formatEditor=function(id,command){
+
+  let editor=document.getElementById(id+"-editor");
+
+  if(!editor)
+    editor=document.getElementById(id);
+
+  if(!editor)
+    return;
+
+  editor.focus();
+
+  document.execCommand(command,false,null);
+
+};
+
+
+window.formatBlock=function(id,tag){
+
+  let editor=document.getElementById(id+"-editor");
+
+  if(!editor)
+    editor=document.getElementById(id);
+
+  if(!editor)
+    return;
+
+  editor.focus();
+
+  document.execCommand(
+    "formatBlock",
+    false,
+    tag
+  );
+
+};
+
+
+function richValue(id){
+
+  let editor=document.getElementById(id+"-editor");
+
+  if(!editor)
+    editor=document.getElementById(id);
+
+  return editor ? editor.innerHTML.trim() : "";
+
+}
+
+
+function setRichValue(id,value){
+
+  let editor=document.getElementById(id+"-editor");
+
+  if(!editor)
+    editor=document.getElementById(id);
+
+  if(editor)
+    editor.innerHTML=value||"";
+
+}
+
+
+function clearRich(id){
+  setRichValue(id,"");
+}
+
+
+/* =====================================================
+   AUTH
 ===================================================== */
 
 onAuthStateChanged(
-auth,
-async user=>{
+  auth,
+  user=>{
 
     if(!user){
 
-        document
-        .getElementById("loginPage")
+      document.getElementById("loginPage")
         .style.display="flex";
 
-        document
-        .getElementById("adminApp")
+      document.getElementById("adminApp")
         .style.display="none";
 
-        return;
-
+      return;
     }
-
 
     if(
-        user.email.toLowerCase() !==
-        ADMIN.toLowerCase()
+      user.email.toLowerCase() !==
+      ADMIN.toLowerCase()
     ){
 
-        alert(
-            "This account is not the admin account."
-        );
+      alert(
+        "This account is not the admin account."
+      );
 
-        await signOut(auth);
-
-        return;
-
+      signOut(auth);
+      return;
     }
 
+    document.getElementById("loginPage")
+      .style.display="none";
 
-    document
-    .getElementById("loginPage")
-    .style.display="none";
+    document.getElementById("adminApp")
+      .style.display="block";
 
-    document
-    .getElementById("adminApp")
-    .style.display="block";
+    loadDashboard();
+    loadMembers();
+    loadClassroom();
+    loadCommunity();
 
-
-    await Promise.all([
-
-        loadMembers(),
-
-        loadClassroom(),
-
-        loadCommunity()
-
-    ]);
-
-});
+  }
+);
 
 
 /* =====================================================
-LOGIN
+   LOGIN
 ===================================================== */
 
-document
-.getElementById("loginBtn")
+document.getElementById("loginBtn")
 .addEventListener(
-"click",
-async()=>{
+  "click",
+  async()=>{
 
     const email=
-    document
-    .getElementById("email")
-    .value
-    .trim();
+      document.getElementById("email")
+      .value.trim();
 
     const password=
-    document
-    .getElementById("password")
-    .value;
+      document.getElementById("password")
+      .value;
 
     const error=
-    document
-    .getElementById("loginError");
-
+      document.getElementById("loginError");
 
     error.textContent="";
 
-
-    if(!email || !password){
-
-        error.textContent=
-        "Please enter email and password.";
-
-        return;
-
-    }
-
-
     try{
 
-        await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
 
     }
     catch(e){
 
-        console.error(e);
+      console.error(e);
 
-        error.textContent=
-        "Login failed. Check your email and password.";
+      error.textContent=
+        "Login failed. Please check your email and password.";
 
     }
 
-});
+  }
+);
 
 
 /* =====================================================
-LOGOUT
+   LOGOUT
 ===================================================== */
 
-window.logout=
-async function(){
-
-    await signOut(auth);
-
+window.logout=async function(){
+  await signOut(auth);
 };
 
 
 /* =====================================================
-NAVIGATION
+   NAVIGATION
 ===================================================== */
 
-window.openSection=
-function(id,button){
+window.openSection=function(id,button){
 
-    document
+  document
     .querySelectorAll(".section")
-    .forEach(
-        x=>x.classList.remove("active")
+    .forEach(x=>
+      x.classList.remove("active")
     );
 
-
-    const target=
+  const target=
     document.getElementById(id);
 
+  if(target)
+    target.classList.add("active");
 
-    if(target)
-        target.classList.add("active");
-
-
-    document
+  document
     .querySelectorAll(".nav button")
-    .forEach(
-        x=>x.classList.remove("active")
+    .forEach(x=>
+      x.classList.remove("active")
     );
 
+  if(button)
+    button.classList.add("active");
 
-    if(button)
-        button.classList.add("active");
+  const names={
 
+    dashboard:"Dashboard",
+    members:"Members",
+    classroom:"Classroom",
+    community:"Community",
+    leaderboard:"Leaderboard",
+    settings:"Settings",
+    addMember:"Add Member",
+    itemEditor:"Classroom Editor",
+    preview:"Preview"
 
-    const names={
+  };
 
-        dashboard:"Dashboard",
-
-        members:"Members",
-
-        classroom:"Classroom",
-
-        community:"Community",
-
-        leaderboard:"Leaderboard",
-
-        settings:"Settings",
-
-        addMember:"Add Member",
-
-        itemEditor:"Classroom Editor",
-
-        preview:"Preview"
-
-    };
-
-
-    document
-    .getElementById("pageTitle")
+  document.getElementById("pageTitle")
     .textContent=
-    names[id]||"Admin Panel";
+      names[id]||"Admin Panel";
 
 };
 
 
 /* =====================================================
-MEMBERS
+   DASHBOARD
+===================================================== */
+
+async function loadDashboard(){
+
+  try{
+
+    const snap=
+      await getDocs(
+        collection(db,"classroom")
+      );
+
+    document.getElementById("classroomCount")
+      .textContent=snap.size;
+
+  }
+  catch(e){
+    console.error(e);
+  }
+
+}
+
+
+/* =====================================================
+   MEMBERS
 ===================================================== */
 
 async function loadMembers(){
 
-    try{
+  try{
 
-        const snap=
-        await getDocs(
-            collection(db,"members")
-        );
+    const snap=
+      await getDocs(
+        collection(db,"members")
+      );
 
+    const table=
+      document.getElementById("membersTable");
 
-        const table=
-        document
-        .getElementById("membersTable");
+    let html="";
+    let active=0;
 
+    snap.forEach(s=>{
 
-        let html="";
+      const m=s.data();
 
-        let active=0;
+      if(m.status==="Active")
+        active++;
 
+      html+=`
 
-        snap.forEach(
-        s=>{
+        <tr>
 
-            const m=s.data();
+          <td>${safe(m.name)}</td>
 
+          <td>${safe(m.email)}</td>
 
-            if(m.status==="Active")
-                active++;
+          <td>${safe(m.phone)}</td>
 
+          <td>${safe(m.startDate)}</td>
 
-            html+=`
+          <td>Day ${safe(m.accessUntilDay||90)}</td>
 
-            <tr>
+          <td>${safe(m.status||"Active")}</td>
 
-            <td>${safe(m.name)}</td>
+        </tr>
 
-            <td>${safe(m.email)}</td>
+      `;
 
-            <td>${safe(m.phone)}</td>
+    });
 
-            <td>${safe(m.startDate)}</td>
+    if(!html){
 
-            <td>Day ${safe(m.accessUntilDay||90)}</td>
+      html=`
 
-            <td>${safe(m.status||"Active")}</td>
+        <tr>
 
-            </tr>
-
-            `;
-
-        });
-
-
-        if(!html){
-
-            html=`
-
-            <tr>
-
-            <td
-            colspan="6"
-            class="empty"
-            >
+          <td colspan="6" class="empty">
             No members yet.
-            </td>
+          </td>
 
-            </tr>
+        </tr>
 
-            `;
-
-        }
-
-
-        table.innerHTML=html;
-
-
-        document
-        .getElementById("memberCount")
-        .textContent=snap.size;
-
-
-        document
-        .getElementById("activeCount")
-        .textContent=active;
+      `;
 
     }
-    catch(e){
 
-        console.error(e);
+    table.innerHTML=html;
 
-    }
+    document.getElementById("memberCount")
+      .textContent=snap.size;
+
+    document.getElementById("activeCount")
+      .textContent=active;
+
+  }
+  catch(e){
+
+    console.error(e);
+
+  }
 
 }
 
 
-window.saveMember=
-async function(){
+window.saveMember=async function(){
 
-    const name=value("mName").trim();
+  const name=
+    document.getElementById("mName").value.trim();
 
-    const email=value("mEmail").trim();
+  const email=
+    document.getElementById("mEmail").value.trim();
 
-    const phone=value("mPhone").trim();
+  const phone=
+    document.getElementById("mPhone").value.trim();
 
-    const startDate=value("mStart");
+  const startDate=
+    document.getElementById("mStart").value;
 
-    const accessUntilDay=
-    Number(value("mAccess")||90);
+  const accessUntilDay=
+    Number(
+      document.getElementById("mAccess").value
+    );
 
-    const status=value("mStatus");
+  const status=
+    document.getElementById("mStatus").value;
 
+  if(!name||!email||!startDate){
 
-    if(!name || !email || !startDate){
+    alert(
+      "Please enter name, email and start date."
+    );
 
-        alert(
-            "Please enter name, email and start date."
-        );
+    return;
 
-        return;
+  }
 
-    }
+  try{
 
+    await addDoc(
+      collection(db,"members"),
+      {
 
-    try{
+        name,
+        email,
+        phone,
+        startDate,
+        accessUntilDay,
+        status,
 
-        await addDoc(
-            collection(db,"members"),
-            {
+        createdAt:
+          serverTimestamp()
 
-                name,
+      }
+    );
 
-                email,
+    alert("Member saved.");
 
-                phone,
+    [
+      "mName",
+      "mEmail",
+      "mPhone",
+      "mStart"
+    ]
+    .forEach(
+      id=>
+        document.getElementById(id).value=""
+    );
 
-                startDate,
+    await loadMembers();
 
-                accessUntilDay,
+    openSection("members");
 
-                status,
+  }
+  catch(e){
 
-                createdAt:serverTimestamp()
+    console.error(e);
 
-            }
-        );
+    alert(
+      "Could not save member:\n\n"+
+      e.message
+    );
 
-
-        alert("Member saved.");
-
-
-        [
-            "mName",
-            "mEmail",
-            "mPhone",
-            "mStart"
-        ]
-        .forEach(id=>setValue(id,""));
-
-
-        await loadMembers();
-
-        openSection("members");
-
-    }
-    catch(e){
-
-        alert(
-            "Could not save member:\n"+e.message
-        );
-
-    }
+  }
 
 };
 
 
 /* =====================================================
-CLASSROOM LOAD
+   CLASSROOM LOAD
 ===================================================== */
 
 async function loadClassroom(){
 
-    try{
+  try{
 
-        const snap=
-        await getDocs(
-            collection(db,"classroom")
-        );
+    const snap=
+      await getDocs(
+        collection(db,"classroom")
+      );
 
+    items=[];
 
-        items=
-        snap.docs.map(
-            s=>({
-                id:s.id,
-                ...s.data()
-            })
-        );
+    snap.forEach(s=>{
 
+      items.push({
 
-        document
-        .getElementById("classroomCount")
-        .textContent=
-        items.length;
+        id:s.id,
+        ...s.data()
 
+      });
 
-        renderTree();
+    });
 
-        populateParents();
+    document.getElementById("classroomCount")
+      .textContent=items.length;
 
-    }
-    catch(e){
+    renderTree();
+    populateParents();
 
-        console.error(e);
+  }
+  catch(e){
 
-        document
-        .getElementById("treeContainer")
-        .innerHTML=`
+    console.error(e);
+
+    document.getElementById("treeContainer")
+      .innerHTML=`
 
         <div class="empty">
 
-        Could not load classroom.
+          Could not load classroom.
 
-        <br><br>
+          <br><br>
 
-        ${safe(e.message)}
+          ${safe(e.message)}
 
         </div>
 
-        `;
+      `;
 
-    }
+  }
 
 }
 
 
 /* =====================================================
-NEW ITEM
+   NEW ITEM
 ===================================================== */
 
-window.newItem=
-function(){
+window.newItem=function(){
 
-    editingId=null;
+  editingId=null;
 
-    selectedImages=[];
+  clearEditor();
 
-    existingImages=[];
+  populateParents();
 
-    clearEditor();
-
-    populateParents();
-
-    openSection("itemEditor");
+  openSection("itemEditor");
 
 };
 
 
-/* =====================================================
-PARENT LIST
-===================================================== */
-
 function populateParents(){
 
-    const select=
+  const select=
     document.getElementById("itemParent");
 
+  if(!select)
+    return;
 
-    select.innerHTML=`
+  select.innerHTML=`
 
     <option value="">
-    Top Level — Phase
+      Top Level
     </option>
 
-    `;
+  `;
 
-
-    items
+  items
     .filter(x=>x.hasChildren===true)
     .sort(
-        (a,b)=>
+      (a,b)=>
         (a.order||0)-
         (b.order||0)
     )
     .forEach(item=>{
 
-        const option=
+      const option=
         document.createElement("option");
 
+      option.value=item.id;
 
-        option.value=item.id;
-
-        option.textContent=
+      option.textContent=
         getFullPath(item.id);
 
-
-        select.appendChild(option);
+      select.appendChild(option);
 
     });
 
@@ -2127,484 +2087,267 @@ function populateParents(){
 
 function getFullPath(id){
 
-    const current=
+  const current=
     items.find(x=>x.id===id);
 
+  if(!current)
+    return "";
 
-    if(!current)
-        return "";
+  let result=[current.title];
 
-
-    const path=[
-        current.title
-    ];
-
-
-    let parentId=
+  let parentId=
     current.parentId;
 
+  while(parentId){
 
-    while(parentId){
+    const parent=
+      items.find(x=>x.id===parentId);
 
-        const parent=
-        items.find(x=>x.id===parentId);
+    if(!parent)
+      break;
+
+    result.unshift(parent.title);
+
+    parentId=
+      parent.parentId;
+
+  }
+
+  return result.join(" → ");
+
+}
 
 
-        if(!parent)
-            break;
+/* =====================================================
+   TYPE CHANGE
+===================================================== */
+
+document.getElementById("itemType")
+.addEventListener(
+  "change",
+  function(){
+
+    document.getElementById("dayContent")
+      .style.display=
+        this.value==="lesson"
+        ?"block"
+        :"none";
+
+  }
+);
 
 
-        path.unshift(parent.title);
+/* =====================================================
+   SAVE CLASSROOM
+===================================================== */
 
-        parentId=
-        parent.parentId;
+window.saveItem=async function(){
+
+  const type=
+    document.getElementById("itemType").value;
+
+  const parentId=
+    document.getElementById("itemParent").value||null;
+
+  const title=
+    document.getElementById("itemTitle")
+      .value.trim();
+
+  const description=
+    richValue("itemDescription");
+
+  const unlockDay=
+    Number(
+      document.getElementById("unlockDay").value||1
+    );
+
+  const status=
+    document.getElementById("itemStatus").value;
+
+  const hasChildren=
+    document.getElementById("allowChildren").checked;
+
+  if(!title){
+
+    alert("Please enter a title.");
+    return;
+
+  }
+
+
+  const data={
+
+    type,
+    parentId,
+    title,
+    description,
+    unlockDay,
+    status,
+    hasChildren,
+
+    order:
+      editingId
+      ? (
+          items.find(x=>x.id===editingId)?.order
+          ||Date.now()
+        )
+      : Date.now(),
+
+    updatedAt:
+      serverTimestamp()
+
+  };
+
+
+  /* DAY DATA */
+
+  if(type==="lesson"){
+
+    data.dayContent={
+
+      movement:
+        value("movement"),
+
+      movementInstructions:
+        richValue("movementInstructions"),
+
+      hydration:
+        value("hydration"),
+
+      hydrationInstructions:
+        richValue("hydrationInstructions"),
+
+      protein:
+        value("protein"),
+
+      proteinInstructions:
+        richValue("proteinInstructions"),
+
+      sleep:
+        value("sleep"),
+
+      sleepInstructions:
+        richValue("sleepInstructions"),
+
+      nutrition:
+        richValue("nutrition"),
+
+      mind:
+        richValue("mind"),
+
+      sunlight:
+        richValue("sunlight"),
+
+      recovery:
+        richValue("recovery"),
+
+      imageUrl:
+        value("imageUrl"),
+
+      videoUrl:
+        value("videoUrl"),
+
+      driveUrl:
+        value("driveUrl")
+
+    };
+
+  }
+
+
+  const statusBox=
+    document.getElementById("saveStatus");
+
+  statusBox.textContent="Saving...";
+
+
+  try{
+
+    if(editingId){
+
+      await updateDoc(
+        doc(
+          db,
+          "classroom",
+          editingId
+        ),
+        data
+      );
+
+    }
+    else{
+
+      data.createdAt=
+        serverTimestamp();
+
+      await addDoc(
+        collection(db,"classroom"),
+        data
+      );
 
     }
 
 
-    return path.join(" → ");
+    statusBox.textContent=
+      "✓ Saved";
 
-}
+    editingId=null;
 
+    /*
+      IMPORTANT:
+      We reload only the classroom tree after saving.
+      We do NOT reload the whole admin page.
+    */
 
-/* =====================================================
-TYPE
-===================================================== */
+    await loadClassroom();
 
-document
-.getElementById("itemType")
-.addEventListener(
-"change",
-()=>{
+    setTimeout(
+      ()=>statusBox.textContent="",
+      2000
+    );
 
-    const type=
-    value("itemType");
+    openSection("classroom");
 
+  }
+  catch(e){
 
-    document
-    .getElementById("dayContent")
-    .style.display=
-    type==="lesson"
-    ?"block"
-    :"none";
+    console.error(e);
 
-});
+    statusBox.textContent="";
 
+    alert(
+      "Could not save:\n\n"+
+      e.message
+    );
 
-/* =====================================================
-IMAGE SELECTION
-===================================================== */
-
-document
-.getElementById("imageFiles")
-.addEventListener(
-"change",
-event=>{
-
-    const files=
-    Array.from(event.target.files||[]);
-
-
-    selectedImages.push(...files);
-
-    renderSelectedImages();
-
-    event.target.value="";
-
-});
-
-
-function renderSelectedImages(){
-
-    const box=
-    document.getElementById("imagePreview");
-
-
-    box.innerHTML="";
-
-
-    selectedImages.forEach(
-    (file,index)=>{
-
-        const url=
-        URL.createObjectURL(file);
-
-
-        box.innerHTML+=`
-
-        <div class="media-preview-item">
-
-        <img src="${url}">
-
-        <button
-        class="remove-image"
-        onclick="removeSelectedImage(${index})"
-        >
-        ×
-        </button>
-
-        </div>
-
-        `;
-
-    });
-
-}
-
-
-window.removeSelectedImage=
-function(index){
-
-    selectedImages.splice(index,1);
-
-    renderSelectedImages();
+  }
 
 };
 
 
 /* =====================================================
-UPLOAD IMAGES
-===================================================== */
-
-async function uploadImages(itemId){
-
-    if(!selectedImages.length)
-        return [];
-
-
-    const urls=[];
-
-
-    for(
-        const file
-        of selectedImages
-    ){
-
-        const safeName=
-        file.name
-        .replace(/[^a-zA-Z0-9._-]/g,"_");
-
-
-        const path=
-        `classroom/${itemId}/${Date.now()}_${safeName}`;
-
-
-        const storageRef=
-        ref(storage,path);
-
-
-        const snapshot=
-        await uploadBytes(
-            storageRef,
-            file
-        );
-
-
-        const url=
-        await getDownloadURL(
-            snapshot.ref
-        );
-
-
-        urls.push({
-
-            url,
-
-            path
-
-        });
-
-    }
-
-
-    return urls;
-
-}
-
-
-/* =====================================================
-SAVE ITEM — FAST
-===================================================== */
-
-window.saveItem=
-async function(){
-
-    const saveBtn=
-    document.getElementById("saveItemBtn");
-
-    const saving=
-    document.getElementById("savingText");
-
-
-    saveBtn.disabled=true;
-
-    saving.style.display="inline";
-
-
-    try{
-
-        const type=
-        value("itemType");
-
-
-        const parentId=
-        value("itemParent")||null;
-
-
-        const title=
-        value("itemTitle").trim();
-
-
-        const description=
-        value("itemDescription").trim();
-
-
-        const unlockDay=
-        Number(value("unlockDay")||1);
-
-
-        const status=
-        value("itemStatus");
-
-
-        const hasChildren=
-        document
-        .getElementById("allowChildren")
-        .checked;
-
-
-        const order=
-        Number(value("itemOrder")||Date.now());
-
-
-        if(!title){
-
-            alert(
-                "Please enter a title."
-            );
-
-            return;
-
-        }
-
-
-        /*
-        STEP 1:
-        Save the small Firestore document first.
-        */
-
-        const dayContent={
-
-            movement:value("movement"),
-
-            movementInstructions:
-            value("movementInstructions"),
-
-            hydration:value("hydration"),
-
-            hydrationInstructions:
-            value("hydrationInstructions"),
-
-            protein:value("protein"),
-
-            proteinInstructions:
-            value("proteinInstructions"),
-
-            sleep:value("sleep"),
-
-            sleepInstructions:
-            value("sleepInstructions"),
-
-            nutrition:value("nutrition"),
-
-            mind:value("mind"),
-
-            sunlight:value("sunlight"),
-
-            recovery:value("recovery")
-
-        };
-
-
-        const data={
-
-            type,
-
-            parentId,
-
-            title,
-
-            description,
-
-            unlockDay,
-
-            status,
-
-            hasChildren,
-
-            order,
-
-            videoUrl:value("videoUrl"),
-
-            driveUrl:value("driveUrl"),
-
-            images:existingImages,
-
-            dayContent:
-
-                type==="lesson"
-                ?dayContent
-                :{},
-
-            updatedAt:serverTimestamp()
-
-        };
-
-
-        let itemId;
-
-
-        if(editingId){
-
-            itemId=editingId;
-
-
-            await updateDoc(
-                doc(
-                    db,
-                    "classroom",
-                    itemId
-                ),
-                data
-            );
-
-        }
-        else{
-
-            const created=
-            await addDoc(
-                collection(db,"classroom"),
-                {
-
-                    ...data,
-
-                    createdAt:
-                    serverTimestamp()
-
-                }
-            );
-
-
-            itemId=
-            created.id;
-
-        }
-
-
-        /*
-        STEP 2:
-        Upload images only after the Firestore
-        document exists.
-        */
-
-        if(selectedImages.length){
-
-            const uploaded=
-            await uploadImages(itemId);
-
-
-            const allImages=[
-                ...existingImages,
-                ...uploaded
-            ];
-
-
-            await updateDoc(
-                doc(
-                    db,
-                    "classroom",
-                    itemId
-                ),
-                {
-
-                    images:allImages,
-
-                    updatedAt:
-                    serverTimestamp()
-
-                }
-            );
-
-        }
-
-
-        alert(
-            editingId
-            ?"Updated successfully."
-            :"Saved successfully."
-        );
-
-
-        editingId=null;
-
-        selectedImages=[];
-
-        existingImages=[];
-
-
-        await loadClassroom();
-
-        openSection("classroom");
-
-    }
-    catch(e){
-
-        console.error(e);
-
-        alert(
-            "Save failed:\n\n"+
-            e.message
-        );
-
-    }
-    finally{
-
-        saveBtn.disabled=false;
-
-        saving.style.display="none";
-
-    }
-
-};
-
-
-/* =====================================================
-RENDER TREE
+   TREE
 ===================================================== */
 
 function renderTree(){
 
-    const container=
-    document.getElementById(
-        "treeContainer"
-    );
+  const container=
+    document.getElementById("treeContainer");
 
-
-    const roots=
+  const roots=
     items
-    .filter(x=>!x.parentId)
-    .sort(
+      .filter(x=>!x.parentId)
+      .sort(
         (a,b)=>
-        (a.order||0)-
-        (b.order||0)
-    );
+          (a.order||0)-
+          (b.order||0)
+      );
 
+  if(!roots.length){
 
-    if(!roots.length){
+    container.innerHTML=`
 
-        container.innerHTML=`
-
-        <div class="empty">
+      <div class="empty">
 
         No classroom content yet.
 
@@ -2612,1173 +2355,942 @@ function renderTree(){
 
         Create your first Phase.
 
-        </div>
+      </div>
 
-        `;
+    `;
 
-        return;
+    return;
 
-    }
+  }
 
-
-    container.innerHTML=
+  container.innerHTML=
     roots
-    .map(item=>treeItem(item))
-    .join("");
+      .map(treeItem)
+      .join("");
 
 }
 
 
 function treeItem(item){
 
-    const children=
+  const children=
     items
-    .filter(
+      .filter(
         x=>x.parentId===item.id
-    )
-    .sort(
+      )
+      .sort(
         (a,b)=>
-        (a.order||0)-
-        (b.order||0)
-    );
+          (a.order||0)-
+          (b.order||0)
+      );
 
-
-    const icon=
+  const icon=
     item.type==="lesson"
     ?"📖"
     :"📁";
 
-
-    const statusClass=
+  const status=
     item.status==="published"
-    ?"status-published"
-    :"status-draft";
+    ?`
+      <span class="status-badge status-published">
+        Published
+      </span>
+    `
+    :`
+      <span class="status-badge status-draft">
+        Draft
+      </span>
+    `;
 
-
-    return `
+  return `
 
     <div class="tree-item">
 
-        <div class="tree-row">
+      <div class="tree-row">
 
-            <button
-            class="tree-toggle"
-            onclick="toggle('${item.id}')"
-            >
-            ${children.length?"▶":""}
-            </button>
+        <button
+          class="tree-toggle"
+          onclick="toggle('${item.id}')">
+          ${children.length?"▶":""}
+        </button>
 
-            <span>${icon}</span>
+        <span>${icon}</span>
 
-            <div class="tree-title">
+        <div class="tree-title">
+          ${safe(item.title)}
+        </div>
 
-            ${safe(item.title)}
+        <div class="tree-meta">
+          Day ${item.unlockDay||1}
+        </div>
 
-            </div>
+        ${status}
 
-            <span
-            class="status ${statusClass}"
-            >
-            ${safe(item.status||"published")}
-            </span>
+        <div class="actions">
 
-            <div class="tree-meta">
+          ${
+            item.hasChildren
+            ?`
+              <button
+                class="small"
+                onclick="addChild('${item.id}')">
+                + Child
+              </button>
+            `
+            :""
+          }
 
-            Day ${item.unlockDay||1}
-
-            </div>
-
-            <div class="actions">
-
-            <button
+          <button
             class="small"
-            onclick="addChild('${item.id}')"
-            >
-            + Child
-            </button>
-
-            <button
-            class="small"
-            onclick="editItem('${item.id}')"
-            >
+            onclick="editItem('${item.id}')">
             Edit
-            </button>
+          </button>
 
-            <button
+          <button
             class="small"
-            onclick="preview('${item.id}')"
-            >
+            onclick="preview('${item.id}')">
             Preview
-            </button>
+          </button>
 
-            <button
+          <button
             class="small"
-            onclick="removeItem('${item.id}')"
-            >
+            onclick="removeItem('${item.id}')">
             Delete
-            </button>
-
-            </div>
+          </button>
 
         </div>
 
-        <div
+      </div>
+
+      <div
         class="children"
-        id="child-${item.id}"
-        >
+        id="child-${item.id}">
 
-        ${children
-        .map(child=>treeItem(child))
-        .join("")}
+        ${children.map(treeItem).join("")}
 
-        </div>
+      </div>
 
     </div>
 
-    `;
+  `;
 
 }
 
 
-/* =====================================================
-TREE
-===================================================== */
+window.toggle=function(id){
 
-window.toggle=
-function(id){
-
-    const box=
+  const box=
     document.getElementById(
-        "child-"+id
+      "child-"+id
     );
 
-
-    if(box)
-        box.classList.toggle("open");
+  if(box)
+    box.classList.toggle("open");
 
 };
 
 
 /* =====================================================
-ADD CHILD
+   ADD CHILD
 ===================================================== */
 
-window.addChild=
-function(parentId){
+window.addChild=function(parentId){
 
-    const parent=
-    items.find(
-        x=>x.id===parentId
+  const parent=
+    items.find(x=>x.id===parentId);
+
+  if(
+    !parent||
+    parent.hasChildren!==true
+  ){
+
+    alert(
+      "Enable 'Allow children inside this item' first."
     );
 
+    return;
 
-    if(
-        !parent ||
-        parent.hasChildren!==true
-    ){
+  }
 
-        alert(
-            "Edit this item and enable children first."
-        );
+  editingId=null;
 
-        return;
+  clearEditor();
 
-    }
+  populateParents();
 
+  document.getElementById("itemParent")
+    .value=parentId;
 
-    editingId=null;
+  /*
+    Automatically choose the correct child type.
+  */
 
-    selectedImages=[];
+  if(parent.type==="module"){
 
-    existingImages=[];
+    document.getElementById("itemType")
+      .value="subsection";
 
+  }
+  else{
 
-    clearEditor();
+    document.getElementById("itemType")
+      .value="lesson";
 
-    populateParents();
+  }
 
-
-    document
-    .getElementById("itemParent")
-    .value=
-    parentId;
-
-
-    const childType=
-    parent.type==="module"
-    ?"subsection"
-    :"lesson";
-
-
-    document
-    .getElementById("itemType")
-    .value=
-    childType;
-
-
-    document
-    .getElementById("dayContent")
+  document.getElementById("dayContent")
     .style.display=
-    childType==="lesson"
-    ?"block"
-    :"none";
+      document.getElementById("itemType")
+        .value==="lesson"
+        ?"block"
+        :"none";
 
-
-    openSection("itemEditor");
+  openSection("itemEditor");
 
 };
 
 
 /* =====================================================
-EDIT
+   EDIT
 ===================================================== */
 
-window.editItem=
-function(id){
+window.editItem=function(id){
 
-    const item=
+  const item=
     items.find(x=>x.id===id);
 
+  if(!item)
+    return;
 
-    if(!item)
-        return;
+  editingId=id;
 
+  populateParents();
 
-    editingId=id;
-
-    selectedImages=[];
-
-    existingImages=
-    Array.isArray(item.images)
-    ?[...item.images]
-    :[];
-
-
-    populateParents();
-
-
-    document
-    .getElementById("editorHeading")
+  document.getElementById("editorHeading")
     .textContent=
-    "Edit Classroom Item";
+      "Edit Classroom Item";
 
+  document.getElementById("itemType")
+    .value=
+      item.type||"module";
 
-    setValue(
-        "itemType",
-        item.type||"module"
-    );
+  document.getElementById("itemParent")
+    .value=
+      item.parentId||"";
 
+  document.getElementById("itemTitle")
+    .value=
+      item.title||"";
 
-    setValue(
-        "itemParent",
-        item.parentId||""
-    );
+  setRichValue(
+    "itemDescription",
+    item.description||""
+  );
 
+  document.getElementById("unlockDay")
+    .value=
+      item.unlockDay||1;
 
-    setValue(
-        "itemTitle",
-        item.title||""
-    );
+  document.getElementById("itemStatus")
+    .value=
+      item.status||"published";
 
-
-    setValue(
-        "itemDescription",
-        item.description||""
-    );
-
-
-    setValue(
-        "unlockDay",
-        item.unlockDay||1
-    );
-
-
-    setValue(
-        "itemStatus",
-        item.status||"published"
-    );
-
-
-    setValue(
-        "itemOrder",
-        item.order||1
-    );
-
-
-    document
-    .getElementById("allowChildren")
+  document.getElementById("allowChildren")
     .checked=
-    item.hasChildren===true;
+      item.hasChildren===true;
 
-
-    setValue(
-        "videoUrl",
-        item.videoUrl||""
-    );
-
-
-    setValue(
-        "driveUrl",
-        item.driveUrl||""
-    );
-
-
-    const d=
+  const d=
     item.dayContent||{};
 
+  setValue(
+    "movement",
+    d.movement
+  );
 
-    [
+  setRichValue(
+    "movementInstructions",
+    d.movementInstructions
+  );
 
-        "movement",
-        "movementInstructions",
-        "hydration",
-        "hydrationInstructions",
-        "protein",
-        "proteinInstructions",
-        "sleep",
-        "sleepInstructions",
-        "nutrition",
-        "mind",
-        "sunlight",
-        "recovery"
+  setValue(
+    "hydration",
+    d.hydration
+  );
 
-    ]
-    .forEach(
-        id=>
-        setValue(
-            id,
-            d[id]||""
-        )
-    );
+  setRichValue(
+    "hydrationInstructions",
+    d.hydrationInstructions
+  );
 
+  setValue(
+    "protein",
+    d.protein
+  );
 
-    document
-    .getElementById("dayContent")
+  setRichValue(
+    "proteinInstructions",
+    d.proteinInstructions
+  );
+
+  setValue(
+    "sleep",
+    d.sleep
+  );
+
+  setRichValue(
+    "sleepInstructions",
+    d.sleepInstructions
+  );
+
+  setRichValue(
+    "nutrition",
+    d.nutrition
+  );
+
+  setRichValue(
+    "mind",
+    d.mind
+  );
+
+  setRichValue(
+    "sunlight",
+    d.sunlight
+  );
+
+  setRichValue(
+    "recovery",
+    d.recovery
+  );
+
+  setValue(
+    "imageUrl",
+    d.imageUrl
+  );
+
+  setValue(
+    "videoUrl",
+    d.videoUrl
+  );
+
+  setValue(
+    "driveUrl",
+    d.driveUrl
+  );
+
+  document.getElementById("dayContent")
     .style.display=
-    item.type==="lesson"
-    ?"block"
-    :"none";
+      item.type==="lesson"
+      ?"block"
+      :"none";
 
+  showImagePreview();
 
-    renderSelectedImages();
-
-    renderExistingImages();
-
-
-    openSection("itemEditor");
+  openSection("itemEditor");
 
 };
 
 
 /* =====================================================
-EXISTING IMAGES
+   DELETE
 ===================================================== */
 
-function renderExistingImages(){
+window.removeItem=async function(id){
 
-    const box=
-    document.getElementById(
-        "savedImages"
-    );
-
-
-    if(!existingImages.length){
-
-        box.innerHTML="";
-
-        return;
-
-    }
-
-
-    box.innerHTML=
-    existingImages
-    .map(
-        (image,index)=>`
-
-        <div class="saved-image">
-
-        <img src="${safe(image.url)}">
-
-        <button
-        class="small"
-        style="width:100%"
-        onclick="removeExistingImage(${index})"
-        >
-        Remove
-        </button>
-
-        </div>
-
-        `
-    )
-    .join("");
-
-}
-
-
-window.removeExistingImage=
-async function(index){
-
-    const image=
-    existingImages[index];
-
-
-    if(!image)
-        return;
-
-
-    if(
-        !confirm(
-            "Remove this image?"
-        )
-    )
-        return;
-
-
-    existingImages.splice(index,1);
-
-    renderExistingImages();
-
-
-    /*
-    The image is removed from Firestore
-    immediately without resaving the entire Day.
-    */
-
-    if(editingId){
-
-        try{
-
-            await updateDoc(
-                doc(
-                    db,
-                    "classroom",
-                    editingId
-                ),
-                {
-
-                    images:existingImages,
-
-                    updatedAt:
-                    serverTimestamp()
-
-                }
-            );
-
-        }
-        catch(e){
-
-            alert(e.message);
-
-        }
-
-    }
-
-};
-
-
-/* =====================================================
-DELETE
-===================================================== */
-
-window.removeItem=
-async function(id){
-
-    const item=
+  const item=
     items.find(x=>x.id===id);
 
+  if(!item)
+    return;
 
-    if(!item)
-        return;
-
-
-    const children=
+  const children=
     items.filter(
-        x=>x.parentId===id
+      x=>x.parentId===id
     );
 
-
-    let message=
+  let message=
     `Delete "${item.title}"?`;
 
+  if(children.length){
 
-    if(children.length){
+    message+=
+      `\n\nIt has ${children.length} child item(s).`;
 
-        message+=
-        `\n\nThis will also delete ${children.length} direct child item(s).`;
+  }
 
-    }
+  if(!confirm(message))
+    return;
 
+  try{
 
-    if(!confirm(message))
-        return;
+    /*
+      Delete direct children.
+      If you have deeply nested content, delete
+      children before their parents in the tree.
+    */
 
+    for(const child of children){
 
-    try{
-
-        /*
-        Delete direct children first.
-        */
-
-        for(
-            const child
-            of children
-        ){
-
-            await deleteDoc(
-                doc(
-                    db,
-                    "classroom",
-                    child.id
-                )
-            );
-
-        }
-
-
-        await deleteDoc(
-            doc(
-                db,
-                "classroom",
-                id
-            )
-        );
-
-
-        await loadClassroom();
-
-
-        alert("Deleted.");
+      await deleteDoc(
+        doc(
+          db,
+          "classroom",
+          child.id
+        )
+      );
 
     }
-    catch(e){
 
-        alert(e.message);
+    await deleteDoc(
+      doc(
+        db,
+        "classroom",
+        id
+      )
+    );
 
-    }
+    await loadClassroom();
+
+  }
+  catch(e){
+
+    console.error(e);
+
+    alert(e.message);
+
+  }
 
 };
 
 
 /* =====================================================
-PREVIEW
+   PREVIEW
 ===================================================== */
 
-window.preview=
-function(id){
+window.preview=function(id){
 
-    const item=
+  const item=
     items.find(x=>x.id===id);
 
+  if(!item)
+    return;
 
-    if(!item)
-        return;
-
-
-    const d=
+  const d=
     item.dayContent||{};
 
-
-    let html=`
+  let html=`
 
     <h2>
-    ${safe(item.title)}
+      ${safe(item.title)}
     </h2>
 
     ${
-        item.description
-        ?`<p>${safe(item.description)}</p>`
-        :""
+      item.description
+      ?htmlFromStored(item.description)
+      :""
     }
 
     <p>
-
-    <b>Status:</b>
-    ${safe(item.status||"published")}
-
+      <b>Unlock Day:</b>
+      ${item.unlockDay||1}
     </p>
 
-    <p>
+  `;
 
-    <b>Unlock Day:</b>
-    ${item.unlockDay||1}
+  if(d.imageUrl){
 
-    </p>
+    html+=`
+
+      <img
+        src="${safe(d.imageUrl)}"
+        alt="Lesson image"
+        onerror="this.style.display='none'"
+      >
 
     `;
 
+  }
 
-    if(
-        Array.isArray(item.images) &&
-        item.images.length
-    ){
+  const sections=[
 
-        html+=`
+    [
+      "Movement",
+      d.movement,
+      d.movementInstructions
+    ],
 
-        <h3>Images</h3>
+    [
+      "Hydration",
+      d.hydration,
+      d.hydrationInstructions
+    ],
 
-        `;
+    [
+      "Protein",
+      d.protein,
+      d.proteinInstructions
+    ],
 
-        item.images.forEach(
-        image=>{
+    [
+      "Sleep",
+      d.sleep,
+      d.sleepInstructions
+    ],
 
-            html+=`
+    [
+      "Nutrition",
+      d.nutrition,
+      ""
+    ],
 
-            <img
-            src="${safe(image.url)}"
-            >
+    [
+      "Mind / Stress",
+      d.mind,
+      ""
+    ],
 
-            `;
+    [
+      "Sunlight",
+      d.sunlight,
+      ""
+    ],
 
-        });
+    [
+      "Recovery",
+      d.recovery,
+      ""
+    ]
 
-    }
+  ];
 
+  sections.forEach(s=>{
 
-    if(item.videoUrl){
+    if(s[1]){
 
-        html+=`
+      html+=`
 
-        <h3>Video</h3>
+        <div class="content-section">
 
-        <div class="preview-video">
+          <h3>
+            ${s[0]}
+          </h3>
 
-        <a
-        href="${safe(item.videoUrl)}"
-        target="_blank"
-        >
-        ▶ Open Video
-        </a>
+          ${
+            looksLikeHTML(s[1])
+            ?htmlFromStored(s[1])
+            :`<p>${safe(s[1])}</p>`
+          }
+
+          ${
+            s[2]
+            ?(
+              looksLikeHTML(s[2])
+              ?htmlFromStored(s[2])
+              :`<p>${safe(s[2])}</p>`
+            )
+            :""
+          }
 
         </div>
 
-        `;
+      `;
 
     }
 
+  });
 
-    if(item.driveUrl){
+  if(d.videoUrl){
 
-        html+=`
+    html+=`
 
-        <h3>Google Drive</h3>
+      <h3>Video</h3>
 
-        <p>
-
+      <p>
         <a
-        href="${safe(item.driveUrl)}"
-        target="_blank"
-        >
-        📁 Open Google Drive
+          href="${safe(d.videoUrl)}"
+          target="_blank"
+          rel="noopener">
+          ▶ Watch Video
         </a>
+      </p>
 
-        </p>
+    `;
 
-        `;
+  }
 
-    }
+  if(d.driveUrl){
 
+    html+=`
 
-    const sections=[
+      <h3>Resources</h3>
 
-        [
-            "Movement",
-            d.movement,
-            d.movementInstructions
-        ],
+      <p>
+        <a
+          href="${safe(d.driveUrl)}"
+          target="_blank"
+          rel="noopener">
+          📂 Open Google Drive Resource
+        </a>
+      </p>
 
-        [
-            "Hydration",
-            d.hydration,
-            d.hydrationInstructions
-        ],
+    `;
 
-        [
-            "Protein",
-            d.protein,
-            d.proteinInstructions
-        ],
+  }
 
-        [
-            "Sleep",
-            d.sleep,
-            d.sleepInstructions
-        ],
-
-        [
-            "Nutrition",
-            d.nutrition,
-            ""
-        ],
-
-        [
-            "Mind / Stress",
-            d.mind,
-            ""
-        ],
-
-        [
-            "Sunlight",
-            d.sunlight,
-            ""
-        ],
-
-        [
-            "Recovery",
-            d.recovery,
-            ""
-        ]
-
-    ];
-
-
-    sections.forEach(
-    section=>{
-
-        if(section[1]){
-
-            html+=`
-
-            <h3>
-            ${section[0]}
-            </h3>
-
-            <p>
-            ${safe(section[1])}
-            </p>
-
-            ${
-                section[2]
-                ?`<p>${safe(section[2])}</p>`
-                :""
-            }
-
-            `;
-
-        }
-
-    });
-
-
-    document
-    .getElementById(
-        "previewContent"
-    )
+  document.getElementById("previewContent")
     .innerHTML=html;
 
-
-    openSection("preview");
+  openSection("preview");
 
 };
 
 
 /* =====================================================
-COMMUNITY IMAGE PREVIEW
-===================================================== */
-
-document
-.getElementById("communityImage")
-.addEventListener(
-"change",
-event=>{
-
-    const file=
-    event.target.files[0];
-
-
-    const image=
-    document.getElementById(
-        "communityImagePreview"
-    );
-
-
-    if(!file){
-
-        image.style.display="none";
-
-        return;
-
-    }
-
-
-    image.src=
-    URL.createObjectURL(file);
-
-    image.style.display="block";
-
-});
-
-
-/* =====================================================
-SAVE COMMUNITY
-===================================================== */
-
-window.saveCommunityPost=
-async function(){
-
-    const text=
-    value("communityText").trim();
-
-
-    const file=
-    document
-    .getElementById("communityImage")
-    .files[0];
-
-
-    if(!text && !file){
-
-        alert(
-            "Write a post or select an image."
-        );
-
-        return;
-
-    }
-
-
-    try{
-
-        let image=null;
-
-
-        /*
-        Text is saved first.
-        */
-
-        const post=
-        await addDoc(
-            collection(db,"community"),
-            {
-
-                name:"Mahnoor",
-
-                email:ADMIN,
-
-                content:text,
-
-                image:null,
-
-                createdAt:
-                serverTimestamp()
-
-            }
-        );
-
-
-        /*
-        Upload community image only if
-        the admin selected one.
-        */
-
-        if(file){
-
-            const safeName=
-            file.name
-            .replace(
-                /[^a-zA-Z0-9._-]/g,
-                "_"
-            );
-
-
-            const path=
-            `community/${post.id}_${Date.now()}_${safeName}`;
-
-
-            const storageRef=
-            ref(storage,path);
-
-
-            const uploaded=
-            await uploadBytes(
-                storageRef,
-                file
-            );
-
-
-            const url=
-            await getDownloadURL(
-                uploaded.ref
-            );
-
-
-            await updateDoc(
-                doc(
-                    db,
-                    "community",
-                    post.id
-                ),
-                {
-
-                    image:{
-                        url,
-                        path
-
-                    }
-
-                }
-            );
-
-        }
-
-
-        setValue(
-            "communityText",
-            ""
-        );
-
-
-        document
-        .getElementById("communityImage")
-        .value="";
-
-
-        document
-        .getElementById(
-            "communityImagePreview"
-        )
-        .style.display="none";
-
-
-        await loadCommunity();
-
-
-        alert("Post published.");
-
-    }
-    catch(e){
-
-        alert(
-            "Could not publish post:\n"+
-            e.message
-        );
-
-    }
-
-};
-
-
-/* =====================================================
-COMMUNITY LOAD
+   COMMUNITY
 ===================================================== */
 
 async function loadCommunity(){
 
-    try{
+  try{
 
-        const snap=
-        await getDocs(
-            collection(db,"community")
-        );
+    const snap=
+      await getDocs(
+        collection(db,"community")
+      );
 
+    document.getElementById("communityCount")
+      .textContent=snap.size;
 
-        const posts=
-        snap.docs
-        .map(
-            s=>({
-                id:s.id,
-                ...s.data()
-            })
-        )
-        .sort(
-            (a,b)=>
-            getTime(b.createdAt)-
-            getTime(a.createdAt)
-        );
+    const posts=[];
 
+    snap.forEach(s=>{
 
-        document
-        .getElementById("communityCount")
-        .textContent=
-        posts.length;
+      posts.push({
+        id:s.id,
+        ...s.data()
+      });
 
+    });
 
-        const box=
-        document
-        .getElementById("communityPosts");
+    posts.sort(
+      (a,b)=>
+        getSeconds(b.createdAt)-
+        getSeconds(a.createdAt)
+    );
 
+    const box=
+      document.getElementById(
+        "adminCommunityPosts"
+      );
 
-        if(!posts.length){
+    if(!posts.length){
 
-            box.innerHTML=`
+      box.innerHTML=
+        `<div class="empty">No posts yet.</div>`;
 
-            <div class="empty">
-            No posts yet.
-            </div>
+      return;
 
-            `;
+    }
 
-            return;
-
-        }
-
-
-        box.innerHTML=
-        posts
-        .map(
-        post=>`
-
-        <div class="community-post">
-
-        <strong>
-        ${safe(post.name||"Admin")}
-        </strong>
-
-        <small>
-        ${formatDate(post.createdAt)}
-        </small>
-
-        <p>
-        ${safe(post.content||"")}
-        </p>
-
-        ${
-            post.image?.url
-            ?
-            `<img
-            class="post-image"
-            src="${safe(post.image.url)}"
-            >`
-            :""
-        }
-
-        </div>
-
-        `
-        )
+    box.innerHTML=
+      posts
+        .slice(0,30)
+        .map(renderCommunityPost)
         .join("");
 
-    }
-    catch(e){
+  }
+  catch(e){
 
-        console.error(e);
+    console.error(e);
 
-    }
+  }
+
+}
+
+
+function renderCommunityPost(post){
+
+  return `
+
+    <div
+      style="
+        border-bottom:1px solid var(--border);
+        padding:18px 0;
+      "
+    >
+
+      <strong>
+        ${safe(
+          post.name||
+          post.email||
+          "Member"
+        )}
+      </strong>
+
+      <div
+        style="
+          font-size:12px;
+          color:#888;
+          margin:5px 0 10px;
+        "
+      >
+        ${formatDate(post.createdAt)}
+      </div>
+
+      ${
+        post.content
+        ?htmlFromStored(post.content)
+        :""
+      }
+
+      ${
+        post.imageUrl
+        ?`
+          <div class="media-preview">
+            <img
+              src="${safe(post.imageUrl)}"
+              alt="Community image"
+            >
+          </div>
+        `
+        :""
+      }
+
+      ${
+        post.videoUrl
+        ?`
+          <p>
+            <a
+              href="${safe(post.videoUrl)}"
+              target="_blank"
+              rel="noopener">
+              ▶ Video
+            </a>
+          </p>
+        `
+        :""
+      }
+
+      ${
+        post.driveUrl
+        ?`
+          <p>
+            <a
+              href="${safe(post.driveUrl)}"
+              target="_blank"
+              rel="noopener">
+              📂 Google Drive
+            </a>
+          </p>
+        `
+        :""
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+window.saveCommunityPost=async function(){
+
+  const content=
+    richValue("communityText");
+
+  const imageUrl=
+    value("communityImage");
+
+  const videoUrl=
+    value("communityVideo");
+
+  const driveUrl=
+    value("communityDrive");
+
+  if(
+    !content&&
+    !imageUrl&&
+    !videoUrl&&
+    !driveUrl
+  ){
+
+    alert(
+      "Add some text, an image, a video or a Drive link."
+    );
+
+    return;
+
+  }
+
+  try{
+
+    await addDoc(
+      collection(db,"community"),
+      {
+
+        content,
+        imageUrl,
+        videoUrl,
+        driveUrl,
+
+        email:ADMIN,
+        name:"Mahnoor",
+
+        createdAt:
+          serverTimestamp()
+
+      }
+    );
+
+    clearRich("communityText");
+
+    document.getElementById("communityImage")
+      .value="";
+
+    document.getElementById("communityVideo")
+      .value="";
+
+    document.getElementById("communityDrive")
+      .value="";
+
+    await loadCommunity();
+
+    alert("Posted to community.");
+
+  }
+  catch(e){
+
+    console.error(e);
+
+    alert(e.message);
+
+  }
+
+};
+
+
+/* =====================================================
+   IMAGE PREVIEW
+===================================================== */
+
+document.getElementById("imageUrl")
+.addEventListener(
+  "input",
+  showImagePreview
+);
+
+
+function showImagePreview(){
+
+  const url=
+    value("imageUrl");
+
+  const box=
+    document.getElementById(
+      "imagePreview"
+    );
+
+  if(!url){
+
+    box.innerHTML="";
+    return;
+
+  }
+
+  box.innerHTML=`
+
+    <img
+      src="${safe(url)}"
+      alt="Preview"
+      onerror="
+        this.parentElement.innerHTML=
+        '<small>Image could not be previewed.</small>'
+      "
+    >
+
+  `;
 
 }
 
 
 /* =====================================================
-CLEAR EDITOR
+   CLEAR EDITOR
 ===================================================== */
 
 function clearEditor(){
 
-    setValue(
-        "editorHeading",
-        "Add Classroom Item"
-    );
+  document.getElementById("editorHeading")
+    .textContent=
+      "Add Classroom Item";
 
+  document.getElementById("itemType")
+    .value="module";
 
-    setValue(
-        "itemType",
-        "module"
-    );
+  document.getElementById("itemParent")
+    .value="";
 
+  document.getElementById("itemTitle")
+    .value="";
 
-    setValue(
-        "itemParent",
-        ""
-    );
+  clearRich("itemDescription");
 
+  document.getElementById("unlockDay")
+    .value=1;
 
-    setValue(
-        "itemTitle",
-        ""
-    );
+  document.getElementById("itemStatus")
+    .value="published";
 
-
-    setValue(
-        "itemDescription",
-        ""
-    );
-
-
-    setValue(
-        "unlockDay",
-        1
-    );
-
-
-    setValue(
-        "itemStatus",
-        "published"
-    );
-
-
-    setValue(
-        "itemOrder",
-        1
-    );
-
-
-    document
-    .getElementById("allowChildren")
+  document.getElementById("allowChildren")
     .checked=false;
 
+  [
 
-    setValue(
-        "videoUrl",
-        ""
-    );
+    "movement",
+    "hydration",
+    "protein",
+    "sleep",
+    "imageUrl",
+    "videoUrl",
+    "driveUrl"
 
+  ].forEach(
+    id=>setValue(id,"")
+  );
 
-    setValue(
-        "driveUrl",
-        ""
-    );
+  [
 
+    "movementInstructions",
+    "hydrationInstructions",
+    "proteinInstructions",
+    "sleepInstructions",
+    "nutrition",
+    "mind",
+    "sunlight",
+    "recovery"
 
-    [
+  ].forEach(
+    id=>clearRich(id)
+  );
 
-        "movement",
-        "movementInstructions",
-        "hydration",
-        "hydrationInstructions",
-        "protein",
-        "proteinInstructions",
-        "sleep",
-        "sleepInstructions",
-        "nutrition",
-        "mind",
-        "sunlight",
-        "recovery"
-
-    ]
-    .forEach(
-        id=>setValue(id,"")
-    );
-
-
-    document
-    .getElementById("imagePreview")
-    .innerHTML="";
-
-
-    document
-    .getElementById("savedImages")
-    .innerHTML="";
-
-
-    document
-    .getElementById("dayContent")
+  document.getElementById("dayContent")
     .style.display="none";
+
+  document.getElementById("imagePreview")
+    .innerHTML="";
 
 }
 
 
 /* =====================================================
-HELPERS
+   HELPERS
 ===================================================== */
 
 function value(id){
 
-    const el=
+  const el=
     document.getElementById(id);
 
-    return el
-    ?el.value
+  return el
+    ?el.value.trim()
     :"";
 
 }
@@ -3786,20 +3298,75 @@ function value(id){
 
 function setValue(id,val){
 
-    const el=
+  const el=
     document.getElementById(id);
 
+  if(el)
+    el.value=val||"";
 
-    if(el)
-        el.value=
-        val??"";
+}
+
+
+function looksLikeHTML(value){
+
+  return /<[^>]+>/.test(
+    String(value||"")
+  );
+
+}
+
+
+function htmlFromStored(value){
+
+  /*
+    Content was created by the admin rich editor.
+    We allow only a controlled set of formatting tags.
+  */
+
+  const temp=
+    document.createElement("div");
+
+  temp.innerHTML=
+    String(value||"");
+
+  const allowed=[
+    "B",
+    "STRONG",
+    "I",
+    "EM",
+    "U",
+    "P",
+    "BR",
+    "UL",
+    "OL",
+    "LI",
+    "H3",
+    "H4"
+  ];
+
+  temp.querySelectorAll("*")
+    .forEach(el=>{
+
+      if(!allowed.includes(el.tagName)){
+
+        el.replaceWith(
+          document.createTextNode(
+            el.textContent
+          )
+        );
+
+      }
+
+    });
+
+  return temp.innerHTML;
 
 }
 
 
 function safe(value){
 
-    return String(value??"")
+  return String(value??"")
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
@@ -3809,51 +3376,41 @@ function safe(value){
 }
 
 
-function getTime(timestamp){
+function getSeconds(timestamp){
 
-    if(!timestamp)
-        return 0;
+  if(!timestamp)
+    return 0;
 
+  if(
+    typeof timestamp.seconds==="number"
+  )
+    return timestamp.seconds;
 
-    if(
-        typeof timestamp.seconds==="number"
-    )
-        return timestamp.seconds;
-
-
-    const date=
-    new Date(timestamp);
-
-
-    return isNaN(date)
-    ?0
-    :date.getTime();
+  return 0;
 
 }
 
 
 function formatDate(timestamp){
 
-    if(!timestamp)
-        return "";
+  if(!timestamp)
+    return "";
 
+  try{
 
-    try{
+    const d=
+      timestamp.toDate
+      ?timestamp.toDate()
+      :new Date(timestamp);
 
-        const date=
-        timestamp.toDate
-        ?timestamp.toDate()
-        :new Date(timestamp);
+    return d.toLocaleDateString();
 
+  }
+  catch{
 
-        return date.toLocaleDateString();
+    return "";
 
-    }
-    catch{
-
-        return "";
-
-    }
+  }
 
 }
 
@@ -3861,3 +3418,4 @@ function formatDate(timestamp){
 
 </body>
 </html>
+```
