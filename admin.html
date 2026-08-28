@@ -1,25 +1,20 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>Freedom Admin Panel</title>
+<title>Freedom Women's Health Club — Admin</title>
 
 <style>
-
 *{
     box-sizing:border-box;
 }
 
 body{
     margin:0;
-    font-family:Arial,sans-serif;
-    background:#fbf8f3;
+    font-family:Arial, sans-serif;
+    background:#f7f3ef;
     color:#2d2d2d;
 }
 
@@ -39,27 +34,25 @@ button{
     min-height:100vh;
 }
 
-/* =========================
-   SIDEBAR
-========================= */
+/* SIDEBAR */
 
 .sidebar{
     width:250px;
     background:#6e4a7e;
     color:white;
-    padding:25px 18px;
+    padding:25px 15px;
     position:fixed;
+    left:0;
     top:0;
     bottom:0;
-    left:0;
     overflow-y:auto;
 }
 
 .logo{
-    font-size:21px;
+    font-size:20px;
     font-weight:700;
-    margin-bottom:35px;
-    line-height:1.3;
+    padding:10px;
+    margin-bottom:25px;
 }
 
 .nav-btn{
@@ -67,20 +60,18 @@ button{
     border:0;
     background:transparent;
     color:white;
-    padding:13px 14px;
     text-align:left;
+    padding:13px 15px;
     border-radius:10px;
-    margin-bottom:6px;
+    margin-bottom:5px;
 }
 
 .nav-btn:hover,
 .nav-btn.active{
-    background:rgba(255,255,255,.16);
+    background:rgba(255,255,255,.15);
 }
 
-/* =========================
-   MAIN
-========================= */
+/* MAIN */
 
 .main{
     margin-left:250px;
@@ -88,226 +79,199 @@ button{
     padding:30px;
 }
 
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:30px;
-}
-
-.topbar h1{
-    margin:0;
-    font-size:28px;
-}
-
-.logout{
-    background:#2d2d2d;
-    color:white;
-    border:0;
-    padding:10px 18px;
-    border-radius:8px;
-}
-
-/* =========================
-   SECTIONS
-========================= */
-
-.panel-section{
+.page-section{
     display:none;
 }
 
-.panel-section.active{
+.page-section.active{
     display:block;
 }
 
-.section-header{
+.page-title{
     margin-bottom:25px;
 }
 
-.section-header h2{
+.page-title h1{
     margin:0 0 7px;
 }
 
-.section-header p{
+.page-title p{
     margin:0;
     color:#777;
 }
 
-/* =========================
-   CARDS
-========================= */
+/* CARDS */
 
 .card{
     background:white;
     border-radius:16px;
     padding:22px;
     margin-bottom:20px;
-    box-shadow:0 4px 18px rgba(0,0,0,.06);
+    box-shadow:0 4px 20px rgba(0,0,0,.05);
 }
 
+.card h2,
 .card h3{
     margin-top:0;
 }
 
-/* =========================
-   FORMS
-========================= */
+/* BUTTONS */
+
+.btn{
+    border:0;
+    border-radius:9px;
+    padding:10px 16px;
+    background:#6e4a7e;
+    color:white;
+}
+
+.btn.secondary{
+    background:#eee7e1;
+    color:#2d2d2d;
+}
+
+.btn.preview{
+    background:#b7a89a;
+}
+
+.btn.danger{
+    background:#a85d5d;
+}
+
+/* FORMS */
 
 .form-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:16px;
+    gap:15px;
 }
 
-.field{
-    display:flex;
-    flex-direction:column;
-    gap:7px;
+.form-group{
+    margin-bottom:15px;
 }
 
-.field.full{
+.form-group.full{
     grid-column:1/-1;
 }
 
-.field label{
-    font-size:14px;
-    font-weight:700;
+.form-group label{
+    display:block;
+    font-weight:600;
+    margin-bottom:6px;
 }
 
-.field input,
-.field textarea,
-.field select{
+.form-group input,
+.form-group textarea,
+.form-group select{
     width:100%;
+    padding:11px;
     border:1px solid #ddd;
-    border-radius:9px;
-    padding:11px 12px;
+    border-radius:8px;
     background:#fff;
 }
 
-.field textarea{
-    min-height:110px;
+.form-group textarea{
+    min-height:100px;
     resize:vertical;
 }
 
-.primary{
-    background:#6e4a7e;
-    color:white;
-    border:0;
-    padding:11px 18px;
-    border-radius:9px;
-}
-
-.secondary{
-    background:#eee7df;
-    color:#2d2d2d;
-    border:0;
-    padding:11px 18px;
-    border-radius:9px;
-}
-
-.danger{
-    background:#b44;
-    color:white;
-    border:0;
-    padding:9px 14px;
-    border-radius:8px;
-}
-
-.actions{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:18px;
-}
-
-/* =========================
-   CONTENT TREE
-========================= */
+/* PHASE */
 
 .phase-card{
     border:1px solid #ddd;
-    border-radius:14px;
-    margin-bottom:18px;
+    border-radius:15px;
+    margin-bottom:20px;
     overflow:hidden;
 }
 
 .phase-header{
-    padding:17px;
-    background:#f2ebe3;
+    background:#f0e9f1;
+    padding:18px;
     display:flex;
     justify-content:space-between;
     align-items:center;
 }
 
-.phase-title{
-    font-weight:700;
+.phase-header h2{
+    margin:0;
 }
 
 .phase-body{
-    padding:15px;
+    padding:18px;
 }
 
+/* WEEK */
+
 .week-card{
-    border:1px solid #e4ddd5;
+    border:1px solid #ddd;
     border-radius:12px;
-    margin-bottom:12px;
+    margin:12px 0;
     overflow:hidden;
 }
 
 .week-header{
-    padding:14px;
-    background:#faf7f3;
+    padding:15px;
+    background:#faf8f5;
     display:flex;
     justify-content:space-between;
     align-items:center;
 }
 
-.week-title{
-    font-weight:700;
+.week-header strong{
+    font-size:17px;
 }
 
-.day-list{
-    padding:10px;
+.week-body{
+    padding:15px;
 }
 
-.day-row{
+/* DAYS */
+
+.day-card{
+    border:1px solid #ddd;
+    border-radius:12px;
+    margin:12px 0;
+    padding:16px;
+}
+
+.day-top{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:11px;
-    border-bottom:1px solid #eee;
+    margin-bottom:15px;
 }
 
-.day-row:last-child{
-    border-bottom:0;
+.day-top h3{
+    margin:0;
 }
 
-.day-actions{
+.habit-box{
+    background:#faf8f5;
+    border-radius:10px;
+    padding:15px;
+    margin-bottom:12px;
+}
+
+.habit-box h4{
+    margin:0 0 10px;
+}
+
+/* TOOLBAR */
+
+.toolbar{
     display:flex;
-    gap:7px;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:20px;
 }
 
-.small-btn{
-    border:0;
-    padding:7px 11px;
-    border-radius:7px;
-    background:#eee;
-}
-
-.small-btn.preview{
-    background:#6e4a7e;
-    color:white;
-}
-
-/* =========================
-   MEMBERS
-========================= */
+/* MEMBER */
 
 .member-row{
     border:1px solid #ddd;
-    padding:16px;
     border-radius:12px;
-    margin-bottom:10px;
+    padding:16px;
+    margin-bottom:12px;
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -316,140 +280,152 @@ button{
 
 .member-info strong{
     display:block;
-    margin-bottom:4px;
+    margin-bottom:5px;
 }
 
 .member-info small{
     color:#777;
 }
 
-/* =========================
-   PREVIEW
-========================= */
+/* MODAL */
 
-.preview-overlay{
+.modal{
     position:fixed;
     inset:0;
-    background:rgba(20,20,20,.72);
-    z-index:9999;
+    background:rgba(0,0,0,.65);
     display:none;
+    z-index:9999;
+    padding:30px;
 }
 
-.preview-overlay.active{
-    display:flex;
-    flex-direction:column;
-}
-
-.preview-toolbar{
-    height:65px;
-    background:white;
+.modal.open{
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    padding:0 22px;
-    flex-shrink:0;
+    justify-content:center;
 }
 
-.preview-toolbar strong{
-    font-size:17px;
-}
-
-.close-preview{
-    background:#2d2d2d;
-    color:white;
-    border:0;
-    padding:10px 18px;
-    border-radius:8px;
-}
-
-.preview-screen{
-    flex:1;
-    overflow:auto;
-    padding:35px;
-    background:#fbf8f3;
-}
-
-.client-page{
-    max-width:900px;
-    margin:0 auto;
-}
-
-.client-hero{
-    background:#6e4a7e;
-    color:white;
-    padding:45px 35px;
-    border-radius:20px;
-    margin-bottom:22px;
-}
-
-.client-hero .eyebrow{
-    text-transform:uppercase;
-    letter-spacing:1px;
-    font-size:13px;
-    opacity:.85;
-}
-
-.client-hero h1{
-    margin:10px 0;
-    font-size:34px;
-}
-
-.client-hero p{
-    margin:0;
-    line-height:1.6;
-}
-
-.client-card{
+.modal-box{
     background:white;
-    border-radius:16px;
+    width:min(1100px,100%);
+    max-height:92vh;
+    overflow-y:auto;
+    border-radius:18px;
+    position:relative;
+}
+
+.modal-header{
+    position:sticky;
+    top:0;
+    z-index:5;
+    background:white;
+    padding:20px 25px;
+    border-bottom:1px solid #ddd;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.modal-content{
+    padding:30px;
+}
+
+/* CLIENT PREVIEW */
+
+.preview-shell{
+    background:#f7f3ef;
+    min-height:600px;
+    border-radius:15px;
     padding:25px;
-    margin-bottom:18px;
-    box-shadow:0 3px 15px rgba(0,0,0,.06);
 }
 
-.client-card h3{
-    margin-top:0;
+.preview-brand{
     color:#6e4a7e;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
 }
 
-.instruction{
-    margin-top:12px;
-    padding:14px;
-    background:#f5f0eb;
-    border-radius:10px;
+.preview-title{
+    font-size:32px;
+    margin:8px 0;
+}
+
+.preview-description{
+    color:#666;
+    max-width:750px;
     line-height:1.6;
 }
 
-.client-complete{
-    margin-top:20px;
-    padding:16px;
+.preview-section{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    margin-top:18px;
+}
+
+.preview-day{
     border:1px solid #ddd;
-    border-radius:10px;
+    border-radius:12px;
+    padding:18px;
+    margin-top:12px;
 }
 
-/* =========================
-   TOAST
-========================= */
-
-.toast{
-    position:fixed;
-    bottom:25px;
-    right:25px;
-    background:#2d2d2d;
-    color:white;
-    padding:13px 18px;
+.preview-habit{
+    padding:12px;
+    background:#faf8f5;
     border-radius:9px;
-    display:none;
-    z-index:10000;
+    margin-top:8px;
 }
 
-.toast.show{
+.locked-preview{
+    opacity:.65;
+    position:relative;
+}
+
+.locked-preview::after{
+    content:"🔒 LOCKED";
+    position:absolute;
+    right:15px;
+    top:15px;
+    background:#eee;
+    padding:7px 10px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+.close-btn{
+    border:0;
+    background:#eee;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+}
+
+/* STATUS */
+
+.status{
+    padding:10px 14px;
+    border-radius:8px;
+    margin-bottom:15px;
+    display:none;
+}
+
+.status.show{
     display:block;
 }
 
-/* =========================
-   MOBILE
-========================= */
+.status.success{
+    background:#e7f4e8;
+    color:#35643a;
+}
+
+.status.error{
+    background:#f8e5e5;
+    color:#8b3d3d;
+}
+
+/* MOBILE */
 
 @media(max-width:800px){
 
@@ -460,7 +436,7 @@ button{
     .main{
         margin-left:210px;
         width:calc(100% - 210px);
-        padding:18px;
+        padding:20px;
     }
 
     .form-grid{
@@ -474,8 +450,25 @@ button{
 
 }
 
-</style>
+@media(max-width:600px){
 
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+    }
+
+    .admin-layout{
+        display:block;
+    }
+
+    .main{
+        margin-left:0;
+        width:100%;
+    }
+
+}
+</style>
 </head>
 
 <body>
@@ -489,37 +482,32 @@ button{
 <aside class="sidebar">
 
     <div class="logo">
-        Freedom Women's Health Club<br>
+        Freedom Women's Health Club
+        <br>
         <small>Admin Panel</small>
     </div>
 
-    <button class="nav-btn active"
-            data-section="dashboard">
+    <button class="nav-btn active" data-section="dashboard">
         Dashboard
     </button>
 
-    <button class="nav-btn"
-            data-section="members">
+    <button class="nav-btn" data-section="members">
         Members
     </button>
 
-    <button class="nav-btn"
-            data-section="journey">
-        90-Day Journey
+    <button class="nav-btn" data-section="phases">
+        Phases & Weeks
     </button>
 
-    <button class="nav-btn"
-            data-section="lessons">
+    <button class="nav-btn" data-section="lessons">
         Lessons
     </button>
 
-    <button class="nav-btn"
-            data-section="lifetime">
+    <button class="nav-btn" data-section="lifetime">
         Lifetime Habits
     </button>
 
-    <button class="nav-btn"
-            data-section="community">
+    <button class="nav-btn" data-section="community">
         Community
     </button>
 
@@ -532,66 +520,76 @@ button{
 
 <main class="main">
 
-    <div class="topbar">
+<!-- DASHBOARD -->
 
-        <h1 id="pageTitle">
-            Dashboard
-        </h1>
+<section
+    id="dashboard"
+    class="page-section active"
+>
 
-        <button class="logout"
-                id="logoutBtn">
-            Logout
-        </button>
+    <div class="page-title">
 
-    </div>
-
-
-<!-- =========================
-     DASHBOARD
-========================= -->
-
-<section id="dashboard"
-         class="panel-section active">
-
-    <div class="section-header">
-
-        <h2>Admin Dashboard</h2>
+        <h1>Admin Dashboard</h1>
 
         <p>
-            Manage your members and create your complete
-            90-day client journey.
+            Manage your members and 90-day program content.
         </p>
 
     </div>
 
-    <div class="form-grid">
+    <div class="card">
 
-        <div class="card">
-            <h3>Members</h3>
-            <div id="memberCount">
-                0
-            </div>
-        </div>
+        <h2>Program Structure</h2>
 
-        <div class="card">
-            <h3>Journey Content</h3>
-            <div id="contentCount">
-                0
-            </div>
-        </div>
+        <p>
+            Your program is organised as:
+        </p>
 
-        <div class="card">
-            <h3>Lessons</h3>
-            <div id="lessonCount">
-                0
-            </div>
-        </div>
+        <p>
+            <strong>Phase → Week → Day</strong>
+        </p>
 
-        <div class="card">
-            <h3>Lifetime Habits</h3>
-            <div id="lifetimeCount">
-                0
-            </div>
+        <p>
+            You can create the complete program manually
+            and preview exactly how members will see it.
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Quick Actions</h2>
+
+        <div class="toolbar">
+
+            <button
+                class="btn"
+                data-go="members"
+            >
+                + Add Member
+            </button>
+
+            <button
+                class="btn"
+                data-go="phases"
+            >
+                + Manage Program
+            </button>
+
+            <button
+                class="btn"
+                data-go="lessons"
+            >
+                + Add Lesson
+            </button>
+
+            <button
+                class="btn"
+                data-go="lifetime"
+            >
+                + Add Lifetime Habit
+            </button>
+
         </div>
 
     </div>
@@ -599,88 +597,160 @@ button{
 </section>
 
 
-<!-- =========================
-     MEMBERS
-========================= -->
+<!-- MEMBERS -->
 
-<section id="members"
-         class="panel-section">
+<section
+    id="members"
+    class="page-section"
+>
 
-    <div class="section-header">
+    <div class="page-title">
 
-        <h2>Members</h2>
+        <h1>Members</h1>
 
         <p>
-            Add members and control their program access.
+            Add members and control how much of the program they can access.
         </p>
 
     </div>
 
+    <div
+        id="memberStatus"
+        class="status"
+    ></div>
 
     <div class="card">
 
-        <h3>Add / Edit Member</h3>
-
-        <input type="hidden"
-               id="memberId">
+        <h2>Add Member</h2>
 
         <div class="form-grid">
 
-            <div class="field">
+            <div class="form-group">
 
-                <label>Member Name</label>
+                <label>
+                    Full Name
+                </label>
 
                 <input
                     id="memberName"
-                    placeholder="Ayesha Khan">
+                    type="text"
+                    placeholder="Member name"
+                >
 
             </div>
 
+            <div class="form-group">
 
-            <div class="field">
-
-                <label>Email</label>
+                <label>
+                    Email
+                </label>
 
                 <input
                     id="memberEmail"
                     type="email"
-                    placeholder="member@email.com">
+                    placeholder="member@email.com"
+                >
 
             </div>
 
+            <div class="form-group">
 
-            <div class="field">
+                <label>
+                    Phone
+                </label>
 
-                <label>Access Until Week</label>
+                <input
+                    id="memberPhone"
+                    type="text"
+                    placeholder="Phone number"
+                >
 
-                <select id="accessUntilWeek">
+            </div>
 
-                    <option value="1">Week 1</option>
-                    <option value="2">Week 2</option>
-                    <option value="3">Week 3</option>
-                    <option value="4">Week 4</option>
-                    <option value="5">Week 5</option>
-                    <option value="6">Week 6</option>
-                    <option value="7">Week 7</option>
-                    <option value="8">Week 8</option>
-                    <option value="9">Week 9</option>
-                    <option value="10">Week 10</option>
-                    <option value="11">Week 11</option>
-                    <option value="12">Week 12</option>
-                    <option value="13" selected>
-                        Week 13 — Full Program
+            <div class="form-group">
+
+                <label>
+                    Program Start Date
+                </label>
+
+                <input
+                    id="memberStartDate"
+                    type="date"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Access Until Week
+                </label>
+
+                <select id="memberAccessWeek">
+
+                    <option value="1">
+                        Week 1
+                    </option>
+
+                    <option value="2">
+                        Week 2
+                    </option>
+
+                    <option value="3">
+                        Week 3
+                    </option>
+
+                    <option value="4">
+                        Week 4
+                    </option>
+
+                    <option value="5">
+                        Week 5
+                    </option>
+
+                    <option value="6">
+                        Week 6
+                    </option>
+
+                    <option value="7">
+                        Week 7
+                    </option>
+
+                    <option value="8">
+                        Week 8
+                    </option>
+
+                    <option value="9">
+                        Week 9
+                    </option>
+
+                    <option value="10">
+                        Week 10
+                    </option>
+
+                    <option value="11">
+                        Week 11
+                    </option>
+
+                    <option value="12">
+                        Week 12
+                    </option>
+
+                    <option value="13">
+                        Week 13
                     </option>
 
                 </select>
 
             </div>
 
+            <div class="form-group">
 
-            <div class="field">
+                <label>
+                    Member Status
+                </label>
 
-                <label>Status</label>
-
-                <select id="memberStatus">
+                <select id="memberStatusSelect">
 
                     <option value="active">
                         Active
@@ -694,59 +764,27 @@ button{
 
             </div>
 
-
-            <div class="field">
-
-                <label>Program Start Date</label>
-
-                <input
-                    id="memberStartDate"
-                    type="date">
-
-            </div>
-
-
-            <div class="field">
-
-                <label>Phone</label>
-
-                <input
-                    id="memberPhone"
-                    placeholder="03XXXXXXXXX">
-
-            </div>
-
         </div>
 
-
-        <div class="actions">
-
-            <button class="primary"
-                    id="saveMember">
-
-                Save Member
-
-            </button>
-
-            <button class="secondary"
-                    id="clearMember">
-
-                Clear
-
-            </button>
-
-        </div>
+        <button
+            class="btn"
+            id="saveMember"
+        >
+            Save Member
+        </button>
 
     </div>
 
 
     <div class="card">
 
-        <h3>Members List</h3>
+        <h2>Members List</h2>
 
         <div id="membersList">
 
-            Loading...
+            <p>
+                No members loaded yet.
+            </p>
 
         </div>
 
@@ -755,323 +793,52 @@ button{
 </section>
 
 
-<!-- =========================
-     JOURNEY
-========================= -->
+<!-- PHASES -->
 
-<section id="journey"
-         class="panel-section">
+<section
+    id="phases"
+    class="page-section"
+>
 
-    <div class="section-header">
+    <div class="page-title">
 
-        <h2>90-Day Journey</h2>
+        <h1>Phases, Weeks & Days</h1>
 
         <p>
-            Phase → Week → Day. Add your own content.
+            Build your complete 90-day program manually.
         </p>
 
     </div>
 
+    <div class="toolbar">
 
-    <div class="card">
+        <button
+            class="btn"
+            id="addPhase"
+        >
+            + Add Phase
+        </button>
 
-        <h3>Add / Edit Phase</h3>
-
-        <input type="hidden"
-               id="phaseId">
-
-        <div class="form-grid">
-
-            <div class="field">
-
-                <label>Phase Number</label>
-
-                <input
-                    id="phaseNumber"
-                    type="number"
-                    min="1"
-                    max="3">
-
-            </div>
-
-            <div class="field">
-
-                <label>Phase Heading</label>
-
-                <input
-                    id="phaseHeading"
-                    placeholder="Reset">
-
-            </div>
-
-            <div class="field full">
-
-                <label>Phase Description</label>
-
-                <textarea
-                    id="phaseDescription"
-                    placeholder="Write what this phase is about..."></textarea>
-
-            </div>
-
-        </div>
-
-        <div class="actions">
-
-            <button class="primary"
-                    id="savePhase">
-                Save Phase
-            </button>
-
-            <button class="secondary"
-                    id="clearPhase">
-                Clear
-            </button>
-
-        </div>
+        <button
+            class="btn secondary"
+            id="previewProgram"
+        >
+            👁 Full Program Preview
+        </button>
 
     </div>
 
+    <div id="phaseStatus" class="status"></div>
 
-    <div class="card">
+    <div id="phasesContainer">
 
-        <h3>Add / Edit Week</h3>
+        <div class="card">
 
-        <input type="hidden"
-               id="weekId">
+            <h2>Your program is empty</h2>
 
-        <div class="form-grid">
-
-            <div class="field">
-
-                <label>Phase</label>
-
-                <select id="weekPhase">
-
-                    <option value="1">
-                        Phase 1
-                    </option>
-
-                    <option value="2">
-                        Phase 2
-                    </option>
-
-                    <option value="3">
-                        Phase 3
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="field">
-
-                <label>Week Number</label>
-
-                <input
-                    id="weekNumber"
-                    type="number"
-                    min="1"
-                    max="13">
-
-            </div>
-
-
-            <div class="field">
-
-                <label>Week Heading</label>
-
-                <input
-                    id="weekHeading"
-                    placeholder="Foundation">
-
-            </div>
-
-
-            <div class="field">
-
-                <label>Week Subtitle</label>
-
-                <input
-                    id="weekSubtitle"
-                    placeholder="Build your foundation">
-
-            </div>
-
-
-            <div class="field full">
-
-                <label>Week Description</label>
-
-                <textarea
-                    id="weekDescription"></textarea>
-
-            </div>
-
-
-            <div class="field full">
-
-                <label>Week Goal</label>
-
-                <textarea
-                    id="weekGoal"></textarea>
-
-            </div>
-
-        </div>
-
-
-        <div class="actions">
-
-            <button class="primary"
-                    id="saveWeek">
-                Save Week
-            </button>
-
-            <button class="secondary"
-                    id="clearWeek">
-                Clear
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <h3>Add / Edit Day</h3>
-
-        <input type="hidden"
-               id="dayId">
-
-        <div class="form-grid">
-
-            <div class="field">
-
-                <label>Week</label>
-
-                <select id="dayWeek"></select>
-
-            </div>
-
-
-            <div class="field">
-
-                <label>Day Number</label>
-
-                <input
-                    id="dayNumber"
-                    type="number"
-                    min="1"
-                    max="90">
-
-            </div>
-
-
-            <div class="field">
-
-                <label>Show on Program Day</label>
-
-                <input
-                    id="showOnDay"
-                    type="number"
-                    min="1"
-                    max="90">
-
-            </div>
-
-
-            <div class="field">
-
-                <label>Phase Label</label>
-
-                <input
-                    id="dayPhase"
-                    placeholder="Reset">
-
-            </div>
-
-
-            <div class="field full">
-
-                <label>Day Heading</label>
-
-                <input
-                    id="dayHeading"
-                    placeholder="Day 1">
-
-            </div>
-
-
-            <div class="field full">
-
-                <label>Day Title</label>
-
-                <input
-                    id="dayTitle"
-                    placeholder="Your Foundation Begins">
-
-            </div>
-
-
-            <div class="field full">
-
-                <label>Day Introduction</label>
-
-                <textarea
-                    id="dayIntroduction"></textarea>
-
-            </div>
-
-        </div>
-
-
-        <hr>
-
-
-        <h3>Daily Content</h3>
-
-
-        <div id="habitEditors"></div>
-
-
-        <div class="actions">
-
-            <button class="primary"
-                    id="saveDay">
-
-                Save Day
-
-            </button>
-
-            <button class="secondary"
-                    id="clearDay">
-
-                Clear
-
-            </button>
-
-            <button class="secondary"
-                    id="previewDay">
-
-                👁 Preview Day
-
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <h3>Your Journey Content</h3>
-
-        <div id="journeyTree">
-
-            Loading...
+            <p>
+                Click <strong>+ Add Phase</strong> to create Phase 1.
+            </p>
 
         </div>
 
@@ -1080,127 +847,112 @@ button{
 </section>
 
 
-<!-- =========================
-     LESSONS
-========================= -->
+<!-- LESSONS -->
 
-<section id="lessons"
-         class="panel-section">
+<section
+    id="lessons"
+    class="page-section"
+>
 
-    <div class="section-header">
+    <div class="page-title">
 
-        <h2>Lessons</h2>
+        <h1>Lessons</h1>
 
         <p>
-            Add lessons and decide when members see them.
+            Add educational lessons and choose when members can see them.
         </p>
 
     </div>
 
-
     <div class="card">
 
-        <h3>Add / Edit Lesson</h3>
-
-        <input type="hidden"
-               id="lessonId">
+        <h2>Add Lesson</h2>
 
         <div class="form-grid">
 
-            <div class="field">
+            <div class="form-group">
 
-                <label>Lesson Title</label>
+                <label>
+                    Lesson Heading
+                </label>
 
                 <input
                     id="lessonTitle"
-                    placeholder="Understanding Protein">
+                    placeholder="Example: How to Build a Balanced Plate"
+                >
 
             </div>
 
+            <div class="form-group">
 
-            <div class="field">
-
-                <label>Show on Program Day</label>
+                <label>
+                    Show From Day
+                </label>
 
                 <input
-                    id="lessonShowOnDay"
+                    id="lessonDay"
                     type="number"
                     min="1"
                     max="90"
-                    value="1">
+                    value="1"
+                >
 
             </div>
 
+            <div class="form-group full">
 
-            <div class="field full">
-
-                <label>Lesson Subtitle</label>
-
-                <input
-                    id="lessonSubtitle">
-
-            </div>
-
-
-            <div class="field full">
-
-                <label>Lesson Description</label>
-
-                <textarea
-                    id="lessonDescription"></textarea>
-
-            </div>
-
-
-            <div class="field full">
-
-                <label>Lesson Content</label>
+                <label>
+                    Lesson Content
+                </label>
 
                 <textarea
                     id="lessonContent"
-                    style="min-height:260px"></textarea>
+                    placeholder="Write your complete lesson here..."
+                ></textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Video URL — optional
+                </label>
+
+                <input
+                    id="lessonVideo"
+                    placeholder="https://..."
+                >
 
             </div>
 
         </div>
 
+        <div class="toolbar">
 
-        <div class="actions">
-
-            <button class="primary"
-                    id="saveLesson">
-
+            <button
+                class="btn"
+                id="saveLesson"
+            >
                 Save Lesson
-
             </button>
 
-            <button class="secondary"
-                    id="clearLesson">
-
-                Clear
-
-            </button>
-
-            <button class="secondary"
-                    id="previewLesson">
-
+            <button
+                class="btn preview"
+                id="previewLesson"
+            >
                 👁 Preview Lesson
-
             </button>
 
         </div>
 
     </div>
 
-
     <div class="card">
 
-        <h3>Lessons</h3>
+        <h2>Saved Lessons</h2>
 
         <div id="lessonsList">
-
-            Loading...
-
+            No lessons added yet.
         </div>
 
     </div>
@@ -1208,129 +960,110 @@ button{
 </section>
 
 
-<!-- =========================
-     LIFETIME HABITS
-========================= -->
+<!-- LIFETIME HABITS -->
 
-<section id="lifetime"
-         class="panel-section">
+<section
+    id="lifetime"
+    class="page-section"
+>
 
-    <div class="section-header">
+    <div class="page-title">
 
-        <h2>Lifetime Habits</h2>
+        <h1>Lifetime Habits</h1>
 
         <p>
-            These can remain locked until the member completes
-            the 90-day journey.
+            These can be shown after the member reaches the required point
+            in the program.
         </p>
 
     </div>
 
-
     <div class="card">
 
-        <h3>Add / Edit Lifetime Habit</h3>
-
-        <input type="hidden"
-               id="lifetimeId">
+        <h2>Add Lifetime Habit Section</h2>
 
         <div class="form-grid">
 
-            <div class="field">
+            <div class="form-group">
 
-                <label>Habit Title</label>
+                <label>
+                    Heading
+                </label>
 
                 <input
                     id="lifetimeTitle"
-                    placeholder="Move Your Body">
+                    placeholder="Example: Balanced Eating"
+                >
 
             </div>
 
+            <div class="form-group">
 
-            <div class="field">
-
-                <label>Order</label>
-
-                <input
-                    id="lifetimeOrder"
-                    type="number"
-                    value="1">
-
-            </div>
-
-
-            <div class="field full">
-
-                <label>Image URL</label>
+                <label>
+                    Image URL
+                </label>
 
                 <input
                     id="lifetimeImage"
-                    placeholder="https://...">
+                    placeholder="https://..."
+                >
 
             </div>
 
+            <div class="form-group full">
 
-            <div class="field full">
-
-                <label>Description</label>
+                <label>
+                    Description
+                </label>
 
                 <textarea
-                    id="lifetimeDescription"></textarea>
+                    id="lifetimeDescription"
+                    placeholder="Explain this lifetime habit..."
+                ></textarea>
 
             </div>
 
+            <div class="form-group full">
 
-            <div class="field full">
-
-                <label>Habits</label>
+                <label>
+                    Habits — one per line
+                </label>
 
                 <textarea
                     id="lifetimeHabits"
-                    placeholder="Walk regularly
-Strength train consistently
-Choose movement you enjoy"></textarea>
+                    placeholder="Include protein&#10;Drink enough water&#10;Walk regularly"
+                ></textarea>
 
             </div>
 
         </div>
 
+        <div class="toolbar">
 
-        <div class="actions">
-
-            <button class="primary"
-                    id="saveLifetime">
-
+            <button
+                class="btn"
+                id="saveLifetime"
+            >
                 Save Lifetime Habit
-
             </button>
 
-            <button class="secondary"
-                    id="clearLifetime">
-
-                Clear
-
-            </button>
-
-            <button class="secondary"
-                    id="previewLifetime">
-
+            <button
+                class="btn preview"
+                id="previewLifetime"
+            >
                 👁 Preview
-
             </button>
 
         </div>
 
     </div>
 
-
     <div class="card">
 
-        <h3>Lifetime Habits</h3>
+        <h2>Saved Lifetime Habits</h2>
 
         <div id="lifetimeList">
-
-            Loading...
-
+            No lifetime habits added yet.
         </div>
 
     </div>
@@ -1338,101 +1071,61 @@ Choose movement you enjoy"></textarea>
 </section>
 
 
-<!-- =========================
-     COMMUNITY
-========================= -->
+<!-- COMMUNITY -->
 
-<section id="community"
-         class="panel-section">
+<section
+    id="community"
+    class="page-section"
+>
 
-    <div class="section-header">
+    <div class="page-title">
 
-        <h2>Community</h2>
+        <h1>Community</h1>
 
         <p>
-            Create announcements and posts for your members.
+            Members can post, share wins and interact with the community.
         </p>
 
     </div>
 
-
     <div class="card">
 
-        <h3>Create Community Post</h3>
+        <h2>Community Settings</h2>
 
-        <input type="hidden"
-               id="postId">
+        <label>
 
-        <div class="form-grid">
+            <input
+                type="checkbox"
+                id="allowMemberPosts"
+                checked
+            >
 
-            <div class="field">
+            Allow members to create community posts
 
-                <label>Post Title</label>
+        </label>
 
-                <input
-                    id="postTitle"
-                    placeholder="Weekly Check-In">
+        <br><br>
 
-            </div>
+        <label>
 
+            <input
+                type="checkbox"
+                id="allowComments"
+                checked
+            >
 
-            <div class="field">
+            Allow members to comment
 
-                <label>Post Type</label>
+        </label>
 
-                <select id="postType">
+        <br><br>
 
-                    <option value="announcement">
-                        Announcement
-                    </option>
-
-                    <option value="education">
-                        Education
-                    </option>
-
-                    <option value="community">
-                        Community
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="field full">
-
-                <label>Post Content</label>
-
-                <textarea
-                    id="postContent"
-                    style="min-height:180px"></textarea>
-
-            </div>
-
-        </div>
-
-
-        <div class="actions">
-
-            <button class="primary"
-                    id="savePost">
-
-                Publish Post
-
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <h3>Community Posts</h3>
-
-        <div id="postsList">
-            Loading...
-        </div>
+        <button
+            class="btn"
+            id="saveCommunity"
+        >
+            Save Community Settings
+        </button>
 
     </div>
 
@@ -1444,2848 +1137,46 @@ Choose movement you enjoy"></textarea>
 
 
 <!-- =========================
-     FULL SCREEN PREVIEW
+     LARGE PREVIEW MODAL
 ========================= -->
 
-<div class="preview-overlay"
-     id="previewOverlay">
+<div
+    class="modal"
+    id="previewModal"
+>
 
-    <div class="preview-toolbar">
+    <div class="modal-box">
 
-        <strong>
-            Client Preview
-        </strong>
+        <div class="modal-header">
 
-        <button class="close-preview"
-                id="closePreview">
+            <strong id="previewModalTitle">
+                Client Preview
+            </strong>
 
-            ← Back to Editor
+            <button
+                class="close-btn"
+                id="closePreview"
+            >
+                ×
+            </button>
 
-        </button>
+        </div>
 
-    </div>
-
-    <div class="preview-screen"
-         id="previewScreen">
+        <div
+            class="modal-content"
+            id="previewModalContent"
+        ></div>
 
     </div>
 
 </div>
 
-
-<div class="toast"
-     id="toast">
-</div>
-
-
-<!-- =========================
-     FIREBASE
-========================= -->
 
 <script type="module">
 
-import {
-    initializeApp
-} from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-    getAuth,
-    onAuthStateChanged,
-    signOut
-} from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-import {
-    getFirestore,
-    collection,
-    doc,
-    getDoc,
-    getDocs,
-    setDoc,
-    addDoc,
-    deleteDoc,
-    query,
-    orderBy
-} from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-
-/* =========================
-   FIREBASE CONFIG
-========================= */
-
-const firebaseConfig = {
-
-    apiKey:
-        "AIzaSyB1ISMm_aVwsbSHByUI0F67tn-8GJo1pO0",
-
-    authDomain:
-        "freedom-women-s-health-club.firebaseapp.com",
-
-    projectId:
-        "freedom-women-s-health-club",
-
-    storageBucket:
-        "freedom-women-s-health-club.firebasestorage.app",
-
-    messagingSenderId:
-        "445440093665",
-
-    appId:
-        "1:445440093665:web:9c3a77f1f64776f63cb6a0"
-
-};
-
-
-const app =
-    initializeApp(
-        firebaseConfig
-    );
-
-const auth =
-    getAuth(app);
-
-const db =
-    getFirestore(app);
-
-
-/* =========================
-   STATE
-========================= */
-
-let phases = [];
-let weeks = [];
-let days = [];
-let lessons = [];
-let lifetimeHabits = [];
-let posts = [];
-
-let currentPreview = null;
-
-
-/* =========================
-   HELPERS
-========================= */
-
-function $(id){
-    return document.getElementById(id);
-}
-
-
-function value(id){
-    return $(id)?.value?.trim() || "";
-}
-
-
-function numberValue(id){
-    const n =
-        Number(
-            $(id)?.value
-        );
-
-    return Number.isFinite(n)
-        ? n
-        : null;
-}
-
-
-function escapeHTML(value){
-
-    if(
-        value === undefined ||
-        value === null
-    ){
-        return "";
-    }
-
-    return String(value)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-}
-
-
-function toast(message){
-
-    $("toast").textContent =
-        message;
-
-    $("toast").classList.add(
-        "show"
-    );
-
-    setTimeout(
-        () =>
-            $("toast").classList.remove(
-                "show"
-            ),
-        2500
-    );
-}
-
-
-/* =========================
-   NAVIGATION
-========================= */
-
-document
-    .querySelectorAll(".nav-btn")
-    .forEach(
-        button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    document
-                        .querySelectorAll(
-                            ".nav-btn"
-                        )
-                        .forEach(
-                            b =>
-                                b.classList.remove(
-                                    "active"
-                                )
-                        );
-
-                    button.classList.add(
-                        "active"
-                    );
-
-                    document
-                        .querySelectorAll(
-                            ".panel-section"
-                        )
-                        .forEach(
-                            section =>
-                                section.classList.remove(
-                                    "active"
-                                )
-                        );
-
-                    const section =
-                        $(button.dataset.section);
-
-                    section.classList.add(
-                        "active"
-                    );
-
-                    $("pageTitle")
-                        .textContent =
-                        button.textContent.trim();
-
-                }
-            );
-
-        }
-    );
-
-
-/* =========================
-   AUTH
-========================= */
-
-onAuthStateChanged(
-    auth,
-    async user => {
-
-        if(!user){
-
-            window.location.href =
-                "login.html";
-
-            return;
-
-        }
-
-        await loadAll();
-
-    }
-);
-
-
-/* =========================
-   LOAD EVERYTHING
-========================= */
-
-async function loadAll(){
-
-    await Promise.all([
-
-        loadCollection(
-            "phases",
-            phases,
-            data => phases = data
-        ),
-
-        loadCollection(
-            "weeks",
-            weeks,
-            data => weeks = data
-        ),
-
-        loadCollection(
-            "days",
-            days,
-            data => days = data
-        ),
-
-        loadCollection(
-            "lessons",
-            lessons,
-            data => lessons = data
-        ),
-
-        loadCollection(
-            "lifetimeHabits",
-            lifetimeHabits,
-            data => lifetimeHabits = data
-        ),
-
-        loadCollection(
-            "communityPosts",
-            posts,
-            data => posts = data
-        ),
-
-        loadMembers()
-
-    ]);
-
-    renderEverything();
-
-}
-
-
-async function loadCollection(
-    name,
-    existing,
-    setter
-){
-
-    try{
-
-        const snapshot =
-            await getDocs(
-                collection(
-                    db,
-                    name
-                )
-            );
-
-        const result = [];
-
-        snapshot.forEach(
-            snap => {
-
-                result.push({
-
-                    id:snap.id,
-
-                    ...snap.data()
-
-                });
-
-            }
-        );
-
-        setter(result);
-
-    }catch(error){
-
-        console.error(
-            name,
-            error
-        );
-
-        setter([]);
-
-    }
-
-}
-
-
-/* =========================
-   MEMBERS
-========================= */
-
-async function loadMembers(){
-
-    try{
-
-        const snapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "members"
-                )
-            );
-
-        const list = [];
-
-        snapshot.forEach(
-            snap => {
-
-                list.push({
-
-                    id:snap.id,
-
-                    ...snap.data()
-
-                });
-
-            }
-        );
-
-        window.members =
-            list;
-
-    }catch(error){
-
-        console.error(
-            "MEMBERS ERROR",
-            error
-        );
-
-        window.members = [];
-
-    }
-
-}
-
-
-function renderMembers(){
-
-    const list =
-        window.members || [];
-
-    $("memberCount")
-        .textContent =
-        list.length;
-
-    if(!list.length){
-
-        $("membersList").innerHTML =
-            "No members added yet.";
-
-        return;
-
-    }
-
-    $("membersList").innerHTML =
-        list.map(
-            member => `
-
-                <div class="member-row">
-
-                    <div class="member-info">
-
-                        <strong>
-                            ${escapeHTML(
-                                member.name ||
-                                "Unnamed Member"
-                            )}
-                        </strong>
-
-                        <small>
-                            ${escapeHTML(
-                                member.email ||
-                                ""
-                            )}
-                            <br>
-                            Access until Week
-                            ${member.accessUntilWeek || 13}
-                            ·
-                            ${escapeHTML(
-                                member.status ||
-                                "active"
-                            )}
-                        </small>
-
-                    </div>
-
-                    <div class="day-actions">
-
-                        <button
-                            class="small-btn"
-                            onclick="editMember('${member.id}')">
-
-                            Edit
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            `
-        ).join("");
-
-}
-
-
-window.editMember =
-function(id){
-
-    const member =
-        (
-            window.members || []
-        ).find(
-            item =>
-                item.id === id
-        );
-
-    if(!member) return;
-
-    $("memberId").value =
-        member.id;
-
-    $("memberName").value =
-        member.name || "";
-
-    $("memberEmail").value =
-        member.email || "";
-
-    $("accessUntilWeek").value =
-        member.accessUntilWeek || 13;
-
-    $("memberStatus").value =
-        member.status || "active";
-
-    $("memberStartDate").value =
-        member.startDate || "";
-
-    $("memberPhone").value =
-        member.phone || "";
-
-    document
-        .querySelector(
-            '[data-section="members"]'
-        )
-        .click();
-
-};
-
-
-$("saveMember")
-    .addEventListener(
-        "click",
-        async () => {
-
-            const id =
-                value("memberId");
-
-            const data = {
-
-                name:
-                    value("memberName"),
-
-                email:
-                    value("memberEmail"),
-
-                accessUntilWeek:
-                    numberValue(
-                        "accessUntilWeek"
-                    ) || 13,
-
-                status:
-                    value("memberStatus") ||
-                    "active",
-
-                startDate:
-                    value("memberStartDate"),
-
-                phone:
-                    value("memberPhone"),
-
-                updatedAt:
-                    new Date().toISOString()
-
-            };
-
-            try{
-
-                if(id){
-
-                    await setDoc(
-                        doc(
-                            db,
-                            "members",
-                            id
-                        ),
-                        data,
-                        {
-                            merge:true
-                        }
-                    );
-
-                }else{
-
-                    data.createdAt =
-                        new Date().toISOString();
-
-                    await addDoc(
-                        collection(
-                            db,
-                            "members"
-                        ),
-                        data
-                    );
-
-                }
-
-                toast(
-                    "Member saved."
-                );
-
-                clearMember();
-
-                await loadMembers();
-
-                renderMembers();
-
-            }catch(error){
-
-                console.error(error);
-
-                toast(
-                    "Unable to save member."
-                );
-
-            }
-
-        }
-    );
-
-
-function clearMember(){
-
-    $("memberId").value = "";
-
-    $("memberName").value = "";
-
-    $("memberEmail").value = "";
-
-    $("accessUntilWeek").value =
-        "13";
-
-    $("memberStatus").value =
-        "active";
-
-    $("memberStartDate").value = "";
-
-    $("memberPhone").value = "";
-
-}
-
-
-$("clearMember")
-    .addEventListener(
-        "click",
-        clearMember
-    );
-
-
-/* =========================
-   PHASES
-========================= */
-
-$("savePhase")
-    .addEventListener(
-        "click",
-        async () => {
-
-            const id =
-                value("phaseId");
-
-            const data = {
-
-                phase:
-                    numberValue(
-                        "phaseNumber"
-                    ),
-
-                heading:
-                    value("phaseHeading"),
-
-                description:
-                    value("phaseDescription")
-
-            };
-
-            try{
-
-                if(id){
-
-                    await setDoc(
-                        doc(
-                            db,
-                            "phases",
-                            id
-                        ),
-                        data,
-                        {
-                            merge:true
-                        }
-                    );
-
-                }else{
-
-                    await addDoc(
-                        collection(
-                            db,
-                            "phases"
-                        ),
-                        data
-                    );
-
-                }
-
-                toast(
-                    "Phase saved."
-                );
-
-                clearPhase();
-
-                await reloadContent();
-
-            }catch(error){
-
-                console.error(error);
-
-                toast(
-                    "Unable to save phase."
-                );
-
-            }
-
-        }
-    );
-
-
-function clearPhase(){
-
-    $("phaseId").value = "";
-
-    $("phaseNumber").value = "";
-
-    $("phaseHeading").value = "";
-
-    $("phaseDescription").value = "";
-
-}
-
-
-$("clearPhase")
-    .addEventListener(
-        "click",
-        clearPhase
-    );
-
-
-/* =========================
-   WEEKS
-========================= */
-
-$("saveWeek")
-    .addEventListener(
-        "click",
-        async () => {
-
-            const id =
-                value("weekId");
-
-            const data = {
-
-                phase:
-                    numberValue(
-                        "weekPhase"
-                    ) || 1,
-
-                week:
-                    numberValue(
-                        "weekNumber"
-                    ),
-
-                heading:
-                    value("weekHeading"),
-
-                subtitle:
-                    value("weekSubtitle"),
-
-                description:
-                    value("weekDescription"),
-
-                goal:
-                    value("weekGoal")
-
-            };
-
-            try{
-
-                if(id){
-
-                    await setDoc(
-                        doc(
-                            db,
-                            "weeks",
-                            id
-                        ),
-                        data,
-                        {
-                            merge:true
-                        }
-                    );
-
-                }else{
-
-                    await addDoc(
-                        collection(
-                            db,
-                            "weeks"
-                        ),
-                        data
-                    );
-
-                }
-
-                toast(
-                    "Week saved."
-                );
-
-                clearWeek();
-
-                await reloadContent();
-
-            }catch(error){
-
-                console.error(error);
-
-                toast(
-                    "Unable to save week."
-                );
-
-            }
-
-        }
-    );
-
-
-function clearWeek(){
-
-    $("weekId").value = "";
-
-    $("weekNumber").value = "";
-
-    $("weekHeading").value = "";
-
-    $("weekSubtitle").value = "";
-
-    $("weekDescription").value = "";
-
-    $("weekGoal").value = "";
-
-}
-
-
-$("clearWeek")
-    .addEventListener(
-        "click",
-        clearWeek
-    );
-
-
-/* =========================
-   HABIT EDITORS
-========================= */
-
-const habitTypes = [
-
-    [
-        "movement",
-        "Movement"
-    ],
-
-    [
-        "sleep",
-        "Sleep"
-    ],
-
-    [
-        "hydration",
-        "Hydration"
-    ],
-
-    [
-        "protein",
-        "Protein"
-    ],
-
-    [
-        "nutrition",
-        "Nutrition"
-    ],
-
-    [
-        "mind",
-        "Mind / Stress"
-    ],
-
-    [
-        "sunlight",
-        "Sunlight"
-    ],
-
-    [
-        "recovery",
-        "Recovery"
-    ]
-
-];
-
-
-function buildHabitEditors(){
-
-    $("habitEditors").innerHTML =
-        habitTypes.map(
-            ([key,label]) => `
-
-                <div class="card">
-
-                    <h3>
-                        ${label}
-                    </h3>
-
-                    <div class="form-grid">
-
-                        <div class="field">
-
-                            <label>
-                                Section Heading
-                            </label>
-
-                            <input
-                                id="${key}Heading"
-                                placeholder="${label}">
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label>
-                                Target / Habit
-                            </label>
-
-                            <input
-                                id="${key}Target"
-                                placeholder="Today's target">
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label>
-                                Instructions Heading
-                            </label>
-
-                            <input
-                                id="${key}InstructionHeading"
-                                value="How to do it">
-
-                        </div>
-
-
-                        <div class="field full">
-
-                            <label>
-                                Instructions
-                            </label>
-
-                            <textarea
-                                id="${key}Instruction"
-                                placeholder="Explain exactly what the member should do..."></textarea>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            `
-        ).join("");
-
-}
-
-
-buildHabitEditors();
-
-
-/* =========================
-   SAVE DAY
-========================= */
-
-$("saveDay")
-    .addEventListener(
-        "click",
-        async () => {
-
-            const id =
-                value("dayId");
-
-            const data = {
-
-                week:
-                    numberValue(
-                        "dayWeek"
-                    ),
-
-                day:
-                    numberValue(
-                        "dayNumber"
-                    ),
-
-                showOnDay:
-                    numberValue(
-                        "showOnDay"
-                    ),
-
-                phase:
-                    value("dayPhase"),
-
-                heading:
-                    value("dayHeading"),
-
-                title:
-                    value("dayTitle"),
-
-                introduction:
-                    value("dayIntroduction")
-
-            };
-
-
-            habitTypes.forEach(
-                ([key]) => {
-
-                    data[key] = {
-
-                        heading:
-                            value(
-                                key +
-                                "Heading"
-                            ),
-
-                        target:
-                            value(
-                                key +
-                                "Target"
-                            ),
-
-                        instructionHeading:
-                            value(
-                                key +
-                                "InstructionHeading"
-                            ),
-
-                        instruction:
-                            value(
-                                key +
-                                "Instruction"
-                            )
-
-                    };
-
-                }
-            );
-
-
-            try{
-
-                if(id){
-
-                    await setDoc(
-                        doc(
-                            db,
-                            "days",
-                            id
-                        ),
-                        data,
-                        {
-                            merge:true
-                        }
-                    );
-
-                }else{
-
-                    await addDoc(
-                        collection(
-                            db,
-                            "days"
-                        ),
-                        data
-                    );
-
-                }
-
-                toast(
-                    "Day saved."
-                );
-
-                clearDay();
-
-                await reloadContent();
-
-            }catch(error){
-
-                console.error(error);
-
-                toast(
-                    "Unable to save day."
-                );
-
-            }
-
-        }
-    );
-
-
-function clearDay(){
-
-    $("dayId").value = "";
-
-    $("dayNumber").value = "";
-
-    $("showOnDay").value = "";
-
-    $("dayPhase").value = "";
-
-    $("dayHeading").value = "";
-
-    $("dayTitle").value = "";
-
-    $("dayIntroduction").value = "";
-
-    habitTypes.forEach(
-        ([key]) => {
-
-            $(""+key+"Heading").value = "";
-
-            $(""+key+"Target").value = "";
-
-            $(""+key+"InstructionHeading")
-                .value =
-                "How to do it";
-
-            $(""+key+"Instruction").value = "";
-
-        }
-    );
-
-}
-
-
-$("clearDay")
-    .addEventListener(
-        "click",
-        clearDay
-    );
-
-
-/* =========================
-   EDIT DAY
-========================= */
-
-window.editDay =
-function(id){
-
-    const item =
-        days.find(
-            day =>
-                day.id === id
-        );
-
-    if(!item) return;
-
-    $("dayId").value =
-        item.id;
-
-    $("dayWeek").value =
-        item.week || "";
-
-    $("dayNumber").value =
-        item.day || "";
-
-    $("showOnDay").value =
-        item.showOnDay ||
-        item.day ||
-        "";
-
-    $("dayPhase").value =
-        item.phase || "";
-
-    $("dayHeading").value =
-        item.heading ||
-        `Day ${item.day}`;
-
-    $("dayTitle").value =
-        item.title || "";
-
-    $("dayIntroduction").value =
-        item.introduction || "";
-
-
-    habitTypes.forEach(
-        ([key]) => {
-
-            const habit =
-                item[key] || {};
-
-            $(""+key+"Heading").value =
-                habit.heading || "";
-
-            $(""+key+"Target").value =
-                habit.target || "";
-
-            $(""+key+"InstructionHeading")
-                .value =
-                habit.instructionHeading ||
-                "How to do it";
-
-            $(""+key+"Instruction").value =
-                habit.instruction || "";
-
-        }
-    );
-
-};
-
-
-window.previewDayById =
-function(id){
-
-    const item =
-        days.find(
-            day =>
-                day.id === id
-        );
-
-    if(!item) return;
-
-    previewDayData(
-        item
-    );
-
-};
-
-
-/* =========================
-   DAY PREVIEW
-========================= */
-
-$("previewDay")
-    .addEventListener(
-        "click",
-        () => {
-
-            const item =
-                collectDayFromForm();
-
-            previewDayData(
-                item
-            );
-
-        }
-    );
-
-
-function collectDayFromForm(){
-
-    const data = {
-
-        week:
-            numberValue("dayWeek"),
-
-        day:
-            numberValue("dayNumber"),
-
-        phase:
-            value("dayPhase"),
-
-        heading:
-            value("dayHeading"),
-
-        title:
-            value("dayTitle"),
-
-        introduction:
-            value("dayIntroduction")
-
-    };
-
-
-    habitTypes.forEach(
-        ([key]) => {
-
-            data[key] = {
-
-                heading:
-                    value(
-                        key +
-                        "Heading"
-                    ),
-
-                target:
-                    value(
-                        key +
-                        "Target"
-                    ),
-
-                instructionHeading:
-                    value(
-                        key +
-                        "InstructionHeading"
-                    ),
-
-                instruction:
-                    value(
-                        key +
-                        "Instruction"
-                    )
-
-            };
-
-        }
-    );
-
-    return data;
-
-}
-
-
-function previewDayData(
-    data
-){
-
-    let content = "";
-
-    habitTypes.forEach(
-        ([key]) => {
-
-            const item =
-                data[key];
-
-            if(
-                !item ||
-                (
-                    !item.target &&
-                    !item.instruction
-                )
-            ){
-
-                return;
-
-            }
-
-            content += `
-
-                <div class="client-card">
-
-                    <h3>
-                        ${escapeHTML(
-                            item.heading ||
-                            key
-                        )}
-                    </h3>
-
-                    ${
-                        item.target
-                            ? `
-                                <div>
-                                    <strong>
-                                        ${escapeHTML(
-                                            item.target
-                                        )}
-                                    </strong>
-                                </div>
-                            `
-                            : ""
-                    }
-
-                    ${
-                        item.instruction
-                            ? `
-                                <div class="instruction">
-
-                                    <strong>
-                                        ${escapeHTML(
-                                            item.instructionHeading ||
-                                            "How to do it"
-                                        )}
-                                    </strong>
-
-                                    <br><br>
-
-                                    ${escapeHTML(
-                                        item.instruction
-                                    )}
-
-                                </div>
-                            `
-                            : ""
-                    }
-
-                </div>
-
-            `;
-
-        }
-    );
-
-
-    $("previewScreen").innerHTML = `
-
-        <div class="client-page">
-
-            <div class="client-hero">
-
-                <div class="eyebrow">
-
-                    ${escapeHTML(
-                        data.phase ||
-                        "90-Day Journey"
-                    )}
-
-                </div>
-
-                <h1>
-
-                    ${escapeHTML(
-                        data.heading ||
-                        `Day ${data.day || ""}`
-                    )}
-
-                </h1>
-
-                <p>
-
-                    ${escapeHTML(
-                        data.title ||
-                        ""
-                    )}
-
-                </p>
-
-                ${
-                    data.introduction
-                        ? `
-                            <p style="margin-top:15px">
-                                ${escapeHTML(
-                                    data.introduction
-                                )}
-                            </p>
-                        `
-                        : ""
-                }
-
-            </div>
-
-
-            ${content}
-
-
-            <div class="client-complete">
-
-                ☐ Mark this day as completed
-
-            </div>
-
-        </div>
-
-    `;
-
-
-    openPreview();
-
-}
-
-
-/* =========================
-   LESSONS
-========================= */
-
-$("saveLesson")
-    .addEventListener(
-        "click",
-        async () => {
-
-            const id =
-                value("lessonId");
-
-            const data = {
-
-                title:
-                    value("lessonTitle"),
-
-                subtitle:
-                    value("lessonSubtitle"),
-
-                description:
-                    value("lessonDescription"),
-
-                content:
-                    value("lessonContent"),
-
-                showOnDay:
-                    numberValue(
-                        "lessonShowOnDay"
-                    ) || 1
-
-            };
-
-            try{
-
-                if(id){
-
-                    await setDoc(
-                        doc(
-                            db,
-                            "lessons",
-                            id
-                        ),
-                        data,
-                        {
-                            merge:true
-                        }
-                    );
-
-                }else{
-
-                    await addDoc(
-                        collection(
-                            db,
-                            "lessons"
-                        ),
-                        data
-                    );
-
-                }
-
-                toast(
-                    "Lesson saved."
-                );
-
-                clearLesson();
-
-                await reloadContent();
-
-            }catch(error){
-
-                console.error(error);
-
-                toast(
-                    "Unable to save lesson."
-                );
-
-            }
-
-        }
-    );
-
-
-function clearLesson(){
-
-    $("lessonId").value = "";
-
-    $("lessonTitle").value = "";
-
-    $("lessonSubtitle").value = "";
-
-    $("lessonDescription").value = "";
-
-    $("lessonContent").value = "";
-
-    $("lessonShowOnDay").value = 1;
-
-}
-
-
-$("clearLesson")
-    .addEventListener(
-        "click",
-        clearLesson
-    );
-
-
-window.editLesson =
-function(id){
-
-    const item =
-        lessons.find(
-            lesson =>
-                lesson.id === id
-        );
-
-    if(!item) return;
-
-    $("lessonId").value =
-        item.id;
-
-    $("lessonTitle").value =
-        item.title || "";
-
-    $("lessonSubtitle").value =
-        item.subtitle || "";
-
-    $("lessonDescription").value =
-        item.description || "";
-
-    $("lessonContent").value =
-        item.content || "";
-
-    $("lessonShowOnDay").value =
-        item.showOnDay || 1;
-
-};
-
-
-window.previewLessonById =
-function(id){
-
-    const item =
-        lessons.find(
-            lesson =>
-                lesson.id === id
-        );
-
-    if(!item) return;
-
-    previewLessonData(
-        item
-    );
-
-};
-
-
-$("previewLesson")
-    .addEventListener(
-        "click",
-        () => {
-
-            previewLessonData({
-
-                title:
-                    value("lessonTitle"),
-
-                subtitle:
-                    value("lessonSubtitle"),
-
-                description:
-                    value("lessonDescription"),
-
-                content:
-                    value("lessonContent")
-
-            });
-
-        }
-    );
-
-
-function previewLessonData(
-    data
-){
-
-    $("previewScreen").innerHTML = `
-
-        <div class="client-page">
-
-            <div class="client-hero">
-
-                <div class="eyebrow">
-                    LESSON
-                </div>
-
-                <h1>
-                    ${escapeHTML(
-                        data.title ||
-                        "Lesson"
-                    )}
-                </h1>
-
-                <p>
-                    ${escapeHTML(
-                        data.subtitle ||
-                        ""
-                    )}
-                </p>
-
-            </div>
-
-
-            ${
-                data.description
-                    ? `
-                        <div class="client-card">
-
-                            <h3>
-                                About This Lesson
-                            </h3>
-
-                            <p>
-                                ${escapeHTML(
-                                    data.description
-                                )}
-                            </p>
-
-                        </div>
-                    `
-                    : ""
-            }
-
-
-            <div class="client-card">
-
-                <h3>
-                    Lesson
-                </h3>
-
-                <div style="line-height:1.8;white-space:pre-wrap">
-
-                    ${escapeHTML(
-                        data.content ||
-                        "Your lesson content will appear here."
-                    )}
-
-                </div>
-
-            </div>
-
-        </div>
-
-    `;
-
-    openPreview();
-
-}
-
-
-/* =========================
-   LIFETIME
-========================= */
-
-$("saveLifetime")
-    .addEventListener(
-        "click",
-        async () => {
-
-            const id =
-                value("lifetimeId");
-
-            const habits =
-                value(
-                    "lifetimeHabits"
-                )
-                .split("\n")
-                .map(
-                    item =>
-                        item.trim()
-                )
-                .filter(Boolean);
-
-            const data = {
-
-                title:
-                    value("lifetimeTitle"),
-
-                order:
-                    numberValue(
-                        "lifetimeOrder"
-                    ) || 1,
-
-                image:
-                    value("lifetimeImage"),
-
-                description:
-                    value(
-                        "lifetimeDescription"
-                    ),
-
-                habits
-
-            };
-
-            try{
-
-                if(id){
-
-                    await setDoc(
-                        doc(
-                            db,
-                            "lifetimeHabits",
-                            id
-                        ),
-                        data,
-                        {
-                            merge:true
-                        }
-                    );
-
-                }else{
-
-                    await addDoc(
-                        collection(
-                            db,
-                            "lifetimeHabits"
-                        ),
-                        data
-                    );
-
-                }
-
-                toast(
-                    "Lifetime habit saved."
-                );
-
-                clearLifetime();
-
-                await reloadContent();
-
-            }catch(error){
-
-                console.error(error);
-
-                toast(
-                    "Unable to save lifetime habit."
-                );
-
-            }
-
-        }
-    );
-
-
-function clearLifetime(){
-
-    $("lifetimeId").value = "";
-
-    $("lifetimeTitle").value = "";
-
-    $("lifetimeOrder").value = 1;
-
-    $("lifetimeImage").value = "";
-
-    $("lifetimeDescription").value = "";
-
-    $("lifetimeHabits").value = "";
-
-}
-
-
-$("clearLifetime")
-    .addEventListener(
-        "click",
-        clearLifetime
-    );
-
-
-window.editLifetime =
-function(id){
-
-    const item =
-        lifetimeHabits.find(
-            habit =>
-                habit.id === id
-        );
-
-    if(!item) return;
-
-    $("lifetimeId").value =
-        item.id;
-
-    $("lifetimeTitle").value =
-        item.title || "";
-
-    $("lifetimeOrder").value =
-        item.order || 1;
-
-    $("lifetimeImage").value =
-        item.image || "";
-
-    $("lifetimeDescription").value =
-        item.description || "";
-
-    $("lifetimeHabits").value =
-        (
-            item.habits || []
-        )
-        .map(
-            habit =>
-                typeof habit === "string"
-                    ? habit
-                    : habit.name || ""
-        )
-        .join("\n");
-
-};
-
-
-window.previewLifetimeById =
-function(id){
-
-    const item =
-        lifetimeHabits.find(
-            habit =>
-                habit.id === id
-        );
-
-    if(!item) return;
-
-    previewLifetimeData(
-        item
-    );
-
-};
-
-
-$("previewLifetime")
-    .addEventListener(
-        "click",
-        () => {
-
-            previewLifetimeData({
-
-                title:
-                    value("lifetimeTitle"),
-
-                image:
-                    value("lifetimeImage"),
-
-                description:
-                    value(
-                        "lifetimeDescription"
-                    ),
-
-                habits:
-                    value(
-                        "lifetimeHabits"
-                    )
-                    .split("\n")
-                    .filter(Boolean)
-
-            });
-
-        }
-    );
-
-
-function previewLifetimeData(
-    data
-){
-
-    $("previewScreen").innerHTML = `
-
-        <div class="client-page">
-
-            <div class="client-hero">
-
-                <div class="eyebrow">
-                    LIFETIME HABITS
-                </div>
-
-                <h1>
-                    ${escapeHTML(
-                        data.title ||
-                        "Lifetime Habit"
-                    )}
-                </h1>
-
-            </div>
-
-
-            ${
-                data.image
-                    ? `
-                        <div class="client-card">
-
-                            <img
-                                src="${escapeHTML(
-                                    data.image
-                                )}"
-                                style="
-                                    width:100%;
-                                    max-height:430px;
-                                    object-fit:cover;
-                                    border-radius:14px;
-                                "
-                                alt="">
-
-                        </div>
-                    `
-                    : ""
-            }
-
-
-            <div class="client-card">
-
-                ${
-                    data.description
-                        ? `
-                            <p style="line-height:1.7">
-                                ${escapeHTML(
-                                    data.description
-                                )}
-                            </p>
-                        `
-                        : ""
-                }
-
-
-                ${
-                    (
-                        data.habits ||
-                        []
-                    )
-                    .map(
-                        habit => `
-
-                            <div class="instruction">
-
-                                ✓
-                                ${escapeHTML(
-                                    typeof habit === "string"
-                                        ? habit
-                                        : habit.name || ""
-                                )}
-
-                            </div>
-
-                        `
-                    )
-                    .join("")
-                }
-
-            </div>
-
-        </div>
-
-    `;
-
-    openPreview();
-
-}
-
-
-/* =========================
-   COMMUNITY
-========================= */
-
-$("savePost")
-    .addEventListener(
-        "click",
-        async () => {
-
-            const id =
-                value("postId");
-
-            const data = {
-
-                title:
-                    value("postTitle"),
-
-                type:
-                    value("postType"),
-
-                content:
-                    value("postContent"),
-
-                createdAt:
-                    new Date().toISOString()
-
-            };
-
-            try{
-
-                if(id){
-
-                    await setDoc(
-                        doc(
-                            db,
-                            "communityPosts",
-                            id
-                        ),
-                        data,
-                        {
-                            merge:true
-                        }
-                    );
-
-                }else{
-
-                    await addDoc(
-                        collection(
-                            db,
-                            "communityPosts"
-                        ),
-                        data
-                    );
-
-                }
-
-                toast(
-                    "Post published."
-                );
-
-                $("postId").value = "";
-
-                $("postTitle").value = "";
-
-                $("postContent").value = "";
-
-                await reloadContent();
-
-            }catch(error){
-
-                console.error(error);
-
-                toast(
-                    "Unable to publish post."
-                );
-
-            }
-
-        }
-    );
-
-
-/* =========================
-   RENDER JOURNEY
-========================= */
-
-function renderJourney(){
-
-    $("contentCount")
-        .textContent =
-        days.length;
-
-
-    const phaseMap = {};
-
-
-    phases
-        .forEach(
-            phase => {
-
-                phaseMap[
-                    phase.phase
-                ] = {
-
-                    ...phase,
-                    weeks: []
-
-                };
-
-            }
-        );
-
-
-    for(
-        let i=1;
-        i<=3;
-        i++
-    ){
-
-        if(!phaseMap[i]){
-
-            phaseMap[i] = {
-
-                phase:i,
-
-                heading:
-                    `Phase ${i}`,
-
-                description:"",
-
-                weeks:[]
-
-            };
-
-        }
-
-    }
-
-
-    weeks
-        .sort(
-            (a,b) =>
-                Number(a.week || 0) -
-                Number(b.week || 0)
-        )
-        .forEach(
-            week => {
-
-                const phase =
-                    Number(
-                        week.phase || 1
-                    );
-
-                if(!phaseMap[phase]){
-
-                    phaseMap[phase] = {
-
-                        phase,
-
-                        heading:
-                            `Phase ${phase}`,
-
-                        description:"",
-
-                        weeks:[]
-
-                    };
-
-                }
-
-                phaseMap[
-                    phase
-                ].weeks.push(
-                    week
-                );
-
-            }
-        );
-
-
-    let html = "";
-
-
-    Object.values(
-        phaseMap
-    )
-    .sort(
-        (a,b) =>
-            a.phase-b.phase
-    )
-    .forEach(
-        phase => {
-
-            html += `
-
-                <div class="phase-card">
-
-                    <div class="phase-header">
-
-                        <div>
-
-                            <div class="phase-title">
-
-                                Phase ${phase.phase}
-                                ·
-                                ${escapeHTML(
-                                    phase.heading ||
-                                    ""
-                                )}
-
-                            </div>
-
-                            <small>
-
-                                ${escapeHTML(
-                                    phase.description ||
-                                    ""
-                                )}
-
-                            </small>
-
-                        </div>
-
-                        <button
-                            class="small-btn"
-                            onclick="editPhase('${phase.id || ""}')">
-
-                            Edit Phase
-
-                        </button>
-
-                    </div>
-
-
-                    <div class="phase-body">
-
-                        ${
-                            phase.weeks.length
-                                ? phase.weeks.map(
-                                    week => {
-
-                                        const weekDays =
-                                            days
-                                            .filter(
-                                                day =>
-                                                    Number(
-                                                        day.week
-                                                    ) ===
-                                                    Number(
-                                                        week.week
-                                                    )
-                                            )
-                                            .sort(
-                                                (a,b) =>
-                                                    Number(a.day) -
-                                                    Number(b.day)
-                                            );
-
-                                        return `
-
-                                            <div class="week-card">
-
-                                                <div class="week-header">
-
-                                                    <div class="week-title">
-
-                                                        Week
-                                                        ${week.week}
-                                                        ·
-                                                        ${escapeHTML(
-                                                            week.heading ||
-                                                            ""
-                                                        )}
-
-                                                    </div>
-
-                                                    <button
-                                                        class="small-btn"
-                                                        onclick="editWeek('${week.id}')">
-
-                                                        Edit Week
-
-                                                    </button>
-
-                                                </div>
-
-
-                                                <div class="day-list">
-
-                                                    ${
-                                                        weekDays.length
-                                                            ? weekDays.map(
-                                                                day => `
-
-                                                                    <div class="day-row">
-
-                                                                        <div>
-
-                                                                            <strong>
-                                                                                ${escapeHTML(
-                                                                                    day.heading ||
-                                                                                    `Day ${day.day}`
-                                                                                )}
-                                                                            </strong>
-
-                                                                            <small>
-                                                                                ${
-                                                                                    day.title
-                                                                                        ? " · " +
-                                                                                          escapeHTML(
-                                                                                              day.title
-                                                                                          )
-                                                                                        : ""
-                                                                                }
-                                                                            </small>
-
-                                                                        </div>
-
-
-                                                                        <div class="day-actions">
-
-                                                                            <button
-                                                                                class="small-btn"
-                                                                                onclick="editDay('${day.id}')">
-
-                                                                                Edit
-
-                                                                            </button>
-
-                                                                            <button
-                                                                                class="small-btn preview"
-                                                                                onclick="previewDayById('${day.id}')">
-
-                                                                                👁 Preview
-
-                                                                            </button>
-
-                                                                        </div>
-
-                                                                    </div>
-
-                                                                `
-                                                            ).join("")
-                                                            : `
-                                                                <div>
-                                                                    No days added yet.
-                                                                </div>
-                                                            `
-                                                    }
-
-                                                </div>
-
-                                            </div>
-
-                                        `;
-
-                                    }
-                                ).join("")
-                                : `
-                                    <p>
-                                        No weeks added yet.
-                                    </p>
-                                `
-                        }
-
-                    </div>
-
-                </div>
-
-            `;
-
-        }
-    );
-
-
-    $("journeyTree").innerHTML =
-        html;
-
-
-    populateWeekSelect();
-
-}
-
-
-window.editPhase =
-function(id){
-
-    const item =
-        phases.find(
-            phase =>
-                phase.id === id
-        );
-
-    if(!item) return;
-
-    $("phaseId").value =
-        item.id;
-
-    $("phaseNumber").value =
-        item.phase;
-
-    $("phaseHeading").value =
-        item.heading || "";
-
-    $("phaseDescription").value =
-        item.description || "";
-
-};
-
-
-window.editWeek =
-function(id){
-
-    const item =
-        weeks.find(
-            week =>
-                week.id === id
-        );
-
-    if(!item) return;
-
-    $("weekId").value =
-        item.id;
-
-    $("weekPhase").value =
-        item.phase || 1;
-
-    $("weekNumber").value =
-        item.week || "";
-
-    $("weekHeading").value =
-        item.heading || "";
-
-    $("weekSubtitle").value =
-        item.subtitle || "";
-
-    $("weekDescription").value =
-        item.description || "";
-
-    $("weekGoal").value =
-        item.goal || "";
-
-};
-
-
-function populateWeekSelect(){
-
-    const select =
-        $("dayWeek");
-
-    select.innerHTML =
-        weeks
-        .sort(
-            (a,b) =>
-                Number(a.week || 0) -
-                Number(b.week || 0)
-        )
-        .map(
-            week => `
-
-                <option value="${week.week}">
-
-                    Week ${week.week}
-                    ·
-                    ${escapeHTML(
-                        week.heading ||
-                        ""
-                    )}
-
-                </option>
-
-            `
-        )
-        .join("");
-
-}
-
-
-/* =========================
-   LESSON LIST
-========================= */
-
-function renderLessons(){
-
-    $("lessonCount")
-        .textContent =
-        lessons.length;
-
-
-    if(!lessons.length){
-
-        $("lessonsList").innerHTML =
-            "No lessons added yet.";
-
-        return;
-
-    }
-
-
-    $("lessonsList").innerHTML =
-        lessons.map(
-            item => `
-
-                <div class="member-row">
-
-                    <div class="member-info">
-
-                        <strong>
-                            ${escapeHTML(
-                                item.title ||
-                                "Lesson"
-                            )}
-                        </strong>
-
-                        <small>
-                            Shows on Day
-                            ${item.showOnDay || 1}
-                        </small>
-
-                    </div>
-
-
-                    <div class="day-actions">
-
-                        <button
-                            class="small-btn"
-                            onclick="editLesson('${item.id}')">
-
-                            Edit
-
-                        </button>
-
-                        <button
-                            class="small-btn preview"
-                            onclick="previewLessonById('${item.id}')">
-
-                            👁 Preview
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            `
-        ).join("");
-
-}
-
-
-/* =========================
-   LIFETIME LIST
-========================= */
-
-function renderLifetime(){
-
-    $("lifetimeCount")
-        .textContent =
-        lifetimeHabits.length;
-
-
-    if(!lifetimeHabits.length){
-
-        $("lifetimeList").innerHTML =
-            "No lifetime habits added yet.";
-
-        return;
-
-    }
-
-
-    $("lifetimeList").innerHTML =
-        lifetimeHabits
-        .sort(
-            (a,b) =>
-                Number(
-                    a.order || 0
-                ) -
-                Number(
-                    b.order || 0
-                )
-        )
-        .map(
-            item => `
-
-                <div class="member-row">
-
-                    <div class="member-info">
-
-                        <strong>
-                            ${escapeHTML(
-                                item.title ||
-                                "Lifetime Habit"
-                            )}
-                        </strong>
-
-                        <small>
-                            Order
-                            ${item.order || 1}
-                        </small>
-
-                    </div>
-
-
-                    <div class="day-actions">
-
-                        <button
-                            class="small-btn"
-                            onclick="editLifetime('${item.id}')">
-
-                            Edit
-
-                        </button>
-
-                        <button
-                            class="small-btn preview"
-                            onclick="previewLifetimeById('${item.id}')">
-
-                            👁 Preview
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            `
-        ).join("");
-
-}
-
-
-/* =========================
-   COMMUNITY LIST
-========================= */
-
-function renderPosts(){
-
-    if(!posts.length){
-
-        $("postsList").innerHTML =
-            "No posts yet.";
-
-        return;
-
-    }
-
-
-    $("postsList").innerHTML =
-        posts
-        .sort(
-            (a,b) =>
-                String(
-                    b.createdAt || ""
-                ).localeCompare(
-                    String(
-                        a.createdAt || ""
-                    )
-                )
-        )
-        .map(
-            item => `
-
-                <div class="member-row">
-
-                    <div class="member-info">
-
-                        <strong>
-                            ${escapeHTML(
-                                item.title ||
-                                "Community Post"
-                            )}
-                        </strong>
-
-                        <small>
-                            ${escapeHTML(
-                                item.type ||
-                                "community"
-                            )}
-                        </small>
-
-                    </div>
-
-                </div>
-
-            `
-        ).join("");
-
-}
-
-
-/* =========================
-   RELOAD
-========================= */
-
-async function reloadContent(){
-
-    await Promise.all([
-
-        loadCollection(
-            "phases",
-            phases,
-            data => phases = data
-        ),
-
-        loadCollection(
-            "weeks",
-            weeks,
-            data => weeks = data
-        ),
-
-        loadCollection(
-            "days",
-            days,
-            data => days = data
-        ),
-
-        loadCollection(
-            "lessons",
-            lessons,
-            data => lessons = data
-        ),
-
-        loadCollection(
-            "lifetimeHabits",
-            lifetimeHabits,
-            data => lifetimeHabits = data
-        ),
-
-        loadCollection(
-            "communityPosts",
-            posts,
-            data => posts = data
-        )
-
-    ]);
-
-    renderEverything();
-
-}
-
-
-function renderEverything(){
-
-    renderMembers();
-
-    renderJourney();
-
-    renderLessons();
-
-    renderLifetime();
-
-    renderPosts();
-
-}
-
-
-/* =========================
-   PREVIEW
-========================= */
-
-function openPreview(){
-
-    $("previewOverlay")
-        .classList.add(
-            "active"
-        );
-
-}
-
-
-$("closePreview")
-    .addEventListener(
-        "click",
-        () => {
-
-            $("previewOverlay")
-                .classList.remove(
-                    "active"
-                );
-
-        }
-    );
-
-
-/* =========================
-   LOGOUT
-========================= */
-
-$("logoutBtn")
-    .addEventListener(
-        "click",
-        async () => {
-
-            await signOut(
-                auth
-            );
-
-            window.location.href =
-                "login.html";
-
-        }
-    );
+/* FIREBASE WILL BE ADDED IN PART 2 */
 
 </script>
 
 </body>
 </html>
-```
