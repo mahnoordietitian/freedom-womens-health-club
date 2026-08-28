@@ -1,35 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FWHC Admin Panel</title>
+<title>Freedom Women's Health Club — Admin</title>
 
 <style>
 
-:root {
+:root{
     --cream:#FBF8F3;
     --plum:#6E4A7E;
     --charcoal:#2D2D2D;
     --champagne:#DCCBB3;
     --taupe:#B7A89A;
     --white:#FFFFFF;
-    --light-plum:#F1EAF3;
-    --border:#E7DED4;
+    --light:#F1EAF3;
+    --border:#E6DDD3;
     --danger:#A44A4A;
 }
 
-* {
+*{
     box-sizing:border-box;
-    margin:0;
-    padding:0;
 }
 
-body {
+body{
+    margin:0;
     font-family:Arial,sans-serif;
     background:var(--cream);
     color:var(--charcoal);
@@ -38,446 +35,388 @@ body {
 button,
 input,
 textarea,
-select {
-    font-family:inherit;
+select{
+    font:inherit;
 }
 
-button {
+button{
     cursor:pointer;
 }
 
 input,
 textarea,
-select {
+select{
     width:100%;
-    padding:13px;
+    padding:12px;
     border:1px solid var(--border);
     border-radius:9px;
     background:white;
     color:var(--charcoal);
-    outline:none;
 }
 
-textarea {
-    min-height:140px;
+textarea{
+    min-height:130px;
     resize:vertical;
 }
 
-input:focus,
-textarea:focus,
-select:focus {
-    border-color:var(--plum);
-}
-
-/* LOGIN */
-
-#loginPage {
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-}
-
-.login-box {
-    width:100%;
-    max-width:420px;
-    background:white;
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:40px;
-    box-shadow:0 15px 40px rgba(0,0,0,.06);
-}
-
-.login-logo {
-    text-align:center;
-    margin-bottom:30px;
-}
-
-.login-logo h1 {
-    color:var(--plum);
-    font-size:23px;
-    line-height:1.3;
-}
-
-.login-logo p {
-    color:#777;
-    margin-top:8px;
-}
-
-.form-group {
-    margin-bottom:18px;
-}
-
-.form-group label {
+label{
     display:block;
     font-size:13px;
     font-weight:bold;
     margin-bottom:7px;
 }
 
-.btn {
-    border:none;
-    background:var(--plum);
-    color:white;
-    padding:12px 18px;
-    border-radius:9px;
-    font-size:14px;
+.form-group{
+    margin-bottom:18px;
 }
 
-.btn:hover {
-    opacity:.9;
+/* LOGIN */
+
+#loginPage{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
 }
 
-.btn-secondary {
-    background:var(--champagne);
-    color:var(--charcoal);
+.login-box{
+    width:100%;
+    max-width:420px;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    border:1px solid var(--border);
+    box-shadow:0 15px 40px rgba(0,0,0,.07);
 }
 
-.btn-danger {
-    background:var(--danger);
-    color:white;
-}
-
-.login-error {
-    color:#B33;
+.login-box h1{
+    color:var(--plum);
     text-align:center;
-    margin-top:15px;
-    font-size:13px;
+    font-size:23px;
+    line-height:1.3;
+}
+
+.login-box p{
+    text-align:center;
+    color:#777;
+}
+
+.login-error{
+    color:var(--danger)!important;
 }
 
 /* ADMIN */
 
-#adminApp {
+#adminApp{
     display:none;
 }
 
-.sidebar {
+.sidebar{
     position:fixed;
     left:0;
     top:0;
+    bottom:0;
     width:245px;
-    height:100vh;
     background:var(--plum);
     color:white;
     padding:28px 18px;
 }
 
-.logo {
-    padding:0 12px 30px;
+.logo{
+    padding:0 10px 30px;
 }
 
-.logo h1 {
+.logo h2{
     font-size:19px;
-    line-height:1.35;
+    line-height:1.4;
+    margin:0;
 }
 
-.logo span {
-    display:block;
-    font-size:12px;
-    opacity:.75;
-    margin-top:6px;
+.logo small{
+    opacity:.7;
 }
 
-.nav {
+.nav{
     display:flex;
     flex-direction:column;
-    gap:6px;
+    gap:5px;
 }
 
-.nav button {
-    border:none;
+.nav button{
+    border:0;
     background:transparent;
     color:white;
+    padding:13px;
+    border-radius:9px;
     text-align:left;
-    padding:13px 14px;
-    border-radius:10px;
-    font-size:14px;
 }
 
 .nav button:hover,
-.nav button.active {
+.nav button.active{
     background:rgba(255,255,255,.15);
 }
 
-.main {
+.main{
     margin-left:245px;
+    padding:30px;
     min-height:100vh;
-    padding:35px;
 }
 
-.topbar {
+.topbar{
     display:flex;
     justify-content:space-between;
     align-items:center;
     margin-bottom:30px;
 }
 
-.topbar h2 {
-    font-size:28px;
+.topbar h1{
+    margin:0;
 }
 
-.admin-actions {
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.admin-label {
-    background:var(--light-plum);
+.admin-pill{
+    background:var(--light);
     color:var(--plum);
-    padding:9px 15px;
+    padding:9px 14px;
     border-radius:30px;
     font-size:13px;
 }
 
-.section {
+.btn{
+    border:0;
+    background:var(--plum);
+    color:white;
+    padding:11px 17px;
+    border-radius:9px;
+}
+
+.btn-secondary{
+    background:var(--champagne);
+    color:var(--charcoal);
+}
+
+.btn-danger{
+    background:var(--danger);
+}
+
+.section{
     display:none;
 }
 
-.section.active {
+.section.active{
     display:block;
 }
 
 /* CARDS */
 
-.stats {
+.stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:18px;
-    margin-bottom:25px;
 }
 
-.card {
+.card{
     background:white;
     border:1px solid var(--border);
-    border-radius:16px;
+    border-radius:15px;
     padding:22px;
 }
 
-.stat-number {
+.stat{
     font-size:30px;
-    font-weight:bold;
     color:var(--plum);
+    font-weight:bold;
     margin-top:8px;
-}
-
-/* TABLE */
-
-.table-card {
-    background:white;
-    border:1px solid var(--border);
-    border-radius:16px;
-    overflow:hidden;
-}
-
-.table-header {
-    padding:20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:1px solid var(--border);
-}
-
-table {
-    width:100%;
-    border-collapse:collapse;
-}
-
-th,
-td {
-    padding:15px 20px;
-    text-align:left;
-    border-bottom:1px solid var(--border);
-    font-size:14px;
-}
-
-th {
-    background:var(--cream);
-}
-
-/* FORM */
-
-.form-card {
-    max-width:850px;
-    background:white;
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:28px;
-}
-
-.form-actions {
-    margin-top:22px;
-    display:flex;
-    gap:8px;
 }
 
 /* CLASSROOM */
 
-.classroom-toolbar {
+.toolbar{
     display:flex;
     justify-content:space-between;
     align-items:center;
     margin-bottom:20px;
 }
 
-.tree {
+.tree{
     background:white;
     border:1px solid var(--border);
-    border-radius:16px;
+    border-radius:15px;
     padding:20px;
 }
 
-.tree-item {
-    margin-bottom:8px;
+.tree-item{
+    margin-bottom:7px;
 }
 
-.tree-row {
+.tree-row{
     display:flex;
     align-items:center;
     gap:8px;
-    padding:13px 12px;
-    border-radius:10px;
-    background:#FCFAF7;
+    padding:12px;
     border:1px solid var(--border);
+    background:#FCFAF7;
+    border-radius:9px;
 }
 
-.tree-row:hover {
-    background:var(--light-plum);
-}
-
-.tree-toggle {
-    width:28px;
-    height:28px;
-    border:none;
-    background:transparent;
-    color:var(--plum);
-    font-size:16px;
-}
-
-.tree-icon {
-    font-size:18px;
-}
-
-.tree-title {
+.tree-title{
     flex:1;
     font-weight:bold;
 }
 
-.tree-meta {
+.tree-meta{
     font-size:12px;
     color:#777;
 }
 
-.tree-actions {
+.tree-toggle{
+    border:0;
+    background:none;
+    color:var(--plum);
+    width:25px;
+}
+
+.children{
+    display:none;
+    margin-left:30px;
+    margin-top:7px;
+}
+
+.children.open{
+    display:block;
+}
+
+.actions{
     display:flex;
     gap:5px;
 }
 
-.small-btn {
+.small{
     border:1px solid var(--border);
     background:white;
-    padding:6px 9px;
-    border-radius:7px;
+    padding:6px 8px;
+    border-radius:6px;
     font-size:12px;
 }
 
-.small-btn:hover {
-    background:var(--light-plum);
-}
+/* FORMS */
 
-.children {
-    margin-left:30px;
-    margin-top:8px;
-    display:none;
-}
-
-.children.open {
-    display:block;
-}
-
-.empty {
-    text-align:center;
-    color:#888;
-    padding:40px;
-}
-
-/* CHECKBOX */
-
-.checkbox-row {
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin:15px 0;
-}
-
-.checkbox-row input {
-    width:auto;
-}
-
-/* DAY EDITOR */
-
-.editor-title {
-    color:var(--plum);
-    margin-bottom:22px;
-}
-
-.editor-section {
+.form-card{
+    max-width:900px;
+    background:white;
     border:1px solid var(--border);
-    border-radius:12px;
+    border-radius:15px;
+    padding:28px;
+}
+
+.form-actions{
+    display:flex;
+    gap:8px;
+    margin-top:20px;
+}
+
+.editor-section{
+    border:1px solid var(--border);
     padding:20px;
+    border-radius:12px;
     margin-top:18px;
 }
 
-.editor-section h4 {
+.editor-section h3{
     color:var(--plum);
-    margin-bottom:15px;
+    margin-top:0;
 }
 
-.preview-box {
+/* TABLE */
+
+.table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.table th,
+.table td{
+    padding:14px;
+    border-bottom:1px solid var(--border);
+    text-align:left;
+    font-size:14px;
+}
+
+.table th{
     background:var(--cream);
+}
+
+.table-card{
+    background:white;
     border:1px solid var(--border);
-    border-radius:12px;
-    padding:25px;
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.table-head{
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* PREVIEW */
+
+.preview{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:30px;
     line-height:1.7;
 }
 
-.preview-box h2 {
+.preview h2,
+.preview h3{
     color:var(--plum);
-    margin-bottom:10px;
 }
 
-.preview-box h3 {
-    color:var(--plum);
-    margin-top:20px;
-    margin-bottom:7px;
+.empty{
+    text-align:center;
+    padding:40px;
+    color:#888;
+}
+
+.checkbox{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    margin:15px 0;
+}
+
+.checkbox input{
+    width:auto;
 }
 
 /* MOBILE */
 
-@media(max-width:900px) {
+@media(max-width:900px){
 
-    .sidebar {
-        width:75px;
-        padding:20px 8px;
+    .sidebar{
+        width:70px;
+        padding:20px 7px;
     }
 
-    .logo h1,
-    .logo span {
+    .logo h2,
+    .logo small{
         display:none;
     }
 
-    .nav button {
+    .nav button{
         font-size:0;
         text-align:center;
     }
 
-    .main {
-        margin-left:75px;
+    .main{
+        margin-left:70px;
         padding:20px;
     }
 
-    .stats {
+    .stats{
         grid-template-columns:repeat(2,1fr);
     }
 
@@ -487,146 +426,124 @@ th {
 
 </head>
 
-
 <body>
 
 
-<!-- =====================================================
-     LOGIN
-===================================================== -->
+<!-- LOGIN -->
 
 <div id="loginPage">
 
-    <div class="login-box">
+<div class="login-box">
 
-        <div class="login-logo">
+<h1>
+FREEDOM WOMEN'S<br>
+HEALTH CLUB
+</h1>
 
-            <h1>
-                FREEDOM WOMEN'S<br>
-                HEALTH CLUB
-            </h1>
+<p>Admin Panel</p>
 
-            <p>
-                Admin Panel
-            </p>
+<div class="form-group">
 
-        </div>
+<label>Email</label>
 
+<input
+id="email"
+type="email"
+placeholder="Admin email"
+>
 
-        <div class="form-group">
+</div>
 
-            <label>Email</label>
+<div class="form-group">
 
-            <input
-                id="loginEmail"
-                type="email"
-                placeholder="Admin email"
-            >
+<label>Password</label>
 
-        </div>
+<input
+id="password"
+type="password"
+placeholder="Password"
+>
 
+</div>
 
-        <div class="form-group">
+<button
+id="loginBtn"
+class="btn"
+style="width:100%"
+>
+Login
+</button>
 
-            <label>Password</label>
+<p
+id="loginError"
+class="login-error"
+></p>
 
-            <input
-                id="loginPassword"
-                type="password"
-                placeholder="Password"
-            >
-
-        </div>
-
-
-        <button
-            class="btn"
-            id="loginButton"
-            style="width:100%;"
-        >
-            Login
-        </button>
-
-
-        <p
-            id="loginError"
-            class="login-error"
-        ></p>
-
-    </div>
+</div>
 
 </div>
 
 
 
-<!-- =====================================================
-     ADMIN APP
-===================================================== -->
+<!-- ADMIN -->
 
 <div id="adminApp">
 
 
 <aside class="sidebar">
 
-    <div class="logo">
+<div class="logo">
 
-        <h1>
-            FREEDOM<br>
-            WOMEN'S HEALTH CLUB
-        </h1>
+<h2>
+FREEDOM<br>
+WOMEN'S HEALTH CLUB
+</h2>
 
-        <span>
-            Admin Panel
-        </span>
+<small>Admin Panel</small>
 
-    </div>
+</div>
 
 
-    <nav class="nav">
+<nav class="nav">
 
-        <button
-            class="active"
-            onclick="showSection('dashboard',this)"
-        >
-            🏠 Dashboard
-        </button>
+<button
+class="active"
+onclick="openSection('dashboard',this)"
+>
+🏠 Dashboard
+</button>
 
+<button
+onclick="openSection('members',this)"
+>
+👥 Members
+</button>
 
-        <button
-            onclick="showSection('members',this)"
-        >
-            👥 Members
-        </button>
+<button
+onclick="openSection('classroom',this)"
+>
+📚 Classroom
+</button>
 
+<button
+onclick="openSection('community',this)"
+>
+💬 Community
+</button>
 
-        <button
-            onclick="showSection('classroom',this)"
-        >
-            📚 Classroom
-        </button>
+<button
+onclick="openSection('leaderboard',this)"
+>
+🏆 Leaderboard
+</button>
 
+<button
+onclick="openSection('settings',this)"
+>
+⚙️ Settings
+</button>
 
-        <button
-            onclick="showSection('community',this)"
-        >
-            💬 Community
-        </button>
-
-
-        <button
-            onclick="showSection('leaderboard',this)"
-        >
-            🏆 Leaderboard
-        </button>
-
-
-        <button
-            onclick="showSection('settings',this)"
-        >
-            ⚙️ Settings
-        </button>
-
-    </nav>
+</nav>
 
 </aside>
 
@@ -637,306 +554,225 @@ th {
 
 <div class="topbar">
 
-    <h2 id="pageTitle">
-        Dashboard
-    </h2>
+<h1 id="pageTitle">
+Dashboard
+</h1>
 
+<div>
 
-    <div class="admin-actions">
+<span class="admin-pill">
+Admin
+</span>
 
-        <div class="admin-label">
-            Administrator
-        </div>
+<button
+class="btn btn-secondary"
+onclick="logout()"
+>
+Logout
+</button>
 
-
-        <button
-            class="btn btn-secondary"
-            onclick="logoutAdmin()"
-        >
-            Logout
-        </button>
-
-    </div>
+</div>
 
 </div>
 
 
 
-<!-- =====================================================
-     DASHBOARD
-===================================================== -->
+<!-- DASHBOARD -->
 
 <section
-    id="dashboard"
-    class="section active"
+id="dashboard"
+class="section active"
 >
 
-    <div class="stats">
+<div class="stats">
 
+<div class="card">
+Members
+<div
+class="stat"
+id="memberCount"
+>
+0
+</div>
+</div>
 
-        <div class="card">
+<div class="card">
+Active Members
+<div
+class="stat"
+id="activeCount"
+>
+0
+</div>
+</div>
 
-            <p>Total Members</p>
+<div class="card">
+Classroom Items
+<div
+class="stat"
+id="classroomCount"
+>
+0
+</div>
+</div>
 
-            <div
-                class="stat-number"
-                id="memberCount"
-            >
-                0
-            </div>
+<div class="card">
+Community Posts
+<div
+class="stat"
+id="communityCount"
+>
+0
+</div>
+</div>
 
-        </div>
+</div>
 
+<br>
 
-        <div class="card">
+<div class="card">
 
-            <p>Active Members</p>
+<h3>
+Welcome to your Freedom Club Admin Panel
+</h3>
 
-            <div
-                class="stat-number"
-                id="activeMemberCount"
-            >
-                0
-            </div>
+<p>
+Create your entire classroom from here.
+You control the branches, days and unlock schedule.
+</p>
 
-        </div>
-
-
-        <div class="card">
-
-            <p>Classroom Items</p>
-
-            <div
-                class="stat-number"
-                id="contentCount"
-            >
-                0
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <p>Community Posts</p>
-
-            <div class="stat-number">
-                0
-            </div>
-
-        </div>
-
-
-    </div>
-
-
-    <div class="card">
-
-        <h3 style="margin-bottom:10px;">
-            Freedom Women's Health Club
-        </h3>
-
-        <p style="color:#777;line-height:1.7;">
-
-            Build your classroom, manage members
-            and control exactly when content becomes
-            available.
-
-        </p>
-
-    </div>
+</div>
 
 </section>
 
 
 
-<!-- =====================================================
-     MEMBERS
-===================================================== -->
+<!-- MEMBERS -->
 
 <section
-    id="members"
-    class="section"
+id="members"
+class="section"
 >
 
-    <div class="table-card">
+<div class="table-card">
 
-        <div class="table-header">
+<div class="table-head">
 
-            <h3>
-                Members
-            </h3>
+<h2>Members</h2>
 
-            <button
-                class="btn"
-                onclick="showAddMember()"
-            >
-                + Add Member
-            </button>
+<button
+class="btn"
+onclick="openSection('addMember')"
+>
++ Add Member
+</button>
 
-        </div>
+</div>
 
+<table class="table">
 
-        <table>
+<thead>
 
-            <thead>
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Start Date</th>
+<th>Access</th>
+<th>Status</th>
+</tr>
 
-                <tr>
+</thead>
 
-                    <th>Name</th>
+<tbody id="membersTable">
 
-                    <th>Email</th>
+<tr>
+<td colspan="6" class="empty">
+Loading...
+</td>
+</tr>
 
-                    <th>Start Date</th>
+</tbody>
 
-                    <th>Access Until</th>
+</table>
 
-                    <th>Status</th>
-
-                </tr>
-
-            </thead>
-
-
-            <tbody id="memberTable">
-
-                <tr>
-
-                    <td
-                        colspan="5"
-                        class="empty"
-                    >
-                        Loading...
-                    </td>
-
-                </tr>
-
-            </tbody>
-
-        </table>
-
-    </div>
+</div>
 
 </section>
 
 
 
-<!-- =====================================================
-     ADD MEMBER
-===================================================== -->
+<!-- ADD MEMBER -->
 
 <section
-    id="addMember"
-    class="section"
+id="addMember"
+class="section"
 >
 
 <div class="form-card">
 
-<h3 style="margin-bottom:22px;">
-    Add Member
-</h3>
-
+<h2>Add Member</h2>
 
 <div class="form-group">
-
 <label>Name</label>
-
-<input
-    id="memberName"
-    placeholder="Member name"
->
-
+<input id="mName">
 </div>
 
-
 <div class="form-group">
-
 <label>Email</label>
-
-<input
-    id="memberEmail"
-    type="email"
-    placeholder="Email address"
->
-
+<input id="mEmail" type="email">
 </div>
 
-
 <div class="form-group">
-
 <label>Phone</label>
-
-<input
-    id="memberPhone"
-    placeholder="Phone number"
->
-
+<input id="mPhone">
 </div>
 
-
 <div class="form-group">
-
 <label>Start Date</label>
-
-<input
-    id="memberStart"
-    type="date"
->
-
+<input id="mStart" type="date">
 </div>
 
-
 <div class="form-group">
-
 <label>Access Until Day</label>
 
-<select id="memberAccess">
+<select id="mAccess">
 
 <option value="30">Day 30</option>
-
 <option value="60">Day 60</option>
-
 <option value="90">Day 90</option>
 
 </select>
 
 </div>
 
-
 <div class="form-group">
 
 <label>Status</label>
 
-<select id="memberStatus">
+<select id="mStatus">
 
-<option value="Active">
-Active
-</option>
-
-<option value="Inactive">
-Inactive
-</option>
+<option>Active</option>
+<option>Inactive</option>
 
 </select>
 
 </div>
 
-
 <div class="form-actions">
 
 <button
-    class="btn"
-    onclick="saveMember()"
+class="btn"
+onclick="saveMember()"
 >
-    Save Member
+Save Member
 </button>
 
-
 <button
-    class="btn btn-secondary"
-    onclick="showSection('members')"
+class="btn btn-secondary"
+onclick="openSection('members')"
 >
-    Cancel
+Cancel
 </button>
 
 </div>
@@ -947,58 +783,45 @@ Inactive
 
 
 
-<!-- =====================================================
-     CLASSROOM
-===================================================== -->
+<!-- CLASSROOM -->
 
 <section
-    id="classroom"
-    class="section"
+id="classroom"
+class="section"
 >
 
+<div class="toolbar">
 
-<div class="classroom-toolbar">
+<div>
 
-    <div>
+<h2>Classroom</h2>
 
-        <h3>
-            Classroom
-        </h3>
+<p>
+Build your program like a tree:
+Phase → Week → Day
+</p>
 
-        <p
-            style="
-                color:#777;
-                margin-top:5px;
-                font-size:13px;
-            "
-        >
-            Build your program structure.
-        </p>
+</div>
 
-    </div>
-
-
-    <button
-        class="btn"
-        onclick="openAddItem()"
-    >
-        + Add
-    </button>
+<button
+class="btn"
+onclick="newItem()"
+>
++ Add
+</button>
 
 </div>
 
 
 <div class="tree">
 
-    <div
-        id="classroomTree"
-    >
+<div id="treeContainer">
 
-        <div class="empty">
-            Loading classroom...
-        </div>
+<div class="empty">
+No classroom content yet.
+</div>
 
-    </div>
+</div>
 
 </div>
 
@@ -1006,30 +829,23 @@ Inactive
 
 
 
-<!-- =====================================================
-     ADD / EDIT CLASSROOM ITEM
-===================================================== -->
+<!-- ITEM EDITOR -->
 
 <section
-    id="itemEditor"
-    class="section"
+id="itemEditor"
+class="section"
 >
 
 <div class="form-card">
 
-<h3
-    id="itemEditorTitle"
-    class="editor-title"
->
-    Add Classroom Item
-</h3>
+<h2 id="editorHeading">
+Add Classroom Item
+</h2>
 
 
 <div class="form-group">
 
-<label>
-What are you adding?
-</label>
+<label>Type</label>
 
 <select id="itemType">
 
@@ -1052,14 +868,12 @@ Day / Lesson
 
 <div class="form-group">
 
-<label>
-Parent
-</label>
+<label>Parent</label>
 
 <select id="itemParent">
 
 <option value="">
-No Parent — Top Level
+Top Level
 </option>
 
 </select>
@@ -1069,13 +883,11 @@ No Parent — Top Level
 
 <div class="form-group">
 
-<label>
-Title
-</label>
+<label>Title</label>
 
 <input
-    id="itemTitle"
-    placeholder="e.g. Phase 1 — Reset"
+id="itemTitle"
+placeholder="Example: Phase 1 — Reset"
 >
 
 </div>
@@ -1083,13 +895,11 @@ Title
 
 <div class="form-group">
 
-<label>
-Description
-</label>
+<label>Description</label>
 
 <textarea
-    id="itemDescription"
-    placeholder="Short description..."
+id="itemDescription"
+placeholder="Describe this module..."
 ></textarea>
 
 </div>
@@ -1097,257 +907,187 @@ Description
 
 <div class="form-group">
 
-<label>
-Unlock Day
-</label>
+<label>Unlock Day</label>
 
 <input
-    id="itemUnlockDay"
-    type="number"
-    min="1"
-    value="1"
+id="unlockDay"
+type="number"
+min="1"
+value="1"
 >
 
 </div>
 
 
-<div class="checkbox-row">
+<div class="checkbox">
 
 <input
-    id="itemHasChildren"
-    type="checkbox"
+id="allowChildren"
+type="checkbox"
 >
 
-<label for="itemHasChildren">
-    Allow subsections inside this item
+<label
+for="allowChildren"
+style="margin:0"
+>
+Allow subsections inside this item
 </label>
 
 </div>
 
 
-<div
-    id="lessonFields"
-    style="display:none;"
+
+<!-- DAY CONTENT -->
+
+<div id="dayContent"
+style="display:none"
 >
 
 
 <div class="editor-section">
 
-<h4>
-Movement
-</h4>
+<h3>Movement</h3>
 
 <div class="form-group">
 
-<label>
-Target
-</label>
+<label>Target</label>
 
-<input
-    id="dayMovement"
-    placeholder="e.g. 2,500 steps"
->
+<input id="movement">
 
 </div>
 
 <div class="form-group">
 
-<label>
-Instructions
-</label>
+<label>Instructions</label>
 
-<textarea
-    id="dayMovementInstructions"
-></textarea>
+<textarea id="movementInstructions"></textarea>
 
 </div>
 
 </div>
-
 
 
 <div class="editor-section">
 
-<h4>
-Hydration
-</h4>
+<h3>Hydration</h3>
 
 <div class="form-group">
 
-<label>
-Target
-</label>
+<label>Target</label>
 
-<input
-    id="dayHydration"
-    placeholder="e.g. 1.5 L"
->
+<input id="hydration">
 
 </div>
 
 <div class="form-group">
 
-<label>
-Instructions
-</label>
+<label>Instructions</label>
 
-<textarea
-    id="dayHydrationInstructions"
-></textarea>
+<textarea id="hydrationInstructions"></textarea>
 
 </div>
 
 </div>
-
 
 
 <div class="editor-section">
 
-<h4>
-Protein
-</h4>
+<h3>Protein</h3>
 
 <div class="form-group">
 
-<label>
-Target
-</label>
+<label>Target</label>
 
-<input
-    id="dayProtein"
-    placeholder="e.g. 15–20 g"
->
+<input id="protein">
 
 </div>
 
 <div class="form-group">
 
-<label>
-Instructions
-</label>
+<label>Instructions</label>
 
-<textarea
-    id="dayProteinInstructions"
-></textarea>
+<textarea id="proteinInstructions"></textarea>
 
 </div>
 
 </div>
-
 
 
 <div class="editor-section">
 
-<h4>
-Sleep
-</h4>
+<h3>Sleep</h3>
 
 <div class="form-group">
 
-<label>
-Target
-</label>
+<label>Target</label>
 
-<input
-    id="daySleep"
-    placeholder="e.g. 6 hours"
->
+<input id="sleep">
 
 </div>
 
 <div class="form-group">
 
-<label>
-Instructions
-</label>
+<label>Instructions</label>
 
-<textarea
-    id="daySleepInstructions"
-></textarea>
+<textarea id="sleepInstructions"></textarea>
 
 </div>
 
 </div>
-
 
 
 <div class="editor-section">
 
-<h4>
-Nutrition
-</h4>
+<h3>Nutrition</h3>
 
-<textarea
-    id="dayNutrition"
-    placeholder="Nutrition focus for this day..."
-></textarea>
+<textarea id="nutrition"></textarea>
 
 </div>
-
 
 
 <div class="editor-section">
 
-<h4>
-Mind / Stress
-</h4>
+<h3>Mind / Stress</h3>
 
-<textarea
-    id="dayMind"
-    placeholder="e.g. 5 minutes calm breathing"
-></textarea>
+<textarea id="mind"></textarea>
 
 </div>
-
 
 
 <div class="editor-section">
 
-<h4>
-Sunlight
-</h4>
+<h3>Sunlight</h3>
 
-<input
-    id="daySunlight"
-    placeholder="e.g. 10 minutes"
->
+<input id="sunlight">
 
 </div>
-
 
 
 <div class="editor-section">
 
-<h4>
-Recovery
-</h4>
+<h3>Recovery</h3>
 
-<textarea
-    id="dayRecovery"
-></textarea>
+<textarea id="recovery"></textarea>
 
 </div>
 
-
 </div>
-
 
 
 <div class="form-actions">
 
 <button
-    class="btn"
-    onclick="saveClassroomItem()"
+class="btn"
+onclick="saveItem()"
 >
-    Save
+Save
 </button>
 
-
 <button
-    class="btn btn-secondary"
-    onclick="showSection('classroom')"
+class="btn btn-secondary"
+onclick="openSection('classroom')"
 >
-    Cancel
+Cancel
 </button>
 
 </div>
@@ -1358,57 +1098,44 @@ Recovery
 
 
 
-<!-- =====================================================
-     PREVIEW
-===================================================== -->
+<!-- PREVIEW -->
 
 <section
-    id="preview"
-    class="section"
+id="preview"
+class="section"
 >
-
-<div class="form-card">
 
 <button
-    class="btn btn-secondary"
-    onclick="showSection('classroom')"
-    style="margin-bottom:20px;"
+class="btn btn-secondary"
+onclick="openSection('classroom')"
 >
-    ← Back to Classroom
+← Back
 </button>
 
+<br><br>
 
 <div
-    id="previewContent"
-    class="preview-box"
+id="previewContent"
+class="preview"
 ></div>
 
-</div>
-
 </section>
 
 
 
-<!-- =====================================================
-     COMMUNITY
-===================================================== -->
+<!-- COMMUNITY -->
 
 <section
-    id="community"
-    class="section"
+id="community"
+class="section"
 >
 
 <div class="card">
 
-<h3 style="margin-bottom:10px;">
-Community
-</h3>
+<h2>Community</h2>
 
-<p style="color:#777;line-height:1.7;">
-
-Community management will be connected
-to your Firebase community collection.
-
+<p>
+Community posts will appear here once members start posting.
 </p>
 
 </div>
@@ -1417,31 +1144,19 @@ to your Firebase community collection.
 
 
 
-<!-- =====================================================
-     LEADERBOARD
-===================================================== -->
+<!-- LEADERBOARD -->
 
 <section
-    id="leaderboard"
-    class="section"
+id="leaderboard"
+class="section"
 >
 
 <div class="card">
 
-<h3>
-Leaderboard
-</h3>
+<h2>Leaderboard</h2>
 
-<p
-    style="
-        color:#777;
-        margin-top:10px;
-    "
->
-
-Leaderboard points will be connected
-to member progress.
-
+<p>
+Member points will be connected to progress.
 </p>
 
 </div>
@@ -1450,30 +1165,19 @@ to member progress.
 
 
 
-<!-- =====================================================
-     SETTINGS
-===================================================== -->
+<!-- SETTINGS -->
 
 <section
-    id="settings"
-    class="section"
+id="settings"
+class="section"
 >
 
 <div class="card">
 
-<h3>
-Settings
-</h3>
+<h2>Settings</h2>
 
-<p
-    style="
-        color:#777;
-        margin-top:10px;
-    "
->
-
-Freedom Club settings.
-
+<p>
+Freedom Women's Health Club settings.
 </p>
 
 </div>
@@ -1487,12 +1191,12 @@ Freedom Club settings.
 
 
 
-<!-- =====================================================
-     FIREBASE
-===================================================== -->
-
 <script type="module">
 
+
+/* =====================================================
+   FIREBASE
+===================================================== */
 
 import {
     initializeApp
@@ -1518,19 +1222,11 @@ import {
     getDocs,
     doc,
     updateDoc,
-    deleteDoc,
-    getDoc,
-    query,
-    orderBy
+    deleteDoc
 }
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-
-
-/* =====================================================
-   FIREBASE CONFIG
-===================================================== */
 
 const firebaseConfig = {
 
@@ -1555,32 +1251,23 @@ const firebaseConfig = {
 };
 
 
-
 const app =
-    initializeApp(firebaseConfig);
-
+initializeApp(firebaseConfig);
 
 const auth =
-    getAuth(app);
-
+getAuth(app);
 
 const db =
-    getFirestore(app);
+getFirestore(app);
 
 
-
-const ADMIN_EMAIL =
-    "mahnoordietitian3@gmail.com";
-
+const ADMIN =
+"mahnoordietitian3@gmail.com";
 
 
-/* =====================================================
-   GLOBAL CLASSROOM DATA
-===================================================== */
+let items = [];
 
-let classroomItems = [];
-
-let editingItemId = null;
+let editingId = null;
 
 
 
@@ -1589,64 +1276,49 @@ let editingItemId = null;
 ===================================================== */
 
 onAuthStateChanged(
-    auth,
-    user => {
+auth,
+user => {
 
-
-        if (!user) {
-
-            document
-                .getElementById("loginPage")
-                .style.display =
-                    "flex";
-
-
-            document
-                .getElementById("adminApp")
-                .style.display =
-                    "none";
-
-            return;
-
-        }
-
-
-
-        if (
-            user.email !==
-            ADMIN_EMAIL
-        ) {
-
-            alert(
-                "You are not authorized."
-            );
-
-            signOut(auth);
-
-            return;
-
-        }
-
-
+    if(!user){
 
         document
-            .getElementById("loginPage")
-            .style.display =
-                "none";
-
+        .getElementById("loginPage")
+        .style.display="flex";
 
         document
-            .getElementById("adminApp")
-            .style.display =
-                "block";
+        .getElementById("adminApp")
+        .style.display="none";
 
-
-        loadMembers();
-
-        loadClassroom();
-
+        return;
     }
-);
+
+
+    if(user.email !== ADMIN){
+
+        alert(
+            "This account is not the admin account."
+        );
+
+        signOut(auth);
+
+        return;
+    }
+
+
+    document
+    .getElementById("loginPage")
+    .style.display="none";
+
+    document
+    .getElementById("adminApp")
+    .style.display="block";
+
+
+    loadMembers();
+
+    loadClassroom();
+
+});
 
 
 
@@ -1655,40 +1327,24 @@ onAuthStateChanged(
 ===================================================== */
 
 document
-    .getElementById("loginButton")
-    .addEventListener(
-        "click",
-        loginAdmin
-    );
-
-
-
-async function loginAdmin() {
-
+.getElementById("loginBtn")
+.addEventListener(
+"click",
+async()=>{
 
     const email =
-        document
-            .getElementById("loginEmail")
-            .value
-            .trim();
-
+    document
+    .getElementById("email")
+    .value
+    .trim();
 
     const password =
-        document
-            .getElementById("loginPassword")
-            .value;
+    document
+    .getElementById("password")
+    .value;
 
 
-    const error =
-        document
-            .getElementById("loginError");
-
-
-    error.textContent = "";
-
-
-
-    try {
+    try{
 
         await signInWithEmailAndPassword(
             auth,
@@ -1698,27 +1354,23 @@ async function loginAdmin() {
 
     }
 
-    catch(errorObject) {
+    catch(error){
 
-        console.error(
-            errorObject
-        );
+        console.error(error);
 
-        error.textContent =
-            "Login failed. Check your email and password.";
+        document
+        .getElementById("loginError")
+        .textContent =
+        error.message;
 
     }
 
-}
+});
 
 
 
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-window.logoutAdmin =
-async function() {
+window.logout =
+async function(){
 
     await signOut(auth);
 
@@ -1730,88 +1382,54 @@ async function() {
    NAVIGATION
 ===================================================== */
 
-window.showSection =
-function(sectionId,button) {
+window.openSection =
+function(id,button){
+
+    document
+    .querySelectorAll(".section")
+    .forEach(
+        x=>x.classList.remove("active")
+    );
 
 
     document
-        .querySelectorAll(".section")
-        .forEach(section => {
-
-            section.classList.remove(
-                "active"
-            );
-
-        });
+    .getElementById(id)
+    .classList.add("active");
 
 
+    document
+    .querySelectorAll(".nav button")
+    .forEach(
+        x=>x.classList.remove("active")
+    );
 
-    const section =
-        document.getElementById(
-            sectionId
-        );
 
+    if(button){
 
-    if(section) {
-
-        section.classList.add(
-            "active"
-        );
+        button.classList.add("active");
 
     }
 
 
-
-    document
-        .querySelectorAll(".nav button")
-        .forEach(btn => {
-
-            btn.classList.remove(
-                "active"
-            );
-
-        });
-
-
-
-    if(button) {
-
-        button.classList.add(
-            "active"
-        );
-
-    }
-
-
-
-    const titles = {
+    const names={
 
         dashboard:"Dashboard",
-
         members:"Members",
-
         classroom:"Classroom",
-
         community:"Community",
-
         leaderboard:"Leaderboard",
-
         settings:"Settings",
-
         addMember:"Add Member",
-
         itemEditor:"Classroom Editor",
-
         preview:"Preview"
 
     };
 
 
     document
-        .getElementById("pageTitle")
-        .textContent =
-            titles[sectionId] ||
-            "Admin Panel";
+    .getElementById("pageTitle")
+    .textContent =
+    names[id] || "Admin Panel";
 
 };
 
@@ -1821,89 +1439,170 @@ function(sectionId,button) {
    MEMBERS
 ===================================================== */
 
-window.showAddMember =
-function() {
+async function loadMembers(){
 
-    showSection(
-        "addMember"
-    );
+    try{
 
-};
+        const snap =
+        await getDocs(
+            collection(
+                db,
+                "members"
+            )
+        );
+
+
+        const table =
+        document
+        .getElementById(
+            "membersTable"
+        );
+
+
+        let html="";
+
+        let active=0;
+
+
+        snap.forEach(
+        s=>{
+
+            const m=s.data();
+
+            if(m.status==="Active")
+                active++;
+
+
+            html += `
+
+            <tr>
+
+            <td>
+            ${safe(m.name)}
+            </td>
+
+            <td>
+            ${safe(m.email)}
+            </td>
+
+            <td>
+            ${safe(m.phone)}
+            </td>
+
+            <td>
+            ${safe(m.startDate)}
+            </td>
+
+            <td>
+            Day ${safe(m.accessUntilDay)}
+            </td>
+
+            <td>
+            ${safe(m.status)}
+            </td>
+
+            </tr>
+
+            `;
+
+        });
+
+
+        if(!html){
+
+            html=`
+
+            <tr>
+            <td colspan="6" class="empty">
+            No members yet.
+            </td>
+            </tr>
+
+            `;
+
+        }
+
+
+        table.innerHTML=html;
+
+
+        document
+        .getElementById("memberCount")
+        .textContent=snap.size;
+
+
+        document
+        .getElementById("activeCount")
+        .textContent=active;
+
+    }
+
+    catch(error){
+
+        console.error(
+            "MEMBERS ERROR:",
+            error
+        );
+
+    }
+
+}
 
 
 
 window.saveMember =
-async function() {
-
+async function(){
 
     const name =
-        document
-            .getElementById("memberName")
-            .value
-            .trim();
-
+    document
+    .getElementById("mName")
+    .value.trim();
 
     const email =
-        document
-            .getElementById("memberEmail")
-            .value
-            .trim();
-
+    document
+    .getElementById("mEmail")
+    .value.trim();
 
     const phone =
-        document
-            .getElementById("memberPhone")
-            .value
-            .trim();
-
+    document
+    .getElementById("mPhone")
+    .value.trim();
 
     const startDate =
-        document
-            .getElementById("memberStart")
-            .value;
-
+    document
+    .getElementById("mStart")
+    .value;
 
     const accessUntilDay =
-        Number(
-            document
-                .getElementById("memberAccess")
-                .value
-        );
-
+    Number(
+        document
+        .getElementById("mAccess")
+        .value
+    );
 
     const status =
-        document
-            .getElementById("memberStatus")
-            .value;
+    document
+    .getElementById("mStatus")
+    .value;
 
 
-
-    if(
-        !name ||
-        !email ||
-        !startDate
-    ) {
+    if(!name || !email || !startDate){
 
         alert(
-            "Please enter Name, Email and Start Date."
+            "Please enter name, email and start date."
         );
 
         return;
-
     }
 
 
-
-    try {
-
+    try{
 
         await addDoc(
-
             collection(
                 db,
                 "members"
             ),
-
             {
 
                 name,
@@ -1914,56 +1613,50 @@ async function() {
                 status,
 
                 createdAt:
-                    new Date()
+                new Date()
 
             }
-
         );
 
 
         alert(
-            "Member saved successfully."
+            "Member saved to Firebase."
         );
 
 
         document
-            .getElementById("memberName")
-            .value = "";
-
-
-        document
-            .getElementById("memberEmail")
-            .value = "";
-
+        .getElementById("mName")
+        .value="";
 
         document
-            .getElementById("memberPhone")
-            .value = "";
-
+        .getElementById("mEmail")
+        .value="";
 
         document
-            .getElementById("memberStart")
-            .value = "";
+        .getElementById("mPhone")
+        .value="";
+
+        document
+        .getElementById("mStart")
+        .value="";
 
 
         await loadMembers();
 
-
-        showSection(
-            "members"
-        );
-
+        openSection("members");
 
     }
 
-    catch(errorObject) {
+    catch(error){
 
         console.error(
-            errorObject
+            "SAVE MEMBER ERROR:",
+            error
         );
 
         alert(
-            "Could not save member. Check Firebase."
+            "Firebase error: " +
+            error.message
         );
 
     }
@@ -1972,143 +1665,77 @@ async function() {
 
 
 
-async function loadMembers() {
+/* =====================================================
+   CLASSROOM
+===================================================== */
 
+async function loadClassroom(){
 
-    try {
+    try{
 
-
-        const snapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "members"
-                )
-            );
-
-
-        const table =
-            document
-                .getElementById(
-                    "memberTable"
-                );
-
-
-        document
-            .getElementById(
-                "memberCount"
+        const snap =
+        await getDocs(
+            collection(
+                db,
+                "classroom"
             )
-            .textContent =
-                snapshot.size;
-
-
-
-        let active = 0;
-
-        let html = "";
-
-
-
-        snapshot.forEach(
-            snap => {
-
-
-                const member =
-                    snap.data();
-
-
-                if(
-                    member.status ===
-                    "Active"
-                ) {
-
-                    active++;
-
-                }
-
-
-
-                html += `
-
-                    <tr>
-
-                        <td>
-                            ${escapeHTML(
-                                member.name || ""
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHTML(
-                                member.email || ""
-                            )}
-                        </td>
-
-                        <td>
-                            ${member.startDate || ""}
-                        </td>
-
-                        <td>
-                            Day ${
-                                member.accessUntilDay || ""
-                            }
-                        </td>
-
-                        <td>
-                            ${escapeHTML(
-                                member.status || ""
-                            )}
-                        </td>
-
-                    </tr>
-
-                `;
-
-            }
         );
 
 
-
-        if(!html) {
-
-            html = `
-
-                <tr>
-
-                    <td
-                        colspan="5"
-                        class="empty"
-                    >
-                        No members yet.
-                    </td>
-
-                </tr>
-
-            `;
-
-        }
+        items=[];
 
 
+        snap.forEach(
+        s=>{
 
-        table.innerHTML =
-            html;
+            items.push({
+
+                id:s.id,
+                ...s.data()
+
+            });
+
+        });
 
 
         document
-            .getElementById(
-                "activeMemberCount"
-            )
-            .textContent =
-                active;
+        .getElementById("classroomCount")
+        .textContent=
+        items.length;
 
+
+        renderTree();
+
+
+        populateParents();
 
     }
 
-    catch(errorObject) {
+    catch(error){
 
         console.error(
-            errorObject
+            "CLASSROOM ERROR:",
+            error
         );
+
+
+        document
+        .getElementById(
+            "treeContainer"
+        )
+        .innerHTML=`
+
+        <div class="empty">
+
+        Firebase could not load Classroom.
+
+        <br><br>
+
+        ${safe(error.message)}
+
+        </div>
+
+        `;
 
     }
 
@@ -2117,167 +1744,119 @@ async function loadMembers() {
 
 
 /* =====================================================
-   OPEN ADD CLASSROOM ITEM
+   NEW ITEM
 ===================================================== */
 
-window.openAddItem =
-function() {
+window.newItem =
+function(){
 
+    editingId=null;
 
-    editingItemId =
-        null;
+    clearEditor();
 
+    populateParents();
 
-    document
-        .getElementById(
-            "itemEditorTitle"
-        )
-        .textContent =
-            "Add Classroom Item";
-
-
-    clearItemForm();
-
-
-    populateParentSelect();
-
-
-    document
-        .getElementById(
-            "itemType"
-        )
-        .value =
-            "module";
-
-
-    toggleLessonFields();
-
-
-    showSection(
-        "itemEditor"
-    );
+    openSection("itemEditor");
 
 };
 
 
 
 /* =====================================================
-   PARENT SELECT
+   PARENT LIST
 ===================================================== */
 
-function populateParentSelect() {
-
+function populateParents(){
 
     const select =
-        document
-            .getElementById(
-                "itemParent"
-            );
+    document
+    .getElementById(
+        "itemParent"
+    );
 
 
-    select.innerHTML = `
+    select.innerHTML=`
 
-        <option value="">
-            No Parent — Top Level
-        </option>
+    <option value="">
+    Top Level
+    </option>
 
     `;
 
 
+    items
+    .filter(
+        x=>x.hasChildren===true
+    )
+    .forEach(
+    item=>{
 
-    classroomItems
-        .filter(item =>
-            item.hasChildren === true
-        )
-        .sort(
-            (a,b) =>
-                (a.order || 0) -
-                (b.order || 0)
-        )
-        .forEach(item => {
-
-
-            const option =
-                document.createElement(
-                    "option"
-                );
+        const option =
+        document.createElement(
+            "option"
+        );
 
 
-            option.value =
-                item.id;
+        option.value=item.id;
 
+        option.textContent=
+        getFullPath(item.id);
 
-            option.textContent =
-                buildParentName(
-                    item.id
-                );
+        select.appendChild(
+            option
+        );
 
-
-            select.appendChild(
-                option
-            );
-
-        });
+    });
 
 }
 
 
 
-/* =====================================================
-   BUILD PARENT NAME
-===================================================== */
+function getFullPath(id){
 
-function buildParentName(id) {
-
-
-    const item =
-        classroomItems.find(
-            x => x.id === id
-        );
+    const current =
+    items.find(
+        x=>x.id===id
+    );
 
 
-    if(!item) {
-
+    if(!current)
         return "";
 
-    }
 
-
-    const names = [
-        item.title
+    let result=[
+        current.title
     ];
 
 
-    let current =
-        item;
+    let parentId=
+    current.parentId;
 
 
-    while(current.parentId) {
+    while(parentId){
+
+        const parent=
+        items.find(
+            x=>x.id===parentId
+        );
 
 
-        const parent =
-            classroomItems.find(
-                x =>
-                    x.id ===
-                    current.parentId
-            );
+        if(!parent)
+            break;
 
 
-        if(!parent) break;
-
-
-        names.unshift(
+        result.unshift(
             parent.title
         );
 
 
-        current =
-            parent;
+        parentId=
+        parent.parentId;
 
     }
 
 
-    return names.join(
+    return result.join(
         " → "
     );
 
@@ -2286,106 +1865,67 @@ function buildParentName(id) {
 
 
 /* =====================================================
-   LESSON FIELDS
+   TYPE CHANGE
 ===================================================== */
 
 document
-    .getElementById(
-        "itemType"
-    )
-    .addEventListener(
-        "change",
-        toggleLessonFields
-    );
-
-
-
-function toggleLessonFields() {
-
-
-    const type =
-        document
-            .getElementById(
-                "itemType"
-            )
-            .value;
-
+.getElementById("itemType")
+.addEventListener(
+"change",
+function(){
 
     document
-        .getElementById(
-            "lessonFields"
-        )
-        .style.display =
-            type === "lesson"
-            ? "block"
-            : "none";
+    .getElementById("dayContent")
+    .style.display=
+    this.value==="lesson"
+    ?"block"
+    :"none";
 
-}
+});
 
 
 
 /* =====================================================
-   SAVE CLASSROOM ITEM
+   SAVE CLASSROOM
 ===================================================== */
 
-window.saveClassroomItem =
-async function() {
-
+window.saveItem =
+async function(){
 
     const type =
-        document
-            .getElementById(
-                "itemType"
-            )
-            .value;
-
+    document
+    .getElementById("itemType")
+    .value;
 
     const parentId =
-        document
-            .getElementById(
-                "itemParent"
-            )
-            .value;
-
+    document
+    .getElementById("itemParent")
+    .value || null;
 
     const title =
-        document
-            .getElementById(
-                "itemTitle"
-            )
-            .value
-            .trim();
-
+    document
+    .getElementById("itemTitle")
+    .value.trim();
 
     const description =
-        document
-            .getElementById(
-                "itemDescription"
-            )
-            .value
-            .trim();
-
+    document
+    .getElementById("itemDescription")
+    .value.trim();
 
     const unlockDay =
-        Number(
-            document
-                .getElementById(
-                    "itemUnlockDay"
-                )
-                .value
-        );
-
+    Number(
+        document
+        .getElementById("unlockDay")
+        .value
+    );
 
     const hasChildren =
-        document
-            .getElementById(
-                "itemHasChildren"
-            )
-            .checked;
+    document
+    .getElementById("allowChildren")
+    .checked;
 
 
-
-    if(!title) {
+    if(!title){
 
         alert(
             "Please enter a title."
@@ -2396,206 +1936,127 @@ async function() {
     }
 
 
-
-    const dayContent = {
+    const dayContent={
 
         movement:
-            document
-                .getElementById(
-                    "dayMovement"
-                )
-                .value,
+        value("movement"),
 
         movementInstructions:
-            document
-                .getElementById(
-                    "dayMovementInstructions"
-                )
-                .value,
+        value("movementInstructions"),
 
         hydration:
-            document
-                .getElementById(
-                    "dayHydration"
-                )
-                .value,
+        value("hydration"),
 
         hydrationInstructions:
-            document
-                .getElementById(
-                    "dayHydrationInstructions"
-                )
-                .value,
+        value("hydrationInstructions"),
 
         protein:
-            document
-                .getElementById(
-                    "dayProtein"
-                )
-                .value,
+        value("protein"),
 
         proteinInstructions:
-            document
-                .getElementById(
-                    "dayProteinInstructions"
-                )
-                .value,
+        value("proteinInstructions"),
 
         sleep:
-            document
-                .getElementById(
-                    "daySleep"
-                )
-                .value,
+        value("sleep"),
 
         sleepInstructions:
-            document
-                .getElementById(
-                    "daySleepInstructions"
-                )
-                .value,
+        value("sleepInstructions"),
 
         nutrition:
-            document
-                .getElementById(
-                    "dayNutrition"
-                )
-                .value,
+        value("nutrition"),
 
         mind:
-            document
-                .getElementById(
-                    "dayMind"
-                )
-                .value,
+        value("mind"),
 
         sunlight:
-            document
-                .getElementById(
-                    "daySunlight"
-                )
-                .value,
+        value("sunlight"),
 
         recovery:
-            document
-                .getElementById(
-                    "dayRecovery"
-                )
-                .value
+        value("recovery")
 
     };
 
 
+    const data={
 
-    try {
+        type,
+        parentId,
+        title,
+        description,
+        unlockDay,
+        hasChildren,
 
+        dayContent,
 
-        const data = {
+        status:
+        "published",
 
-            type,
+        order:
+        Date.now(),
 
-            parentId:
-                parentId || null,
+        updatedAt:
+        new Date()
 
-            title,
-
-            description,
-
-            unlockDay,
-
-            hasChildren,
-
-            dayContent,
-
-            status:
-                "published",
-
-            order:
-                Date.now(),
-
-            updatedAt:
-                new Date()
-
-        };
+    };
 
 
+    try{
 
-        if(editingItemId) {
-
+        if(editingId){
 
             await updateDoc(
-
                 doc(
                     db,
                     "classroom",
-                    editingItemId
+                    editingId
                 ),
-
                 data
-
             );
-
 
             alert(
-                "Classroom item updated."
+                "Updated successfully."
             );
-
 
         }
 
-        else {
+        else{
 
-
-            data.createdAt =
-                new Date();
-
+            data.createdAt=
+            new Date();
 
             await addDoc(
-
                 collection(
                     db,
                     "classroom"
                 ),
-
                 data
-
             );
 
-
             alert(
-                "Classroom item added."
+                "Saved to Firebase successfully."
             );
 
         }
 
 
-
-        editingItemId =
-            null;
-
-
-        clearItemForm();
-
+        editingId=null;
 
         await loadClassroom();
 
-
-        showSection(
-            "classroom"
-        );
-
+        openSection("classroom");
 
     }
 
-    catch(errorObject) {
+    catch(error){
 
         console.error(
-            errorObject
+            "CLASSROOM SAVE ERROR:",
+            error
         );
 
-
         alert(
-            "Could not save classroom item. Check Firebase rules."
+            "Firebase error:\n\n"+
+            error.message
         );
 
     }
@@ -2605,144 +2066,47 @@ async function() {
 
 
 /* =====================================================
-   LOAD CLASSROOM
-===================================================== */
-
-async function loadClassroom() {
-
-
-    try {
-
-
-        const snapshot =
-            await getDocs(
-
-                collection(
-                    db,
-                    "classroom"
-                )
-
-            );
-
-
-        classroomItems = [];
-
-
-        snapshot.forEach(
-            snap => {
-
-                classroomItems.push({
-
-                    id:
-                        snap.id,
-
-                    ...snap.data()
-
-                });
-
-            }
-        );
-
-
-
-        document
-            .getElementById(
-                "contentCount"
-            )
-            .textContent =
-                classroomItems.length;
-
-
-
-        renderClassroom();
-
-        populateParentSelect();
-
-
-    }
-
-    catch(errorObject) {
-
-        console.error(
-            errorObject
-        );
-
-
-        document
-            .getElementById(
-                "classroomTree"
-            )
-            .innerHTML = `
-
-                <div class="empty">
-
-                    No classroom data loaded.
-
-                    <br><br>
-
-                    Make sure Firestore rules
-                    allow the admin account
-                    to access the classroom
-                    collection.
-
-                </div>
-
-            `;
-
-    }
-
-}
-
-
-
-/* =====================================================
    RENDER TREE
 ===================================================== */
 
-function renderClassroom() {
-
+function renderTree(){
 
     const container =
-        document
-            .getElementById(
-                "classroomTree"
-            );
+    document
+    .getElementById(
+        "treeContainer"
+    );
 
 
     const roots =
-        classroomItems
-            .filter(
-                item =>
-                    !item.parentId
-            )
-            .sort(
-                sortItems
-            );
+    items
+    .filter(
+        x=>!x.parentId
+    )
+    .sort(
+        (a,b)=>
+        (a.order||0)-
+        (b.order||0)
+    );
 
 
+    if(!roots.length){
 
-    if(!roots.length) {
+        container.innerHTML=`
 
-        container.innerHTML = `
+        <div class="empty">
 
-            <div class="empty">
+        No classroom content yet.
 
-                Your classroom is empty.
+        <br><br>
 
-                <br><br>
+        Click <b>+ Add</b> to create:
 
-                Click <b>+ Add</b> to create
-                your first module.
+        <br><br>
 
-                <br><br>
+        Phase → Week → Day
 
-                Example:
-
-                <br>
-
-                Phase 1 → Week 1 → Day 1
-
-            </div>
+        </div>
 
         `;
 
@@ -2751,212 +2115,144 @@ function renderClassroom() {
     }
 
 
-
-    container.innerHTML =
-        roots
-            .map(
-                item =>
-                    renderTreeItem(
-                        item
-                    )
-            )
-            .join("");
+    container.innerHTML=
+    roots
+    .map(
+        item=>treeItem(item)
+    )
+    .join("");
 
 }
 
 
 
-/* =====================================================
-   TREE ITEM
-===================================================== */
-
-function renderTreeItem(item) {
-
+function treeItem(item){
 
     const children =
-        classroomItems
-            .filter(
-                child =>
-                    child.parentId ===
-                    item.id
-            )
-            .sort(
-                sortItems
-            );
+    items
+    .filter(
+        x=>
+        x.parentId===item.id
+    )
+    .sort(
+        (a,b)=>
+        (a.order||0)-
+        (b.order||0)
+    );
 
 
-    const hasChildren =
-        children.length > 0;
+    const icon =
+    item.type==="lesson"
+    ?"📖"
+    :"📁";
 
 
+    return `
 
-    let icon =
-        "📁";
+    <div class="tree-item">
 
+        <div class="tree-row">
 
-    if(item.type === "lesson") {
+            <button
+            class="tree-toggle"
+            onclick="toggle('${item.id}')"
+            >
+            ${children.length?"▶":""}
+            </button>
 
-        icon = "📖";
+            <span>
+            ${icon}
+            </span>
 
-    }
+            <div class="tree-title">
 
-
-    if(item.type === "module") {
-
-        icon = "📚";
-
-    }
-
-
-    let html = `
-
-        <div
-            class="tree-item"
-        >
-
-            <div class="tree-row">
-
-                <button
-                    class="tree-toggle"
-                    onclick="toggleTree('${item.id}')"
-                >
-                    ${hasChildren ? "▶" : ""}
-                </button>
-
-
-                <span class="tree-icon">
-                    ${icon}
-                </span>
-
-
-                <div class="tree-title">
-
-                    ${escapeHTML(
-                        item.title
-                    )}
-
-                </div>
-
-
-                <div class="tree-meta">
-
-                    Unlock Day ${
-                        item.unlockDay || 1
-                    }
-
-                </div>
-
-
-                <div class="tree-actions">
-
-                    <button
-                        class="small-btn"
-                        onclick="addChild('${item.id}')"
-                    >
-                        + Child
-                    </button>
-
-
-                    <button
-                        class="small-btn"
-                        onclick="editItem('${item.id}')"
-                    >
-                        Edit
-                    </button>
-
-
-                    <button
-                        class="small-btn"
-                        onclick="previewItem('${item.id}')"
-                    >
-                        Preview
-                    </button>
-
-
-                    <button
-                        class="small-btn"
-                        onclick="deleteItem('${item.id}')"
-                    >
-                        Delete
-                    </button>
-
-                </div>
+            ${safe(item.title)}
 
             </div>
 
+            <div class="tree-meta">
 
-            <div
-                class="children"
-                id="children-${item.id}"
+            Unlock Day ${item.unlockDay||1}
+
+            </div>
+
+            <div class="actions">
+
+            <button
+            class="small"
+            onclick="addChild('${item.id}')"
             >
+            + Child
+            </button>
 
-                ${
-                    children
-                        .map(
-                            child =>
-                                renderTreeItem(
-                                    child
-                                )
-                        )
-                        .join("")
-                }
+            <button
+            class="small"
+            onclick="editItem('${item.id}')"
+            >
+            Edit
+            </button>
+
+            <button
+            class="small"
+            onclick="preview('${item.id}')"
+            >
+            Preview
+            </button>
+
+            <button
+            class="small"
+            onclick="removeItem('${item.id}')"
+            >
+            Delete
+            </button>
 
             </div>
 
         </div>
 
+
+        <div
+        class="children"
+        id="child-${item.id}"
+        >
+
+        ${children
+        .map(
+            child=>treeItem(child)
+        )
+        .join("")}
+
+        </div>
+
+    </div>
+
     `;
-
-
-    return html;
 
 }
 
 
 
 /* =====================================================
-   TOGGLE TREE
+   TREE TOGGLE
 ===================================================== */
 
-window.toggleTree =
-function(id) {
+window.toggle =
+function(id){
 
-
-    const element =
-        document
-            .getElementById(
-                "children-" + id
-            );
-
-
-    if(!element) return;
-
-
-    element.classList.toggle(
-        "open"
+    const box=
+    document
+    .getElementById(
+        "child-"+id
     );
 
 
-    const button =
-        element
-            .parentElement
-            .querySelector(
-                ".tree-toggle"
-            );
+    if(!box)
+        return;
 
 
-    if(
-        button
-    ) {
-
-        button.textContent =
-            element.classList.contains(
-                "open"
-            )
-            ? "▼"
-            : "▶";
-
-    }
+    box.classList.toggle(
+        "open"
+    );
 
 };
 
@@ -2967,24 +2263,21 @@ function(id) {
 ===================================================== */
 
 window.addChild =
-function(parentId) {
+function(parentId){
 
-
-    const parent =
-        classroomItems.find(
-            item =>
-                item.id ===
-                parentId
-        );
+    const parent=
+    items.find(
+        x=>x.id===parentId
+    );
 
 
     if(
-        parent &&
-        parent.hasChildren !== true
-    ) {
+        !parent ||
+        parent.hasChildren!==true
+    ){
 
         alert(
-            "This item does not allow subsections. Edit it and enable 'Allow subsections inside this item'."
+            "This item does not allow children. Edit it and tick 'Allow subsections inside this item'."
         );
 
         return;
@@ -2992,320 +2285,243 @@ function(parentId) {
     }
 
 
+    editingId=null;
 
-    editingItemId =
-        null;
+    clearEditor();
 
-
-    clearItemForm();
-
-
-    populateParentSelect();
+    populateParents();
 
 
     document
-        .getElementById(
-            "itemParent"
-        )
-        .value =
-            parentId;
+    .getElementById("itemParent")
+    .value=
+    parentId;
 
 
     document
-        .getElementById(
-            "itemType"
-        )
-        .value =
-            "subsection";
+    .getElementById("itemType")
+    .value=
+    "subsection";
 
 
-    toggleLessonFields();
+    document
+    .getElementById("dayContent")
+    .style.display=
+    "none";
 
 
-    showSection(
-        "itemEditor"
-    );
+    openSection("itemEditor");
 
 };
 
 
 
 /* =====================================================
-   EDIT ITEM
+   EDIT
 ===================================================== */
 
 window.editItem =
-function(id) {
+function(id){
 
-
-    const item =
-        classroomItems.find(
-            x =>
-                x.id === id
-        );
-
-
-    if(!item) return;
-
-
-    editingItemId =
-        id;
-
-
-    populateParentSelect();
-
-
-    document
-        .getElementById(
-            "itemEditorTitle"
-        )
-        .textContent =
-            "Edit Classroom Item";
-
-
-    document
-        .getElementById(
-            "itemType"
-        )
-        .value =
-            item.type || "lesson";
-
-
-    document
-        .getElementById(
-            "itemParent"
-        )
-        .value =
-            item.parentId || "";
-
-
-    document
-        .getElementById(
-            "itemTitle"
-        )
-        .value =
-            item.title || "";
-
-
-    document
-        .getElementById(
-            "itemDescription"
-        )
-        .value =
-            item.description || "";
-
-
-    document
-        .getElementById(
-            "itemUnlockDay"
-        )
-        .value =
-            item.unlockDay || 1;
-
-
-    document
-        .getElementById(
-            "itemHasChildren"
-        )
-        .checked =
-            item.hasChildren === true;
-
-
-
-    const day =
-        item.dayContent || {};
-
-
-    document
-        .getElementById(
-            "dayMovement"
-        )
-        .value =
-            day.movement || "";
-
-
-    document
-        .getElementById(
-            "dayMovementInstructions"
-        )
-        .value =
-            day.movementInstructions || "";
-
-
-    document
-        .getElementById(
-            "dayHydration"
-        )
-        .value =
-            day.hydration || "";
-
-
-    document
-        .getElementById(
-            "dayHydrationInstructions"
-        )
-        .value =
-            day.hydrationInstructions || "";
-
-
-    document
-        .getElementById(
-            "dayProtein"
-        )
-        .value =
-            day.protein || "";
-
-
-    document
-        .getElementById(
-            "dayProteinInstructions"
-        )
-        .value =
-            day.proteinInstructions || "";
-
-
-    document
-        .getElementById(
-            "daySleep"
-        )
-        .value =
-            day.sleep || "";
-
-
-    document
-        .getElementById(
-            "daySleepInstructions"
-        )
-        .value =
-            day.sleepInstructions || "";
-
-
-    document
-        .getElementById(
-            "dayNutrition"
-        )
-        .value =
-            day.nutrition || "";
-
-
-    document
-        .getElementById(
-            "dayMind"
-        )
-        .value =
-            day.mind || "";
-
-
-    document
-        .getElementById(
-            "daySunlight"
-        )
-        .value =
-            day.sunlight || "";
-
-
-    document
-        .getElementById(
-            "dayRecovery"
-        )
-        .value =
-            day.recovery || "";
-
-
-    toggleLessonFields();
-
-
-    showSection(
-        "itemEditor"
+    const item=
+    items.find(
+        x=>x.id===id
     );
+
+
+    if(!item)
+        return;
+
+
+    editingId=id;
+
+    populateParents();
+
+
+    document
+    .getElementById("editorHeading")
+    .textContent=
+    "Edit Classroom Item";
+
+
+    document
+    .getElementById("itemType")
+    .value=
+    item.type||"module";
+
+
+    document
+    .getElementById("itemParent")
+    .value=
+    item.parentId||"";
+
+
+    document
+    .getElementById("itemTitle")
+    .value=
+    item.title||"";
+
+
+    document
+    .getElementById("itemDescription")
+    .value=
+    item.description||"";
+
+
+    document
+    .getElementById("unlockDay")
+    .value=
+    item.unlockDay||1;
+
+
+    document
+    .getElementById("allowChildren")
+    .checked=
+    item.hasChildren===true;
+
+
+    const d=
+    item.dayContent||{};
+
+
+    setValue(
+        "movement",
+        d.movement
+    );
+
+    setValue(
+        "movementInstructions",
+        d.movementInstructions
+    );
+
+    setValue(
+        "hydration",
+        d.hydration
+    );
+
+    setValue(
+        "hydrationInstructions",
+        d.hydrationInstructions
+    );
+
+    setValue(
+        "protein",
+        d.protein
+    );
+
+    setValue(
+        "proteinInstructions",
+        d.proteinInstructions
+    );
+
+    setValue(
+        "sleep",
+        d.sleep
+    );
+
+    setValue(
+        "sleepInstructions",
+        d.sleepInstructions
+    );
+
+    setValue(
+        "nutrition",
+        d.nutrition
+    );
+
+    setValue(
+        "mind",
+        d.mind
+    );
+
+    setValue(
+        "sunlight",
+        d.sunlight
+    );
+
+    setValue(
+        "recovery",
+        d.recovery
+    );
+
+
+    document
+    .getElementById("dayContent")
+    .style.display=
+    item.type==="lesson"
+    ?"block"
+    :"none";
+
+
+    openSection("itemEditor");
 
 };
 
 
 
 /* =====================================================
-   DELETE ITEM
+   DELETE
 ===================================================== */
 
-window.deleteItem =
-async function(id) {
+window.removeItem =
+async function(id){
+
+    const item=
+    items.find(
+        x=>x.id===id
+    );
 
 
-    const item =
-        classroomItems.find(
-            x =>
-                x.id === id
-        );
-
-
-    if(!item) return;
-
-
-    const children =
-        classroomItems.filter(
-            x =>
-                x.parentId === id
-        );
-
-
-    let message =
-        `Delete "${item.title}"?`;
-
-
-    if(children.length) {
-
-        message +=
-            `\n\nThis item has ${children.length} child item(s). Delete those too?`;
-
-    }
-
-
-
-    if(
-        !confirm(message)
-    ) {
-
+    if(!item)
         return;
 
+
+    const children=
+    items.filter(
+        x=>x.parentId===id
+    );
+
+
+    let message=
+    `Delete "${item.title}"?`;
+
+
+    if(children.length){
+
+        message+=
+        `\n\nThis item has ${children.length} child item(s).`;
+
     }
 
 
-
-    try {
-
-
-        if(children.length) {
+    if(!confirm(message))
+        return;
 
 
-            for(
-                const child
-                of children
-            ) {
+    try{
 
-                await deleteDoc(
+        for(
+            const child
+            of children
+        ){
 
-                    doc(
-                        db,
-                        "classroom",
-                        child.id
-                    )
-
-                );
-
-            }
+            await deleteDoc(
+                doc(
+                    db,
+                    "classroom",
+                    child.id
+                )
+            );
 
         }
 
 
-
         await deleteDoc(
-
             doc(
                 db,
                 "classroom",
                 id
             )
-
         );
 
 
@@ -3313,21 +2529,17 @@ async function(id) {
 
 
         alert(
-            "Deleted successfully."
+            "Deleted."
         );
-
 
     }
 
-    catch(errorObject) {
+    catch(error){
 
-        console.error(
-            errorObject
-        );
-
+        console.error(error);
 
         alert(
-            "Could not delete item."
+            error.message
         );
 
     }
@@ -3340,400 +2552,229 @@ async function(id) {
    PREVIEW
 ===================================================== */
 
-window.previewItem =
-function(id) {
+window.preview =
+function(id){
+
+    const item=
+    items.find(
+        x=>x.id===id
+    );
 
 
-    const item =
-        classroomItems.find(
-            x =>
-                x.id === id
-        );
+    if(!item)
+        return;
 
 
-    if(!item) return;
+    const d=
+    item.dayContent||{};
 
 
-    let html = `
+    let html=`
 
-        <h2>
-            ${escapeHTML(
-                item.title || ""
-            )}
-        </h2>
+    <h2>
+    ${safe(item.title)}
+    </h2>
 
+    <p>
+    ${safe(item.description)}
+    </p>
 
-        <p>
-            ${escapeHTML(
-                item.description || ""
-            )}
-        </p>
-
-
-        <p style="
-            margin-top:10px;
-            font-size:13px;
-            color:#777;
-        ">
-
-            Unlock Day:
-            ${item.unlockDay || 1}
-
-        </p>
+    <p>
+    <b>Unlock Day:</b>
+    ${item.unlockDay||1}
+    </p>
 
     `;
 
 
+    const sections=[
 
-    if(
-        item.type ===
-        "lesson"
-    ) {
+        ["Movement",d.movement,d.movementInstructions],
 
+        ["Hydration",d.hydration,d.hydrationInstructions],
 
-        const day =
-            item.dayContent || {};
+        ["Protein",d.protein,d.proteinInstructions],
 
+        ["Sleep",d.sleep,d.sleepInstructions],
 
-        if(day.movement) {
+        ["Nutrition",d.nutrition,""],
 
-            html += `
+        ["Mind / Stress",d.mind,""],
 
-                <h3>
-                    Movement
-                </h3>
+        ["Sunlight",d.sunlight,""],
 
-                <p>
-                    ${escapeHTML(
-                        day.movement
-                    )}
-                </p>
+        ["Recovery",d.recovery,""]
 
-                <p>
-                    ${escapeHTML(
-                        day.movementInstructions || ""
-                    )}
-                </p>
-
-            `;
-
-        }
+    ];
 
 
+    sections.forEach(
+    s=>{
 
-        if(day.hydration) {
+        if(s[1]){
 
-            html += `
+            html+=`
 
-                <h3>
-                    Hydration
-                </h3>
+            <h3>
+            ${s[0]}
+            </h3>
 
-                <p>
-                    ${escapeHTML(
-                        day.hydration
-                    )}
-                </p>
+            <p>
+            ${safe(s[1])}
+            </p>
 
-                <p>
-                    ${escapeHTML(
-                        day.hydrationInstructions || ""
-                    )}
-                </p>
+            ${
+                s[2]
+                ? `<p>${safe(s[2])}</p>`
+                :""
+            }
 
             `;
 
         }
 
-
-
-        if(day.protein) {
-
-            html += `
-
-                <h3>
-                    Protein
-                </h3>
-
-                <p>
-                    ${escapeHTML(
-                        day.protein
-                    )}
-                </p>
-
-                <p>
-                    ${escapeHTML(
-                        day.proteinInstructions || ""
-                    )}
-                </p>
-
-            `;
-
-        }
-
-
-
-        if(day.sleep) {
-
-            html += `
-
-                <h3>
-                    Sleep
-                </h3>
-
-                <p>
-                    ${escapeHTML(
-                        day.sleep
-                    )}
-                </p>
-
-                <p>
-                    ${escapeHTML(
-                        day.sleepInstructions || ""
-                    )}
-                </p>
-
-            `;
-
-        }
-
-
-
-        if(day.nutrition) {
-
-            html += `
-
-                <h3>
-                    Nutrition
-                </h3>
-
-                <p>
-                    ${escapeHTML(
-                        day.nutrition
-                    )}
-                </p>
-
-            `;
-
-        }
-
-
-
-        if(day.mind) {
-
-            html += `
-
-                <h3>
-                    Mind / Stress
-                </h3>
-
-                <p>
-                    ${escapeHTML(
-                        day.mind
-                    )}
-                </p>
-
-            `;
-
-        }
-
-
-
-        if(day.sunlight) {
-
-            html += `
-
-                <h3>
-                    Sunlight
-                </h3>
-
-                <p>
-                    ${escapeHTML(
-                        day.sunlight
-                    )}
-                </p>
-
-            `;
-
-        }
-
-
-
-        if(day.recovery) {
-
-            html += `
-
-                <h3>
-                    Recovery
-                </h3>
-
-                <p>
-                    ${escapeHTML(
-                        day.recovery
-                    )}
-                </p>
-
-            `;
-
-        }
-
-    }
-
+    });
 
 
     document
-        .getElementById(
-            "previewContent"
-        )
-        .innerHTML =
-            html;
+    .getElementById(
+        "previewContent"
+    )
+    .innerHTML=html;
 
 
-    showSection(
-        "preview"
-    );
+    openSection("preview");
 
 };
 
 
 
 /* =====================================================
-   CLEAR FORM
+   CLEAR
 ===================================================== */
 
-function clearItemForm() {
+function clearEditor(){
+
+    document
+    .getElementById("editorHeading")
+    .textContent=
+    "Add Classroom Item";
 
 
     document
-        .getElementById(
-            "itemType"
-        )
-        .value =
-            "module";
+    .getElementById("itemType")
+    .value=
+    "module";
 
 
     document
-        .getElementById(
-            "itemParent"
-        )
-        .value =
-            "";
+    .getElementById("itemParent")
+    .value="";
 
 
     document
-        .getElementById(
-            "itemTitle"
-        )
-        .value =
-            "";
+    .getElementById("itemTitle")
+    .value="";
 
 
     document
-        .getElementById(
-            "itemDescription"
-        )
-        .value =
-            "";
+    .getElementById("itemDescription")
+    .value="";
 
 
     document
-        .getElementById(
-            "itemUnlockDay"
-        )
-        .value =
-            "1";
+    .getElementById("unlockDay")
+    .value=1;
 
 
     document
-        .getElementById(
-            "itemHasChildren"
-        )
-        .checked =
-            false;
-
+    .getElementById("allowChildren")
+    .checked=false;
 
 
     [
 
-        "dayMovement",
-        "dayMovementInstructions",
-        "dayHydration",
-        "dayHydrationInstructions",
-        "dayProtein",
-        "dayProteinInstructions",
-        "daySleep",
-        "daySleepInstructions",
-        "dayNutrition",
-        "dayMind",
-        "daySunlight",
-        "dayRecovery"
+        "movement",
+        "movementInstructions",
+        "hydration",
+        "hydrationInstructions",
+        "protein",
+        "proteinInstructions",
+        "sleep",
+        "sleepInstructions",
+        "nutrition",
+        "mind",
+        "sunlight",
+        "recovery"
 
-    ].forEach(id => {
-
-        const element =
-            document.getElementById(
-                id
-            );
-
-        if(element) {
-
-            element.value = "";
-
-        }
-
-    });
-
-}
-
-
-
-/* =====================================================
-   SORT
-===================================================== */
-
-function sortItems(a,b) {
-
-    return (
-        (a.order || 0) -
-        (b.order || 0)
+    ]
+    .forEach(
+        id=>setValue(id,"")
     );
 
+
+    document
+    .getElementById("dayContent")
+    .style.display=
+    "none";
+
 }
 
 
 
 /* =====================================================
-   ESCAPE HTML
+   HELPERS
 ===================================================== */
 
-function escapeHTML(value) {
+function value(id){
 
-    return String(value)
+    const el=
+    document.getElementById(id);
 
-        .replace(
-            /&/g,
-            "&amp;"
-        )
+    return el
+    ?el.value
+    :"";
 
-        .replace(
-            /</g,
-            "&lt;"
-        )
+}
 
-        .replace(
-            />/g,
-            "&gt;"
-        )
 
-        .replace(
-            /"/g,
-            "&quot;"
-        )
+function setValue(id,value){
 
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+    const el=
+    document.getElementById(id);
+
+    if(el)
+        el.value=
+        value||"";
+
+}
+
+
+function safe(value){
+
+    return String(
+        value??""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
 
 }
 
@@ -3741,5 +2782,4 @@ function escapeHTML(value) {
 </script>
 
 </body>
-
 </html>
