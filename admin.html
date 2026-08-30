@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -3034,6 +3033,7 @@ import {
     addDoc,
     getDocs,
     doc,
+    setDoc,
     updateDoc,
     deleteDoc,
     serverTimestamp
@@ -3955,10 +3955,11 @@ async function(){
 
     try{
 
-        await addDoc(
-            collection(
+        await setDoc(
+            doc(
                 db,
-                "members"
+                "members",
+                email
             ),
             {
 
@@ -3999,6 +4000,9 @@ async function(){
                 updatedAt:
                 serverTimestamp()
 
+            },
+            {
+                merge: true
             }
         );
 
@@ -6957,5 +6961,3 @@ document
 </body>
 
 </html>
-```
-
