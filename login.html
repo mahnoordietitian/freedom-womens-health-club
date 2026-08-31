@@ -402,7 +402,7 @@ from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
 import {
-    getFirestore,
+    initializeFirestore,
     doc,
     getDoc
 }
@@ -441,7 +441,20 @@ const auth =
 
 
 const db =
-    getFirestore(app);
+    initializeFirestore(
+        app,
+        {
+            /*
+             * Some mobile/corporate networks silently
+             * block Firestore's default WebChannel
+             * connection, which makes requests hang
+             * forever with no error. Long-polling avoids
+             * that and is safe to force everywhere.
+             */
+            experimentalAutoDetectLongPolling: true,
+            useFetchStreams: false
+        }
+    );
 
 
 /* ==================================================
