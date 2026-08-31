@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sign Up | Freedom Women's Health Club</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #FBF8F3;
+    color: #2D2D2D;
+    line-height: 1.6;
+}
+
+.container {
+    width: min(1050px, 92%);
+    margin: auto;
+}
+
+
+/* HEADER */
+
+header {
+    background: #FFFFFF;
+    border-bottom: 1px solid #E5DED7;
+}
+
+.header-inner {
+    min-height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    color: #6E4A7E;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.home-link {
+    color: #6E4A7E;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+
+/* HERO */
+
+.hero {
+    padding: 60px 0 35px;
+    text-align: center;
+}
+
+.small-title {
+    color: #6E4A7E;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+h1 {
+    font-size: 38px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 16px;
+}
+
+.hero p {
+    max-width: 650px;
+    margin: auto;
+    color: #625D59;
+    font-size: 16px;
+}
+
+
+/* LAYOUT */
+
+.layout {
+    max-width: 980px;
+    margin: 0 auto 60px;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 26px;
+    align-items: start;
+}
+
+
+/* PLAN CARD */
+
+.plan-card {
+    background: #FFFFFF;
+    border: 1px solid #E5DED7;
+    border-radius: 16px;
+    padding: 32px;
+}
+
+.plan-card h2 {
+    font-size: 21px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.plan-price {
+    color: #6E4A7E;
+    font-size: 32px;
+    font-weight: 600;
+    margin: 10px 0 4px;
+}
+
+.plan-price-note {
+    color: #706A66;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.plan-card ul {
+    list-style: none;
+    margin-bottom: 6px;
+}
+
+.plan-card li {
+    padding: 9px 0;
+    border-bottom: 1px solid #EEE8E2;
+    font-size: 14px;
+    color: #4F4A47;
+}
+
+.plan-card li:last-child {
+    border-bottom: none;
+}
+
+.plan-link {
+    display: inline-block;
+    margin-top: 18px;
+    color: #6E4A7E;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.plan-link:hover {
+    text-decoration: underline;
+}
+
+
+/* FORM CARD */
+
+.form-card {
+    background: #FFFFFF;
+    border: 1px solid #E5DED7;
+    border-radius: 16px;
+    padding: 34px;
+}
+
+.form-card h2 {
+    font-size: 21px;
+    font-weight: 500;
+    margin-bottom: 22px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+input {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #DCD4CE;
+    border-radius: 7px;
+    font-size: 15px;
+    outline: none;
+    background: #FFFFFF;
+}
+
+input:focus {
+    border-color: #6E4A7E;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 70px;
+}
+
+.show-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    color: #6E4A7E;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.signup-button {
+    width: 100%;
+    border: none;
+    background: #6E4A7E;
+    color: #FFFFFF;
+    padding: 15px;
+    border-radius: 7px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.signup-button:hover {
+    opacity: 0.9;
+}
+
+.signup-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.message {
+    margin-top: 16px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.error {
+    color: #9A4D4D;
+}
+
+.success {
+    color: #6E4A7E;
+}
+
+.already-member {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 13px;
+    color: #625D59;
+}
+
+.already-member a {
+    color: #6E4A7E;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.already-member a:hover {
+    text-decoration: underline;
+}
+
+
+/* SUCCESS SCREEN */
+
+.success-card {
+    background: #FFFFFF;
+    border: 1px solid #E5DED7;
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto 60px;
+}
+
+.success-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #F1EAF4;
+    color: #6E4A7E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    margin: 0 auto 18px;
+}
+
+.success-card h2 {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.success-card p {
+    color: #625D59;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.whatsapp-button {
+    display: block;
+    width: 100%;
+    padding: 16px 20px;
+    background: #6E4A7E;
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 22px;
+}
+
+.whatsapp-button:hover {
+    opacity: 0.9;
+}
+
+.back-home {
+    display: inline-block;
+    margin-top: 16px;
+    color: #6E4A7E;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.back-home:hover {
+    text-decoration: underline;
+}
+
+.note {
+    background: #F1EAF4;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-top: 22px;
+    text-align: left;
+}
+
+.note p {
+    font-size: 13px;
+    color: #514956;
+    margin: 0;
+}
+
+
+/* FOOTER */
+
+footer {
+    background: #302A31;
+    color: #FFFFFF;
+    padding: 35px 0;
+    margin-top: 20px;
+}
+
+footer p {
+    font-size: 13px;
+    color: #D4CED5;
+    margin-bottom: 4px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 760px) {
+
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .form-card,
+    .plan-card {
+        padding: 26px 22px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="container header-inner">
+
+        <div class="logo">
+            Freedom Women's Health Club
+        </div>
+
+        <a href="index.html" class="home-link">
+            Home
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<main>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="small-title">
+            Create Your Account
+        </div>
+
+        <h1>
+            Sign Up for Freedom
+        </h1>
+
+        <p>
+            Check the plan, create your account and message us on
+            WhatsApp to complete your payment.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- SIGNUP LAYOUT -->
+
+<div class="container">
+
+    <div class="layout" id="signupLayout">
+
+
+        <!-- PLAN -->
+
+        <div class="plan-card">
+
+            <h2>
+                90-Day Club Membership
+            </h2>
+
+            <div class="plan-price">
+                Rs. 5,000
+            </div>
+
+            <div class="plan-price-note">
+                Full 90-day group coaching membership
+            </div>
+
+            <ul>
+
+                <li>
+                    90-day structured weight-loss journey
+                </li>
+
+                <li>
+                    Weekly lessons and practical guidance
+                </li>
+
+                <li>
+                    Daily habits and accountability
+                </li>
+
+                <li>
+                    Food and lifestyle guidance
+                </li>
+
+                <li>
+                    Progress and habit tracking
+                </li>
+
+                <li>
+                    Supportive women's community
+                </li>
+
+            </ul>
+
+            <a href="join.html" class="plan-link">
+                View full plan details →
+            </a>
+
+        </div>
+
+
+        <!-- SIGNUP FORM -->
+
+        <div class="form-card">
+
+            <h2>
+                Create Your Account
+            </h2>
+
+            <form id="signupForm">
+
+                <div class="form-group">
+
+                    <label for="fullName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="fullName"
+                        placeholder="Your full name"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="03XX XXXXXXX"
+                        autocomplete="tel"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Create a password (min 6 characters)"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="show-password"
+                            id="showPassword">
+
+                            Show
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Re-enter your password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="signup-button"
+                    id="signupButton">
+
+                    Sign Up
+
+                </button>
+
+            </form>
+
+
+            <div
+                id="message"
+                class="message">
+            </div>
+
+
+            <div class="already-member">
+                Already have an account?
+                <a href="member.html">Log in here</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SUCCESS SCREEN (hidden until signup succeeds) -->
+
+    <div
+        class="success-card"
+        id="successCard"
+        style="display:none">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h2>
+            Account Created!
+        </h2>
+
+        <p>
+            Your Freedom account has been created successfully.
+        </p>
+
+        <p>
+            To activate your membership, message us on WhatsApp
+            with your sign-up email so we can confirm your payment.
+        </p>
+
+        <a
+            id="whatsappCta"
+            class="whatsapp-button"
+            href="#"
+            target="_blank"
+            rel="noopener"
+        >
+            WhatsApp Me to Complete Payment
+        </a>
+
+        <div class="note">
+
+            <p>
+                Once your payment is confirmed by the admin, you can
+                log in to the member portal using the same email and
+                password you just created.
+            </p>
+
+        </div>
+
+        <a href="index.html" class="back-home">
+            ← Back to Home
+        </a>
+
+    </div>
+
+</div>
+
+
+</main>
+
+
+
+<footer>
+
+    <div class="container">
+
+        <p>
+            Freedom Women's Health Club
+        </p>
+
+        <p>
+            Small steps. Consistent habits. Long-term results.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script type="module">
+
+
+/* ==================================================
+   FIREBASE
+================================================== */
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    doc,
+    setDoc,
+    serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyB1ISMm_aVwsbSHByUI0F67tn-8GJo1pO0",
+
+    authDomain:
+        "freedom-women-s-health-club.firebaseapp.com",
+
+    projectId:
+        "freedom-women-s-health-club",
+
+    storageBucket:
+        "freedom-women-s-health-club.firebasestorage.app",
+
+    messagingSenderId:
+        "445440093665",
+
+    appId:
+        "1:445440093665:web:9c3a77f1f64776f63cb6a0"
+
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+/*
+==================================================
+PLAN DETAILS
+
+Keep this in sync with join.html. If the plan
+or price changes, update it in both places.
+==================================================
+*/
+
+const PLAN_NAME =
+    "90-Day Club Membership";
+
+const PLAN_PRICE =
+    "Rs. 5,000";
+
+const WHATSAPP_NUMBER =
+    "923164068060";
+
+
+/* ==================================================
+   ELEMENTS
+================================================== */
+
+const signupForm =
+    document.getElementById("signupForm");
+
+const fullNameInput =
+    document.getElementById("fullName");
+
+const emailInput =
+    document.getElementById("email");
+
+const phoneInput =
+    document.getElementById("phone");
+
+const passwordInput =
+    document.getElementById("password");
+
+const confirmPasswordInput =
+    document.getElementById("confirmPassword");
+
+const signupButton =
+    document.getElementById("signupButton");
+
+const message =
+    document.getElementById("message");
+
+const showPassword =
+    document.getElementById("showPassword");
+
+const signupLayout =
+    document.getElementById("signupLayout");
+
+const successCard =
+    document.getElementById("successCard");
+
+const whatsappCta =
+    document.getElementById("whatsappCta");
+
+
+/* ==================================================
+   MESSAGE
+================================================== */
+
+function showMessage(text, type) {
+
+    message.textContent = text;
+
+    message.className =
+        "message " + type;
+
+}
+
+
+/* ==================================================
+   SHOW / HIDE PASSWORD
+================================================== */
+
+showPassword.addEventListener(
+    "click",
+    function() {
+
+        const nextType =
+            passwordInput.type === "password"
+                ? "text"
+                : "password";
+
+        passwordInput.type = nextType;
+
+        confirmPasswordInput.type = nextType;
+
+        showPassword.textContent =
+            nextType === "password" ? "Show" : "Hide";
+
+    }
+);
+
+
+/* ==================================================
+   SIGN UP
+================================================== */
+
+signupForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        const fullName =
+            fullNameInput.value.trim();
+
+
+        const email =
+            emailInput.value
+            .trim()
+            .toLowerCase();
+
+
+        const phone =
+            phoneInput.value.trim();
+
+
+        const password =
+            passwordInput.value;
+
+
+        const confirmPassword =
+            confirmPasswordInput.value;
+
+
+        if (!fullName || !email || !phone || !password) {
+
+            showMessage(
+                "Please fill in all fields.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (password.length < 6) {
+
+            showMessage(
+                "Password must be at least 6 characters long.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (password !== confirmPassword) {
+
+            showMessage(
+                "Passwords do not match.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        signupButton.disabled = true;
+
+        signupButton.textContent =
+            "Creating account...";
+
+        showMessage("", "success");
+
+
+        try {
+
+            /*
+            ==========================================
+            STEP 1
+            Create the Firebase Authentication account.
+            ==========================================
+            */
+
+            const userCredential =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+            const user =
+                userCredential.user;
+
+
+            /*
+            ==========================================
+            STEP 2
+            Store the member record in Firestore.
+
+            The document ID is the lowercase email so
+            the login and admin panel can look it up
+            consistently.
+
+            IMPORTANT:
+
+            paymentConfirmed / contentAccess / status
+            start as "not yet active". Only the admin
+            panel is expected to flip these to Active
+            once payment is confirmed. Firestore rules
+            should prevent a member from writing these
+            fields themselves.
+            ==========================================
+            */
+
+            await setDoc(
+                doc(db, "members", email),
+                {
+
+                    name: fullName,
+
+                    email,
+
+                    phone,
+
+                    uid: user.uid,
+
+                    plan: PLAN_NAME,
+
+                    price: PLAN_PRICE,
+
+                    status: "Pending",
+
+                    paymentConfirmed: false,
+
+                    contentAccess: false,
+
+                    startDate: null,
+
+                    accessDays: null,
+
+                    accessUntilDate: null,
+
+                    signupSource: "self-signup",
+
+                    createdAt: serverTimestamp(),
+
+                    updatedAt: serverTimestamp()
+
+                }
+            );
+
+
+            /*
+            ==========================================
+            STEP 3
+            Sign the user out again.
+
+            They are not activated yet, so we don't
+            leave them in a signed-in session. They
+            will log back in once payment is confirmed.
+            ==========================================
+            */
+
+            await signOut(auth);
+
+
+            /*
+            ==========================================
+            STEP 4
+            Show the success screen with a WhatsApp
+            link pre-filled with their sign-up email.
+            ==========================================
+            */
+
+            const whatsappText =
+                encodeURIComponent(
+                    "Assalam o Alaikum, I just signed up for the Freedom Women's Health Club.\n\n" +
+                    "Name: " + fullName + "\n" +
+                    "Email: " + email + "\n\n" +
+                    "Please send me the payment details so I can complete my membership."
+                );
+
+            whatsappCta.href =
+                "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + whatsappText;
+
+
+            signupLayout.style.display = "none";
+
+            successCard.style.display = "block";
+
+
+        } catch (error) {
+
+            console.error(
+                "Signup error:",
+                error
+            );
+
+
+            let errorMessage =
+                "Something went wrong while creating your account. Please try again.";
+
+
+            if (error.code === "auth/email-already-in-use") {
+
+                errorMessage =
+                    "An account already exists with this email. Please log in instead, or contact us on WhatsApp if you're not sure of your status.";
+
+            }
+
+
+            if (error.code === "auth/invalid-email") {
+
+                errorMessage =
+                    "Please enter a valid email address.";
+
+            }
+
+
+            if (error.code === "auth/weak-password") {
+
+                errorMessage =
+                    "Please choose a stronger password (at least 6 characters).";
+
+            }
+
+
+            showMessage(
+                errorMessage,
+                "error"
+            );
+
+
+            signupButton.disabled = false;
+
+            signupButton.textContent =
+                "Sign Up";
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
