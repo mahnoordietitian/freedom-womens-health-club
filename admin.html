@@ -1909,6 +1909,8 @@ label{
 
                     <th>Status</th>
 
+                    <th>Payment</th>
+
                 </tr>
 
             </thead>
@@ -1919,7 +1921,7 @@ label{
                 <tr>
 
                     <td
-                        colspan="8"
+                        colspan="9"
                         class="empty"
                     >
                         Loading...
@@ -3105,6 +3107,8 @@ let editingId=null;
 
 let editingCommunityId=null;
 
+let membersCache=[];
+
 
 /* =====================================================
    AUTH
@@ -3621,6 +3625,8 @@ async function loadMembers(){
 
         let active=0;
 
+        membersCache=[];
+
 
         snap.forEach(s=>{
 
@@ -3628,6 +3634,9 @@ async function loadMembers(){
                 id:s.id,
                 ...s.data()
             };
+
+
+            membersCache.push(m);
 
 
             const daysLeft=
@@ -3660,8 +3669,45 @@ async function loadMembers(){
 
             let statusHTML;
 
+            let daysHTML;
 
-            if(manuallyInactive){
+            let accessBadgeHTML;
+
+            let accessUntilHTML;
+
+            const pendingPayment=
+            m.paymentConfirmed !== true;
+
+
+            if(pendingPayment){
+
+                /*
+                 * Self-signup member whose payment
+                 * has not been confirmed by the admin
+                 * yet. Their member portal stays
+                 * locked (see member.html / login.html)
+                 * until this is confirmed.
+                 */
+
+                statusHTML=`
+                    <span class="badge badge-warning">
+                        Pending
+                    </span>
+                `;
+
+                daysHTML=`—`;
+
+                accessBadgeHTML=`
+                    <span class="badge badge-locked">
+                        Not set
+                    </span>
+                `;
+
+                accessUntilHTML=`—`;
+
+            }
+
+            else if(manuallyInactive){
 
                 statusHTML=`
                     <span class="badge badge-warning">
@@ -3692,24 +3738,80 @@ async function loadMembers(){
             }
 
 
-            let daysHTML;
+            if(!pendingPayment){
+
+                if(expired){
+
+                    daysHTML=`
+                        <span class="days-left expired">
+                            Expired
+                        </span>
+                    `;
+
+                }
+
+                else{
+
+                    daysHTML=`
+                        <span class="days-left active">
+                            ${daysLeft} day${daysLeft===1?"":"s"}
+                        </span>
+                    `;
+
+                }
 
 
-            if(expired){
+                accessBadgeHTML=`
+                    <span class="badge badge-locked">
 
-                daysHTML=`
-                    <span class="days-left expired">
-                        Expired
+                        ${Number(
+                            m.accessDays ||
+                            m.accessUntilDay ||
+                            30
+                        )} Days
+
                     </span>
+                `;
+
+
+                accessUntilHTML=
+                    formatReadableDate(
+                        m.accessUntilDate
+                    );
+
+            }
+
+
+            let paymentHTML;
+
+
+            if(pendingPayment){
+
+                paymentHTML=`
+
+                    <span class="badge badge-warning">
+                        Not Confirmed
+                    </span>
+
+                    <br>
+
+                    <button
+                        class="btn btn-success btn-small"
+                        style="margin-top:6px"
+                        onclick="confirmPayment('${m.id}')"
+                    >
+                        Confirm Payment
+                    </button>
+
                 `;
 
             }
 
             else{
 
-                daysHTML=`
-                    <span class="days-left active">
-                        ${daysLeft} day${daysLeft===1?"":"s"}
+                paymentHTML=`
+                    <span class="badge badge-active">
+                        Confirmed
                     </span>
                 `;
 
@@ -3748,24 +3850,14 @@ async function loadMembers(){
 
                     <td>
 
-                        <span class="badge badge-locked">
-
-                            ${Number(
-                                m.accessDays ||
-                                m.accessUntilDay ||
-                                30
-                            )} Days
-
-                        </span>
+                        ${accessBadgeHTML}
 
                     </td>
 
 
                     <td>
 
-                        ${formatReadableDate(
-                            m.accessUntilDate
-                        )}
+                        ${accessUntilHTML}
 
                     </td>
 
@@ -3783,6 +3875,13 @@ async function loadMembers(){
 
                     </td>
 
+
+                    <td>
+
+                        ${paymentHTML}
+
+                    </td>
+
                 </tr>
 
             `;
@@ -3797,7 +3896,7 @@ async function loadMembers(){
                 <tr>
 
                     <td
-                        colspan="8"
+                        colspan="9"
                         class="empty"
                     >
                         No members yet.
@@ -3841,7 +3940,7 @@ async function loadMembers(){
             <tr>
 
                 <td
-                    colspan="8"
+                    colspan="9"
                     class="empty"
                 >
 
@@ -3955,6 +4054,16 @@ async function(){
 
     try{
 
+        /*
+         * setDoc (merge: true) keyed by the lowercase
+         * email. This keeps the document ID consistent
+         * with signup.html and with the lookup used in
+         * login.html, and with merge:true it's safe to
+         * use this form even if the member already has
+         * a self-signup document (it won't wipe out
+         * fields like uid).
+         */
+
         await setDoc(
             doc(
                 db,
@@ -3993,6 +4102,17 @@ async function(){
 
                 contentAccess:
                 memberStatus==="Active",
+
+                /*
+                 * Admin is manually adding/editing this
+                 * member through this form, which means
+                 * payment has already been handled
+                 * outside of the self-signup flow.
+                 */
+
+                paymentConfirmed: true,
+
+                signupSource: "admin-added",
 
                 createdAt:
                 serverTimestamp(),
@@ -4044,6 +4164,124 @@ async function(){
 
         alert(
             "Could not save member:\n\n"+
+            error.message
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   CONFIRM PAYMENT
+
+   Called from the "Confirm Payment" button that shows
+   next to any member whose paymentConfirmed field is
+   not true (i.e. they signed up themselves and are
+   waiting on payment confirmation).
+
+   This is the ONLY place a member's paymentConfirmed
+   flag should flip to true from the admin side, and it
+   is what unlocks member.html / login.html for them.
+===================================================== */
+
+window.confirmPayment=
+async function(id){
+
+    const member=
+    membersCache.find(
+        m => m.id === id
+    );
+
+
+    const displayName=
+    (member && member.name) ||
+    "this member";
+
+
+    const ok=
+    confirm(
+        `Confirm payment received from ${displayName} and activate their 90-day membership starting today?`
+    );
+
+
+    if(!ok){
+
+        return;
+
+    }
+
+
+    const startDate=
+    formatDateOnly(
+        new Date()
+    );
+
+
+    const accessDays=
+    90;
+
+
+    const accessUntilDate=
+    calculateAccessUntil(
+        startDate,
+        accessDays
+    );
+
+
+    try{
+
+        await updateDoc(
+            doc(
+                db,
+                "members",
+                id
+            ),
+            {
+
+                paymentConfirmed: true,
+
+                status: "Active",
+
+                contentAccess: true,
+
+                startDate,
+
+                accessDays,
+
+                accessUntilDay: accessDays,
+
+                accessUntilDate,
+
+                activatedAt:
+                serverTimestamp(),
+
+                updatedAt:
+                serverTimestamp()
+
+            }
+        );
+
+
+        alert(
+            "Payment confirmed. This member can now log in and access the member portal."
+        );
+
+
+        await loadMembers();
+
+    }
+
+    catch(error){
+
+        console.error(
+            "CONFIRM PAYMENT ERROR",
+            error
+        );
+
+
+        alert(
+            "Could not confirm payment:\n\n"+
             error.message
         );
 
