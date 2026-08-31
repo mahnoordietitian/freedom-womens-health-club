@@ -51,7 +51,7 @@ button{
 }
 
 
-/* ====================================================
+/* =====================================================
    LOGIN
 ===================================================== */
 
@@ -1382,23 +1382,46 @@ async function loadMember(email){
 
   try{
 
+    const normalizedEmail =
+      (email || "")
+        .trim()
+        .toLowerCase();
+
+
     testMode =
-      email.toLowerCase() ===
+      normalizedEmail ===
       TEST_EMAIL.toLowerCase();
 
 
-    const q =
-      query(
-        collection(db,"members"),
-        where("email","==",email)
-      );
+    /*
+    ==========================================
+    Member documents are keyed by the lowercase
+    email (see signup.html / admin.html), so we
+    fetch by document ID directly rather than
+    running a where("email","==", ...) query.
+
+    This matters for Firestore security rules:
+    the rule that lets a member read their own
+    record is path-based (the doc ID must equal
+    their email). A query on the "email" field
+    can't be statically verified against that
+    rule, so Firestore rejects it outright with
+    "Missing or insufficient permissions" even
+    though the matching document is their own.
+    A direct getDoc() by ID doesn't have that
+    problem.
+    ==========================================
+    */
+
+    const memberRef =
+      doc(db, "members", normalizedEmail);
 
 
-    const snap =
-      await getDocs(q);
+    const memberSnap =
+      await getDoc(memberRef);
 
 
-    if(snap.empty){
+    if(!memberSnap.exists()){
 
       if(testMode){
 
@@ -1406,7 +1429,7 @@ async function loadMember(email){
 
           name:"Mahnoor Test",
 
-          email:email,
+          email:normalizedEmail,
 
           startDate:"2026-08-28",
 
@@ -1435,7 +1458,7 @@ async function loadMember(email){
     else{
 
       currentMember =
-        snap.docs[0].data();
+        memberSnap.data();
 
     }
 
