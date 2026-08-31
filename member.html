@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1400,7 +1399,9 @@ async function loadMember(email){
 
           accessUntilDay:90,
 
-          status:"Active"
+          status:"Active",
+
+          paymentConfirmed:true
 
         };
 
@@ -1422,6 +1423,38 @@ async function loadMember(email){
 
       currentMember =
         snap.docs[0].data();
+
+    }
+
+
+    /*
+    ==========================================
+    PAYMENT / ACCESS GATE
+
+    A member can sign up and create a login
+    before their payment is confirmed by the
+    admin. The member portal must stay locked
+    until an admin has confirmed payment from
+    the admin panel.
+
+    testMode (the admin's own test login)
+    bypasses this gate.
+    ==========================================
+    */
+
+    if(
+      !testMode &&
+      currentMember.paymentConfirmed !== true
+    ){
+
+      alert(
+        "Your account has been created, but your payment has not been confirmed yet. " +
+        "Please complete your payment on WhatsApp. Once confirmed, you'll be able to log in here."
+      );
+
+      await signOut(auth);
+
+      return;
 
     }
 
@@ -3504,4 +3537,3 @@ async function(){
 
 </body>
 </html>
-```
