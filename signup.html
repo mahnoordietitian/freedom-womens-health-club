@@ -246,6 +246,11 @@ input:focus {
     line-height: 1.5;
 }
 
+.message a {
+    color: #6E4A7E;
+    font-weight: 600;
+}
+
 .error {
     color: #9A4D4D;
 }
@@ -730,7 +735,7 @@ from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 
 import {
-    getFirestore,
+    initializeFirestore,
     doc,
     setDoc,
     serverTimestamp
@@ -770,7 +775,20 @@ const auth =
 
 
 const db =
-    getFirestore(app);
+    initializeFirestore(
+        app,
+        {
+            /*
+             * Some mobile/corporate networks silently
+             * block Firestore's default WebChannel
+             * connection, which makes writes hang
+             * forever with no error. Long-polling avoids
+             * that and is safe to force everywhere.
+             */
+            experimentalAutoDetectLongPolling: true,
+            useFetchStreams: false
+        }
+    );
 
 
 /*
@@ -847,6 +865,16 @@ function showMessage(text, type) {
 }
 
 
+function showMessageHTML(html, type) {
+
+    message.innerHTML = html;
+
+    message.className =
+        "message " + type;
+
+}
+
+
 /* ==================================================
    SHOW / HIDE PASSWORD
 ================================================== */
@@ -869,6 +897,46 @@ showPassword.addEventListener(
 
     }
 );
+
+
+/* ==================================================
+   TIMEOUT GUARD
+
+   Prevents the "Creating account..." button from
+   hanging forever if a network request stalls (this
+   can happen on networks that block Firestore's
+   default connection). The underlying request may
+   still finish in the background, but the user gets
+   their UI back and a clear message instead of an
+   endless spinner.
+================================================== */
+
+function withTimeout(promise, ms, label) {
+
+    let timer;
+
+    const timeout = new Promise(function(resolve, reject) {
+
+        timer = setTimeout(function() {
+
+            reject(
+                new Error(
+                    "TIMEOUT: " + label
+                )
+            );
+
+        }, ms);
+
+    });
+
+    return Promise.race([promise, timeout])
+        .finally(function() {
+
+            clearTimeout(timer);
+
+        });
+
+}
 
 
 /* ==================================================
@@ -948,6 +1016,9 @@ signupForm.addEventListener(
         showMessage("", "success");
 
 
+        let authAccountCreated = false;
+
+
         try {
 
             /*
@@ -958,14 +1029,20 @@ signupForm.addEventListener(
             */
 
             const userCredential =
-                await createUserWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
+                await withTimeout(
+                    createUserWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    ),
+                    20000,
+                    "create-account"
                 );
 
             const user =
                 userCredential.user;
+
+            authAccountCreated = true;
 
 
             /*
@@ -988,41 +1065,45 @@ signupForm.addEventListener(
             ==========================================
             */
 
-            await setDoc(
-                doc(db, "members", email),
-                {
+            await withTimeout(
+                setDoc(
+                    doc(db, "members", email),
+                    {
 
-                    name: fullName,
+                        name: fullName,
 
-                    email,
+                        email,
 
-                    phone,
+                        phone,
 
-                    uid: user.uid,
+                        uid: user.uid,
 
-                    plan: PLAN_NAME,
+                        plan: PLAN_NAME,
 
-                    price: PLAN_PRICE,
+                        price: PLAN_PRICE,
 
-                    status: "Pending",
+                        status: "Pending",
 
-                    paymentConfirmed: false,
+                        paymentConfirmed: false,
 
-                    contentAccess: false,
+                        contentAccess: false,
 
-                    startDate: null,
+                        startDate: null,
 
-                    accessDays: null,
+                        accessDays: null,
 
-                    accessUntilDate: null,
+                        accessUntilDate: null,
 
-                    signupSource: "self-signup",
+                        signupSource: "self-signup",
 
-                    createdAt: serverTimestamp(),
+                        createdAt: serverTimestamp(),
 
-                    updatedAt: serverTimestamp()
+                        updatedAt: serverTimestamp()
 
-                }
+                    }
+                ),
+                20000,
+                "save-member-record"
             );
 
 
@@ -1073,8 +1154,67 @@ signupForm.addEventListener(
             );
 
 
+            const timedOut =
+                error &&
+                typeof error.message === "string" &&
+                error.message.indexOf("TIMEOUT:") === 0;
+
+
+            /*
+            ==========================================
+            EDGE CASE:
+
+            The Auth account was created successfully,
+            but saving the Firestore member record
+            failed or timed out. The user now has a
+            login but no member record, and re-running
+            signup will fail with "email already in
+            use". Sign them out and point them to
+            WhatsApp instead of a generic retry.
+            ==========================================
+            */
+
+            if (authAccountCreated) {
+
+                try {
+                    await signOut(auth);
+                } catch (signOutError) {
+                    console.error(signOutError);
+                }
+
+
+                const whatsappText =
+                    encodeURIComponent(
+                        "Assalam o Alaikum, I tried to sign up for the Freedom Women's Health Club but ran into an error while saving my details.\n\n" +
+                        "Name: " + fullName + "\n" +
+                        "Email: " + email + "\n\n" +
+                        "Could you please help set up my account?"
+                    );
+
+                const whatsappUrl =
+                    "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + whatsappText;
+
+                showMessageHTML(
+                    "Your account was created, but we couldn't save your details due to a connection issue. " +
+                    "Please <a href=\"" + whatsappUrl + "\" target=\"_blank\" rel=\"noopener\">message us on WhatsApp</a> with your email (" +
+                    email + ") so we can finish setting up your account — don't try signing up again with the same email.",
+                    "error"
+                );
+
+                signupButton.disabled = false;
+
+                signupButton.textContent =
+                    "Sign Up";
+
+                return;
+
+            }
+
+
             let errorMessage =
-                "Something went wrong while creating your account. Please try again.";
+                timedOut
+                    ? "This is taking longer than expected. Please check your internet connection and try again."
+                    : "Something went wrong while creating your account. Please try again.";
 
 
             if (error.code === "auth/email-already-in-use") {
@@ -1097,6 +1237,14 @@ signupForm.addEventListener(
 
                 errorMessage =
                     "Please choose a stronger password (at least 6 characters).";
+
+            }
+
+
+            if (error.code === "auth/network-request-failed") {
+
+                errorMessage =
+                    "Network error. Please check your internet connection and try again.";
 
             }
 
