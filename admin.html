@@ -831,12 +831,66 @@ label{
 
 
 /* =====================================================
+   MEMBER TABLE — ACTIONS COLUMN
+===================================================== */
+
+.col-actions{
+
+    min-width:150px;
+
+}
+
+
+.action-stack{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:6px;
+
+}
+
+
+.action-stack .btn-small{
+
+    width:100%;
+
+    text-align:center;
+
+}
+
+
+.btn-danger.btn-small{
+
+    background:transparent;
+
+    color:var(--danger);
+
+    border:1px solid var(--danger);
+
+}
+
+
+.btn-danger.btn-small:hover{
+
+    background:var(--danger);
+
+    color:#FFFFFF;
+
+}
+
+
+/* =====================================================
    FORM
 ===================================================== */
 
 .form-card{
 
     max-width:1000px;
+
 
     background:white;
 
@@ -1909,7 +1963,7 @@ label{
 
                     <th>Status</th>
 
-                    <th>Payment</th>
+                    <th class="col-actions">Actions</th>
 
                 </tr>
 
@@ -3795,26 +3849,34 @@ async function loadMembers(){
             }
 
 
-            let paymentHTML;
+            let actionsHTML;
 
 
             if(pendingPayment){
 
-                paymentHTML=`
+                actionsHTML=`
 
-                    <span class="badge badge-warning">
-                        Not Confirmed
-                    </span>
+                    <div class="action-stack">
 
-                    <br>
+                        <span class="badge badge-warning">
+                            Not Confirmed
+                        </span>
 
-                    <button
-                        class="btn btn-success btn-small"
-                        style="margin-top:6px"
-                        onclick="confirmPayment('${m.id}')"
-                    >
-                        Confirm Payment
-                    </button>
+                        <button
+                            class="btn btn-success btn-small"
+                            onclick="confirmPayment('${m.id}')"
+                        >
+                            Confirm Payment
+                        </button>
+
+                        <button
+                            class="btn btn-danger btn-small"
+                            onclick="deleteMember('${m.id}')"
+                        >
+                            Delete
+                        </button>
+
+                    </div>
 
                 `;
 
@@ -3822,10 +3884,23 @@ async function loadMembers(){
 
             else{
 
-                paymentHTML=`
-                    <span class="badge badge-active">
-                        Confirmed
-                    </span>
+                actionsHTML=`
+
+                    <div class="action-stack">
+
+                        <span class="badge badge-active">
+                            Confirmed
+                        </span>
+
+                        <button
+                            class="btn btn-danger btn-small"
+                            onclick="deleteMember('${m.id}')"
+                        >
+                            Delete
+                        </button>
+
+                    </div>
+
                 `;
 
             }
@@ -3891,7 +3966,7 @@ async function loadMembers(){
 
                     <td>
 
-                        ${paymentHTML}
+                        ${actionsHTML}
 
                     </td>
 
@@ -4295,6 +4370,92 @@ async function(id){
 
         alert(
             "Could not confirm payment:\n\n"+
+            error.message
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   DELETE MEMBER
+
+   Called from the "Delete" button next to any member
+   row. Lets the admin remove members who never
+   completed payment (or anyone else) from Firestore.
+
+   IMPORTANT LIMITATION:
+
+   This only deletes the Firestore record at
+   /members/{id}. It does NOT delete the person's
+   Firebase Authentication account — the client-side
+   Firebase SDK is not allowed to delete another
+   user's login (only a user can delete their own),
+   so that account will still technically exist and
+   could sign in again. Because their member record
+   is gone, member.html / login.html will treat them
+   as "profile not added yet" and block them, so this
+   is safe, but if you want the login itself removed
+   too, that requires the Firebase Admin SDK (e.g. a
+   Cloud Function) — it can't be done from this panel.
+===================================================== */
+
+window.deleteMember=
+async function(id){
+
+    const member=
+    membersCache.find(
+        m => m.id === id
+    );
+
+
+    const displayName=
+    (member && member.name) ||
+    (member && member.email) ||
+    "this member";
+
+
+    const ok=
+    confirm(
+        `Delete ${displayName}? This removes their record from Firestore and cannot be undone. ` +
+        `(Their login will stop working since their profile will no longer exist, but their ` +
+        `Firebase Authentication account itself is not deleted.)`
+    );
+
+
+    if(!ok){
+
+        return;
+
+    }
+
+
+    try{
+
+        await deleteDoc(
+            doc(
+                db,
+                "members",
+                id
+            )
+        );
+
+
+        await loadMembers();
+
+    }
+
+    catch(error){
+
+        console.error(
+            "DELETE MEMBER ERROR",
+            error
+        );
+
+
+        alert(
+            "Could not delete member:\n\n"+
             error.message
         );
 
