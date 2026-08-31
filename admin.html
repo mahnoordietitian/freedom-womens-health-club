@@ -1117,6 +1117,66 @@ label{
 }
 
 
+/* VIEW TOGGLE (List / Graph) */
+
+.view-toggle-group{
+
+    display:flex;
+
+    background:var(--light);
+
+    border-radius:9px;
+
+    padding:4px;
+
+    gap:4px;
+
+}
+
+
+.view-toggle-btn{
+
+    border:none;
+
+    background:transparent;
+
+    padding:8px 14px;
+
+    border-radius:7px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    font-family:inherit;
+
+    color:var(--muted);
+
+    cursor:pointer;
+
+    white-space:nowrap;
+
+}
+
+
+.view-toggle-btn.active{
+
+    background:white;
+
+    color:var(--plum);
+
+    box-shadow:0 1px 3px rgba(0,0,0,.12);
+
+}
+
+
+.view-toggle-btn:hover:not(.active){
+
+    color:var(--charcoal);
+
+}
+
+
 /* CLIENT LIST */
 
 .progress-list{
@@ -1329,6 +1389,289 @@ label{
     color:var(--muted);
 
     font-size:14px;
+
+}
+
+
+/* =====================================================
+   CLIENT PROGRESS — GRAPH VIEW
+===================================================== */
+
+.chart-grid{
+
+    display:grid;
+
+    grid-template-columns:280px 1fr;
+
+    gap:16px;
+
+    align-items:start;
+
+}
+
+
+.chart-panel{
+
+    background:var(--light-cream);
+
+    border:1px solid var(--border);
+
+    border-radius:13px;
+
+    padding:20px;
+
+}
+
+
+.chart-panel h4{
+
+    font-size:14px;
+
+    margin-bottom:16px;
+
+    color:var(--charcoal);
+
+}
+
+
+/* DONUT CHART */
+
+.donut-wrap{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:16px;
+
+}
+
+
+.donut-svg{
+
+    display:block;
+
+}
+
+
+.donut-center-label{
+
+    font-size:22px;
+
+    font-weight:800;
+
+    fill:var(--plum);
+
+}
+
+
+.donut-center-sublabel{
+
+    font-size:10px;
+
+    fill:var(--muted);
+
+}
+
+
+.donut-legend{
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:9px;
+
+}
+
+
+.donut-legend-item{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    font-size:13px;
+
+}
+
+
+.donut-legend-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+
+
+.donut-legend-dot{
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    flex-shrink:0;
+
+}
+
+
+.donut-legend-count{
+
+    font-weight:700;
+
+    color:var(--charcoal);
+
+}
+
+
+/* BAR CHART */
+
+.bar-chart-axis{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:11px;
+
+    color:var(--muted);
+
+    padding-left:120px;
+
+    margin-bottom:10px;
+
+}
+
+
+.bar-chart-rows{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    max-height:480px;
+
+    overflow-y:auto;
+
+    padding-right:4px;
+
+}
+
+
+.bar-chart-row{
+
+    display:grid;
+
+    grid-template-columns:110px 1fr 44px;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.bar-chart-label{
+
+    font-size:12.5px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+
+.bar-chart-track{
+
+    position:relative;
+
+    height:16px;
+
+    border-radius:20px;
+
+    background:
+
+        repeating-linear-gradient(
+            to right,
+            var(--border) 0,
+            var(--border) 1px,
+            transparent 1px,
+            transparent 25%
+        ),
+
+        var(--light);
+
+}
+
+
+.bar-chart-fill{
+
+    height:100%;
+
+    border-radius:20px;
+
+    transition:width .4s ease;
+
+}
+
+
+.bar-chart-fill.low{
+    background:var(--warning);
+}
+
+.bar-chart-fill.mid{
+    background:var(--plum);
+}
+
+.bar-chart-fill.high{
+    background:var(--success);
+}
+
+
+.bar-chart-percent{
+
+    font-size:12px;
+
+    font-weight:700;
+
+    color:var(--charcoal);
+
+    text-align:right;
+
+}
+
+
+@media (max-width:900px){
+
+    .chart-grid{
+        grid-template-columns:1fr;
+    }
+
+    .bar-chart-axis{
+        padding-left:90px;
+    }
+
+    .bar-chart-row{
+        grid-template-columns:90px 1fr 38px;
+    }
 
 }
 
@@ -2544,6 +2887,32 @@ label{
 
             </select>
 
+
+            <div
+                class="view-toggle-group"
+                id="progressViewToggle"
+            >
+
+                <button
+                    type="button"
+                    class="view-toggle-btn active"
+                    data-view="list"
+                    onclick="setProgressView('list')"
+                >
+                    ☰ List
+                </button>
+
+                <button
+                    type="button"
+                    class="view-toggle-btn"
+                    data-view="graph"
+                    onclick="setProgressView('graph')"
+                >
+                    📊 Graph
+                </button>
+
+            </div>
+
         </div>
 
 
@@ -2556,6 +2925,61 @@ label{
 
             <div class="progress-empty">
                 Loading client progress...
+            </div>
+
+        </div>
+
+
+        <!-- CLIENT GRAPH VIEW -->
+
+        <div
+            class="chart-grid"
+            id="clientProgressGraph"
+            style="display:none"
+        >
+
+            <!-- DONUT: JOURNEY STATUS BREAKDOWN -->
+
+            <div class="chart-panel">
+
+                <h4>
+                    Journey Status
+                </h4>
+
+                <div
+                    class="donut-wrap"
+                    id="progressDonutChart"
+                >
+                </div>
+
+            </div>
+
+
+            <!-- BAR CHART: PROGRESS BY CLIENT -->
+
+            <div class="chart-panel chart-panel-wide">
+
+                <h4>
+                    Progress by Client
+                </h4>
+
+                <div
+                    class="bar-chart-axis"
+                    id="progressBarAxis"
+                >
+                    <span>0%</span>
+                    <span>25%</span>
+                    <span>50%</span>
+                    <span>75%</span>
+                    <span>100%</span>
+                </div>
+
+                <div
+                    class="bar-chart-rows"
+                    id="progressBarChart"
+                >
+                </div>
+
             </div>
 
         </div>
@@ -5172,7 +5596,423 @@ function(){
     list.innerHTML=
     html;
 
+
+    /*
+     * Keep the graph view in sync too, whenever it's
+     * visible (cheap to just always re-render it from
+     * the same cache).
+     */
+
+    renderProgressGraphs();
+
 };
+
+
+/* =====================================================
+   PROGRESS VIEW TOGGLE (List / Graph)
+===================================================== */
+
+let progressViewMode="list";
+
+
+window.setProgressView=
+function(view){
+
+    progressViewMode=view;
+
+
+    const listEl=
+    document.getElementById(
+        "clientProgressList"
+    );
+
+    const graphEl=
+    document.getElementById(
+        "clientProgressGraph"
+    );
+
+    const toggleGroup=
+    document.getElementById(
+        "progressViewToggle"
+    );
+
+
+    if(listEl){
+
+        listEl.style.display=
+        view === "list" ? "flex" : "none";
+
+    }
+
+    if(graphEl){
+
+        graphEl.style.display=
+        view === "graph" ? "grid" : "none";
+
+    }
+
+    if(toggleGroup){
+
+        toggleGroup
+        .querySelectorAll(".view-toggle-btn")
+        .forEach(function(btn){
+
+            btn.classList.toggle(
+                "active",
+                btn.dataset.view === view
+            );
+
+        });
+
+    }
+
+
+    if(view === "graph"){
+
+        renderProgressGraphs();
+
+    }
+
+};
+
+
+/* =====================================================
+   RENDER PROGRESS GRAPHS
+
+   Draws two lightweight, dependency-free charts from
+   clientProgressCache:
+
+   1. A donut chart of Completed / In Progress /
+      Not Started clients.
+
+   2. A horizontal bar chart of every confirmed
+      client's progress percentage.
+
+   These are always built from the FULL cache (not
+   the search box) since they're meant as a whole-club
+   overview, not a filtered view.
+===================================================== */
+
+function renderProgressGraphs(){
+
+    /* Only bother building markup if the graph tab
+       is actually visible, to avoid wasted work on
+       every list re-render. */
+
+    if(progressViewMode !== "graph"){
+
+        return;
+
+    }
+
+
+    renderProgressDonut();
+
+    renderProgressBarChart();
+
+}
+
+
+function renderProgressDonut(){
+
+    const container=
+    document.getElementById(
+        "progressDonutChart"
+    );
+
+    if(!container){
+
+        return;
+
+    }
+
+
+    const total=
+    clientProgressCache.length;
+
+
+    if(!total){
+
+        container.innerHTML=`
+            <div class="progress-empty">
+                No confirmed clients yet.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    const completed=
+    clientProgressCache.filter(
+        c => c.percent >= 100
+    ).length;
+
+
+    const notStarted=
+    clientProgressCache.filter(
+        c => c.completedCount === 0
+    ).length;
+
+
+    const inProgress=
+    total - completed - notStarted;
+
+
+    const segments=[
+
+        {
+            label:"Completed",
+            count:completed,
+            color:"var(--success)"
+        },
+
+        {
+            label:"In Progress",
+            count:inProgress,
+            color:"var(--plum)"
+        },
+
+        {
+            label:"Not Started",
+            count:notStarted,
+            color:"var(--warning)"
+        }
+
+    ];
+
+
+    /* ---- BUILD SVG DONUT (stroke-dasharray segments) ---- */
+
+    const radius=54;
+
+    const circumference=
+    2 * Math.PI * radius;
+
+    let offset=0;
+
+
+    let circlesSVG="";
+
+
+    segments.forEach(function(seg){
+
+        if(seg.count <= 0){
+
+            return;
+
+        }
+
+
+        const fraction=
+        seg.count / total;
+
+        const dash=
+        fraction * circumference;
+
+
+        circlesSVG+=`
+
+            <circle
+                r="${radius}"
+                cx="70"
+                cy="70"
+                fill="none"
+                stroke="${seg.color}"
+                stroke-width="18"
+                stroke-dasharray="${dash} ${circumference - dash}"
+                stroke-dashoffset="${-offset}"
+                transform="rotate(-90 70 70)"
+            />
+
+        `;
+
+
+        offset+=dash;
+
+    });
+
+
+    const overallPercent=
+    Math.round(
+        (clientProgressCache.reduce(
+            (sum,c) => sum + c.percent,
+            0
+        ) / total)
+    );
+
+
+    const svg=`
+
+        <svg
+            class="donut-svg"
+            width="140"
+            height="140"
+            viewBox="0 0 140 140"
+        >
+
+            <circle
+                r="${radius}"
+                cx="70"
+                cy="70"
+                fill="none"
+                stroke="var(--light)"
+                stroke-width="18"
+            />
+
+            ${circlesSVG}
+
+            <text
+                x="70"
+                y="66"
+                text-anchor="middle"
+                class="donut-center-label"
+            >
+                ${overallPercent}%
+            </text>
+
+            <text
+                x="70"
+                y="84"
+                text-anchor="middle"
+                class="donut-center-sublabel"
+            >
+                AVG PROGRESS
+            </text>
+
+        </svg>
+
+    `;
+
+
+    const legend=
+    segments.map(function(seg){
+
+        return `
+
+            <div class="donut-legend-item">
+
+                <div class="donut-legend-left">
+
+                    <span
+                        class="donut-legend-dot"
+                        style="background:${seg.color}"
+                    >
+                    </span>
+
+                    <span>
+                        ${seg.label}
+                    </span>
+
+                </div>
+
+                <span class="donut-legend-count">
+                    ${seg.count}
+                </span>
+
+            </div>
+
+        `;
+
+    }).join("");
+
+
+    container.innerHTML=
+    svg +
+    `<div class="donut-legend">${legend}</div>`;
+
+}
+
+
+function renderProgressBarChart(){
+
+    const container=
+    document.getElementById(
+        "progressBarChart"
+    );
+
+    if(!container){
+
+        return;
+
+    }
+
+
+    if(!clientProgressCache.length){
+
+        container.innerHTML=`
+            <div class="progress-empty">
+                No confirmed clients yet.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    const sorted=
+    clientProgressCache.slice().sort(
+        (a,b) => b.percent - a.percent
+    );
+
+
+    let html="";
+
+
+    sorted.forEach(function(c){
+
+        let fillClass="low";
+
+        if(c.percent >= 70){
+
+            fillClass="high";
+
+        }
+        else if(c.percent >= 30){
+
+            fillClass="mid";
+
+        }
+
+
+        html+=`
+
+            <div class="bar-chart-row">
+
+                <div
+                    class="bar-chart-label"
+                    title="${safe(c.name)}"
+                >
+                    ${safe(c.name)}
+                </div>
+
+                <div class="bar-chart-track">
+
+                    <div
+                        class="bar-chart-fill ${fillClass}"
+                        style="width:${c.percent}%"
+                    >
+                    </div>
+
+                </div>
+
+                <div class="bar-chart-percent">
+                    ${c.percent}%
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
+    container.innerHTML=
+    html;
+
+}
 
 
 /*
