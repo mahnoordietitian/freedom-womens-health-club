@@ -3030,7 +3030,7 @@ from
 
 
 import {
-    getFirestore,
+    initializeFirestore,
     collection,
     addDoc,
     getDocs,
@@ -3090,7 +3090,20 @@ getAuth(app);
 
 
 const db =
-getFirestore(app);
+initializeFirestore(
+    app,
+    {
+        /*
+         * Some mobile/corporate networks silently block
+         * Firestore's default WebChannel connection,
+         * which makes requests hang forever with no
+         * error. Long-polling avoids that and is safe
+         * to force everywhere.
+         */
+        experimentalAutoDetectLongPolling: true,
+        useFetchStreams: false
+    }
+);
 
 
 const storage =
