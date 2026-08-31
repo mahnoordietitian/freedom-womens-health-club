@@ -884,6 +884,493 @@ label{
 
 
 /* =====================================================
+   DASHBOARD — CLIENT PROGRESS
+===================================================== */
+
+.progress-section{
+
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    padding:26px;
+
+    margin-top:22px;
+
+}
+
+
+.progress-section-head{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    justify-content:space-between;
+
+    gap:16px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:22px;
+
+}
+
+
+.progress-section-head h2{
+
+    font-size:19px;
+
+    margin-bottom:4px;
+
+}
+
+
+.progress-section-head p{
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    margin:0;
+
+}
+
+
+/* OVERVIEW MINI-STATS */
+
+.progress-overview{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:14px;
+
+    margin-bottom:26px;
+
+}
+
+
+.progress-overview-card{
+
+    background:var(--light-cream);
+
+    border:1px solid var(--border);
+
+    border-radius:13px;
+
+    padding:16px 18px;
+
+}
+
+
+.progress-overview-label{
+
+    font-size:12px;
+
+    color:var(--muted);
+
+    font-weight:600;
+
+    text-transform:uppercase;
+
+    letter-spacing:.4px;
+
+    margin-bottom:8px;
+}
+
+
+.progress-overview-value{
+
+    font-size:26px;
+
+    font-weight:800;
+
+    color:var(--plum);
+
+}
+
+
+.progress-overview-value.success{
+    color:var(--success);
+}
+
+.progress-overview-value.warning{
+    color:var(--warning);
+}
+
+
+/* OVERALL PROGRESS BAR */
+
+.overall-progress-wrap{
+
+    margin-bottom:26px;
+
+}
+
+
+.overall-progress-labels{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:13px;
+
+    margin-bottom:8px;
+
+}
+
+
+.overall-progress-labels strong{
+
+    color:var(--plum);
+
+}
+
+
+.progress-track{
+
+    width:100%;
+
+    height:12px;
+
+    background:var(--light);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+
+.progress-fill{
+
+    height:100%;
+
+    border-radius:20px;
+
+    background:linear-gradient(
+        90deg,
+        var(--plum),
+        var(--plum-dark)
+    );
+
+    transition:width .4s ease;
+
+}
+
+
+/* TOOLBAR */
+
+.progress-toolbar{
+
+    display:flex;
+
+    gap:10px;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    margin-bottom:16px;
+
+}
+
+
+.progress-toolbar input[type="text"]{
+
+    flex:1;
+
+    min-width:180px;
+
+    padding:10px 14px;
+
+    border:1px solid var(--border);
+
+    border-radius:9px;
+
+    font-size:14px;
+
+    font-family:inherit;
+
+}
+
+
+.progress-toolbar select{
+
+    padding:10px 14px;
+
+    border:1px solid var(--border);
+
+    border-radius:9px;
+
+    font-size:14px;
+
+    font-family:inherit;
+
+    background:white;
+
+}
+
+
+/* CLIENT LIST */
+
+.progress-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    max-height:560px;
+
+    overflow-y:auto;
+
+    padding-right:4px;
+
+}
+
+
+.progress-item{
+
+    display:grid;
+
+    grid-template-columns:44px 1.4fr 1.6fr auto;
+
+    align-items:center;
+
+    gap:16px;
+
+    padding:14px 16px;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    background:var(--light-cream);
+
+}
+
+
+.progress-avatar{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:50%;
+
+    background:var(--light);
+
+    color:var(--plum);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:800;
+
+    font-size:15px;
+
+    flex-shrink:0;
+
+}
+
+
+.progress-item-info{
+
+    min-width:0;
+
+}
+
+
+.progress-item-name{
+
+    font-weight:700;
+
+    font-size:14.5px;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+
+.progress-item-email{
+
+    font-size:12px;
+
+    color:var(--muted);
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+
+.progress-item-bar-wrap{
+
+    min-width:0;
+
+}
+
+
+.progress-item-bar-labels{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:12px;
+
+    color:var(--muted);
+
+    margin-bottom:6px;
+
+}
+
+
+.progress-item-bar-labels strong{
+
+    color:var(--charcoal);
+
+}
+
+
+.progress-item-track{
+
+    width:100%;
+
+    height:9px;
+
+    background:var(--light);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+
+.progress-item-fill{
+
+    height:100%;
+
+    border-radius:20px;
+
+    transition:width .4s ease;
+
+}
+
+
+.progress-item-fill.low{
+    background:var(--warning);
+}
+
+.progress-item-fill.mid{
+    background:var(--plum);
+}
+
+.progress-item-fill.high{
+    background:var(--success);
+}
+
+
+.progress-item-meta{
+
+    text-align:right;
+
+    white-space:nowrap;
+
+}
+
+
+.progress-item-percent{
+
+    font-size:16px;
+
+    font-weight:800;
+
+    color:var(--plum);
+
+}
+
+
+.progress-item-days-left{
+
+    font-size:11px;
+
+    color:var(--muted);
+
+    margin-top:2px;
+
+}
+
+
+.progress-empty{
+
+    text-align:center;
+
+    padding:40px 20px;
+
+    color:var(--muted);
+
+    font-size:14px;
+
+}
+
+
+@media (max-width:760px){
+
+    .progress-overview{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .progress-item{
+        grid-template-columns:36px 1fr;
+        grid-template-areas:
+            "avatar name"
+            "bar bar"
+            "meta meta";
+        row-gap:8px;
+    }
+
+    .progress-avatar{
+        width:36px;
+        height:36px;
+        grid-area:avatar;
+    }
+
+    .progress-item-info{
+        grid-area:name;
+    }
+
+    .progress-item-bar-wrap{
+        grid-area:bar;
+    }
+
+    .progress-item-meta{
+        grid-area:meta;
+        text-align:left;
+    }
+
+}
+
+
+/* =====================================================
    FORM
 ===================================================== */
 
@@ -1895,6 +2382,183 @@ label{
             create your 90-day classroom and manage
             community posts from one place.
         </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         CLIENT PROGRESS
+    ===================================================== -->
+
+    <div class="progress-section">
+
+        <div class="progress-section-head">
+
+            <div>
+
+                <h2>
+                    Client Progress
+                </h2>
+
+                <p>
+                    How your active members are doing across
+                    the 90-day journey.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- OVERVIEW MINI-STATS -->
+
+        <div class="progress-overview">
+
+            <div class="progress-overview-card">
+
+                <div class="progress-overview-label">
+                    Active Clients
+                </div>
+
+                <div
+                    class="progress-overview-value"
+                    id="progOverviewClients"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="progress-overview-card">
+
+                <div class="progress-overview-label">
+                    Average Progress
+                </div>
+
+                <div
+                    class="progress-overview-value"
+                    id="progOverviewAverage"
+                >
+                    0%
+                </div>
+
+            </div>
+
+
+            <div class="progress-overview-card">
+
+                <div class="progress-overview-label">
+                    Completed Journey
+                </div>
+
+                <div
+                    class="progress-overview-value success"
+                    id="progOverviewCompleted"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="progress-overview-card">
+
+                <div class="progress-overview-label">
+                    Not Started Yet
+                </div>
+
+                <div
+                    class="progress-overview-value warning"
+                    id="progOverviewNotStarted"
+                >
+                    0
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- OVERALL PROGRESS BAR -->
+
+        <div class="overall-progress-wrap">
+
+            <div class="overall-progress-labels">
+
+                <span>
+                    Overall club progress
+                </span>
+
+                <strong id="progOverallPercentLabel">
+                    0%
+                </strong>
+
+            </div>
+
+            <div class="progress-track">
+
+                <div
+                    class="progress-fill"
+                    id="progOverallBar"
+                    style="width:0%"
+                >
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TOOLBAR -->
+
+        <div class="progress-toolbar">
+
+            <input
+                type="text"
+                id="progressSearch"
+                placeholder="Search by name or email..."
+                oninput="renderClientProgress()"
+            >
+
+            <select
+                id="progressSort"
+                onchange="renderClientProgress()"
+            >
+
+                <option value="progressDesc">
+                    Sort: Highest Progress
+                </option>
+
+                <option value="progressAsc">
+                    Sort: Lowest Progress
+                </option>
+
+                <option value="nameAsc">
+                    Sort: Name (A–Z)
+                </option>
+
+                <option value="daysLeft">
+                    Sort: Days Left
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- CLIENT LIST -->
+
+        <div
+            class="progress-list"
+            id="clientProgressList"
+        >
+
+            <div class="progress-empty">
+                Loading client progress...
+            </div>
+
+        </div>
 
     </div>
 
@@ -3089,6 +3753,7 @@ import {
     addDoc,
     getDocs,
     doc,
+    getDoc,
     setDoc,
     updateDoc,
     deleteDoc,
@@ -3176,6 +3841,14 @@ let editingCommunityId=null;
 
 let membersCache=[];
 
+let clientProgressCache=[];
+
+/*
+ * Matches the "90-Day Club Membership" plan
+ * shown on join.html / signup.html.
+ */
+const TOTAL_PROGRAM_DAYS=90;
+
 
 /* =====================================================
    AUTH
@@ -3227,6 +3900,8 @@ onAuthStateChanged(
 
 
         loadMembers();
+
+        loadClientProgress();
 
         loadClassroom();
 
@@ -4050,6 +4725,477 @@ async function loadMembers(){
 
 
 /* =====================================================
+   CLIENT PROGRESS (DASHBOARD)
+
+   Pulls together each confirmed member's progress
+   doc (/progress/{email}) with their member record
+   to build the "Client Progress" panel on the
+   dashboard: an overall summary plus a searchable,
+   sortable, per-client breakdown.
+===================================================== */
+
+async function loadClientProgress(){
+
+    const list=
+    document.getElementById(
+        "clientProgressList"
+    );
+
+
+    try{
+
+        /*
+         * Make sure we have an up-to-date member list
+         * to work from — loadMembers() also keeps
+         * membersCache in sync.
+         */
+
+        await loadMembers();
+
+
+        const confirmedMembers=
+        membersCache.filter(
+            m => m.paymentConfirmed === true
+        );
+
+
+        const results=
+        await Promise.all(
+            confirmedMembers.map(
+                async function(m){
+
+                    let completedCount=0;
+
+
+                    try{
+
+                        const progressSnap=
+                        await getDoc(
+                            doc(
+                                db,
+                                "progress",
+                                m.id
+                            )
+                        );
+
+
+                        if(progressSnap.exists()){
+
+                            const data=
+                            progressSnap.data();
+
+
+                            completedCount=
+                            Array.isArray(data.completedDays)
+                                ? data.completedDays.length
+                                : Number(data.completedCount || 0);
+
+                        }
+
+                    }
+
+                    catch(error){
+
+                        console.error(
+                            "Progress load error for",
+                            m.id,
+                            error
+                        );
+
+                    }
+
+
+                    const percent=
+                    Math.max(
+                        0,
+                        Math.min(
+                            100,
+                            Math.round(
+                                (completedCount / TOTAL_PROGRAM_DAYS) * 100
+                            )
+                        )
+                    );
+
+
+                    return {
+
+                        id: m.id,
+
+                        name: m.name || m.email,
+
+                        email: m.email,
+
+                        completedCount,
+
+                        percent,
+
+                        daysLeft:
+                        getDaysLeft(m.accessUntilDate),
+
+                        expired:
+                        isAccessExpired(m.accessUntilDate)
+
+                    };
+
+                }
+            )
+        );
+
+
+        clientProgressCache=
+        results;
+
+
+        renderClientProgress();
+
+    }
+
+    catch(error){
+
+        console.error(
+            "LOAD CLIENT PROGRESS ERROR",
+            error
+        );
+
+
+        if(list){
+
+            list.innerHTML=`
+                <div class="progress-empty">
+                    Could not load client progress.
+                </div>
+            `;
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDER CLIENT PROGRESS
+
+   Re-renders from clientProgressCache only — no
+   refetch — so search/sort feels instant.
+===================================================== */
+
+window.renderClientProgress=
+function(){
+
+    const list=
+    document.getElementById(
+        "clientProgressList"
+    );
+
+
+    if(!list){
+
+        return;
+
+    }
+
+
+    /* ---- OVERVIEW STATS (always over ALL confirmed clients) ---- */
+
+    const totalClients=
+    clientProgressCache.length;
+
+
+    const averagePercent=
+    totalClients
+        ? Math.round(
+            clientProgressCache.reduce(
+                (sum,c) => sum + c.percent,
+                0
+            ) / totalClients
+        )
+        : 0;
+
+
+    const completedCount=
+    clientProgressCache.filter(
+        c => c.percent >= 100
+    ).length;
+
+
+    const notStartedCount=
+    clientProgressCache.filter(
+        c => c.completedCount === 0
+    ).length;
+
+
+    setText(
+        "progOverviewClients",
+        totalClients
+    );
+
+    setText(
+        "progOverviewAverage",
+        averagePercent + "%"
+    );
+
+    setText(
+        "progOverviewCompleted",
+        completedCount
+    );
+
+    setText(
+        "progOverviewNotStarted",
+        notStartedCount
+    );
+
+    setText(
+        "progOverallPercentLabel",
+        averagePercent + "%"
+    );
+
+
+    const overallBar=
+    document.getElementById(
+        "progOverallBar"
+    );
+
+    if(overallBar){
+
+        overallBar.style.width=
+        averagePercent + "%";
+
+    }
+
+
+    /* ---- FILTER + SORT ---- */
+
+    const searchInput=
+    document.getElementById(
+        "progressSearch"
+    );
+
+    const sortSelect=
+    document.getElementById(
+        "progressSort"
+    );
+
+    const searchTerm=
+    (searchInput
+        ? searchInput.value
+        : ""
+    ).trim().toLowerCase();
+
+    const sortMode=
+    sortSelect
+        ? sortSelect.value
+        : "progressDesc";
+
+
+    let filtered=
+    clientProgressCache.filter(
+        function(c){
+
+            if(!searchTerm){
+
+                return true;
+
+            }
+
+            return (
+                (c.name || "").toLowerCase().includes(searchTerm) ||
+                (c.email || "").toLowerCase().includes(searchTerm)
+            );
+
+        }
+    );
+
+
+    filtered=
+    filtered.slice().sort(
+        function(a,b){
+
+            if(sortMode === "progressAsc"){
+
+                return a.percent - b.percent;
+
+            }
+
+            if(sortMode === "nameAsc"){
+
+                return (a.name || "").localeCompare(b.name || "");
+
+            }
+
+            if(sortMode === "daysLeft"){
+
+                return a.daysLeft - b.daysLeft;
+
+            }
+
+            /* default: progressDesc */
+
+            return b.percent - a.percent;
+
+        }
+    );
+
+
+    /* ---- EMPTY STATES ---- */
+
+    if(!clientProgressCache.length){
+
+        list.innerHTML=`
+            <div class="progress-empty">
+                No confirmed clients yet. Once you confirm
+                a member's payment, their journey progress
+                will show up here.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    if(!filtered.length){
+
+        list.innerHTML=`
+            <div class="progress-empty">
+                No clients match "${safe(searchTerm)}".
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    /* ---- RENDER LIST ---- */
+
+    let html="";
+
+
+    filtered.forEach(function(c){
+
+        const initials=
+        (c.name || c.email || "?")
+            .trim()
+            .split(/\s+/)
+            .slice(0,2)
+            .map(word => word[0])
+            .join("")
+            .toUpperCase();
+
+
+        let fillClass="low";
+
+        if(c.percent >= 70){
+
+            fillClass="high";
+
+        }
+        else if(c.percent >= 30){
+
+            fillClass="mid";
+
+        }
+
+
+        const daysLeftLabel=
+        c.expired
+            ? "Access expired"
+            : `${c.daysLeft} day${c.daysLeft===1?"":"s"} left`;
+
+
+        html+=`
+
+            <div class="progress-item">
+
+                <div class="progress-avatar">
+                    ${safe(initials)}
+                </div>
+
+
+                <div class="progress-item-info">
+
+                    <div class="progress-item-name">
+                        ${safe(c.name)}
+                    </div>
+
+                    <div class="progress-item-email">
+                        ${safe(c.email)}
+                    </div>
+
+                </div>
+
+
+                <div class="progress-item-bar-wrap">
+
+                    <div class="progress-item-bar-labels">
+
+                        <span>
+                            <strong>${c.completedCount}</strong>
+                            / ${TOTAL_PROGRAM_DAYS} days
+                        </span>
+
+                        <span>
+                            ${daysLeftLabel}
+                        </span>
+
+                    </div>
+
+                    <div class="progress-item-track">
+
+                        <div
+                            class="progress-item-fill ${fillClass}"
+                            style="width:${c.percent}%"
+                        >
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress-item-meta">
+
+                    <div class="progress-item-percent">
+                        ${c.percent}%
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
+    list.innerHTML=
+    html;
+
+};
+
+
+/*
+ * Small helper — sets textContent on an element by
+ * id if it exists, used throughout renderClientProgress.
+ */
+
+function setText(id, value){
+
+    const el=
+    document.getElementById(id);
+
+    if(el){
+
+        el.textContent=
+        value;
+
+    }
+
+}
+
+
+/* =====================================================
    SAVE MEMBER
 ===================================================== */
 
@@ -4356,7 +5502,7 @@ async function(id){
         );
 
 
-        await loadMembers();
+        await loadClientProgress();
 
     }
 
@@ -4442,7 +5588,7 @@ async function(id){
         );
 
 
-        await loadMembers();
+        await loadClientProgress();
 
     }
 
