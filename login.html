@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -690,6 +689,45 @@ loginForm.addEventListener(
             /*
             ==========================================
             STEP 4
+            PAYMENT / ACCESS GATE
+
+            A member can sign up and create a login
+            before their payment is confirmed by the
+            admin. The member portal must stay locked
+            until an admin has confirmed payment from
+            the admin panel.
+            ==========================================
+            */
+
+            const memberData =
+                memberSnapshot.data();
+
+
+            if (memberData.paymentConfirmed !== true) {
+
+                await signOut(auth);
+
+
+                showMessage(
+                    "Your account has been created, but your payment has not been confirmed yet. Please complete your payment on WhatsApp. Once confirmed, you'll be able to log in here.",
+                    "error"
+                );
+
+
+                loginButton.disabled = false;
+
+                loginButton.textContent =
+                    "Log In";
+
+
+                return;
+
+            }
+
+
+            /*
+            ==========================================
+            STEP 5
             MEMBER LOGIN SUCCESS
             ==========================================
             */
@@ -710,7 +748,7 @@ loginForm.addEventListener(
                 function() {
 
                     window.location.href =
-                        "dashboard.html";
+                        "member.html";
 
                 },
                 700
@@ -894,4 +932,3 @@ forgotPassword.addEventListener(
 
 </body>
 </html>
-```
