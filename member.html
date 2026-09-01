@@ -595,6 +595,26 @@ textarea:focus{
   margin-bottom:15px;
 }
 
+.view-content-btn{
+  display:block;
+  width:100%;
+  padding:14px;
+  margin-bottom:16px;
+  border:1px solid var(--plum);
+  border-radius:12px;
+  background:var(--light);
+  color:var(--plum);
+  font-weight:bold;
+  font-size:14px;
+  cursor:pointer;
+  text-align:center;
+}
+
+.view-content-btn:hover{
+  background:var(--plum);
+  color:white;
+}
+
 
 /* =====================================================
    COMPLETE BUTTON
@@ -2379,6 +2399,63 @@ function renderModuleCard(item){
    children are leaf lessons/days that open content.
 ===================================================== */
 
+/* =====================================================
+   DOES THIS ITEM HAVE ITS OWN CONTENT?
+
+   A Phase or Week can have its own intro text, image,
+   video, or day-style sections in admin, on top of also
+   containing child items (Weeks/Days). This checks for
+   any of that, so we know whether to offer a way to open
+   it directly instead of only treating it as a folder.
+===================================================== */
+
+function itemHasOwnContent(item){
+
+  if(item.description || item.content)
+    return true;
+
+
+  if(
+    item.image ||
+    item.imageUrl ||
+    item.photo
+  )
+    return true;
+
+
+  if(
+    Array.isArray(item.images) &&
+    item.images.length
+  )
+    return true;
+
+
+  if(
+    item.videoUrl ||
+    item.video ||
+    item.driveLink ||
+    item.googleDriveLink
+  )
+    return true;
+
+
+  const d =
+    item.dayContent || {};
+
+  const fields = [
+    "movement","hydration","protein","sleep",
+    "nutrition","mind","sunlight","recovery"
+  ];
+
+  return fields.some(
+    key =>
+      d[key]
+  );
+
+}
+
+
+
 function renderModuleDetail(container,itemId){
 
   const item =
@@ -2451,6 +2528,21 @@ function renderModuleDetail(container,itemId){
     : "← All Modules";
 
 
+  const viewContentHTML =
+    itemHasOwnContent(item)
+    ?
+    `
+      <button
+        class="btn view-content-btn"
+        onclick="openContent('${safeAttr(item.id)}')"
+      >
+        📖 View ${safeText(item.title)}
+      </button>
+    `
+    :
+    "";
+
+
   container.innerHTML = `
 
     <button
@@ -2469,7 +2561,10 @@ function renderModuleDetail(container,itemId){
         ${safeText(item.title)}
       </div>
 
+
     </div>
+
+    ${viewContentHTML}
 
     ${childrenHTML}
 
