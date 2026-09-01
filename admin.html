@@ -1938,6 +1938,28 @@ label{
 }
 
 
+.progress-bar.indeterminate{
+
+    width:40% !important;
+
+    animation:progress-indeterminate 1.1s infinite linear;
+
+}
+
+
+@keyframes progress-indeterminate{
+
+    0%{
+        margin-left:-40%;
+    }
+
+    100%{
+        margin-left:100%;
+    }
+
+}
+
+
 /* =====================================================
    CONTENT LINKS
 ===================================================== */
@@ -4190,7 +4212,7 @@ from
 import {
     getStorage,
     ref,
-    uploadBytesResumable,
+    uploadBytes,
     getDownloadURL
 }
 from
@@ -7355,188 +7377,164 @@ async function uploadImage(
     file = await compressImage(file);
 
 
-    return new Promise(
-        (resolve,reject)=>{
-
-            const safeName=
-            file.name
-            .replace(
-                /[^a-zA-Z0-9._-]/g,
-                "_"
-            );
+    const safeName=
+    file.name
+    .replace(
+        /[^a-zA-Z0-9._-]/g,
+        "_"
+    );
 
 
-            const filePath=
-            `${folder}/${documentId}/${Date.now()}_${safeName}`;
+    const filePath=
+    `${folder}/${documentId}/${Date.now()}_${safeName}`;
 
 
-            const storageRef=
-            ref(
-                storage,
-                filePath
-            );
+    const storageRef=
+    ref(
+        storage,
+        filePath
+    );
 
 
-            const task=
-            uploadBytesResumable(
-                storageRef,
-                file
-            );
+    const progressBox=
+    document.getElementById(
+        progressId
+    );
 
 
-            const progressBox=
-            document.getElementById(
-                progressId
-            );
+    const progressBar=
+    document.getElementById(
+        progressBarId
+    );
 
 
-            const progressBar=
-            document.getElementById(
-                progressBarId
-            );
+    progressBox.classList.remove(
+        "hidden"
+    );
 
 
-            progressBox.classList.remove(
-                "hidden"
-            );
+    /* -------------------------------------------------
+       SINGLE-SHOT UPLOAD (not resumable)
+
+       uploadBytesResumable sends the file as a series
+       of chunked/streamed requests. Some mobile,
+       school, and corporate networks silently block
+       that connection pattern — the exact same class
+       of issue this project already works around for
+       Firestore (see experimentalAutoDetectLongPolling
+       above). The upload then just sits at "0%"
+       forever with no error.
+
+       uploadBytes() sends the whole (already-compressed)
+       file as one plain request, which works reliably
+       on those networks. The trade-off is we lose live
+       percentage progress, so we show an indeterminate
+       "moving stripes" animation instead via the
+       "indeterminate" CSS class.
+    ------------------------------------------------- */
+
+    progressBar.style.width =
+        "100%";
+
+    progressBar.classList.add(
+        "indeterminate"
+    );
+
+    if(statusEl)
+        statusEl.textContent =
+            "Uploading image...";
 
 
-            /* -------------------------------------------
-               STALL WATCHDOG
+    const UPLOAD_TIMEOUT_MS = 45000;
 
-               If Firebase Storage rules, CORS, or the
-               network cause the upload to hang, the SDK
-               can sit there indefinitely with no error
-               and no progress. We track time since the
-               last progress event and cancel + surface a
-               clear error if nothing happens for a while,
-               instead of spinning at "0%" forever.
-            ------------------------------------------- */
+    function withTimeout(promise){
 
-            const STALL_TIMEOUT_MS = 20000;
-            let stallTimer;
+        return Promise.race([
 
-            function resetStallTimer(){
+            promise,
 
-                clearTimeout(stallTimer);
+            new Promise(
+                (_,reject)=>{
 
-                stallTimer = setTimeout(
-                    ()=>{
+                    setTimeout(
+                        ()=>{
 
-                        console.error(
-                            "Upload stalled with no progress for " +
-                            (STALL_TIMEOUT_MS / 1000) +
-                            "s — cancelling. This usually means " +
-                            "Firebase Storage security rules are " +
-                            "blocking the write, the Storage " +
-                            "bucket's CORS config doesn't allow " +
-                            "this origin, or the connection is down."
-                        );
+                            reject(
+                                new Error(
+                                    "Upload is taking much longer " +
+                                    "than expected. This usually " +
+                                    "means the current network " +
+                                    "(school/office WiFi, VPN, or " +
+                                    "mobile carrier) is blocking the " +
+                                    "connection to Firebase Storage, " +
+                                    "or the Storage security rules " +
+                                    "are denying this account write " +
+                                    "access. Try a different network " +
+                                    "(e.g. phone hotspot) and check " +
+                                    "the browser console for details."
+                                )
+                            );
 
-                        task.cancel();
-
-                    },
-                    STALL_TIMEOUT_MS
-                );
-
-            }
-
-            resetStallTimer();
-
-
-            task.on(
-
-                "state_changed",
-
-                snapshot=>{
-
-                    resetStallTimer();
-
-
-                    const percent=
-                    Math.round(
-                        (
-                            snapshot.bytesTransferred/
-                            snapshot.totalBytes
-                        )*100
+                        },
+                        UPLOAD_TIMEOUT_MS
                     );
-
-
-                    progressBar.style.width=
-                    percent+"%";
-
-
-                    document
-                    .getElementById(
-                        statusId
-                    )
-                    .textContent=
-                    "Uploading image "+
-                    percent+
-                    "%";
-
-                },
-
-
-                error=>{
-
-                    clearTimeout(stallTimer);
-
-                    console.error(
-                        "Image upload failed:",
-                        error
-                    );
-
-
-                    if(error.code === "storage/canceled"){
-
-                        reject(
-                            new Error(
-                                "Upload timed out with no progress. " +
-                                "Check your internet connection, and " +
-                                "confirm this admin account has " +
-                                "write access in Firebase Storage " +
-                                "security rules."
-                            )
-                        );
-
-                        return;
-
-                    }
-
-
-                    reject(error);
-
-                },
-
-
-                async()=>{
-
-                    clearTimeout(stallTimer);
-
-
-                    const url=
-                    await getDownloadURL(
-                        task.snapshot.ref
-                    );
-
-
-                    document
-                    .getElementById(
-                        statusId
-                    )
-                    .textContent=
-                    "Image uploaded ✓";
-
-
-                    resolve(url);
 
                 }
+            )
 
-            );
+        ]);
 
-        }
-    );
+    }
+
+
+    try{
+
+        await withTimeout(
+            uploadBytes(
+                storageRef,
+                file
+            )
+        );
+
+
+        const url=
+        await withTimeout(
+            getDownloadURL(
+                storageRef
+            )
+        );
+
+
+        progressBar.classList.remove(
+            "indeterminate"
+        );
+
+        if(statusEl)
+            statusEl.textContent =
+                "Image uploaded ✓";
+
+
+        return url;
+
+    }
+    catch(error){
+
+        progressBar.classList.remove(
+            "indeterminate"
+        );
+
+        console.error(
+            "Image upload failed:",
+            error
+        );
+
+        if(statusEl)
+            statusEl.textContent =
+                "Upload failed.";
+
+        throw error;
+
+    }
 
 }
 
