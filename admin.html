@@ -7401,11 +7401,57 @@ async function uploadImage(
             );
 
 
+            /* -------------------------------------------
+               STALL WATCHDOG
+
+               If Firebase Storage rules, CORS, or the
+               network cause the upload to hang, the SDK
+               can sit there indefinitely with no error
+               and no progress. We track time since the
+               last progress event and cancel + surface a
+               clear error if nothing happens for a while,
+               instead of spinning at "0%" forever.
+            ------------------------------------------- */
+
+            const STALL_TIMEOUT_MS = 20000;
+            let stallTimer;
+
+            function resetStallTimer(){
+
+                clearTimeout(stallTimer);
+
+                stallTimer = setTimeout(
+                    ()=>{
+
+                        console.error(
+                            "Upload stalled with no progress for " +
+                            (STALL_TIMEOUT_MS / 1000) +
+                            "s — cancelling. This usually means " +
+                            "Firebase Storage security rules are " +
+                            "blocking the write, the Storage " +
+                            "bucket's CORS config doesn't allow " +
+                            "this origin, or the connection is down."
+                        );
+
+                        task.cancel();
+
+                    },
+                    STALL_TIMEOUT_MS
+                );
+
+            }
+
+            resetStallTimer();
+
+
             task.on(
 
                 "state_changed",
 
                 snapshot=>{
+
+                    resetStallTimer();
+
 
                     const percent=
                     Math.round(
@@ -7434,12 +7480,40 @@ async function uploadImage(
 
                 error=>{
 
+                    clearTimeout(stallTimer);
+
+                    console.error(
+                        "Image upload failed:",
+                        error
+                    );
+
+
+                    if(error.code === "storage/canceled"){
+
+                        reject(
+                            new Error(
+                                "Upload timed out with no progress. " +
+                                "Check your internet connection, and " +
+                                "confirm this admin account has " +
+                                "write access in Firebase Storage " +
+                                "security rules."
+                            )
+                        );
+
+                        return;
+
+                    }
+
+
                     reject(error);
 
                 },
 
 
                 async()=>{
+
+                    clearTimeout(stallTimer);
+
 
                     const url=
                     await getDownloadURL(
