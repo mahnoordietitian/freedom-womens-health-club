@@ -2153,7 +2153,23 @@ async function loadClassroom(){
    RENDER CLASSROOM
 ===================================================== */
 
-let openModuleId = null;
+let openPath = [];
+
+
+function getChildrenOf(id){
+
+  return classroomItems
+    .filter(
+      x =>
+        x.parentId === id
+    )
+    .sort(
+      (a,b) =>
+        (a.order || 0) -
+        (b.order || 0)
+    );
+
+}
 
 
 function renderClassroom(){
@@ -2165,11 +2181,27 @@ function renderClassroom(){
       );
 
 
-  if(openModuleId){
+  // Drop any path entries pointing at items that
+  // no longer exist (e.g. deleted in admin).
+  openPath =
+    openPath.filter(
+      id =>
+        classroomItems.some(
+          x =>
+            x.id === id
+        )
+    );
+
+
+  const currentId =
+    openPath[openPath.length - 1];
+
+
+  if(currentId){
 
     renderModuleDetail(
       container,
-      openModuleId
+      currentId
     );
 
     return;
@@ -2224,7 +2256,7 @@ function renderClassroom(){
 
 
 /* =====================================================
-   RENDER MODULE CARD (grid view)
+   RENDER MODULE CARD (grid view, top level only)
 ===================================================== */
 
 function renderModuleCard(item){
@@ -2237,11 +2269,7 @@ function renderModuleCard(item){
 
 
   const children =
-    classroomItems
-      .filter(
-        x =>
-          x.parentId === item.id
-      );
+    getChildrenOf(item.id);
 
 
   const image =
@@ -2342,21 +2370,27 @@ function renderModuleCard(item){
 
 
 /* =====================================================
-   RENDER MODULE DETAIL (list of lessons inside a module)
+   RENDER MODULE DETAIL
+
+   Shows whatever level of the tree is currently open
+   (a Phase, or a Week inside it, or deeper). Rows that
+   themselves have children (e.g. a Week that contains
+   Days) are shown as navigable folders; rows with no
+   children are leaf lessons/days that open content.
 ===================================================== */
 
-function renderModuleDetail(container,moduleId){
+function renderModuleDetail(container,itemId){
 
   const item =
     classroomItems.find(
       x =>
-        x.id === moduleId
+        x.id === itemId
     );
 
 
   if(!item){
 
-    openModuleId = null;
+    openPath = [];
 
     renderClassroom();
 
@@ -2370,16 +2404,7 @@ function renderModuleDetail(container,moduleId){
 
 
   const children =
-    classroomItems
-      .filter(
-        x =>
-          x.parentId === item.id
-      )
-      .sort(
-        (a,b) =>
-          (a.order || 0) -
-          (b.order || 0)
-      );
+    getChildrenOf(item.id);
 
 
   const image =
@@ -2420,13 +2445,19 @@ function renderModuleDetail(container,moduleId){
     `;
 
 
+  const backLabel =
+    openPath.length > 1
+    ? "← Back"
+    : "← All Modules";
+
+
   container.innerHTML = `
 
     <button
       class="btn back-btn"
       onclick="closeModule()"
     >
-      ← All Modules
+      ${backLabel}
     </button>
 
     <div
@@ -2449,7 +2480,7 @@ function renderModuleDetail(container,moduleId){
 
 
 /* =====================================================
-   RENDER CHILD (lesson / day row, with thumbnail)
+   RENDER CHILD (folder row OR leaf lesson/day row)
 ===================================================== */
 
 function renderChild(item){
@@ -2474,6 +2505,13 @@ function renderChild(item){
     : "";
 
 
+  // If this item has its own children (e.g. a Week
+  // that contains Days), treat it as a folder to drill
+  // into rather than a leaf with content of its own.
+  const hasChildren =
+    getChildrenOf(item.id).length > 0;
+
+
   if(!unlocked){
 
     return `
@@ -2495,6 +2533,41 @@ function renderChild(item){
 
           Unlocks Day ${safeText(item.unlockDay)}
 
+        </span>
+
+      </div>
+
+    `;
+
+  }
+
+
+  if(hasChildren){
+
+    const count =
+      getChildrenOf(item.id).length;
+
+
+    return `
+
+      <div
+        class="child"
+        onclick="openModule('${safeAttr(item.id)}')"
+      >
+
+        <span
+          class="child-thumb"
+          ${thumbStyle}
+        >
+          ${image ? "" : "📁"}
+        </span>
+
+        <span class="child-main">
+          ${safeText(item.title)}
+        </span>
+
+        <span class="classroom-meta">
+          ${count} item${count === 1 ? "" : "s"} →
         </span>
 
       </div>
@@ -2559,7 +2632,7 @@ function renderChild(item){
 window.openModule =
 function(id){
 
-  openModuleId = id;
+  openPath.push(id);
 
   renderClassroom();
 
@@ -2569,7 +2642,7 @@ function(id){
 window.closeModule =
 function(){
 
-  openModuleId = null;
+  openPath.pop();
 
   renderClassroom();
 
