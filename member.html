@@ -287,39 +287,89 @@ textarea:focus{
    CLASSROOM
 ===================================================== */
 
+/* ---- module grid (Google Classroom style) ---- */
+
 .classroom-grid{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+  gap:16px;
 }
 
 .classroom-card{
   background:white;
   border:1px solid var(--border);
-  border-radius:14px;
+  border-radius:16px;
   overflow:hidden;
-  box-shadow:0 5px 18px rgba(0,0,0,.03);
-}
-
-.classroom-header{
-  padding:18px;
-  display:flex;
-  align-items:center;
-  gap:12px;
+  box-shadow:0 5px 18px rgba(0,0,0,.05);
   cursor:pointer;
+  transition:transform .15s, box-shadow .15s;
+  display:flex;
+  flex-direction:column;
 }
 
-.classroom-header:hover{
-  background:#FCFAF7;
+.classroom-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 26px rgba(0,0,0,.09);
 }
 
-.classroom-icon{
+.classroom-card.locked{
+  cursor:not-allowed;
+  opacity:.75;
+}
+
+.classroom-cover{
+  position:relative;
+  height:110px;
+  background-size:cover;
+  background-position:center;
+  background-color:var(--plum);
+  background-image:linear-gradient(135deg,var(--plum),#9C7CAE);
+  display:flex;
+  align-items:flex-end;
+  padding:12px 14px;
+}
+
+.classroom-cover.has-image{
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,0) 40%,
+      rgba(0,0,0,.55) 100%
+    ),
+    var(--cover-url);
+}
+
+.classroom-cover-icon{
+  position:absolute;
+  top:10px;
+  left:12px;
   font-size:22px;
+  filter:drop-shadow(0 1px 3px rgba(0,0,0,.35));
 }
 
 .classroom-title{
-  flex:1;
   font-weight:bold;
+  color:white;
+  font-size:15px;
+  line-height:1.3;
+  text-shadow:0 1px 4px rgba(0,0,0,.35);
+}
+
+.classroom-cover.no-image .classroom-title{
+  text-shadow:none;
+}
+
+.classroom-body{
+  padding:12px 14px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+
+.classroom-meta{
+  font-size:12px;
+  color:#777;
 }
 
 .unlock{
@@ -327,33 +377,86 @@ textarea:focus{
   color:#777;
 }
 
-.classroom-children{
-  display:none;
-  padding:0 18px 18px 55px;
+.lock-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  background:var(--light);
+  color:var(--plum);
+  padding:4px 10px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
 }
 
-.classroom-children.open{
-  display:block;
+/* ---- module detail (list of lessons inside a module) ---- */
+
+.classroom-detail-header{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  background:linear-gradient(135deg,var(--plum),#9C7CAE);
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:16px;
+  color:white;
+  background-size:cover;
+  background-position:center;
+}
+
+.classroom-detail-header.has-image{
+  background-image:
+    linear-gradient(
+      120deg,
+      rgba(60,30,70,.75),
+      rgba(60,30,70,.55)
+    ),
+    var(--cover-url);
+}
+
+.classroom-detail-title{
+  font-size:20px;
+  font-weight:bold;
+}
+
+.classroom-children{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
 }
 
 .child{
-  padding:14px;
+  padding:10px;
   border:1px solid var(--border);
-  border-radius:9px;
-  margin-top:8px;
+  border-radius:12px;
   background:#FCFAF7;
   cursor:pointer;
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
 }
 
 .child:hover{
   border-color:var(--plum);
 }
 
+.child-thumb{
+  width:52px;
+  height:52px;
+  flex:none;
+  border-radius:9px;
+  background-size:cover;
+  background-position:center;
+  background-color:var(--light);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+}
+
 .child-main{
   flex:1;
+  font-weight:600;
 }
 
 .child-lock{
@@ -2050,6 +2153,9 @@ async function loadClassroom(){
    RENDER CLASSROOM
 ===================================================== */
 
+let openModuleId = null;
+
+
 function renderClassroom(){
 
   const container =
@@ -2057,6 +2163,22 @@ function renderClassroom(){
       .getElementById(
         "classroomContainer"
       );
+
+
+  if(openModuleId){
+
+    renderModuleDetail(
+      container,
+      openModuleId
+    );
+
+    return;
+
+  }
+
+
+  container.className =
+    "classroom-grid";
 
 
   const roots =
@@ -2093,7 +2215,7 @@ function renderClassroom(){
     roots
       .map(
         item =>
-          renderItem(item)
+          renderModuleCard(item)
       )
       .join("");
 
@@ -2102,16 +2224,149 @@ function renderClassroom(){
 
 
 /* =====================================================
-   RENDER ROOT
+   RENDER MODULE CARD (grid view)
 ===================================================== */
 
-function renderItem(item){
+function renderModuleCard(item){
 
   const unlocked =
     testMode ||
     Number(item.unlockDay || 1)
     <=
     Number(programDay);
+
+
+  const children =
+    classroomItems
+      .filter(
+        x =>
+          x.parentId === item.id
+      );
+
+
+  const image =
+    item.image ||
+    item.imageUrl ||
+    item.photo ||
+    "";
+
+
+  const coverStyle =
+    image
+    ? `style="--cover-url:url('${safeAttr(image)}')"`
+    : "";
+
+
+  if(!unlocked){
+
+    return `
+
+      <div class="classroom-card locked">
+
+        <div
+          class="classroom-cover ${image ? "has-image" : "no-image"}"
+          ${coverStyle}
+        >
+
+          <span class="classroom-cover-icon">
+            🔒
+          </span>
+
+          <div class="classroom-title">
+            ${safeText(item.title)}
+          </div>
+
+        </div>
+
+        <div class="classroom-body">
+
+          <span class="classroom-meta">
+            ${children.length} item${children.length === 1 ? "" : "s"}
+          </span>
+
+          <span class="lock-pill">
+            🔒 Day ${safeText(item.unlockDay)}
+          </span>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+  return `
+
+    <div
+      class="classroom-card"
+      onclick="openModule('${safeAttr(item.id)}')"
+    >
+
+      <div
+        class="classroom-cover ${image ? "has-image" : "no-image"}"
+        ${coverStyle}
+      >
+
+        ${
+          image
+          ? ""
+          : `<span class="classroom-cover-icon">📁</span>`
+        }
+
+        <div class="classroom-title">
+          ${safeText(item.title)}
+        </div>
+
+      </div>
+
+      <div class="classroom-body">
+
+        <span class="classroom-meta">
+          ${children.length} item${children.length === 1 ? "" : "s"}
+        </span>
+
+        <span class="unlock">
+          Day ${safeText(item.unlockDay || 1)}
+        </span>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+
+/* =====================================================
+   RENDER MODULE DETAIL (list of lessons inside a module)
+===================================================== */
+
+function renderModuleDetail(container,moduleId){
+
+  const item =
+    classroomItems.find(
+      x =>
+        x.id === moduleId
+    );
+
+
+  if(!item){
+
+    openModuleId = null;
+
+    renderClassroom();
+
+    return;
+
+  }
+
+
+  container.className =
+    "classroom-detail";
 
 
   const children =
@@ -2127,46 +2382,24 @@ function renderItem(item){
       );
 
 
-  if(!unlocked){
-
-    return `
-
-      <div class="classroom-card">
-
-        <div class="classroom-header">
-
-          <span class="classroom-icon">
-            🔒
-          </span>
-
-          <div class="classroom-title">
-            ${safeText(item.title)}
-          </div>
-
-          <span class="unlock">
-            Unlocks Day ${safeText(item.unlockDay)}
-          </span>
-
-        </div>
-
-      </div>
-
-    `;
-
-  }
+  const image =
+    item.image ||
+    item.imageUrl ||
+    item.photo ||
+    "";
 
 
-  let childHTML = "";
+  const coverStyle =
+    image
+    ? `style="--cover-url:url('${safeAttr(image)}')"`
+    : "";
 
 
-  if(children.length){
-
-    childHTML = `
-
-      <div
-        class="classroom-children"
-        id="children-${safeAttr(item.id)}"
-      >
+  const childrenHTML =
+    children.length
+    ?
+    `
+      <div class="classroom-children">
 
         ${
           children
@@ -2178,42 +2411,36 @@ function renderItem(item){
         }
 
       </div>
-
+    `
+    :
+    `
+      <div class="empty">
+        No content in this section yet.
+      </div>
     `;
 
-  }
 
+  container.innerHTML = `
 
-  return `
+    <button
+      class="btn back-btn"
+      onclick="closeModule()"
+    >
+      ← All Modules
+    </button>
 
-    <div class="classroom-card">
+    <div
+      class="classroom-detail-header ${image ? "has-image" : ""}"
+      ${coverStyle}
+    >
 
-      <div
-        class="classroom-header"
-        onclick="toggleChildren('${safeAttr(item.id)}')"
-      >
-
-        <span class="classroom-icon">
-          ${
-            item.image
-            ? "🖼️"
-            : "📁"
-          }
-        </span>
-
-        <div class="classroom-title">
-          ${safeText(item.title)}
-        </div>
-
-        <span class="unlock">
-          Day ${safeText(item.unlockDay || 1)}
-        </span>
-
+      <div class="classroom-detail-title">
+        ${safeText(item.title)}
       </div>
 
-      ${childHTML}
-
     </div>
+
+    ${childrenHTML}
 
   `;
 
@@ -2222,7 +2449,7 @@ function renderItem(item){
 
 
 /* =====================================================
-   RENDER CHILD
+   RENDER CHILD (lesson / day row, with thumbnail)
 ===================================================== */
 
 function renderChild(item){
@@ -2234,17 +2461,34 @@ function renderChild(item){
     Number(programDay);
 
 
+  const image =
+    item.image ||
+    item.imageUrl ||
+    item.photo ||
+    "";
+
+
+  const thumbStyle =
+    image
+    ? `style="background-image:url('${safeAttr(image)}')"`
+    : "";
+
+
   if(!unlocked){
 
     return `
 
       <div class="child">
 
+        <span
+          class="child-thumb"
+          ${thumbStyle}
+        >
+          ${image ? "" : "🔒"}
+        </span>
+
         <span class="child-main">
-
-          🔒
           ${safeText(item.title)}
-
         </span>
 
         <span class="child-lock">
@@ -2277,11 +2521,15 @@ function renderChild(item){
       onclick="openContent('${safeAttr(item.id)}')"
     >
 
+      <span
+        class="child-thumb"
+        ${thumbStyle}
+      >
+        ${image ? "" : icon}
+      </span>
+
       <span class="child-main">
-
-        ${icon}
         ${safeText(item.title)}
-
       </span>
 
       ${
@@ -2305,24 +2553,25 @@ function renderChild(item){
 
 
 /* =====================================================
-   TOGGLE
+   MODULE NAVIGATION
 ===================================================== */
 
-window.toggleChildren =
+window.openModule =
 function(id){
 
-  const box =
-    document
-      .getElementById(
-        "children-" + id
-      );
+  openModuleId = id;
+
+  renderClassroom();
+
+};
 
 
-  if(box){
+window.closeModule =
+function(){
 
-    box.classList.toggle("open");
+  openModuleId = null;
 
-  }
+  renderClassroom();
 
 };
 
