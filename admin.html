@@ -3532,16 +3532,20 @@ label{
         font-size:13px;
     "
 >
-    Add a photo for this phase, week or day.
+    Path or URL to an image for this phase, week or day.
+    Since images are hosted on GitHub (not Firebase
+    Storage), upload the file to the "images" folder in
+    the repo, then enter its path here, e.g.
+    <code>images/phase-1.jpeg</code>. A full https:// URL
+    works too.
 </p>
 
 
-<div class="upload-box">
-
 <input
-    id="itemImage"
-    type="file"
-    accept="image/*"
+    id="existingImageUrl"
+    type="text"
+    placeholder="images/phase-1.jpeg"
+    style="width:100%"
 >
 
 
@@ -3550,39 +3554,13 @@ label{
     class="image-preview"
 ></div>
 
-
-<div
-    id="imageUploadStatus"
-    class="upload-status"
-></div>
-
-
-<div
-    id="imageProgress"
-    class="progress hidden"
->
-
-<div
-    id="imageProgressBar"
-    class="progress-bar"
-></div>
-
-</div>
-
-</div>
-
-
-<input
-    id="existingImageUrl"
-    type="hidden"
->
-
 </div>
 
 
 <!-- LINKS -->
 
 <div class="editor-section">
+
 
 <h3>
     🎥 Videos & Google Drive
@@ -4014,13 +3992,23 @@ label{
     📷 Add Image
 </h3>
 
-
-<div class="upload-box">
+<p
+    style="
+        color:#777;
+        font-size:13px;
+    "
+>
+    Path or URL to an image (upload it to the "images"
+    folder in the GitHub repo first, then paste its path
+    here, e.g. <code>images/my-photo.jpeg</code>). A full
+    https:// URL works too.
+</p>
 
 <input
-    id="communityImage"
-    type="file"
-    accept="image/*"
+    id="communityExistingImage"
+    type="text"
+    placeholder="images/my-photo.jpeg"
+    style="width:100%"
 >
 
 
@@ -4028,33 +4016,6 @@ label{
     id="communityImagePreview"
     class="image-preview"
 ></div>
-
-
-<div
-    id="communityUploadStatus"
-    class="upload-status"
-></div>
-
-
-<div
-    id="communityProgress"
-    class="progress hidden"
->
-
-<div
-    id="communityProgressBar"
-    class="progress-bar"
-></div>
-
-</div>
-
-</div>
-
-
-<input
-    id="communityExistingImage"
-    type="hidden"
->
 
 </div>
 
@@ -4209,18 +4170,13 @@ from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-import {
-    getStorage,
-    ref,
-    uploadBytes,
-    getDownloadURL
-}
-from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
-
-
 /* =====================================================
    FIREBASE CONFIG
+
+   Note: Firebase Storage is no longer used. Images are
+   hosted directly in this GitHub repo's /images folder
+   and referenced by path/URL instead, to avoid needing
+   the paid Blaze plan for Storage.
 ===================================================== */
 
 const firebaseConfig = {
@@ -4269,10 +4225,6 @@ initializeFirestore(
         useFetchStreams: false
     }
 );
-
-
-const storage =
-getStorage(app);
 
 
 const ADMIN =
@@ -6699,32 +6651,9 @@ function clearEditor(){
 
     document
     .getElementById(
-        "itemImage"
-    )
-    .value="";
-
-
-    document
-    .getElementById(
         "itemImagePreview"
     )
     .innerHTML="";
-
-
-    document
-    .getElementById(
-        "imageUploadStatus"
-    )
-    .textContent="";
-
-
-    document
-    .getElementById(
-        "imageProgress"
-    )
-    .classList.add(
-        "hidden"
-    );
 
 
     document
@@ -7134,50 +7063,6 @@ async function(){
         "Content saved successfully.";
 
 
-        const file=
-        document
-        .getElementById(
-            "itemImage"
-        )
-        .files[0];
-
-
-        if(file){
-
-            status.textContent=
-            "Content saved. Uploading image...";
-
-
-            const imageUrl=
-            await uploadImage(
-                file,
-                "classroom",
-                editingId,
-                "imageUploadStatus",
-                "imageProgress",
-                "imageProgressBar"
-            );
-
-
-            await updateDoc(
-                doc(
-                    db,
-                    "classroom",
-                    editingId
-                ),
-                {
-
-                    imageUrl,
-
-                    updatedAt:
-                    serverTimestamp()
-
-                }
-            );
-
-        }
-
-
         status.textContent=
         "✓ Saved successfully.";
 
@@ -7230,388 +7115,57 @@ async function(){
 };
 
 
-/* =====================================================
-   IMAGE COMPRESSION
-
-   Phone camera photos are often 5-15MB, which is why
-   uploads can sit at "0%" for a long time on normal
-   connections. We shrink + re-encode the image in the
-   browser before it ever reaches Firebase Storage, so
-   uploads are usually a few hundred KB and finish in
-   a second or two.
-===================================================== */
-
-function compressImage(
-    file,
-    maxDimension = 1600,
-    quality = 0.8
-){
-
-    return new Promise(
-        (resolve)=>{
-
-            // Skip compression for non-image files,
-            // and for files that are already small.
-            if(
-                !file.type ||
-                !file.type.startsWith("image/") ||
-                file.size <= 350 * 1024
-            ){
-                resolve(file);
-                return;
-            }
-
-
-            const img = new Image();
-            const objectUrl = URL.createObjectURL(file);
-
-
-            img.onload = ()=>{
-
-                URL.revokeObjectURL(objectUrl);
-
-                let { width, height } = img;
-
-
-                if(width > maxDimension || height > maxDimension){
-
-                    if(width >= height){
-                        height =
-                            Math.round(
-                                height * (maxDimension / width)
-                            );
-                        width = maxDimension;
-                    }
-                    else{
-                        width =
-                            Math.round(
-                                width * (maxDimension / height)
-                            );
-                        height = maxDimension;
-                    }
-
-                }
-
-
-                const canvas = document.createElement("canvas");
-                canvas.width = width;
-                canvas.height = height;
-
-                const ctx = canvas.getContext("2d");
-                ctx.drawImage(img, 0, 0, width, height);
-
-
-                canvas.toBlob(
-                    (blob)=>{
-
-                        // Fall back to the original file
-                        // if compression somehow fails or
-                        // doesn't actually save space.
-                        if(!blob || blob.size >= file.size){
-                            resolve(file);
-                            return;
-                        }
-
-
-                        const compressedName =
-                            file.name.replace(
-                                /\.[^.]+$/,
-                                ""
-                            ) + ".jpg";
-
-
-                        resolve(
-                            new File(
-                                [blob],
-                                compressedName,
-                                { type: "image/jpeg" }
-                            )
-                        );
-
-                    },
-                    "image/jpeg",
-                    quality
-                );
-
-            };
-
-
-            img.onerror = ()=>{
-                URL.revokeObjectURL(objectUrl);
-                // If we can't even read it as an image,
-                // just upload the original file untouched.
-                resolve(file);
-            };
-
-
-            img.src = objectUrl;
-
-        }
-    );
-
-}
-
-
-
-/* =====================================================
-   IMAGE UPLOAD
-===================================================== */
-
-async function uploadImage(
-    file,
-    folder,
-    documentId,
-    statusId,
-    progressId,
-    progressBarId
-){
-
-    const statusEl =
-        document.getElementById(statusId);
-
-    if(statusEl)
-        statusEl.textContent =
-            "Preparing image...";
-
-
-    file = await compressImage(file);
-
-
-    const safeName=
-    file.name
-    .replace(
-        /[^a-zA-Z0-9._-]/g,
-        "_"
-    );
-
-
-    const filePath=
-    `${folder}/${documentId}/${Date.now()}_${safeName}`;
-
-
-    const storageRef=
-    ref(
-        storage,
-        filePath
-    );
-
-
-    const progressBox=
-    document.getElementById(
-        progressId
-    );
-
-
-    const progressBar=
-    document.getElementById(
-        progressBarId
-    );
-
-
-    progressBox.classList.remove(
-        "hidden"
-    );
-
-
-    /* -------------------------------------------------
-       SINGLE-SHOT UPLOAD (not resumable)
-
-       uploadBytesResumable sends the file as a series
-       of chunked/streamed requests. Some mobile,
-       school, and corporate networks silently block
-       that connection pattern — the exact same class
-       of issue this project already works around for
-       Firestore (see experimentalAutoDetectLongPolling
-       above). The upload then just sits at "0%"
-       forever with no error.
-
-       uploadBytes() sends the whole (already-compressed)
-       file as one plain request, which works reliably
-       on those networks. The trade-off is we lose live
-       percentage progress, so we show an indeterminate
-       "moving stripes" animation instead via the
-       "indeterminate" CSS class.
-    ------------------------------------------------- */
-
-    progressBar.style.width =
-        "100%";
-
-    progressBar.classList.add(
-        "indeterminate"
-    );
-
-    if(statusEl)
-        statusEl.textContent =
-            "Uploading image...";
-
-
-    const UPLOAD_TIMEOUT_MS = 45000;
-
-    function withTimeout(promise){
-
-        return Promise.race([
-
-            promise,
-
-            new Promise(
-                (_,reject)=>{
-
-                    setTimeout(
-                        ()=>{
-
-                            reject(
-                                new Error(
-                                    "Upload is taking much longer " +
-                                    "than expected. This usually " +
-                                    "means the current network " +
-                                    "(school/office WiFi, VPN, or " +
-                                    "mobile carrier) is blocking the " +
-                                    "connection to Firebase Storage, " +
-                                    "or the Storage security rules " +
-                                    "are denying this account write " +
-                                    "access. Try a different network " +
-                                    "(e.g. phone hotspot) and check " +
-                                    "the browser console for details."
-                                )
-                            );
-
-                        },
-                        UPLOAD_TIMEOUT_MS
-                    );
-
-                }
-            )
-
-        ]);
-
-    }
-
-
-    try{
-
-        await withTimeout(
-            uploadBytes(
-                storageRef,
-                file
-            )
-        );
-
-
-        const url=
-        await withTimeout(
-            getDownloadURL(
-                storageRef
-            )
-        );
-
-
-        progressBar.classList.remove(
-            "indeterminate"
-        );
-
-        if(statusEl)
-            statusEl.textContent =
-                "Image uploaded ✓";
-
-
-        return url;
-
-    }
-    catch(error){
-
-        progressBar.classList.remove(
-            "indeterminate"
-        );
-
-        console.error(
-            "Image upload failed:",
-            error
-        );
-
-        if(statusEl)
-            statusEl.textContent =
-                "Upload failed.";
-
-        throw error;
-
-    }
-
-}
 
 
 /* =====================================================
    IMAGE PREVIEW
+
+   Images now live in the GitHub repo (not Firebase
+   Storage), so these fields are just text paths/URLs.
+   Live-preview whatever is typed in.
 ===================================================== */
 
 document
-.getElementById("itemImage")
+.getElementById("existingImageUrl")
 .addEventListener(
-    "change",
+    "input",
     function(){
 
-        const file=
-        this.files[0];
-
-
-        if(!file){
-
-            return;
-
-        }
-
-
         const url=
-        URL.createObjectURL(
-            file
-        );
+        this.value.trim();
 
 
         document
         .getElementById(
             "itemImagePreview"
         )
-        .innerHTML=`
-
-            <img src="${safe(url)}">
-
-        `;
+        .innerHTML=
+        url
+        ? `<img src="${safe(url)}">`
+        : "";
 
     }
 );
 
 
 document
-.getElementById("communityImage")
+.getElementById("communityExistingImage")
 .addEventListener(
-    "change",
+    "input",
     function(){
 
-        const file=
-        this.files[0];
-
-
-        if(!file){
-
-            return;
-
-        }
-
-
         const url=
-        URL.createObjectURL(
-            file
-        );
+        this.value.trim();
 
 
         document
         .getElementById(
             "communityImagePreview"
         )
-        .innerHTML=`
-
-            <img src="${safe(url)}">
-
-        `;
+        .innerHTML=
+        url
+        ? `<img src="${safe(url)}">`
+        : "";
 
     }
 );
@@ -8880,50 +8434,6 @@ async function(){
         }
 
 
-        const file=
-        document
-        .getElementById(
-            "communityImage"
-        )
-        .files[0];
-
-
-        if(file){
-
-            status.textContent=
-            "Post saved. Uploading image...";
-
-
-            const imageUrl=
-            await uploadImage(
-                file,
-                "community",
-                postId,
-                "communityUploadStatus",
-                "communityProgress",
-                "communityProgressBar"
-            );
-
-
-            await updateDoc(
-                doc(
-                    db,
-                    "community",
-                    postId
-                ),
-                {
-
-                    imageUrl,
-
-                    updatedAt:
-                    serverTimestamp()
-
-                }
-            );
-
-        }
-
-
         status.textContent=
         "✓ Post saved successfully.";
 
@@ -9243,13 +8753,6 @@ function clearCommunityComposer(){
 
     document
     .getElementById(
-        "communityImage"
-    )
-    .value="";
-
-
-    document
-    .getElementById(
         "communityExistingImage"
     )
     .value="";
@@ -9260,13 +8763,6 @@ function clearCommunityComposer(){
         "communityImagePreview"
     )
     .innerHTML="";
-
-
-    document
-    .getElementById(
-        "communityUploadStatus"
-    )
-    .textContent="";
 
 
     document
