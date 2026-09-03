@@ -2176,6 +2176,69 @@ async function loadClassroom(){
 let openPath = [];
 
 
+/* =====================================================
+   STATIC IMAGES (hardcoded, by title)
+
+   Firebase Storage isn't used (paid plan), and having
+   admin type/save a matching GitHub path per item proved
+   error-prone. Instead these images are matched directly
+   by title here in code, so they always show up with no
+   admin data-entry step. The files live in this repo's
+   /images folder. If admin.html ever *does* have an
+   imageUrl saved on an item (from before), that still
+   takes priority — this is only a fallback.
+===================================================== */
+
+function getStaticImage(title){
+
+  const t =
+    (title || "")
+    .toLowerCase();
+
+
+  if(t.includes("start here"))
+    return "images/start_here.jpeg";
+
+  if(t.includes("phase 1") || t.includes("phase 01"))
+    return "images/phase_1.jpeg";
+
+  if(t.includes("phase 2") || t.includes("phase 02"))
+    return "images/phase_2.jpeg";
+
+  if(t.includes("phase 3") || t.includes("phase 03"))
+    return "images/phase_3.jpeg";
+
+  if(t.includes("diet"))
+    return "images/diet plan.jpeg";
+
+  if(t.includes("food school"))
+    return "images/food_school.jpeg";
+
+  if(t.includes("lifetime") || t.includes("life time") || t.includes("habits"))
+    return "images/life_time_habits.jpeg";
+
+  if(t.includes("workout") || t.includes("movement"))
+    return "images/workout.jpeg";
+
+
+  return "";
+
+}
+
+
+function getItemImage(item){
+
+  return (
+    item.image ||
+    item.imageUrl ||
+    item.photo ||
+    getStaticImage(item.title) ||
+    ""
+  );
+
+}
+
+
 function getChildrenOf(id){
 
   return classroomItems
@@ -2293,10 +2356,7 @@ function renderModuleCard(item){
 
 
   const image =
-    item.image ||
-    item.imageUrl ||
-    item.photo ||
-    "";
+    getItemImage(item);
 
 
   const coverStyle =
@@ -2485,10 +2545,7 @@ function renderModuleDetail(container,itemId){
 
 
   const image =
-    item.image ||
-    item.imageUrl ||
-    item.photo ||
-    "";
+    getItemImage(item);
 
 
   const coverStyle =
@@ -2588,10 +2645,7 @@ function renderChild(item){
 
 
   const image =
-    item.image ||
-    item.imageUrl ||
-    item.photo ||
-    "";
+    getItemImage(item);
 
 
   const thumbStyle =
@@ -2852,10 +2906,7 @@ function(id){
   =================================================== */
 
   const image =
-    item.image ||
-    item.imageUrl ||
-    item.photo ||
-    "";
+    getItemImage(item);
 
 
   if(image){
