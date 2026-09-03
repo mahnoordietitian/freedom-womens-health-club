@@ -113,21 +113,41 @@ textarea:focus{
 }
 
 .btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
   border:0;
-  background:var(--plum);
+  background:linear-gradient(135deg,var(--plum),#8A6398);
   color:white;
-  padding:12px 18px;
-  border-radius:9px;
+  padding:12px 22px;
+  border-radius:999px;
   cursor:pointer;
-  font-weight:bold;
+  font-weight:700;
+  font-size:14.5px;
+  letter-spacing:.01em;
+  box-shadow:0 6px 16px rgba(110,74,126,.28);
+  transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
 }
 
 .btn:hover{
-  opacity:.9;
+  transform:translateY(-2px);
+  box-shadow:0 10px 22px rgba(110,74,126,.35);
+}
+
+.btn:active{
+  transform:translateY(0);
+  box-shadow:0 4px 12px rgba(110,74,126,.3);
+}
+
+.btn:disabled{
+  cursor:default;
+  transform:none;
 }
 
 .login-btn{
   width:100%;
+  border-radius:12px;
 }
 
 .error{
@@ -234,6 +254,46 @@ textarea:focus{
 
 .section.active{
   display:block;
+}
+
+
+/* =====================================================
+   SECTION HEAD (page-level heading + subtitle)
+===================================================== */
+
+.section-head{
+  margin-bottom:24px;
+}
+
+.section-head .eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:var(--light);
+  color:var(--plum);
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  margin-bottom:12px;
+}
+
+.section-head h2{
+  margin:0 0 8px;
+  color:var(--charcoal);
+  font-size:28px;
+  font-weight:800;
+  line-height:1.25;
+}
+
+.section-head p{
+  margin:0;
+  max-width:560px;
+  color:#8a8a8a;
+  font-size:14.5px;
+  line-height:1.6;
 }
 
 
@@ -415,8 +475,8 @@ textarea:focus{
 }
 
 .classroom-detail-title{
-  font-size:20px;
-  font-weight:bold;
+  font-size:22px;
+  font-weight:800;
 }
 
 .classroom-children{
@@ -425,8 +485,12 @@ textarea:focus{
   gap:10px;
 }
 
+/* A "row" is not a button: no fill colour, no shadow by default.
+   It's a plain card that lifts slightly on hover, with a chevron
+   to signal it's tappable, keeping it visually distinct from the
+   real action buttons on the page. */
 .child{
-  padding:10px;
+  padding:12px 14px;
   border:1px solid var(--border);
   border-radius:12px;
   background:#FCFAF7;
@@ -434,10 +498,36 @@ textarea:focus{
   display:flex;
   align-items:center;
   gap:12px;
+  transition:border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+
+.child::after{
+  content:"›";
+  flex:none;
+  font-size:22px;
+  font-weight:bold;
+  color:var(--taupe);
 }
 
 .child:hover{
   border-color:var(--plum);
+  box-shadow:0 6px 16px rgba(110,74,126,.1);
+  transform:translateY(-1px);
+}
+
+.child.locked{
+  cursor:not-allowed;
+  opacity:.7;
+}
+
+.child.locked::after{
+  content:"";
+}
+
+.child.locked:hover{
+  border-color:var(--border);
+  box-shadow:none;
+  transform:none;
 }
 
 .child-thumb{
@@ -456,12 +546,22 @@ textarea:focus{
 
 .child-main{
   flex:1;
-  font-weight:600;
+  font-weight:700;
+  color:var(--charcoal);
+  font-size:15px;
 }
 
 .child-lock{
-  color:#777;
-  font-size:12px;
+  flex:none;
+  display:inline-flex;
+  align-items:center;
+  background:var(--light);
+  color:#8a8a8a;
+  padding:5px 11px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:700;
+  white-space:nowrap;
 }
 
 
@@ -499,23 +599,48 @@ textarea:focus{
 ===================================================== */
 
 .content-box h1,
-.content-box h2,
-.content-box h3,
-.content-box h4{
+.content-box h2{
   color:var(--plum);
-  line-height:1.35;
+  line-height:1.3;
+  font-weight:800;
 }
 
 .content-box h1{
-  font-size:30px;
+  font-size:28px;
 }
 
 .content-box h2{
-  font-size:26px;
+  font-size:24px;
 }
 
-.content-box h3{
-  font-size:21px;
+/* Subsection labels (Movement, Hydration, Protein, etc.)
+   Deliberately NOT styled like a button: no fill, no shadow,
+   uppercase small label with a colored marker + underline
+   so it reads as a heading, never as something tappable. */
+.content-box h3,
+.content-box h4{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  color:var(--charcoal);
+  font-size:14px;
+  font-weight:800;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  line-height:1.3;
+  margin:0 0 14px;
+  padding-bottom:10px;
+  border-bottom:2px solid var(--light);
+}
+
+.content-box h3::before,
+.content-box h4::before{
+  content:"";
+  width:9px;
+  height:9px;
+  flex:none;
+  border-radius:50%;
+  background:var(--plum);
 }
 
 .content-box p{
@@ -591,28 +716,50 @@ textarea:focus{
   margin-top:18px;
 }
 
+/* Ghost/tertiary style: a "Back" link should feel lighter than
+   a real action button, so it never gets mistaken for one. */
 .back-btn{
-  margin-bottom:15px;
+  background:transparent;
+  color:var(--plum);
+  padding:8px 4px;
+  margin-bottom:18px;
+  border-radius:8px;
+  box-shadow:none;
+  font-weight:700;
+  font-size:14px;
 }
 
+.back-btn:hover{
+  background:transparent;
+  transform:none;
+  box-shadow:none;
+  text-decoration:underline;
+}
+
+.back-btn:active{
+  transform:none;
+  box-shadow:none;
+}
+
+/* Secondary button: clear outline + fill-on-hover so it still
+   reads as a button, but sits a step below the primary CTA. */
 .view-content-btn{
-  display:block;
   width:100%;
   padding:14px;
-  margin-bottom:16px;
-  border:1px solid var(--plum);
-  border-radius:12px;
-  background:var(--light);
+  margin-bottom:18px;
+  border:2px solid var(--plum);
+  border-radius:14px;
+  background:white;
   color:var(--plum);
-  font-weight:bold;
-  font-size:14px;
-  cursor:pointer;
-  text-align:center;
+  font-weight:700;
+  font-size:14.5px;
+  box-shadow:0 4px 14px rgba(110,74,126,.12);
 }
 
 .view-content-btn:hover{
   background:var(--plum);
   color:white;
+  box-shadow:0 8px 20px rgba(110,74,126,.25);
 }
 
 
@@ -628,22 +775,32 @@ textarea:focus{
 
 .complete-btn{
   width:100%;
-  padding:16px;
+  padding:18px;
   border:0;
-  border-radius:12px;
-  background:var(--plum);
+  border-radius:16px;
+  background:linear-gradient(135deg,var(--plum),#8A6398);
   color:white;
-  font-weight:bold;
-  cursor:pointer;
+  font-weight:800;
   font-size:16px;
+  letter-spacing:.01em;
+  cursor:pointer;
+  box-shadow:0 10px 26px rgba(110,74,126,.32);
+  transition:transform .15s ease, box-shadow .15s ease;
 }
 
 .complete-btn:hover{
-  opacity:.92;
+  transform:translateY(-2px);
+  box-shadow:0 14px 32px rgba(110,74,126,.4);
 }
 
 .complete-btn.completed{
-  background:var(--green);
+  background:linear-gradient(135deg,var(--green),#6BA57D);
+  box-shadow:0 10px 26px rgba(79,128,96,.28);
+  cursor:default;
+}
+
+.complete-btn.completed:hover{
+  transform:none;
 }
 
 .complete-message{
@@ -1083,9 +1240,17 @@ textarea:focus{
       class="section"
     >
 
-      <h2>
-        Community
-      </h2>
+      <div class="section-head">
+
+        <span class="eyebrow">
+          💬 Member Community
+        </span>
+
+        <h2>
+          Community
+        </h2>
+
+      </div>
 
       <div class="community-box">
 
@@ -1133,14 +1298,22 @@ textarea:focus{
       class="section"
     >
 
-      <h2>
-        90-Day Journey
-      </h2>
+      <div class="section-head">
 
-      <p>
-        Your program content is organized below.
-        Future content remains visible but locked until its unlock day.
-      </p>
+        <span class="eyebrow">
+          📚 Member Program
+        </span>
+
+        <h2>
+          90-Day Journey
+        </h2>
+
+        <p>
+          Your program content is organized below.
+          Future content remains visible but locked until its unlock day.
+        </p>
+
+      </div>
 
       <div
         id="classroomContainer"
@@ -2665,7 +2838,7 @@ function renderChild(item){
 
     return `
 
-      <div class="child">
+      <div class="child locked">
 
         <span
           class="child-thumb"
