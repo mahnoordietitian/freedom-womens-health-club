@@ -3518,111 +3518,6 @@ label{
 </div>
 
 
-<!-- IMAGE -->
-
-<div class="editor-section">
-
-<h3>
-    📷 Image
-</h3>
-
-<p
-    style="
-        color:#777;
-        font-size:13px;
-    "
->
-    Path or URL to an image for this phase, week or day.
-    Images are hosted on GitHub (not Firebase Storage) in
-    the "images" folder of the repo. Current files
-    available there:
-    <code>images/phase_1.jpeg</code>,
-    <code>images/phase_2.jpeg</code>,
-    <code>images/phase_3.jpeg</code>,
-    <code>images/start_here.jpeg</code>,
-    <code>images/diet plan.jpeg</code>,
-    <code>images/food_school.jpeg</code>,
-    <code>images/life_time_habits.jpeg</code>,
-    <code>images/workout.jpeg</code>.
-    Type the matching path exactly (including any
-    underscores/spaces) below. A full https:// URL works
-    too, and uploading more files to the repo's "images"
-    folder later just means typing that new path here.
-</p>
-
-
-<input
-    id="existingImageUrl"
-    type="text"
-    placeholder="images/phase_1.jpeg"
-    style="width:100%"
->
-
-
-<div
-    id="itemImagePreview"
-    class="image-preview"
-></div>
-
-</div>
-
-
-<!-- LINKS -->
-
-<div class="editor-section">
-
-
-<h3>
-    🎥 Videos & Google Drive
-</h3>
-
-
-<div class="form-group">
-
-<label>
-    Video URL
-</label>
-
-<input
-    id="videoUrl"
-    type="url"
-    placeholder="https://youtube.com/..."
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-    Google Drive Link
-</label>
-
-<input
-    id="driveUrl"
-    type="url"
-    placeholder="https://drive.google.com/..."
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-    Button / Resource Name
-</label>
-
-<input
-    id="resourceLabel"
-    placeholder="Watch Video / Open Workbook / View Recipe"
->
-
-</div>
-
-</div>
-
-
 <!-- DAY CONTENT -->
 
 <div
@@ -3632,6 +3527,7 @@ label{
 
 
 <div class="editor-section">
+
 
 <h3>
     Movement
@@ -6652,41 +6548,6 @@ function clearEditor(){
     .checked=false;
 
 
-    document
-    .getElementById(
-        "existingImageUrl"
-    )
-    .value="";
-
-
-    document
-    .getElementById(
-        "itemImagePreview"
-    )
-    .innerHTML="";
-
-
-    document
-    .getElementById(
-        "videoUrl"
-    )
-    .value="";
-
-
-    document
-    .getElementById(
-        "driveUrl"
-    )
-    .value="";
-
-
-    document
-    .getElementById(
-        "resourceLabel"
-    )
-    .value="";
-
-
     [
         "movement",
         "movementInstructions",
@@ -6959,18 +6820,6 @@ async function(){
 
             status:itemStatus,
 
-            videoUrl:
-            value("videoUrl").trim(),
-
-            driveUrl:
-            value("driveUrl").trim(),
-
-            resourceLabel:
-            value("resourceLabel").trim(),
-
-            imageUrl:
-            value("existingImageUrl"),
-
 
             dayContent:{
 
@@ -7128,35 +6977,10 @@ async function(){
 
 
 /* =====================================================
-   IMAGE PREVIEW
-
-   Images now live in the GitHub repo (not Firebase
-   Storage), so these fields are just text paths/URLs.
-   Live-preview whatever is typed in.
+   IMAGE PREVIEW (community posts only — classroom item
+   images are now shown automatically in member.html
+   based on title, not set per-item in admin)
 ===================================================== */
-
-document
-.getElementById("existingImageUrl")
-.addEventListener(
-    "input",
-    function(){
-
-        const url=
-        this.value.trim();
-
-
-        document
-        .getElementById(
-            "itemImagePreview"
-        )
-        .innerHTML=
-        url
-        ? `<img src="${safe(url)}">`
-        : "";
-
-    }
-);
-
 
 document
 .getElementById("communityExistingImage")
@@ -7551,55 +7375,6 @@ function(id){
     )
     .checked=
     item.hasChildren===true;
-
-
-    document
-    .getElementById(
-        "existingImageUrl"
-    )
-    .value=
-    item.imageUrl||"";
-
-
-    if(item.imageUrl){
-
-        document
-        .getElementById(
-            "itemImagePreview"
-        )
-        .innerHTML=`
-
-            <img
-                src="${safe(item.imageUrl)}"
-            >
-
-        `;
-
-    }
-
-
-    document
-    .getElementById(
-        "videoUrl"
-    )
-    .value=
-    item.videoUrl||"";
-
-
-    document
-    .getElementById(
-        "driveUrl"
-    )
-    .value=
-    item.driveUrl||"";
-
-
-    document
-    .getElementById(
-        "resourceLabel"
-    )
-    .value=
-    item.resourceLabel||"";
 
 
     const d=
