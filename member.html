@@ -3994,6 +3994,19 @@ async function(){
 
   const postData = {
 
+    /*
+     Firestore rules require this to equal the poster's own
+     Firebase Auth uid for a member-created post to be allowed
+     at all (see the "community" match block: allow create: if
+     isLoggedIn() && request.resource.data.authorId ==
+     request.auth.uid). This field was missing entirely before,
+     which is the actual reason every member post was rejected
+     with permission-denied - independent of any field naming
+     issue below.
+    */
+    authorId:
+      currentUser.uid,
+
     email:
       currentUser.email,
 
@@ -4002,11 +4015,9 @@ async function(){
       currentUser.email,
 
     /*
-     The admin panel (and, almost certainly, the Firestore
-     security rules) use "text" as the field name for a post's
-     body - not "content". Writing "content" here was silently
-     rejected by rules that validate the document shape, which
-     is why member posting has never actually worked.
+     The admin panel uses "text" as the field name for a post's
+     body - not "content". Kept for consistency with admin-
+     created posts and with what renderCommunityPost() reads.
     */
     text:
       content,
