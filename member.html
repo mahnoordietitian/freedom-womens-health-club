@@ -712,6 +712,29 @@ textarea:focus{
   background:var(--plum);
 }
 
+/* Some lesson content nests a bullet list (or paragraph) directly
+   inside the heading tag instead of after it. When that happens,
+   align-items:center stretches our small marker dot to the middle
+   of the whole nested block instead of next to a single line of
+   text, producing an oversized, misplaced dot. Detect that case
+   and fall back to plain block layout with no marker at all. */
+.content-box h3:has(ul,ol,p),
+.content-box h4:has(ul,ol,p){
+  display:block;
+}
+
+.content-box h3:has(ul,ol,p)::before,
+.content-box h4:has(ul,ol,p)::before{
+  content:none;
+}
+
+.content-box h3:has(ul,ol,p) :is(ul,ol,p),
+.content-box h4:has(ul,ol,p) :is(ul,ol,p){
+  font-weight:400;
+  font-size:15px;
+  color:var(--charcoal);
+}
+
 .content-box p{
   margin:12px 0;
 }
