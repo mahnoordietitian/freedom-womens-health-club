@@ -4001,8 +4001,18 @@ async function(){
       currentMember?.name ||
       currentUser.email,
 
-    content:
+    /*
+     The admin panel (and, almost certainly, the Firestore
+     security rules) use "text" as the field name for a post's
+     body - not "content". Writing "content" here was silently
+     rejected by rules that validate the document shape, which
+     is why member posting has never actually worked.
+    */
+    text:
       content,
+
+    imageUrl:
+      "",
 
     tag:
       tagSelect?.value ||
@@ -4012,6 +4022,9 @@ async function(){
       false,
 
     createdAt:
+      serverTimestamp(),
+
+    updatedAt:
       serverTimestamp()
 
   };
@@ -4036,40 +4049,21 @@ async function(){
     await loadCommunity();
 
   }
-  catch(error){
+  catch(firstError){
 
     console.error(
-      "Community post failed:",
-      error
+      "Community post failed (with tag):",
+      firstError
     );
 
 
     /*
-     If Firestore security rules validate the exact set of
-     fields allowed on a community post (a common, sensible
-     rule), they won't yet know about the new "tag" field and
-     will reject the write entirely. Rather than block posting
-     until the rules are updated, retry once without "tag" so
-     members can keep posting in the meantime.
+     Don't try to guess whether this specific error was caused
+     by the new "tag" field - just retry once without it. If
+     the real problem is something else entirely, this second
+     attempt fails too and we fall through to showing the real
+     error below, which is far more useful than assuming.
     */
-
-    const looksLikeRulesRejection =
-      error?.code === "permission-denied" ||
-      /permission|insufficient|rules/i.test(
-        error?.message || ""
-      );
-
-
-    if(!looksLikeRulesRejection){
-
-      alert(
-        "Your post could not be published."
-      );
-
-      return;
-
-    }
-
 
     try{
 
@@ -4107,8 +4101,17 @@ async function(){
         fallbackError
       );
 
+
+      const detail =
+        fallbackError?.code ||
+        fallbackError?.message ||
+        String(fallbackError);
+
+
       alert(
-        "Your post could not be published."
+        "Your post could not be published.\n\n" +
+        "Technical detail (please share this with support):\n" +
+        detail
       );
 
     }
