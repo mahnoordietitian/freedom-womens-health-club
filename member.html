@@ -906,6 +906,75 @@ textarea:focus{
   margin-bottom:10px;
 }
 
+.community-tag-select{
+  width:auto;
+  max-width:100%;
+  padding:10px 34px 10px 14px;
+  margin-bottom:14px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  background:white;
+  color:var(--charcoal);
+  font-weight:600;
+  font-size:13.5px;
+  cursor:pointer;
+  appearance:none;
+  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%236E4A7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');
+  background-repeat:no-repeat;
+  background-position:right 12px center;
+  background-size:14px;
+}
+
+.community-tag-select:focus{
+  border-color:var(--plum);
+  outline:none;
+}
+
+/* Filter pills: lets members browse the feed by category.
+   Plain outlined by default, filled solid when active - the
+   same visual language as a tab, not a form control. */
+.community-filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:14px 0 18px;
+}
+
+.filter-pill{
+  border:1px solid var(--border);
+  background:white;
+  color:var(--charcoal);
+  padding:8px 16px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:700;
+  cursor:pointer;
+  transition:all .15s ease;
+}
+
+.filter-pill:hover{
+  border-color:var(--plum);
+  color:var(--plum);
+}
+
+.filter-pill.active{
+  background:var(--plum);
+  border-color:var(--plum);
+  color:white;
+}
+
+.post-tag{
+  display:inline-flex;
+  align-items:center;
+  background:var(--light);
+  color:var(--plum);
+  padding:4px 11px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:700;
+  margin-bottom:8px;
+}
+
 .post{
   padding:20px 0;
   border-bottom:1px solid var(--border);
@@ -1337,6 +1406,37 @@ textarea:focus{
             placeholder="Share your progress, workout, meal, win or question..."
           ></textarea>
 
+          <select
+            id="communityTag"
+            class="community-tag-select"
+          >
+
+            <option value="general">
+              General Discussion
+            </option>
+
+            <option value="introduction">
+              Introduction
+            </option>
+
+            <option value="announcement">
+              Announcement
+            </option>
+
+            <option value="questions">
+              Questions/Queries
+            </option>
+
+            <option value="wins">
+              Wins/Achievements
+            </option>
+
+            <option value="meals">
+              Meals/Workout
+            </option>
+
+          </select>
+
           <button
             class="btn"
             onclick="createCommunityPost()"
@@ -1350,6 +1450,11 @@ textarea:focus{
         <h3>
           Community Posts
         </h3>
+
+        <div
+          id="communityFilters"
+          class="community-filters"
+        ></div>
 
         <div id="communityPosts">
           Loading posts...
@@ -1679,6 +1784,34 @@ let completedDays = [];
 let testMode = false;
 
 let programDay = 1;
+
+
+const COMMUNITY_TAGS = [
+
+  { value:"introduction", label:"Introduction" },
+  { value:"announcement", label:"Announcement" },
+  { value:"general", label:"General Discussion" },
+  { value:"questions", label:"Questions/Queries" },
+  { value:"wins", label:"Wins/Achievements" },
+  { value:"meals", label:"Meals/Workout" }
+
+];
+
+let allCommunityPosts = [];
+
+let activeCommunityTag = "all";
+
+
+function communityTagLabel(value){
+
+  const match =
+    COMMUNITY_TAGS.find(
+      t => t.value === value
+    );
+
+  return match ? match.label : "";
+
+}
 
 
 
@@ -3544,35 +3677,10 @@ async function loadCommunity(){
     );
 
 
-    const container =
-      document
-        .getElementById(
-          "communityPosts"
-        );
+    allCommunityPosts = posts;
 
-
-    if(!posts.length){
-
-      container.innerHTML = `
-
-        <p>
-          No community posts yet.
-        </p>
-
-      `;
-
-      return;
-
-    }
-
-
-    container.innerHTML =
-      posts
-        .map(
-          post =>
-            renderCommunityPost(post)
-        )
-        .join("");
+    renderCommunityFilters();
+    renderCommunityPostsList();
 
   }
   catch(error){
@@ -3592,6 +3700,114 @@ async function loadCommunity(){
       `;
 
   }
+
+}
+
+
+
+/* =====================================================
+   COMMUNITY FILTERS
+===================================================== */
+
+function renderCommunityFilters(){
+
+  const container =
+    document.getElementById(
+      "communityFilters"
+    );
+
+  if(!container)
+    return;
+
+
+  const allTab = `
+
+    <button
+      class="filter-pill ${activeCommunityTag === "all" ? "active" : ""}"
+      onclick="filterCommunityByTag('all')"
+    >
+      All
+    </button>
+
+  `;
+
+
+  const tagTabs =
+    COMMUNITY_TAGS
+      .map(
+        tag => `
+
+          <button
+            class="filter-pill ${activeCommunityTag === tag.value ? "active" : ""}"
+            onclick="filterCommunityByTag('${tag.value}')"
+          >
+            ${safeText(tag.label)}
+          </button>
+
+        `
+      )
+      .join("");
+
+
+  container.innerHTML =
+    allTab + tagTabs;
+
+}
+
+
+window.filterCommunityByTag =
+function(tag){
+
+  activeCommunityTag = tag;
+
+  renderCommunityFilters();
+  renderCommunityPostsList();
+
+};
+
+
+function renderCommunityPostsList(){
+
+  const container =
+    document.getElementById(
+      "communityPosts"
+    );
+
+  if(!container)
+    return;
+
+
+  const posts =
+    activeCommunityTag === "all"
+    ? allCommunityPosts
+    : allCommunityPosts.filter(
+        post =>
+          post.tag === activeCommunityTag
+      );
+
+
+  if(!posts.length){
+
+    container.innerHTML = `
+
+      <p>
+        No posts in this category yet.
+      </p>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    posts
+      .map(
+        post =>
+          renderCommunityPost(post)
+      )
+      .join("");
 
 }
 
@@ -3672,6 +3888,18 @@ function renderCommunityPost(post){
         ""
       }
 
+      ${
+        post.tag && communityTagLabel(post.tag)
+        ?
+        `
+          <span class="post-tag">
+            ${safeText(communityTagLabel(post.tag))}
+          </span>
+        `
+        :
+        ""
+      }
+
       <div class="post-author">
 
         ${safeText(
@@ -3743,6 +3971,12 @@ async function(){
     );
 
 
+  const tagSelect =
+    document.getElementById(
+      "communityTag"
+    );
+
+
   const content =
     textarea.value.trim();
 
@@ -3777,6 +4011,10 @@ async function(){
         content:
           content,
 
+        tag:
+          tagSelect?.value ||
+          "general",
+
         pinned:
           false,
 
@@ -3788,6 +4026,9 @@ async function(){
 
 
     textarea.value = "";
+
+    if(tagSelect)
+      tagSelect.value = "general";
 
     await loadCommunity();
 
