@@ -684,55 +684,17 @@ textarea:focus{
   font-size:24px;
 }
 
-/* Subsection labels (Movement, Hydration, Protein, etc.)
-   Deliberately NOT styled like a button: no fill, no shadow,
-   uppercase small label with a colored marker + underline
-   so it reads as a heading, never as something tappable. */
+/* Subsection headings (Why?, When?, How Often?, etc.) - styled
+   to match what's typed in the admin panel: plain bold text,
+   normal case, no invented markers or dividers, so the member
+   view always matches what was actually authored. */
 .content-box h3,
 .content-box h4{
-  display:flex;
-  align-items:center;
-  gap:9px;
   color:var(--charcoal);
-  font-size:15px;
+  font-size:17px;
   font-weight:800;
   line-height:1.3;
-  margin:0 0 14px;
-  padding-bottom:10px;
-  border-bottom:2px solid var(--light);
-}
-
-.content-box h3::before,
-.content-box h4::before{
-  content:"";
-  width:9px;
-  height:9px;
-  flex:none;
-  border-radius:50%;
-  background:var(--plum);
-}
-
-/* Some lesson content nests a bullet list (or paragraph) directly
-   inside the heading tag instead of after it. When that happens,
-   align-items:center stretches our small marker dot to the middle
-   of the whole nested block instead of next to a single line of
-   text, producing an oversized, misplaced dot. Detect that case
-   and fall back to plain block layout with no marker at all. */
-.content-box h3:has(ul,ol,p),
-.content-box h4:has(ul,ol,p){
-  display:block;
-}
-
-.content-box h3:has(ul,ol,p)::before,
-.content-box h4:has(ul,ol,p)::before{
-  content:none;
-}
-
-.content-box h3:has(ul,ol,p) :is(ul,ol,p),
-.content-box h4:has(ul,ol,p) :is(ul,ol,p){
-  font-weight:400;
-  font-size:15px;
-  color:var(--charcoal);
+  margin:20px 0 8px;
 }
 
 .content-box p{
@@ -809,20 +771,6 @@ textarea:focus{
   border-top:1px solid var(--border);
   padding-top:18px;
   margin-top:18px;
-}
-
-/* Lesson content is authored freely in the admin panel, so it
-   arrives with whatever casing was typed there (including ALL
-   CAPS headings/bullets). Rather than depend on how each lesson
-   happens to be written, normalize everything to clean sentence
-   case here, so the member-facing page always looks consistent
-   and professional no matter what the source text looks like. */
-.content-section :is(h1,h2,h3,h4,h5,h6,p,li,span,strong,em,b,a,div){
-  text-transform:lowercase;
-}
-
-.content-section :is(h1,h2,h3,h4,h5,h6,p,li)::first-letter{
-  text-transform:uppercase;
 }
 
 /* Ghost/tertiary style: a "Back" link should feel lighter than
