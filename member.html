@@ -3992,6 +3992,31 @@ async function(){
   }
 
 
+  const postData = {
+
+    email:
+      currentUser.email,
+
+    name:
+      currentMember?.name ||
+      currentUser.email,
+
+    content:
+      content,
+
+    tag:
+      tagSelect?.value ||
+      "general",
+
+    pinned:
+      false,
+
+    createdAt:
+      serverTimestamp()
+
+  };
+
+
   try{
 
     await addDoc(
@@ -3999,29 +4024,7 @@ async function(){
         db,
         "community"
       ),
-      {
-
-        email:
-          currentUser.email,
-
-        name:
-          currentMember?.name ||
-          currentUser.email,
-
-        content:
-          content,
-
-        tag:
-          tagSelect?.value ||
-          "general",
-
-        pinned:
-          false,
-
-        createdAt:
-          serverTimestamp()
-
-      }
+      postData
     );
 
 
@@ -4035,11 +4038,80 @@ async function(){
   }
   catch(error){
 
-    console.error(error);
-
-    alert(
-      "Your post could not be published."
+    console.error(
+      "Community post failed:",
+      error
     );
+
+
+    /*
+     If Firestore security rules validate the exact set of
+     fields allowed on a community post (a common, sensible
+     rule), they won't yet know about the new "tag" field and
+     will reject the write entirely. Rather than block posting
+     until the rules are updated, retry once without "tag" so
+     members can keep posting in the meantime.
+    */
+
+    const looksLikeRulesRejection =
+      error?.code === "permission-denied" ||
+      /permission|insufficient|rules/i.test(
+        error?.message || ""
+      );
+
+
+    if(!looksLikeRulesRejection){
+
+      alert(
+        "Your post could not be published."
+      );
+
+      return;
+
+    }
+
+
+    try{
+
+      const { tag, ...legacyPostData } =
+        postData;
+
+
+      await addDoc(
+        collection(
+          db,
+          "community"
+        ),
+        legacyPostData
+      );
+
+
+      textarea.value = "";
+
+      if(tagSelect)
+        tagSelect.value = "general";
+
+      await loadCommunity();
+
+      console.warn(
+        "Post published without a tag - update your Firestore " +
+        "security rules to allow the \"tag\" field on community " +
+        "posts so tags start saving."
+      );
+
+    }
+    catch(fallbackError){
+
+      console.error(
+        "Community post fallback also failed:",
+        fallbackError
+      );
+
+      alert(
+        "Your post could not be published."
+      );
+
+    }
 
   }
 
