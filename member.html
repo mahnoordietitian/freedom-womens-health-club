@@ -1008,6 +1008,10 @@ textarea:focus{
 .post-author{
   color:var(--plum);
   font-weight:bold;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  flex-wrap:wrap;
 }
 
 .post-date{
@@ -1180,10 +1184,32 @@ textarea:focus{
   flex:1;
 }
 
+.comment-author-row{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  flex-wrap:wrap;
+}
+
 .comment-author{
   font-size:12.5px;
   font-weight:800;
   color:var(--plum);
+}
+
+/* Tags any post or comment written by the club admin,
+   the same way a staff/moderator reply is marked in a
+   real community. */
+.admin-badge{
+  display:inline-block;
+  background:var(--plum);
+  color:white;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.3px;
+  text-transform:uppercase;
+  padding:2px 7px;
+  border-radius:20px;
 }
 
 .comment-text{
@@ -2150,6 +2176,22 @@ function communityTagLabel(value){
 
 const TEST_EMAIL =
 "mahnoordietitian3@gmail.com";
+
+
+/*
+ Used to tag posts/comments written from the admin
+ account with an "Admin" badge, same as a staff reply
+ in a real community.
+*/
+function isAdminAuthor(email){
+
+  return (
+    (email || "")
+      .toLowerCase() ===
+    TEST_EMAIL.toLowerCase()
+  );
+
+}
 
 
 
@@ -4752,9 +4794,21 @@ function renderCommentItem(postId, comment, allPostComments, depth){
 
       <div class="comment-body">
 
-        <span class="comment-author">
-          ${safeText(comment.name || comment.email || "Member")}
-        </span>
+        <div class="comment-author-row">
+
+          <span class="comment-author">
+            ${safeText(comment.name || comment.email || "Member")}
+          </span>
+
+          ${
+            isAdminAuthor(comment.email)
+            ?
+            `<span class="admin-badge">Admin</span>`
+            :
+            ""
+          }
+
+        </div>
 
         <span class="comment-text">
           ${safeText(comment.text || "").replace(/\n/g,"<br>")}
@@ -4988,6 +5042,14 @@ function renderCommunityPost(post){
           post.email ||
           "Member"
         )}
+
+        ${
+          isAdminAuthor(post.email)
+          ?
+          `<span class="admin-badge">Admin</span>`
+          :
+          ""
+        }
 
       </div>
 
