@@ -1051,6 +1051,210 @@ textarea:focus{
 
 
 /* =====================================================
+   POST ENGAGEMENT (reactions + comment toggle)
+===================================================== */
+
+.post-engagement{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:14px;
+  padding-top:12px;
+  border-top:1px solid var(--border);
+}
+
+.reaction-bar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+
+.reaction-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  border:1px solid var(--border);
+  background:white;
+  color:#777;
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:12.5px;
+  font-weight:700;
+  cursor:pointer;
+  transition:all .15s ease;
+}
+
+.reaction-btn .icon{
+  width:14px;
+  height:14px;
+}
+
+.reaction-btn:hover{
+  border-color:var(--plum);
+  color:var(--plum);
+}
+
+.reaction-count{
+  font-weight:800;
+}
+
+/* Each reaction gets its own accent color when active - the
+   same visual language as mainstream social apps, so it reads
+   as familiar rather than a generic single-color toggle. */
+.reaction-btn.reaction-like.active{
+  background:#EAF2FE;
+  border-color:#4C8BF5;
+  color:#3568C4;
+}
+
+.reaction-btn.reaction-love.active{
+  background:#FDEAF0;
+  border-color:#E0245E;
+  color:#C21F50;
+}
+
+.reaction-btn.reaction-celebrate.active{
+  background:#FDF3E3;
+  border-color:#E8A63A;
+  color:#B9781C;
+}
+
+.comment-toggle-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  border:0;
+  background:transparent;
+  color:#777;
+  font-size:13px;
+  font-weight:700;
+  cursor:pointer;
+  padding:6px 4px;
+}
+
+.comment-toggle-btn .icon{
+  width:15px;
+  height:15px;
+}
+
+.comment-toggle-btn:hover{
+  color:var(--plum);
+}
+
+
+/* =====================================================
+   COMMENT THREAD
+===================================================== */
+
+.comment-thread{
+  margin-top:12px;
+  padding-top:12px;
+  border-top:1px solid var(--border);
+}
+
+.comment-thread.collapsed{
+  display:none;
+}
+
+.comment-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.comment-item{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+  background:var(--light);
+  border-radius:12px;
+  padding:10px 13px;
+}
+
+.comment-body{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  min-width:0;
+}
+
+.comment-author{
+  font-size:12.5px;
+  font-weight:800;
+  color:var(--plum);
+}
+
+.comment-text{
+  font-size:13.5px;
+  color:var(--charcoal);
+  overflow-wrap:anywhere;
+}
+
+.comment-delete-btn{
+  flex:none;
+  border:0;
+  background:transparent;
+  color:var(--red);
+  font-size:11.5px;
+  font-weight:700;
+  cursor:pointer;
+  padding:2px 4px;
+}
+
+.comment-empty{
+  font-size:13px;
+  color:#999;
+  margin:0 0 12px;
+}
+
+.comment-compose{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.comment-compose input{
+  flex:1;
+  padding:10px 14px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  font-size:13.5px;
+}
+
+.comment-compose input:focus{
+  border-color:var(--plum);
+  outline:none;
+}
+
+.comment-send-btn{
+  flex:none;
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:50%;
+  background:var(--plum);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+
+.comment-send-btn .icon{
+  width:15px;
+  height:15px;
+}
+
+.comment-send-btn:hover{
+  opacity:.9;
+}
+
+
+/* =====================================================
    LOCKED CONTENT
 ===================================================== */
 
@@ -1705,6 +1909,11 @@ const ICONS = {
   "pin": "<path d=\"M12 17v5\" /><path d=\"M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z\" />",
   "logout": "<path d=\"M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4\" /><polyline points=\"16 17 21 12 16 7\" /><line x1=\"21\" x2=\"9\" y1=\"12\" y2=\"12\" />",
   "check-circle": "<path d=\"M21.801 10A10 10 0 1 1 17 3.335\" /><path d=\"m9 11 3 3L22 4\" />",
+  "thumbs-up": "<path d=\"M7 10v12\" /><path d=\"M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z\" />",
+  "heart": "<path d=\"M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z\" />",
+  "celebrate": "<path d=\"M5.8 11.3 2 22l10.7-3.79\" /><path d=\"M4 3h.01\" /><path d=\"M22 8h.01\" /><path d=\"M15 2h.01\" /><path d=\"M22 20h.01\" /><path d=\"m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10\" /><path d=\"m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17\" /><path d=\"m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7\" /><path d=\"M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z\" />",
+  "comment": "<path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\" />",
+  "send": "<path d=\"M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z\" /><path d=\"m21.854 2.147-10.94 10.939\" />",
 };
 
 function icon(name, cls){
@@ -1800,6 +2009,27 @@ const COMMUNITY_TAGS = [
 let allCommunityPosts = [];
 
 let activeCommunityTag = "all";
+
+
+const REACTION_TYPES = [
+
+  { value:"like", label:"Like", icon:"thumbs-up" },
+  { value:"love", label:"Love", icon:"heart" },
+  { value:"celebrate", label:"Celebrate", icon:"celebrate" }
+
+];
+
+let allCommunityReactions = [];
+
+let allCommunityComments = [];
+
+/*
+ Which posts currently have their comment thread expanded.
+ Kept separate from the post list itself so re-rendering the
+ feed (after reacting, commenting, posting, or filtering)
+ doesn't collapse a thread the member had open.
+*/
+let expandedCommentPosts = new Set();
 
 
 function communityTagLabel(value){
@@ -3622,19 +3852,41 @@ async function loadCommunity(){
 
   try{
 
-    const snap =
-      await getDocs(
-        collection(
-          db,
-          "community"
+    const [
+      postsSnap,
+      reactionsSnap,
+      commentsSnap
+    ] =
+      await Promise.all([
+
+        getDocs(
+          collection(
+            db,
+            "community"
+          )
+        ),
+
+        getDocs(
+          collection(
+            db,
+            "communityReactions"
+          )
+        ),
+
+        getDocs(
+          collection(
+            db,
+            "communityComments"
+          )
         )
-      );
+
+      ]);
 
 
     const posts = [];
 
 
-    snap.forEach(
+    postsSnap.forEach(
       docSnap => {
 
         posts.push({
@@ -3677,7 +3929,49 @@ async function loadCommunity(){
     );
 
 
+    const reactions = [];
+
+    reactionsSnap.forEach(
+      docSnap => {
+
+        reactions.push({
+
+          id:docSnap.id,
+
+          ...docSnap.data()
+
+        });
+
+      }
+    );
+
+
+    const comments = [];
+
+    commentsSnap.forEach(
+      docSnap => {
+
+        comments.push({
+
+          id:docSnap.id,
+
+          ...docSnap.data()
+
+        });
+
+      }
+    );
+
+    comments.sort(
+      (a,b) =>
+        (a.createdAt?.seconds || 0) -
+        (b.createdAt?.seconds || 0)
+    );
+
+
     allCommunityPosts = posts;
+    allCommunityReactions = reactions;
+    allCommunityComments = comments;
 
     renderCommunityFilters();
     renderCommunityPostsList();
@@ -3702,6 +3996,344 @@ async function loadCommunity(){
   }
 
 }
+
+
+
+/* =====================================================
+   REACTIONS
+===================================================== */
+
+function reactionDocId(postId, uid){
+
+  return `${postId}_${uid}`;
+
+}
+
+
+function getPostReactionSummary(postId){
+
+  const counts = {};
+
+  REACTION_TYPES.forEach(
+    r => { counts[r.value] = 0; }
+  );
+
+
+  let myReaction = null;
+
+
+  allCommunityReactions
+    .filter(
+      r => r.postId === postId
+    )
+    .forEach(
+      r => {
+
+        if(counts[r.type] !== undefined){
+
+          counts[r.type]++;
+
+        }
+
+
+        if(
+          currentUser &&
+          r.userId === currentUser.uid
+        ){
+
+          myReaction = r.type;
+
+        }
+
+      }
+    );
+
+
+  return { counts, myReaction };
+
+}
+
+
+window.toggleReaction =
+async function(postId, type){
+
+  if(!currentUser)
+    return;
+
+
+  const refId =
+    reactionDocId(
+      postId,
+      currentUser.uid
+    );
+
+
+  const reactionRef =
+    doc(
+      db,
+      "communityReactions",
+      refId
+    );
+
+
+  const { myReaction } =
+    getPostReactionSummary(postId);
+
+
+  try{
+
+    if(myReaction === type){
+
+      /*
+       Clicking the same reaction again removes it.
+      */
+
+      await deleteDoc(reactionRef);
+
+    }
+    else{
+
+      /*
+       setDoc on a fixed id (postId + uid) means a member can
+       only ever have one active reaction per post - picking a
+       different type just overwrites the previous one, rather
+       than needing to look up and delete an old doc first.
+      */
+
+      await setDoc(
+        reactionRef,
+        {
+
+          postId:
+            postId,
+
+          userId:
+            currentUser.uid,
+
+          type:
+            type,
+
+          createdAt:
+            serverTimestamp()
+
+        }
+      );
+
+    }
+
+
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          "communityReactions"
+        )
+      );
+
+    const reactions = [];
+
+    snap.forEach(
+      docSnap =>
+        reactions.push({
+          id:docSnap.id,
+          ...docSnap.data()
+        })
+    );
+
+    allCommunityReactions = reactions;
+
+    renderCommunityPostsList();
+
+  }
+  catch(error){
+
+    console.error(
+      "Reaction failed:",
+      error
+    );
+
+  }
+
+};
+
+
+
+/* =====================================================
+   COMMENTS
+===================================================== */
+
+function getPostComments(postId){
+
+  return allCommunityComments.filter(
+    c => c.postId === postId
+  );
+
+}
+
+
+window.toggleCommentThread =
+function(postId){
+
+  if(expandedCommentPosts.has(postId)){
+
+    expandedCommentPosts.delete(postId);
+
+  }
+  else{
+
+    expandedCommentPosts.add(postId);
+
+  }
+
+
+  renderCommunityPostsList();
+
+};
+
+
+window.submitComment =
+async function(postId){
+
+  const input =
+    document.getElementById(
+      `commentInput-${postId}`
+    );
+
+  if(!input)
+    return;
+
+
+  const text =
+    input.value.trim();
+
+  if(!text)
+    return;
+
+
+  try{
+
+    await addDoc(
+      collection(
+        db,
+        "communityComments"
+      ),
+      {
+
+        postId:
+          postId,
+
+        authorId:
+          currentUser.uid,
+
+        email:
+          currentUser.email,
+
+        name:
+          currentMember?.name ||
+          currentUser.email,
+
+        text:
+          text,
+
+        createdAt:
+          serverTimestamp()
+
+      }
+    );
+
+
+    expandedCommentPosts.add(postId);
+
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          "communityComments"
+        )
+      );
+
+    const comments = [];
+
+    snap.forEach(
+      docSnap =>
+        comments.push({
+          id:docSnap.id,
+          ...docSnap.data()
+        })
+    );
+
+    comments.sort(
+      (a,b) =>
+        (a.createdAt?.seconds || 0) -
+        (b.createdAt?.seconds || 0)
+    );
+
+    allCommunityComments = comments;
+
+    renderCommunityPostsList();
+
+  }
+  catch(error){
+
+    console.error(
+      "Comment failed:",
+      error
+    );
+
+    alert(
+      "Your comment could not be posted."
+    );
+
+  }
+
+};
+
+
+window.deleteComment =
+async function(commentId, postId){
+
+  if(!confirm(
+    "Delete this comment?"
+  )){
+    return;
+  }
+
+
+  try{
+
+    await deleteDoc(
+      doc(
+        db,
+        "communityComments",
+        commentId
+      )
+    );
+
+
+    expandedCommentPosts.add(postId);
+
+    allCommunityComments =
+      allCommunityComments.filter(
+        c => c.id !== commentId
+      );
+
+    renderCommunityPostsList();
+
+  }
+  catch(error){
+
+    console.error(
+      "Comment delete failed:",
+      error
+    );
+
+    alert(
+      "The comment could not be deleted."
+    );
+
+  }
+
+};
 
 
 
@@ -3870,6 +4502,123 @@ function renderCommunityPost(post){
   }
 
 
+  const { counts, myReaction } =
+    getPostReactionSummary(post.id);
+
+
+  const reactionButtons =
+    REACTION_TYPES
+      .map(
+        r => `
+
+          <button
+            class="reaction-btn reaction-${r.value} ${myReaction === r.value ? "active" : ""}"
+            onclick="toggleReaction('${safeAttr(post.id)}','${r.value}')"
+          >
+            ${icon(r.icon)}
+            <span>${safeText(r.label)}</span>
+            ${counts[r.value] > 0 ? `<span class="reaction-count">${counts[r.value]}</span>` : ""}
+          </button>
+
+        `
+      )
+      .join("");
+
+
+  const comments =
+    getPostComments(post.id);
+
+  const isExpanded =
+    expandedCommentPosts.has(post.id);
+
+
+  const commentItems =
+    comments
+      .map(
+        c => {
+
+          const canDeleteComment =
+            email &&
+            c.email &&
+            email.toLowerCase() ===
+            c.email.toLowerCase();
+
+          return `
+
+            <div class="comment-item">
+
+              <div class="comment-body">
+
+                <span class="comment-author">
+                  ${safeText(c.name || c.email || "Member")}
+                </span>
+
+                <span class="comment-text">
+                  ${safeText(c.text || "").replace(/\n/g,"<br>")}
+                </span>
+
+              </div>
+
+              ${
+                canDeleteComment
+                ?
+                `
+                  <button
+                    class="comment-delete-btn"
+                    onclick="deleteComment('${safeAttr(c.id)}','${safeAttr(post.id)}')"
+                  >
+                    Delete
+                  </button>
+                `
+                :
+                ""
+              }
+
+            </div>
+
+          `;
+
+        }
+      )
+      .join("");
+
+
+  const commentThread = `
+
+    <div class="comment-thread ${isExpanded ? "" : "collapsed"}">
+
+      ${
+        comments.length
+        ?
+        `<div class="comment-list">${commentItems}</div>`
+        :
+        `<p class="comment-empty">No comments yet. Be the first to reply.</p>`
+      }
+
+      <div class="comment-compose">
+
+        <input
+          id="commentInput-${safeAttr(post.id)}"
+          type="text"
+          placeholder="Write a comment..."
+          onkeydown="if(event.key==='Enter'){submitComment('${safeAttr(post.id)}')}"
+        >
+
+        <button
+          class="comment-send-btn"
+          onclick="submitComment('${safeAttr(post.id)}')"
+          aria-label="Send comment"
+        >
+          ${icon("send")}
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+
   return `
 
     <div
@@ -3927,6 +4676,23 @@ function renderCommunityPost(post){
       </div>
 
 
+      <div class="post-engagement">
+
+        <div class="reaction-bar">
+          ${reactionButtons}
+        </div>
+
+        <button
+          class="comment-toggle-btn"
+          onclick="toggleCommentThread('${safeAttr(post.id)}')"
+        >
+          ${icon("comment")}
+          ${comments.length} comment${comments.length === 1 ? "" : "s"}
+        </button>
+
+      </div>
+
+
       ${
         canDelete
         ?
@@ -3945,6 +4711,8 @@ function renderCommunityPost(post){
         :
         ""
       }
+
+      ${commentThread}
 
     </div>
 
