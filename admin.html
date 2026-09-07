@@ -100,6 +100,36 @@ h1,h2,h3,h4,h5,h6{
 }
 
 
+/* =====================================================
+   ICONS
+
+   Base sizing for the SVG icon set used everywhere in
+   place of emoji. Context-specific rules further down
+   override the size for their own spot (nav, buttons,
+   reactions, etc).
+===================================================== */
+
+.icon{
+
+    width:16px;
+
+    height:16px;
+
+    flex:none;
+
+    vertical-align:-3px;
+
+}
+
+.nav-icon{
+
+    width:19px;
+
+    height:19px;
+
+}
+
+
 button,
 input,
 textarea,
@@ -340,6 +370,12 @@ label{
 
 .nav button{
 
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
     border:0;
 
     background:transparent;
@@ -428,6 +464,14 @@ label{
 ===================================================== */
 
 .btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
 
     border:0;
 
@@ -1145,6 +1189,12 @@ label{
 
 
 .view-toggle-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
 
     border:none;
 
@@ -2333,6 +2383,16 @@ label{
 
 }
 
+.reaction-btn .icon{
+
+    width:14px;
+
+    height:14px;
+
+    vertical-align:-2px;
+
+}
+
 .reaction-btn:hover{
 
     border-color:var(--plum);
@@ -2393,6 +2453,16 @@ label{
 
 }
 
+.mini-reaction-btn .icon{
+
+    width:12px;
+
+    height:12px;
+
+    vertical-align:-2px;
+
+}
+
 .mini-reaction-btn:hover{
 
     background:white;
@@ -2409,6 +2479,12 @@ label{
 
 .comment-toggle-btn{
 
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
     border:0;
 
     background:transparent;
@@ -2424,6 +2500,14 @@ label{
     padding:2px 0;
 
     font-family:"Inter",Arial,sans-serif;
+
+}
+
+.comment-toggle-btn .icon{
+
+    width:15px;
+
+    height:15px;
 
 }
 
@@ -2850,16 +2934,16 @@ label{
 
     .nav button{
 
-        font-size:0;
+        justify-content:center;
 
-        text-align:center;
+        padding:13px;
 
     }
 
 
-    .nav button:first-letter{
+    .nav-label{
 
-        font-size:20px;
+        display:none;
 
     }
 
@@ -3013,35 +3097,40 @@ label{
             class="active"
             onclick="openSection('dashboard',this)"
         >
-            🏠 Dashboard
+            <svg class="icon nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z" /></svg>
+            <span class="nav-label">Dashboard</span>
         </button>
 
 
         <button
             onclick="openSection('members',this)"
         >
-            👥 Members
+            <svg class="icon nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+            <span class="nav-label">Members</span>
         </button>
 
 
         <button
             onclick="openSection('classroom',this)"
         >
-            📚 Classroom
+            <svg class="icon nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" /></svg>
+            <span class="nav-label">Classroom</span>
         </button>
 
 
         <button
             onclick="openSection('community',this)"
         >
-            💬 Community
+            <svg class="icon nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>
+            <span class="nav-label">Community</span>
         </button>
 
 
         <button
             onclick="openSection('settings',this)"
         >
-            ⚙️ Settings
+            <svg class="icon nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" /></svg>
+            <span class="nav-label">Settings</span>
         </button>
 
     </nav>
@@ -3337,7 +3426,8 @@ label{
                     data-view="list"
                     onclick="setProgressView('list')"
                 >
-                    ☰ List
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13" /><path d="M8 12h13" /><path d="M8 18h13" /><path d="M3 6h.01" /><path d="M3 12h.01" /><path d="M3 18h.01" /></svg>
+                    List
                 </button>
 
                 <button
@@ -3346,7 +3436,8 @@ label{
                     data-view="graph"
                     onclick="setProgressView('graph')"
                 >
-                    📊 Graph
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>
+                    Graph
                 </button>
 
             </div>
@@ -4185,7 +4276,8 @@ label{
     class="btn btn-secondary"
     onclick="openSection('classroom')"
 >
-    ← Back
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7" /><path d="M19 12H5" /></svg>
+    Back
 </button>
 
 
@@ -4311,7 +4403,8 @@ label{
 <div class="editor-section">
 
 <h3>
-    📷 Add Image
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
+    Add Image
 </h3>
 
 <p
@@ -4345,7 +4438,8 @@ label{
 <div class="editor-section">
 
 <h3>
-    📌 Pin Post
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5" /><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z" /></svg>
+    Pin Post
 </h3>
 
 
@@ -4529,6 +4623,71 @@ const ADMIN =
 "mahnoordietitian3@gmail.com";
 
 
+/* =====================================================
+   ICONS
+
+   Small line-icon set (no emoji anywhere in the admin
+   panel) built the same way as the member side's icon()
+   helper - a lookup of raw SVG path data rendered inside
+   a shared <svg> wrapper.
+===================================================== */
+
+const ICONS={
+
+    home:"<path d=\"M3 9.5 12 3l9 6.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z\" />",
+
+    users:"<path d=\"M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\" /><circle cx=\"9\" cy=\"7\" r=\"4\" /><path d=\"M23 21v-2a4 4 0 0 0-3-3.87\" /><path d=\"M16 3.13a4 4 0 0 1 0 7.75\" />",
+
+    book:"<path d=\"M4 19.5A2.5 2.5 0 0 1 6.5 17H20\" /><path d=\"M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z\" />",
+
+    chat:"<path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\" />",
+
+    settings:"<circle cx=\"12\" cy=\"12\" r=\"3\" /><path d=\"M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z\" />",
+
+    list:"<path d=\"M8 6h13\" /><path d=\"M8 12h13\" /><path d=\"M8 18h13\" /><path d=\"M3 6h.01\" /><path d=\"M3 12h.01\" /><path d=\"M3 18h.01\" />",
+
+    "bar-chart":"<line x1=\"12\" x2=\"12\" y1=\"20\" y2=\"10\" /><line x1=\"18\" x2=\"18\" y1=\"20\" y2=\"4\" /><line x1=\"6\" x2=\"6\" y1=\"20\" y2=\"16\" />",
+
+    image:"<rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\" ry=\"2\" /><circle cx=\"9\" cy=\"9\" r=\"2\" /><path d=\"m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21\" />",
+
+    pin:"<path d=\"M12 17v5\" /><path d=\"M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z\" />",
+
+    "thumbs-up":"<path d=\"M7 10v12\" /><path d=\"M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z\" />",
+
+    heart:"<path d=\"M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z\" />",
+
+    star:"<polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\" />",
+
+    "chevron-right":"<path d=\"m9 18 6-6-6-6\" />",
+
+    calendar:"<rect width=\"18\" height=\"18\" x=\"3\" y=\"4\" rx=\"2\" ry=\"2\" /><line x1=\"16\" x2=\"16\" y1=\"2\" y2=\"6\" /><line x1=\"8\" x2=\"8\" y1=\"2\" y2=\"6\" /><line x1=\"3\" x2=\"21\" y1=\"10\" y2=\"10\" />",
+
+    folder:"<path d=\"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z\" />",
+
+    video:"<path d=\"m22 8-6 4 6 4V8Z\" /><rect width=\"14\" height=\"12\" x=\"2\" y=\"6\" rx=\"2\" ry=\"2\" />",
+
+    drive:"<path d=\"m8.5 3 7 0 6 10.5-3.5 6-13 0-3.5-6z\" /><path d=\"M5 13.5h14\" /><path d=\"m11.5 3 6 10.5\" />",
+
+    check:"<path d=\"M20 6 9 17l-5-5\" />",
+
+    "arrow-left":"<path d=\"m12 19-7-7 7-7\" /><path d=\"M19 12H5\" />",
+
+};
+
+function icon(name,cls){
+
+    const path=
+    ICONS[name]||"";
+
+    return (
+        `<svg class="icon${cls?" "+cls:""}" viewBox="0 0 24 24" `+
+        `fill="none" stroke="currentColor" stroke-width="2" `+
+        `stroke-linecap="round" stroke-linejoin="round">${path}</svg>`
+    );
+
+}
+
+
 let items=[];
 
 let editingId=null;
@@ -4547,9 +4706,9 @@ let allCommunityComments=[];
  */
 const REACTION_TYPES=[
 
-    { value:"like", label:"Like", emoji:"👍" },
-    { value:"love", label:"Love", emoji:"❤️" },
-    { value:"celebrate", label:"Celebrate", emoji:"🎉" }
+    { value:"like", label:"Like", icon:"thumbs-up" },
+    { value:"love", label:"Love", icon:"heart" },
+    { value:"celebrate", label:"Celebrate", icon:"star" }
 
 ];
 
@@ -8990,7 +9149,7 @@ function renderReactionButtons(targetType,targetId,mini){
             onclick="toggleReaction('${targetType}','${targetId}','${r.value}')"
             title="${r.label}"
         >
-            ${r.emoji}
+            ${icon(r.icon)}
             ${!mini?`<span>${r.label}</span>`:""}
             ${counts[r.value]>0?`<span class="reaction-count">${counts[r.value]}</span>`:""}
         </button>
@@ -9037,7 +9196,8 @@ function renderCommentSection(postId){
                 class="comment-toggle-btn"
                 onclick="toggleCommentThread('${postId}')"
             >
-                💬 ${postComments.length} comment${postComments.length===1?"":"s"}
+                ${icon("chat")}
+                ${postComments.length} comment${postComments.length===1?"":"s"}
             </button>
 
         </div>
