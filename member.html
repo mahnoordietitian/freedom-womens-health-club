@@ -1580,7 +1580,7 @@ textarea:focus{
         onclick="openPage('classroom',this)"
       >
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" /><path d="M22 10v6" /><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" /></svg>
-        <span>90-Day Journey</span>
+        <span>Classroom</span>
       </button>
 
       <button
@@ -1588,13 +1588,6 @@ textarea:focus{
       >
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" /><polyline points="16 7 22 7 22 13" /></svg>
         <span>Progress</span>
-      </button>
-
-      <button
-        onclick="openPage('leaderboard',this)"
-      >
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" /><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" /><path d="M4 22h16" /><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" /><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" /><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" /></svg>
-        <span>Leaderboard</span>
       </button>
 
       <button
@@ -1809,7 +1802,7 @@ textarea:focus{
         </span>
 
         <h2>
-          90-Day Journey
+          Classroom
         </h2>
 
         <p>
@@ -1848,7 +1841,7 @@ textarea:focus{
         onclick="openPage('classroom')"
       >
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6" /></svg>
-        Back to 90-Day Journey
+        Back to Classroom
       </button>
 
       <div
@@ -1876,31 +1869,6 @@ textarea:focus{
         </h2>
 
         <div id="progressDetails"></div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         LEADERBOARD
-    ================================================== -->
-
-    <section
-      id="leaderboard"
-      class="section"
-    >
-
-      <div class="empty">
-
-        <h2>
-          Leaderboard
-        </h2>
-
-        <p>
-          Your points and ranking will appear here.
-        </p>
 
       </div>
 
@@ -2018,7 +1986,6 @@ const ICONS = {
   "community": "<path d=\"M7.9 20A9 9 0 1 0 4 16.1L2 22Z\" />",
   "classroom": "<path d=\"M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z\" /><path d=\"M22 10v6\" /><path d=\"M6 12.5V16a6 3 0 0 0 12 0v-3.5\" />",
   "progress": "<polyline points=\"22 7 13.5 15.5 8.5 10.5 2 17\" /><polyline points=\"16 7 22 7 22 13\" />",
-  "leaderboard": "<path d=\"M6 9H4.5a2.5 2.5 0 0 1 0-5H6\" /><path d=\"M18 9h1.5a2.5 2.5 0 0 0 0-5H18\" /><path d=\"M4 22h16\" /><path d=\"M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22\" /><path d=\"M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22\" /><path d=\"M18 2H6v7a6 6 0 0 0 12 0V2Z\" />",
   "profile": "<path d=\"M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2\" /><circle cx=\"12\" cy=\"7\" r=\"4\" />",
   "lock": "<rect width=\"18\" height=\"11\" x=\"3\" y=\"11\" rx=\"2\" ry=\"2\" /><path d=\"M7 11V7a5 5 0 0 1 10 0v4\" />",
   "folder": "<path d=\"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z\" />",
@@ -5767,13 +5734,11 @@ function(id,button){
 
     community:"Community",
 
-    classroom:"90-Day Journey",
+    classroom:"Classroom",
 
     content:"Lesson",
 
     progress:"Progress",
-
-    leaderboard:"Leaderboard",
 
     profile:"Profile"
 
