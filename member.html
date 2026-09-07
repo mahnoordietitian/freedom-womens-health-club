@@ -1167,9 +1167,6 @@ textarea:focus{
 
 .comment-item{
   display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:10px;
   background:var(--light);
   border-radius:12px;
   padding:10px 13px;
@@ -1178,8 +1175,9 @@ textarea:focus{
 .comment-body{
   display:flex;
   flex-direction:column;
-  gap:2px;
+  gap:3px;
   min-width:0;
+  flex:1;
 }
 
 .comment-author{
@@ -1192,23 +1190,121 @@ textarea:focus{
   font-size:13.5px;
   color:var(--charcoal);
   overflow-wrap:anywhere;
+  margin-bottom:2px;
 }
 
+.comment-actions-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:2px;
+}
+
+.mini-reaction-bar{
+  display:flex;
+  gap:4px;
+}
+
+.mini-reaction-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:3px;
+  border:0;
+  background:transparent;
+  color:#999;
+  padding:3px 6px;
+  border-radius:12px;
+  font-size:11px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.mini-reaction-btn .icon{
+  width:12px;
+  height:12px;
+}
+
+.mini-reaction-btn:hover{
+  background:white;
+  color:var(--plum);
+}
+
+.mini-reaction-btn.reaction-like.active{
+  color:#3568C4;
+}
+
+.mini-reaction-btn.reaction-love.active{
+  color:#C21F50;
+}
+
+.mini-reaction-btn.reaction-celebrate.active{
+  color:#B9781C;
+}
+
+.reply-toggle-btn,
 .comment-delete-btn{
   flex:none;
   border:0;
   background:transparent;
-  color:var(--red);
   font-size:11.5px;
   font-weight:700;
   cursor:pointer;
   padding:2px 4px;
 }
 
+.reply-toggle-btn{
+  color:#777;
+}
+
+.reply-toggle-btn:hover{
+  color:var(--plum);
+}
+
+.comment-delete-btn{
+  color:var(--red);
+}
+
 .comment-empty{
   font-size:13px;
   color:#999;
   margin:0 0 12px;
+}
+
+/* Replies are nested one level deep only, indented and
+   visually lighter than a top-level comment so the hierarchy
+   is obvious at a glance without needing deep nesting. */
+.reply-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-top:10px;
+  padding-left:14px;
+  border-left:2px solid var(--border);
+}
+
+.comment-item.comment-reply{
+  background:white;
+  padding:8px 12px;
+}
+
+.reply-compose{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:8px;
+}
+
+.reply-compose input{
+  flex:1;
+  padding:8px 12px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  font-size:13px;
+}
+
+.reply-compose input:focus{
+  border-color:var(--plum);
+  outline:none;
 }
 
 .comment-compose{
@@ -2030,6 +2126,13 @@ let allCommunityComments = [];
  doesn't collapse a thread the member had open.
 */
 let expandedCommentPosts = new Set();
+
+/*
+ Which top-level comments currently have their reply box open.
+ Replies always attach to a top-level comment (one level of
+ nesting, like Instagram/Facebook) - you can't reply to a reply.
+*/
+let expandedReplyBoxes = new Set();
 
 
 function communityTagLabel(value){
@@ -4003,14 +4106,14 @@ async function loadCommunity(){
    REACTIONS
 ===================================================== */
 
-function reactionDocId(postId, uid){
+function reactionDocId(targetType, targetId, uid){
 
-  return `${postId}_${uid}`;
+  return `${targetType}_${targetId}_${uid}`;
 
 }
 
 
-function getPostReactionSummary(postId){
+function getReactionSummary(targetType, targetId){
 
   const counts = {};
 
@@ -4024,7 +4127,26 @@ function getPostReactionSummary(postId){
 
   allCommunityReactions
     .filter(
-      r => r.postId === postId
+      r => {
+
+        /*
+         Backward compatible with reaction docs saved before
+         comment reactions existed (they only ever had
+         "postId", no "targetType"/"targetId").
+        */
+
+        const rType =
+          r.targetType || "post";
+
+        const rId =
+          r.targetId || r.postId;
+
+        return (
+          rType === targetType &&
+          rId === targetId
+        );
+
+      }
     )
     .forEach(
       r => {
@@ -4055,7 +4177,7 @@ function getPostReactionSummary(postId){
 
 
 window.toggleReaction =
-async function(postId, type){
+async function(targetType, targetId, type){
 
   if(!currentUser)
     return;
@@ -4063,7 +4185,8 @@ async function(postId, type){
 
   const refId =
     reactionDocId(
-      postId,
+      targetType,
+      targetId,
       currentUser.uid
     );
 
@@ -4077,7 +4200,10 @@ async function(postId, type){
 
 
   const { myReaction } =
-    getPostReactionSummary(postId);
+    getReactionSummary(
+      targetType,
+      targetId
+    );
 
 
   try{
@@ -4094,18 +4220,22 @@ async function(postId, type){
     else{
 
       /*
-       setDoc on a fixed id (postId + uid) means a member can
-       only ever have one active reaction per post - picking a
-       different type just overwrites the previous one, rather
-       than needing to look up and delete an old doc first.
+       setDoc on a fixed id (targetType + targetId + uid) means
+       a member can only ever have one active reaction per post
+       or comment - picking a different type just overwrites the
+       previous one, rather than needing to look up and delete
+       an old doc first.
       */
 
       await setDoc(
         reactionRef,
         {
 
-          postId:
-            postId,
+          targetType:
+            targetType,
+
+          targetId:
+            targetId,
 
           userId:
             currentUser.uid,
@@ -4171,6 +4301,24 @@ function getPostComments(postId){
 }
 
 
+function topLevelComments(comments){
+
+  return comments.filter(
+    c => !c.parentCommentId
+  );
+
+}
+
+
+function repliesOf(comments, parentCommentId){
+
+  return comments.filter(
+    c => c.parentCommentId === parentCommentId
+  );
+
+}
+
+
 window.toggleCommentThread =
 function(postId){
 
@@ -4191,12 +4339,44 @@ function(postId){
 };
 
 
+window.toggleReplyBox =
+function(commentId){
+
+  if(expandedReplyBoxes.has(commentId)){
+
+    expandedReplyBoxes.delete(commentId);
+
+  }
+  else{
+
+    expandedReplyBoxes.add(commentId);
+
+  }
+
+
+  renderCommunityPostsList();
+
+};
+
+
 window.submitComment =
-async function(postId){
+async function(postId, parentCommentId){
+
+  /*
+   Top-level comment box is id="commentInput-{postId}".
+   A reply box (one level deep only) is id="commentInput-
+   reply-{parentCommentId}".
+  */
+
+  const inputId =
+    parentCommentId
+    ? `commentInput-reply-${parentCommentId}`
+    : `commentInput-${postId}`;
+
 
   const input =
     document.getElementById(
-      `commentInput-${postId}`
+      inputId
     );
 
   if(!input)
@@ -4222,6 +4402,9 @@ async function(postId){
         postId:
           postId,
 
+        parentCommentId:
+          parentCommentId || null,
+
         authorId:
           currentUser.uid,
 
@@ -4243,6 +4426,18 @@ async function(postId){
 
 
     expandedCommentPosts.add(postId);
+
+    if(parentCommentId){
+
+      /*
+       Keep the reply visible under its parent right away,
+       rather than closing the reply box the member just used.
+      */
+
+      expandedReplyBoxes.add(parentCommentId);
+
+    }
+
 
     const snap =
       await getDocs(
@@ -4449,6 +4644,180 @@ function renderCommunityPostsList(){
    RENDER COMMUNITY POST
 ===================================================== */
 
+/* =====================================================
+   RENDER COMMENT (and, one level deep, its replies)
+===================================================== */
+
+function renderCommentItem(postId, comment, allPostComments, depth){
+
+  const email =
+    currentUser?.email ||
+    "";
+
+
+  const canDeleteComment =
+    email &&
+    comment.email &&
+    email.toLowerCase() ===
+    comment.email.toLowerCase();
+
+
+  const { counts, myReaction } =
+    getReactionSummary(
+      "comment",
+      comment.id
+    );
+
+
+  const miniReactionButtons =
+    REACTION_TYPES
+      .map(
+        r => `
+
+          <button
+            class="mini-reaction-btn reaction-${r.value} ${myReaction === r.value ? "active" : ""}"
+            onclick="toggleReaction('comment','${safeAttr(comment.id)}','${r.value}')"
+            title="${safeAttr(r.label)}"
+          >
+            ${icon(r.icon)}
+            ${counts[r.value] > 0 ? `<span class="reaction-count">${counts[r.value]}</span>` : ""}
+          </button>
+
+        `
+      )
+      .join("");
+
+
+  /*
+   Replies attach one level deep only - a reply never gets its
+   own "Reply" button, so the thread can't nest indefinitely.
+  */
+
+  const isTopLevel =
+    depth === 0;
+
+  const replies =
+    isTopLevel
+    ? repliesOf(allPostComments, comment.id)
+    : [];
+
+  const replyBoxOpen =
+    expandedReplyBoxes.has(comment.id);
+
+
+  const repliesHTML =
+    replies
+      .map(
+        r =>
+          renderCommentItem(
+            postId,
+            r,
+            allPostComments,
+            depth + 1
+          )
+      )
+      .join("");
+
+
+  const replyBoxHTML =
+    isTopLevel && replyBoxOpen
+    ?
+    `
+      <div class="reply-compose">
+
+        <input
+          id="commentInput-reply-${safeAttr(comment.id)}"
+          type="text"
+          placeholder="Write a reply..."
+          onkeydown="if(event.key==='Enter'){submitComment('${safeAttr(postId)}','${safeAttr(comment.id)}')}"
+        >
+
+        <button
+          class="comment-send-btn"
+          onclick="submitComment('${safeAttr(postId)}','${safeAttr(comment.id)}')"
+          aria-label="Send reply"
+        >
+          ${icon("send")}
+        </button>
+
+      </div>
+    `
+    :
+    "";
+
+
+  return `
+
+    <div class="comment-item ${isTopLevel ? "" : "comment-reply"}">
+
+      <div class="comment-body">
+
+        <span class="comment-author">
+          ${safeText(comment.name || comment.email || "Member")}
+        </span>
+
+        <span class="comment-text">
+          ${safeText(comment.text || "").replace(/\n/g,"<br>")}
+        </span>
+
+        <div class="comment-actions-row">
+
+          <div class="mini-reaction-bar">
+            ${miniReactionButtons}
+          </div>
+
+          ${
+            isTopLevel
+            ?
+            `
+              <button
+                class="reply-toggle-btn"
+                onclick="toggleReplyBox('${safeAttr(comment.id)}')"
+              >
+                Reply
+              </button>
+            `
+            :
+            ""
+          }
+
+          ${
+            canDeleteComment
+            ?
+            `
+              <button
+                class="comment-delete-btn"
+                onclick="deleteComment('${safeAttr(comment.id)}','${safeAttr(postId)}')"
+              >
+                Delete
+              </button>
+            `
+            :
+            ""
+          }
+
+        </div>
+
+        ${replyBoxHTML}
+
+        ${
+          repliesHTML
+          ?
+          `<div class="reply-list">${repliesHTML}</div>`
+          :
+          ""
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+
 function renderCommunityPost(post){
 
   const email =
@@ -4503,7 +4872,7 @@ function renderCommunityPost(post){
 
 
   const { counts, myReaction } =
-    getPostReactionSummary(post.id);
+    getReactionSummary("post", post.id);
 
 
   const reactionButtons =
@@ -4513,7 +4882,7 @@ function renderCommunityPost(post){
 
           <button
             class="reaction-btn reaction-${r.value} ${myReaction === r.value ? "active" : ""}"
-            onclick="toggleReaction('${safeAttr(post.id)}','${r.value}')"
+            onclick="toggleReaction('post','${safeAttr(post.id)}','${r.value}')"
           >
             ${icon(r.icon)}
             <span>${safeText(r.label)}</span>
@@ -4525,7 +4894,7 @@ function renderCommunityPost(post){
       .join("");
 
 
-  const comments =
+  const postComments =
     getPostComments(post.id);
 
   const isExpanded =
@@ -4533,52 +4902,15 @@ function renderCommunityPost(post){
 
 
   const commentItems =
-    comments
+    topLevelComments(postComments)
       .map(
-        c => {
-
-          const canDeleteComment =
-            email &&
-            c.email &&
-            email.toLowerCase() ===
-            c.email.toLowerCase();
-
-          return `
-
-            <div class="comment-item">
-
-              <div class="comment-body">
-
-                <span class="comment-author">
-                  ${safeText(c.name || c.email || "Member")}
-                </span>
-
-                <span class="comment-text">
-                  ${safeText(c.text || "").replace(/\n/g,"<br>")}
-                </span>
-
-              </div>
-
-              ${
-                canDeleteComment
-                ?
-                `
-                  <button
-                    class="comment-delete-btn"
-                    onclick="deleteComment('${safeAttr(c.id)}','${safeAttr(post.id)}')"
-                  >
-                    Delete
-                  </button>
-                `
-                :
-                ""
-              }
-
-            </div>
-
-          `;
-
-        }
+        c =>
+          renderCommentItem(
+            post.id,
+            c,
+            postComments,
+            0
+          )
       )
       .join("");
 
@@ -4588,7 +4920,7 @@ function renderCommunityPost(post){
     <div class="comment-thread ${isExpanded ? "" : "collapsed"}">
 
       ${
-        comments.length
+        postComments.length
         ?
         `<div class="comment-list">${commentItems}</div>`
         :
@@ -4687,7 +5019,7 @@ function renderCommunityPost(post){
           onclick="toggleCommentThread('${safeAttr(post.id)}')"
         >
           ${icon("comment")}
-          ${comments.length} comment${comments.length === 1 ? "" : "s"}
+          ${postComments.length} comment${postComments.length === 1 ? "" : "s"}
         </button>
 
       </div>
