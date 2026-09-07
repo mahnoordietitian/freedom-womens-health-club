@@ -2275,11 +2275,135 @@ label{
 
 .post-engagement{
 
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
     margin-top:14px;
 
     padding-top:12px;
 
     border-top:1px solid var(--border);
+
+}
+
+.reaction-bar{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:6px;
+
+}
+
+.reaction-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    border:1px solid var(--border);
+
+    background:white;
+
+    color:#777;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    font-size:12.5px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    font-family:"Inter",Arial,sans-serif;
+
+    transition:all .15s ease;
+
+}
+
+.reaction-btn:hover{
+
+    border-color:var(--plum);
+
+    color:var(--plum);
+
+}
+
+.reaction-btn.active{
+
+    background:var(--light);
+
+    border-color:var(--plum);
+
+    color:var(--plum);
+
+}
+
+.reaction-count{
+
+    font-weight:800;
+
+}
+
+.mini-reaction-bar{
+
+    display:flex;
+
+    gap:4px;
+
+}
+
+.mini-reaction-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:3px;
+
+    border:0;
+
+    background:transparent;
+
+    color:#999;
+
+    padding:3px 6px;
+
+    border-radius:12px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    font-family:"Inter",Arial,sans-serif;
+
+}
+
+.mini-reaction-btn:hover{
+
+    background:white;
+
+    color:var(--plum);
+
+}
+
+.mini-reaction-btn.active{
+
+    color:var(--plum);
 
 }
 
@@ -4416,6 +4540,20 @@ let editingCommunityId=null;
  * admin can read and reply to the exact same thread.
  */
 let allCommunityComments=[];
+
+/*
+ * Reactions (like / love / celebrate), same collection
+ * and shape the member side reads and writes to.
+ */
+const REACTION_TYPES=[
+
+    { value:"like", label:"Like", emoji:"👍" },
+    { value:"love", label:"Love", emoji:"❤️" },
+    { value:"celebrate", label:"Celebrate", emoji:"🎉" }
+
+];
+
+let allCommunityReactions=[];
 
 let communityPostsCache=[];
 
@@ -8095,13 +8233,41 @@ async function loadCommunity(){
 
     try{
 
-        const snap=
-        await getDocs(
-            collection(
-                db,
-                "community"
+        /*
+         * Posts, comments and reactions all live in their
+         * own collections, same as the member side, so
+         * admin reads and writes to the exact same data.
+         */
+
+        const [
+            snap,
+            commentsSnap,
+            reactionsSnap
+        ]=
+        await Promise.all([
+
+            getDocs(
+                collection(
+                    db,
+                    "community"
+                )
+            ),
+
+            getDocs(
+                collection(
+                    db,
+                    "communityComments"
+                )
+            ),
+
+            getDocs(
+                collection(
+                    db,
+                    "communityReactions"
+                )
             )
-        );
+
+        ]);
 
 
         const posts=[];
@@ -8118,21 +8284,6 @@ async function loadCommunity(){
             });
 
         });
-
-
-        /*
-         * Comments live in their own collection, same as
-         * the member side, so admin can see and reply to
-         * the same thread every member sees.
-         */
-
-        const commentsSnap=
-        await getDocs(
-            collection(
-                db,
-                "communityComments"
-            )
-        );
 
 
         const comments=[];
@@ -8160,6 +8311,26 @@ async function loadCommunity(){
 
         allCommunityComments=
         comments;
+
+
+        const reactions=[];
+
+
+        reactionsSnap.forEach(s=>{
+
+            reactions.push({
+
+                id:s.id,
+
+                ...s.data()
+
+            });
+
+        });
+
+
+        allCommunityReactions=
+        reactions;
 
 
         posts.sort(
@@ -8413,6 +8584,189 @@ function renderCommunity(posts){
 
 
 /* =====================================================
+   REACTIONS (admin side — same communityReactions
+   collection the member side reads and writes to, so a
+   like/love/celebrate from either side shows up on both)
+===================================================== */
+
+function reactionDocId(targetType,targetId,uid){
+
+    return `${targetType}_${targetId}_${uid}`;
+
+}
+
+
+function getReactionSummary(targetType,targetId){
+
+    const counts={};
+
+    REACTION_TYPES.forEach(
+        r=>{ counts[r.value]=0; }
+    );
+
+
+    let myReaction=null;
+
+
+    const user=
+    auth.currentUser;
+
+
+    allCommunityReactions
+    .filter(r=>{
+
+        const rType=
+        r.targetType||"post";
+
+        const rId=
+        r.targetId||r.postId;
+
+        return (
+            rType===targetType &&
+            rId===targetId
+        );
+
+    })
+    .forEach(r=>{
+
+        if(counts[r.type]!==undefined){
+
+            counts[r.type]++;
+
+        }
+
+
+        if(
+            user &&
+            r.userId===user.uid
+        ){
+
+            myReaction=r.type;
+
+        }
+
+    });
+
+
+    return { counts, myReaction };
+
+}
+
+
+window.toggleReaction=
+async function(targetType,targetId,type){
+
+    const user=
+    auth.currentUser;
+
+    if(!user)
+        return;
+
+
+    const refId=
+    reactionDocId(
+        targetType,
+        targetId,
+        user.uid
+    );
+
+
+    const reactionRef=
+    doc(
+        db,
+        "communityReactions",
+        refId
+    );
+
+
+    const { myReaction }=
+    getReactionSummary(
+        targetType,
+        targetId
+    );
+
+
+    try{
+
+        if(myReaction===type){
+
+            await deleteDoc(reactionRef);
+
+        }
+        else{
+
+            await setDoc(
+                reactionRef,
+                {
+
+                    targetType:targetType,
+
+                    targetId:targetId,
+
+                    userId:user.uid,
+
+                    type:type,
+
+                    createdAt:serverTimestamp()
+
+                }
+            );
+
+        }
+
+
+        const snap=
+        await getDocs(
+            collection(
+                db,
+                "communityReactions"
+            )
+        );
+
+
+        const reactions=[];
+
+
+        snap.forEach(s=>{
+
+            reactions.push({
+
+                id:s.id,
+
+                ...s.data()
+
+            });
+
+        });
+
+
+        allCommunityReactions=
+        reactions;
+
+
+        renderCommunity(communityPostsCache);
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Reaction failed:",
+            error
+        );
+
+
+        alert(
+            "Could not save reaction:\n\n"+
+            error.message
+        );
+
+    }
+
+};
+
+
+/* =====================================================
    COMMENTS (admin side — mirrors the member community
    comment thread, so admin can read + reply + moderate
    from the same data)
@@ -8576,6 +8930,10 @@ function renderCommentItem(postId,comment,allPostComments,depth){
 
             <div class="comment-actions-row">
 
+                <div class="mini-reaction-bar">
+                    ${renderReactionButtons("comment",comment.id,true)}
+                </div>
+
                 ${
                     isTopLevel
                     ?
@@ -8615,6 +8973,34 @@ function renderCommentItem(postId,comment,allPostComments,depth){
 }
 
 
+function renderReactionButtons(targetType,targetId,mini){
+
+    const { counts, myReaction }=
+    getReactionSummary(
+        targetType,
+        targetId
+    );
+
+
+    return REACTION_TYPES
+    .map(r=>`
+
+        <button
+            class="${mini?"mini-reaction-btn":"reaction-btn"} reaction-${r.value} ${myReaction===r.value?"active":""}"
+            onclick="toggleReaction('${targetType}','${targetId}','${r.value}')"
+            title="${r.label}"
+        >
+            ${r.emoji}
+            ${!mini?`<span>${r.label}</span>`:""}
+            ${counts[r.value]>0?`<span class="reaction-count">${counts[r.value]}</span>`:""}
+        </button>
+
+    `)
+    .join("");
+
+}
+
+
 function renderCommentSection(postId){
 
     const postComments=
@@ -8642,6 +9028,10 @@ function renderCommentSection(postId){
     return `
 
         <div class="post-engagement">
+
+            <div class="reaction-bar">
+                ${renderReactionButtons("post",postId,false)}
+            </div>
 
             <button
                 class="comment-toggle-btn"
