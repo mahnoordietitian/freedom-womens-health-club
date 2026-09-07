@@ -759,6 +759,25 @@ label{
 
     width:25px;
 
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+.image-badge-icon{
+
+    width:13px;
+
+    height:13px;
+
+    color:var(--taupe);
+
+    vertical-align:-2px;
+
 }
 
 
@@ -1819,6 +1838,12 @@ label{
 
 .editor-section h3{
 
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
     color:var(--plum);
 
     margin-top:0;
@@ -2259,6 +2284,12 @@ label{
 
 .pin-label{
 
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:4px;
+
     background:var(--plum);
 
     color:white;
@@ -2270,6 +2301,14 @@ label{
     font-size:11px;
 
     font-weight:800;
+
+}
+
+.pin-label .icon{
+
+    width:11px;
+
+    height:11px;
 
 }
 
@@ -6656,8 +6695,8 @@ async function(){
         );
 
 
-        status.textContent=
-        "✓ Member saved successfully.";
+        status.innerHTML=
+        icon("check")+" Member saved successfully.";
 
 
         alert(
@@ -7497,8 +7536,8 @@ async function(){
         "Content saved successfully.";
 
 
-        status.textContent=
-        "✓ Saved successfully.";
+        status.innerHTML=
+        icon("check")+" Saved successfully.";
 
 
         editingId=null;
@@ -7637,13 +7676,13 @@ function treeItem(item){
     );
 
 
-    const icon=
+    const typeIcon=
     item.type==="lesson"
-    ?"📖"
+    ?icon("book")
     :
     item.type==="subsection"
-    ?"📅"
-    :"📁";
+    ?icon("calendar")
+    :icon("folder");
 
 
     const statusBadge=
@@ -7664,7 +7703,7 @@ function treeItem(item){
 
     const imageBadge=
     item.imageUrl
-    ?" 📷"
+    ?` ${icon("image","image-badge-icon")}`
     :"";
 
 
@@ -7690,12 +7729,12 @@ function treeItem(item){
                     class="tree-toggle"
                     onclick="toggle('${item.id}')"
                 >
-                    ${children.length?"▶":""}
+                    ${children.length?icon("chevron-right"):""}
                 </button>
 
 
                 <span>
-                    ${icon}
+                    ${typeIcon}
                 </span>
 
 
@@ -8226,7 +8265,7 @@ function(id){
             <div class="link-card">
 
                 <strong>
-                    🎥 Video
+                    ${icon("video")} Video
                 </strong>
 
                 <br>
@@ -8256,7 +8295,7 @@ function(id){
             <div class="link-card">
 
                 <strong>
-                    📁 Google Drive
+                    ${icon("drive")} Google Drive
                 </strong>
 
                 <br>
@@ -8655,7 +8694,7 @@ function renderCommunity(posts){
                             ?
 
                             `<span class="pin-label">
-                                📌 PINNED
+                                ${icon("pin")} PINNED
                             </span>`
 
                             :""
@@ -8712,8 +8751,8 @@ function renderCommunity(posts){
 
                             ${
                                 post.pinned===true
-                                ?"Unpin"
-                                :"📌 Pin"
+                                ?`${icon("pin")} Unpin`
+                                :`${icon("pin")} Pin`
                             }
 
                         </button>
@@ -9507,8 +9546,8 @@ async function(){
         }
 
 
-        status.textContent=
-        "✓ Post saved successfully.";
+        status.innerHTML=
+        icon("check")+" Post saved successfully.";
 
 
         editingCommunityId=null;
