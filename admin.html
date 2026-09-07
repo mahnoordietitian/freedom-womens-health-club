@@ -2256,6 +2256,295 @@ label{
 
 
 /* =====================================================
+   COMMENTS (admin)
+
+   Same thread the member side reads/writes to. Admin
+   replies are visually tagged so they read the same way
+   a staff reply does in any real community platform.
+===================================================== */
+
+.post-engagement{
+
+    margin-top:14px;
+
+    padding-top:12px;
+
+    border-top:1px solid var(--border);
+
+}
+
+.comment-toggle-btn{
+
+    border:0;
+
+    background:transparent;
+
+    color:#777;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    padding:2px 0;
+
+    font-family:"Manrope",Arial,sans-serif;
+
+}
+
+.comment-toggle-btn:hover{
+
+    color:var(--plum);
+
+}
+
+.comment-thread{
+
+    margin-top:10px;
+
+}
+
+.comment-thread.collapsed{
+
+    display:none;
+
+}
+
+.comment-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    margin-bottom:12px;
+
+}
+
+.comment-item{
+
+    background:var(--light);
+
+    border-radius:12px;
+
+    padding:10px 13px;
+
+}
+
+.comment-item.comment-reply{
+
+    background:white;
+
+    border:1px solid var(--border);
+
+    padding:8px 12px;
+
+}
+
+.comment-author-row{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    flex-wrap:wrap;
+
+}
+
+.comment-author{
+
+    font-size:12.5px;
+
+    font-weight:800;
+
+    color:var(--plum);
+
+}
+
+.admin-badge{
+
+    display:inline-block;
+
+    background:var(--plum);
+
+    color:white;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    letter-spacing:.3px;
+
+    text-transform:uppercase;
+
+    padding:2px 7px;
+
+    border-radius:20px;
+
+}
+
+.comment-text{
+
+    font-size:13.5px;
+
+    color:var(--charcoal);
+
+    margin-top:3px;
+
+    overflow-wrap:anywhere;
+
+}
+
+.comment-actions-row{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    margin-top:5px;
+
+}
+
+.reply-toggle-btn,
+.comment-delete-btn{
+
+    border:0;
+
+    background:transparent;
+
+    font-size:11.5px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    padding:2px 0;
+
+    font-family:"Manrope",Arial,sans-serif;
+
+}
+
+.reply-toggle-btn{
+
+    color:#777;
+
+}
+
+.reply-toggle-btn:hover{
+
+    color:var(--plum);
+
+}
+
+.comment-delete-btn{
+
+    color:var(--danger);
+
+}
+
+.comment-empty{
+
+    font-size:13px;
+
+    color:#999;
+
+    margin:0 0 12px;
+
+}
+
+.reply-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+    margin-top:10px;
+
+    padding-left:14px;
+
+    border-left:2px solid var(--border);
+
+}
+
+.comment-compose,
+.reply-compose{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-top:8px;
+
+}
+
+.comment-compose input,
+.reply-compose input{
+
+    flex:1;
+
+    padding:9px 13px;
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    font-size:13.5px;
+
+    font-family:"Manrope",Arial,sans-serif;
+
+}
+
+.comment-compose input:focus,
+.reply-compose input:focus{
+
+    border-color:var(--plum);
+
+    outline:none;
+
+}
+
+.comment-send-btn{
+
+    flex:none;
+
+    border:0;
+
+    border-radius:20px;
+
+    background:var(--plum);
+
+    color:white;
+
+    padding:9px 16px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    font-family:"Manrope",Arial,sans-serif;
+
+}
+
+.comment-send-btn:hover{
+
+    opacity:.9;
+
+}
+
+
+/* =====================================================
    PREVIEW
 ===================================================== */
 
@@ -4142,6 +4431,18 @@ let items=[];
 let editingId=null;
 
 let editingCommunityId=null;
+
+/*
+ * Community comments, mirrored from the member side so
+ * admin can read and reply to the exact same thread.
+ */
+let allCommunityComments=[];
+
+let communityPostsCache=[];
+
+let expandedCommentPosts=new Set();
+
+let expandedReplyBoxes=new Set();
 
 let membersCache=[];
 
@@ -7842,6 +8143,48 @@ async function loadCommunity(){
         });
 
 
+        /*
+         * Comments live in their own collection, same as
+         * the member side, so admin can see and reply to
+         * the same thread every member sees.
+         */
+
+        const commentsSnap=
+        await getDocs(
+            collection(
+                db,
+                "communityComments"
+            )
+        );
+
+
+        const comments=[];
+
+
+        commentsSnap.forEach(s=>{
+
+            comments.push({
+
+                id:s.id,
+
+                ...s.data()
+
+            });
+
+        });
+
+
+        comments.sort(
+            (a,b)=>
+                getTime(a.createdAt)-
+                getTime(b.createdAt)
+        );
+
+
+        allCommunityComments=
+        comments;
+
+
         posts.sort(
             (a,b)=>{
 
@@ -7882,6 +8225,10 @@ async function loadCommunity(){
         )
         .textContent=
         posts.length;
+
+
+        communityPostsCache=
+        posts;
 
 
         renderCommunity(
@@ -8075,6 +8422,9 @@ function renderCommunity(posts){
 
                     </div>
 
+
+                    ${renderCommentSection(post.id)}
+
                 </div>
 
             `;
@@ -8083,6 +8433,417 @@ function renderCommunity(posts){
     ).join("");
 
 }
+
+
+/* =====================================================
+   COMMENTS (admin side — mirrors the member community
+   comment thread, so admin can read + reply + moderate
+   from the same data)
+===================================================== */
+
+function getPostComments(postId){
+
+    return allCommunityComments.filter(
+        c=>c.postId===postId
+    );
+
+}
+
+
+function topLevelComments(comments){
+
+    return comments.filter(
+        c=>!c.parentCommentId
+    );
+
+}
+
+
+function repliesOf(comments,parentCommentId){
+
+    return comments.filter(
+        c=>c.parentCommentId===parentCommentId
+    );
+
+}
+
+
+function isAdminComment(comment){
+
+    return (
+        comment.email||""
+    )
+    .toLowerCase()===
+    ADMIN.toLowerCase();
+
+}
+
+
+window.toggleCommentThread=
+function(postId){
+
+    if(expandedCommentPosts.has(postId)){
+
+        expandedCommentPosts.delete(postId);
+
+    }
+    else{
+
+        expandedCommentPosts.add(postId);
+
+    }
+
+
+    renderCommunity(communityPostsCache);
+
+};
+
+
+window.toggleReplyBox=
+function(commentId){
+
+    if(expandedReplyBoxes.has(commentId)){
+
+        expandedReplyBoxes.delete(commentId);
+
+    }
+    else{
+
+        expandedReplyBoxes.add(commentId);
+
+    }
+
+
+    renderCommunity(communityPostsCache);
+
+};
+
+
+function renderCommentItem(postId,comment,allPostComments,depth){
+
+    const isTopLevel=
+    depth===0;
+
+
+    const replies=
+    isTopLevel
+    ?repliesOf(allPostComments,comment.id)
+    :[];
+
+
+    const replyBoxOpen=
+    expandedReplyBoxes.has(comment.id);
+
+
+    const repliesHTML=
+    replies
+    .map(
+        r=>
+            renderCommentItem(
+                postId,
+                r,
+                allPostComments,
+                depth+1
+            )
+    )
+    .join("");
+
+
+    const replyBoxHTML=
+    isTopLevel && replyBoxOpen
+    ?
+    `
+        <div class="reply-compose">
+
+            <input
+                id="commentInput-reply-${comment.id}"
+                type="text"
+                placeholder="Reply as admin..."
+                onkeydown="if(event.key==='Enter'){submitComment('${postId}','${comment.id}')}"
+            >
+
+            <button
+                class="comment-send-btn"
+                onclick="submitComment('${postId}','${comment.id}')"
+            >
+                Send
+            </button>
+
+        </div>
+    `
+    :
+    "";
+
+
+    return `
+
+        <div class="comment-item ${isTopLevel?"":"comment-reply"}">
+
+            <div class="comment-author-row">
+
+                <span class="comment-author">
+                    ${safe(comment.name||comment.email||"Member")}
+                </span>
+
+                ${
+                    isAdminComment(comment)
+                    ?`<span class="admin-badge">Admin</span>`
+                    :""
+                }
+
+            </div>
+
+            <div class="comment-text">
+                ${safe(comment.text||"").replace(/\n/g,"<br>")}
+            </div>
+
+            <div class="comment-actions-row">
+
+                ${
+                    isTopLevel
+                    ?
+                    `
+                        <button
+                            class="reply-toggle-btn"
+                            onclick="toggleReplyBox('${comment.id}')"
+                        >
+                            Reply
+                        </button>
+                    `
+                    :
+                    ""
+                }
+
+                <button
+                    class="comment-delete-btn"
+                    onclick="deleteComment('${comment.id}','${postId}')"
+                >
+                    Delete
+                </button>
+
+            </div>
+
+            ${replyBoxHTML}
+
+            ${
+                repliesHTML
+                ?`<div class="reply-list">${repliesHTML}</div>`
+                :""
+            }
+
+        </div>
+
+    `;
+
+}
+
+
+function renderCommentSection(postId){
+
+    const postComments=
+    getPostComments(postId);
+
+
+    const isExpanded=
+    expandedCommentPosts.has(postId);
+
+
+    const commentItems=
+    topLevelComments(postComments)
+    .map(
+        c=>
+            renderCommentItem(
+                postId,
+                c,
+                postComments,
+                0
+            )
+    )
+    .join("");
+
+
+    return `
+
+        <div class="post-engagement">
+
+            <button
+                class="comment-toggle-btn"
+                onclick="toggleCommentThread('${postId}')"
+            >
+                💬 ${postComments.length} comment${postComments.length===1?"":"s"}
+            </button>
+
+        </div>
+
+        <div class="comment-thread ${isExpanded?"":"collapsed"}">
+
+            ${
+                postComments.length
+                ?`<div class="comment-list">${commentItems}</div>`
+                :`<p class="comment-empty">No comments yet.</p>`
+            }
+
+            <div class="comment-compose">
+
+                <input
+                    id="commentInput-${postId}"
+                    type="text"
+                    placeholder="Reply as admin..."
+                    onkeydown="if(event.key==='Enter'){submitComment('${postId}')}"
+                >
+
+                <button
+                    class="comment-send-btn"
+                    onclick="submitComment('${postId}')"
+                >
+                    Send
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+window.submitComment=
+async function(postId,parentCommentId){
+
+    const inputId=
+    parentCommentId
+    ?`commentInput-reply-${parentCommentId}`
+    :`commentInput-${postId}`;
+
+
+    const input=
+    document.getElementById(inputId);
+
+    if(!input)
+        return;
+
+
+    const text=
+    input.value.trim();
+
+    if(!text)
+        return;
+
+
+    const user=
+    auth.currentUser;
+
+
+    try{
+
+        await addDoc(
+            collection(
+                db,
+                "communityComments"
+            ),
+            {
+
+                postId:postId,
+
+                parentCommentId:
+                parentCommentId||null,
+
+                authorId:user?.uid||"",
+
+                email:user?.email||ADMIN,
+
+                /*
+                 * Same author name convention as admin
+                 * community posts, so the "Admin" badge
+                 * (matched on email) lines up with what
+                 * members already see.
+                 */
+                name:"Freedom Women's Health Club",
+
+                text:text,
+
+                createdAt:serverTimestamp()
+
+            }
+        );
+
+
+        expandedCommentPosts.add(postId);
+
+        if(parentCommentId){
+
+            expandedReplyBoxes.add(parentCommentId);
+
+        }
+
+
+        await loadCommunity();
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Comment failed:",
+            error
+        );
+
+
+        alert(
+            "Your reply could not be posted:\n\n"+
+            error.message
+        );
+
+    }
+
+};
+
+
+window.deleteComment=
+async function(commentId,postId){
+
+    if(!confirm(
+        "Delete this comment?"
+    )){
+        return;
+    }
+
+
+    try{
+
+        await deleteDoc(
+            doc(
+                db,
+                "communityComments",
+                commentId
+            )
+        );
+
+
+        expandedCommentPosts.add(postId);
+
+
+        await loadCommunity();
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Delete comment failed:",
+            error
+        );
+
+
+        alert(
+            "Could not delete comment:\n\n"+
+            error.message
+        );
+
+    }
+
+};
 
 
 /* =====================================================
