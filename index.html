@@ -1,1883 +1,832 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Freedom Women's Health Club | Sustainable Weight Loss</title>
-
-<meta name="description" content="Freedom Women's Health Club is a supportive community for women who want sustainable weight loss, healthier habits and a healthier lifestyle.">
+<title>Freedom Nutrition & Wellness | Your Health. Your Food. Your Freedom.</title>
+<meta name="description" content="Personalized nutrition and practical support to help you lose weight, improve your health and build habits you can actually maintain — with Mahnoor Nazar.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link
-href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
-rel="stylesheet"
->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
+  /* ============================================================
+     RESET & BASE
+  ============================================================= */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* ========================
-   GLOBAL
-========================= */
+  :root{
+    --cream:        #FBF6EF;
+    --cream-deep:   #F6EFE4;
+    --lavender:     #EFE6F5;
+    --lavender-2:   #F4EAF6;
+    --plum:         #4E2E5E;
+    --plum-deep:    #3A2148;
+    --plum-soft:    #7C5B8E;
+    --pink-chip:    #F3E1E4;
+    --ink:          #2B2530;
+    --ink-soft:     #6E6675;
+    --line:         #E7DEE9;
+    --white:        #FFFFFF;
+    --shadow:       0 18px 40px -22px rgba(74,42,90,0.35);
+  }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+  html{ scroll-behavior: smooth; }
 
-:root {
-    --cream: #FBF8F3;
-    --plum: #6E4A7E;
-    --dark: #2D2D2D;
-    --champagne: #DCCBB3;
-    --taupe: #B7A89A;
-    --white: #FFFFFF;
-    --light-plum: #F1EAF4;
-    --border: #E5DED7;
-    --text-light: #625D59;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: "Inter", Arial, Helvetica, sans-serif;
+  body{
+    font-family: "Inter", Arial, sans-serif;
     background: var(--cream);
-    color: var(--dark);
-    line-height: 1.7;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Poppins", Arial, Helvetica, sans-serif;
-}
-
-img {
-    width: 100%;
-    display: block;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.container {
-    width: min(1120px, 92%);
-    margin: auto;
-}
-
-
-/* =========================
-   NAVIGATION
-========================= */
-
-nav {
-    background: rgba(251,248,243,0.98);
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.nav-inner {
-    min-height: 76px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 25px;
-}
-
-.logo {
-    color: var(--plum);
-    font-size: 20px;
-    font-weight: 600;
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 26px;
-    font-size: 14px;
-}
-
-.nav-links a:hover {
-    color: var(--plum);
-}
-
-.nav-button {
-    background: var(--plum);
-    color: white !important;
-    padding: 11px 20px;
-    border-radius: 6px;
-}
-
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-    padding: 95px 0;
-}
-
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    align-items: center;
-    gap: 65px;
-}
-
-.eyebrow {
-    color: var(--plum);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 18px;
-}
-
-.hero h1 {
-    font-size: clamp(42px, 5vw, 66px);
-    line-height: 1.08;
-    margin-bottom: 24px;
-    font-weight: 500;
-}
-
-.hero h1 span {
-    color: var(--plum);
-}
-
-.hero-text {
-    font-size: 18px;
-    max-width: 650px;
-    color: var(--text-light);
-    margin-bottom: 30px;
-}
-
-.primary-button {
-    display: inline-block;
-    background: var(--plum);
-    color: white;
-    padding: 15px 28px;
-    border-radius: 6px;
-    font-weight: 500;
-    margin-right: 8px;
-}
-
-.secondary-button {
-    display: inline-block;
-    border: 1px solid var(--plum);
-    color: var(--plum);
-    padding: 14px 28px;
-    border-radius: 6px;
-    font-weight: 500;
-}
-
-.primary-button:hover {
-    opacity: 0.9;
-}
-
-.secondary-button:hover {
-    background: var(--light-plum);
-}
-
-.hero-image {
-    height: 540px;
-    object-fit: cover;
-    border-radius: 18px;
-}
-
-
-/* =========================
-   GENERAL SECTIONS
-========================= */
-
-section {
-    padding: 85px 0;
-}
-
-.section-light {
-    background: var(--white);
-}
-
-.section-heading {
-    max-width: 720px;
-    margin-bottom: 48px;
-}
-
-.section-heading.center {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-
-.section-heading h2 {
-    font-size: 38px;
-    line-height: 1.2;
-    margin-bottom: 16px;
-    font-weight: 500;
-}
-
-.section-heading p {
-    color: var(--text-light);
-    font-size: 17px;
-}
-
-
-/* =========================
-   ABOUT CLUB
-========================= */
-
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 55px;
-    align-items: center;
-}
-
-.about-image {
-    height: 470px;
-    object-fit: cover;
-    border-radius: 16px;
-}
-
-.about-text p {
-    margin-bottom: 18px;
-    color: #56514E;
-}
-
-
-/* =========================
-   WHO IT IS FOR
-========================= */
-
-.audience-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
-.audience-card {
-    background: white;
-    padding: 30px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-}
-
-.audience-card h3 {
-    color: var(--plum);
-    font-size: 20px;
-    margin-bottom: 9px;
-    font-weight: 500;
-}
-
-.audience-card p {
-    color: var(--text-light);
-}
-
-
-/* =========================
-   FEATURES
-========================= */
-
-.features {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.feature {
-    padding: 30px;
-    background: var(--cream);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-}
-
-.feature-number {
-    color: var(--plum);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
-}
-
-.feature h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    font-weight: 500;
-}
-
-.feature p {
-    color: var(--text-light);
-}
-
-
-/* =========================
-   90 DAY PROGRAM
-========================= */
-
-.program {
-    background: var(--plum);
-    color: white;
-}
-
-.program .eyebrow {
-    color: var(--champagne);
-}
-
-.program .section-heading h2 {
-    color: white;
-}
-
-.program .section-heading p {
-    color: rgba(255,255,255,0.85);
-}
-
-.phases {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.phase {
-    border: 1px solid rgba(255,255,255,0.25);
-    padding: 30px;
-    border-radius: 12px;
-}
-
-.phase-number {
-    color: var(--champagne);
-    font-weight: 600;
-    margin-bottom: 12px;
-}
-
-.phase h3 {
-    margin-bottom: 12px;
-    font-size: 22px;
-    font-weight: 500;
-}
-
-.phase p {
-    color: rgba(255,255,255,0.85);
-}
-
-
-/* =========================
-   WHAT YOU GET
-========================= */
-
-.get-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-}
-
-.get-item {
-    display: flex;
-    gap: 18px;
-    padding: 22px;
-    border-bottom: 1px solid var(--border);
-}
-
-.get-item strong {
-    color: var(--plum);
-    min-width: 25px;
-    font-weight: 600;
-}
-
-.get-item p {
-    color: var(--text-light);
-}
-
-
-/* =========================
-   FREEDOM METHOD
-========================= */
-
-.method {
-    background: var(--light-plum);
-}
-
-.method-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.method-card {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    border: 1px solid #E7DFEA;
-}
-
-.method-card strong {
-    display: block;
-    font-size: 34px;
-    color: var(--plum);
-    margin-bottom: 8px;
-    font-weight: 500;
-}
-
-.method-card h3 {
-    margin-bottom: 8px;
-    font-weight: 500;
-}
-
-.method-card p {
-    color: var(--text-light);
-}
-
-
-/* =========================
-   WHY FREEDOM
-========================= */
-
-.why-section {
-    background: var(--cream);
-}
-
-.why-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.why-card {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-}
-
-.why-card h3 {
-    color: var(--plum);
-    margin-bottom: 10px;
-    font-weight: 500;
-}
-
-.why-card p {
-    color: var(--text-light);
-}
-
-
-/* =========================
-   ABOUT MAHNOOR
-========================= */
-
-.about-me {
-    background: white;
-}
-
-.about-me-grid {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 60px;
-    align-items: center;
-}
-
-.about-me-image {
-    height: 500px;
-    object-fit: cover;
-    border-radius: 18px;
-}
-
-.about-me-text p {
-    color: #595450;
-    margin-bottom: 18px;
-}
-
-.credentials {
-    margin-top: 28px;
-    padding: 25px;
-    background: var(--cream);
-    border-left: 4px solid var(--plum);
-}
-
-.credentials strong {
-    color: var(--plum);
-    font-weight: 600;
-}
-
-
-/* =========================
-   JOIN
-========================= */
-
-.cta {
-    text-align: center;
-    background: white;
-}
-
-.cta-box {
-    background: var(--cream);
-    border: 1px solid #E3DBD3;
-    border-radius: 18px;
-    padding: 65px 25px;
-}
-
-.cta-box h2 {
-    font-size: 40px;
-    margin-bottom: 15px;
-    font-weight: 500;
-}
-
-.cta-box p {
-    max-width: 650px;
-    margin: 0 auto 28px;
-    color: var(--text-light);
-    font-size: 17px;
-}
-
-
-/* =========================
-   FAQ
-========================= */
-
-.faq {
-    max-width: 800px;
-    margin: auto;
-}
-
-.faq-item {
-    border-bottom: 1px solid #DDD5CE;
-    padding: 23px 0;
-}
-
-.faq-item h3 {
-    color: var(--plum);
-    margin-bottom: 8px;
-    font-size: 18px;
-    font-weight: 500;
-}
-
-.faq-item p {
-    color: var(--text-light);
-}
-
-
-/* =========================
-   PROFESSIONAL FOOTER
-========================= */
-
-footer {
-    background: #302A31;
-    color: white;
-    padding: 65px 0 25px;
-}
-
-.footer-main {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr;
-    gap: 60px;
-    padding-bottom: 45px;
-}
-
-.footer-brand h3 {
-    color: white;
-    font-size: 22px;
-    font-weight: 500;
-    margin-bottom: 15px;
-}
-
-.footer-brand p {
-    color: #D4CED5;
-    max-width: 420px;
-    font-size: 14px;
-    line-height: 1.7;
-}
-
-.footer-column h4 {
-    color: white;
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 18px;
-}
-
-.footer-column a {
-    display: block;
-    color: #D4CED5;
-    font-size: 14px;
-    margin-bottom: 11px;
-    transition: 0.2s;
-}
-
-.footer-column a:hover {
-    color: white;
-}
-
-.footer-contact {
-    margin-top: 22px;
-}
-
-.footer-contact p {
-    color: #D4CED5;
-    font-size: 13px;
-    margin-bottom: 7px;
-}
-
-.footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.15);
-    padding-top: 22px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-}
-
-.footer-bottom p {
-    color: #BEB7BF;
-    font-size: 13px;
-}
-
-.footer-tagline {
-    color: #DCCBB3 !important;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 850px) {
-
-    .nav-links {
-        display: none;
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img{ width:100%; display:block; object-fit: cover; background: var(--lavender); }
+
+  a{ text-decoration:none; color:inherit; }
+
+  ul{ list-style:none; }
+
+  h1,h2,h3,h4{
+    font-family:"Playfair Display", serif;
+    color: var(--plum-deep);
+    font-weight:600;
+    line-height:1.18;
+  }
+
+  .script{
+    font-family:"Caveat", cursive;
+    font-weight:700;
+  }
+
+  .container{
+    width:min(1180px, 90%);
+    margin:0 auto;
+  }
+
+  .eyebrow{
+    font-size:12.5px;
+    font-weight:700;
+    letter-spacing:.14em;
+    color: var(--plum-soft);
+    margin-bottom:14px;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    padding:14px 26px;
+    border-radius:999px;
+    font-family:"Inter",sans-serif;
+    font-weight:600;
+    font-size:15px;
+    border:1.5px solid transparent;
+    cursor:pointer;
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+    white-space:nowrap;
+  }
+  .btn svg{ width:16px; height:16px; flex-shrink:0; transition: transform .18s ease; }
+  .btn:hover svg{ transform: translateX(3px); }
+
+  .btn-primary{ background: var(--plum); color:#fff; box-shadow: var(--shadow); }
+  .btn-primary:hover{ background: var(--plum-deep); transform: translateY(-2px); }
+
+  .btn-outline{ background:transparent; border-color: var(--plum); color: var(--plum); }
+  .btn-outline:hover{ background: var(--plum); color:#fff; transform: translateY(-2px); }
+
+  .btn-block{ display:flex; width:100%; justify-content:center; }
+
+  section{ padding: 96px 0; }
+  @media (max-width:768px){ section{ padding: 64px 0; } }
+
+  .section-head{ max-width:640px; margin-bottom:52px; }
+  .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+  .section-head h2{ font-size: clamp(30px, 3.6vw, 42px); }
+  .section-head p{ color: var(--ink-soft); font-size:16.5px; margin-top:14px; }
+
+  /* ============================================================
+     NAVIGATION
+  ============================================================= */
+  header{
+    position: sticky; top:0; z-index:200;
+    background: rgba(251,246,239,.96);
+    backdrop-filter: blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    min-height:82px; gap:20px;
+  }
+  .logo{ display:flex; align-items:center; gap:10px; }
+  .logo svg{ width:26px; height:26px; color: var(--plum); flex-shrink:0; }
+  .logo-text{ line-height:1.05; }
+  .logo-text .name{ font-family:"Playfair Display", serif; font-style:italic; font-weight:700; font-size:23px; color: var(--plum); }
+  .logo-text .tag{ font-size:9.5px; letter-spacing:.16em; color: var(--ink-soft); font-weight:600; }
+
+  .nav-links{ display:flex; align-items:center; gap:34px; font-size:14.5px; font-weight:500; }
+  .nav-links a{ position:relative; padding:4px 0; }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; right:0; bottom:-3px; height:2px;
+    background: var(--plum); transform: scaleX(0); transform-origin:left;
+    transition: transform .2s ease;
+  }
+  .nav-links a:hover::after{ transform:scaleX(1); }
+
+  .nav-right{ display:flex; align-items:center; gap:22px; }
+
+  .hamburger{ display:none; flex-direction:column; gap:5px; width:26px; cursor:pointer; background:none; border:none; }
+  .hamburger span{ height:2px; width:100%; background: var(--plum); border-radius:2px; transition:.25s; }
+
+  @media (max-width:900px){
+    .nav-links{
+      position:absolute; top:82px; left:0; right:0;
+      background: var(--cream); border-bottom:1px solid var(--line);
+      flex-direction:column; align-items:flex-start; gap:0;
+      max-height:0; overflow:hidden; transition: max-height .3s ease;
+      padding: 0 6%;
     }
+    .nav-links.open{ max-height:320px; padding:14px 6% 22px; }
+    .nav-links a{ padding:12px 0; width:100%; }
+    .hamburger{ display:flex; }
+  }
 
-    .hero {
-        padding: 65px 0;
-    }
+  /* ============================================================
+     HERO
+  ============================================================= */
+  .hero{ padding-top:76px; padding-bottom:70px; }
+  .hero-grid{
+    display:grid; grid-template-columns: 1fr 0.92fr; gap:64px; align-items:center;
+  }
+  .hero-eyebrow{
+    font-size:13px; font-weight:700; letter-spacing:.16em; color: var(--plum-soft);
+    margin-bottom:18px;
+  }
+  .hero h1{ font-size: clamp(40px, 5.2vw, 62px); margin-bottom:22px; }
+  .hero h1 em{ font-style: italic; color: var(--plum); }
+  .hero p{ color: var(--ink-soft); font-size:17px; max-width:480px; margin-bottom:30px; }
 
-    .hero-grid,
-    .about-grid,
-    .about-me-grid {
-        grid-template-columns: 1fr;
-    }
+  .hero-features{
+    display:flex; gap:30px; margin-top:38px; flex-wrap:wrap;
+  }
+  .hero-feature{ display:flex; align-items:center; gap:10px; font-size:13.5px; font-weight:600; color: var(--ink); }
+  .hero-feature svg{ width:20px; height:20px; color: var(--plum); flex-shrink:0; }
 
-    .hero-image {
-        height: 420px;
-    }
+  .hero-media{ position:relative; }
+  .hero-media .frame{
+    position:relative;
+    border-radius: 50% 50% 46% 46% / 55% 55% 45% 45%;
+    overflow:hidden;
+    aspect-ratio: 1/1;
+    box-shadow: var(--shadow);
+    border: 6px solid var(--white);
+  }
+  .hero-media img{ width:100%; height:100%; }
+  .hero-caption{
+    position:absolute; right:-6px; bottom:14%;
+    font-family:"Caveat", cursive; font-weight:700;
+    font-size:24px; color: var(--plum); line-height:1.15;
+    transform: rotate(-4deg);
+    text-align:right;
+  }
+  @media (max-width:1024px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero p{ max-width:100%; }
+    .hero-media{ order:-1; max-width:420px; margin:0 auto; }
+    .hero-caption{ display:none; }
+  }
 
-    .about-image,
-    .about-me-image {
-        height: 400px;
-    }
+  /* ============================================================
+     ABOUT MAHNOOR
+  ============================================================= */
+  .about{ background: var(--white); }
+  .about-grid{
+    display:grid; grid-template-columns: 0.85fr 1.1fr 0.85fr; gap:48px; align-items:start;
+  }
+  .about-photo{
+    border-radius: 20px; overflow:hidden; aspect-ratio: 4/5; box-shadow: var(--shadow);
+  }
+  .about-photo img{ height:100%; }
 
-    .features,
-    .phases,
-    .method-grid,
-    .why-grid {
-        grid-template-columns: 1fr;
-    }
+  .about-main .cred{ color: var(--ink-soft); font-size:14.5px; margin:10px 0 18px; }
+  .about-main p{ color: var(--ink-soft); margin-bottom:24px; }
+  .about-main .qual{
+    font-size:13.5px; color: var(--plum-soft); font-weight:600; margin-bottom:26px;
+  }
 
-    .audience-grid,
-    .get-grid {
-        grid-template-columns: 1fr;
-    }
+  .about-side{
+    background: var(--lavender-2); border-radius:20px; padding:34px 30px;
+  }
+  .about-side h3{ font-size:26px; margin-bottom:18px; color:var(--plum); }
+  .about-side li{ display:flex; gap:12px; margin-bottom:16px; font-size:14.5px; color: var(--ink); }
+  .about-side li svg{ width:19px; height:19px; color: var(--plum); flex-shrink:0; margin-top:2px; }
+  .about-quote{
+    margin-top:22px; padding-top:20px; border-top:1px solid var(--line);
+    font-family:"Caveat", cursive; font-weight:700; font-size:22px; color: var(--plum);
+  }
 
-    .footer-main {
-        grid-template-columns: 1fr;
-        gap: 35px;
-    }
+  @media (max-width:1024px){
+    .about-grid{ grid-template-columns:1fr; }
+    .about-photo{ max-width:340px; aspect-ratio:1/1; margin:0 auto; }
+  }
 
-    .footer-bottom {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
+  /* ============================================================
+     WHO I HELP
+  ============================================================= */
+  .help{ background: var(--lavender); border-radius:32px; margin:0 auto; width:min(1180px,94%); }
+  .help-inner{ padding:64px 44px; }
+  .help-grid{ display:grid; grid-template-columns: 0.85fr 1.15fr; gap:50px; align-items:center; }
+  .help-grid h2{ font-size: clamp(28px,3.2vw,36px); margin-bottom:16px; }
+  .help-grid > div:first-child p{ color: var(--ink-soft); margin-top:14px; }
 
+  .help-icons{ display:grid; grid-template-columns: repeat(5, 1fr); gap:22px; }
+  .help-item{ text-align:center; }
+  .help-circle{
+    width:74px; height:74px; border-radius:50%;
+    background: var(--pink-chip); display:flex; align-items:center; justify-content:center;
+    margin:0 auto 14px; color: var(--plum);
+  }
+  .help-circle svg{ width:30px; height:30px; }
+  .help-item h4{ font-family:"Inter",sans-serif; font-weight:700; font-size:14.5px; color: var(--ink); margin-bottom:6px; }
+  .help-item p{ font-size:12.5px; color: var(--ink-soft); line-height:1.5; }
 
-@media (max-width: 500px) {
+  @media (max-width:1024px){
+    .help-grid{ grid-template-columns:1fr; }
+    .help-icons{ grid-template-columns: repeat(3,1fr); row-gap:34px; }
+  }
+  @media (max-width:560px){
+    .help-icons{ grid-template-columns: repeat(2,1fr); }
+    .help-inner{ padding:48px 24px; }
+  }
 
-    section {
-        padding: 60px 0;
-    }
+  /* ============================================================
+     PROGRAMS
+  ============================================================= */
+  .programs-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:30px; margin-bottom:46px; }
+  .programs-head p{ color: var(--ink-soft); margin-top:12px; max-width:520px; }
 
-    .hero h1 {
-        font-size: 40px;
-    }
+  .program-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap:26px; }
+  .program-card{
+    background: var(--white); border:1px solid var(--line); border-radius:18px; overflow:hidden;
+    display:flex; flex-direction:column; transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .program-card:hover{ transform: translateY(-6px); box-shadow: var(--shadow); }
+  .program-img{ aspect-ratio: 4/3; }
+  .program-body{ padding:24px 22px 26px; display:flex; flex-direction:column; gap:6px; flex:1; }
+  .program-tag{ font-size:11px; font-weight:700; letter-spacing:.06em; color: var(--plum-soft); text-transform:uppercase; }
+  .program-card h3{ font-size:19px; margin-top:2px; }
+  .program-card .sub{ font-size:13.5px; color: var(--ink-soft); }
+  .program-card .desc{ font-size:13px; color: var(--ink-soft); margin-top:8px; line-height:1.55; }
+  .program-card .price{ font-weight:700; color: var(--plum); margin-top:14px; font-size:15px; }
+  .program-card .btn{ margin-top:16px; padding:11px 18px; font-size:13.5px; }
 
-    .hero-image {
-        height: 350px;
-    }
+  @media (max-width:1024px){ .program-grid{ grid-template-columns: repeat(2,1fr); } }
+  @media (max-width:640px){
+    .program-grid{ grid-template-columns: 1fr; }
+    .programs-head{ flex-direction:column; align-items:flex-start; }
+  }
 
-    .primary-button,
-    .secondary-button {
-        display: block;
-        text-align: center;
-        margin: 10px 0;
-    }
+  /* ============================================================
+     FREEDOM METHOD
+  ============================================================= */
+  .method{ background: var(--plum-deep); color:#fff; border-radius:32px; width:min(1180px,94%); margin:0 auto; }
+  .method-inner{ padding:70px 44px; }
+  .method .eyebrow{ color:#D9C6E4; }
+  .method h2{ color:#fff; font-size: clamp(28px,3.2vw,38px); max-width:560px; margin-bottom:44px; }
 
-    .section-heading h2 {
-        font-size: 30px;
-    }
+  .method-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap:22px; }
+  .method-card{
+    background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14);
+    border-radius:16px; padding:24px 20px;
+  }
+  .method-letter{
+    width:42px; height:42px; border-radius:50%; background:#fff; color: var(--plum-deep);
+    display:flex; align-items:center; justify-content:center; font-family:"Playfair Display",serif;
+    font-weight:700; font-size:18px; margin-bottom:16px;
+  }
+  .method-card h4{ font-family:"Inter",sans-serif; font-size:14.5px; font-weight:700; color:#fff; margin-bottom:8px; }
+  .method-card p{ font-size:13px; color:#D9CEE0; line-height:1.55; }
 
-    .cta-box h2 {
-        font-size: 30px;
-    }
+  @media (max-width:1024px){ .method-grid{ grid-template-columns: repeat(2,1fr); } .method-inner{padding:54px 26px;} }
+  @media (max-width:560px){ .method-grid{ grid-template-columns: 1fr; } }
 
-}
+  /* ============================================================
+     TESTIMONIALS
+  ============================================================= */
+  .testi-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:40px; }
+  .testi-head p{ color: var(--ink-soft); margin-top:10px; }
 
+  .testi-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:24px; }
+  .testi-card{
+    background: var(--white); border:1px solid var(--line); border-radius:18px; padding:28px 24px;
+  }
+  .testi-quote{ color: var(--ink-soft); font-size:14.5px; line-height:1.65; margin-bottom:20px; }
+  .testi-person{ display:flex; align-items:center; gap:12px; }
+  .testi-avatar{ width:46px; height:46px; border-radius:50%; overflow:hidden; flex-shrink:0; }
+  .testi-name{ font-weight:700; font-size:14px; color: var(--ink); }
+
+  @media (max-width:900px){ .testi-grid{ grid-template-columns:1fr; } .testi-head{ flex-direction:column; align-items:flex-start; } }
+
+  /* ============================================================
+     FAQ
+  ============================================================= */
+  .faq{ background: var(--white); }
+  .faq-list{ max-width:820px; margin:0 auto; }
+  .faq-item{ border-bottom:1px solid var(--line); }
+  .faq-q{
+    width:100%; text-align:left; background:none; border:none; cursor:pointer;
+    padding:22px 4px; display:flex; justify-content:space-between; align-items:center; gap:20px;
+    font-family:"Inter",sans-serif; font-weight:600; font-size:16px; color: var(--ink);
+  }
+  .faq-q svg{ width:18px; height:18px; color: var(--plum); flex-shrink:0; transition: transform .25s ease; }
+  .faq-item.open .faq-q svg{ transform: rotate(45deg); }
+  .faq-a{ max-height:0; overflow:hidden; transition: max-height .3s ease; }
+  .faq-a p{ padding:0 4px 22px; color: var(--ink-soft); font-size:14.5px; max-width:680px; }
+  .faq-item.open .faq-a{ max-height:220px; }
+
+  /* ============================================================
+     FINAL CTA
+  ============================================================= */
+  .cta-banner{
+    background: var(--lavender); border-radius:32px; width:min(1180px,94%); margin:0 auto;
+    padding:70px 40px; text-align:center;
+  }
+  .cta-banner h2{ font-size: clamp(28px,3.6vw,40px); max-width:680px; margin:0 auto 18px; }
+  .cta-banner p{ color: var(--ink-soft); max-width:560px; margin:0 auto 32px; }
+  .cta-banner .script{ display:block; margin-top:24px; font-size:22px; color: var(--plum); }
+
+  /* ============================================================
+     FOOTER
+  ============================================================= */
+  footer{ background: var(--plum-deep); color:#EFE6F2; padding:70px 0 26px; position:relative; overflow:hidden; }
+  .footer-grid{
+    display:grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap:40px; margin-bottom:50px;
+  }
+  .footer-logo{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .footer-logo svg{ width:24px; height:24px; color:#fff; }
+  .footer-logo .name{ font-family:"Playfair Display",serif; font-style:italic; font-weight:700; font-size:21px; color:#fff; }
+  footer .tag{ font-size:13.5px; color:#C9B9D4; max-width:260px; line-height:1.6; }
+  footer h5{ font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:#fff; font-weight:700; margin-bottom:16px; }
+  footer ul li{ margin-bottom:11px; }
+  footer ul a{ font-size:14px; color:#C9B9D4; transition:color .2s; }
+  footer ul a:hover{ color:#fff; }
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,.14); padding-top:22px;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;
+    font-size:13px; color:#C9B9D4;
+  }
+  .footer-bottom .whatsapp{ display:flex; align-items:center; gap:8px; color:#EFE6F2; font-weight:600; }
+  .footer-bottom .whatsapp svg{ width:17px; height:17px; }
+  .footer-leaf{ position:absolute; right:-30px; bottom:-30px; width:180px; height:180px; opacity:.08; color:#fff; }
+
+  @media (max-width:900px){
+    .footer-grid{ grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width:520px){
+    .footer-grid{ grid-template-columns: 1fr; gap:30px; }
+    .footer-bottom{ flex-direction:column; align-items:flex-start; }
+  }
 </style>
 </head>
-
-
 <body>
 
-
-<!-- =========================
+<!-- ============================================================
      NAVIGATION
-========================= -->
+============================================================= -->
+<header>
+  <div class="container nav-inner">
+    <a href="#top" class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-3 2-6 5-9Z"/><path d="M12 12v9"/></svg>
+      <span class="logo-text">
+        <div class="name">Freedom</div>
+        <div class="tag">NUTRITION &amp; WELLNESS</div>
+      </span>
+    </a>
 
-<nav>
+    <nav id="navLinks" class="nav-links">
+      <a href="#about">About</a>
+      <a href="#programs">Programs</a>
+      <a href="#method">How It Works</a>
+      <a href="#testimonials">Transformations</a>
+      <a href="#faq">FAQs</a>
+    </nav>
 
-    <div class="container nav-inner">
-
-        <div class="logo">
-            Freedom Women's Health Club
-        </div>
-
-        <div class="nav-links">
-
-            <a href="#about">
-                About
-            </a>
-
-            <a href="#included">
-                What's Included
-            </a>
-
-            <a href="#program">
-                90 Days
-            </a>
-
-            <a href="#method">
-                FREEDOM Method
-            </a>
-
-            <a href="#mahnoor">
-                About Mahnoor
-            </a>
-
-            <a href="#faq">
-                FAQs
-            </a>
-
-            <!-- MEMBER LOGIN -->
-
-            <a href="member.html">
-                Member Login
-            </a>
-
-            <!-- BUTTON LINKED TO SIGNUP PAGE -->
-
-            <a href="signup.html" class="nav-button">
-                Sign Up
-            </a>
-
-        </div>
-
+    <div class="nav-right">
+      <a href="#programs" class="btn btn-primary" style="padding:11px 22px; font-size:14px;">Choose Your Program</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
-
-</nav>
-
-
-<!-- =========================
-     HERO
-========================= -->
-
-<header class="hero">
-
-    <div class="container hero-grid">
-
-        <div>
-
-            <div class="eyebrow">
-                Freedom Women's Health Club
-            </div>
-
-            <h1>
-                Lose weight without
-                <span>extreme dieting.</span>
-            </h1>
-
-            <p class="hero-text">
-                A supportive community for women who want sustainable
-                weight loss, healthier habits and more confidence around
-                food.
-            </p>
-
-
-            <!-- BUTTON LINKED TO JOIN PAGE -->
-
-            <a href="join.html" class="primary-button">
-                Join the Club
-            </a>
-
-
-            <a href="#about" class="secondary-button">
-                Learn More
-            </a>
-
-        </div>
-
-
-        <div>
-
-            <img
-                class="hero-image"
-                src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=85"
-                alt="Woman doing gentle exercise"
-            >
-
-        </div>
-
-    </div>
-
+  </div>
 </header>
 
+<!-- ============================================================
+     HERO
+============================================================= -->
+<section class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <div class="hero-eyebrow">YOUR HEALTH. YOUR FOOD. YOUR FREEDOM.</div>
+      <h1>Your <em>Freedom.</em><br>Our Support.</h1>
+      <p>Practical nutrition and personalized support to help you lose weight, improve your health and build habits you can actually maintain — no extreme diets, no confusing rules, no starting over every Monday.</p>
+      <a href="#programs" class="btn btn-primary">Explore Programs
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
 
-<!-- =========================
-     ABOUT CLUB
-========================= -->
-
-<section id="about" class="section-light">
-
-    <div class="container about-grid">
-
-        <div>
-
-            <img
-                class="about-image"
-                src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=900&q=85"
-                alt="Balanced healthy food"
-            >
-
+      <div class="hero-features">
+        <div class="hero-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-3 2-6 5-9Z"/></svg>
+          Real Food Based Plans
         </div>
-
-
-        <div class="about-text">
-
-            <div class="eyebrow">
-                About The Club
-            </div>
-
-            <div class="section-heading">
-
-                <h2>
-                    Weight loss should fit your real life.
-                </h2>
-
-                <p>
-                    Freedom Women's Health Club is a supportive online
-                    community created for women who want to lose weight
-                    while building habits they can actually maintain.
-                </p>
-
-            </div>
-
-            <p>
-                We focus on practical nutrition, movement, daily habits,
-                consistency and learning how to make healthier choices
-                in everyday life.
-            </p>
-
-            <p>
-                You do not need to follow extreme diets or completely
-                change your lifestyle to make progress.
-            </p>
-
-            <p>
-                The goal is to help you create a healthier routine that
-                can continue long after the 90-day journey.
-            </p>
-
+        <div class="hero-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.8 8.6c0 5-8.8 10.4-8.8 10.4S3.2 13.6 3.2 8.6a4.6 4.6 0 0 1 8.8-1.9 4.6 4.6 0 0 1 8.8 1.9Z"/></svg>
+          No Extreme Diets or Gym Pressure
         </div>
-
+        <div class="hero-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m12 2 2.9 6.3 6.9.7-5.2 4.7 1.6 6.8L12 17l-6.2 3.5 1.6-6.8L2.2 9l6.9-.7Z"/></svg>
+          Lasting Results
+        </div>
+      </div>
     </div>
 
-</section>
-
-
-<!-- =========================
-     WHO IT IS FOR
-========================= -->
-
-<section>
-
-    <div class="container">
-
-        <div class="section-heading center">
-
-            <div class="eyebrow">
-                Who It's For
-            </div>
-
-            <h2>
-                A space for women who are ready for a realistic approach.
-            </h2>
-
-            <p>
-                Freedom is built around real routines, practical choices
-                and sustainable weight-loss progress.
-            </p>
-
-        </div>
-
-
-        <div class="audience-grid">
-
-            <div class="audience-card">
-
-                <h3>
-                    Women who want sustainable weight loss
-                </h3>
-
-                <p>
-                    You want to lose weight without relying on crash diets
-                    or extreme food restrictions.
-                </p>
-
-            </div>
-
-
-            <div class="audience-card">
-
-                <h3>
-                    Women tired of starting over
-                </h3>
-
-                <p>
-                    You want a routine that helps you stay consistent even
-                    when life gets busy.
-                </p>
-
-            </div>
-
-
-            <div class="audience-card">
-
-                <h3>
-                    Women who want practical guidance
-                </h3>
-
-                <p>
-                    You want weight-loss guidance that can fit into your
-                    normal meals, family routine and lifestyle.
-                </p>
-
-            </div>
-
-
-            <div class="audience-card">
-
-                <h3>
-                    Women who want accountability
-                </h3>
-
-                <p>
-                    You want structure, support and a community that helps
-                    you keep moving forward.
-                </p>
-
-            </div>
-
-        </div>
-
+    <div class="hero-media">
+      <div class="frame">
+        <img src="images/hero-bowl.jpg" alt="A fresh, colorful bowl of real food">
+      </div>
+      <div class="hero-caption script">Healthy Food.<br>Happier You. ♡</div>
     </div>
-
+  </div>
 </section>
 
-
-<!-- =========================
-     WHAT IS INCLUDED
-========================= -->
-
-<section id="included" class="section-light">
-
-    <div class="container">
-
-        <div class="section-heading center">
-
-            <div class="eyebrow">
-                Inside The Club
-            </div>
-
-            <h2>
-                Everything you need to build sustainable weight-loss habits.
-            </h2>
-
-            <p>
-                Your journey is structured so you know what to focus on next.
-            </p>
-
-        </div>
-
-
-        <div class="features">
-
-
-            <div class="feature">
-
-                <div class="feature-number">
-                    01
-                </div>
-
-                <h3>
-                    Guided Daily Lessons
-                </h3>
-
-                <p>
-                    Follow simple lessons and actions throughout your
-                    90-day weight-loss journey.
-                </p>
-
-            </div>
-
-
-            <div class="feature">
-
-                <div class="feature-number">
-                    02
-                </div>
-
-                <h3>
-                    Weight-Loss Nutrition
-                </h3>
-
-                <p>
-                    Learn how to build balanced meals and make practical
-                    food choices that support your goals.
-                </p>
-
-            </div>
-
-
-            <div class="feature">
-
-                <div class="feature-number">
-                    03
-                </div>
-
-                <h3>
-                    Movement & Exercise
-                </h3>
-
-                <p>
-                    Build regular movement and exercise into your routine
-                    without unrealistic expectations.
-                </p>
-
-            </div>
-
-
-            <div class="feature">
-
-                <div class="feature-number">
-                    04
-                </div>
-
-                <h3>
-                    Daily Accountability
-                </h3>
-
-                <p>
-                    Use daily check-ins to stay aware of your habits and
-                    remain accountable.
-                </p>
-
-            </div>
-
-
-            <div class="feature">
-
-                <div class="feature-number">
-                    05
-                </div>
-
-                <h3>
-                    Progress Tracking
-                </h3>
-
-                <p>
-                    Track your progress and focus on more than just
-                    the number on the scale.
-                </p>
-
-            </div>
-
-
-            <div class="feature">
-
-                <div class="feature-number">
-                    06
-                </div>
-
-                <h3>
-                    Supportive Community
-                </h3>
-
-                <p>
-                    Connect with women working toward sustainable
-                    weight loss and healthier lifestyles.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     90 DAY JOURNEY
-========================= -->
-
-<section id="program" class="program">
-
-    <div class="container">
-
-        <div class="section-heading center">
-
-            <div class="eyebrow">
-                The 90-Day Journey
-            </div>
-
-            <h2>
-                A structured path toward sustainable weight loss.
-            </h2>
-
-            <p>
-                Your journey is divided into three phases so you can
-                focus on one stage at a time.
-            </p>
-
-        </div>
-
-
-        <div class="phases">
-
-
-            <div class="phase">
-
-                <div class="phase-number">
-                    PHASE 01
-                </div>
-
-                <h3>
-                    Reset
-                </h3>
-
-                <p>
-                    Build your foundation with simple nutrition,
-                    hydration, movement, sleep and daily routines.
-                </p>
-
-            </div>
-
-
-            <div class="phase">
-
-                <div class="phase-number">
-                    PHASE 02
-                </div>
-
-                <h3>
-                    Build
-                </h3>
-
-                <p>
-                    Strengthen your habits, improve your meals and
-                    become more consistent with movement.
-                </p>
-
-            </div>
-
-
-            <div class="phase">
-
-                <div class="phase-number">
-                    PHASE 03
-                </div>
-
-                <h3>
-                    Maintain
-                </h3>
-
-                <p>
-                    Learn how to handle real-life situations and
-                    continue your healthier habits beyond the program.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     WHAT YOU GET
-========================= -->
-
-<section>
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div class="eyebrow">
-                Your Membership
-            </div>
-
-            <h2>
-                What you will have access to
-            </h2>
-
-        </div>
-
-
-        <div class="get-grid">
-
-
-            <div class="get-item">
-                <strong>01</strong>
-                <p>
-                    Structured 90-day weight-loss journey
-                </p>
-            </div>
-
-
-            <div class="get-item">
-                <strong>02</strong>
-                <p>
-                    Educational content throughout the journey
-                </p>
-            </div>
-
-
-            <div class="get-item">
-                <strong>03</strong>
-                <p>
-                    Practical weight-loss nutrition education
-                </p>
-            </div>
-
-
-            <div class="get-item">
-                <strong>04</strong>
-                <p>
-                    Daily habits and action steps
-                </p>
-            </div>
-
-
-            <div class="get-item">
-                <strong>05</strong>
-                <p>
-                    Movement and exercise guidance
-                </p>
-            </div>
-
-
-            <div class="get-item">
-                <strong>06</strong>
-                <p>
-                    Daily check-ins and accountability
-                </p>
-            </div>
-
-
-            <div class="get-item">
-                <strong>07</strong>
-                <p>
-                    Progress tracking
-                </p>
-            </div>
-
-
-            <div class="get-item">
-                <strong>08</strong>
-                <p>
-                    Supportive women's community
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     FREEDOM METHOD
-========================= -->
-
-<section id="method" class="method">
-
-    <div class="container">
-
-        <div class="section-heading center">
-
-            <div class="eyebrow">
-                The FREEDOM Method
-            </div>
-
-            <h2>
-                Learn the skills, not just the diet.
-            </h2>
-
-            <p>
-                The goal is to help you build skills and confidence that
-                you can use long after the program ends.
-            </p>
-
-        </div>
-
-
-        <div class="method-grid">
-
-
-            <div class="method-card">
-
-                <strong>F</strong>
-
-                <h3>
-                    Fuel Your Body
-                </h3>
-
-                <p>
-                    Learn how to build balanced meals that support
-                    weight loss and your health.
-                </p>
-
-            </div>
-
-
-            <div class="method-card">
-
-                <strong>R</strong>
-
-                <h3>
-                    Reset Your Habits
-                </h3>
-
-                <p>
-                    Identify everyday habits that may be slowing your
-                    progress and replace them with realistic ones.
-                </p>
-
-            </div>
-
-
-            <div class="method-card">
-
-                <strong>E</strong>
-
-                <h3>
-                    Educate Yourself
-                </h3>
-
-                <p>
-                    Understand food, portions, movement and choices
-                    that affect your progress.
-                </p>
-
-            </div>
-
-
-            <div class="method-card">
-
-                <strong>E</strong>
-
-                <h3>
-                    Exercise Smart
-                </h3>
-
-                <p>
-                    Use walking, strength training and regular movement
-                    to support your goals.
-                </p>
-
-            </div>
-
-
-            <div class="method-card">
-
-                <strong>D</strong>
-
-                <h3>
-                    Develop Consistency
-                </h3>
-
-                <p>
-                    Learn how to stay consistent without needing
-                    perfection.
-                </p>
-
-            </div>
-
-
-            <div class="method-card">
-
-                <strong>O</strong>
-
-                <h3>
-                    Own Your Health
-                </h3>
-
-                <p>
-                    Build confidence in making healthier choices for
-                    yourself and your lifestyle.
-                </p>
-
-            </div>
-
-
-            <div class="method-card">
-
-                <strong>M</strong>
-
-                <h3>
-                    Maintain Your Results
-                </h3>
-
-                <p>
-                    Learn how to continue your habits and maintain
-                    your progress beyond the program.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     WHY FREEDOM
-========================= -->
-
-<section class="why-section">
-
-    <div class="container">
-
-        <div class="section-heading center">
-
-            <div class="eyebrow">
-                Why Freedom
-            </div>
-
-            <h2>
-                Weight loss without making food the enemy.
-            </h2>
-
-            <p>
-                Build a healthier routine while learning how to make
-                confident choices in everyday life.
-            </p>
-
-        </div>
-
-
-        <div class="why-grid">
-
-
-            <div class="why-card">
-
-                <h3>
-                    No extreme dieting
-                </h3>
-
-                <p>
-                    The focus is on realistic habits rather than
-                    unsustainable restriction.
-                </p>
-
-            </div>
-
-
-            <div class="why-card">
-
-                <h3>
-                    Practical for real life
-                </h3>
-
-                <p>
-                    Learn strategies that can work around your routine,
-                    family meals and everyday responsibilities.
-                </p>
-
-            </div>
-
-
-            <div class="why-card">
-
-                <h3>
-                    Focus on lasting habits
-                </h3>
-
-                <p>
-                    Learn skills that can continue supporting your
-                    weight-loss journey beyond 90 days.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
+<!-- ============================================================
      ABOUT MAHNOOR
-========================= -->
+============================================================= -->
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div class="about-photo">
+      <img src="images/mahnoor-portrait.jpg" alt="Mahnoor Nazar, Dietitian">
+    </div>
 
-<section id="mahnoor" class="about-me">
+    <div class="about-main">
+      <div class="eyebrow">MEET MAHNOOR NAZAR</div>
+      <h2>Hi, I'm Mahnoor Nazar.</h2>
+      <div class="cred">BSc (Hons.) Human Nutrition &amp; Dietetics&nbsp; |&nbsp; Expert Diabetes &amp; Weight Loss Dietitian</div>
+      <p>I help women lose weight sustainably and manage health conditions through practical, personalized nutrition — without extreme diets or complicated food rules. My focus includes weight loss, Type 2 Diabetes, PCOS, insulin resistance, thyroid-related concerns, and healthier lifestyle habits.</p>
+      <p>My approach is simple: personalized, practical and sustainable. I help you understand your food and habits so you can make confident choices beyond a diet plan.</p>
+      <div class="qual">BSc (Hons.) Human Nutrition &amp; Dietetics — University of Agriculture Faisalabad (UAF)</div>
+      <a href="#" class="btn btn-outline">Learn More
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
 
-    <div class="container about-me-grid">
+    <div class="about-side">
+      <h3 class="script">Why Choose Me?</h3>
+      <ul>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.2 2.2 4.8-5"/></svg>
+          You don't need to fear food to lose weight.
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.2 2.2 4.8-5"/></svg>
+          You don't need perfection to make progress.
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.2 2.2 4.8-5"/></svg>
+          You shouldn't have to start over every time life gets busy.
+        </li>
+      </ul>
+      <div class="about-quote script">Freedom begins with your next choice. ♡</div>
+    </div>
+  </div>
+</section>
 
-
+<!-- ============================================================
+     WHO I HELP
+============================================================= -->
+<section>
+  <div class="help">
+    <div class="help-inner">
+      <div class="help-grid">
         <div>
-
-            <img
-                class="about-me-image"
-                src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=85"
-                alt="Professional woman working"
-            >
-
+          <div class="eyebrow">WHO I HELP</div>
+          <h2>A healthier lifestyle starts with the right approach.</h2>
+          <p>I help women work toward sustainable weight loss and better health through practical nutrition, realistic habits and the right level of support — whatever you're navigating.</p>
         </div>
 
-
-        <div class="about-me-text">
-
-            <div class="eyebrow">
-                About Mahnoor
+        <div class="help-icons">
+          <div class="help-item">
+            <div class="help-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2s6 7 6 12a6 6 0 0 1-12 0c0-5 6-12 6-12Z"/></svg>
             </div>
-
-
-            <div class="section-heading">
-
-                <h2>
-                    Helping women lose weight and build healthier habits with confidence.
-                </h2>
-
+            <h4>Type 2 Diabetes</h4>
+            <p>Build habits that support better blood-sugar &amp; weight management.</p>
+          </div>
+          <div class="help-item">
+            <div class="help-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="9" r="6"/><path d="M12 15v7M9 19h6"/></svg>
             </div>
-
-
-            <p>
-                I'm Mahnoor, a Dietitian who helps women work toward
-                sustainable weight loss through practical nutrition,
-                healthier habits and consistency.
-            </p>
-
-
-            <p>
-                I create nutrition content and coach women with Type 2
-                Diabetes, helping them lose weight, build healthier habits,
-                feel more confident around food and take better control
-                of their health.
-            </p>
-
-
-            <div class="credentials">
-
-                <strong>
-                    Education
-                </strong>
-
-                <p>
-                    BSc (Hons) Human Nutrition & Dietetics
-                    — University of Agriculture Faisalabad (UAF)
-                </p>
-
+            <h4>PCOS</h4>
+            <p>Sustainable nutrition and lifestyle habits for your health goals.</p>
+          </div>
+          <div class="help-item">
+            <div class="help-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 12c0-4 4-7 8-6-1 4-3 6-8 6Zm0 0c0-4-4-7-8-6 1 4 3 6 8 6Zm0 0v8"/></svg>
             </div>
-
+            <h4>Thyroid Concerns</h4>
+            <p>Practical eating and lifestyle habits around your needs.</p>
+          </div>
+          <div class="help-item">
+            <div class="help-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 18 9 9l4 5 3-4 4 8"/></svg>
+            </div>
+            <h4>Insulin Resistance</h4>
+            <p>Build balanced meals and habits that support your goals.</p>
+          </div>
+          <div class="help-item">
+            <div class="help-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 9v4l3 2"/></svg>
+            </div>
+            <h4>Weight Loss Goals</h4>
+            <p>Lose weight without crash diets or extreme restriction.</p>
+          </div>
         </div>
-
+      </div>
     </div>
-
+  </div>
 </section>
 
-
-<!-- =========================
-     JOIN SECTION
-========================= -->
-
-<section class="cta">
-
-    <div class="container">
-
-        <div class="cta-box">
-
-            <div class="eyebrow">
-                Join Freedom
-            </div>
-
-            <h2>
-                Start building healthier habits today.
-            </h2>
-
-            <p>
-                Join a supportive community of women working toward
-                sustainable weight loss, healthier habits and greater
-                confidence around food.
-            </p>
-
-
-            <!-- BUTTON LINKED TO JOIN PAGE -->
-
-            <a href="join.html" class="primary-button">
-                Join the Club
-            </a>
-
-        </div>
-
+<!-- ============================================================
+     PROGRAMS
+============================================================= -->
+<section id="programs">
+  <div class="container">
+    <div class="programs-head">
+      <div>
+        <div class="eyebrow">CHOOSE THE PROGRAM THAT FITS YOUR JOURNEY</div>
+        <h2 style="font-size:clamp(28px,3.2vw,38px);">Simple, Focused &amp; Effective</h2>
+        <p>You don't need the same level of support as everyone else. Choose from a self-guided roadmap, supportive community, personalized coaching or complete 1:1 mentorship.</p>
+      </div>
     </div>
 
+    <div class="program-grid">
+      <div class="program-card">
+        <div class="program-img"><img src="images/program-diabetes.jpg" alt="Diabetes Freedom Blueprint"></div>
+        <div class="program-body">
+          <div class="program-tag">Self-Guided · Structured · Educational</div>
+          <h3>Diabetes Freedom Blueprint</h3>
+          <div class="sub">For Type 2 Diabetes</div>
+          <div class="desc">A structured 90-day self-guided roadmap to help you understand food, portions, habits and lifestyle choices that support your diabetes and weight-loss goals.</div>
+          <div class="price">Rs. 5,000</div>
+          <a href="#" class="btn btn-primary btn-block">View Details
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="program-card">
+        <div class="program-img"><img src="images/program-club.jpg" alt="Freedom Women's Health Club"></div>
+        <div class="program-body">
+          <div class="program-tag">Group Support · Accountability · Community</div>
+          <h3>Freedom Women's Health Club</h3>
+          <div class="sub">For Sustainable Weight Loss</div>
+          <div class="desc">A supportive community for women who want guidance, accountability and practical education while working toward sustainable weight loss.</div>
+          <div class="price">Rs. 5,000 / 90 days</div>
+          <a href="#" class="btn btn-primary btn-block">View Details
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="program-card">
+        <div class="program-img"><img src="images/program-coaching.jpg" alt="Semi 1:1 Coaching"></div>
+        <div class="program-body">
+          <div class="program-tag">Guided · Flexible · Personal</div>
+          <h3>Semi 1:1 Coaching</h3>
+          <div class="sub">For Weight Loss &amp; Women's Health</div>
+          <div class="desc">Regular check-ins and a personalized plan for women who want closer guidance without full 1:1 mentorship.</div>
+          <div class="price">Rs. 10,000 / 90 days</div>
+          <a href="#" class="btn btn-primary btn-block">View Details
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="program-card">
+        <div class="program-img"><img src="images/program-mentorship.jpg" alt="1:1 Freedom Mentorship"></div>
+        <div class="program-body">
+          <div class="program-tag">Fully Personalized · 1:1 · Direct Support</div>
+          <h3>1:1 Freedom Mentorship</h3>
+          <div class="sub">For Personalized Health &amp; Weight-Loss Coaching</div>
+          <div class="desc">My highest level of support, personalized around your health, goals, lifestyle, challenges and progress.</div>
+          <div class="price">Rs. 15,000 / 90 days</div>
+          <a href="#" class="btn btn-primary btn-block">View Details
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- ============================================================
+     FREEDOM METHOD
+============================================================= -->
+<section id="method">
+  <div class="method">
+    <div class="method-inner">
+      <div class="eyebrow">THE FREEDOM METHOD</div>
+      <h2>Learn the skills. Not just the diet.</h2>
 
-<!-- =========================
+      <div class="method-grid">
+        <div class="method-card"><div class="method-letter">F</div><h4>Fuel Your Body</h4><p>Build balanced meals that support your goals.</p></div>
+        <div class="method-card"><div class="method-letter">R</div><h4>Reset Your Habits</h4><p>Replace habits that are holding you back.</p></div>
+        <div class="method-card"><div class="method-letter">E</div><h4>Educate Yourself</h4><p>Understand food, portions and your body.</p></div>
+        <div class="method-card"><div class="method-letter">E</div><h4>Exercise Smart</h4><p>Use movement to support your health.</p></div>
+        <div class="method-card"><div class="method-letter">D</div><h4>Develop Consistency</h4><p>Move away from all-or-nothing thinking.</p></div>
+        <div class="method-card"><div class="method-letter">O</div><h4>Own Your Health</h4><p>Build confidence in your everyday choices.</p></div>
+        <div class="method-card"><div class="method-letter">M</div><h4>Maintain Your Results</h4><p>Create habits you can continue long-term.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIALS
+============================================================= -->
+<section id="testimonials">
+  <div class="container">
+    <div class="testi-head">
+      <div>
+        <h2 style="font-size:clamp(28px,3.2vw,36px);">Real Women. Real Progress.</h2>
+        <p>Hear from the women who have achieved their health goals.</p>
+      </div>
+      <a href="#" class="btn btn-primary">View More Stories
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p class="testi-quote">"I finally feel in control of my food and my health. The guidance is simple, practical and actually fits my life."</p>
+        <div class="testi-person">
+          <div class="testi-avatar"><img src="images/testimonial-ayesha.jpg" alt="Ayesha"></div>
+          <div class="testi-name">Ayesha, 32</div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">"The community and support made such a difference. I lost weight and gained so much confidence."</p>
+        <div class="testi-person">
+          <div class="testi-avatar"><img src="images/testimonial-sara.jpg" alt="Sara"></div>
+          <div class="testi-name">Sara, 29</div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">"This isn't just a diet plan. It's a lifestyle. I've learned so much and feel healthier and happier."</p>
+        <div class="testi-person">
+          <div class="testi-avatar"><img src="images/testimonial-fatima.jpg" alt="Fatima"></div>
+          <div class="testi-name">Fatima, 36</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      FAQ
-========================= -->
-
-<section id="faq" class="section-light">
-
-    <div class="container">
-
-        <div class="section-heading center">
-
-            <div class="eyebrow">
-                Frequently Asked Questions
-            </div>
-
-            <h2>
-                Questions before joining?
-            </h2>
-
-        </div>
-
-
-        <div class="faq">
-
-
-            <div class="faq-item">
-
-                <h3>
-                    Is Freedom a crash diet?
-                </h3>
-
-                <p>
-                    No. The focus is on sustainable weight-loss habits,
-                    practical nutrition, movement and consistency rather
-                    than extreme restriction.
-                </p>
-
-            </div>
-
-
-            <div class="faq-item">
-
-                <h3>
-                    How long is the program?
-                </h3>
-
-                <p>
-                    The full Freedom journey is structured over 90 days.
-                </p>
-
-            </div>
-
-
-            <div class="faq-item">
-
-                <h3>
-                    Do I need special foods?
-                </h3>
-
-                <p>
-                    No. The focus is on practical food choices that can
-                    fit into your normal routine.
-                </p>
-
-            </div>
-
-
-            <div class="faq-item">
-
-                <h3>
-                    Will I receive daily guidance?
-                </h3>
-
-                <p>
-                    Members will follow structured educational content,
-                    actions and check-ins throughout the journey.
-                </p>
-
-            </div>
-
-
-            <div class="faq-item">
-
-                <h3>
-                    Is this suitable for everyone?
-                </h3>
-
-                <p>
-                    The club is designed for adult women seeking general
-                    weight-loss and healthy lifestyle support. Individual
-                    medical conditions may require personalized guidance
-                    from an appropriately qualified healthcare professional.
-                </p>
-
-            </div>
-
-        </div>
-
+============================================================= -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow" style="text-align:center;">HAVE QUESTIONS?</div>
+      <h2>Frequently Asked Questions</h2>
     </div>
 
+    <div class="faq-list">
+      <div class="faq-item open">
+        <button class="faq-q">Which program is right for me?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><p>Choose the Diabetes Freedom Blueprint if you have Type 2 Diabetes and want a structured self-guided roadmap. Choose the Freedom Women's Health Club if your main goal is sustainable weight loss and you want group support and community. Choose 1:1 Freedom Mentorship if you want the highest level of personalized coaching.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Are the coaching programs only for weight loss?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><p>No. 1:1 coaching can be tailored to different women's health and nutrition goals, including weight loss, Type 2 Diabetes, PCOS, insulin resistance and thyroid-related goals.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is the Blueprint personalized?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><p>The Blueprint is a structured self-guided program, rather than personalized 1:1 coaching.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I have to give up desi food?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><p>No. The approach focuses on learning how to make better choices using foods that can fit into your real life.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How long are the programs?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><p>The Blueprint follows a 90-day roadmap. The Club and 1:1 Freedom Mentorship are also 90-day programs.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need to follow an extreme diet?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><p>No. The Freedom approach focuses on practical nutrition, sustainable habits and consistency rather than extreme restriction.</p></div>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- ============================================================
+     FINAL CTA
+============================================================= -->
+<section>
+  <div class="cta-banner">
+    <h2>You don't need another diet.</h2>
+    <p>You need a plan you understand, support you can rely on, and habits you can actually maintain. Choose the path that fits you.</p>
+    <a href="#programs" class="btn btn-primary">Explore Programs
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <span class="script">Freedom begins with your next choice. ♡</span>
+  </div>
+</section>
 
-<!-- =========================
+<!-- ============================================================
      FOOTER
-========================= -->
-
+============================================================= -->
 <footer>
-
-    <div class="container">
-
-
-        <div class="footer-main">
-
-
-            <div class="footer-brand">
-
-                <h3>
-                    Freedom Women's Health Club
-                </h3>
-
-                <p>
-                    A supportive online community helping women build
-                    sustainable weight-loss habits, improve their lifestyle
-                    and become more confident around food.
-                </p>
-
-            </div>
-
-
-            <div class="footer-column">
-
-                <h4>
-                    Explore
-                </h4>
-
-                <a href="#about">
-                    About The Club
-                </a>
-
-                <a href="#included">
-                    What's Included
-                </a>
-
-                <a href="#program">
-                    90-Day Journey
-                </a>
-
-                <a href="#method">
-                    FREEDOM Method
-                </a>
-
-            </div>
-
-
-            <div class="footer-column">
-
-                <h4>
-                    More
-                </h4>
-
-                <a href="#mahnoor">
-                    About Mahnoor
-                </a>
-
-                <a href="#faq">
-                    FAQs
-                </a>
-
-                <!-- LINKED TO JOIN PAGE -->
-
-                <a href="join.html">
-                    Join The Club
-                </a>
-
-                <!-- LINKED TO SIGNUP PAGE -->
-
-                <a href="signup.html">
-                    Sign Up
-                </a>
-
-                <!-- LINKED TO MEMBER LOGIN -->
-
-                <a href="member.html">
-                    Member Login
-                </a>
-
-
-                <div class="footer-contact">
-
-                    <p>
-                        Questions about joining?
-                    </p>
-
-                    <!-- WHATSAPP LINK -->
-
-                    <a
-                        href="https://wa.me/923164068060"
-                        target="_blank"
-                    >
-                        WhatsApp Mahnoor
-                    </a>
-
-                </div>
-
-            </div>
-
+  <svg class="footer-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-3 2-6 5-9Z"/></svg>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-3 2-6 5-9Z"/></svg>
+          <span class="name">Freedom</span>
         </div>
-
-
-        <div class="footer-bottom">
-
-            <p>
-                © 2026 Freedom Women's Health Club. All rights reserved.
-            </p>
-
-            <p class="footer-tagline">
-                Small steps. Consistent habits. Long-term results.
-            </p>
-
-        </div>
-
+        <p class="tag">Practical nutrition. Sustainable habits. Real-life results.</p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#method">FREEDOM Method</a></li>
+          <li><a href="#testimonials">Transformations</a></li>
+          <li><a href="#about">About Mahnoor</a></li>
+          <li><a href="#faq">FAQs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Programs</h5>
+        <ul>
+          <li><a href="#programs">Diabetes Freedom Blueprint</a></li>
+          <li><a href="#programs">Freedom Women's Health Club</a></li>
+          <li><a href="#programs">Semi 1:1 Coaching</a></li>
+          <li><a href="#programs">1:1 Freedom Mentorship</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li>
+            <a href="#" class="whatsapp" style="display:flex;align-items:center;gap:8px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a9 9 0 1 1-4.2-7.6"/><path d="M21 3l-9 9"/></svg>
+              WhatsApp Mahnoor
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
 
+    <div class="footer-bottom">
+      <span>© 2026 Freedom. All rights reserved.</span>
+      <span class="whatsapp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.4 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.9-1.4A9.9 9.9 0 0 0 12 22c5.5 0 10-4.4 10-10S17.5 2 12 2Z"/></svg>
+        WhatsApp Mahnoor
+      </span>
+    </div>
+  </div>
 </footer>
 
+<script>
+  // Mobile nav toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
 
 </body>
 </html>
