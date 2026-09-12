@@ -169,6 +169,79 @@ h1 {
 }
 
 
+/* WHATSAPP LINK (secondary, on plan card) */
+
+.whatsapp-link {
+    display: block;
+    width: 100%;
+    padding: 13px 20px;
+    background: transparent;
+    color: #6E4A7E;
+    text-decoration: none;
+    border: 1px solid #DCCBB3;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 18px;
+    text-align: center;
+}
+
+.whatsapp-link:hover {
+    background: #F1EAF4;
+}
+
+
+/* HOW TO JOIN */
+
+.instructions {
+    max-width: 980px;
+    margin: 0 auto 60px;
+}
+
+.instructions-card {
+    background: #FFFFFF;
+    border: 1px solid #E5DED7;
+    border-radius: 14px;
+    padding: 35px;
+}
+
+.instructions-card h2 {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+
+.step {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.step-number {
+    min-width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #F1EAF4;
+    color: #6E4A7E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.step h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.step p {
+    color: #625D59;
+    font-size: 14px;
+}
+
+
 /* FORM CARD */
 
 .form-card {
@@ -403,6 +476,10 @@ footer p {
         padding: 26px 22px;
     }
 
+    .instructions-card {
+        padding: 25px 20px;
+    }
+
 }
 
 </style>
@@ -449,8 +526,8 @@ footer p {
         </h1>
 
         <p>
-            Check the plan, create your account and message us on
-            WhatsApp to complete your payment.
+            Check the plan, create your account and follow the steps
+            below to complete your membership.
         </p>
 
     </div>
@@ -497,6 +574,10 @@ footer p {
                 </li>
 
                 <li>
+                    Weight-loss focused education
+                </li>
+
+                <li>
                     Food and lifestyle guidance
                 </li>
 
@@ -510,8 +591,13 @@ footer p {
 
             </ul>
 
-            <a href="join.html" class="plan-link">
-                View full plan details →
+            <a
+                href="https://wa.me/923164068060?text=Assalam%20o%20Alaikum%2C%20I%20have%20a%20question%20about%20the%20Freedom%20Women's%20Health%20Club%20membership."
+                class="whatsapp-link"
+                target="_blank"
+                rel="noopener"
+            >
+                Have a question? WhatsApp Mahnoor
             </a>
 
         </div>
@@ -706,6 +792,149 @@ footer p {
 </div>
 
 
+<!-- HOW TO JOIN -->
+
+<section class="instructions">
+
+    <div class="instructions-card">
+
+        <h2>
+            How to Join
+        </h2>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                1
+            </div>
+
+            <div>
+
+                <h3>
+                    Create your account
+                </h3>
+
+                <p>
+                    Fill in the form above to create your Freedom account
+                    with your email and a password.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="step">
+
+            <div class="step-number">
+                2
+            </div>
+
+            <div>
+
+                <h3>
+                    Message me on WhatsApp
+                </h3>
+
+                <p>
+                    After signing up, message me on WhatsApp with your
+                    sign-up email so I can send you the payment details.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="step">
+
+            <div class="step-number">
+                3
+            </div>
+
+            <div>
+
+                <h3>
+                    Complete your payment
+                </h3>
+
+                <p>
+                    Make the payment of Rs. 5,000 using the payment method
+                    provided to you.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="step">
+
+            <div class="step-number">
+                4
+            </div>
+
+            <div>
+
+                <h3>
+                    Send your payment proof
+                </h3>
+
+                <p>
+                    Send your payment screenshot or receipt to me on
+                    WhatsApp so your payment can be confirmed.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="step">
+
+            <div class="step-number">
+                5
+            </div>
+
+            <div>
+
+                <h3>
+                    Getting access
+                </h3>
+
+                <p>
+                    Once I confirm your payment, log in on the Member
+                    Login page using the same email and password you
+                    used to sign up. Your member portal unlocks
+                    automatically as soon as payment is confirmed.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="note">
+
+            <p>
+                Please keep your payment receipt or screenshot until
+                your payment has been confirmed. Your account will only
+                be able to open the member portal after payment is
+                confirmed by the admin.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
 </main>
 
 
@@ -807,8 +1036,9 @@ const db =
 ==================================================
 PLAN DETAILS
 
-Keep this in sync with join.html. If the plan
-or price changes, update it in both places.
+Keep this in sync with the plan card and the
+"How to Join" section above. If the plan or
+price changes, update it in both places.
 ==================================================
 */
 
