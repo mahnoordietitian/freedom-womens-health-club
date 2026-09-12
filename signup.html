@@ -16,12 +16,25 @@ href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&fami
 rel="stylesheet"
 >
 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+
 <style>
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+:root{
+    --plum:        #4E2E5E;
+    --plum-deep:   #3A2148;
+    --plum-soft:   #7C5B8E;
+    --lavender:    #EFE6F5;
+    --cream:       #FBF6EF;
+    --ink-soft:    #6E6675;
+    --line:        #E7DEE9;
+    --shadow:      0 18px 40px -22px rgba(74,42,90,0.35);
 }
 
 body {
@@ -43,28 +56,66 @@ h1, h2, h3, h4, h5, h6 {
 
 /* HEADER */
 
+.nav-container{ width:min(1180px,90%); margin:0 auto; }
+
 header {
-    background: #FFFFFF;
-    border-bottom: 1px solid #E5DED7;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: rgba(251,246,239,.96);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
 }
 
 .header-inner {
-    min-height: 75px;
+    min-height: 82px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 20px;
 }
 
-.logo {
-    color: #6E4A7E;
-    font-size: 19px;
-    font-weight: 600;
-}
+.site-logo{ display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit; }
+.site-logo svg{ width:26px; height:26px; color: var(--plum); flex-shrink:0; }
+.site-logo-text{ line-height:1.05; }
+.site-logo-text .name{ font-family:"Playfair Display", serif; font-style:italic; font-weight:700; font-size:23px; color: var(--plum); }
+.site-logo-text .tag{ font-size:9.5px; letter-spacing:.16em; color: var(--ink-soft); font-weight:600; }
 
-.home-link {
-    color: #6E4A7E;
-    text-decoration: none;
-    font-size: 14px;
+.site-nav-links{ display:flex; align-items:center; gap:34px; font-size:14.5px; font-weight:500; list-style:none; }
+.site-nav-links a{ position:relative; padding:4px 0; text-decoration:none; color:inherit; }
+.site-nav-links a::after{
+    content:""; position:absolute; left:0; right:0; bottom:-3px; height:2px;
+    background: var(--plum); transform: scaleX(0); transform-origin:left;
+    transition: transform .2s ease;
+}
+.site-nav-links a:hover::after{ transform:scaleX(1); }
+
+.site-nav-right{ display:flex; align-items:center; gap:22px; }
+.site-btn-primary{
+    display:inline-flex; align-items:center; gap:9px;
+    padding:11px 22px; border-radius:999px;
+    font-family:"Inter",sans-serif; font-weight:600; font-size:14px;
+    background: var(--plum); color:#fff; box-shadow: var(--shadow);
+    text-decoration:none; white-space:nowrap;
+    transition: transform .18s ease, background .18s ease;
+}
+.site-btn-primary:hover{ background: var(--plum-deep); transform: translateY(-2px); }
+
+.hamburger{ display:none; flex-direction:column; gap:5px; width:26px; cursor:pointer; background:none; border:none; }
+.hamburger span{ height:2px; width:100%; background: var(--plum); border-radius:2px; transition:.25s; }
+
+@media (max-width:900px){
+    .site-nav-links{
+        position:absolute; top:82px; left:0; right:0;
+        background: var(--cream); border-bottom:1px solid var(--line);
+        flex-direction:column; align-items:flex-start; gap:0;
+        max-height:0; overflow:hidden; transition: max-height .3s ease;
+        padding: 0 6%;
+    }
+    .site-nav-links.open{ max-height:320px; padding:14px 6% 22px; }
+    .site-nav-links a{ padding:12px 0; width:100%; }
+    .hamburger{ display:flex; }
+    .site-nav-right .site-btn-primary span.btn-label-full{ display:none; }
 }
 
 
@@ -445,17 +496,37 @@ input:focus {
 
 /* FOOTER */
 
-footer {
-    background: #302A31;
-    color: #FFFFFF;
-    padding: 35px 0;
-    margin-top: 20px;
-}
+footer{ background: var(--plum-deep); color:#EFE6F2; padding:70px 0 26px; margin-top: 20px; position:relative; overflow:hidden; }
+.footer-grid{ display:grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap:40px; margin-bottom:50px; }
+.footer-logo{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.footer-logo svg{ width:24px; height:24px; color:#fff; }
+.footer-logo .name{ font-family:"Playfair Display",serif; font-style:italic; font-weight:700; font-size:21px; color:#fff; }
+footer .tag{ font-size:13.5px; color:#C9B9D4; max-width:260px; line-height:1.6; }
+footer h5{ font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:#fff; font-weight:700; margin-bottom:16px; font-family:"Poppins", Arial, sans-serif; }
+footer ul{ list-style:none; }
+footer ul li{ margin-bottom:11px; }
+footer ul a{ font-size:14px; color:#C9B9D4; text-decoration:none; transition:color .2s; }
+footer ul a:hover{ color:#fff; }
 
-footer p {
-    font-size: 13px;
-    color: #D4CED5;
-    margin-bottom: 4px;
+.contact-badge{ display:flex; align-items:center; gap:12px; text-decoration:none; }
+.contact-badge .icon-circle{
+    width:42px; height:42px; border-radius:50%; flex-shrink:0;
+    background: rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.18);
+    display:flex; align-items:center; justify-content:center;
+}
+.contact-badge .icon-circle svg{ width:20px; height:20px; color:#EFE6F2; }
+.contact-badge span{ font-size:14px; color:#EFE6F2; font-weight:500; line-height:1.4; }
+.footer-bottom{
+    border-top:1px solid rgba(255,255,255,.14); padding-top:22px;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;
+    font-size:13px; color:#C9B9D4;
+}
+.footer-leaf{ position:absolute; right:-30px; bottom:-30px; width:180px; height:180px; opacity:.08; color:#fff; }
+
+@media (max-width:900px){ .footer-grid{ grid-template-columns: 1fr 1fr; } }
+@media (max-width:520px){
+    .footer-grid{ grid-template-columns: 1fr; gap:30px; }
+    .footer-bottom{ flex-direction:column; align-items:flex-start; }
 }
 
 
@@ -492,15 +563,25 @@ footer p {
 
 <header>
 
-    <div class="container header-inner">
+    <div class="nav-container header-inner">
 
-        <div class="logo">
-            Freedom Women's Health Club
-        </div>
-
-        <a href="index.html" class="home-link">
-            Home
+        <a href="index.html" class="site-logo">
+            <svg viewBox="0 0 140 140" width="30" height="30" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M132,58 C122,48 110,41 98,40 C102,33 99,25 91,24 C85,23 80,28 81,34 C71,39 63,48 61,59 C59,70 61,81 68,87 C58,76 52,86 54,96 C56,105 66,109 70,102 C73,97 68,93 63,95"/><path d="M63,49 C50,34 28,25 11,27 C27,32 43,41 54,54"/><path d="M54,54 C44,60 32,59 23,52"/><path d="M56,46 C46,49 37,47 30,40"/></svg>
+            <span class="site-logo-text">
+                <div class="name">Freedom</div>
+                <div class="tag">NUTRITION &amp; WELLNESS</div>
+            </span>
         </a>
+
+        <nav id="navLinks" class="site-nav-links">
+            <a href="index.html">Home</a>
+            <a href="#how-to-join">How to Join</a>
+        </nav>
+
+        <div class="site-nav-right">
+            <a href="index.html#programs" class="site-btn-primary">Choose Your Program</a>
+            <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
 
     </div>
 
@@ -794,7 +875,7 @@ footer p {
 
 <!-- HOW TO JOIN -->
 
-<section class="instructions">
+<section class="instructions" id="how-to-join">
 
     <div class="instructions-card">
 
@@ -940,20 +1021,57 @@ footer p {
 
 
 <footer>
+    <svg class="footer-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-3 2-6 5-9Z"/></svg>
+    <div class="nav-container">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">
+                    <svg viewBox="0 0 140 140" width="28" height="28" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M132,58 C122,48 110,41 98,40 C102,33 99,25 91,24 C85,23 80,28 81,34 C71,39 63,48 61,59 C59,70 61,81 68,87 C58,76 52,86 54,96 C56,105 66,109 70,102 C73,97 68,93 63,95"/><path d="M63,49 C50,34 28,25 11,27 C27,32 43,41 54,54"/><path d="M54,54 C44,60 32,59 23,52"/><path d="M56,46 C46,49 37,47 30,40"/></svg>
+                    <span class="name">Freedom</span>
+                </div>
+                <p class="tag">Practical nutrition. Sustainable habits. Real-life results.</p>
+            </div>
+            <div>
+                <h5>Explore</h5>
+                <ul>
+                    <li><a href="index.html#programs">Programs</a></li>
+                    <li><a href="index.html#method">FREEDOM Method</a></li>
+                    <li><a href="index.html#testimonials">Transformations</a></li>
+                    <li><a href="index.html#about">About Mahnoor</a></li>
+                    <li><a href="index.html#faq">FAQs</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>Programs</h5>
+                <ul>
+                    <li><a href="diabetes-freedom-blueprint.html">Diabetes Freedom Blueprint</a></li>
+                    <li><a href="index.html#programs">Freedom Women's Health Club</a></li>
+                    <li><a href="1-1-freedom-mentorship.html">1:1 Freedom Mentorship</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>Contact</h5>
+                <a href="https://wa.me/923164068060?text=Assalam%20o%20Alaikum%2C%20I%20have%20a%20question." target="_blank" rel="noopener" class="contact-badge">
+                    <span class="icon-circle">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.4 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.9-1.4A9.9 9.9 0 0 0 12 22c5.5 0 10-4.4 10-10S17.5 2 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.5-3.9-4.6-4.1-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 1-2.3.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5.2.5.7 1.8.8 1.9.1.1.1.3 0 .5-.1.2-.1.3-.3.5-.1.2-.3.3-.4.5-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.7-.1.3.1 1.7.8 2 .9.3.2.5.2.6.3.1.2.1.9-.1 1.5Z"/></svg>
+                    </span>
+                    <span>WhatsApp<br>Mahnoor</span>
+                </a>
+            </div>
+        </div>
 
-    <div class="container">
-
-        <p>
-            Freedom Women's Health Club
-        </p>
-
-        <p>
-            Small steps. Consistent habits. Long-term results.
-        </p>
-
+        <div class="footer-bottom">
+            <span>© 2026 Freedom. All rights reserved.</span>
+        </div>
     </div>
-
 </footer>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+</script>
 
 
 <script type="module">
