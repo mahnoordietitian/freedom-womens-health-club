@@ -259,7 +259,8 @@
      PROGRAMS
   ============================================================= */
   .programs-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:30px; margin-bottom:46px; }
-  .programs-head p{ color: var(--ink-soft); margin-top:12px; max-width:520px; }
+  .programs-head p{ color: var(--ink-soft); margin-top:12px; max-width:none; white-space:nowrap; }
+  @media (max-width:900px){ .programs-head p{ white-space:normal; } }
 
   .program-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:26px; }
   .program-card{
@@ -769,9 +770,9 @@
       <div>
         <h5>Programs</h5>
         <ul>
-          <li><a href="#programs">Diabetes Freedom Blueprint</a></li>
-          <li><a href="#programs">Freedom Women's Health Club</a></li>
-          <li><a href="#programs">1:1 Freedom Mentorship</a></li>
+          <li><a href="https://mahnoordietitian.github.io/freedom-womens-health-club/diabetes-freedom-blueprint.html">Diabetes Freedom Blueprint</a></li>
+          <li><a href="https://mahnoordietitian.github.io/freedom-womens-health-club/signup.html">Freedom Women's Health Club</a></li>
+          <li><a href="https://mahnoordietitian.github.io/freedom-womens-health-club/1-1-freedom-mentorship.html">1:1 Freedom Mentorship</a></li>
         </ul>
       </div>
       <div>
