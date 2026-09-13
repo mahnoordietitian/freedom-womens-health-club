@@ -195,10 +195,11 @@
   .who-inner{ padding:60px 48px; display:grid; grid-template-columns: minmax(0,1.6fr) minmax(0,1fr); gap:44px; align-items:center; }
   .who-inner h2{ font-size: clamp(26px,3.2vw,34px); max-width:520px; }
 
-  .goal-grid{ display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:14px; margin-top:32px; }
+  .goal-grid{ display:flex; flex-wrap:wrap; gap:14px; margin-top:32px; }
   .goal-card{
     background:#fff; border-radius:16px; padding:16px 16px;
     display:flex; align-items:center; gap:12px; min-width:0;
+    flex:1 1 calc(25% - 10.5px);
   }
   .goal-card .icon-circle{ width:42px; height:42px; flex-shrink:0; margin-bottom:0; }
   .goal-card .icon-circle svg{ width:19px; height:19px; }
@@ -217,8 +218,12 @@
 
   @media (max-width:900px){
     .who-inner{ grid-template-columns:minmax(0,1fr); padding:46px 28px; }
-    .goal-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .goal-card{ flex-basis: calc(50% - 7px); }
     .who-quote{ margin-top:8px; }
+  }
+
+  @media (max-width:380px){
+    .goal-card{ flex-basis:100%; }
   }
 
   /* ============================================================
