@@ -112,10 +112,19 @@ header {
         max-height:0; overflow:hidden; transition: max-height .3s ease;
         padding: 0 6%;
     }
-    .site-nav-links.open{ max-height:320px; padding:14px 6% 22px; }
+    .site-nav-links.open{ max-height:400px; padding:14px 6% 22px; }
     .site-nav-links a{ padding:12px 0; width:100%; }
     .hamburger{ display:flex; }
     .site-nav-right .site-btn-primary span.btn-label-full{ display:none; }
+}
+.mobile-cta{ display:none; }
+@media (max-width:430px){
+    .site-nav-right .site-btn-primary{ display:none; }
+    .site-nav-links .mobile-cta{
+        display:block; margin-top:14px; text-align:center;
+        background: var(--plum); color:#fff; border-radius:999px;
+        padding:13px; font-weight:600; width:100%;
+    }
 }
 
 
@@ -576,6 +585,7 @@ footer ul a:hover{ color:#fff; }
         <nav id="navLinks" class="site-nav-links">
             <a href="index.html">Home</a>
             <a href="#how-to-join">How to Join</a>
+            <a href="index.html#programs" class="mobile-cta">Choose Your Program</a>
         </nav>
 
         <div class="site-nav-right">
