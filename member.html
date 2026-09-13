@@ -200,6 +200,49 @@ textarea:focus{
   z-index:100;
 }
 
+.sidebar-toggle{
+  display:none;
+  position:fixed;
+  top:14px;
+  left:14px;
+  z-index:150;
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  border:0;
+  background:var(--plum);
+  color:#fff;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow:0 8px 20px -8px rgba(0,0,0,.4);
+}
+
+.sidebar-toggle svg{
+  width:22px;
+  height:22px;
+}
+
+.sidebar-toggle.hide{
+  display:none;
+}
+
+.sidebar-close{
+  display:none;
+}
+
+.sidebar-backdrop{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(20,10,25,.45);
+  z-index:99;
+}
+
+.sidebar-backdrop.show{
+  display:block;
+}
+
 .brand{
   padding:0 10px 30px;
 }
@@ -1433,32 +1476,70 @@ textarea:focus{
 @media(max-width:800px){
 
   .sidebar{
-    width:70px;
-    padding:20px 7px;
+    width:245px;
+    padding:28px 18px;
+    transform:translateX(-100%);
+    transition:transform .28s ease;
+    box-shadow:0 0 0 rgba(0,0,0,0);
+  }
+
+  .sidebar.open{
+    transform:translateX(0);
+    box-shadow:0 0 40px rgba(0,0,0,.35);
   }
 
   .brand h2,
   .brand small{
-    display:none;
+    display:block;
   }
 
   .nav button{
-    justify-content:center;
-    padding:13px 4px;
+    justify-content:flex-start;
+    padding:13px;
   }
 
   .nav button span{
-    display:none;
+    display:inline;
   }
 
   .nav button .icon{
-    width:22px;
-    height:22px;
+    width:19px;
+    height:19px;
+  }
+
+  .sidebar-toggle{
+    display:flex;
+  }
+
+  .sidebar-close{
+    display:flex;
+    position:absolute;
+    top:18px;
+    right:14px;
+    width:34px;
+    height:34px;
+    border-radius:10px;
+    border:0;
+    background:rgba(255,255,255,.12);
+    color:#fff;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+  }
+
+  .sidebar-close svg{
+    width:18px;
+    height:18px;
+  }
+
+  .sidebar-backdrop.show{
+    display:block;
   }
 
   .main{
-    margin-left:70px;
+    margin-left:0;
     padding:18px;
+    padding-top:78px;
   }
 
   .topbar{
@@ -1575,7 +1656,31 @@ textarea:focus{
 <div id="app">
 
 
-  <aside class="sidebar">
+  <button
+    class="sidebar-toggle"
+    id="sidebarToggle"
+    aria-label="Open menu"
+    onclick="toggleSidebar()"
+  >
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+  </button>
+
+  <div
+    class="sidebar-backdrop"
+    id="sidebarBackdrop"
+    onclick="closeSidebar()"
+  ></div>
+
+
+  <aside class="sidebar" id="sidebar">
+
+    <button
+      class="sidebar-close"
+      aria-label="Close menu"
+      onclick="closeSidebar()"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
 
     <div class="brand">
 
@@ -5722,11 +5827,55 @@ function formatDate(timestamp){
 
 
 /* =====================================================
+   MOBILE SIDEBAR
+===================================================== */
+
+window.toggleSidebar =
+function(){
+
+  document
+    .getElementById("sidebar")
+    .classList.toggle("open");
+
+  document
+    .getElementById("sidebarBackdrop")
+    .classList.toggle("show");
+
+  document
+    .getElementById("sidebarToggle")
+    .classList.toggle("hide");
+
+};
+
+
+window.closeSidebar =
+function(){
+
+  document
+    .getElementById("sidebar")
+    .classList.remove("open");
+
+  document
+    .getElementById("sidebarBackdrop")
+    .classList.remove("show");
+
+  document
+    .getElementById("sidebarToggle")
+    .classList.remove("hide");
+
+};
+
+
+
+/* =====================================================
    NAVIGATION
 ===================================================== */
 
 window.openPage =
 function(id,button){
+
+  closeSidebar();
+
 
   document
     .querySelectorAll(".section")
