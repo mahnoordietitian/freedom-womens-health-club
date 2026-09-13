@@ -1085,6 +1085,29 @@ textarea:focus{
   overflow-wrap:anywhere;
 }
 
+.post-content.clamped{
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:3;
+  overflow:hidden;
+}
+
+.see-more-btn{
+  display:none;
+  margin-top:6px;
+  background:none;
+  border:0;
+  padding:0;
+  color:var(--plum);
+  font-weight:700;
+  font-size:13.5px;
+  cursor:pointer;
+}
+
+.see-more-btn:hover{
+  text-decoration:underline;
+}
+
 .post-content img{
   display:block;
   max-width:100%;
@@ -4782,7 +4805,96 @@ function renderCommunityPostsList(){
       )
       .join("");
 
+  refreshSeeMoreButtons();
+
 }
+
+
+
+/* =====================================================
+   SEE MORE / SEE LESS (long community posts)
+===================================================== */
+
+function refreshSeeMoreButtons(){
+
+  document
+    .querySelectorAll(".post-content.clamped")
+    .forEach(
+      el => {
+
+        const btn =
+          document.getElementById(
+            "seeMoreBtn-" +
+            el.id.replace("postContent-","")
+          );
+
+        if(!btn)
+          return;
+
+        btn.style.display =
+          el.scrollHeight > el.clientHeight + 2
+          ? "block"
+          : "none";
+
+      }
+    );
+
+}
+
+window.refreshSeeMoreButtons =
+  refreshSeeMoreButtons;
+
+/*
+ Re-check after web fonts finish loading and on a short
+ delay, since measuring right after innerHTML is set can
+ happen before the real font swaps in (fallback-font
+ metrics can under-report the true wrapped height).
+*/
+if(document.fonts && document.fonts.ready){
+
+  document.fonts.ready.then(
+    () => refreshSeeMoreButtons()
+  );
+
+}
+
+setTimeout(refreshSeeMoreButtons, 400);
+
+window.addEventListener(
+  "resize",
+  () => refreshSeeMoreButtons()
+);
+
+
+window.togglePostContent =
+function(postId){
+
+  const el =
+    document.getElementById(
+      "postContent-" + postId
+    );
+
+  const btn =
+    document.getElementById(
+      "seeMoreBtn-" + postId
+    );
+
+  if(!el || !btn)
+    return;
+
+  const collapsing =
+    !el.classList.contains("clamped");
+
+  el.classList.toggle("clamped");
+
+  btn.textContent =
+    collapsing
+    ? "See more"
+    : "See less";
+
+};
+
+
 
 
 
@@ -5011,6 +5123,7 @@ function renderCommunityPost(post){
     looksLikeHTML(content)
     ? sanitizeHTML(content)
     : safeText(content)
+      .replace(/\n{2,}/g,"\n")
       .replace(/\n/g,"<br>");
 
 
@@ -5167,11 +5280,22 @@ function renderCommunityPost(post){
       </div>
 
 
-      <div class="post-content">
+      <div
+        class="post-content clamped"
+        id="postContent-${safeAttr(post.id)}"
+      >
 
         ${content}
 
       </div>
+
+      <button
+        class="see-more-btn"
+        id="seeMoreBtn-${safeAttr(post.id)}"
+        onclick="togglePostContent('${safeAttr(post.id)}')"
+      >
+        See more
+      </button>
 
 
       <div class="post-engagement">
@@ -5893,6 +6017,8 @@ function(id,button){
 
   if(target)
     target.classList.add("active");
+
+  refreshSeeMoreButtons();
 
 
   document
