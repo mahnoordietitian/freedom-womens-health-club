@@ -123,10 +123,19 @@
       max-height:0; overflow:hidden; transition: max-height .3s ease;
       padding: 0 6%;
     }
-    .nav-links.open{ max-height:320px; padding:14px 6% 22px; }
+    .nav-links.open{ max-height:400px; padding:14px 6% 22px; }
     .nav-links a{ padding:12px 0; width:100%; }
     .hamburger{ display:flex; }
     .nav-right .btn-primary span.btn-label-full{ display:none; }
+  }
+  .mobile-cta{ display:none; }
+  @media (max-width:430px){
+    .nav-right .btn-primary{ display:none; }
+    .nav-links .mobile-cta{
+      display:block; margin-top:14px; text-align:center;
+      background: var(--plum); color:#fff; border-radius:999px;
+      padding:13px; font-weight:600; width:100%;
+    }
   }
 
   /* ============================================================
@@ -322,6 +331,7 @@
       <a href="index.html#programs">Programs</a>
       <a href="index.html#testimonials">Transformations</a>
       <a href="index.html#faq">FAQs</a>
+      <a href="index.html#programs" class="mobile-cta">Choose Your Program</a>
     </nav>
 
     <div class="nav-right">
