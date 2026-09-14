@@ -4377,6 +4377,39 @@ async function(targetType, targetId, type){
     );
 
 
+  /*
+   Optimistic update: show the new reaction state immediately
+   rather than waiting on a full network round-trip. This is
+   what makes the button change color instantly even on a slow
+   or high-latency mobile connection, instead of appearing to
+   do nothing until the write + re-fetch finish.
+  */
+
+  const previousReactions =
+    allCommunityReactions;
+
+  const withoutMine =
+    allCommunityReactions.filter(
+      r => r.id !== refId
+    );
+
+  allCommunityReactions =
+    myReaction === type
+    ? withoutMine
+    : [
+        ...withoutMine,
+        {
+          id:refId,
+          targetType:targetType,
+          targetId:targetId,
+          userId:currentUser.uid,
+          type:type
+        }
+      ];
+
+  renderCommunityPostsList();
+
+
   try{
 
     if(myReaction === type){
@@ -4447,6 +4480,17 @@ async function(targetType, targetId, type){
 
   }
   catch(error){
+
+    /*
+     Write or re-fetch failed (offline, flaky mobile network,
+     etc.) - roll back the optimistic change so the button
+     doesn't show a reaction that never actually saved.
+    */
+
+    allCommunityReactions =
+      previousReactions;
+
+    renderCommunityPostsList();
 
     console.error(
       "Reaction failed:",
