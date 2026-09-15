@@ -167,6 +167,25 @@ textarea:focus{
 .btn:disabled{
   cursor:default;
   transform:none;
+  opacity:.85;
+}
+
+.btn-spinner{
+  display:none;
+  width:15px;
+  height:15px;
+  border:2.5px solid rgba(255,255,255,.35);
+  border-top-color:#fff;
+  border-radius:50%;
+  animation:btn-spin .7s linear infinite;
+}
+
+.btn.is-loading .btn-spinner{
+  display:inline-block;
+}
+
+@keyframes btn-spin{
+  to{ transform:rotate(360deg); }
 }
 
 .login-btn{
@@ -1663,7 +1682,7 @@ textarea:focus{
       id="loginBtn"
       class="btn login-btn"
     >
-      Login
+      <span class="btn-spinner" id="loginBtnSpinner"></span><span id="loginBtnText">Login</span>
     </button>
 
     <p id="loginError" class="error"></p>
@@ -2381,6 +2400,14 @@ document
         document
           .getElementById("loginError");
 
+      const loginBtn =
+        document
+          .getElementById("loginBtn");
+
+      const loginBtnText =
+        document
+          .getElementById("loginBtnText");
+
 
       errorBox.textContent = "";
 
@@ -2395,6 +2422,14 @@ document
       }
 
 
+      loginBtn.disabled = true;
+
+      loginBtn.classList.add("is-loading");
+
+      loginBtnText.textContent =
+        "Logging in...";
+
+
       try{
 
         await signInWithEmailAndPassword(
@@ -2403,6 +2438,13 @@ document
           password
         );
 
+        /*
+         On success we leave the button in its loading
+         state - onAuthStateChanged takes over from here
+         and swaps loginPage out for the member app, so
+         there's no "logged in" flash of the idle button.
+        */
+
       }
       catch(error){
 
@@ -2410,6 +2452,13 @@ document
 
         errorBox.textContent =
           "Login failed. Please check your email and password.";
+
+        loginBtn.disabled = false;
+
+        loginBtn.classList.remove("is-loading");
+
+        loginBtnText.textContent =
+          "Login";
 
       }
 
@@ -4085,7 +4134,7 @@ function(id){
             onclick="markDayComplete(${dayNumber})"
           >
 
-            ${icon("check")} Mark Day ${dayNumber} Complete
+            ${icon("check")} Mark as Complete
 
           </button>
 
