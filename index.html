@@ -170,7 +170,7 @@
   ============================================================= */
   .hero{ padding-top:76px; padding-bottom:70px; }
   .hero-grid{
-    display:grid; grid-template-columns: 1fr 0.92fr; gap:64px; align-items:center;
+    display:grid; grid-template-columns: 1fr 0.92fr; gap:64px; align-items:start;
   }
   .hero-eyebrow{
     font-size:13px; font-weight:700; letter-spacing:.16em; color: var(--plum-soft);
@@ -186,7 +186,7 @@
   .hero-feature{ display:flex; align-items:center; gap:10px; font-size:13.5px; font-weight:600; color: var(--ink); }
   .hero-feature svg{ width:20px; height:20px; color: var(--plum); flex-shrink:0; }
 
-  .hero-media{ position:relative; max-width:365px; margin-left:auto; }
+  .hero-media{ position:relative; max-width:405px; margin-left:auto; }
   .hero-media .frame{
     position:relative;
     border-radius: 50% 50% 46% 46% / 55% 55% 45% 45%;
@@ -474,7 +474,7 @@
 
     <div class="hero-media">
       <div class="frame">
-        <img src="images/hero-bowl.jpeg" alt="A fresh, colorful bowl of real food">
+        <img src="images/hero-bowl.jpeg" alt="A fresh, colorful bowl of real food" fetchpriority="high" decoding="async">
       </div>
       <div class="hero-caption script">Healthy Food.<br>Happier You. ♡</div>
     </div>
@@ -586,7 +586,7 @@
 
     <div class="program-grid">
       <div class="program-card">
-        <div class="program-img"><img src="images/program-diabetes.jpeg" alt="Diabetes Freedom Blueprint"></div>
+        <div class="program-img"><img src="images/program-diabetes.jpeg" alt="Diabetes Freedom Blueprint" loading="lazy" decoding="async"></div>
         <div class="program-body">
           <div class="program-tag">Self-Guided · Structured · Educational</div>
           <h3>Diabetes Freedom Blueprint</h3>
@@ -600,7 +600,7 @@
       </div>
 
       <div class="program-card">
-        <div class="program-img"><img src="images/program-club.jpeg" alt="Freedom Women's Health Club"></div>
+        <div class="program-img"><img src="images/program-club.jpeg" alt="Freedom Women's Health Club" loading="lazy" decoding="async"></div>
         <div class="program-body">
           <div class="program-tag">Group Support · Accountability · Community</div>
           <h3>Freedom Women's Health Club</h3>
@@ -614,7 +614,7 @@
       </div>
 
       <div class="program-card">
-        <div class="program-img"><img src="images/program-mentorship.jpeg" alt="1:1 Freedom Mentorship"></div>
+        <div class="program-img"><img src="images/program-mentorship.jpeg" alt="1:1 Freedom Mentorship" loading="lazy" decoding="async"></div>
         <div class="program-body">
           <div class="program-tag">Fully Personalized · 1:1 · Direct Support</div>
           <h3>1:1 Freedom Mentorship</h3>
